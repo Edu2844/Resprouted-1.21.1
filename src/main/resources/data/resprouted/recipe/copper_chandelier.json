@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": {
+      "item": "minecraft:copper_ingot"
+    },
+    "y": {
+      "item": "resprouted:copper_chain"
+    }
+  },
+  "pattern": [
+    " x ",
+    "y y",
+    "xxx"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resprouted:copper_chandelier"
+  }
+}

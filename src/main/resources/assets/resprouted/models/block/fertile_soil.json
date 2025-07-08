@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "resprouted:block/fertile_soil",
+    "down": "resprouted:block/fertile_soil",
+    "up": "resprouted:block/fertile_soil_top",
+    "east": "resprouted:block/fertile_soil",
+    "west": "resprouted:block/fertile_soil",
+    "north": "resprouted:block/fertile_soil",
+    "south": "resprouted:block/fertile_soil"
+  }
+}

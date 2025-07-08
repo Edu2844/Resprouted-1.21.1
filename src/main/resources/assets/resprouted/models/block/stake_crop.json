@@ -1,0 +1,61 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"2": "block/oak_log_top",
+		"3": "resprouted:block/crops/stake",
+		"particle": "#crop",
+		"crop": "#crop"
+	},
+	"elements": [
+		{
+			"name": "Cube",
+			"from": [6, 0, 6],
+			"to": [10, 16, 10],
+			"faces": {
+				"north": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
+				"east": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
+				"south": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
+				"west": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
+				"up": {"uv": [6, 6, 10, 10], "texture": "#2"},
+				"down": {"uv": [6, 6, 10, 10], "texture": "#2"}
+			}
+		},
+		{
+			"name": "Face_North",
+			"from": [0, 0, 2],
+			"to": [16, 16, 2],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#crop"},
+				"south": {"uv": [16, 0, 0, 16], "texture": "#crop"}
+			}
+		},
+		{
+			"name": "Face_South",
+			"from": [0, 0, 14],
+			"to": [16, 16, 14],
+			"faces": {
+				"north": {"uv": [16, 0, 0, 16], "texture": "#crop"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#crop"}
+			}
+		},
+		{
+			"name": "Face_West",
+			"from": [2, 0, 0],
+			"to": [2, 16, 16],
+			"faces": {
+				"east": {"uv": [16, 0, 0, 16], "texture": "#crop"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#crop"}
+			}
+		},
+		{
+			"name": "Face_East",
+			"from": [14, 0, 0],
+			"to": [14, 16, 16],
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#crop"},
+				"west": {"uv": [16, 0, 0, 16], "texture": "#crop"}
+			}
+		}
+	]
+}

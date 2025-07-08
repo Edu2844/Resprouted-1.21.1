@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "resprouted:block/cloudsbluff_block_stage0"
+    },
+    "age=1": {
+      "model": "resprouted:block/cloudsbluff_block_stage1"
+    },
+    "age=2": {
+      "model": "resprouted:block/cloudsbluff_block_stage2"
+    },
+    "age=3": {
+      "model": "resprouted:block/cloudsbluff_block_stage3"
+    },
+    "age=4": {
+      "model": "resprouted:block/cloudsbluff_block_stage4"
+    },
+    "age=5": {
+      "model": "resprouted:block/cloudsbluff_block_stage5"
+    },
+    "age=6": {
+      "model": "resprouted:block/cloudsbluff_block_stage6"
+    }
+  }
+}

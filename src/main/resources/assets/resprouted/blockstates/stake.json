@@ -1,0 +1,20 @@
+{
+  "multipart": [
+    {"apply": {"model": "resprouted:block/stake"}},
+    {"when": {"has_rope": "true"}, 
+      "apply": {"model": "resprouted:block/stake_with_rope"}},
+    
+    {"when": {"has_rope": "true", "connect_north": "true"},
+      "apply": {"model": "resprouted:block/rope_connection_nw", "y": 180}},
+
+    {"when": {"has_rope": "true", "connect_south": "true"},
+      "apply": {"model": "resprouted:block/rope_connection", "y": 0}},
+
+    {"when": {"has_rope": "true", "connect_east": "true"},
+      "apply": {"model": "resprouted:block/rope_connection_nw", "y": 270}},
+
+    {"when": {"has_rope": "true", "connect_west": "true"},
+      "apply": {"model": "resprouted:block/rope_connection", "y": 90}}
+  ]
+}
+

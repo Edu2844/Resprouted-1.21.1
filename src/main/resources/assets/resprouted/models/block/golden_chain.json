@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/chain",
+  "textures": {
+    "all": "resprouted:block/golden_chain",
+    "particle": "resprouted:block/golden_chain"
+  }
+}

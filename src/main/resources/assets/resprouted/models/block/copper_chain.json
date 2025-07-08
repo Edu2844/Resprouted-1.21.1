@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/chain",
+  "textures": {
+    "all": "resprouted:block/copper_chain",
+    "particle": "resprouted:block/copper_chain"
+  }
+}

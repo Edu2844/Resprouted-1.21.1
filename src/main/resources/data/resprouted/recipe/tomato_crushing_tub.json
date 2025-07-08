@@ -1,0 +1,10 @@
+{
+  "type": "resprouted:crushing_tub",
+  "input_item": {
+    "item": "resprouted:tomato"
+  },
+  "output_item": {
+    "id": "resprouted:tomato_seeds",
+    "count": 1
+  }
+}

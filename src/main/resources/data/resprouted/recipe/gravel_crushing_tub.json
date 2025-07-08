@@ -1,0 +1,10 @@
+{
+  "type": "resprouted:crushing_tub",
+  "input_item": {
+    "item": "minecraft:gravel"
+  },
+  "output_item": {
+    "id": "minecraft:flint",
+    "count": 1
+  }
+}

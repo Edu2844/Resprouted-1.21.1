@@ -1,0 +1,10 @@
+{
+  "type": "resprouted:crushing_tub",
+  "input_item": {
+    "item": "resprouted:olives"
+  },
+  "fluid_variant": {
+    "fluid": "resprouted:olive_oil_still"
+  },
+  "amount": 20250
+}

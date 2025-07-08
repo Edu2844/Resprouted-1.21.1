@@ -1,0 +1,6 @@
+{
+    "parent": "resprouted:block/stool/oak_stool",
+    "textures": {
+		"particle": "block/birch_planks"
+    }
+}

@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north":	{ "model": "resprouted:block/clay_wall_diagonal" },
+		"facing=east":	{ "model": "resprouted:block/clay_wall_diagonal", "y": 90},
+		"facing=south":	{ "model": "resprouted:block/clay_wall_diagonal", "y": 180 },
+		"facing=west":	{ "model": "resprouted:block/clay_wall_diagonal", "y": 270 }
+	}
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "resprouted:tomato"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "resprouted:tomato_seeds"
+  },
+  "show_notification": true
+}

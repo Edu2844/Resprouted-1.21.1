@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "resprouted:block/olive/olive_planks"
+  }
+}

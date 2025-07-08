@@ -1,0 +1,14 @@
+{
+  "type": "resprouted:crushing_tub",
+  "input_item": {
+    "item": "minecraft:golden_apple"
+  },
+  "output_item": {
+    "id": "resprouted:apple_seeds",
+    "count": 1
+  },
+  "fluid_variant": {
+    "fluid": "resprouted:golden_apple_juice_still"
+  },
+  "amount": 20250
+}

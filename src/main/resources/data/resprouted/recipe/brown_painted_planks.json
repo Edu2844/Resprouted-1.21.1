@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "y": {
+      "tag": "minecraft:planks"
+    },
+    "x": {
+      "item": "minecraft:brown_dye"
+    }
+  },
+  "pattern": [
+    "yyy",
+    "yxy",
+    "yyy"
+  ],
+  "result": {
+    "count": 8,
+    "id": "resprouted:brown_painted_planks"
+  }
+}

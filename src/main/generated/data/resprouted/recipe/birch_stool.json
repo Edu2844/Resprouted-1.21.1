@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "minecraft:birch_slab"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "   ",
+    "PPP",
+    "S S"
+  ],
+  "result": {
+    "count": 4,
+    "id": "resprouted:birch_stool"
+  }
+}

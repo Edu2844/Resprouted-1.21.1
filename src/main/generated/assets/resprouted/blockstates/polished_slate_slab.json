@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "resprouted:block/polished_slate_slab"
+    },
+    "type=double": {
+      "model": "resprouted:block/polished_slate"
+    },
+    "type=top": {
+      "model": "resprouted:block/polished_slate_slab_top"
+    }
+  }
+}

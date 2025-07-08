@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "net.edu.resprouted.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CropBlockMixin",
+    "GlassBottleItemMixin",
+    "MushroomPlantBlockMixin",
+    "SugarCaneBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+	}
+}

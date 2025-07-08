@@ -1,0 +1,7 @@
+{
+	"parent": "resprouted:block/table/oak_table_top",
+	"textures": {
+		"0": "block/jungle_planks",
+		"particle": "block/jungle_planks"
+	}
+}

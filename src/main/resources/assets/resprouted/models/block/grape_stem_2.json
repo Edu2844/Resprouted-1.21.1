@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "resprouted:block/crops/grape_stem_2"
+    }
+}

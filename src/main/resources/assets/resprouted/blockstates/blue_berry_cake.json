@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "bites=0": {
+      "model": "resprouted:block/blue_berry_cake"
+    },
+    "bites=1": {
+      "model": "resprouted:block/blue_berry_cake_slice1"
+    },
+    "bites=2": {
+      "model": "resprouted:block/blue_berry_cake_slice2"
+    },
+    "bites=3": {
+      "model": "resprouted:block/blue_berry_cake_slice3"
+    }
+  }
+}

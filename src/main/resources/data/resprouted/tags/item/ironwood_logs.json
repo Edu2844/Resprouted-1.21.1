@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "resprouted:ironwood_log",
+    "resprouted:stripped_ironwood_log",
+    "resprouted:ironwood_wood",
+    "resprouted:stripped_ironwood_wood"
+  ]
+}

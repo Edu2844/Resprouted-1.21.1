@@ -1,0 +1,7 @@
+{
+	"parent": "resprouted:block/table/oak_table_leg_nw",
+	"textures": {
+		"0": "block/mangrove_planks",
+		"particle": "block/mangrove_planks"
+	}
+}

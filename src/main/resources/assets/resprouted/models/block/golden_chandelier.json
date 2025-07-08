@@ -1,0 +1,8 @@
+{
+    "parent": "resprouted:block/chandelier",
+    "textures": {
+		"1": "resprouted:block/golden_chain",
+		"particle": "resprouted:block/golden_chandelier",
+		"chandelier": "resprouted:block/golden_chandelier"
+    }
+}

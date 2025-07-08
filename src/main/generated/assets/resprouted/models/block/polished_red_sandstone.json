@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "resprouted:block/red_sandstone/polished_red_sandstone"
+  }
+}

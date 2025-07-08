@@ -1,0 +1,512 @@
+package net.edu.resprouted.block;
+
+import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.block.custom.agriculture.*;
+import net.edu.resprouted.block.custom.decorative.*;
+import net.edu.resprouted.fluid.ModFluids;
+import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.item.custom.LiquidBarrelItem;
+import net.edu.resprouted.world.tree.ModSaplingGenerators;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Identifier;
+
+public class ModBlocks {
+    // =================================================
+    // ||                   SLATE                     ||
+    // =================================================
+    public static final Block SLATE = registerBlock("slate",
+            new Block(AbstractBlock.Settings.copy(Blocks.STONE)));
+
+    public static final Block POLISHED_SLATE = registerBlock("polished_slate",
+            new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+    public static final Block POLISHED_SLATE_WALL = registerBlock("polished_slate_wall",
+            new WallBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block POLISHED_SLATE_STAIRS = registerBlock("polished_slate_stairs",
+            new StairsBlock(ModBlocks.POLISHED_SLATE.getDefaultState(),AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+    public static final Block POLISHED_SLATE_SLAB = registerBlock("polished_slate_slab",
+            new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+
+    public static final Block SLATE_BRICKS = registerBlock("slate_bricks",
+            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block SLATE_BRICK_WALL = registerBlock("slate_brick_wall",
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block SLATE_BRICK_STAIRS = registerBlock("slate_brick_stairs",
+            new StairsBlock(ModBlocks.SLATE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block SLATE_BRICK_SLAB = registerBlock("slate_brick_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+
+    public static final Block SLATE_ROOFS = registerBlock("slate_roofs",
+            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block SLATE_ROOF_STAIRS = registerBlock("slate_roof_stairs",
+            new StairsBlock(ModBlocks.SLATE_ROOFS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block SLATE_ROOF_SLAB = registerBlock("slate_roof_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+
+    public static final Block CHISELED_SLATE = registerBlock("chiseled_slate",
+            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+
+    public static final Block SLATE_PILLAR = registerBlock("slate_pillar",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+
+    // =================================================
+    // ||                 ANDESITE                    ||
+    // =================================================
+    public static final Block ANDESITE_BRICKS = registerBlock("andesite_bricks",
+            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block CRACKED_ANDESITE_BRICKS = registerBlock("cracked_andesite_bricks",
+            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block CHISELED_ANDESITE = registerBlock("chiseled_andesite",
+            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block ANDESITE_PILLAR = registerBlock("andesite_pillar",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+
+    // =================================================
+    // ||                  DIORITE                    ||
+    // =================================================
+    public static final Block DIORITE_BRICKS = registerBlock("diorite_bricks",
+            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block CRACKED_DIORITE_BRICKS = registerBlock("cracked_diorite_bricks",
+            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block CHISELED_DIORITE = registerBlock("chiseled_diorite",
+            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block DIORITE_PILLAR = registerBlock("diorite_pillar",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+
+    // =================================================
+    // ||                  GRANITE                    ||
+    // =================================================
+    public static final Block GRANITE_BRICKS = registerBlock("granite_bricks",
+            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block CRACKED_GRANITE_BRICKS = registerBlock("cracked_granite_bricks",
+            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block CHISELED_GRANITE = registerBlock("chiseled_granite",
+            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block GRANITE_PILLAR = registerBlock("granite_pillar",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+
+    // =================================================
+    // ||                   STONE                     ||
+    // =================================================
+    public static final Block POLISHED_STONE = registerBlock("polished_stone",
+            new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+    public static final Block STONE_PILLAR = registerBlock("stone_pillar",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+
+    // =================================================
+    // ||                SANDSTONE                    ||
+    // =================================================
+    public static final Block POLISHED_SANDSTONE = registerBlock("polished_sandstone",
+            new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+    public static final Block SANDSTONE_BRICKS = registerBlock("sandstone_bricks",
+            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block SANDSTONE_PILLAR = registerBlock("sandstone_pillar",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+
+    // =================================================
+    // ||                RED SANDSTONE                ||
+    // =================================================
+    public static final Block POLISHED_RED_SANDSTONE = registerBlock("polished_red_sandstone",
+            new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+    public static final Block RED_SANDSTONE_BRICKS = registerBlock("red_sandstone_bricks",
+            new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+    public static final Block RED_SANDSTONE_PILLAR = registerBlock("red_sandstone_pillar",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+
+    // =================================================
+    // ||                WROUGHT IRON                ||
+    // =================================================
+    public static final Block WROUGHT_IRON_BLOCK = registerBlock("wrought_iron_block",
+            new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
+    public static final Block CUT_WROUGHT_IRON_BLOCK = registerBlock("cut_wrought_iron_block",
+            new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
+
+    // =================================================
+    // ||                   CLAY WALL                 ||
+    // =================================================
+    public static final Block CLAY_WALL = registerBlock("clay_wall",
+            new Block(AbstractBlock.Settings.copy(Blocks.CLAY)));
+    public static final Block CLAY_WALL_CROSS = registerBlock("clay_wall_cross",
+            new Block(AbstractBlock.Settings.copy(Blocks.CLAY)));
+    public static final Block CLAY_WALL_DIAGONAL = registerBlock("clay_wall_diagonal",
+            new BlockClayWallDiag(AbstractBlock.Settings.copy(Blocks.CLAY)));
+
+    // =================================================
+    // ||                  IRONWOOD                   ||
+    // =================================================
+    public static final Block IRONWOOD_LEAVES = registerBlock("ironwood_leaves",
+            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block IRONWOOD_LOG = registerBlock("ironwood_log",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block IRONWOOD_WOOD = registerBlock("ironwood_wood",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
+    public static final Block STRIPPED_IRONWOOD_LOG = registerBlock("stripped_ironwood_log",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block STRIPPED_IRONWOOD_WOOD = registerBlock("stripped_ironwood_wood",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final Block IRONWOOD_PLANKS = registerBlock("ironwood_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block IRONWOOD_SAPLING = registerBlock("ironwood_sapling",
+            new SaplingBlock(ModSaplingGenerators.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
+    public static final Block IRONWOOD_STAIRS = registerBlock("ironwood_stairs",
+            new StairsBlock(ModBlocks.IRONWOOD_PLANKS.getDefaultState(), AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_SLAB = registerBlock("ironwood_slab",
+            new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_BUTTON = registerBlock("ironwood_button",
+            new ButtonBlock(BlockSetType.ACACIA, 2, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
+    public static final Block IRONWOOD_PRESSURE_PLATE = registerBlock("ironwood_pressure_plate",
+            new PressurePlateBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_FENCE = registerBlock("ironwood_fence",
+            new FenceBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_FENCE_GATE = registerBlock("ironwood_fence_gate",
+            new FenceGateBlock(WoodType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_DOOR = registerBlock("ironwood_door",
+            new DoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+    public static final Block IRONWOOD_TRAPDOOR = registerBlock("ironwood_trapdoor",
+            new TrapdoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+
+    // =================================================
+    // ||                    OLIVE                    ||
+    // =================================================
+    public static final Block OLIVE_LEAVES = registerBlock("olive_leaves",
+            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block OLIVE_LOG = registerBlock("olive_log",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block STRIPPED_OLIVE_WOOD = registerBlock("stripped_olive_wood",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final Block OLIVE_WOOD = registerBlock("olive_wood",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
+    public static final Block STRIPPED_OLIVE_LOG = registerBlock("stripped_olive_log",
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block OLIVE_PLANKS = registerBlock("olive_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block OLIVE_SAPLING = registerBlock("olive_sapling",
+            new SaplingBlock(ModSaplingGenerators.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
+    public static final Block OLIVE_STAIRS = registerBlock("olive_stairs",
+            new StairsBlock(ModBlocks.OLIVE_PLANKS.getDefaultState(), AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_SLAB = registerBlock("olive_slab",
+            new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_BUTTON = registerBlock("olive_button",
+            new ButtonBlock(BlockSetType.ACACIA, 2, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
+    public static final Block OLIVE_PRESSURE_PLATE = registerBlock("olive_pressure_plate",
+            new PressurePlateBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_FENCE = registerBlock("olive_fence",
+            new FenceBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_FENCE_GATE = registerBlock("olive_fence_gate",
+            new FenceGateBlock(WoodType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_DOOR = registerBlock("olive_door",
+            new DoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+    public static final Block OLIVE_TRAPDOOR = registerBlock("olive_trapdoor",
+            new TrapdoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+
+    // =================================================
+    // ||               PAINTED PLANKS                ||
+    // =================================================
+    public static final Block BLACK_PAINTED_PLANKS = registerBlock("black_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block BLUE_PAINTED_PLANKS = registerBlock("blue_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block BROWN_PAINTED_PLANKS = registerBlock("brown_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block CYAN_PAINTED_PLANKS = registerBlock("cyan_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block GRAY_PAINTED_PLANKS = registerBlock("gray_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block GREEN_PAINTED_PLANKS = registerBlock("green_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block LIGHT_BLUE_PAINTED_PLANKS = registerBlock("light_blue_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block LIME_PAINTED_PLANKS = registerBlock("lime_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block MAGENTA_PAINTED_PLANKS = registerBlock("magenta_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block ORANGE_PAINTED_PLANKS = registerBlock("orange_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block PINK_PAINTED_PLANKS = registerBlock("pink_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block PURPLE_PAINTED_PLANKS = registerBlock("purple_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block RED_PAINTED_PLANKS = registerBlock("red_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block LIGHT_GRAY_PAINTED_PLANKS = registerBlock("light_gray_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block WHITE_PAINTED_PLANKS = registerBlock("white_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block YELLOW_PAINTED_PLANKS = registerBlock("yellow_painted_planks",
+            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+
+    // =================================================
+    // ||                  CHAIRS                     ||
+    // =================================================
+    public static final Block ACACIA_CHAIR = registerBlock("acacia_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block CHERRY_CHAIR = registerBlock("cherry_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block BAMBOO_CHAIR = registerBlock("bamboo_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block CRIMSON_CHAIR = registerBlock("crimson_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block OAK_CHAIR = registerBlock("oak_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block BIRCH_CHAIR = registerBlock("birch_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block SPRUCE_CHAIR = registerBlock("spruce_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block JUNGLE_CHAIR = registerBlock("jungle_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block WARPED_CHAIR = registerBlock("warped_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block DARK_OAK_CHAIR = registerBlock("dark_oak_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block MANGROVE_CHAIR = registerBlock("mangrove_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block IRONWOOD_CHAIR = registerBlock("ironwood_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block OLIVE_CHAIR = registerBlock("olive_chair",
+            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+
+    // =================================================
+    // ||                  STOOLS                     ||
+    // =================================================
+    public static final Block OAK_STOOL = registerBlock("oak_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block ACACIA_STOOL = registerBlock("acacia_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block CHERRY_STOOL = registerBlock("cherry_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block BAMBOO_STOOL = registerBlock("bamboo_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block CRIMSON_STOOL = registerBlock("crimson_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block BIRCH_STOOL = registerBlock("birch_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block SPRUCE_STOOL = registerBlock("spruce_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block JUNGLE_STOOL = registerBlock("jungle_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block WARPED_STOOL = registerBlock("warped_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block DARK_OAK_STOOL = registerBlock("dark_oak_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block MANGROVE_STOOL = registerBlock("mangrove_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block IRONWOOD_STOOL = registerBlock("ironwood_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block OLIVE_STOOL = registerBlock("olive_stool",
+            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+
+    // =================================================
+    // ||                  TABLES                     ||
+    // =================================================
+    public static final Block OAK_TABLE = registerBlock("oak_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block DARK_OAK_TABLE = registerBlock("dark_oak_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block MANGROVE_TABLE = registerBlock("mangrove_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block CHERRY_TABLE = registerBlock("cherry_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block BIRCH_TABLE = registerBlock("birch_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block SPRUCE_TABLE = registerBlock("spruce_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block ACACIA_TABLE = registerBlock("acacia_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block JUNGLE_TABLE = registerBlock("jungle_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block BAMBOO_TABLE = registerBlock("bamboo_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block CRIMSON_TABLE = registerBlock("crimson_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block WARPED_TABLE = registerBlock("warped_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block IRONWOOD_TABLE = registerBlock("ironwood_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block OLIVE_TABLE = registerBlock("olive_table",
+            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+
+    // =================================================
+    // ||                  CHAINS                     ||
+    // =================================================
+    public static final Block GOLDEN_CHAIN = registerBlock("golden_chain",
+            new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block COPPER_CHAIN = registerBlock("copper_chain",
+            new CopperChainBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block EXPOSED_COPPER_CHAIN = registerBlock("exposed_copper_chain",
+            new CopperChainBlock(Oxidizable.OxidationLevel.EXPOSED, AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block WEATHERED_COPPER_CHAIN = registerBlock("weathered_copper_chain",
+            new CopperChainBlock(Oxidizable.OxidationLevel.WEATHERED, AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block OXIDIZED_COPPER_CHAIN = registerBlock("oxidized_copper_chain",
+            new CopperChainBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    //WAXED
+    public static final Block WAXED_COPPER_CHAIN = registerBlock("waxed_copper_chain", new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block WAXED_EXPOSED_COPPER_CHAIN = registerBlock("waxed_exposed_copper_chain", new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block WAXED_OXIDIZED_COPPER_CHAIN = registerBlock("waxed_oxidized_copper_chain", new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block WAXED_WEATHERED_COPPER_CHAIN = registerBlock("waxed_weathered_copper_chain", new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+
+    // =================================================
+    // ||                   LANTERNS                  ||
+    // =================================================
+    //GOLDEN
+    public static final Block GOLDEN_LANTERN = registerBlock("golden_lantern",
+            new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block GOLDEN_SOUL_LANTERN = registerBlock("golden_soul_lantern",
+            new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    //COPPER
+    public static final Block COPPER_LANTERN = registerBlock("copper_lantern",
+            new CopperLanternBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block EXPOSED_COPPER_LANTERN = registerBlock("exposed_copper_lantern",
+            new CopperLanternBlock(Oxidizable.OxidationLevel.EXPOSED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WEATHERED_COPPER_LANTERN = registerBlock("weathered_copper_lantern",
+            new CopperLanternBlock(Oxidizable.OxidationLevel.WEATHERED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block OXIDIZED_COPPER_LANTERN = registerBlock("oxidized_copper_lantern",
+            new CopperLanternBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
+
+    public static final Block COPPER_SOUL_LANTERN = registerBlock("copper_soul_lantern",
+            new CopperLanternBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block EXPOSED_COPPER_SOUL_LANTERN = registerBlock("exposed_copper_soul_lantern",
+            new CopperLanternBlock(Oxidizable.OxidationLevel.EXPOSED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WEATHERED_COPPER_SOUL_LANTERN = registerBlock("weathered_copper_soul_lantern",
+            new CopperLanternBlock(Oxidizable.OxidationLevel.WEATHERED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block OXIDIZED_COPPER_SOUL_LANTERN = registerBlock("oxidized_copper_soul_lantern",
+            new CopperLanternBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    //WAXED
+    public static final Block WAXED_COPPER_LANTERN = registerBlock("waxed_copper_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_EXPOSED_COPPER_LANTERN = registerBlock("waxed_exposed_copper_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_OXIDIZED_COPPER_LANTERN = registerBlock("waxed_oxidized_copper_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_WEATHERED_COPPER_LANTERN = registerBlock("waxed_weathered_copper_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+
+    public static final Block WAXED_COPPER_SOUL_LANTERN = registerBlock("waxed_copper_soul_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_EXPOSED_COPPER_SOUL_LANTERN = registerBlock("waxed_exposed_copper_soul_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_OXIDIZED_COPPER_SOUL_LANTERN = registerBlock("waxed_oxidized_copper_soul_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_WEATHERED_COPPER_SOUL_LANTERN = registerBlock("waxed_weathered_copper_soul_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+
+    // =================================================
+    // ||                 CHANDELIER                  ||
+    // =================================================
+    public static final Block CHANDELIER = registerBlock("chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block GOLDEN_CHANDELIER = registerBlock("golden_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+
+    public static final Block COPPER_CHANDELIER = registerBlock("copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.UNAFFECTED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block EXPOSED_COPPER_CHANDELIER = registerBlock("exposed_copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.EXPOSED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block WEATHERED_COPPER_CHANDELIER = registerBlock("weathered_copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.WEATHERED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block OXIDIZED_COPPER_CHANDELIER = registerBlock("oxidized_copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.OXIDIZED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+
+    public static final Block WAXED_COPPER_CHANDELIER = registerBlock("waxed_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block WAXED_EXPOSED_COPPER_CHANDELIER = registerBlock("waxed_exposed_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block WAXED_WEATHERED_COPPER_CHANDELIER = registerBlock("waxed_weathered_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block WAXED_OXIDIZED_COPPER_CHANDELIER = registerBlock("waxed_oxidized_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+
+    // =================================================
+    // ||                CANDLE_HOLDER                ||
+    // =================================================
+
+
+
+    // =================================================
+    // ||                AGRICULTURE                  ||
+    // =================================================
+    public static final Block ROPE = registerBlock("rope", new RopeBlock(AbstractBlock.Settings.copy(Blocks.WHITE_WOOL)));
+    public static final Block GRAPE_LEAVES = registerBlockWithoutBlockItem("grape_leaves", new GrapeLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block GRAPE_STEM = registerBlockWithoutBlockItem("grape_stem", new GrapeStemBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)));
+    public static final Block FERTILE_SOIL = registerBlock("fertile_soil", new FertileSoilBlock(AbstractBlock.Settings.copy(Blocks.FARMLAND)));
+    public static final Block STAKE = registerBlock("stake", new StakeBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block TOMATO_CROP = registerBlockWithoutBlockItem("tomato_crop", new TomatoCrop(AbstractBlock.Settings.copy(Blocks.WHEAT)));
+    public static final Block CHILI_CROP = registerBlockWithoutBlockItem("chili_crop", new ChiliCrop(AbstractBlock.Settings.copy(Blocks.WHEAT)));
+    public static final Block APPLE_TREE = registerBlockWithoutBlockItem("apple_tree", new AppleTreeBlock(AbstractBlock.Settings.create().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).pistonBehavior(PistonBehavior.DESTROY).mapColor(MapColor.DARK_GREEN)));
+    public static final Block APPLE_LEAVES = registerBlock("apple_leaves", new AppleLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block APPLE_SAPLING = registerBlock("apple_sapling", new SaplingBlock(ModSaplingGenerators.APPLE, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING).nonOpaque().solidBlock(Blocks::never).suffocates(Blocks::never)));
+    public static final Block CRUSHING_TUB = registerBlock("crushing_tub", new CrushingTubBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block EVAPORATING_BASIN = registerBlock("evaporating_basin", new EvaporatingBasinBlock(AbstractBlock.Settings.copy(Blocks.TERRACOTTA).nonOpaque()));
+
+    //LIQUID BARREL BLOCK AND LIQUID BARREL ITEM
+    public static final Block LIQUID_BARREL = Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, "liquid_barrel"), new LiquidBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Item LIQUID_BARREL_ITEM = Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, "liquid_barrel"), new LiquidBarrelItem(LIQUID_BARREL, new Item.Settings()));
+
+    public static final Block BLUE_BERRY_CAKE = registerBlock("blue_berry_cake", new CustomCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE)));
+
+    // =================================================
+    // ||                 FLUID BLOCKS                ||
+    // =================================================
+    public static final Block HONEY_FLUID_BLOCK = registerBlockWithoutBlockItem("honey_fluid_block", new
+            HoneyFluidBlock(ModFluids.HONEY_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().dropsNothing().nonOpaque().mapColor(MapColor.ORANGE))));
+
+    public static final Block APPLE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("apple_juice_fluid_block", new
+            FluidBlock(ModFluids.APPLE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block GOLDEN_APPLE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("golden_apple_juice_fluid_block", new
+            FluidBlock(ModFluids.GOLDEN_APPLE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block GRAPE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("grape_juice_fluid_block", new
+            FluidBlock(ModFluids.GRAPE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block SWEET_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("sweet_berry_juice_fluid_block", new
+            FluidBlock(ModFluids.SWEET_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block OLIVE_OIL_FLUID_BLOCK = registerBlockWithoutBlockItem("olive_oil_fluid_block", new
+            FluidBlock(ModFluids.OLIVE_OIL_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block GLOW_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("glow_berry_juice_fluid_block", new
+            FluidBlock(ModFluids.GLOW_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block IRON_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("iron_berry_juice_fluid_block", new
+            FluidBlock(ModFluids.IRON_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    // =================================================
+    // ||                   HERBS                     ||
+    // =================================================
+    public static final Block ALOE_VERA_BLOCK = registerBlockWithoutBlockItem("aloe_vera_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.ALOE_VERA));
+    public static final Block HORSETAIL_BLOCK = registerBlockWithoutBlockItem("horsetail_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.HORSETAIL));
+    public static final Block COHOSH_BLOCK = registerBlockWithoutBlockItem("cohosh_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.COHOSH));
+    public static final Block CHAMOMILE_BLOCK = registerBlockWithoutBlockItem("chamomile_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.CHAMOMILE));
+    public static final Block CLOUDSBLUFF_BLOCK = registerBlockWithoutBlockItem("cloudsbluff_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.CLOUDSBLUFF));
+    public static final Block BLOOD_ORCHID_BLOCK = registerBlockWithoutBlockItem("blood_orchid_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.BLOOD_ORCHID));
+    public static final Block GINSENG_BLOCK = registerBlockWithoutBlockItem("ginseng_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.GINSENG));
+    public static final Block MARSHMALLOW_BLOCK = registerBlockWithoutBlockItem("marshmallow_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.MARSH_MALLOW));
+    public static final Block VANTA_LILY_BLOCK = registerBlockWithoutBlockItem("vanta_lily_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.VANTA_LILY));
+    public static final Block WIND_THISTLE_BLOCK = registerBlockWithoutBlockItem("wind_thistle_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.WIND_THISTLE));
+    public static final Block MOONCAP_MUSHROOM = registerBlockWithoutBlockItem("mooncap_mushroom",
+            new CustomMushroomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.MOONCAP_MUSHROOM));
+    public static final Block DEATHSTALK_MUSHROOM = registerBlockWithoutBlockItem("deathstalk_mushroom",
+            CustomMushroomBlock.NetherMushroom(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.DEATHSTALK_MUSHROOM));
+    public static final Block CORE_ROOT = registerBlockWithoutBlockItem("core_root",
+            new CustomMushroomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.CORE_ROOT));
+
+    // =================================================
+    // ||                   BUSHES                    ||
+    // =================================================
+    public static final Block BLUE_BERRY_BUSH = registerBlockWithoutBlockItem("blue_berry_bush",
+            new BlueBerrieBush(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)));
+
+
+
+    private static Block registerBlockWithoutBlockItem(String name, Block block) {
+        return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);
+    }
+    private static Block registerBlock(String name, Block block) {
+        registerBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);
+    }
+    private static void registerBlockItem(String name, Block block){
+        Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name),
+                new BlockItem(block, new Item.Settings()));
+    }
+    public static void registerModBlocks(){
+        Resprouted.LOGGER.info("Registering Mod Blocks for " + Resprouted.MOD_ID);
+    }
+}

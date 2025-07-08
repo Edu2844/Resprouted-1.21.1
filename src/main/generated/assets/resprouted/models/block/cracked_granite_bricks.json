@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "resprouted:block/granite/cracked_granite_bricks"
+  }
+}

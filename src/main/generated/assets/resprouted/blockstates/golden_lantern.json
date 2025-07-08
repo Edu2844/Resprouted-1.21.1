@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "resprouted:block/golden_lantern"
+    },
+    "hanging=true": {
+      "model": "resprouted:block/golden_lantern_hanging"
+    }
+  }
+}

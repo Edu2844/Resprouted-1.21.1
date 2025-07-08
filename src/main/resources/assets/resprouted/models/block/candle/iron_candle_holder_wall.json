@@ -1,0 +1,64 @@
+{
+	"textures": {
+		"0": "resprouted:block/iron_candle_holder",
+		"particle": "resprouted:block/iron_candle_holder"
+	},
+	"elements": [
+		{
+			"name": "mount",
+			"from": [6, 0, 15],
+			"to": [10, 4, 16],
+			"faces": {
+				"north": {"uv": [0, 12, 4, 16], "texture": "#0"},
+				"east": {"uv": [3, 12, 4, 16], "texture": "#0"},
+				"south": {"uv": [0, 12, 4, 16], "texture": "#0"},
+				"west": {"uv": [4, 12, 3, 16], "texture": "#0"},
+				"up": {"uv": [0, 15, 4, 16], "texture": "#0"},
+				"down": {"uv": [0, 15, 4, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "stick_1",
+			"from": [8, 0, 11],
+			"to": [8, 6, 15],
+			"faces": {
+				"north": {"uv": [0, 0, 0, 6], "texture": "#0"},
+				"east": {"uv": [0, 5, 4, 11], "texture": "#0"},
+				"south": {"uv": [0, 0, 0, 6], "texture": "#0"},
+				"west": {"uv": [4, 5, 0, 11], "texture": "#0"},
+				"up": {"uv": [0, 0, 0, 4], "texture": "#0"},
+				"down": {"uv": [0, 0, 0, 4], "texture": "#0"}
+			}
+		},
+		{
+			"name": "stick_2",
+			"from": [6.5, 4, 12.5],
+			"to": [9.5, 6, 12.5],
+			"faces": {
+				"north": {"uv": [7, 10, 10, 12], "texture": "#0"},
+				"south": {"uv": [7, 10, 10, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "candle_base",
+			"from": [6.5, 6, 11],
+			"to": [9.5, 7, 14],
+			"faces": {
+				"north": {"uv": [4, 15, 7, 16], "texture": "#0"},
+				"east": {"uv": [4, 15, 7, 16], "texture": "#0"},
+				"south": {"uv": [4, 15, 7, 16], "texture": "#0"},
+				"west": {"uv": [4, 15, 7, 16], "texture": "#0"},
+				"up": {"uv": [4, 13, 7, 16], "texture": "#0"},
+				"down": {"uv": [4, 13, 7, 16], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}

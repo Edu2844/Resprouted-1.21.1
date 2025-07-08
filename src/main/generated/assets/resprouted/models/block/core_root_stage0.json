@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "resprouted:block/herbs/core_root_0"
+  }
+}

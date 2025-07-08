@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": {
+      "item": "minecraft:iron_ingot"
+    },
+    "y": {
+      "item": "minecraft:chain"
+    }
+  },
+  "pattern": [
+    " x ",
+    "y y",
+    "xxx"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resprouted:chandelier"
+  }
+}

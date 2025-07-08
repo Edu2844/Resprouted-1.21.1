@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "x": {
+      "item": "minecraft:gold_ingot"
+    },
+    "y": {
+      "item": "resprouted:golden_chain"
+    }
+  },
+  "pattern": [
+    " x ",
+    "y y",
+    "xxx"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resprouted:golden_chandelier"
+  }
+}

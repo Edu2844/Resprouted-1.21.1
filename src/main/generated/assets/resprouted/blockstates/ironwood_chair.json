@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "resprouted:block/ironwood_chair",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "resprouted:block/ironwood_chair"
+    },
+    "facing=south": {
+      "model": "resprouted:block/ironwood_chair",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "resprouted:block/ironwood_chair",
+      "y": 270
+    }
+  }
+}

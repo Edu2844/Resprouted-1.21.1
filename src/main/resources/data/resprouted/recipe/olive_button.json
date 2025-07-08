@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "resprouted:olive_planks"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "resprouted:olive_button"
+  }
+}

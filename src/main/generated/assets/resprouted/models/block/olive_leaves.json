@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "resprouted:block/olive/olive_leaves"
+  }
+}

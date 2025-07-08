@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "minecraft:dark_oak_slab"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "   ",
+    "PPP",
+    "S S"
+  ],
+  "result": {
+    "count": 4,
+    "id": "resprouted:dark_oak_stool"
+  }
+}

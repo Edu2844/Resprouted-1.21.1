@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:book"
+    },
+    "t": {
+      "item": "resprouted:olives"
+    },
+    "x": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "pattern": [
+    " t ",
+    "x#x",
+    " x "
+  ],
+  "result": {
+    "id": "resprouted:catalog"
+  }
+}

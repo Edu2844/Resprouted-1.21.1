@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "resprouted:peppers"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "resprouted:chili_pepper_seeds"
+  },
+  "show_notification": true
+}

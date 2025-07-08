@@ -1,0 +1,15 @@
+{
+  "multipart": [
+    {"when": {"axis": "y"},
+      "apply": {"model": "resprouted:block/rope"}},
+
+    {"when": { "axis": "x"},
+      "apply": {"model": "resprouted:block/rope","x": 90,"y": 90}},
+
+    {"when": {"axis": "z"},
+      "apply": {"model": "resprouted:block/rope","x": 90}},
+
+    {"when": {"has_knot": "true"},
+      "apply": {"model": "resprouted:block/rope_knot"}}
+  ]
+}

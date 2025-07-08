@@ -1,0 +1,56 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "minecraft:block/oak_leaves"
+      }
+    },
+    {
+      "when": {
+        "apple_stage": 1
+      },
+      "apply": [
+      {"model": "resprouted:block/apple_0"},
+      {"model": "resprouted:block/apple_0", "y": 90, "weight": 1},
+      {"model": "resprouted:block/apple_0", "y": 180, "weight": 1},
+      {"model": "resprouted:block/apple_0", "y": 270, "weight": 1},
+      {"model": "resprouted:block/apple_0_1"},
+      {"model": "resprouted:block/apple_0_1", "y": 90, "weight": 1},
+      {"model": "resprouted:block/apple_0_1", "y": 180, "weight": 1},
+      {"model": "resprouted:block/apple_0_1", "y": 270, "weight": 1}
+      ]
+    },
+    {
+      "when": {
+        "apple_stage": 2
+      },
+      "apply": [
+      {"model": "resprouted:block/apple_1"},
+      {"model": "resprouted:block/apple_1", "y": 90, "weight": 1},
+      {"model": "resprouted:block/apple_1", "y": 180, "weight": 1},
+      {"model": "resprouted:block/apple_1", "y": 270, "weight": 1},
+      {"model": "resprouted:block/apple_1_1"},
+      {"model": "resprouted:block/apple_1_1", "y": 90, "weight": 1},
+      {"model": "resprouted:block/apple_1_1", "y": 180, "weight": 1},
+      {"model": "resprouted:block/apple_1_1", "y": 270, "weight": 1}
+      ]
+    },
+    {
+      "when": {
+        "apple_stage": 3
+      },
+      "apply": [
+      
+      {"model": "resprouted:block/apple_2"},
+      {"model": "resprouted:block/apple_2", "y": 90, "weight": 1},
+      {"model": "resprouted:block/apple_2", "y": 180, "weight": 1},
+      {"model": "resprouted:block/apple_2", "y": 270, "weight": 1},
+      {"model": "resprouted:block/apple_2_1"},
+      {"model": "resprouted:block/apple_2_1", "y": 90, "weight": 1},
+      {"model": "resprouted:block/apple_2_1", "y": 180, "weight": 1},
+      {"model": "resprouted:block/apple_2_1", "y": 270, "weight": 1}
+
+      ]
+    }
+  ]
+}

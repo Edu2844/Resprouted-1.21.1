@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "resprouted:block/ironwood/ironwood_door_bottom",
+    "top": "resprouted:block/ironwood/ironwood_door_top"
+  }
+}

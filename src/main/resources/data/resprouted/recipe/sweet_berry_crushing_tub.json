@@ -1,0 +1,10 @@
+{
+  "type": "resprouted:crushing_tub",
+  "input_item": {
+    "item": "minecraft:sweet_berries"
+  },
+  "fluid_variant": {
+    "fluid": "resprouted:sweet_berry_juice_still"
+  },
+  "amount": 20250
+}

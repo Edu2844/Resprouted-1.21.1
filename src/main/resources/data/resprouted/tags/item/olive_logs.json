@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "resprouted:olive_log",
+    "resprouted:stripped_olive_log",
+    "resprouted:olive_wood",
+    "resprouted:stripped_olive_wood"
+  ]
+}

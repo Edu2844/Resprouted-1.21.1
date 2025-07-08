@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "resprouted:block/apple_tree_2"
+  }
+}

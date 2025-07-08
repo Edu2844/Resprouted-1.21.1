@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "part=single": { "model": "resprouted:block/cabinet" },
+    "part=top":    { "model": "resprouted:block/cabinet_top" },
+    "part=bottom": { "model": "resprouted:block/cabinet_bottom" }
+  }
+}

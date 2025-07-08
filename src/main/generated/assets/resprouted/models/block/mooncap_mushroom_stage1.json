@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "resprouted:block/herbs/mooncap_mushroom_1"
+  }
+}

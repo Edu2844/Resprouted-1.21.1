@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "resprouted:block/slate/slate_roofs",
+    "side": "resprouted:block/slate/slate_roofs",
+    "top": "resprouted:block/slate/slate_roofs"
+  }
+}

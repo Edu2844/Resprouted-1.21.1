@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "bark",
+  "key": {
+    "y": {
+      "tag": "minecraft:planks"
+    },
+    "x": {
+      "item": "resprouted:clay_wall"
+    }
+  },
+  "pattern": [
+    "y  ",
+    " x ",
+    "  y"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resprouted:clay_wall_diagonal"
+  }
+}

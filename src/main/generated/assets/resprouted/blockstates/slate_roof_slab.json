@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "resprouted:block/slate_roof_slab"
+    },
+    "type=double": {
+      "model": "resprouted:block/slate_roofs"
+    },
+    "type=top": {
+      "model": "resprouted:block/slate_roof_slab_top"
+    }
+  }
+}

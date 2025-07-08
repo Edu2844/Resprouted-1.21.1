@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "resprouted:block/slate"
+      },
+      {
+        "model": "resprouted:block/slate_mirrored"
+      },
+      {
+        "model": "resprouted:block/slate",
+        "y": 180
+      },
+      {
+        "model": "resprouted:block/slate_mirrored",
+        "y": 180
+      }
+    ]
+  }
+}
