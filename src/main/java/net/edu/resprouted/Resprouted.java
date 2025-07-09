@@ -11,6 +11,7 @@ import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItemGroups;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
+import net.edu.resprouted.util.ModStakeCrops;
 import net.edu.resprouted.world.ModFoliagePlacerTypes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -45,6 +46,7 @@ public class Resprouted implements ModInitializer {
 		ModFoliagePlacerTypes.registerModFoliagePlacers();
 		ModRecipes.registerRecipes();
 		ModEvents.registerModEvents();
+		ModStakeCrops.registerStakeCropsSeeds();
 		// =================================================
 		// ||                  STRIPPABLE                 ||
 		// =================================================

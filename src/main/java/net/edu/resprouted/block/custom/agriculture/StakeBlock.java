@@ -1,8 +1,8 @@
 package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.util.ModTags;
+import net.edu.resprouted.util.ModStakeCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -25,6 +25,8 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+
+import java.util.Optional;
 
 public class StakeBlock extends Block {
     protected static final VoxelShape SHAPE = Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F);
@@ -121,16 +123,11 @@ public class StakeBlock extends Block {
         if (!state.isOf(ModBlocks.STAKE)) {
             return ItemActionResult.FAIL;
         }
-        //Caso 1: Plantar semillas (tomate o chile)
+        //Caso 1: Plantar un cultivo
         if (!state.get(StakeBlock.HAS_ROPE) && world.getBlockState(pos.down()).isIn(ModTags.Blocks.FERTILE_SOILS)) {
-            if (stack.isOf(ModItems.TOMATO_SEEDS)) {
-                world.setBlockState(pos, ModBlocks.TOMATO_CROP.getDefaultState().with(TomatoCrop.AGE, 0));
-                world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                if (!player.isCreative()) stack.decrement(1);
-                return ItemActionResult.SUCCESS;
-            }
-            if (stack.isOf(ModItems.CHILI_PEPPER_SEEDS)) {
-                world.setBlockState(pos, ModBlocks.CHILI_CROP.getDefaultState().with(ChiliCrop.AGE, 0));
+            Optional<BlockState> crop = ModStakeCrops.getCropForSeed(stack.getItem());
+            if (crop.isPresent()) {
+                world.setBlockState(pos, crop.get(), Block.NOTIFY_ALL);
                 world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 if (!player.isCreative()) stack.decrement(1);
                 return ItemActionResult.SUCCESS;
@@ -138,7 +135,7 @@ public class StakeBlock extends Block {
         }
         //Caso 2: Colocar cuerda
         if (stack.isOf(ModBlocks.ROPE.asItem()) && !state.get(StakeBlock.HAS_ROPE)) {
-            world.setBlockState(pos, state.with(StakeBlock.HAS_ROPE, true));
+            world.setBlockState(pos, state.with(StakeBlock.HAS_ROPE, true), Block.NOTIFY_ALL);
             world.playSound(null, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             if (!player.isCreative()) stack.decrement(1);
             return ItemActionResult.SUCCESS;

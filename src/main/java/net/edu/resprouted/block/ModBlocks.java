@@ -430,6 +430,8 @@ public class ModBlocks {
 
     public static final Block BLUE_BERRY_CAKE = registerBlock("blue_berry_cake", new CustomCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE)));
 
+
+
     // =================================================
     // ||                 FLUID BLOCKS                ||
     // =================================================
@@ -492,8 +494,6 @@ public class ModBlocks {
     // =================================================
     public static final Block BLUE_BERRY_BUSH = registerBlockWithoutBlockItem("blue_berry_bush",
             new BlueBerrieBush(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)));
-
-
 
     private static Block registerBlockWithoutBlockItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);
