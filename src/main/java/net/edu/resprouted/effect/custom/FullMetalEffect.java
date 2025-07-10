@@ -34,7 +34,8 @@ public class FullMetalEffect extends StatusEffect {
     }
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-     if (!(entity instanceof PlayerEntity player)) return false;
+     if (!(entity instanceof PlayerEntity player))
+         return false;
         if (player.isFallFlying()) {
             player.stopFallFlying();
             player.setVelocity(entity.getVelocity().add(0, -10, 0));

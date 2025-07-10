@@ -3,7 +3,7 @@ package net.edu.resprouted.block.custom.agriculture;
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.entity.custom.LiquidBarrelBlockEntity;
-import net.edu.resprouted.event.BucketHelper;
+import net.edu.resprouted.event.FluidInteractionHelper;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -16,7 +16,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
@@ -76,32 +75,20 @@ public class LiquidBarrelBlock extends BlockWithEntity implements BlockEntityPro
         if (storage == null) {
             return ItemActionResult.FAIL;
         }
-        ItemStack before = stack.copy();
-        ItemActionResult result = BucketHelper.handleFluidBucketUse(player, hand, stack, storage, world, pos);
+        ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, storage, world, pos, true, true);
 
-        if (result != ItemActionResult.SUCCESS) {
-            if (!ItemStack.areItemsAndComponentsEqual(before, player.getStackInHand(hand))) {
-                barrel.markDirty();
-                world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
-                return ItemActionResult.SUCCESS;
-            }
-        }
-        if (isFluidInteractionItem(stack)) {
+        if (result == ItemActionResult.SUCCESS) {
+            barrel.markDirty();
+            world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
             return ItemActionResult.SUCCESS;
         }
-        return ItemActionResult.FAIL;
-    }
-    private boolean isFluidInteractionItem(ItemStack stack) {
-        Item item = stack.getItem();
-        return item == Items.BUCKET || item == Items.GLASS_BOTTLE || BucketHelper.BUCKET_TO_VARIANT.containsKey(item) || BucketHelper.BOTTLE_TO_VARIANT.containsKey(item);
+        return ItemActionResult.CONSUME;
     }
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
-
             if (!world.isClient && world instanceof ServerWorld serverWorld) {
                 PlayerEntity player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 5.0, false);
-
                 //Evitar drop en modo creativo
                 boolean isCreative = player != null && player.isCreative();
 

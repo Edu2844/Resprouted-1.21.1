@@ -5,7 +5,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
-
 import java.util.UUID;
 
 public class IronSkinEffect extends StatusEffect {

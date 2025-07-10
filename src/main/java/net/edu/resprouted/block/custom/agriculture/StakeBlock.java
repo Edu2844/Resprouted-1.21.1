@@ -25,7 +25,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-
 import java.util.Optional;
 
 public class StakeBlock extends Block {
@@ -83,11 +82,11 @@ public class StakeBlock extends Block {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (direction.getAxis().isHorizontal()) {
-            // Conexión con cuerda si coincide el eje
+            //Conexión con cuerda si coincide el eje
             boolean connected = neighborState.getBlock() instanceof RopeBlock
                     && neighborState.contains(RopeBlock.AXIS)
                     && neighborState.get(RopeBlock.AXIS) == direction.getAxis();
-            // Conexión con GrapeLeavesBlock
+            //Conexión con GrapeLeavesBlock
             if (neighborState.getBlock() instanceof GrapeLeavesBlock) {
                 connected = true;
             }

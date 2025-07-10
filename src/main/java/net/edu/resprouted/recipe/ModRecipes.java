@@ -22,6 +22,7 @@ public class ModRecipes {
                 }
             });
 
+
     public static void registerRecipes() {
         Resprouted.LOGGER.info("Registering Custom Recipes for " + Resprouted.MOD_ID);
     }

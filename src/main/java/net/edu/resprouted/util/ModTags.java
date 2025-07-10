@@ -32,6 +32,7 @@ public class ModTags {
         public static final TagKey<Item> COPPER_NUGGET = createTag("copper_nugget");
         public static final TagKey<Item> DUSTS = createTag("dusts");
         public static final TagKey<Item> CROPS = createTag("crops");
+        public static final TagKey<Item> GLASS_BOTTLES = createTag("glass_bottles");
         public static final TagKey<Item> CAN_BE_OILED = createTag("can_be_oiled");
         public static final TagKey<Item> OLIVE_OILED = createTag("olive_oiled");
 

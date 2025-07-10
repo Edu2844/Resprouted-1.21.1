@@ -19,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import java.util.Map;
 
-public class BucketHelper {
+public class Deprecated_BucketHelper {
     //BALDE A FLUIDO
     public static final Map<Item, FluidVariant> BUCKET_TO_VARIANT = Map.of(
             Items.WATER_BUCKET, FluidVariant.of(Fluids.WATER),

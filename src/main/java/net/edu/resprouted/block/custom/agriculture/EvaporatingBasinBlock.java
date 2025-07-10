@@ -15,11 +15,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class EvaporatingBasinBlock extends BlockWithEntity implements BlockEntityProvider {
     private static final VoxelShape SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(4, 0, 4, 12, 1, 12),
-            Block.createCuboidShape(2, 0, 4, 4, 6, 12),
-            Block.createCuboidShape(12, 0, 4, 14, 6, 12),
-            Block.createCuboidShape(2, 0, 2, 14, 6, 4),
-            Block.createCuboidShape(2, 0, 12, 14, 6, 14)
+            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 1.0F, 12.0F),
+            Block.createCuboidShape(2.0F, 0.0F, 4.0F, 4.0F, 6.0F, 12.0F),
+            Block.createCuboidShape(12.0F, 0.0F, 4.0F, 14.0F, 6.0F, 12.0F),
+            Block.createCuboidShape(2.0F, 0.0F, 2.0F, 14.0F, 6.0F, 4.0F),
+            Block.createCuboidShape(2.0F, 0.0F, 12.0F, 14.0F, 6.0F, 14.0F)
     );
     public static final MapCodec<EvaporatingBasinBlock> CODEC = EvaporatingBasinBlock.createCodec(EvaporatingBasinBlock::new);
     public EvaporatingBasinBlock(Settings settings) {

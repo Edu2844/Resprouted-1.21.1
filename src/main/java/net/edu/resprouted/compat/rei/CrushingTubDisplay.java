@@ -25,7 +25,6 @@ public class CrushingTubDisplay extends BasicDisplay {
         this.fluid = entry.value().fluidOutput();
         this.amount = entry.value().fluidAmount();
     }
-
     @Override
     public CategoryIdentifier<?> getCategoryIdentifier() {
         return CrushingTubCategory.ID;

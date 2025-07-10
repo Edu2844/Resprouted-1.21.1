@@ -5,6 +5,7 @@ import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.event.FireballPayload;
+import net.edu.resprouted.event.FluidContainerLoader;
 import net.edu.resprouted.event.ModEvents;
 import net.edu.resprouted.fluid.ModFluidInteractions;
 import net.edu.resprouted.fluid.ModFluids;
@@ -20,9 +21,11 @@ import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Items;
+import net.minecraft.resource.ResourceType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
@@ -47,6 +50,7 @@ public class Resprouted implements ModInitializer {
 		ModRecipes.registerRecipes();
 		ModEvents.registerModEvents();
 		ModStakeCrops.registerStakeCropsSeeds();
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
 		// =================================================
 		// ||                  STRIPPABLE                 ||
 		// =================================================

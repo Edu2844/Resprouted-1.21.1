@@ -42,6 +42,7 @@ public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack output
     public RecipeType<?> getType() {
         return ModRecipes.CRUSHING_TUB_TYPE;
     }
+
     public static class CrushingTubRecipeSerializer implements RecipeSerializer<CrushingTubRecipe> {
 
         public static final MapCodec<CrushingTubRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(

@@ -108,6 +108,16 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.TOMATO)
                 .add(Items.COOKED_PORKCHOP)
         ;
+        getOrCreateTagBuilder(ModTags.Items.GLASS_BOTTLES)
+                .add(ModItems.GRAPE_JUICE_BOTTLE)
+                .add(ModItems.APPLE_JUICE_BOTTLE)
+                .add(ModItems.GOLDEN_APPLE_JUICE_BOTTLE)
+                .add(ModItems.GLOW_BERRY_JUICE_BOTTLE)
+                .add(ModItems.IRON_BERRY_JUICE_BOTTLE)
+                .add(ModItems.SWEET_BERRY_JUICE_BOTTLE)
+                .add(ModItems.SWEET_BERRY_JUICE_BOTTLE)
+                .add(ModItems.OLIVE_OIL_BOTTLE)
+        ;
 
     }
 }

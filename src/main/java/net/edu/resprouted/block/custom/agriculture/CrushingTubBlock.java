@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
-import net.edu.resprouted.event.BucketHelper;
+import net.edu.resprouted.event.FluidInteractionHelper;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
@@ -14,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -58,24 +57,22 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if ((!(blockEntity instanceof CrushingTubBlockEntity crushingTub))) {
+        if (!(blockEntity instanceof CrushingTubBlockEntity crushingTub)) {
             return ItemActionResult.FAIL;
         }
-        //Logica de fuidos
         var storage = FluidStorage.SIDED.find(world, pos, hit.getSide());
-        if (storage != null && stack.isOf(Items.BUCKET)) {
-            ItemActionResult result = BucketHelper.handleFluidBucketUse(player, hand, stack, storage, world, pos);
-            if (result != ItemActionResult.FAIL) {
+        if (storage != null) {
+            ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, storage, world, pos, false, true);
+            if (result == ItemActionResult.SUCCESS) {
                 crushingTub.markDirty();
                 world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
                 return ItemActionResult.CONSUME;
             }
-            return ItemActionResult.CONSUME;
         }
-        //Logica de items
         ItemStack tubStack = crushingTub.getStack(0);
+
         if (stack.isEmpty()) {
-            //Sacar items
+            // Sacar ítem
             if (!tubStack.isEmpty()) {
                 player.getInventory().offerOrDrop(tubStack.copy());
                 crushingTub.setStack(0, ItemStack.EMPTY);
@@ -85,23 +82,20 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
                 return ItemActionResult.SUCCESS;
             }
         } else {
-            //Insertar items
+            // Insertar ítem
             if (tubStack.isEmpty()) {
-                //Insertar stack completo
                 crushingTub.setStack(0, stack.copy());
                 player.setStackInHand(hand, ItemStack.EMPTY);
-                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1.0f);
+                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
                 crushingTub.markDirty();
                 world.updateListeners(pos, state, state, 0);
                 return ItemActionResult.SUCCESS;
             } else if (ItemStack.areItemsAndComponentsEqual(tubStack, stack)) {
-                //Añadir solo si son el mismo item
-                int maxTransfer = Math.min(stack.getCount(), tubStack.getMaxCount() - tubStack.getCount()
-                );
+                int maxTransfer = Math.min(stack.getCount(), tubStack.getMaxCount() - tubStack.getCount());
                 if (maxTransfer > 0) {
                     tubStack.increment(maxTransfer);
                     stack.decrement(maxTransfer);
-                    world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1.0f);
+                    world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
                     crushingTub.markDirty();
                     world.updateListeners(pos, state, state, 0);
                     return ItemActionResult.SUCCESS;
