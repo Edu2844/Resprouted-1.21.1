@@ -1,6 +1,6 @@
 # **Resprouted**
 
-![title](https://media.discordapp.net/attachments/1385623770244448326/1392988496322367558/titulo_2.png?ex=68718921&is=687037a1&hm=cda348cbecaff211ba5a4a33450354403eee8e788af977d1b3526f7d6ebd5f9d&=&format=webp&quality=lossless&width=1100&height=211)
+![title](https://media.discordapp.net/attachments/1385623770244448326/1393092526617133166/titulo_2.png?ex=6871ea04&is=68709884&hm=f9e221dbe2c771dbe35dcc65c4de104d10844610472353c9f3765cba111b3a05&=&format=webp&quality=lossless&width=660&height=317)
 
 *"Where the roots of Rustic grow anew."*
 
