@@ -13,11 +13,14 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
@@ -164,17 +167,29 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
                             serverWorld.getChunkManager().markForUpdate(pos);
                         }
                         //Sonido
-                        world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, 0.5F, 0.9F);
+                        SoundEvent crushSound;
 
+                        Item itemInTub = tubStack.getItem();
+                        boolean isGravel = itemInTub == Items.GRAVEL;
+
+                        if (isGravel) {
+                            crushSound = SoundEvents.BLOCK_GRAVEL_BREAK;
+                            world.playSound(null, pos, crushSound, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        } else {
+                            crushSound = SoundEvents.BLOCK_SLIME_BLOCK_FALL;
+                            world.playSound(null, pos, crushSound, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        }
                         //Particulas
                         if (world instanceof ServerWorld serverWorld && !visualStack.isEmpty()) {
                             serverWorld.spawnParticles(new ItemStackParticleEffect(ParticleTypes.ITEM, visualStack), pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, 5, 0.2, 0.1, 0.2, 0.05);
                         }
                         //Drop
                         if (!world.isClient && recipe.outputItem() != null && !recipe.outputItem().isEmpty()) {
-                            ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, recipe.outputItem());
-                            itemEntity.setVelocity(world.random.nextTriangular(0.0, 0.1), 0.2, world.random.nextTriangular(0.0, 0.1));
-                            world.spawnEntity(itemEntity);
+                            if (world.random.nextInt(100) < recipe.outputChance()) {
+                                ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, recipe.outputItem().copy());
+                                itemEntity.setVelocity(world.random.nextTriangular(0.0, 0.1), 0.2, world.random.nextTriangular(0.0, 0.1));
+                                world.spawnEntity(itemEntity);
+                            }
                         }
                     }
                 }

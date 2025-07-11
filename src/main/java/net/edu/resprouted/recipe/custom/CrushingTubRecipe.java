@@ -16,7 +16,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack outputItem, FluidVariant fluidOutput, long fluidAmount) implements Recipe<CrushingTubRecipeInput> {
+public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack outputItem, int outputChance,FluidVariant fluidOutput, long fluidAmount) implements Recipe<CrushingTubRecipeInput> {
     @Override
     public boolean matches(CrushingTubRecipeInput input, World world) {
         if (world.isClient()) return false;
@@ -42,19 +42,26 @@ public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack output
     public RecipeType<?> getType() {
         return ModRecipes.CRUSHING_TUB_TYPE;
     }
-
     public static class CrushingTubRecipeSerializer implements RecipeSerializer<CrushingTubRecipe> {
 
         public static final MapCodec<CrushingTubRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("input_item").forGetter(CrushingTubRecipe::inputItem),
 
-                ItemStack.CODEC.optionalFieldOf("output_item", ItemStack.EMPTY).forGetter(r -> r.outputItem == null ? ItemStack.EMPTY : r.outputItem),
-                FluidVariant.CODEC.optionalFieldOf("fluid_variant", FluidVariant.blank()).forGetter(CrushingTubRecipe::fluidOutput),
-                Codec.LONG.optionalFieldOf("amount", 0L).forGetter(CrushingTubRecipe::fluidAmount)
-        ).apply(inst, (inputItem, outputItem, fluidOutput, amount) -> {
-
-            return new CrushingTubRecipe(inputItem, outputItem == ItemStack.EMPTY ? null : outputItem, fluidOutput, amount);
-        }));
+                ItemStack.CODEC
+                        .optionalFieldOf("output_item", ItemStack.EMPTY)
+                        .forGetter(r -> r.outputItem == null ? ItemStack.EMPTY : r.outputItem),
+                Codec.INT
+                        .optionalFieldOf("output_chance", 100)
+                        .forGetter(CrushingTubRecipe::outputChance),
+                FluidVariant.CODEC
+                        .optionalFieldOf("fluid_variant", FluidVariant.blank())
+                        .forGetter(CrushingTubRecipe::fluidOutput),
+                Codec.LONG
+                        .optionalFieldOf("amount", 0L)
+                        .forGetter(CrushingTubRecipe::fluidAmount)
+        ).apply(inst, (in, out, chance, fluid, amt) ->
+                new CrushingTubRecipe(in, out == ItemStack.EMPTY ? null : out, chance, fluid, amt)
+        ));
         public static final PacketCodec<RegistryByteBuf, CrushingTubRecipe> STREAM_CODEC = PacketCodec.ofStatic(
                 (buf, recipe) -> {
                     Ingredient.PACKET_CODEC.encode(buf, recipe.inputItem());
@@ -63,16 +70,18 @@ public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack output
                     if (recipe.outputItem() != null && !recipe.outputItem().isEmpty()) {
                         ItemStack.PACKET_CODEC.encode(buf, recipe.outputItem());
                     }
+                    buf.writeVarInt(recipe.outputChance());
                     FluidVariant.PACKET_CODEC.encode(buf, recipe.fluidOutput());
                     buf.writeVarLong(recipe.fluidAmount());
                 },
                 buf -> {
-                    Ingredient input = Ingredient.PACKET_CODEC.decode(buf);
-                    boolean hasOutputItem = buf.readBoolean();
-                    ItemStack output = hasOutputItem ? ItemStack.PACKET_CODEC.decode(buf) : null;
+                    Ingredient in = Ingredient.PACKET_CODEC.decode(buf);
+                    boolean hasOut = buf.readBoolean();
+                    ItemStack out = hasOut ? ItemStack.PACKET_CODEC.decode(buf) : null;
+                    int chance  = buf.readVarInt();
                     FluidVariant fluid = FluidVariant.PACKET_CODEC.decode(buf);
-                    long amount = buf.readVarLong();
-                    return new CrushingTubRecipe(input, output, fluid, amount);
+                    long amt = buf.readVarLong();
+                    return new CrushingTubRecipe(in, out, chance, fluid, amt);
                 }
         );
         @Override

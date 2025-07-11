@@ -22,7 +22,7 @@ import java.util.Map;
 public class Deprecated_BucketHelper {
     //BALDE A FLUIDO
     public static final Map<Item, FluidVariant> BUCKET_TO_VARIANT = Map.of(
-            Items.WATER_BUCKET, FluidVariant.of(Fluids.WATER),
+            Items.POTION, FluidVariant.of(Fluids.WATER),
             ModItems.SWEET_BERRY_JUICE_BUCKET, FluidVariant.of(ModFluids.SWEET_BERRY_JUICE_STILL),
             ModItems.IRON_BERRY_JUICE_BUCKET, FluidVariant.of(ModFluids.IRON_BERRY_JUICE_STILL),
             ModItems.APPLE_JUICE_BUCKET, FluidVariant.of(ModFluids.APPLE_JUICE_STILL),
@@ -46,6 +46,7 @@ public class Deprecated_BucketHelper {
     );
     //BOTELLA A FLUIDO
     public static final Map<Item, FluidVariant> BOTTLE_TO_VARIANT = Map.of(
+            Items.WATER_BUCKET, FluidVariant.of(Fluids.WATER),
             ModItems.SWEET_BERRY_JUICE_BOTTLE, FluidVariant.of(ModFluids.SWEET_BERRY_JUICE_STILL),
             ModItems.IRON_BERRY_JUICE_BOTTLE, FluidVariant.of(ModFluids.IRON_BERRY_JUICE_STILL),
             ModItems.APPLE_JUICE_BOTTLE, FluidVariant.of(ModFluids.APPLE_JUICE_STILL),
