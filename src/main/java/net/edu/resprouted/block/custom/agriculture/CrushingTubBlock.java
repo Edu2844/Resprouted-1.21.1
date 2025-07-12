@@ -123,76 +123,62 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         entity.handleFallDamage(fallDistance, 1.0F, entity.getDamageSources().fall());
-        if (entity instanceof PlayerEntity) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CrushingTubBlockEntity crushingTub) {
-                ItemStack tubStack = crushingTub.getStack(0);
+        if (!(entity instanceof PlayerEntity)) return;
 
-                if (!tubStack.isEmpty()) {
-                    Optional<CrushingTubRecipe> optionalRecipe = crushingTub.findMatchingRecipe();
+        BlockEntity be = world.getBlockEntity(pos);
+        if (!(be instanceof CrushingTubBlockEntity crushingTub)) return;
 
-                    if (optionalRecipe.isPresent()) {
-                        CrushingTubRecipe recipe = optionalRecipe.get();
-                        FluidVariant recipeFluid = recipe.fluidOutput();
-                        FluidVariant currentFluid = crushingTub.getFluid();
-                        long currentAmount = crushingTub.fluidStorage.getAmount();
-                        boolean canInsertFluid = recipeFluid.isBlank() || currentFluid.isBlank() || currentFluid.equals(recipeFluid);
-                        boolean overCapacity = !recipeFluid.isBlank() && (currentAmount + recipe.fluidAmount() > FluidConstants.BUCKET * 8);
-                        if (!canInsertFluid || overCapacity) {
-                            return;
-                        }
-                        ItemStack visualStack = tubStack.copyWithCount(1);
+        ItemStack tubStack = crushingTub.getStack(0);
+        if (tubStack.isEmpty()) return;
 
-                        //Lógica de aplastado
-                        try (Transaction tx = Transaction.openOuter()) {
-                            boolean shouldCommit = true;
+        Optional<CrushingTubRecipe> opt = crushingTub.findMatchingRecipe();
+        if (opt.isEmpty()) return;
 
-                            if (!recipeFluid.isBlank() && recipe.fluidAmount() > 0) {
-                                long inserted = crushingTub.fluidStorage.insert(recipeFluid, recipe.fluidAmount(), tx);
-                                if (inserted != recipe.fluidAmount()) {
-                                    shouldCommit = false;
-                                }
-                            }
-                            if (shouldCommit) {
-                                crushingTub.removeStack(0, 1);
-                                tx.commit();
-                            } else {
-                                return;
-                            }
-                        }
-                        crushingTub.markDirty();
-                        world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
+        CrushingTubRecipe recipe = opt.get();
+        FluidVariant recipeFluid  = recipe.fluidOutput();
+        FluidVariant currentFluid = crushingTub.getFluid();
+        long currentAmount        = crushingTub.fluidStorage.getAmount();
 
-                        if (!world.isClient && world instanceof ServerWorld serverWorld) {
-                            serverWorld.getChunkManager().markForUpdate(pos);
-                        }
-                        //Sonido
-                        SoundEvent crushSound;
+        boolean canInsertFluid = recipeFluid.isBlank() || currentFluid.isBlank() || currentFluid.equals(recipeFluid);
+        boolean overCapacity   = !recipeFluid.isBlank() && (currentAmount + recipe.fluidAmount() > FluidConstants.BUCKET * 8);
+        if (!canInsertFluid || overCapacity) return;
 
-                        Item itemInTub = tubStack.getItem();
-                        boolean isGravel = itemInTub == Items.GRAVEL;
+        Item itemBeforeCrush = tubStack.getItem();
+        ItemStack visualStack = tubStack.copyWithCount(1);
 
-                        if (isGravel) {
-                            crushSound = SoundEvents.BLOCK_GRAVEL_BREAK;
-                            world.playSound(null, pos, crushSound, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                        } else {
-                            crushSound = SoundEvents.BLOCK_SLIME_BLOCK_FALL;
-                            world.playSound(null, pos, crushSound, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                        }
-                        //Particulas
-                        if (world instanceof ServerWorld serverWorld && !visualStack.isEmpty()) {
-                            serverWorld.spawnParticles(new ItemStackParticleEffect(ParticleTypes.ITEM, visualStack), pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, 5, 0.2, 0.1, 0.2, 0.05);
-                        }
-                        //Drop
-                        if (!world.isClient && recipe.outputItem() != null && !recipe.outputItem().isEmpty()) {
-                            if (world.random.nextInt(100) < recipe.outputChance()) {
-                                ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, recipe.outputItem().copy());
-                                itemEntity.setVelocity(world.random.nextTriangular(0.0, 0.1), 0.2, world.random.nextTriangular(0.0, 0.1));
-                                world.spawnEntity(itemEntity);
-                            }
-                        }
-                    }
-                }
+        //Aplastado
+        try (Transaction tx = Transaction.openOuter()) {
+            boolean shouldCommit = true;
+
+            if (!recipeFluid.isBlank() && recipe.fluidAmount() > 0) {
+                long inserted = crushingTub.fluidStorage.insert(recipeFluid, recipe.fluidAmount(), tx);
+                if (inserted != recipe.fluidAmount()) shouldCommit = false;
+            }
+            if (shouldCommit) {
+                crushingTub.removeStack(0, 1);
+                tx.commit();
+            } else return;
+        }
+        crushingTub.markDirty();
+        world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
+        if (world instanceof ServerWorld serverWorld && !world.isClient) {
+            serverWorld.getChunkManager().markForUpdate(pos);
+        }
+        //Sonidos
+        SoundEvent crushSound = (itemBeforeCrush == Items.GRAVEL) ? SoundEvents.BLOCK_GRAVEL_BREAK : SoundEvents.BLOCK_SLIME_BLOCK_FALL;
+        world.playSound(null, pos, crushSound, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+        //Partículas
+        if (world instanceof ServerWorld serverWorld && !visualStack.isEmpty()) {
+            serverWorld.spawnParticles(new ItemStackParticleEffect(ParticleTypes.ITEM, visualStack), pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, 5, 0.2, 0.1, 0.2, 0.05
+            );
+        }
+        //Drop
+        if (!world.isClient && recipe.outputItem() != null && !recipe.outputItem().isEmpty()) {
+            if (world.random.nextInt(100) < recipe.outputChance()) {
+                ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, recipe.outputItem().copy());
+                itemEntity.setVelocity(world.random.nextTriangular(0.0, 0.1), 0.2, world.random.nextTriangular(0.0, 0.1));
+                world.spawnEntity(itemEntity);
             }
         }
     }

@@ -12,7 +12,7 @@ import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItemGroups;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.util.ModStakeCrops;
+import net.edu.resprouted.block.ModStakeCrops;
 import net.edu.resprouted.world.ModFoliagePlacerTypes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -83,7 +83,7 @@ public class Resprouted implements ModInitializer {
 		// =================================================
 		// ||              OXIDIZABLE BLOCKS              ||
 		// =================================================
-		//CHAINs
+		//Chain
 		OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.COPPER_CHAIN, ModBlocks.EXPOSED_COPPER_CHAIN);
 		OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_CHAIN, ModBlocks.WEATHERED_COPPER_CHAIN);
 		OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_CHAIN, ModBlocks.OXIDIZED_COPPER_CHAIN);
@@ -94,7 +94,7 @@ public class Resprouted implements ModInitializer {
 		OxidizableBlocksRegistry.registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_CHAIN, ModBlocks.WAXED_WEATHERED_COPPER_CHAIN);
 		OxidizableBlocksRegistry.registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_CHAIN, ModBlocks.WAXED_OXIDIZED_COPPER_CHAIN);
 
-		//LANTERNS
+		//Lantern
 		OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.COPPER_LANTERN, ModBlocks.EXPOSED_COPPER_LANTERN);
 		OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_LANTERN, ModBlocks.WEATHERED_COPPER_LANTERN);
 		OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_LANTERN, ModBlocks.OXIDIZED_COPPER_LANTERN);
@@ -115,7 +115,7 @@ public class Resprouted implements ModInitializer {
 		OxidizableBlocksRegistry.registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_SOUL_LANTERN, ModBlocks.WAXED_WEATHERED_COPPER_SOUL_LANTERN);
 		OxidizableBlocksRegistry.registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_SOUL_LANTERN, ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN);
 
-		//CHANDELIER
+		//Chandelier
 		OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.COPPER_CHANDELIER, ModBlocks.EXPOSED_COPPER_CHANDELIER);
 		OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_CHANDELIER, ModBlocks.WEATHERED_COPPER_CHANDELIER);
 		OxidizableBlocksRegistry.registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_CHANDELIER, ModBlocks.OXIDIZED_COPPER_CHANDELIER);
@@ -140,12 +140,14 @@ public class Resprouted implements ModInitializer {
 		CompostingChanceRegistry.INSTANCE.add(ModItems.CORE_ROOT, 0.5F);
 		CompostingChanceRegistry.INSTANCE.add(ModItems.MOONCAP_MUSHROOM, 0.5F);
 		CompostingChanceRegistry.INSTANCE.add(ModItems.DEATHSTALK_MUSHROOM, 0.5F);
-		CompostingChanceRegistry.INSTANCE.add(ModItems.TOMATO, 0.7F);
-		CompostingChanceRegistry.INSTANCE.add(ModItems.TOMATO_SEEDS, 0.7F);
-		CompostingChanceRegistry.INSTANCE.add(ModItems.CHILI_PEPPER, 0.7F);
-		CompostingChanceRegistry.INSTANCE.add(ModItems.CHILI_PEPPER_SEEDS, 0.7F);
-		CompostingChanceRegistry.INSTANCE.add(ModItems.GRAPES, 0.7F);
-		CompostingChanceRegistry.INSTANCE.add(ModItems.GRAPE_SEEDS, 0.7F);
+		CompostingChanceRegistry.INSTANCE.add(ModItems.IRON_BERRIES, 0.5F);
+		CompostingChanceRegistry.INSTANCE.add(ModItems.TOMATO, 0.5F);
+		CompostingChanceRegistry.INSTANCE.add(ModItems.TOMATO_SEEDS, 0.5F);
+		CompostingChanceRegistry.INSTANCE.add(ModItems.CHILI_PEPPER, 0.5F);
+		CompostingChanceRegistry.INSTANCE.add(ModItems.CHILI_PEPPER_SEEDS, 0.5F);
+		CompostingChanceRegistry.INSTANCE.add(ModItems.GRAPES, 0.5F);
+		CompostingChanceRegistry.INSTANCE.add(ModItems.GRAPE_SEEDS, 0.5F);
+		CompostingChanceRegistry.INSTANCE.add(ModItems.OLIVES, 0.5F);
 
 		PayloadTypeRegistry.playC2S().register(FireballPayload.ID, FireballPayload.CODEC);
 

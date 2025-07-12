@@ -25,14 +25,11 @@ public interface IAdvancedRotationPlacement {
      */
     default BlockState getStateForAdvancedRotationPlacement(BlockState defaultState, DirectionProperty facingProperty, ItemPlacementContext context) {
         Direction facing = context.getSide();
-
         double hitX = context.getHitPos().x - context.getBlockPos().getX();
         double hitZ = context.getHitPos().z - context.getBlockPos().getZ();
-
         if (facing.getAxis() == Direction.Axis.Y) {
             double hitXFromCenter = hitX - 0.5;
             double hitZFromCenter = hitZ - 0.5;
-
             if (Math.max(Math.abs(hitXFromCenter), Math.abs(hitZFromCenter)) == Math.abs(hitXFromCenter)) {
                 return defaultState.with(facingProperty, (hitXFromCenter > 0) ? Direction.EAST : Direction.WEST);
             } else {

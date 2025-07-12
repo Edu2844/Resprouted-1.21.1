@@ -1,6 +1,5 @@
-package net.edu.resprouted.util;
+package net.edu.resprouted.block;
 
-import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.custom.agriculture.StakeCropBlock;
 import net.edu.resprouted.item.ModItems;
 import net.minecraft.block.BlockState;
