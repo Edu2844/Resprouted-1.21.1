@@ -75,7 +75,7 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
         ItemStack tubStack = crushingTub.getStack(0);
 
         if (stack.isEmpty()) {
-            // Sacar ítem
+            //Sacar ítem
             if (!tubStack.isEmpty()) {
                 player.getInventory().offerOrDrop(tubStack.copy());
                 crushingTub.setStack(0, ItemStack.EMPTY);
@@ -85,7 +85,7 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
                 return ItemActionResult.SUCCESS;
             }
         } else {
-            // Insertar ítem
+            //Insertar ítem
             if (tubStack.isEmpty()) {
                 crushingTub.setStack(0, stack.copy());
                 player.setStackInHand(hand, ItemStack.EMPTY);

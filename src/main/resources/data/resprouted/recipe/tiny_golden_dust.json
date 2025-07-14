@@ -1,0 +1,11 @@
+{
+  "type": "resprouted:evaporating_basin",
+  "fluid_variant": {
+    "fluid": "resprouted:golden_apple_juice_still"
+  },
+  "amount": 81000,
+  "output_item": {
+    "id": "resprouted:tiny_golden_dust",
+    "count": 1
+  }
+}

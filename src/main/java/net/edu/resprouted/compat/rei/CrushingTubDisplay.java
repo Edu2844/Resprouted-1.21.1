@@ -16,11 +16,8 @@ public class CrushingTubDisplay extends BasicDisplay {
     private final long amount;
 
     public CrushingTubDisplay(RecipeEntry<CrushingTubRecipe> entry) {
-        super(
-                List.of(EntryIngredients.ofIngredient(entry.value().inputItem())),
-                entry.value().outputItem() != null
-                        ? List.of(EntryIngredient.of(EntryStacks.of(entry.value().outputItem())))
-                        : List.of()
+        super(List.of(EntryIngredients.ofIngredient(entry.value().inputItem())),
+                entry.value().outputItem() != null ? List.of(EntryIngredient.of(EntryStacks.of(entry.value().outputItem()))) : List.of()
         );
         this.fluid = entry.value().fluidOutput();
         this.amount = entry.value().fluidAmount();

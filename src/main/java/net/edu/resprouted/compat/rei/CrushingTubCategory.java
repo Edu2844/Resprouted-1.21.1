@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> {
-    public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/rei/crushing_tub_gui.png");
+    public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/crushing_tub_gui.png");
     public static final CategoryIdentifier<CrushingTubDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "crushing_tub");
 
     @Override
@@ -59,16 +59,12 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
 
         //Slot output (si existe)
         if (!display.getOutputEntries().isEmpty()) {
-            boolean hasValidFluid = display.getFluid() != null &&
-                    FluidVariantRendering.getSprite(display.getFluid()) != null;
+            boolean hasValidFluid = display.getFluid() != null && FluidVariantRendering.getSprite(display.getFluid()) != null;
 
             int slotX = startPoint.x + 82;
             int slotY = hasValidFluid ? startPoint.y + 5 : startPoint.y + 15;
 
-            widgets.add(Widgets.createSlot(new Point(slotX, slotY))
-                    .entries(display.getOutputEntries().getFirst())
-
-                    .markOutput());
+            widgets.add(Widgets.createSlot(new Point(slotX, slotY)).entries(display.getOutputEntries().getFirst()).markOutput());
         }
         if (display.getFluid() != null) {
             FluidVariant fluidVariant = display.getFluid();
@@ -78,6 +74,7 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
 
             Sprite sprite = FluidVariantRendering.getSprite(fluidVariant);
             if (sprite != null && sprite.getAtlasId() != null) {
+
                 // Determinar posición basada en si hay output item
                 boolean hasOutputItem = !display.getOutputEntries().isEmpty();
                 int fluidX = startPoint.x + 82;
@@ -98,18 +95,13 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
                             (color & 0xFF) / 255f,
                             ((color >> 24) & 0xFF) / 255f
                     );
-
                     helper.drawSprite(fluidX, fluidY, 0, 16, 16, sprite);
                     RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
                 }));
-
                 // Tooltip
                 widgets.add(Widgets.createTooltip(
                         new Rectangle(fluidX, tooltipY, 16, 16),
-                        List.of(
-                                fluid.getDefaultState().getBlockState().getBlock().getName(),
-                                Text.literal(amountText).formatted(Formatting.GRAY)
-                        )
+                        List.of(fluid.getDefaultState().getBlockState().getBlock().getName(), Text.literal(amountText).formatted(Formatting.GRAY))
                 ));
             }
         }

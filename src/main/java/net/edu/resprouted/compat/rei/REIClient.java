@@ -11,7 +11,6 @@ public class REIClient implements REIClientPlugin {
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new CrushingTubCategory());
     }
-
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerRecipeFiller(CrushingTubRecipe.class, ModRecipes.CRUSHING_TUB_TYPE, CrushingTubDisplay::new);

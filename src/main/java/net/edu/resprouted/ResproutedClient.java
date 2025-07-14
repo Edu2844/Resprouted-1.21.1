@@ -3,6 +3,7 @@ package net.edu.resprouted;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.entity.renderer.CrushingTubBERenderer;
+import net.edu.resprouted.block.entity.renderer.EvaporatingBasinRenderer;
 import net.edu.resprouted.block.entity.renderer.LiquidBarrelRenderer;
 import net.edu.resprouted.effect.render.FullMetalLayer;
 import net.edu.resprouted.effect.render.FullMetalOverlay;
@@ -42,7 +43,7 @@ public class ResproutedClient implements ClientModInitializer {
         // =================================================
         BlockEntityRendererFactories.register(ModBlockEntities.CRUSHING_TUB_BE, CrushingTubBERenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.LIQUID_BARREL_BE, LiquidBarrelRenderer::new);
-
+        BlockEntityRendererFactories.register(ModBlockEntities.EVAPORATING_BASIN_BE, EvaporatingBasinRenderer::new);
         // =================================================
         // ||              GRAPE LEAVES COLOR             ||
         // =================================================

@@ -82,7 +82,6 @@ public class RopeBlock extends ChainBlock{
             state = state.with(HAS_KNOT, knot);
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-
     }
     @Override
     public boolean canReplace(BlockState state, ItemPlacementContext context) {
@@ -119,17 +118,16 @@ public class RopeBlock extends ChainBlock{
             BlockPos offset = pos.offset(dir);
             BlockState neighbor = world.getBlockState(offset);
 
-            boolean isSameRope = neighbor.getBlock() instanceof RopeBlock &&
-                    neighbor.get(RopeBlock.AXIS) == axis;
+            boolean isSameRope = neighbor.getBlock() instanceof RopeBlock && neighbor.get(RopeBlock.AXIS) == axis;
 
-            boolean isStakeWithRope = neighbor.getBlock() instanceof StakeBlock &&
-                    neighbor.get(StakeBlock.HAS_ROPE);
+            boolean isStakeWithRope = neighbor.getBlock() instanceof StakeBlock && neighbor.get(StakeBlock.HAS_ROPE);
 
             boolean isSolid = neighbor.isSideSolidFullSquare(world, offset, dir.getOpposite());
 
             if (isSolid || isStakeWithRope) return true;
 
-            if (isSameRope && hasHorizontalSupport(world, offset, visited, axis)) return true;
+            if (isSameRope && hasHorizontalSupport(world, offset, visited, axis))
+                return true;
         }
         return false;
     }
