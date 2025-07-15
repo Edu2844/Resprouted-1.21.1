@@ -118,7 +118,7 @@ public class EvaporatingBasinBlockEntity extends BlockEntity implements Implemen
         }
         @Override
         protected long getCapacity(FluidVariant fluidVariant) {
-            return FluidConstants.BUCKET;
+            return 6 * FluidConstants.BUCKET;
         }
         @Override
         protected void onFinalCommit() {

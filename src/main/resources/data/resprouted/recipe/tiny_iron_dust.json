@@ -3,7 +3,7 @@
   "fluid_variant": {
     "fluid": "resprouted:iron_berry_juice_still"
   },
-  "amount": 81000,
+  "amount": 500,
   "output_item": {
     "id": "resprouted:tiny_iron_dust",
     "count": 1
