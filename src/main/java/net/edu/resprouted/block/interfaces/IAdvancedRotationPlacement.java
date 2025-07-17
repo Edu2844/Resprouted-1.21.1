@@ -1,4 +1,4 @@
-package net.edu.resprouted.block.custom.decorative;
+package net.edu.resprouted.block.interfaces;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;

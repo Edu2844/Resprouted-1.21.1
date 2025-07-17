@@ -1,4 +1,4 @@
-package net.edu.resprouted.block.entity;
+package net.edu.resprouted.block.interfaces;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;

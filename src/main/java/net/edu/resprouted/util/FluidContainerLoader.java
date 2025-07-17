@@ -1,4 +1,4 @@
-package net.edu.resprouted.event;
+package net.edu.resprouted.util;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;

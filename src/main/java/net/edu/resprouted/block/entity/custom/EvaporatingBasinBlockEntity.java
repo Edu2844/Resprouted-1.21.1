@@ -1,10 +1,11 @@
 package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.entity.ImplementedInventory;
+import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipe;
 import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipeInput;
+import net.edu.resprouted.util.ModTags;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
@@ -30,6 +31,7 @@ import org.jetbrains.annotations.Nullable;
 public class EvaporatingBasinBlockEntity extends BlockEntity implements ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
     private static final long MB_PER_TICK = 1;
+    private static final long EV_BOOSTER = 2;
 
     public EvaporatingBasinBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.EVAPORATING_BASIN_BE, pos, state);
@@ -86,10 +88,14 @@ public class EvaporatingBasinBlockEntity extends BlockEntity implements Implemen
         EvaporatingBasinRecipe recipe = opt.get().value();
 
         try (var tx = Transaction.openOuter()) {
-            long extracted = be.basin.extract(fluid, MB_PER_TICK, tx);
-            if (extracted == MB_PER_TICK) {
+            BlockPos below = pos.down();
+            BlockState belowState = world.getBlockState(below);
+            boolean boosted = belowState.isIn(ModTags.Blocks.EVAPORATING_BOOSTERS);
+            long mbPerTick = boosted ? MB_PER_TICK * EV_BOOSTER : MB_PER_TICK;
+            long extracted = be.basin.extract(fluid, mbPerTick, tx);
+            if (extracted == mbPerTick) {
                 tx.commit();
-                be.progress += MB_PER_TICK;
+                be.progress += mbPerTick;
 
             }
         }

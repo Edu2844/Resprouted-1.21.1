@@ -247,6 +247,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.PODZOL)
                 .add(Blocks.FARMLAND)
         ;
-
+        getOrCreateTagBuilder(ModTags.Blocks.EVAPORATING_BOOSTERS)
+                .add(Blocks.MAGMA_BLOCK)
+                .add(Blocks.FIRE)
+        ;
     }
 }

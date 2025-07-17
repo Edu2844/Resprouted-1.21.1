@@ -11,6 +11,7 @@ public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> FERTILE_SOILS = createTag("fertile_soils");
         public static final TagKey<Block> ALLOWS_GROWTH = createTag("allows_growth");
+        public static final TagKey<Block> EVAPORATING_BOOSTERS = createTag("evaporating_boosters");
 
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(Resprouted.MOD_ID, name));

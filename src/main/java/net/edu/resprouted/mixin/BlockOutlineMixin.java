@@ -1,6 +1,6 @@
 package net.edu.resprouted.mixin;
 
-import net.edu.resprouted.block.custom.decorative.IAdvancedRotationPlacement;
+import net.edu.resprouted.block.interfaces.IAdvancedRotationPlacement;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.WorldRenderer;

@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.util.ModTags;
-import net.edu.resprouted.block.ModStakeCrops;
+import net.edu.resprouted.util.ModStakeCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;

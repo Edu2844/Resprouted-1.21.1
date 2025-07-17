@@ -1,4 +1,4 @@
-package net.edu.resprouted.event;
+package net.edu.resprouted.util;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;

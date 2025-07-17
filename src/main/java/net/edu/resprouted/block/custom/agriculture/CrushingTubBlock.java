@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
-import net.edu.resprouted.event.FluidInteractionHelper;
+import net.edu.resprouted.util.FluidInteractionHelper;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;

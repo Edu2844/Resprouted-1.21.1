@@ -1,6 +1,7 @@
 package net.edu.resprouted.event;
 
 import net.edu.resprouted.effect.ModEffects;
+import net.edu.resprouted.networking.payload.FirePowerAttackPayload;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -30,11 +31,10 @@ public class ModKeybinds {
                 );
 
             }
-
             if(firepowerattack.wasPressed()) {
                 assert client.player != null;
                 if (client.player.hasStatusEffect(ModEffects.FIRE_POWER)) {
-                    ClientPlayNetworking.send(new FireballPayload());
+                    ClientPlayNetworking.send(new FirePowerAttackPayload());
                     client.player.swingHand(Hand.MAIN_HAND);
                 }
             }
