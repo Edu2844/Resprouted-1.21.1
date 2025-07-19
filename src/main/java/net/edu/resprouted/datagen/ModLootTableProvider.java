@@ -27,7 +27,6 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         super(dataOutput, registryLookup);
 
     }
-
     @Override
     public void generate() {
         RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
