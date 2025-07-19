@@ -41,8 +41,8 @@ public record EvaporatingBasinRecipe(FluidVariant fluidInput, long fluidCost, It
 
         public static final MapCodec<EvaporatingBasinRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
                 FluidVariant.CODEC.fieldOf("fluid_variant").forGetter(EvaporatingBasinRecipe::fluidInput),
-                Codec.LONG        .fieldOf("amount")        .forGetter(EvaporatingBasinRecipe::fluidCost),
-                ItemStack.CODEC   .fieldOf("output_item")   .forGetter(EvaporatingBasinRecipe::output)).apply(i, EvaporatingBasinRecipe::new));
+                Codec.LONG.fieldOf("amount")        .forGetter(EvaporatingBasinRecipe::fluidCost),
+                ItemStack.CODEC.fieldOf("output_item")   .forGetter(EvaporatingBasinRecipe::output)).apply(i, EvaporatingBasinRecipe::new));
 
         public static final PacketCodec<RegistryByteBuf, EvaporatingBasinRecipe> STREAM = PacketCodec.ofStatic(
                 (buf, r) -> {FluidVariant.PACKET_CODEC.encode(buf, r.fluidInput());buf.writeVarLong(r.fluidCost());ItemStack.PACKET_CODEC.encode(buf, r.output());

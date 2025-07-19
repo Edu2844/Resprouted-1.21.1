@@ -1,8 +1,11 @@
 package net.edu.resprouted;
 
 import net.edu.resprouted.datagen.*;
+import net.edu.resprouted.world.ModConfiguredFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 
 public class ResproutedDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -16,5 +19,9 @@ public class ResproutedDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModRegistryDataGenerator::new);
 		pack.addProvider(ModRecipeProvider::new);
 
+	}
+	@Override
+	public void buildRegistry(RegistryBuilder registryBuilder) {
+		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 	}
 }

@@ -23,11 +23,18 @@ public class ModRecipes {
                 }
             });
 
-    public static final RecipeType<EvaporatingBasinRecipe> EV_BASIN_TYPE =
-            Registry.register(Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"evaporating_basin"), new RecipeType<>() {});
+    public static final RecipeType<EvaporatingBasinRecipe> EV_BASIN_TYPE = Registry.register(
+            Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"evaporating_basin"),
+            new RecipeType<EvaporatingBasinRecipe>() {
+                @Override
+                public String toString() {
+                    return "evaporating_basin";
+                }
+            });
 
-    public static final RecipeSerializer<EvaporatingBasinRecipe> EV_BASIN_SERIALIZER =
-            Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"evaporating_basin"), new EvaporatingBasinRecipe.Serializer());
+    public static final RecipeSerializer<EvaporatingBasinRecipe> EV_BASIN_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"evaporating_basin"),
+            new EvaporatingBasinRecipe.Serializer());
 
     public static void registerRecipes() {
         Resprouted.LOGGER.info("Registering Custom Recipes for " + Resprouted.MOD_ID);

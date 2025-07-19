@@ -193,7 +193,6 @@ public interface ImplementedInventory extends SidedInventory {
     default void markDirty() {
         // Override if you want behavior.
     }
-
     @Override
     default boolean canPlayerUse(PlayerEntity player) {
         return true;

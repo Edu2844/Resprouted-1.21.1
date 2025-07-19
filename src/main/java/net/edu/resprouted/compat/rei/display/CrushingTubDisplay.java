@@ -1,10 +1,11 @@
-package net.edu.resprouted.compat.rei;
+package net.edu.resprouted.compat.rei.display;
 
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
+import net.edu.resprouted.compat.rei.category.CrushingTubCategory;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.recipe.RecipeEntry;

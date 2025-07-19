@@ -4,7 +4,6 @@ import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.custom.agriculture.BlueBerrieBush;
 import net.edu.resprouted.block.custom.agriculture.CustomMushroomBlock;
 import net.edu.resprouted.block.custom.agriculture.HerbBlock;
-import net.edu.resprouted.block.custom.agriculture.TomatoCrop;
 import net.edu.resprouted.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;

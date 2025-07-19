@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-17T16:21:32.6118799	Resprouted/Block Loot Tables
+// 1.21.1	2025-07-19T10:28:43.5009602	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 e18718d6959508d33cab4d53b3189c7ba0c75954 data\resprouted\loot_table\blocks\bamboo_table.json
 1d2bac8cb33591dbd713cea9ae405f377e90847a data\resprouted\loot_table\blocks\waxed_weathered_copper_soul_lantern.json
@@ -42,8 +42,8 @@ cf610c4502d5390cd2da4dc448fc1ef44b94705a data\resprouted\loot_table\blocks\olive
 6a88b07bd5a02e4eee405e186f2fc3609acb145b data\resprouted\loot_table\blocks\waxed_exposed_copper_lantern.json
 8fdf582402ebf95012fca41bd215ddce13603ef6 data\resprouted\loot_table\blocks\copper_chandelier.json
 472fe702968631f01d17aaa1815ec28e5ad4afec data\resprouted\loot_table\blocks\ironwood_door.json
-030f761737a099cdb5fa6db726757c535263e7fd data\resprouted\loot_table\blocks\black_painted_planks.json
 3aa0adc577224a1f92e367914373b8435f521eec data\resprouted\loot_table\blocks\cyan_painted_planks.json
+030f761737a099cdb5fa6db726757c535263e7fd data\resprouted\loot_table\blocks\black_painted_planks.json
 41e3f34a5c6cd9e226bae60e64785abe296e44ee data\resprouted\loot_table\blocks\waxed_weathered_copper_lantern.json
 cbbad26f7aab771b978cf27f8e64e3ef1ad33410 data\resprouted\loot_table\blocks\ironwood_trapdoor.json
 cd16335a616acfde2b6f6deb1155f7640c2ca524 data\resprouted\loot_table\blocks\olive_pressure_plate.json

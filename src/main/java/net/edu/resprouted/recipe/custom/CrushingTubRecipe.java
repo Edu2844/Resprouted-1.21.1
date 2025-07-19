@@ -47,19 +47,10 @@ public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack output
         public static final MapCodec<CrushingTubRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("input_item").forGetter(CrushingTubRecipe::inputItem),
 
-                ItemStack.CODEC
-                        .optionalFieldOf("output_item", ItemStack.EMPTY)
-                        .forGetter(r -> r.outputItem == null ? ItemStack.EMPTY : r.outputItem),
-                Codec.INT
-                        .optionalFieldOf("output_chance", 100)
-                        .forGetter(CrushingTubRecipe::outputChance),
-                FluidVariant.CODEC
-                        .optionalFieldOf("fluid_variant", FluidVariant.blank())
-                        .forGetter(CrushingTubRecipe::fluidOutput),
-                Codec.LONG
-                        .optionalFieldOf("amount", 0L)
-                        .forGetter(CrushingTubRecipe::fluidAmount)
-        ).apply(inst, (in, out, chance, fluid, amt) ->
+                ItemStack.CODEC.optionalFieldOf("output_item", ItemStack.EMPTY).forGetter(r -> r.outputItem == null ? ItemStack.EMPTY : r.outputItem),
+                Codec.INT.optionalFieldOf("output_chance", 100).forGetter(CrushingTubRecipe::outputChance),
+                FluidVariant.CODEC.optionalFieldOf("fluid_variant", FluidVariant.blank()).forGetter(CrushingTubRecipe::fluidOutput),
+                Codec.LONG.optionalFieldOf("amount", 0L).forGetter(CrushingTubRecipe::fluidAmount)).apply(inst, (in, out, chance, fluid, amt) ->
                 new CrushingTubRecipe(in, out == ItemStack.EMPTY ? null : out, chance, fluid, amt)
         ));
         public static final PacketCodec<RegistryByteBuf, CrushingTubRecipe> STREAM_CODEC = PacketCodec.ofStatic(

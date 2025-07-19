@@ -416,8 +416,8 @@ public class ModBlocks {
     public static final Block GRAPE_STEM = registerBlockWithoutBlockItem("grape_stem", new GrapeStemBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)));
     public static final Block FERTILE_SOIL = registerBlock("fertile_soil", new FertileSoilBlock(AbstractBlock.Settings.copy(Blocks.FARMLAND)));
     public static final Block STAKE = registerBlock("stake", new StakeBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
-    public static final Block TOMATO_CROP = registerBlockWithoutBlockItem("tomato_crop", new TomatoCrop(AbstractBlock.Settings.copy(Blocks.WHEAT)));
-    public static final Block CHILI_CROP = registerBlockWithoutBlockItem("chili_crop", new ChiliCrop(AbstractBlock.Settings.copy(Blocks.WHEAT)));
+    public static final Block TOMATO_CROP = registerBlockWithoutBlockItem("tomato_crop", new TomatoCropBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)));
+    public static final Block CHILI_CROP = registerBlockWithoutBlockItem("chili_crop", new ChiliCropBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)));
     public static final Block APPLE_TREE = registerBlockWithoutBlockItem("apple_tree", new AppleTreeBlock(AbstractBlock.Settings.create().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).pistonBehavior(PistonBehavior.DESTROY).mapColor(MapColor.DARK_GREEN)));
     public static final Block APPLE_LEAVES = registerBlock("apple_leaves", new AppleLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).nonOpaque()));
     public static final Block APPLE_SAPLING = registerBlock("apple_sapling", new SaplingBlock(ModSaplingGenerators.APPLE, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING).nonOpaque().solidBlock(Blocks::never).suffocates(Blocks::never)));
