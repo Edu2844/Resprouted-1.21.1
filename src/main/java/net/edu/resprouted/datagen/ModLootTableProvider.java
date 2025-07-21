@@ -7,6 +7,7 @@ import net.edu.resprouted.block.custom.agriculture.HerbBlock;
 import net.edu.resprouted.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.loot.LootPool;
@@ -216,7 +217,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_WEATHERED_COPPER_SOUL_LANTERN);
         addDrop(ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN);
 
-        addDrop(ModBlocks.APPLE_LEAVES, leavesDrops(ModBlocks.APPLE_LEAVES, ModBlocks.APPLE_SAPLING, 0.0625f));
+        addDrop(ModBlocks.APPLE_LEAVES, leavesDrops(Blocks.OAK_LEAVES, ModBlocks.APPLE_SAPLING, 0.0625f));
 
         //HERBS
         BlockStatePropertyLootCondition.Builder builder2 = BlockStatePropertyLootCondition.builder(ModBlocks.ALOE_VERA_BLOCK)

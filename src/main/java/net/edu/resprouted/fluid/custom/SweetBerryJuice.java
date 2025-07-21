@@ -11,12 +11,10 @@ import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-import net.minecraft.world.WorldView;
 
 import java.util.Optional;
 
-
-public abstract class SweetBerryJuice extends HoneyFluid {
+public abstract class SweetBerryJuice extends BaseFluid {
 
     @Override
     public Fluid getFlowing() {
@@ -40,17 +38,6 @@ public abstract class SweetBerryJuice extends HoneyFluid {
     public boolean matchesType(Fluid fluid) {
         return fluid == ModFluids.SWEET_BERRY_JUICE_STILL || fluid == ModFluids.SWEET_BERRY_JUICE_FLOWING;
     }
-    @Override
-    protected int getMaxFlowDistance(WorldView world) {
-        return 4;
-    }
-    public int getLevelDecreasePerBlock(WorldView world) {
-        return 2;
-    }
-    @Override
-    public int getTickRate(WorldView world) {
-        return 5;
-    }
     public static class Flowing extends SweetBerryJuice {
         protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
             super.appendProperties(builder);
@@ -60,12 +47,7 @@ public abstract class SweetBerryJuice extends HoneyFluid {
         public int getLevel(FluidState fluidState) {
             return fluidState.get(LEVEL);
         }
-        @Override
-        public boolean isStill(FluidState fluidState) {
-            return false;
-        }
     }
-
     public static class Still extends SweetBerryJuice {
         public int getLevel(FluidState state) {
             return 8;

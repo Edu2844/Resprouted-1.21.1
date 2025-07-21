@@ -113,7 +113,7 @@ public class ModItems {
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
 
     public static final Item GLOW_BERRY_JUICE_BOTTLE = registerItem("glow_berry_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GLOW_BERRY_JUICE).maxCount(16)));
 
     public static final Item IRON_BERRY_JUICE_BOTTLE = registerItem("iron_berry_juice_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.IRON_BERRIES).maxCount(16)));

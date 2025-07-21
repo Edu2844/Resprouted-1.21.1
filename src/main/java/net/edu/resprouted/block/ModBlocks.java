@@ -436,7 +436,7 @@ public class ModBlocks {
     // ||                 FLUID BLOCKS                ||
     // =================================================
     public static final Block HONEY_FLUID_BLOCK = registerBlockWithoutBlockItem("honey_fluid_block", new
-            HoneyFluidBlock(ModFluids.HONEY_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().dropsNothing().nonOpaque().mapColor(MapColor.ORANGE))));
+            HoneyFluidBlock(ModFluids.HONEY_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().dropsNothing().nonOpaque())));
 
     public static final Block APPLE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("apple_juice_fluid_block", new
             FluidBlock(ModFluids.APPLE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));

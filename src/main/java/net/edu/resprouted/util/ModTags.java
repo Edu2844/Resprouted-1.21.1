@@ -2,6 +2,7 @@ package net.edu.resprouted.util;
 
 import net.edu.resprouted.Resprouted;
 import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -39,6 +40,14 @@ public class ModTags {
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(Resprouted.MOD_ID, name));
+        }
+    }
+    public static class Fluids {
+        public static final TagKey<Fluid> HONEY = createTag("honey");
+        public static final TagKey<Fluid> IRON_BERRY_JUICE = createTag("iron_berry_juice");
+
+        private static TagKey<Fluid> createTag(String name) {
+            return TagKey.of(RegistryKeys.FLUID, Identifier.of(Resprouted.MOD_ID, name));
         }
     }
 }

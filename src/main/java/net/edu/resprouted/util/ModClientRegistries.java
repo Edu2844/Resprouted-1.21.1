@@ -142,42 +142,43 @@ public class ModClientRegistries {
         //Honey
         registry.register(ModFluids.HONEY_STILL, ModFluids.HONEY_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/honey_still"),
-                Identifier.of("resprouted:block/fluid/honey_flow")));
+                Identifier.of("resprouted:block/fluid/honey_flow")
+        ));
         //Apple Juice
         registry.register(ModFluids.APPLE_JUICE_STILL, ModFluids.APPLE_JUICE_FLOWING, new SimpleFluidRenderHandler(
-                Identifier.of("minecraft:block/water_still"),
-                Identifier.of("minecraft:block/water_flow"),
-                0xC67F37));
+                Identifier.of("resprouted:block/fluid/apple_juice_still"),
+                Identifier.of("resprouted:block/fluid/apple_juice_flow")
+        ));
         //Golden Apple Juice
         registry.register(ModFluids.GOLDEN_APPLE_JUICE_STILL, ModFluids.GOLDEN_APPLE_JUICE_FLOWING, new SimpleFluidRenderHandler(
-                Identifier.of("minecraft:block/water_still"),
-                Identifier.of("minecraft:block/water_flow"),
-                0xFFEE3D));
+                Identifier.of("resprouted:block/fluid/golden_apple_juice_still"),
+                Identifier.of("resprouted:block/fluid/golden_apple_juice_flow")
+        ));
         //Grape Juice
         registry.register(ModFluids.GRAPE_JUICE_STILL, ModFluids.GRAPE_JUICE_FLOWING, new SimpleFluidRenderHandler(
-                Identifier.of("minecraft:block/water_still"),
-                Identifier.of("minecraft:block/water_flow"),
-                0x512D4A));
+                Identifier.of("resprouted:block/fluid/grape_juice_still"),
+                Identifier.of("resprouted:block/fluid/grape_juice_flow")
+        ));
         //Sweet Berry Juice
         registry.register(ModFluids.SWEET_BERRY_JUICE_STILL, ModFluids.SWEET_BERRY_JUICE_FLOWING, new SimpleFluidRenderHandler(
-                Identifier.of("minecraft:block/water_still"),
-                Identifier.of("minecraft:block/water_flow"),
-                0x87202E));
+                Identifier.of("resprouted:block/fluid/sweet_berry_juice_still"),
+                Identifier.of("resprouted:block/fluid/sweet_berry_juice_flow")
+        ));
         //Olive Oil
         registry.register(ModFluids.OLIVE_OIL_STILL, ModFluids.OLIVE_OIL_FLOWING, new SimpleFluidRenderHandler(
-                Identifier.of("minecraft:block/water_still"),
-                Identifier.of("minecraft:block/water_flow"),
-                0xB5A426));
+                Identifier.of("resprouted:block/fluid/olive_oil_still"),
+                Identifier.of("resprouted:block/fluid/olive_oil_flow")
+        ));
         //Glow Berry Juice
         registry.register(ModFluids.GLOW_BERRY_JUICE_STILL, ModFluids.GLOW_BERRY_JUICE_FLOWING, new SimpleFluidRenderHandler(
-                Identifier.of("minecraft:block/water_still"),
-                Identifier.of("minecraft:block/water_flow"),
-                0xF19645));
+                Identifier.of("resprouted:block/fluid/glow_berry_juice_still"),
+                Identifier.of("resprouted:block/fluid/glow_berry_juice_flow")
+        ));
         //Iron Berry Juice
         registry.register(ModFluids.IRON_BERRY_JUICE_STILL, ModFluids.IRON_BERRY_JUICE_FLOWING, new SimpleFluidRenderHandler(
-                Identifier.of("minecraft:block/water_still"),
-                Identifier.of("minecraft:block/water_flow"),
-                0x8B8989));
+                Identifier.of("resprouted:block/fluid/iron_berry_juice_still"),
+                Identifier.of("resprouted:block/fluid/iron_berry_juice_flow")
+        ));
     }
     public static void registerBlockColors() {
         ColorProviderRegistry<Block, BlockColorProvider> registry = ColorProviderRegistry.BLOCK;

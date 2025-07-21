@@ -17,4 +17,5 @@ public class ModFoodComponents {
     public static final FoodComponent ROOT = new FoodComponent.Builder().nutrition(1).saturationModifier(0.4f).build();
     public static final FoodComponent CLOUDSBLUFF = new FoodComponent.Builder().nutrition(1).saturationModifier(0.4f).statusEffect(new StatusEffectInstance(StatusEffects.LEVITATION,100,0),0.95f).build();
     public static final FoodComponent JUICE = new FoodComponent.Builder().nutrition(0).saturationModifier(0f).alwaysEdible().build();
+    public static final FoodComponent GLOW_BERRY_JUICE = new FoodComponent.Builder().nutrition(0).saturationModifier(0f).alwaysEdible().statusEffect(new StatusEffectInstance(StatusEffects.GLOWING,100,0,true, false, false),1f).build();
 }

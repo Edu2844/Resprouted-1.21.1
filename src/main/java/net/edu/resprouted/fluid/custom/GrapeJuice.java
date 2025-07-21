@@ -15,8 +15,7 @@ import net.minecraft.world.WorldView;
 
 import java.util.Optional;
 
-
-public abstract class GrapeJuice extends HoneyFluid {
+public abstract class GrapeJuice extends BaseFluid {
 
     @Override
     public Fluid getFlowing() {
@@ -40,16 +39,9 @@ public abstract class GrapeJuice extends HoneyFluid {
     public boolean matchesType(Fluid fluid) {
         return fluid == ModFluids.GRAPE_JUICE_STILL || fluid == ModFluids.GRAPE_JUICE_FLOWING;
     }
-    @Override
-    protected int getMaxFlowDistance(WorldView world) {
-        return 4;
-    }
+
     public int getLevelDecreasePerBlock(WorldView world) {
         return 2;
-    }
-    @Override
-    public int getTickRate(WorldView world) {
-        return 5;
     }
     public static class Flowing extends GrapeJuice {
         protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
@@ -60,12 +52,7 @@ public abstract class GrapeJuice extends HoneyFluid {
         public int getLevel(FluidState fluidState) {
             return fluidState.get(LEVEL);
         }
-        @Override
-        public boolean isStill(FluidState fluidState) {
-            return false;
-        }
     }
-
     public static class Still extends GrapeJuice {
         public int getLevel(FluidState state) {
             return 8;

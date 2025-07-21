@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-19T10:28:43.5009602	Resprouted/Block Loot Tables
+// 1.21.1	2025-07-21T11:28:55.4221428	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 e18718d6959508d33cab4d53b3189c7ba0c75954 data\resprouted\loot_table\blocks\bamboo_table.json
 1d2bac8cb33591dbd713cea9ae405f377e90847a data\resprouted\loot_table\blocks\waxed_weathered_copper_soul_lantern.json
@@ -18,7 +18,7 @@ c79517a6ee24bad7205689ccb383c1509d8c1279 data\resprouted\loot_table\blocks\chise
 a76f7764dde9b97834e02e6ba22cadc160d11b84 data\resprouted\loot_table\blocks\ironwood_planks.json
 829b99393369cb18bd2654d9e17081d8ec02ce38 data\resprouted\loot_table\blocks\oak_chair.json
 496e3dde50024532be312def22177918a9c08fcc data\resprouted\loot_table\blocks\andesite_pillar.json
-661fcaba14d9d693d530b294768ef86d814b25c5 data\resprouted\loot_table\blocks\apple_leaves.json
+2b1c23a875a975c8ba27c5ac02252aca1ae9d3c4 data\resprouted\loot_table\blocks\apple_leaves.json
 25a3b4f85b4a66523a5829464a349c343cb4fd0e data\resprouted\loot_table\blocks\white_painted_planks.json
 d963b9728189716f15ff9f3551cbf013915bf8b5 data\resprouted\loot_table\blocks\olive_planks.json
 d53e355823becb2c8ce80b09aa369d481f636fe0 data\resprouted\loot_table\blocks\slate_brick_wall.json
@@ -140,8 +140,8 @@ ee71445b328045b81a956a420cd7b498f1e15130 data\resprouted\loot_table\blocks\polis
 8f8f04dbcee2fde6db949e7b0319550d6451d7ed data\resprouted\loot_table\blocks\acacia_table.json
 bd3890b5c501e37b16fa14e9c92b2d4f75223501 data\resprouted\loot_table\blocks\exposed_copper_soul_lantern.json
 3c93a4ca957607b80714e696d34a4d52f01cc486 data\resprouted\loot_table\blocks\acacia_chair.json
-5434631616d9b5c3720cd1b09dbb31b505f188e5 data\resprouted\loot_table\blocks\crushing_tub.json
 ec053932f5bd5a2a80ab05fe8cd4d58e973eebba data\resprouted\loot_table\blocks\weathered_copper_chain.json
+5434631616d9b5c3720cd1b09dbb31b505f188e5 data\resprouted\loot_table\blocks\crushing_tub.json
 440d79691644100356e4999d9195150220b21719 data\resprouted\loot_table\blocks\warped_chair.json
 ded788f8dc0a1c12118295f6563dd3a4f6f71687 data\resprouted\loot_table\blocks\ironwood_sapling.json
 0031b1fd69196087674cc5bff023ccf202ab6bd2 data\resprouted\loot_table\blocks\chamomile_block.json

@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
@@ -17,13 +16,11 @@ import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import java.util.Optional;
 
-
-public abstract class HoneyFluid extends FlowableFluid {
+public abstract class HoneyFluid extends BaseFluid {
 
     @Override
     public Fluid getFlowing() {
@@ -40,10 +37,6 @@ public abstract class HoneyFluid extends FlowableFluid {
     @Override
     public Optional<SoundEvent> getBucketFillSound() {
         return Optional.of(SoundEvents.BLOCK_HONEY_BLOCK_PLACE);
-    }
-    @Override
-    protected boolean isInfinite(World world) {
-        return false;
     }
     public BlockState toBlockState(FluidState state) {
         return ModBlocks.HONEY_FLUID_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
@@ -81,10 +74,6 @@ public abstract class HoneyFluid extends FlowableFluid {
         @Override
         public int getLevel(FluidState fluidState) {
             return fluidState.get(LEVEL);
-        }
-        @Override
-        public boolean isStill(FluidState fluidState) {
-            return false;
         }
     }
     public static class Still extends HoneyFluid {

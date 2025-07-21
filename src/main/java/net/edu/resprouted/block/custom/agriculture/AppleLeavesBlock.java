@@ -18,7 +18,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-public class AppleLeavesBlock extends LeavesBlock implements Fertilizable {
+public class AppleLeavesBlock extends CustomLeavesBlock implements Fertilizable {
     private static final int MAX_AGE = 3;
     private static final int GROW_CHANCE = 25;
     public static final IntProperty APPLE_STAGE = IntProperty.of("apple_stage", 0, 3);
