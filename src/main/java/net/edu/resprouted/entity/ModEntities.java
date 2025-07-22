@@ -19,7 +19,6 @@ public class ModEntities {
             EntityType.Builder.<ThrownTomatoEntity>create(ThrownTomatoEntity::new, SpawnGroup.MISC)
                     .dimensions(0.25f, 0.25f)
                     .build());
-
     public static void registerModEntities() {
         Resprouted.LOGGER.info("Registering Mod Entities for " + Resprouted.MOD_ID);
     }

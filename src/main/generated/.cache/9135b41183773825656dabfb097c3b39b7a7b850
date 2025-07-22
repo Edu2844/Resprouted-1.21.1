@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-22T00:04:40.1612489	Resprouted/Tags for minecraft:item
+// 1.21.1	2025-07-22T17:39:10.5216873	Resprouted/Tags for minecraft:item
 2859ec709d0c7a50ba1a81d49f441ac86b90a536 data\resprouted\tags\item\ghost_pepper.json
 583c61b048f26dc4a732d8db2938a19214c6aa65 data\resprouted\tags\item\chili_pepper_seeds.json
 e16a3c9b67bdbfae8c45a9407fa27644616c427e data\resprouted\tags\item\copper_nugget.json
@@ -17,4 +17,5 @@ eeea9c75dbba6beccb4c9cd7f5594ce768727495 data\minecraft\tags\item\logs_that_burn
 38c8795066e0b0693d5827e5c1f5c1fe56d4f032 data\resprouted\tags\item\olives.json
 b3bde38f0076db7328e1d575546c7494e712d3ab data\resprouted\tags\item\dusts.json
 666a5c22bbda65aa5e43dde49b375dbe80ba3a2d data\resprouted\tags\item\iron_berries.json
+47be456ad97366b91300f74739cd8cac544f698d data\resprouted\tags\item\igniters.json
 f71d0e56449b47475ab0886ebc03e332684b3092 data\resprouted\tags\item\iron_dust.json

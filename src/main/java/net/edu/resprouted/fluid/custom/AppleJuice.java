@@ -31,7 +31,6 @@ public abstract class AppleJuice extends BaseFluid {
     @Override
     public Optional<SoundEvent> getBucketFillSound() {
         return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
-
     }
     public BlockState toBlockState(FluidState state) {
         return ModBlocks.APPLE_JUICE_FLUID_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));

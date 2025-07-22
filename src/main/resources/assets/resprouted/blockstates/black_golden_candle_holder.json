@@ -1,0 +1,22 @@
+{
+	"variants": {
+		"facing=north": { 
+			"model": "resprouted:block/candle/wall_black_golden_candle_holder" 
+		},
+		"facing=east": { 
+			"model": "resprouted:block/candle/wall_black_golden_candle_holder", 
+			"y": 90
+		},
+		"facing=south": { 
+			"model": "resprouted:block/candle/wall_black_golden_candle_holder", 
+			"y": 180 
+		},
+		"facing=west": { 
+			"model": "resprouted:block/candle/wall_black_golden_candle_holder", 
+			"y": 270 
+		},
+		"facing=up": { 
+			"model": "resprouted:block/candle/black_golden_candle_holder" 
+		}
+	}
+}

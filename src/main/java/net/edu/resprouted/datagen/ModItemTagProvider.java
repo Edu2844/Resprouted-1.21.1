@@ -87,10 +87,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
         getOrCreateTagBuilder(ModTags.Items.IRON_DUST)
                 .add(ModItems.IRON_DUST);
-
         getOrCreateTagBuilder(ModTags.Items.COPPER_NUGGET)
-                .add(ModItems.COPPER_NUGGET);
-
+                .add(ModItems.COPPER_NUGGET)
+        ;
         getOrCreateTagBuilder(ModTags.Items.DUSTS)
                 .add(ModItems.IRON_DUST)
                 .add(ModItems.GOLDEN_DUST)
@@ -98,7 +97,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.TINY_GOLDEN_DUST)
                 .add(ModItems.TINY_GLOWSTONE_DUST)
         ;
-
         getOrCreateTagBuilder(ModTags.Items.CROPS)
                 .add(ModItems.TOMATO)
                 .add(ModItems.CHILI_PEPPER)
@@ -118,6 +116,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.SWEET_BERRY_JUICE_BOTTLE)
                 .add(ModItems.OLIVE_OIL_BOTTLE)
         ;
-
+        getOrCreateTagBuilder(ModTags.Items.IGNITERS)
+                .add(Items.FLINT_AND_STEEL)
+                .add(Items.FIRE_CHARGE)
+        ;
     }
 }

@@ -1,11 +1,11 @@
 package net.edu.resprouted.block.custom.decorative;
 
+import net.edu.resprouted.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -30,11 +30,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class CandleHolderBlock extends Block {
     public static final DirectionProperty FACING = Properties.FACING;
-    protected static final VoxelShape STANDING_SHAPE = Block.createCuboidShape(6.4, 0.0, 6.4, 9.6, 15.0, 9.6);
-    protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(5.6, 0.0, 11.2, 10.4, 12.8, 16.0);
-    protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(5.6, 0.0, 0.0, 10.4, 12.8, 4.8);
-    protected static final VoxelShape WEST_SHAPE = Block.createCuboidShape(11.2, 0.0, 5.6, 16.0, 12.8, 10.4);
-    protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0.0, 0.0, 5.6, 4.8, 12.8, 10.4);
+    protected static final VoxelShape STANDING_SHAPE = Block.createCuboidShape(6.4F, 0.0F, 6.4F, 9.6F, 15.0F, 9.6F);
+    protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(5.6F, 0.0F, 11.2F, 10.4F, 12.8F, 16.0F);
+    protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(5.6F, 0.0F, 0.0F, 10.4F, 12.8F, 4.8F);
+    protected static final VoxelShape WEST_SHAPE = Block.createCuboidShape(11.2F, 0.0F, 5.6F, 16.0F, 12.8F, 10.4F);
+    protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0.0F, 0.0F, 5.6F, 4.8F, 12.8F, 10.4F);
     public static final BooleanProperty LIT = Properties.LIT;
 
     public CandleHolderBlock() {
@@ -47,7 +47,7 @@ public class CandleHolderBlock extends Block {
     }
     @Override
     public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (stack.isOf(Items.FLINT_AND_STEEL)) {
+        if (stack.isIn(ModTags.Items.IGNITERS)) {
             if (!state.get(LIT)) {
                 if (!world.isClient()) {
                     world.playSound(null, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);

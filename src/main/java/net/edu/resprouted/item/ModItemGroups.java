@@ -250,6 +250,38 @@ public class ModItemGroups {
                         entries.add(ModBlocks.WAXED_WEATHERED_COPPER_CHANDELIER);
                         entries.add(ModBlocks.WAXED_OXIDIZED_COPPER_CHANDELIER);
                         entries.add(ModBlocks.IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.WHITE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIGHT_GRAY_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.GRAY_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BLACK_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BROWN_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.RED_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.ORANGE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.YELLOW_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIME_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.CYAN_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIGHT_BLUE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BLUE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.PURPLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.MAGENTA_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.PINK_IRON_CANDLE_HOLDER);
+
+                        entries.add(ModBlocks.GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.WHITE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIGHT_GRAY_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.GRAY_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BLACK_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BROWN_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.RED_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.ORANGE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.YELLOW_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIME_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.CYAN_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIGHT_BLUE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BLUE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.PURPLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.MAGENTA_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.PINK_GOLDEN_CANDLE_HOLDER);
 
                     }).build());
     public static  final ItemGroup ALCHEMY_GROUP = Registry.register(Registries.ITEM_GROUP,

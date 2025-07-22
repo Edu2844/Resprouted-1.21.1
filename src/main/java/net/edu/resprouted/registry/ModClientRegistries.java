@@ -126,6 +126,37 @@ public class ModClientRegistries {
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN, RenderLayer.getCutout());
         //Candle Holder
         registry.putBlock(ModBlocks.IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WHITE_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIGHT_GRAY_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.GRAY_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BLACK_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BROWN_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.RED_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.ORANGE_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.YELLOW_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIME_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.CYAN_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIGHT_BLUE_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BLUE_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.PURPLE_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.MAGENTA_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.PINK_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WHITE_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIGHT_GRAY_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.GRAY_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BLACK_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BROWN_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.RED_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.ORANGE_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.YELLOW_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIME_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.CYAN_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIGHT_BLUE_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BLUE_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.PURPLE_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.MAGENTA_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.PINK_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
         //Doors&Trapdoors
         registry.putBlock(ModBlocks.IRONWOOD_DOOR, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.IRONWOOD_TRAPDOOR, RenderLayer.getCutout());

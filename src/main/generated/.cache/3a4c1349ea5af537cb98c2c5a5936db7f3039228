@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-22T00:04:40.1602516	Resprouted/Block Loot Tables
+// 1.21.1	2025-07-22T17:39:10.5196923	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 e18718d6959508d33cab4d53b3189c7ba0c75954 data\resprouted\loot_table\blocks\bamboo_table.json
 1d2bac8cb33591dbd713cea9ae405f377e90847a data\resprouted\loot_table\blocks\waxed_weathered_copper_soul_lantern.json
@@ -126,8 +126,8 @@ c931e3fa9da14e7b790183fa4c77779e644af186 data\resprouted\loot_table\blocks\waxed
 54bdce97cdadf68b473562f3fa9c97d2b281fdbd data\resprouted\loot_table\blocks\red_sandstone_bricks.json
 74c20ea06399928c1ae3768460788ffc3591e168 data\resprouted\loot_table\blocks\marshmallow_block.json
 2ef5b9378b3586b437e4b39236412d84021095b3 data\resprouted\loot_table\blocks\diorite_pillar.json
-9d5e4065b34519c084d32ff0dfbf9fdd12e9cb71 data\resprouted\loot_table\blocks\exposed_copper_chain.json
 85ca97260a0e9743547e28105961adc2f24b0825 data\resprouted\loot_table\blocks\waxed_copper_lantern.json
+9d5e4065b34519c084d32ff0dfbf9fdd12e9cb71 data\resprouted\loot_table\blocks\exposed_copper_chain.json
 a8763435ac8ebff29560129255a128de5df02fc0 data\resprouted\loot_table\blocks\birch_chair.json
 f8f89d91efbb72f61ba5ecd2240f0051338eb9b4 data\resprouted\loot_table\blocks\stone_pillar.json
 8758f129be47fea9c46a281c1401c6befee63cae data\resprouted\loot_table\blocks\polished_slate_wall.json

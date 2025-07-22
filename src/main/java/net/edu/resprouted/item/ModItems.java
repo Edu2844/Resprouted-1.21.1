@@ -3,10 +3,7 @@ package net.edu.resprouted.item;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.fluid.ModFluids;
-import net.edu.resprouted.item.custom.CustomBucketItem;
-import net.edu.resprouted.item.custom.DrinkableBottleItem;
-import net.edu.resprouted.item.custom.ElixirBottle;
-import net.edu.resprouted.item.custom.TomatoItem;
+import net.edu.resprouted.item.custom.*;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.BucketItem;
@@ -19,6 +16,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
+
+import static net.edu.resprouted.block.ModBlocks.LIQUID_BARREL;
 
 public class ModItems {
     // =================================================
@@ -65,6 +64,7 @@ public class ModItems {
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
+    public static final Item LIQUID_BARREL_ITEM = registerItem("liquid_barrel", new LiquidBarrelItem(LIQUID_BARREL, new Item.Settings()));
 
     // =================================================
     // ||                 FLUID BUCKETS               ||

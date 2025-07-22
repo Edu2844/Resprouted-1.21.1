@@ -17,8 +17,7 @@ import net.minecraft.util.Formatting;
 import java.util.List;
 
 public class LiquidBarrelItem extends BlockItem {
-    private static final RegistryOps<NbtElement> TOOLTIP_OPS =
-            RegistryOps.of(NbtOps.INSTANCE, BuiltinRegistries.createWrapperLookup());
+    private static final RegistryOps<NbtElement> TOOLTIP_OPS = RegistryOps.of(NbtOps.INSTANCE, BuiltinRegistries.createWrapperLookup());
     public LiquidBarrelItem(Block block, Settings settings) {
         super(block, settings);
     }

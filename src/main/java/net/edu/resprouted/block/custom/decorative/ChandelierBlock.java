@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 public class ChandelierBlock extends FallingBlock {
-    public static final MapCodec<ChandelierBlock> CODEC = createCodec(ChandelierBlock::new);;
+    public static final MapCodec<ChandelierBlock> CODEC = createCodec(ChandelierBlock::new);
     protected static final VoxelShape SHAPE = createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F);
 
     public ChandelierBlock(AbstractBlock.Settings settings) {

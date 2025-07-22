@@ -5,7 +5,6 @@ import net.edu.resprouted.block.custom.agriculture.*;
 import net.edu.resprouted.block.custom.decorative.*;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
-import net.edu.resprouted.item.custom.LiquidBarrelItem;
 import net.edu.resprouted.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -203,6 +202,7 @@ public class ModBlocks {
             new DoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
     public static final Block OLIVE_TRAPDOOR = registerBlock("olive_trapdoor",
             new TrapdoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+
 
     // =================================================
     // ||               PAINTED PLANKS                ||
@@ -403,10 +403,42 @@ public class ModBlocks {
     public static final Block WAXED_OXIDIZED_COPPER_CHANDELIER = registerBlock("waxed_oxidized_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
 
     // =================================================
-    // ||                   CANDLES                   ||
+    // ||                CANDLE HOLDER                ||
     // =================================================
-    public static final Block IRON_CANDLE_HOLDER =registerBlock("iron_candle_holder", new CandleHolderBlock());
-
+    //Iron
+    public static final Block IRON_CANDLE_HOLDER = registerBlock("iron_candle_holder", new CandleHolderBlock());
+    public static final Block WHITE_IRON_CANDLE_HOLDER = registerBlock("white_iron_candle_holder", new CandleHolderBlock());
+    public static final Block LIGHT_GRAY_IRON_CANDLE_HOLDER = registerBlock("light_gray_iron_candle_holder", new CandleHolderBlock());
+    public static final Block GRAY_IRON_CANDLE_HOLDER = registerBlock("gray_iron_candle_holder", new CandleHolderBlock());
+    public static final Block BLACK_IRON_CANDLE_HOLDER = registerBlock("black_iron_candle_holder", new CandleHolderBlock());
+    public static final Block BROWN_IRON_CANDLE_HOLDER = registerBlock("brown_iron_candle_holder", new CandleHolderBlock());
+    public static final Block RED_IRON_CANDLE_HOLDER = registerBlock("red_iron_candle_holder", new CandleHolderBlock());
+    public static final Block ORANGE_IRON_CANDLE_HOLDER = registerBlock("orange_iron_candle_holder", new CandleHolderBlock());
+    public static final Block YELLOW_IRON_CANDLE_HOLDER = registerBlock("yellow_iron_candle_holder", new CandleHolderBlock());
+    public static final Block LIME_IRON_CANDLE_HOLDER = registerBlock("lime_iron_candle_holder", new CandleHolderBlock());
+    public static final Block CYAN_IRON_CANDLE_HOLDER = registerBlock("cyan_iron_candle_holder", new CandleHolderBlock());
+    public static final Block LIGHT_BLUE_IRON_CANDLE_HOLDER = registerBlock("light_blue_iron_candle_holder", new CandleHolderBlock());
+    public static final Block BLUE_IRON_CANDLE_HOLDER = registerBlock("blue_iron_candle_holder", new CandleHolderBlock());
+    public static final Block PURPLE_IRON_CANDLE_HOLDER = registerBlock("purple_iron_candle_holder", new CandleHolderBlock());
+    public static final Block MAGENTA_IRON_CANDLE_HOLDER = registerBlock("magenta_iron_candle_holder", new CandleHolderBlock());
+    public static final Block PINK_IRON_CANDLE_HOLDER = registerBlock("pink_iron_candle_holder", new CandleHolderBlock());
+    //Gold
+    public static final Block GOLDEN_CANDLE_HOLDER = registerBlock("golden_candle_holder", new CandleHolderBlock());
+    public static final Block WHITE_GOLDEN_CANDLE_HOLDER = registerBlock("white_golden_candle_holder", new CandleHolderBlock());
+    public static final Block LIGHT_GRAY_GOLDEN_CANDLE_HOLDER = registerBlock("light_gray_golden_candle_holder", new CandleHolderBlock());
+    public static final Block GRAY_GOLDEN_CANDLE_HOLDER = registerBlock("gray_golden_candle_holder", new CandleHolderBlock());
+    public static final Block BLACK_GOLDEN_CANDLE_HOLDER = registerBlock("black_golden_candle_holder", new CandleHolderBlock());
+    public static final Block BROWN_GOLDEN_CANDLE_HOLDER = registerBlock("brown_golden_candle_holder", new CandleHolderBlock());
+    public static final Block RED_GOLDEN_CANDLE_HOLDER = registerBlock("red_golden_candle_holder", new CandleHolderBlock());
+    public static final Block ORANGE_GOLDEN_CANDLE_HOLDER = registerBlock("orange_golden_candle_holder", new CandleHolderBlock());
+    public static final Block YELLOW_GOLDEN_CANDLE_HOLDER = registerBlock("yellow_golden_candle_holder", new CandleHolderBlock());
+    public static final Block LIME_GOLDEN_CANDLE_HOLDER = registerBlock("lime_golden_candle_holder", new CandleHolderBlock());
+    public static final Block CYAN_GOLDEN_CANDLE_HOLDER = registerBlock("cyan_golden_candle_holder", new CandleHolderBlock());
+    public static final Block LIGHT_BLUE_GOLDEN_CANDLE_HOLDER = registerBlock("light_blue_golden_candle_holder", new CandleHolderBlock());
+    public static final Block BLUE_GOLDEN_CANDLE_HOLDER = registerBlock("blue_golden_candle_holder", new CandleHolderBlock());
+    public static final Block PURPLE_GOLDEN_CANDLE_HOLDER = registerBlock("purple_golden_candle_holder", new CandleHolderBlock());
+    public static final Block MAGENTA_GOLDEN_CANDLE_HOLDER = registerBlock("magenta_golden_candle_holder", new CandleHolderBlock());
+    public static final Block PINK_GOLDEN_CANDLE_HOLDER = registerBlock("pink_golden_candle_holder", new CandleHolderBlock());
 
     // =================================================
     // ||                AGRICULTURE                  ||
@@ -423,39 +455,26 @@ public class ModBlocks {
     public static final Block APPLE_SAPLING = registerBlock("apple_sapling", new SaplingBlock(ModSaplingGenerators.APPLE, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING).nonOpaque().solidBlock(Blocks::never).suffocates(Blocks::never)));
     public static final Block CRUSHING_TUB = registerBlock("crushing_tub", new CrushingTubBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
     public static final Block EVAPORATING_BASIN = registerBlock("evaporating_basin", new EvaporatingBasinBlock(AbstractBlock.Settings.copy(Blocks.TERRACOTTA).nonOpaque()));
-
-    //LIQUID BARREL BLOCK AND LIQUID BARREL ITEM
-    public static final Block LIQUID_BARREL = Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, "liquid_barrel"), new LiquidBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Item LIQUID_BARREL_ITEM = Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, "liquid_barrel"), new LiquidBarrelItem(LIQUID_BARREL, new Item.Settings()));
-
+    public static final Block LIQUID_BARREL = registerBlock("liquid_barrel" , new LiquidBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
     public static final Block BLUE_BERRY_CAKE = registerBlock("blue_berry_cake", new CustomCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE)));
-
-
 
     // =================================================
     // ||                 FLUID BLOCKS                ||
     // =================================================
     public static final Block HONEY_FLUID_BLOCK = registerBlockWithoutBlockItem("honey_fluid_block", new
             HoneyFluidBlock(ModFluids.HONEY_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().dropsNothing().nonOpaque())));
-
     public static final Block APPLE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("apple_juice_fluid_block", new
             FluidBlock(ModFluids.APPLE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
-
     public static final Block GOLDEN_APPLE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("golden_apple_juice_fluid_block", new
             FluidBlock(ModFluids.GOLDEN_APPLE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
-
     public static final Block GRAPE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("grape_juice_fluid_block", new
             FluidBlock(ModFluids.GRAPE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
-
     public static final Block SWEET_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("sweet_berry_juice_fluid_block", new
             FluidBlock(ModFluids.SWEET_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
-
     public static final Block OLIVE_OIL_FLUID_BLOCK = registerBlockWithoutBlockItem("olive_oil_fluid_block", new
             FluidBlock(ModFluids.OLIVE_OIL_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
-
     public static final Block GLOW_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("glow_berry_juice_fluid_block", new
             FluidBlock(ModFluids.GLOW_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
-
     public static final Block IRON_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("iron_berry_juice_fluid_block", new
             FluidBlock(ModFluids.IRON_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
 
