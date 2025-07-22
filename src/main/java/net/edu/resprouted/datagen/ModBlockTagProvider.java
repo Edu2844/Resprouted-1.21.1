@@ -114,6 +114,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN)
 
                 .add(ModBlocks.EVAPORATING_BASIN)
+                .add(ModBlocks.IRON_CANDLE_HOLDER)
 
         ;
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)

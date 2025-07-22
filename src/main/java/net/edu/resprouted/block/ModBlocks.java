@@ -134,7 +134,7 @@ public class ModBlocks {
     public static final Block CLAY_WALL_CROSS = registerBlock("clay_wall_cross",
             new Block(AbstractBlock.Settings.copy(Blocks.CLAY)));
     public static final Block CLAY_WALL_DIAGONAL = registerBlock("clay_wall_diagonal",
-            new BlockClayWallDiag(AbstractBlock.Settings.copy(Blocks.CLAY)));
+            new ClayWallDiagBlock(AbstractBlock.Settings.copy(Blocks.CLAY)));
 
     // =================================================
     // ||                  IRONWOOD                   ||
@@ -304,31 +304,31 @@ public class ModBlocks {
     // ||                  TABLES                     ||
     // =================================================
     public static final Block OAK_TABLE = registerBlock("oak_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block DARK_OAK_TABLE = registerBlock("dark_oak_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block MANGROVE_TABLE = registerBlock("mangrove_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block CHERRY_TABLE = registerBlock("cherry_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block BIRCH_TABLE = registerBlock("birch_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block SPRUCE_TABLE = registerBlock("spruce_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block ACACIA_TABLE = registerBlock("acacia_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block JUNGLE_TABLE = registerBlock("jungle_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block BAMBOO_TABLE = registerBlock("bamboo_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block CRIMSON_TABLE = registerBlock("crimson_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block WARPED_TABLE = registerBlock("warped_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block IRONWOOD_TABLE = registerBlock("ironwood_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block OLIVE_TABLE = registerBlock("olive_table",
-            new BlockTable(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
 
     // =================================================
     // ||                  CHAINS                     ||
@@ -389,23 +389,23 @@ public class ModBlocks {
     // =================================================
     // ||                 CHANDELIER                  ||
     // =================================================
-    public static final Block CHANDELIER = registerBlock("chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
-    public static final Block GOLDEN_CHANDELIER = registerBlock("golden_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block CHANDELIER = registerBlock("chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
+    public static final Block GOLDEN_CHANDELIER = registerBlock("golden_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
 
-    public static final Block COPPER_CHANDELIER = registerBlock("copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.UNAFFECTED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
-    public static final Block EXPOSED_COPPER_CHANDELIER = registerBlock("exposed_copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.EXPOSED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
-    public static final Block WEATHERED_COPPER_CHANDELIER = registerBlock("weathered_copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.WEATHERED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
-    public static final Block OXIDIZED_COPPER_CHANDELIER = registerBlock("oxidized_copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.OXIDIZED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block COPPER_CHANDELIER = registerBlock("copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.UNAFFECTED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
+    public static final Block EXPOSED_COPPER_CHANDELIER = registerBlock("exposed_copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.EXPOSED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
+    public static final Block WEATHERED_COPPER_CHANDELIER = registerBlock("weathered_copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.WEATHERED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
+    public static final Block OXIDIZED_COPPER_CHANDELIER = registerBlock("oxidized_copper_chandelier", new CopperChandelierBlock(Oxidizable.OxidationLevel.OXIDIZED,AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
 
-    public static final Block WAXED_COPPER_CHANDELIER = registerBlock("waxed_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
-    public static final Block WAXED_EXPOSED_COPPER_CHANDELIER = registerBlock("waxed_exposed_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
-    public static final Block WAXED_WEATHERED_COPPER_CHANDELIER = registerBlock("waxed_weathered_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
-    public static final Block WAXED_OXIDIZED_COPPER_CHANDELIER = registerBlock("waxed_oxidized_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque()));
+    public static final Block WAXED_COPPER_CHANDELIER = registerBlock("waxed_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
+    public static final Block WAXED_EXPOSED_COPPER_CHANDELIER = registerBlock("waxed_exposed_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
+    public static final Block WAXED_WEATHERED_COPPER_CHANDELIER = registerBlock("waxed_weathered_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
+    public static final Block WAXED_OXIDIZED_COPPER_CHANDELIER = registerBlock("waxed_oxidized_copper_chandelier", new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.ANVIL).nonOpaque().solid()));
 
     // =================================================
-    // ||                CANDLE_HOLDER                ||
+    // ||                   CANDLES                   ||
     // =================================================
-
+    public static final Block IRON_CANDLE_HOLDER =registerBlock("iron_candle_holder", new CandleHolderBlock());
 
 
     // =================================================

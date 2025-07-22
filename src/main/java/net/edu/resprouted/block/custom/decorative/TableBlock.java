@@ -13,14 +13,14 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 
-public class BlockTable extends Block {
+public class TableBlock extends Block {
     public static final BooleanProperty NW = BooleanProperty.of("nw");
     public static final BooleanProperty NE = BooleanProperty.of("ne");
     public static final BooleanProperty SE = BooleanProperty.of("se");
     public static final BooleanProperty SW = BooleanProperty.of("sw");
     private static final VoxelShape SHAPE = Block.createCuboidShape(0.0F, 14.0F, 0.0F, 16.0F, 16.0F, 16.0F);
 
-    public BlockTable(AbstractBlock.Settings settings) {
+    public TableBlock(AbstractBlock.Settings settings) {
         super(settings);
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(NW, true)
@@ -47,10 +47,10 @@ public class BlockTable extends Block {
     }
 
     private BlockState getConnections(BlockView world, BlockPos pos) {
-        boolean blockNorth = world.getBlockState(pos.north()).getBlock() instanceof BlockTable;
-        boolean blockSouth = world.getBlockState(pos.south()).getBlock() instanceof BlockTable;
-        boolean blockEast = world.getBlockState(pos.east()).getBlock() instanceof BlockTable;
-        boolean blockWest = world.getBlockState(pos.west()).getBlock() instanceof BlockTable;
+        boolean blockNorth = world.getBlockState(pos.north()).getBlock() instanceof TableBlock;
+        boolean blockSouth = world.getBlockState(pos.south()).getBlock() instanceof TableBlock;
+        boolean blockEast = world.getBlockState(pos.east()).getBlock() instanceof TableBlock;
+        boolean blockWest = world.getBlockState(pos.west()).getBlock() instanceof TableBlock;
 
         return this.getDefaultState()
                 .with(NW, !blockNorth && !blockWest)

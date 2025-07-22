@@ -7,13 +7,13 @@ import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.networking.ModMessages;
 import net.edu.resprouted.util.FluidContainerLoader;
 import net.edu.resprouted.event.ModEvents;
-import net.edu.resprouted.util.BottleInteractions;
+import net.edu.resprouted.util.BottleInteractionsUtil;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItemGroups;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.util.ModStakeCrops;
-import net.edu.resprouted.util.ModRegistries;
+import net.edu.resprouted.registry.ModStakeCropsRegistries;
+import net.edu.resprouted.registry.ModRegistries;
 import net.edu.resprouted.world.ModFoliagePlacerTypes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -28,7 +28,7 @@ public class Resprouted implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModFluids.registerModFluids();
-		BottleInteractions.registerFluidInteractions();
+		BottleInteractionsUtil.registerFluidInteractions();
 		ModEffects.registerEffects();
 		ModItemGroups.registerItemGroup();
 		ModItems.registerModItems();
@@ -39,7 +39,7 @@ public class Resprouted implements ModInitializer {
 		ModRecipes.registerRecipes();
 		ModEvents.registerModEvents();
 		ModRegistries.RegisterModStuffs();
-		ModStakeCrops.registerStakeCropsSeeds();
+		ModStakeCropsRegistries.registerStakeCropsSeeds();
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());

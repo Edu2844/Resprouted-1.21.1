@@ -10,10 +10,10 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 
-public class BlockClayWallDiag extends Block implements IAdvancedRotationPlacement {
+public class ClayWallDiagBlock extends Block implements IAdvancedRotationPlacement {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
-    public BlockClayWallDiag(Settings settings) {
+    public ClayWallDiagBlock(Settings settings) {
         super(settings);
     }
     @Override

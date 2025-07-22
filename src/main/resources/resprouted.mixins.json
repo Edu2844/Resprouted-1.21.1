@@ -16,7 +16,6 @@
   },
   "client": [
     "BackgroundRendererMixin",
-    "BlockOutlineMixin",
-    "InGameOverlayRendererMixin"
+    "BlockOutlineMixin"
   ]
 }

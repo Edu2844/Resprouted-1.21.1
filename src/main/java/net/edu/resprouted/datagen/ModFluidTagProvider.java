@@ -23,5 +23,29 @@ public class ModFluidTagProvider extends FabricTagProvider.FluidTagProvider {
                 .add(ModFluids.IRON_BERRY_JUICE_STILL)
                 .add(ModFluids.IRON_BERRY_JUICE_FLOWING)
         ;
+        getOrCreateTagBuilder(ModTags.Fluids.SWEET_BERRY_JUICE)
+                .add(ModFluids.SWEET_BERRY_JUICE_STILL)
+                .add(ModFluids.SWEET_BERRY_JUICE_FLOWING)
+        ;
+        getOrCreateTagBuilder(ModTags.Fluids.GLOW_BERRY_JUICE)
+                .add(ModFluids.GLOW_BERRY_JUICE_STILL)
+                .add(ModFluids.GLOW_BERRY_JUICE_FLOWING)
+        ;
+        getOrCreateTagBuilder(ModTags.Fluids.GRAPE_JUICE)
+                .add(ModFluids.GRAPE_JUICE_STILL)
+                .add(ModFluids.GRAPE_JUICE_FLOWING)
+        ;
+        getOrCreateTagBuilder(ModTags.Fluids.APPLE_JUICE)
+                .add(ModFluids.APPLE_JUICE_STILL)
+                .add(ModFluids.APPLE_JUICE_FLOWING)
+        ;
+        getOrCreateTagBuilder(ModTags.Fluids.GOLDEN_APPLE_JUICE)
+                .add(ModFluids.GOLDEN_APPLE_JUICE_STILL)
+                .add(ModFluids.GOLDEN_APPLE_JUICE_FLOWING)
+        ;
+        getOrCreateTagBuilder(ModTags.Fluids.OLIVE_OIL)
+                .add(ModFluids.OLIVE_OIL_STILL)
+                .add(ModFluids.OLIVE_OIL_FLOWING)
+        ;
     }
 }

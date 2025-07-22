@@ -249,6 +249,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.WAXED_EXPOSED_COPPER_CHANDELIER);
                         entries.add(ModBlocks.WAXED_WEATHERED_COPPER_CHANDELIER);
                         entries.add(ModBlocks.WAXED_OXIDIZED_COPPER_CHANDELIER);
+                        entries.add(ModBlocks.IRON_CANDLE_HOLDER);
 
                     }).build());
     public static  final ItemGroup ALCHEMY_GROUP = Registry.register(Registries.ITEM_GROUP,

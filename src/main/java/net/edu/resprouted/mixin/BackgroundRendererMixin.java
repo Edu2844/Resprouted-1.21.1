@@ -28,7 +28,7 @@ public class BackgroundRendererMixin {
         if (camera.getFocusedEntity().isSubmergedIn(ModTags.Fluids.HONEY)) {
             RenderSystem.setShaderFogColor(0.9f, 0.7f, 0.1f);
             RenderSystem.setShaderFogStart(0.25f);
-            RenderSystem.setShaderFogEnd(3.0f);
+            RenderSystem.setShaderFogEnd(1.0f);
             ci.cancel();
         }
     }

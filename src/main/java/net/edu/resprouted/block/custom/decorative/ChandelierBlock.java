@@ -6,16 +6,13 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 public class ChandelierBlock extends FallingBlock {
-    public static final MapCodec<ChandelierBlock> CODEC = createCodec(ChandelierBlock::new);
-    protected static final VoxelShape SHAPE = VoxelShapes.union(VoxelShapes.union(
-                    Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 4.0F, 16.0F),
-                    Block.createCuboidShape(5.0F, 15.0F, 5.0F, 11.0F, 16.0F, 11.0F)));
+    public static final MapCodec<ChandelierBlock> CODEC = createCodec(ChandelierBlock::new);;
+    protected static final VoxelShape SHAPE = createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F);
 
     public ChandelierBlock(AbstractBlock.Settings settings) {
         super(settings);

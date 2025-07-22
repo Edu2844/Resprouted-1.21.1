@@ -1,4 +1,4 @@
-package net.edu.resprouted.util;
+package net.edu.resprouted.registry;
 
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
@@ -124,6 +124,8 @@ public class ModClientRegistries {
         registry.putBlock(ModBlocks.WAXED_EXPOSED_COPPER_SOUL_LANTERN, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_WEATHERED_COPPER_SOUL_LANTERN, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN, RenderLayer.getCutout());
+        //Candle Holder
+        registry.putBlock(ModBlocks.IRON_CANDLE_HOLDER, RenderLayer.getCutout());
         //Doors&Trapdoors
         registry.putBlock(ModBlocks.IRONWOOD_DOOR, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.IRONWOOD_TRAPDOOR, RenderLayer.getCutout());
