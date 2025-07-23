@@ -1,1 +1,7 @@
-{	"parent": "resprouted:block/candle/red_iron_candle_holder"	}
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "item/red_candle",
+    "layer1": "resprouted:item/iron_candle_holder_layer"
+  }
+}

@@ -46,7 +46,7 @@ public class CustomCakeBlock extends Block {
     }
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        int bites = state.get(BITES); // Obtiene el número de "bites" (0 a 3)
+        int bites = state.get(BITES);
         return BITES_TO_SHAPE[bites];
     }
     @Override

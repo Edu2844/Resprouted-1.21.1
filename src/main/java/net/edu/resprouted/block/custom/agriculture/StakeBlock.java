@@ -45,15 +45,11 @@ public class StakeBlock extends Block {
                 .with(CONNECT_EAST, false)
                 .with(CONNECT_WEST, false));
     }
+
+    // ========= PROPIEDADES Y ESTADO ========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HAS_ROPE, CONNECT_NORTH, CONNECT_SOUTH, CONNECT_EAST, CONNECT_WEST);
-    }
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(HAS_ROPE)) {
-            return SHAPE_WITH_ROPE;
-        }
-        return SHAPE;
     }
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
@@ -117,6 +113,8 @@ public class StakeBlock extends Block {
     public boolean hasRope(BlockState state) {
         return state.contains(HAS_ROPE) && state.get(HAS_ROPE);
     }
+
+    // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!state.isOf(ModBlocks.STAKE)) {
@@ -140,5 +138,14 @@ public class StakeBlock extends Block {
             return ItemActionResult.SUCCESS;
         }
         return ItemActionResult.FAIL;
+    }
+
+    // ========= FORMA Y TRANSFORMACIONES =========
+    @Override
+    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(HAS_ROPE)) {
+            return SHAPE_WITH_ROPE;
+        }
+        return SHAPE;
     }
 }

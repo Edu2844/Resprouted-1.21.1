@@ -25,11 +25,28 @@ import java.util.List;
 
 public class ChairBlock extends HorizontalFacingBlock {
     public static final MapCodec<ChairBlock> CODEC = createCodec(ChairBlock::new);
-    private static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 5.0, 2.0, 14.0, 7.0, 14.0);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(2.0F, 5.0F, 2.0F, 14.0F, 7.0F, 14.0F);
 
     public ChairBlock(Settings settings) {
         super(settings);
     }
+    // ========= PROPIEDADES Y ESTADO =========
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
+    }
+
+    @Nullable
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+    }
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return CODEC;
+    }
+
+    // ========= INTERACCIÓN =========
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if(!world.isClient()) {
@@ -46,21 +63,10 @@ public class ChairBlock extends HorizontalFacingBlock {
 
         return ActionResult.SUCCESS;
     }
+
+    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
-    }
-    @Override
-    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
-        return CODEC;
-    }
-    @Nullable
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
-    }
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
     }
 }

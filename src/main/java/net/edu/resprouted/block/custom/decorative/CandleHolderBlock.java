@@ -20,6 +20,7 @@ import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -27,6 +28,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class CandleHolderBlock extends Block {
     public static final DirectionProperty FACING = Properties.FACING;
@@ -41,53 +44,11 @@ public class CandleHolderBlock extends Block {
         super(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).luminance(state -> state.get(LIT) ? 15 : 0).strength(1.0f));
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.UP).with(LIT, false));
     }
+
+    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING,LIT);
-    }
-    @Override
-    public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (stack.isIn(ModTags.Items.IGNITERS)) {
-            if (!state.get(LIT)) {
-                if (!world.isClient()) {
-                    world.playSound(null, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
-                    world.setBlockState(pos, state.with(LIT, true), Block.NOTIFY_ALL);
-                    if (!player.getAbilities().creativeMode) {
-                        stack.damage(1, player, LivingEntity.getSlotForHand(hand));
-                    }
-                }
-                return ItemActionResult.SUCCESS;
-            }
-        } else if (stack.isEmpty()) {
-            if (state.get(LIT)) {
-                if (!world.isClient()) {
-                    world.playSound(null, pos, SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    world.setBlockState(pos, state.with(LIT, false), Block.NOTIFY_ALL);
-                }
-                return ItemActionResult.SUCCESS;
-            }
-        }
-        return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-    }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        return switch (direction) {
-            case EAST -> EAST_SHAPE;
-            case WEST -> WEST_SHAPE;
-            case SOUTH -> SOUTH_SHAPE;
-            case NORTH -> NORTH_SHAPE;
-            default -> STANDING_SHAPE;
-        };
-    }
-    @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        Direction direction = state.get(FACING);
-        BlockPos blockPos = pos.offset(direction.getOpposite());
-        return direction == Direction.UP ?
-                Block.sideCoversSmallSquare(world, blockPos, Direction.UP) ||
-                        world.getBlockState(blockPos).isSideSolid(world, blockPos, Direction.UP, SideShapeType.CENTER)
-                : world.getBlockState(blockPos).isSideSolid(world, blockPos, direction, SideShapeType.CENTER);
     }
     @Override
     @Nullable
@@ -124,23 +85,91 @@ public class CandleHolderBlock extends Block {
                 : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (!state.get(LIT)) return;
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         Direction direction = state.get(FACING);
-        double centerX = (double)pos.getX() + 0.5D;
-        double centerY = (double)pos.getY() + 0.97D;
-        double centerZ = (double)pos.getZ() + 0.5D;
+        BlockPos blockPos = pos.offset(direction.getOpposite());
+        return direction == Direction.UP ?
+                Block.sideCoversSmallSquare(world, blockPos, Direction.UP) ||
+                        world.getBlockState(blockPos).isSideSolid(world, blockPos, Direction.UP, SideShapeType.CENTER)
+                : world.getBlockState(blockPos).isSideSolid(world, blockPos, direction, SideShapeType.CENTER);
+    }
 
-        if (direction.getAxis().isHorizontal()) {
-            Direction opposite = direction.getOpposite();
-            world.addParticle(ParticleTypes.SMOKE,
-                    centerX + 0.27D * opposite.getOffsetX(), centerY, centerZ + 0.27D * opposite.getOffsetZ(), 0.0D, 0.0D, 0.0D);
-            world.addParticle(ParticleTypes.FLAME,
-                    centerX + 0.27D * opposite.getOffsetX(), centerY, centerZ + 0.27D * opposite.getOffsetZ(), 0.0D, 0.0D, 0.0D);
-        } else {
-            world.addParticle(ParticleTypes.SMOKE, centerX, centerY, centerZ, 0.0D, 0.0D, 0.0D);
-            world.addParticle(ParticleTypes.FLAME, centerX, centerY, centerZ, 0.0D, 0.0D, 0.0D);
+    // ========= INTERACCIÓN =========
+    @Override
+    public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (stack.isIn(ModTags.Items.IGNITERS) && !state.get(LIT)) {
+            if (!world.isClient) {
+                ignite(world, pos, state, player, stack, hand);
+            }
+            return ItemActionResult.SUCCESS;
         }
+        if (stack.isEmpty() && player.getAbilities().allowModifyWorld && state.get(LIT)) {
+            if (!world.isClient) {
+                extinguish(world, pos, state);
+            }
+            return ItemActionResult.SUCCESS;
+        }
+        return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+    protected void ignite(World world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack stack, Hand hand) {
+        world.playSound(null, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
+        world.setBlockState(pos, state.with(LIT, true), Block.NOTIFY_ALL);
+
+        if (!player.getAbilities().creativeMode) {
+            stack.damage(1, player, LivingEntity.getSlotForHand(hand));
+        }
+    }
+    protected void extinguish(World world, BlockPos pos, BlockState state) {
+        world.setBlockState(pos, state.with(LIT, false), Block.NOTIFY_ALL);
+
+        this.getParticleOffsets(state).forEach(offset -> world.addParticle(ParticleTypes.SMOKE, pos.getX() + offset.getX(), pos.getY() + offset.getY(), pos.getZ() + offset.getZ(), 0.0D, 0.1D, 0.0D));
+        world.playSound(null, pos, SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+    }
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (state.get(LIT)) {
+            this.getParticleOffsets(state).forEach(offset -> {
+                Vec3d particlePos = offset.add(pos.getX(), pos.getY(), pos.getZ());
+                spawnCandleParticles(world, particlePos, random);
+            });
+        }
+    }
+    private static void spawnCandleParticles(World world, Vec3d pos, Random random) {
+        float chance = random.nextFloat();
+        if (chance < 0.3F) {
+            world.addParticle(ParticleTypes.SMOKE, pos.x, pos.y, pos.z, 0.0D, 0.0D, 0.0D);
+            if (chance < 0.17F) {
+                world.playSound(pos.x + 0.5D, pos.y + 0.5D, pos.z + 0.5D, SoundEvents.BLOCK_CANDLE_AMBIENT, SoundCategory.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F, false);
+            }
+        }
+        world.addParticle(ParticleTypes.SMALL_FLAME, pos.x, pos.y, pos.z, 0.0D, 0.0D, 0.0D);
+    }
+    protected List<Vec3d> getParticleOffsets(BlockState state) {
+        Direction dir = state.get(FACING);
+        double x = 0.5D;
+        double y = 0.97D;
+        double z = 0.5D;
+
+        if (dir.getAxis().isHorizontal()) {
+            Direction opp = dir.getOpposite();
+            x += 0.27D * opp.getOffsetX();
+            z += 0.27D * opp.getOffsetZ();
+        }
+        return List.of(new Vec3d(x, y, z));
+    }
+
+    // ========= FORMA Y TRANSFORMACIONES =========
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        Direction direction = state.get(FACING);
+        return switch (direction) {
+            case EAST -> EAST_SHAPE;
+            case WEST -> WEST_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case NORTH -> NORTH_SHAPE;
+            default -> STANDING_SHAPE;
+        };
     }
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
