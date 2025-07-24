@@ -51,13 +51,7 @@ public class GlassBottleItemMixin {
                 if (!user.getInventory().insertStack(filled)) {
                         user.dropItem(filled, false);
                 }
-                world.playSound(
-                        null,
-                        user.getX(), user.getY(), user.getZ(),
-                        SoundEvents.ITEM_BOTTLE_FILL,
-                        SoundCategory.PLAYERS,
-                        1.0F,
-                        1.0F
+                world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.PLAYERS, 1.0F, 1.0F
                 );
                 world.setBlockState(pos, Blocks.AIR.getDefaultState());
             }

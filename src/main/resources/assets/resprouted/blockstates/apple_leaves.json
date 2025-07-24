@@ -7,7 +7,7 @@
     },
     {
       "when": {
-        "apple_stage": 1
+        "age": 1
       },
       "apply": [
       {"model": "resprouted:block/apple_0"},
@@ -22,7 +22,7 @@
     },
     {
       "when": {
-        "apple_stage": 2
+        "age": 2
       },
       "apply": [
       {"model": "resprouted:block/apple_1"},
@@ -37,7 +37,7 @@
     },
     {
       "when": {
-        "apple_stage": 3
+        "age": 3
       },
       "apply": [
       

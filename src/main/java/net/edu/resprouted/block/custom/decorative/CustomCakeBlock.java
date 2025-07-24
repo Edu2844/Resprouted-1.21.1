@@ -27,13 +27,9 @@ public class CustomCakeBlock extends Block {
     public static final int MAX_BITES = 3;
     public static final IntProperty BITES = IntProperty.of("bites", 0, 3);
     private static final VoxelShape[] BITES_TO_SHAPE = new VoxelShape[] {
-            //BITE 0
             Block.createCuboidShape(1, 0, 1, 15, 8, 15),
-            //BITE 1
             VoxelShapes.combine(Block.createCuboidShape(8, 0, 1, 15, 8, 15), Block.createCuboidShape(1, 0, 8, 8, 8, 15), BooleanBiFunction.OR),
-            //BITE 2
             Block.createCuboidShape(8, 0, 1, 15, 8, 15),
-            //BITE 3
             Block.createCuboidShape(8, 0, 1, 15, 8, 8)
     };
     public CustomCakeBlock(Settings settings) {

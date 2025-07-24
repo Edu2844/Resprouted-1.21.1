@@ -36,6 +36,8 @@ public class RopeBlock extends ChainBlock{
                 .with(WATERLOGGED, false)
                 .with(HAS_KNOT, false));
     }
+
+    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AXIS,WATERLOGGED, HAS_KNOT);
@@ -43,6 +45,10 @@ public class RopeBlock extends ChainBlock{
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return hasSupport(state, world, pos);
+    }
+    @Override
+    public boolean canReplace(BlockState state, ItemPlacementContext context) {
+        return context.getSide() != Direction.UP && super.canReplace(state, context);
     }
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -83,20 +89,6 @@ public class RopeBlock extends ChainBlock{
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
-    @Override
-    public boolean canReplace(BlockState state, ItemPlacementContext context) {
-        return context.getSide() != Direction.UP && super.canReplace(state, context);
-    }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction.Axis axis = state.get(AXIS);
-        boolean hasKnot = state.getOrEmpty(HAS_KNOT).orElse(false);
-        return switch (axis) {
-            case X -> hasKnot ? X_SHAPE_KNOT : X_SHAPE;
-            case Z -> hasKnot ? Z_SHAPE_KNOT : Z_SHAPE;
-            default -> Y_SHAPE;
-        };
-    }
     private boolean hasSupport(BlockState state, WorldView world, BlockPos pos) {
         Direction.Axis axis = state.get(AXIS);
 
@@ -130,5 +122,17 @@ public class RopeBlock extends ChainBlock{
                 return true;
         }
         return false;
+    }
+
+    // ========= FORMA Y TRANSFORMACIONES =========
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        Direction.Axis axis = state.get(AXIS);
+        boolean hasKnot = state.getOrEmpty(HAS_KNOT).orElse(false);
+        return switch (axis) {
+            case X -> hasKnot ? X_SHAPE_KNOT : X_SHAPE;
+            case Z -> hasKnot ? Z_SHAPE_KNOT : Z_SHAPE;
+            default -> Y_SHAPE;
+        };
     }
 }

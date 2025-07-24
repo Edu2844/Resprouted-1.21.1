@@ -1,122 +1,92 @@
 package net.edu.resprouted.block.custom.agriculture;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.particle.ParticleUtil;
-import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 
-import java.util.OptionalInt;
-
-public class CustomLeavesBlock extends Block {
-    public static final IntProperty DISTANCE;
-    public static final BooleanProperty PERSISTENT;
-    public static final BooleanProperty WATERLOGGED;
+public class CustomLeavesBlock extends LeavesBlock implements Fertilizable {
+    private static final int GROW_CHANCE = 25;
+    public static final IntProperty AGE = IntProperty.of("age", 0, 3);
 
     public CustomLeavesBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(DISTANCE, 7).with(PERSISTENT, false).with(WATERLOGGED, false));
+        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(PERSISTENT, false).with(DISTANCE, 1));
     }
-    protected VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
-        return VoxelShapes.empty();
-    }
-    protected boolean hasRandomTicks(BlockState state) {
-        return state.get(DISTANCE) == 7 && !(Boolean)state.get(PERSISTENT);
-    }
-    protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (this.shouldDecay(state)) {
-            dropStacks(state, world, pos);
-            world.removeBlock(pos, false);
-        }
 
+    // ========= PROPIEDADES Y ESTADO ========
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(AGE);
     }
-    protected boolean shouldDecay(BlockState state) {
-        return !(Boolean)state.get(PERSISTENT) && state.get(DISTANCE) == 7;
+    protected int MaxAge() {
+        return 3;
     }
-    protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        world.setBlockState(pos, updateDistanceFromLogs(state, world, pos), 3);
+    @Override
+    public boolean hasRandomTicks(BlockState state) {
+        return state.get(AGE) != MaxAge();
     }
-    protected int getOpacity(BlockState state, BlockView world, BlockPos pos) {
+    private boolean isExposedToAir(WorldView world, BlockPos pos) {
+        return world.isAir(pos.down()) || world.isAir(pos.north()) || world.isAir(pos.south()) || world.isAir(pos.east()) || world.isAir(pos.west());
+    }
+    @Override
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+        return state.get(AGE) < MaxAge() && isExposedToAir(world, pos);
+    }
+    @Override
+    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+        return true;
+    }
+    @Override
+    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+        if (isExposedToAir(world, pos)) {
+            int currentStage = state.get(AGE);
+            int nextStage = Math.min(currentStage + 1, MaxAge());
+            world.setBlockState(pos, state.with(AGE, nextStage), Block.NOTIFY_LISTENERS);
+        }
+    }
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        super.randomTick(state, world, pos, random);
+        if (world.isClient) return;
+        if (world.getBaseLightLevel(pos, 0) >= 9 && isExposedToAir(world, pos)) {
+            int currentStage = state.get(AGE);
+            if (currentStage < MaxAge() && random.nextInt(GROW_CHANCE) == 0) {
+                world.setBlockState(pos, state.with(AGE, currentStage + 1), Block.NOTIFY_LISTENERS);
+            }
+        }
+    }
+
+    // ========= INTERACCIÓN =========
+    @Override
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (state.get(CustomLeavesBlock.AGE) == MaxAge()) {
+            player.giveItemStack(new ItemStack(getHarvestResult(), Count()));
+
+            world.setBlockState(pos, state.with(CustomLeavesBlock.AGE, 0), Block.NOTIFY_ALL);
+            world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F + world.random.nextFloat() * 0.4F);
+            return ItemActionResult.SUCCESS;
+        }
+        return ItemActionResult.FAIL;
+    }
+    protected ItemConvertible getHarvestResult() {
+        return Items.APPLE;
+    }
+    protected int Count() {
         return 1;
     }
-    protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED)) {
-            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        }
-
-        int i = getDistanceFromLog(neighborState) + 1;
-        if (i != 1 || state.get(DISTANCE) != i) {
-            world.scheduleBlockTick(pos, this, 1);
-        }
-
-        return state;
-    }
-    private static BlockState updateDistanceFromLogs(BlockState state, WorldAccess world, BlockPos pos) {
-        int i = 7;
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-
-        for(Direction direction : Direction.values()) {
-            mutable.set(pos, direction);
-            i = Math.min(i, getDistanceFromLog(world.getBlockState(mutable)) + 1);
-            if (i == 1) {
-                break;
-            }
-        }
-
-        return state.with(DISTANCE, i);
-    }
-    private static int getDistanceFromLog(BlockState state) {
-        return getOptionalDistanceFromLog(state).orElse(7);
-    }
-    public static OptionalInt getOptionalDistanceFromLog(BlockState state) {
-        if (state.isIn(BlockTags.LOGS)) {
-            return OptionalInt.of(0);
-        } else {
-            return state.contains(DISTANCE) ? OptionalInt.of(state.get(DISTANCE)) : OptionalInt.empty();
-        }
-    }
-    protected FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
-    }
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (world.hasRain(pos.up())) {
-            if (random.nextInt(15) == 1) {
-                BlockPos blockPos = pos.down();
-                BlockState blockState = world.getBlockState(blockPos);
-                if (!blockState.isOpaque() || !blockState.isSideSolidFullSquare(world, blockPos, Direction.UP)) {
-                    ParticleUtil.spawnParticle(world, pos, random, ParticleTypes.DRIPPING_WATER);
-                }
-            }
-        }
-    }
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(DISTANCE, PERSISTENT, WATERLOGGED);
-    }
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-        BlockState blockState = this.getDefaultState().with(PERSISTENT, true).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-        return updateDistanceFromLogs(blockState, ctx.getWorld(), ctx.getBlockPos());
-    }
-    static {
-        DISTANCE = Properties.DISTANCE_1_7;
-        PERSISTENT = Properties.PERSISTENT;
-        WATERLOGGED = Properties.WATERLOGGED;
-    }
 }
-

@@ -33,13 +33,10 @@ public class StakeCropBlock extends CropBlock {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
+    // ========= PROPIEDADES Y ESTADO =========
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return CROP_SHAPE;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return STAKE_SHAPE;
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(AGE);
     }
     @Override
     public IntProperty getAgeProperty() {
@@ -52,10 +49,6 @@ public class StakeCropBlock extends CropBlock {
     @Override
     protected ItemConvertible getSeedsItem() {
         return null;
-    }
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
     }
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
@@ -120,6 +113,8 @@ public class StakeCropBlock extends CropBlock {
     public boolean hasRandomTicks(BlockState state) {
         return true;
     }
+
+    // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (getAge(state) >= getMaxAge()) {
@@ -141,6 +136,16 @@ public class StakeCropBlock extends CropBlock {
     }
     protected int getResetAge() {
         return 4;
+    }
+
+    // ========= FORMA Y TRANSFORMACIONES =========
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return CROP_SHAPE;
+    }
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return STAKE_SHAPE;
     }
 }
 

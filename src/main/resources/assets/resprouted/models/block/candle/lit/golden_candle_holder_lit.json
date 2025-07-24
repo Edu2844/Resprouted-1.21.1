@@ -3,6 +3,6 @@
 	"textures": {
 		"0": "resprouted:block/golden_candle_holder",
 		"particle": "resprouted:block/golden_candle_holder",
-		"candle":"block/candle"
+		"candle":"block/candle_lit"
 	}
 }

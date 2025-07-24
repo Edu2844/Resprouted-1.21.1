@@ -33,6 +33,12 @@ public class HerbBlock extends CropBlock {
         super(settings);
         this.seedsSupplier = seedsSupplier;
     }
+
+    // ========= PROPIEDADES Y ESTADO =========
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(AGE);
+    }
     @Override
     protected ItemConvertible getSeedsItem() {
         return  seedsSupplier.get();
@@ -52,14 +58,8 @@ public class HerbBlock extends CropBlock {
     public int getMaxAge() {
         return MAX_AGE;
     }
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
-    }
-    @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE_TO_AGE[this.getAge(state)];
-    }
+
+    // ========= INTERACCIÓN =========
     @Override
     protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if(this == ModBlocks.WIND_THISTLE_BLOCK) {
@@ -74,5 +74,11 @@ public class HerbBlock extends CropBlock {
                 }
             }
         }
+    }
+
+    // ========= FORMA Y TRANSFORMACIONES =========
+    @Override
+    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE_TO_AGE[this.getAge(state)];
     }
 }
