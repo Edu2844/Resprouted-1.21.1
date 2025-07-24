@@ -1,4 +1,4 @@
-// 1.21.1	2025-07-22T17:39:10.5127115	Resprouted/Tags for minecraft:block
+// 1.21.1	2025-07-24T12:09:42.986062	Resprouted/Tags for minecraft:block
 bae413f2bcbeb5269437af17c363b31c4070989c data\minecraft\tags\block\fences.json
 23830bbd130ea49446f1bd6c165f4820437bc2ff data\minecraft\tags\block\mineable\pickaxe.json
 7f08e1ec55467be8b6c829f8f63e452d7db4f044 data\minecraft\tags\block\logs_that_burn.json
@@ -11,4 +11,4 @@ b1580e5b103dc1bfe8a6ac76e9c84b0eef0b5695 data\resprouted\tags\block\allows_growt
 48265bcef9cbe6d1ad25d1e7f0826abe572c1f86 data\resprouted\tags\block\evaporating_boosters.json
 bba08475288a037fdacdec6c83a12effc25587b0 data\minecraft\tags\block\leaves.json
 64f59756f14aea04c3d8ff4942ed8e39fa521cb5 data\minecraft\tags\block\bamboo_plantable_on.json
-3fafd4b67ca9925cb97e9b8dcfa84dc85bcdbd7e data\minecraft\tags\block\mineable\axe.json
+473e60aa5c1bf9f3f9409c1449d11145bd06591b data\minecraft\tags\block\mineable\axe.json

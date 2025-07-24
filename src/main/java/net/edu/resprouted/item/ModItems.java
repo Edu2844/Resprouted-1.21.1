@@ -1,14 +1,13 @@
 package net.edu.resprouted.item;
 
+import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
 import net.minecraft.component.type.FoodComponents;
-import net.minecraft.item.AliasedBlockItem;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -20,6 +19,28 @@ import java.util.List;
 import static net.edu.resprouted.block.ModBlocks.LIQUID_BARREL;
 
 public class ModItems {
+
+    // =================================================
+    // ||                   OLIVE                     ||
+    // =================================================
+    public static final Item OLIVE_SIGN = registerItem("olive_sign",
+            new SignItem(new Item.Settings().maxCount(16), ModBlocks.OLIVE_SIGN, ModBlocks.OLIVE_WALL_SIGN));
+    public static final Item OLIVE_HANGING_SIGN = registerItem("olive_hanging_sign",
+            new HangingSignItem(ModBlocks.OLIVE_HANGING_SIGN , ModBlocks.OLIVE_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
+
+    public static final Item OLIVE_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_BOAT, ModEntities.OLIVE_BOAT_KEY, false);
+    public static final Item OLIVE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_CHEST_BOAT, ModEntities.OLIVE_BOAT_KEY, true);
+    // =================================================
+    // ||                  IRONWOOD                   ||
+    // =================================================
+    public static final Item IRONWOOD_SIGN = registerItem("ironwood_sign",
+            new SignItem(new Item.Settings().maxCount(16), ModBlocks.IRONWOOD_SIGN, ModBlocks.IRONWOOD_WALL_SIGN));
+    public static final Item IRONWOOD_HANGING_SIGN = registerItem("ironwood_hanging_sign",
+            new HangingSignItem(ModBlocks.IRONWOOD_HANGING_SIGN , ModBlocks.IRONWOOD_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
+
+    public static final Item IRONWOOD_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_BOAT, ModEntities.IRONWOOD_BOAT_KEY, false);
+    public static final Item IRONWOOD_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_CHEST_BOAT, ModEntities.IRONWOOD_BOAT_KEY, true);
+
     // =================================================
     // ||                   HERBS                     ||
     // =================================================

@@ -130,6 +130,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.IRONWOOD_TRAPDOOR)
                 .add(ModBlocks.IRONWOOD_PRESSURE_PLATE)
                 .add(ModBlocks.IRONWOOD_BUTTON)
+                .add(ModBlocks.IRONWOOD_SIGN)
+                .add(ModBlocks.IRONWOOD_WALL_SIGN)
+                .add(ModBlocks.IRONWOOD_HANGING_SIGN)
+                .add(ModBlocks.IRONWOOD_WALL_HANGING_SIGN)
 
                 //OLIVE
                 .add(ModBlocks.OLIVE_LOG)
@@ -143,6 +147,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.OLIVE_TRAPDOOR)
                 .add(ModBlocks.OLIVE_PRESSURE_PLATE)
                 .add(ModBlocks.OLIVE_BUTTON)
+                .add(ModBlocks.OLIVE_HANGING_SIGN)
+                .add(ModBlocks.OLIVE_WALL_HANGING_SIGN)
+                .add(ModBlocks.OLIVE_SIGN)
+                .add(ModBlocks.OLIVE_WALL_SIGN)
 
                 //CHAIRS
                 .add(ModBlocks.OAK_CHAIR)

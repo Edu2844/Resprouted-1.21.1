@@ -106,6 +106,9 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerTrapdoor(ModBlocks.OLIVE_TRAPDOOR);
         blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.OLIVE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
 
+        /*blockStateModelGenerator.registerHangingSign(ModBlocks.STRIPPED_OLIVE_LOG,ModBlocks.OLIVE_HANGING_SIGN,ModBlocks.OLIVE_WALL_HANGING_SIGN);
+        OlivePool.family(ModBlocks.OLIVE_FAMILY);*/
+
         // =================================================
         // ||                  IRONWOOD                   ||
         // =================================================
@@ -259,5 +262,9 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.IRON_BERRY_JUICE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.LAMB_STEW, Models.GENERATED);
         itemModelGenerator.register(ModItems.HONEY_GLAZED_CARROTS, Models.GENERATED);
+        itemModelGenerator.register(ModItems.OLIVE_BOAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.OLIVE_CHEST_BOAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.IRONWOOD_BOAT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.IRONWOOD_CHEST_BOAT, Models.GENERATED);
     }
 }

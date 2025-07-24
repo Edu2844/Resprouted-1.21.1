@@ -1,5 +1,6 @@
 package net.edu.resprouted.registry;
 
+import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.entity.renderer.CrushingTubBERenderer;
@@ -55,6 +56,8 @@ public class ModClientRegistries {
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
         EntityRendererRegistry.register(ModEntities.THROWN_TOMATO, TomatoEntityRenderer::new);
+        TerraformBoatClientHelper.registerModelLayers(ModEntities.OLIVE_BOAT, false);
+        TerraformBoatClientHelper.registerModelLayers(ModEntities.IRONWOOD_BOAT, false);
     }
     public static void registerBlockRenderers() {
         BlockRenderLayerMap registry = BlockRenderLayerMap.INSTANCE;

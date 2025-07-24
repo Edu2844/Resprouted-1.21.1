@@ -48,6 +48,10 @@
   "item.resprouted.wind_thistle": "Wind Thistle",
   "item.resprouted.mooncap_mushroom": "Mooncap Mushroom",
   "item.resprouted.deathstalk_mushroom": "Deathstalk Mushroom",
+  "item.resprouted.olive_boat": "Olive Boat",
+  "item.resprouted.olive_chest_boat": "Olive Chest Boat",
+  "item.resprouted.ironwood_boat": "Ironwood Boat",
+  "item.resprouted.ironwood_chest_boat": "Ironwood Chest Boat",
 
   "item.resprouted.lamb_stew": "Lamb Stew",
   "item.resprouted.honey_glazed_carrots": "Honey Glazed Carrots",
@@ -74,6 +78,8 @@
 
   "item.resprouted.iron_berry_juice_bucket": "Iron Berry Juice Bucket",
   "item.resprouted.iron_berry_juice_bottle": "Iron Berry Juice Bottle",
+
+
 
   "block.resprouted.honey_fluid_block": "Honey",
   "block.resprouted.apple_juice_fluid_block": "Apple Juice",
@@ -283,6 +289,8 @@
   "block.resprouted.ironwood_fence_gate": "Ironwood Fence Gate",
   "block.resprouted.ironwood_door": "Ironwood Door",
   "block.resprouted.ironwood_trapdoor": "Ironwood Trapdoor",
+  "block.resprouted.ironwood_sign": "Ironwood Sign",
+  "block.resprouted.ironwood_hanging_sign": "Ironwood Hanging Sign",
 
   "block.resprouted.olive_leaves": "Olive Leaves",
   "block.resprouted.olive_log": "Olive Log",
@@ -299,6 +307,8 @@
   "block.resprouted.olive_fence_gate": "Olive Fence Gate",
   "block.resprouted.olive_door": "Olive Door",
   "block.resprouted.olive_trapdoor": "Olive Trapdoor",
+  "block.resprouted.olive_sign": "Olive Sign",
+  "block.resprouted.olive_hanging_sign": "Olive Hanging Sign",
 
   "block.resprouted.fertile_soil": "Fertile Soil",
   "block.resprouted.aloe_vera_block": "Aloe Vera Herb",

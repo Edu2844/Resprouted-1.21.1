@@ -185,6 +185,10 @@ public class ModItemGroups {
                         entries.add(ModBlocks.IRONWOOD_TRAPDOOR);
                         entries.add(ModBlocks.IRONWOOD_PRESSURE_PLATE);
                         entries.add(ModBlocks.IRONWOOD_BUTTON);
+                        entries.add(ModItems.IRONWOOD_SIGN);
+                        entries.add(ModItems.IRONWOOD_HANGING_SIGN);
+                        entries.add(ModItems.IRONWOOD_BOAT);
+                        entries.add(ModItems.IRONWOOD_CHEST_BOAT);
 
                         entries.add(ModBlocks.OLIVE_PLANKS);
                         entries.add(ModBlocks.OLIVE_STAIRS);
@@ -195,6 +199,10 @@ public class ModItemGroups {
                         entries.add(ModBlocks.OLIVE_TRAPDOOR);
                         entries.add(ModBlocks.OLIVE_PRESSURE_PLATE);
                         entries.add(ModBlocks.OLIVE_BUTTON);
+                        entries.add(ModItems.OLIVE_SIGN);
+                        entries.add(ModItems.OLIVE_HANGING_SIGN);
+                        entries.add(ModItems.OLIVE_BOAT);
+                        entries.add(ModItems.OLIVE_CHEST_BOAT);
 
                         entries.add(ModBlocks.BLACK_PAINTED_PLANKS);
                         entries.add(ModBlocks.BLUE_PAINTED_PLANKS);

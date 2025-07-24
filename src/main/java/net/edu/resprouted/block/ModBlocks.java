@@ -1,5 +1,9 @@
 package net.edu.resprouted.block;
 
+import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
+import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
+import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.custom.agriculture.*;
 import net.edu.resprouted.block.custom.decorative.*;
@@ -138,6 +142,10 @@ public class ModBlocks {
     // =================================================
     // ||                  IRONWOOD                   ||
     // =================================================
+    public static final Identifier IRONWOOD_SIGN_TEXTURE = Identifier.of(Resprouted.MOD_ID, "entity/signs/ironwood");
+    public static final Identifier IRONWOOD_HANGING_SIGN_TEXTURE = Identifier.of(Resprouted.MOD_ID, "entity/signs/hanging/ironwood");
+    public static final Identifier IRONWOOD_HANGING_SIGN_GUI_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/hanging_signs/ironwood");
+
     public static final Block IRONWOOD_LEAVES = registerBlock("ironwood_leaves",
             new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
     public static final Block IRONWOOD_LOG = registerBlock("ironwood_log",
@@ -169,9 +177,22 @@ public class ModBlocks {
     public static final Block IRONWOOD_TRAPDOOR = registerBlock("ironwood_trapdoor",
             new TrapdoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
 
+    public static final Block IRONWOOD_SIGN = registerBlock("ironwood_sign",
+            new TerraformSignBlock(IRONWOOD_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN)));
+    public static final Block IRONWOOD_WALL_SIGN = Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, "ironwood_wall_sign"),
+            new TerraformWallSignBlock(IRONWOOD_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).dropsLike(ModBlocks.IRONWOOD_SIGN)));
+    public static final Block IRONWOOD_HANGING_SIGN = registerBlock("ironwood_hanging_sign",
+            new TerraformHangingSignBlock(IRONWOOD_HANGING_SIGN_TEXTURE,IRONWOOD_HANGING_SIGN_GUI_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN)));
+    public static final Block IRONWOOD_WALL_HANGING_SIGN = registerBlock("ironwood_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(IRONWOOD_HANGING_SIGN_TEXTURE,IRONWOOD_HANGING_SIGN_GUI_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).dropsLike(ModBlocks.IRONWOOD_HANGING_SIGN)));
+
     // =================================================
     // ||                    OLIVE                    ||
     // =================================================
+    public static final Identifier OLIVE_SIGN_TEXTURE = Identifier.of(Resprouted.MOD_ID, "entity/signs/olive");
+    public static final Identifier OLIVE_HANGING_SIGN_TEXTURE = Identifier.of(Resprouted.MOD_ID, "entity/signs/hanging/olive");
+    public static final Identifier OLIVE_HANGING_SIGN_GUI_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/hanging_signs/olive");
+
     public static final Block OLIVE_LEAVES = registerBlock("olive_leaves",
             new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
     public static final Block OLIVE_LOG = registerBlock("olive_log",
@@ -202,6 +223,14 @@ public class ModBlocks {
             new DoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
     public static final Block OLIVE_TRAPDOOR = registerBlock("olive_trapdoor",
             new TrapdoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+    public static final Block OLIVE_SIGN = registerBlock("olive_sign",
+            new TerraformSignBlock(OLIVE_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN)));
+    public static final Block OLIVE_WALL_SIGN = Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, "olive_wall_sign"),
+            new TerraformWallSignBlock(OLIVE_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).dropsLike(ModBlocks.OLIVE_SIGN)));
+    public static final Block OLIVE_HANGING_SIGN = registerBlock("olive_hanging_sign",
+            new TerraformHangingSignBlock(OLIVE_HANGING_SIGN_TEXTURE,OLIVE_HANGING_SIGN_GUI_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN)));
+    public static final Block OLIVE_WALL_HANGING_SIGN = registerBlock("olive_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(OLIVE_HANGING_SIGN_TEXTURE,OLIVE_HANGING_SIGN_GUI_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).dropsLike(ModBlocks.OLIVE_HANGING_SIGN)));
 
 
     // =================================================

@@ -1,7 +1,10 @@
 package net.edu.resprouted.registry;
 
+import com.terraformersmc.terraform.boat.api.TerraformBoatType;
+import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.item.ModItems;
 import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
@@ -9,6 +12,7 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +27,7 @@ public class ModRegistries {
         registerOxidizablesAndWaxables();
         registerCompostables();
         registerFluidStorages();
+        registerBoats();
     }
     public static void registerStrippables() {
         register(ModBlocks.IRONWOOD_LOG, ModBlocks.STRIPPED_IRONWOOD_LOG);
@@ -120,6 +125,20 @@ public class ModRegistries {
         registry.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, ModBlockEntities.CRUSHING_TUB_BE);
         registry.registerForBlockEntity((blockEntity, direction) -> blockEntity.liquidbarrel, ModBlockEntities.LIQUID_BARREL_BE);
         registry.registerForBlockEntity((blockEntity, direction) -> blockEntity.basin, ModBlockEntities.EVAPORATING_BASIN_BE);
+    }
+    public static void registerBoats(){
+        TerraformBoatType OliveBoat = new TerraformBoatType.Builder()
+                .item(ModItems.OLIVE_BOAT)
+                .chestItem(ModItems.OLIVE_CHEST_BOAT)
+                .planks(ModBlocks.OLIVE_PLANKS.asItem())
+                .build();
+        Registry.register(TerraformBoatTypeRegistry.INSTANCE, ModEntities.OLIVE_BOAT_KEY, OliveBoat);
 
+        TerraformBoatType IronwoodBoat = new TerraformBoatType.Builder()
+                .item(ModItems.IRONWOOD_BOAT)
+                .chestItem(ModItems.IRONWOOD_CHEST_BOAT)
+                .planks(ModBlocks.IRONWOOD_PLANKS.asItem())
+                .build();
+        Registry.register(TerraformBoatTypeRegistry.INSTANCE, ModEntities.IRONWOOD_BOAT_KEY, IronwoodBoat);
     }
 }
