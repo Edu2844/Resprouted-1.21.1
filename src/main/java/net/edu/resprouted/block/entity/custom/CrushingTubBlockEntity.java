@@ -71,7 +71,6 @@ public class CrushingTubBlockEntity extends BlockEntity implements ImplementedIn
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
     }
-    //Logica de almacenamiento de fluido
     public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
 
         @Override

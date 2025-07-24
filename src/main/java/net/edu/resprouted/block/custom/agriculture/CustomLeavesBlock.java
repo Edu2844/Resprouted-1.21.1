@@ -33,6 +33,7 @@ public class CustomLeavesBlock extends LeavesBlock implements Fertilizable {
         super.appendProperties(builder);
         builder.add(AGE);
     }
+
     protected int MaxAge() {
         return 3;
     }
@@ -88,5 +89,19 @@ public class CustomLeavesBlock extends LeavesBlock implements Fertilizable {
     }
     protected int Count() {
         return 1;
+    }
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!state.isOf(newState.getBlock())) {
+            if (!world.isClient) {
+                if (state.get(AGE) == MaxAge()) {
+                    dropMatureItem(world, pos);
+                }
+            }
+        }
+        super.onStateReplaced(state, world, pos, newState, moved);
+    }
+    protected void dropMatureItem(World world, BlockPos pos) {
+        dropStack(world, pos, new ItemStack(Items.APPLE, 1));
     }
 }

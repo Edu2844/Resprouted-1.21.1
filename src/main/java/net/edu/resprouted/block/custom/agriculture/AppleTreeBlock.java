@@ -71,7 +71,6 @@ public class AppleTreeBlock extends CropBlock {
 
             world.setBlockState(pos, state.with(AGE, newAge), Block.NOTIFY_LISTENERS);
 
-            // Si alcanzó la edad máxima, transformar inmediatamente
             if (newAge == MAX_AGE) {
                 transformToSapling(world, pos);
             }
@@ -80,8 +79,7 @@ public class AppleTreeBlock extends CropBlock {
         }
     }
     private void transformToSapling(ServerWorld world, BlockPos pos) {
-        world.setBlockState(pos, ModBlocks.APPLE_SAPLING.getDefaultState(),
-                Block.NOTIFY_ALL | Block.FORCE_STATE | Block.SKIP_DROPS);
+        world.setBlockState(pos, ModBlocks.APPLE_SAPLING.getDefaultState(), Block.NOTIFY_ALL | Block.FORCE_STATE | Block.SKIP_DROPS);
     }
     @Override
     public boolean hasRandomTicks(BlockState state) {

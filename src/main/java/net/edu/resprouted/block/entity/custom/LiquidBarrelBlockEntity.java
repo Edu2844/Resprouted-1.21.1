@@ -50,7 +50,6 @@ public class LiquidBarrelBlockEntity extends BlockEntity {
     public Packet<ClientPlayPacketListener> toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);
     }
-    //Logica de almacenamieto de fluidos
     public final SingleVariantStorage<FluidVariant> liquidbarrel = new SingleVariantStorage<>() {
 
         @Override
