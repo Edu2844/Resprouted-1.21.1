@@ -3,13 +3,13 @@
 	"id": "resprouted",
 	"version": "${version}- Fabric 1.21.1",
 	"name": "Resprouted",
-	"description": "A faithful revival of the famous rustic mod!",
+	"description": "A revival of the famous rustic mod!",
 	"authors": [
 		"Edu2844!"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/Edu2844/Resprouted-Fabric-1.21.1"
+		"sources": "https://github.com/Edu2844/Resprouted-1.21.1"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/resprouted/icon.png",
