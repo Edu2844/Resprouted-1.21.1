@@ -1,5 +1,6 @@
 package net.edu.resprouted.block;
 import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.block.entity.custom.CabinetBlockEntity;
 import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
 import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
 import net.edu.resprouted.block.entity.custom.LiquidBarrelBlockEntity;
@@ -20,6 +21,10 @@ public class ModBlockEntities {
     public static final BlockEntityType<EvaporatingBasinBlockEntity> EVAPORATING_BASIN_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "evaporating_basin_be"),
                     BlockEntityType.Builder.create(EvaporatingBasinBlockEntity::new, ModBlocks.EVAPORATING_BASIN).build(null));
+
+    public static final BlockEntityType<CabinetBlockEntity> CABINET_BE =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "cabinet_be"),
+                    BlockEntityType.Builder.create(CabinetBlockEntity::new, ModBlocks.CABINET_BLOCK).build(null));
 
     public static void registerModBlockEntities() {
         Resprouted.LOGGER.info("Registering Mod Block Entities for " + Resprouted.MOD_ID);

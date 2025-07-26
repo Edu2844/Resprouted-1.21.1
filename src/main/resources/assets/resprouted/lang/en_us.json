@@ -80,7 +80,7 @@
   "item.resprouted.iron_berry_juice_bottle": "Iron Berry Juice Bottle",
 
 
-
+  "block.resprouted.cabinet": "Cabinet",
   "block.resprouted.honey_fluid_block": "Honey",
   "block.resprouted.apple_juice_fluid_block": "Apple Juice",
   "block.resprouted.golden_apple_juice_fluid_block": "Golden Apple Juice",
@@ -339,6 +339,9 @@
   "block.resprouted.stake": "Stake",
 
   "block.resprouted.blue_berry_bush": "Blue Berry Bush",
+
+  "container.resprouted.cabinet_double": "Large Cabinet",
+  "container.resprouted.cabinet": "Cabinet",
 
   "fluid.resprouted.grape_juice_still": "Grape Juice Still",
   "fluid.resprouted.sweet_berry_juice_still": "Sweet Berry Juice Still",

@@ -33,7 +33,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.APPLE_SAPLING);
                         entries.add(ModBlocks.OLIVE_SAPLING);
                         entries.add(ModBlocks.IRONWOOD_SAPLING);
-
                         entries.add(ModBlocks.CRUSHING_TUB);
                         entries.add(ModBlocks.LIQUID_BARREL);
                         entries.add(ModBlocks.EVAPORATING_BASIN);
@@ -134,6 +133,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CLAY_WALL_CROSS);
                         entries.add(ModBlocks.CLAY_WALL_DIAGONAL);
 
+                        entries.add(ModBlocks.CABINET_BLOCK);
                         entries.add(ModBlocks.OAK_CHAIR);
                         entries.add(ModBlocks.DARK_OAK_CHAIR);
                         entries.add(ModBlocks.BIRCH_CHAIR);

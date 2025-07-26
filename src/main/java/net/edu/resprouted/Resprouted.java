@@ -25,15 +25,16 @@ public class Resprouted implements ModInitializer {
 	public static final String MOD_ID = "resprouted";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+
 	@Override
 	public void onInitialize() {
 		ModFluids.registerModFluids();
 		BottleInteractionsUtil.registerFluidInteractions();
 		ModEffects.registerEffects();
-		ModItemGroups.registerItemGroup();
 		ModItems.registerModItems();
-		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
+		ModBlocks.registerModBlocks();
+		ModItemGroups.registerItemGroup();
 		ModEntities.registerModEntities();
 		ModFoliagePlacerTypes.registerModFoliagePlacers();
 		ModRecipes.registerRecipes();
@@ -43,7 +44,6 @@ public class Resprouted implements ModInitializer {
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
-
 		/*
 		FluidStorage.SIDED.registerForBlockEntity(
 				(blockEntity, direction) -> blockEntity.fluidStorage, ModBlockEntities.CRUSHING_TUB_BE);

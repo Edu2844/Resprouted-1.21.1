@@ -356,8 +356,13 @@ public class ModBlocks {
             new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
     public static final Block IRONWOOD_TABLE = registerBlock("ironwood_table",
             new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block OLIVE_TABLE = registerBlock("olive_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block OLIVE_TABLE = registerBlock("olive_table", new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+
+    // =================================================
+    // ||                 CABINETS                    ||
+    // =================================================
+    public static final Block CABINET_BLOCK = registerBlock("cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
 
     // =================================================
     // ||                  CHAINS                     ||
