@@ -37,7 +37,6 @@ public class ModItems {
             new SignItem(new Item.Settings().maxCount(16), ModBlocks.IRONWOOD_SIGN, ModBlocks.IRONWOOD_WALL_SIGN));
     public static final Item IRONWOOD_HANGING_SIGN = registerItem("ironwood_hanging_sign",
             new HangingSignItem(ModBlocks.IRONWOOD_HANGING_SIGN , ModBlocks.IRONWOOD_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
-
     public static final Item IRONWOOD_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_BOAT, ModEntities.IRONWOOD_BOAT_KEY, false);
     public static final Item IRONWOOD_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_CHEST_BOAT, ModEntities.IRONWOOD_BOAT_KEY, true);
 

@@ -6,7 +6,6 @@ public enum CabinetType implements StringIdentifiable {
     SINGLE("single"),
     TOP("top"),
     BOTTOM("bottom");
-
     private final String name;
 
     CabinetType(String name) {

@@ -63,7 +63,6 @@ public class ElixirBottle extends PotionItem {
             if (iterator.hasNext()) {
                 StatusEffectInstance firstEffect = iterator.next();
                 String effectKey = firstEffect.getEffectType().value().getTranslationKey();
-                // Eliminar el prefijo "effect.minecraft." si existe
                 String simplifiedKey = effectKey.replace("effect.minecraft.", "");
                 return Text.translatable(this.getTranslationKey() + ".effect." + simplifiedKey);
             }
