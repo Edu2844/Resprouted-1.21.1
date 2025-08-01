@@ -28,14 +28,12 @@ public class ThrownTomatoEntity extends ThrownItemEntity {
     protected Item getDefaultItem() {
         return ModItems.TOMATO;
     }
-
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
         entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 0.5F);
     }
-
     @Override
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);

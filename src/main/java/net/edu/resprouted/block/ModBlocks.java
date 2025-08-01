@@ -9,6 +9,7 @@ import net.edu.resprouted.block.custom.agriculture.*;
 import net.edu.resprouted.block.custom.decorative.*;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.registry.ModCabinetRegistry;
 import net.edu.resprouted.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -361,8 +362,44 @@ public class ModBlocks {
     // =================================================
     // ||                 CABINETS                    ||
     // =================================================
-    public static final Block CABINET_BLOCK = registerBlock("cabinet",
+    public static final Block CABINET_BLOCK = registerCabinet("cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+
+    public static final Block ACACIA_CABINET_BLOCK = registerCabinet("acacia_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.ACACIA_PLANKS).nonOpaque()));
+
+    public static final Block CHERRY_CABINET_BLOCK = registerCabinet("cherry_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS).nonOpaque()));
+
+    public static final Block OAK_CABINET_BLOCK = registerCabinet("oak_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+
+    public static final Block DARK_OAK_CABINET_BLOCK = registerCabinet("dark_oak_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.DARK_OAK_PLANKS).nonOpaque()));
+
+    public static final Block BIRCH_CABINET_BLOCK = registerCabinet("birch_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.BIRCH_PLANKS).nonOpaque()));
+
+    public static final Block SPRUCE_CABINET_BLOCK = registerCabinet("spruce_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_PLANKS).nonOpaque()));
+
+    public static final Block MANGROVE_CABINET_BLOCK = registerCabinet("mangrove_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS).nonOpaque()));
+
+    public static final Block JUNGLE_CABINET_BLOCK = registerCabinet("jungle_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.JUNGLE_PLANKS).nonOpaque()));
+
+    public static final Block CRIMSON_CABINET_BLOCK = registerCabinet("crimson_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS).nonOpaque()));
+
+    public static final Block WARPED_CABINET_BLOCK = registerCabinet("warped_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS).nonOpaque()));
+
+    public static final Block IRONWOOD_CABINET_BLOCK = registerCabinet("ironwood_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(ModBlocks.IRONWOOD_PLANKS).nonOpaque()));
+
+    public static final Block OLIVE_CABINET_BLOCK = registerCabinet("olive_cabinet",
+            new CabinetBlock(AbstractBlock.Settings.copy(ModBlocks.OLIVE_PLANKS).nonOpaque()));
 
     // =================================================
     // ||                  CHAINS                     ||
@@ -497,20 +534,33 @@ public class ModBlocks {
     // =================================================
     public static final Block HONEY_FLUID_BLOCK = registerBlockWithoutBlockItem("honey_fluid_block", new
             HoneyFluidBlock(ModFluids.HONEY_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().dropsNothing().nonOpaque())));
+
     public static final Block APPLE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("apple_juice_fluid_block", new
             FluidBlock(ModFluids.APPLE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     public static final Block GOLDEN_APPLE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("golden_apple_juice_fluid_block", new
             FluidBlock(ModFluids.GOLDEN_APPLE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     public static final Block GRAPE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("grape_juice_fluid_block", new
             FluidBlock(ModFluids.GRAPE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     public static final Block SWEET_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("sweet_berry_juice_fluid_block", new
             FluidBlock(ModFluids.SWEET_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     public static final Block OLIVE_OIL_FLUID_BLOCK = registerBlockWithoutBlockItem("olive_oil_fluid_block", new
             FluidBlock(ModFluids.OLIVE_OIL_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block VANTA_OIL_FLUID_BLOCK = registerBlockWithoutBlockItem("vanta_oil_fluid_block", new
+            FluidBlock(ModFluids.VANTA_OIL_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     public static final Block GLOW_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("glow_berry_juice_fluid_block", new
             FluidBlock(ModFluids.GLOW_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     public static final Block IRON_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("iron_berry_juice_fluid_block", new
             FluidBlock(ModFluids.IRON_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block ALE_WORT_FLUID_BLOCK = registerBlockWithoutBlockItem("ale_wort_fluid_block", new
+            FluidBlock(ModFluids.ALE_WORT_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
 
     // =================================================
     // ||                   HERBS                     ||
@@ -558,6 +608,10 @@ public class ModBlocks {
     private static void registerBlockItem(String name, Block block){
         Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name),
                 new BlockItem(block, new Item.Settings()));
+    }
+    private static Block registerCabinet(String name, Block block) {
+        ModCabinetRegistry.registerCabinet(block);
+        return registerBlock(name, block);
     }
     public static void registerModBlocks(){
         Resprouted.LOGGER.info("Registering Mod Blocks for " + Resprouted.MOD_ID);

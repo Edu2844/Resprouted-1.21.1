@@ -23,6 +23,12 @@
     "resprouted:iron_berry_juice_flowing",
 
     "resprouted:olive_oil_still",
-    "resprouted:olive_oil_flowing"
+    "resprouted:olive_oil_flowing",
+
+    "resprouted:vanta_oil_still",
+    "resprouted:vanta_oil_flowing",
+
+    "resprouted:ale_wort_still",
+    "resprouted:ale_wort_flowing"
   ]
 }

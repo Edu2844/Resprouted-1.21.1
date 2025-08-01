@@ -2,12 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    { "item": "minecraft:cooked_mutton" },
-    { "item": "minecraft:baked_potato" },
-    { "item": "minecraft:carrot" },
-    { "item": "resprouted:tomato" },
-    { "item": "minecraft:brown_mushroom" },
-    { "item": "minecraft:bowl" }
+    {"item": "minecraft:cooked_mutton"},
+    {"item": "minecraft:baked_potato"},
+    {"item": "minecraft:carrot"},
+    {"item": "resprouted:tomato"},
+    {"item": "minecraft:brown_mushroom"},
+    {"item": "minecraft:bowl"}
   ],
   "result": {
     "count": 1,

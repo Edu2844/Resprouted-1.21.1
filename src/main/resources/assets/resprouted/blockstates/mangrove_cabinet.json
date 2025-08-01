@@ -1,0 +1,63 @@
+{
+  "variants": {
+    "facing=north,cabinet_type=single,open=false,hinge=left": { "model": "resprouted:block/cabinet/mangrove_cabinet_left", "y": 0 },
+    "facing=north,cabinet_type=single,open=true,hinge=left": { "model": "resprouted:block/cabinet/mangrove_cabinet_open_left", "y": 0 },
+    "facing=north,cabinet_type=single,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet", "y": 0 },
+    "facing=north,cabinet_type=single,open=true,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet_open", "y": 0 },
+
+    "facing=north,cabinet_type=top,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_top_left", "y": 0 },
+    "facing=north,cabinet_type=top,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_top_open_left", "y": 0 },
+    "facing=north,cabinet_type=top,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet_top", "y": 0 },
+    "facing=north,cabinet_type=top,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_top_open", "y": 0 },
+
+    "facing=north,cabinet_type=bottom,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_left", "y": 0 },
+    "facing=north,cabinet_type=bottom,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_open_left", "y": 0 },
+    "facing=north,cabinet_type=bottom,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom", "y": 0 },
+    "facing=north,cabinet_type=bottom,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_open", "y": 0 },
+
+    "facing=east,cabinet_type=single,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_left", "y": 90 },
+    "facing=east,cabinet_type=single,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_open_left", "y": 90 },
+    "facing=east,cabinet_type=single,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet", "y": 90 },
+    "facing=east,cabinet_type=single,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_open", "y": 90 },
+
+    "facing=east,cabinet_type=top,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_top_left", "y": 90 },
+    "facing=east,cabinet_type=top,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_top_open_left", "y": 90 },
+    "facing=east,cabinet_type=top,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet_top", "y": 90 },
+    "facing=east,cabinet_type=top,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_top_open", "y": 90 },
+
+    "facing=east,cabinet_type=bottom,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_left", "y": 90 },
+    "facing=east,cabinet_type=bottom,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_open_left", "y": 90 },
+    "facing=east,cabinet_type=bottom,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom", "y": 90 },
+    "facing=east,cabinet_type=bottom,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_open", "y": 90 },
+
+    "facing=south,cabinet_type=single,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_left", "y": 180 },
+    "facing=south,cabinet_type=single,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_open_left", "y": 180 },
+    "facing=south,cabinet_type=single,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet", "y": 180 },
+    "facing=south,cabinet_type=single,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_open", "y": 180 },
+
+    "facing=south,cabinet_type=top,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_top_left", "y": 180 },
+    "facing=south,cabinet_type=top,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_top_open_left", "y": 180 },
+    "facing=south,cabinet_type=top,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet_top", "y": 180 },
+    "facing=south,cabinet_type=top,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_top_open", "y": 180 },
+
+    "facing=south,cabinet_type=bottom,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_left", "y": 180 },
+    "facing=south,cabinet_type=bottom,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_open_left", "y": 180 },
+    "facing=south,cabinet_type=bottom,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom", "y": 180 },
+    "facing=south,cabinet_type=bottom,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_open", "y": 180 },
+
+    "facing=west,cabinet_type=single,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_left", "y": 270 },
+    "facing=west,cabinet_type=single,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_open_left", "y": 270 },
+    "facing=west,cabinet_type=single,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet", "y": 270 },
+    "facing=west,cabinet_type=single,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_open", "y": 270 },
+
+    "facing=west,cabinet_type=top,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_top_left", "y": 270 },
+    "facing=west,cabinet_type=top,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_top_open_left", "y": 270 },
+    "facing=west,cabinet_type=top,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet_top", "y": 270 },
+    "facing=west,cabinet_type=top,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_top_open", "y": 270 },
+
+    "facing=west,cabinet_type=bottom,open=false,hinge=left":  { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_left", "y": 270 },
+    "facing=west,cabinet_type=bottom,open=true,hinge=left":   { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_open_left", "y": 270 },
+    "facing=west,cabinet_type=bottom,open=false,hinge=right": { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom", "y": 270 },
+    "facing=west,cabinet_type=bottom,open=true,hinge=right":  { "model": "resprouted:block/cabinet/mangrove_cabinet_bottom_open", "y": 270 }
+  }
+}

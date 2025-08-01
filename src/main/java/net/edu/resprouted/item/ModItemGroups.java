@@ -62,8 +62,10 @@ public class ModItemGroups {
                         entries.add(ModItems.GRAPE_JUICE_BOTTLE);
                         entries.add(ModItems.SWEET_BERRY_JUICE_BOTTLE);
                         entries.add(ModItems.OLIVE_OIL_BOTTLE);
+                        entries.add(ModItems.VANTA_OIL_BOTTLE);
                         entries.add(ModItems.GLOW_BERRY_JUICE_BOTTLE);
                         entries.add(ModItems.IRON_BERRY_JUICE_BOTTLE);
+                        entries.add(ModItems.ALE_WORT_BOTTLE);
 
                         entries.add(ModItems.HONEY_BUCKET);
                         entries.add(ModItems.APPLE_JUICE_BUCKET);
@@ -71,8 +73,10 @@ public class ModItemGroups {
                         entries.add(ModItems.GRAPE_JUICE_BUCKET);
                         entries.add(ModItems.SWEET_BERRY_JUICE_BUCKET);
                         entries.add(ModItems.OLIVE_OIL_BUCKET);
+                        entries.add(ModItems.VANTA_OIL_BUCKET);
                         entries.add(ModItems.GLOW_BERRY_JUICE_BUCKET);
                         entries.add(ModItems.IRON_BERRY_JUICE_BUCKET);
+                        entries.add(ModItems.ALE_WORT_BUCKET);
 
                         entries.add(ModItems.LAMB_STEW);
                         entries.add(ModItems.HONEY_GLAZED_CARROTS);
@@ -134,6 +138,19 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CLAY_WALL_DIAGONAL);
 
                         entries.add(ModBlocks.CABINET_BLOCK);
+                        entries.add(ModBlocks.OAK_CABINET_BLOCK);
+                        entries.add(ModBlocks.SPRUCE_CABINET_BLOCK);
+                        entries.add(ModBlocks.BIRCH_CABINET_BLOCK);
+                        entries.add(ModBlocks.JUNGLE_CABINET_BLOCK);
+                        entries.add(ModBlocks.ACACIA_CABINET_BLOCK);
+                        entries.add(ModBlocks.DARK_OAK_CABINET_BLOCK);
+                        entries.add(ModBlocks.MANGROVE_CABINET_BLOCK);
+                        entries.add(ModBlocks.CHERRY_CABINET_BLOCK);
+                        entries.add(ModBlocks.CRIMSON_CABINET_BLOCK);
+                        entries.add(ModBlocks.WARPED_CABINET_BLOCK);
+                        entries.add(ModBlocks.IRONWOOD_CABINET_BLOCK);
+                        entries.add(ModBlocks.OLIVE_CABINET_BLOCK);
+
                         entries.add(ModBlocks.OAK_CHAIR);
                         entries.add(ModBlocks.DARK_OAK_CHAIR);
                         entries.add(ModBlocks.BIRCH_CHAIR);

@@ -107,10 +107,17 @@ public class ModItems {
     public static final Item OLIVE_OIL_BUCKET = registerItem("olive_oil_bucket", new BucketItem(ModFluids.OLIVE_OIL_STILL,new Item
             .Settings()
             .maxCount(1)));
+    public static final Item VANTA_OIL_BUCKET = registerItem("vanta_oil_bucket", new BucketItem(ModFluids.VANTA_OIL_STILL,new Item
+            .Settings()
+            .maxCount(1)));
     public static final Item GLOW_BERRY_JUICE_BUCKET = registerItem("glow_berry_juice_bucket", new BucketItem(ModFluids.GLOW_BERRY_JUICE_STILL,new Item
             .Settings()
             .maxCount(1)));
     public static final Item IRON_BERRY_JUICE_BUCKET = registerItem("iron_berry_juice_bucket", new BucketItem(ModFluids.IRON_BERRY_JUICE_STILL,new Item
+            .Settings()
+            .maxCount(1)));
+
+    public static final Item ALE_WORT_BUCKET = registerItem("ale_wort_bucket", new BucketItem(ModFluids.ALE_WORT_STILL,new Item
             .Settings()
             .maxCount(1)));
 
@@ -132,11 +139,17 @@ public class ModItems {
     public static final Item OLIVE_OIL_BOTTLE = registerItem("olive_oil_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
 
+    public static final Item VANTA_OIL_BOTTLE = registerItem("vanta_oil_bottle",
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
+
     public static final Item GLOW_BERRY_JUICE_BOTTLE = registerItem("glow_berry_juice_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GLOW_BERRY_JUICE).maxCount(16)));
 
     public static final Item IRON_BERRY_JUICE_BOTTLE = registerItem("iron_berry_juice_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.IRON_BERRIES).maxCount(16)));
+
+    public static final Item ALE_WORT_BOTTLE = registerItem("ale_wort_bottle",
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
 
     // =================================================
     // ||                    FOOD                     ||
@@ -149,8 +162,6 @@ public class ModItems {
     // =================================================
     public static final Item ELIXIR_BOTTLE = registerItem("elixir_bottle", new ElixirBottle(new Item.Settings().maxCount(16)));
     public static final Item ELIXIR_ICON = registerItem("elixir_icon", new Item(new Item.Settings()));
-
-
 
 
     private static Item registerItem(String name, Item item){

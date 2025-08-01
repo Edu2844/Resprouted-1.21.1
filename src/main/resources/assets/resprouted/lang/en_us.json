@@ -73,22 +73,43 @@
   "item.resprouted.olive_oil_bucket": "Olive Oil Bucket",
   "item.resprouted.olive_oil_bottle": "Olive Oil Bottle",
 
+  "item.resprouted.vanta_oil_bucket": "Vanta Oil Bucket",
+  "item.resprouted.vanta_oil_bottle": "Vanta Oil Bottle",
+
   "item.resprouted.glow_berry_juice_bucket": "Glow Berry Juice Bucket",
   "item.resprouted.glow_berry_juice_bottle": "Glow Berry Juice Bottle",
 
   "item.resprouted.iron_berry_juice_bucket": "Iron Berry Juice Bucket",
   "item.resprouted.iron_berry_juice_bottle": "Iron Berry Juice Bottle",
 
+  "item.resprouted.ale_wort_bucket": "Ale Wort Bucket",
+  "item.resprouted.ale_wort_bottle": "Ale Wort Bottle",
+
 
   "block.resprouted.cabinet": "Cabinet",
+  "block.resprouted.oak_cabinet": "Oak Cabinet",
+  "block.resprouted.dark_oak_cabinet": "Dark Oak Cabinet",
+  "block.resprouted.spruce_cabinet": "Spruce Cabinet",
+  "block.resprouted.birch_cabinet": "Birch Cabinet",
+  "block.resprouted.jungle_cabinet": "Jungle Cabinet",
+  "block.resprouted.acacia_cabinet": "Acacia Cabinet",
+  "block.resprouted.cherry_cabinet": "Cherry Cabinet",
+  "block.resprouted.mangrove_cabinet": "Mangrove Cabinet",
+  "block.resprouted.crimson_cabinet": "Crimson Cabinet",
+  "block.resprouted.warped_cabinet": "Warped Cabinet",
+  "block.resprouted.ironwood_cabinet": "Ironwood Cabinet",
+  "block.resprouted.olive_cabinet": "Olive Cabinet",
+
   "block.resprouted.honey_fluid_block": "Honey",
   "block.resprouted.apple_juice_fluid_block": "Apple Juice",
   "block.resprouted.golden_apple_juice_fluid_block": "Golden Apple Juice",
   "block.resprouted.grape_juice_fluid_block": "Grape Juice",
   "block.resprouted.olive_oil_fluid_block": "Olive Oil",
+  "block.resprouted.vanta_oil_fluid_block": "Vanta Oil",
   "block.resprouted.sweet_berry_juice_fluid_block": "Sweet Berry Juice",
   "block.resprouted.glow_berry_juice_fluid_block": "Glow Berry Juice",
   "block.resprouted.iron_berry_juice_fluid_block": "Iron Berry Juice",
+  "block.resprouted.ale_wort_fluid_block": "Ale Wort",
 
   "block.resprouted.slate": "Slate",
   "block.resprouted.polished_slate": "Polished Slate",

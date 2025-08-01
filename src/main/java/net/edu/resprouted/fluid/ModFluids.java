@@ -26,11 +26,17 @@ public class ModFluids {
     public static final FlowableFluid OLIVE_OIL_STILL = register("olive_oil_still", new OliveOil.Still());
     public static final FlowableFluid OLIVE_OIL_FLOWING = register("olive_oil_flowing", new OliveOil.Flowing());
 
+    public static final FlowableFluid VANTA_OIL_STILL = register("vanta_oil_still", new VantaOil.Still());
+    public static final FlowableFluid VANTA_OIL_FLOWING = register("vanta_oil_flowing", new VantaOil.Flowing());
+
     public static final FlowableFluid GLOW_BERRY_JUICE_STILL = register("glow_berry_juice_still", new GlowBerryJuice.Still());
     public static final FlowableFluid GLOW_BERRY_JUICE_FLOWING = register("glow_berry_juice_flowing", new GlowBerryJuice.Flowing());
 
     public static final FlowableFluid IRON_BERRY_JUICE_STILL = register("iron_berry_juice_still", new IronBerryJuice.Still());
     public static final FlowableFluid IRON_BERRY_JUICE_FLOWING = register("iron_berry_juice_flowing", new IronBerryJuice.Flowing());
+
+    public static final FlowableFluid ALE_WORT_STILL = register("ale_wort_still", new AleWort.Still());
+    public static final FlowableFluid ALE_WORT_FLOWING = register("ale_wort_flowing", new AleWort.Flowing());
 
     private static FlowableFluid register(String name, FlowableFluid flowableFluid) {
         return Registry.register(Registries.FLUID, Identifier.of(Resprouted.MOD_ID, name), flowableFluid);

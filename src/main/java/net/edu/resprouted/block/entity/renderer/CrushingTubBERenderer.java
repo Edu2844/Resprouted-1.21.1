@@ -23,7 +23,7 @@ import java.util.Random;
 
 
 public class CrushingTubBERenderer implements BlockEntityRenderer<CrushingTubBlockEntity> {
-    public CrushingTubBERenderer(BlockEntityRendererFactory.Context context) {
+    public CrushingTubBERenderer(BlockEntityRendererFactory.Context ctx) {
     }
     @Override
     public void render(CrushingTubBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {

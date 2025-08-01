@@ -79,6 +79,29 @@ public class CabinetBlockEntity extends LootableContainerBlockEntity implements 
         if (type == CabinetType.SINGLE) return true;
         return type == CabinetType.BOTTOM;
     }
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        super.setStack(slot, stack);
+        markDirtyAndUpdate();
+    }
+    @Override
+    public ItemStack removeStack(int slot, int amount) {
+        ItemStack stack = super.removeStack(slot, amount);
+        markDirtyAndUpdate();
+        return stack;
+    }
+    @Override
+    public ItemStack removeStack(int slot) {
+        ItemStack stack = super.removeStack(slot);
+        markDirtyAndUpdate();
+        return stack;
+    }
+    private void markDirtyAndUpdate() {
+        this.markDirty();
+        if (this.world != null && this.isMainPart()) {
+            this.world.updateComparators(this.pos, this.getCachedState().getBlock());
+        }
+    }
     public final ViewerCountManager stateManager = new ViewerCountManager() {
         @Override
         protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
@@ -120,5 +143,6 @@ public class CabinetBlockEntity extends LootableContainerBlockEntity implements 
             }
             return false;
         }
+
     };
 }

@@ -106,8 +106,6 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerTrapdoor(ModBlocks.OLIVE_TRAPDOOR);
         blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.OLIVE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
 
-        /*blockStateModelGenerator.registerHangingSign(ModBlocks.STRIPPED_OLIVE_LOG,ModBlocks.OLIVE_HANGING_SIGN,ModBlocks.OLIVE_WALL_HANGING_SIGN);
-        OlivePool.family(ModBlocks.OLIVE_FAMILY);*/
 
         // =================================================
         // ||                  IRONWOOD                   ||
@@ -256,6 +254,10 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SWEET_BERRY_JUICE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.OLIVE_OIL_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.OLIVE_OIL_BOTTLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.VANTA_OIL_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.VANTA_OIL_BOTTLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ALE_WORT_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ALE_WORT_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.GLOW_BERRY_JUICE_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.GLOW_BERRY_JUICE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.IRON_BERRY_JUICE_BUCKET, Models.GENERATED);

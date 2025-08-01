@@ -33,6 +33,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> implements Waterloggable {
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
@@ -69,11 +70,28 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
     }
     @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+        Inventory inv = getCombinedInventory(world, state, pos);
+        return ScreenHandler.calculateComparatorOutput(inv);
+    }
+    @Nullable
+    private Inventory getCombinedInventory(World world, BlockState state, BlockPos pos) {
+        CabinetType type = state.get(CABINET_TYPE);
         BlockEntity be = world.getBlockEntity(pos);
-        if (be instanceof Inventory inv) {
-            return ScreenHandler.calculateComparatorOutput(inv);
+
+        if (!(be instanceof CabinetBlockEntity self)) return null;
+
+        if (type == CabinetType.SINGLE) return self;
+
+        BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
+        BlockEntity otherBe = world.getBlockEntity(otherPos);
+
+        if (otherBe instanceof CabinetBlockEntity other) {
+            return new DoubleInventory(
+                    type == CabinetType.BOTTOM ? self : other,
+                    type == CabinetType.BOTTOM ? other : self
+            );
         }
-        return 0;
+        return self;
     }
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -118,6 +136,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
                         belowState.get(HINGE) == state.get(HINGE)) {
                     world.setBlockState(pos, state.with(CABINET_TYPE, CabinetType.TOP));
                     world.setBlockState(belowPos, belowState.with(CABINET_TYPE, CabinetType.BOTTOM));
+
                 }
                 return;
             }
@@ -209,11 +228,15 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
             default    -> DoorHinge.LEFT;
         };
     }
+
     // ========= INTERACCIÓN =========
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) return ActionResult.SUCCESS;
 
+        if (isCabinetBlocked(world, pos, state)) {
+            return ActionResult.CONSUME;
+        }
         BlockEntity selfBE = world.getBlockEntity(pos);
         if (!(selfBE instanceof CabinetBlockEntity self)) return ActionResult.PASS;
 
@@ -237,6 +260,29 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
             player.openHandledScreen(factory);
         }
         return ActionResult.CONSUME;
+    }
+    private boolean isCabinetBlocked(World world, BlockPos pos, BlockState state) {
+        Direction facing = state.get(FACING);
+
+        BlockPos frontPos = pos.offset(facing);
+        BlockState frontState = world.getBlockState(frontPos);
+
+        if (frontState.isSolidBlock(world, frontPos)) {
+            return true;
+        }
+        CabinetType type = state.get(CABINET_TYPE);
+        if (type != CabinetType.SINGLE) {
+            BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
+            BlockState otherState = world.getBlockState(otherPos);
+            if (otherState.getBlock() instanceof CabinetBlock) {
+                Direction otherFacing = otherState.get(FACING);
+                BlockPos otherFrontPos = otherPos.offset(otherFacing);
+                BlockState otherFrontState = world.getBlockState(otherFrontPos);
+
+                return otherFrontState.isSolidBlock(world, otherFrontPos);
+            }
+        }
+        return false;
     }
 
     // ========= FORMA Y TRANSFORMACIONES =========

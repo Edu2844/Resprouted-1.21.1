@@ -30,12 +30,12 @@ public class ChairBlock extends HorizontalFacingBlock {
     public ChairBlock(Settings settings) {
         super(settings);
     }
+
     // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
-
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {

@@ -31,11 +31,17 @@ public class BottleInteractionsUtil {
         FLUID_BOTTLE_MAP.put(ModBlocks.OLIVE_OIL_FLUID_BLOCK, new FluidBottleData(
                 ModItems.OLIVE_OIL_BOTTLE));
 
+        FLUID_BOTTLE_MAP.put(ModBlocks.VANTA_OIL_FLUID_BLOCK, new FluidBottleData(
+                ModItems.VANTA_OIL_BOTTLE));
+
         FLUID_BOTTLE_MAP.put(ModBlocks.GLOW_BERRY_JUICE_FLUID_BLOCK, new FluidBottleData(
                 ModItems.GLOW_BERRY_JUICE_BOTTLE));
 
         FLUID_BOTTLE_MAP.put(ModBlocks.IRON_BERRY_JUICE_FLUID_BLOCK, new FluidBottleData(
                 ModItems.IRON_BERRY_JUICE_BOTTLE));
+
+        FLUID_BOTTLE_MAP.put(ModBlocks.ALE_WORT_FLUID_BLOCK, new FluidBottleData(
+                ModItems.ALE_WORT_BOTTLE));
     }
     public static FluidBottleData getFluidData(Block fluidBlock) {
         return FLUID_BOTTLE_MAP.get(fluidBlock);

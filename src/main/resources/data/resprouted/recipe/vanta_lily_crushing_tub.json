@@ -1,0 +1,10 @@
+{
+  "type": "resprouted:crushing_tub",
+  "input_item": {
+    "item": "resprouted:vanta_lily"
+  },
+  "fluid_variant": {
+    "fluid": "resprouted:vanta_oil_still"
+  },
+  "amount": 20250
+}

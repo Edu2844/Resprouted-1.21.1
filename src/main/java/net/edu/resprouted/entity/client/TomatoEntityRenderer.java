@@ -16,9 +16,9 @@ public class TomatoEntityRenderer extends EntityRenderer<ThrownTomatoEntity> {
     private final ItemRenderer itemRenderer;
     private final float scale;
 
-    public TomatoEntityRenderer(EntityRendererFactory.Context context) {
-        super(context);
-        this.itemRenderer = context.getItemRenderer();
+    public TomatoEntityRenderer(EntityRendererFactory.Context ctx) {
+        super(ctx);
+        this.itemRenderer = ctx.getItemRenderer();
         this.scale = 1.0f;
     }
     @Override
