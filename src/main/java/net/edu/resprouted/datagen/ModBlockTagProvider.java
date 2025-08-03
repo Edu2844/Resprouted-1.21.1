@@ -114,6 +114,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN)
 
                 .add(ModBlocks.EVAPORATING_BASIN)
+
+                //ALCHEMY
+                .add(ModBlocks.CONDENSER)
                 .add(ModBlocks.IRON_CANDLE_HOLDER)
 
         ;
@@ -237,11 +240,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.CLIMBABLE)
                 .add(ModBlocks.ROPE)
         ;
-
         getOrCreateTagBuilder(BlockTags.BAMBOO_PLANTABLE_ON)
                 .add(ModBlocks.FERTILE_SOIL)
         ;
-
         getOrCreateTagBuilder(BlockTags.LEAVES)
                 .add(ModBlocks.IRONWOOD_LEAVES)
                 .add(ModBlocks.OLIVE_LEAVES)
@@ -260,5 +261,6 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.MAGMA_BLOCK)
                 .add(Blocks.FIRE)
         ;
+
     }
 }

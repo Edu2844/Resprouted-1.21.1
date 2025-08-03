@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
-    "end": "resprouted:block/red_sandstone/red_sandstone_pillar_top",
+    "end": "resprouted:block/red_sandstone/polished_red_sandstone",
     "side": "resprouted:block/red_sandstone/red_sandstone_pillar_side"
   }
 }

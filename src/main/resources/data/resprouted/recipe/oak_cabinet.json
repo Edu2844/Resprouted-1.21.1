@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:oak_planks"
+    },
+    "t": {
+      "tag": "minecraft:trapdoors"
+    }
+  },
+  "pattern": [
+    "###",
+    "# t",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resprouted:oak_cabinet"
+  }
+}

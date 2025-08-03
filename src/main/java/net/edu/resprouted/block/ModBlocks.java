@@ -6,6 +6,8 @@ import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock
 import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.custom.agriculture.*;
+import net.edu.resprouted.block.custom.alchemy.CondenderBlock;
+import net.edu.resprouted.block.custom.alchemy.RetortBlock;
 import net.edu.resprouted.block.custom.decorative.*;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
@@ -362,43 +364,41 @@ public class ModBlocks {
     // =================================================
     // ||                 CABINETS                    ||
     // =================================================
-    public static final Block CABINET_BLOCK = registerCabinet("cabinet",
-            new CabinetBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
 
-    public static final Block ACACIA_CABINET_BLOCK = registerCabinet("acacia_cabinet",
+    public static final Block ACACIA_CABINET_BLOCK = registerCabinetBlock("acacia_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.ACACIA_PLANKS).nonOpaque()));
 
-    public static final Block CHERRY_CABINET_BLOCK = registerCabinet("cherry_cabinet",
+    public static final Block CHERRY_CABINET_BLOCK = registerCabinetBlock("cherry_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS).nonOpaque()));
 
-    public static final Block OAK_CABINET_BLOCK = registerCabinet("oak_cabinet",
+    public static final Block OAK_CABINET_BLOCK = registerCabinetBlock("oak_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
 
-    public static final Block DARK_OAK_CABINET_BLOCK = registerCabinet("dark_oak_cabinet",
+    public static final Block DARK_OAK_CABINET_BLOCK = registerCabinetBlock("dark_oak_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.DARK_OAK_PLANKS).nonOpaque()));
 
-    public static final Block BIRCH_CABINET_BLOCK = registerCabinet("birch_cabinet",
+    public static final Block BIRCH_CABINET_BLOCK = registerCabinetBlock("birch_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.BIRCH_PLANKS).nonOpaque()));
 
-    public static final Block SPRUCE_CABINET_BLOCK = registerCabinet("spruce_cabinet",
+    public static final Block SPRUCE_CABINET_BLOCK = registerCabinetBlock("spruce_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_PLANKS).nonOpaque()));
 
-    public static final Block MANGROVE_CABINET_BLOCK = registerCabinet("mangrove_cabinet",
+    public static final Block MANGROVE_CABINET_BLOCK = registerCabinetBlock("mangrove_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS).nonOpaque()));
 
-    public static final Block JUNGLE_CABINET_BLOCK = registerCabinet("jungle_cabinet",
+    public static final Block JUNGLE_CABINET_BLOCK = registerCabinetBlock("jungle_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.JUNGLE_PLANKS).nonOpaque()));
 
-    public static final Block CRIMSON_CABINET_BLOCK = registerCabinet("crimson_cabinet",
+    public static final Block CRIMSON_CABINET_BLOCK = registerCabinetBlock("crimson_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.CRIMSON_PLANKS).nonOpaque()));
 
-    public static final Block WARPED_CABINET_BLOCK = registerCabinet("warped_cabinet",
+    public static final Block WARPED_CABINET_BLOCK = registerCabinetBlock("warped_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS).nonOpaque()));
 
-    public static final Block IRONWOOD_CABINET_BLOCK = registerCabinet("ironwood_cabinet",
+    public static final Block IRONWOOD_CABINET_BLOCK = registerCabinetBlock("ironwood_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(ModBlocks.IRONWOOD_PLANKS).nonOpaque()));
 
-    public static final Block OLIVE_CABINET_BLOCK = registerCabinet("olive_cabinet",
+    public static final Block OLIVE_CABINET_BLOCK = registerCabinetBlock("olive_cabinet",
             new CabinetBlock(AbstractBlock.Settings.copy(ModBlocks.OLIVE_PLANKS).nonOpaque()));
 
     // =================================================
@@ -598,6 +598,12 @@ public class ModBlocks {
     public static final Block BLUE_BERRY_BUSH = registerBlockWithoutBlockItem("blue_berry_bush",
             new BlueBerrieBush(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)));
 
+    // =================================================
+    // ||                  ALCHEMY                    ||
+    // =================================================
+    public static final Block CONDENSER = registerBlock("condenser", new CondenderBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
+    public static final Block RETORT = registerBlock("retort", new RetortBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
+
     private static Block registerBlockWithoutBlockItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);
     }
@@ -609,7 +615,7 @@ public class ModBlocks {
         Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name),
                 new BlockItem(block, new Item.Settings()));
     }
-    private static Block registerCabinet(String name, Block block) {
+    private static Block registerCabinetBlock(String name, Block block) {
         ModCabinetRegistry.registerCabinet(block);
         return registerBlock(name, block);
     }

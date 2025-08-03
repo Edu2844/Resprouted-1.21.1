@@ -353,12 +353,12 @@
   "block.resprouted.crushing_tub": "Crushing Tub",
   "block.resprouted.liquid_barrel": "Liquid Barrel",
   "block.resprouted.evaporating_basin": "Evaporating Basin",
-
-  "block.resprouted.blue_berry_cake": "Blue Berry Cake",
-
   "block.resprouted.rope": "Rope",
   "block.resprouted.stake": "Stake",
+  "block.resprouted.condenser": "Condenser",
+  "block.resprouted.retort": "Retort",
 
+  "block.resprouted.blue_berry_cake": "Blue Berry Cake",
   "block.resprouted.blue_berry_bush": "Blue Berry Bush",
 
   "container.resprouted.cabinet_double": "Large Cabinet",

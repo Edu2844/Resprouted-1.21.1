@@ -180,52 +180,62 @@ public class ModClientRegistry {
         //Honey
         registry.register(ModFluids.HONEY_STILL, ModFluids.HONEY_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/honey_still"),
-                Identifier.of("resprouted:block/fluid/honey_flow")
+                Identifier.of("resprouted:block/fluid/honey_flow"),
+                Identifier.of("resprouted:block/fluid/honey_still")
         ));
         //Apple Juice
         registry.register(ModFluids.APPLE_JUICE_STILL, ModFluids.APPLE_JUICE_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/apple_juice_still"),
-                Identifier.of("resprouted:block/fluid/apple_juice_flow")
+                Identifier.of("resprouted:block/fluid/apple_juice_flow"),
+                Identifier.of("resprouted:block/fluid/apple_juice_overlay")
         ));
         //Golden Apple Juice
         registry.register(ModFluids.GOLDEN_APPLE_JUICE_STILL, ModFluids.GOLDEN_APPLE_JUICE_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/golden_apple_juice_still"),
-                Identifier.of("resprouted:block/fluid/golden_apple_juice_flow")
+                Identifier.of("resprouted:block/fluid/golden_apple_juice_flow"),
+                Identifier.of("resprouted:block/fluid/golden_apple_juice_overlay")
         ));
         //Grape Juice
         registry.register(ModFluids.GRAPE_JUICE_STILL, ModFluids.GRAPE_JUICE_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/grape_juice_still"),
-                Identifier.of("resprouted:block/fluid/grape_juice_flow")
+                Identifier.of("resprouted:block/fluid/grape_juice_flow"),
+                Identifier.of("resprouted:block/fluid/grape_juice_overlay")
         ));
         //Sweet Berry Juice
         registry.register(ModFluids.SWEET_BERRY_JUICE_STILL, ModFluids.SWEET_BERRY_JUICE_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/sweet_berry_juice_still"),
-                Identifier.of("resprouted:block/fluid/sweet_berry_juice_flow")
+                Identifier.of("resprouted:block/fluid/sweet_berry_juice_flow"),
+                Identifier.of("resprouted:block/fluid/sweet_berry_juice_overlay")
         ));
         //Olive Oil
         registry.register(ModFluids.OLIVE_OIL_STILL, ModFluids.OLIVE_OIL_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/olive_oil_still"),
-                Identifier.of("resprouted:block/fluid/olive_oil_flow")
+                Identifier.of("resprouted:block/fluid/olive_oil_flow"),
+                Identifier.of("resprouted:block/fluid/olive_oil_overlay")
         ));
         //Vanta Oil
         registry.register(ModFluids.VANTA_OIL_STILL, ModFluids.VANTA_OIL_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/vanta_oil_still"),
-                Identifier.of("resprouted:block/fluid/vanta_oil_flow")
+                Identifier.of("resprouted:block/fluid/vanta_oil_flow"),
+                Identifier.of("resprouted:block/fluid/vanta_oil_overlay")
         ));
         //Glow Berry Juice
         registry.register(ModFluids.GLOW_BERRY_JUICE_STILL, ModFluids.GLOW_BERRY_JUICE_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/glow_berry_juice_still"),
-                Identifier.of("resprouted:block/fluid/glow_berry_juice_flow")
+                Identifier.of("resprouted:block/fluid/glow_berry_juice_flow"),
+                Identifier.of("resprouted:block/fluid/glow_berry_juice_overlay")
         ));
         //Iron Berry Juice
         registry.register(ModFluids.IRON_BERRY_JUICE_STILL, ModFluids.IRON_BERRY_JUICE_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/iron_berry_juice_still"),
-                Identifier.of("resprouted:block/fluid/iron_berry_juice_flow")
+                Identifier.of("resprouted:block/fluid/iron_berry_juice_flow"),
+                Identifier.of("resprouted:block/fluid/iron_berry_juice_overlay")
         ));
         //Ale Wort
         registry.register(ModFluids.ALE_WORT_STILL, ModFluids.ALE_WORT_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/ale_wort_still"),
-                Identifier.of("resprouted:block/fluid/ale_wort_flow")
+                Identifier.of("resprouted:block/fluid/ale_wort_flow"),
+                Identifier.of("resprouted:block/fluid/ale_wort_overlay")
         ));
     }
     public static void registerBlockColors() {

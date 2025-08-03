@@ -137,7 +137,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CLAY_WALL_CROSS);
                         entries.add(ModBlocks.CLAY_WALL_DIAGONAL);
 
-                        entries.add(ModBlocks.CABINET_BLOCK);
                         entries.add(ModBlocks.OAK_CABINET_BLOCK);
                         entries.add(ModBlocks.SPRUCE_CABINET_BLOCK);
                         entries.add(ModBlocks.BIRCH_CABINET_BLOCK);
@@ -327,6 +326,8 @@ public class ModItemGroups {
                         entries.add(ModItems.MARSH_MALLOW);
                         entries.add(ModItems.MOONCAP_MUSHROOM);
                         entries.add(ModItems.DEATHSTALK_MUSHROOM);
+                        entries.add(ModBlocks.CONDENSER);
+                        entries.add(ModBlocks.RETORT);
                         entries.addAll(ElixirUtil.getElixirs());
                     }).build());
 

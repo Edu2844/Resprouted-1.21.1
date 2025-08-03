@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "resprouted:block/sandstone/sandstone_pillar_top",
+    "end": "resprouted:block/sandstone/polished_sandstone",
     "side": "resprouted:block/sandstone/sandstone_pillar_side"
   }
 }

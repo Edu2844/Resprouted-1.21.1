@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CandleHolderBlock extends Block {
-    public static final DirectionProperty FACING = Properties.FACING;
+    public static final DirectionProperty FACING = DirectionProperty.of("facing", direction -> direction != Direction.DOWN);
     protected static final VoxelShape STANDING_SHAPE = Block.createCuboidShape(6.4F, 0.0F, 6.4F, 9.6F, 15.0F, 9.6F);
     protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(5.6F, 0.0F, 11.2F, 10.4F, 12.8F, 16.0F);
     protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(5.6F, 0.0F, 0.0F, 10.4F, 12.8F, 4.8F);

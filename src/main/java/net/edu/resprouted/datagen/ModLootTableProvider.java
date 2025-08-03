@@ -183,7 +183,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.STAKE);
         addDrop(ModBlocks.CRUSHING_TUB);
         addDrop(ModBlocks.EVAPORATING_BASIN);
+        addDrop(ModBlocks.APPLE_LEAVES, leavesDrops(Blocks.OAK_LEAVES, ModBlocks.APPLE_SAPLING, 0.0625f));
 
+        //ALCHEMY
+        addDrop(ModBlocks.CONDENSER);
 
         //CHANDELIER
         addDrop(ModBlocks.CHANDELIER);
@@ -216,10 +219,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_EXPOSED_COPPER_SOUL_LANTERN);
         addDrop(ModBlocks.WAXED_WEATHERED_COPPER_SOUL_LANTERN);
         addDrop(ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN);
+
         //CANDLE HOLDERS
         addDrop(ModBlocks.IRON_CANDLE_HOLDER);
 
-        addDrop(ModBlocks.APPLE_LEAVES, leavesDrops(Blocks.OAK_LEAVES, ModBlocks.APPLE_SAPLING, 0.0625f));
 
         //HERBS
         BlockStatePropertyLootCondition.Builder builder2 = BlockStatePropertyLootCondition.builder(ModBlocks.ALOE_VERA_BLOCK)

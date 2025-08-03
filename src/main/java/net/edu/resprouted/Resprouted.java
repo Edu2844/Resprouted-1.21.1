@@ -46,6 +46,8 @@ public class Resprouted implements ModInitializer {
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
+
+
 		/*
 		FluidStorage.SIDED.registerForBlockEntity(
 				(blockEntity, direction) -> blockEntity.fluidStorage, ModBlockEntities.CRUSHING_TUB_BE);

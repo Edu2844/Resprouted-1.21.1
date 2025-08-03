@@ -9,6 +9,5 @@ public class ResproutedClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModKeybinds.registerKeybinds();
         ModClientRegistry.RegisterModClientStuffs();
-
     }
 }

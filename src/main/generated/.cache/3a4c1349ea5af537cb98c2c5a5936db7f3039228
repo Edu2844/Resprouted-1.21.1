@@ -1,6 +1,7 @@
-// 1.21.1	2025-07-31T22:08:21.9727117	Resprouted/Block Loot Tables
+// 1.21.1	2025-08-01T22:34:18.594243	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 e18718d6959508d33cab4d53b3189c7ba0c75954 data\resprouted\loot_table\blocks\bamboo_table.json
+327b905f23efd6a06058ec8aace92e8df372febd data\resprouted\loot_table\blocks\condenser.json
 1d2bac8cb33591dbd713cea9ae405f377e90847a data\resprouted\loot_table\blocks\waxed_weathered_copper_soul_lantern.json
 87a80ec86a9027ee11d6e40856e60318cb88fe01 data\resprouted\loot_table\blocks\granite_pillar.json
 634967a8bb65c47a8b6be880b25af0ffafaf001f data\resprouted\loot_table\blocks\slate_brick_stairs.json

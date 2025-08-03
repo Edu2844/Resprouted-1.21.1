@@ -1,9 +1,6 @@
 package net.edu.resprouted.block;
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.block.entity.custom.CabinetBlockEntity;
-import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
-import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
-import net.edu.resprouted.block.entity.custom.LiquidBarrelBlockEntity;
+import net.edu.resprouted.block.entity.custom.*;
 import net.edu.resprouted.registry.ModCabinetRegistry;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
@@ -24,14 +21,12 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.create(EvaporatingBasinBlockEntity::new, ModBlocks.EVAPORATING_BASIN).build(null));
 
     public static final BlockEntityType<CabinetBlockEntity> CABINET_BE =
-            Registry.register(
-                    Registries.BLOCK_ENTITY_TYPE,
-                    Identifier.of(Resprouted.MOD_ID, "cabinet_be"),
-                    BlockEntityType.Builder.create(
-                            CabinetBlockEntity::new,
-                            ModCabinetRegistry.getAllCabinetBlocks()
-                    ).build(null)
-            );
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "cabinet_be"),
+                    BlockEntityType.Builder.create(CabinetBlockEntity::new, ModCabinetRegistry.getAllCabinetBlocks()).build(null));
+
+    public static final BlockEntityType<CondenserBlockEntity> CONDENSER_BE =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "condenser_be"),
+                    BlockEntityType.Builder.create(CondenserBlockEntity::new, ModBlocks.CONDENSER).build(null));
 
     public static void registerModBlockEntities() {
         Resprouted.LOGGER.info("Registering Mod Block Entities for " + Resprouted.MOD_ID);

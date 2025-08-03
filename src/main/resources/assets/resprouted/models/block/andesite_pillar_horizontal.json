@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
-    "end": "resprouted:block/andesite/andesite_pillar_top",
+    "end": "block/polished_andesite",
     "side": "resprouted:block/andesite/andesite_pillar_side"
   }
 }

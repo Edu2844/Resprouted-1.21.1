@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:mangrove_planks"
+    },
+    "t": {
+      "tag": "minecraft:trapdoors"
+    }
+  },
+  "pattern": [
+    "###",
+    "# t",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "resprouted:mangrove_cabinet"
+  }
+}
