@@ -3,6 +3,7 @@ package net.edu.resprouted.recipe.custom;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.edu.resprouted.recipe.Input.EvaporatingBasinRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.item.ItemStack;
@@ -41,14 +42,17 @@ public record EvaporatingBasinRecipe(FluidVariant fluidInput, long fluidCost, It
 
         public static final MapCodec<EvaporatingBasinRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
                 FluidVariant.CODEC.fieldOf("fluid_variant").forGetter(EvaporatingBasinRecipe::fluidInput),
-                Codec.LONG.fieldOf("amount")        .forGetter(EvaporatingBasinRecipe::fluidCost),
-                ItemStack.CODEC.fieldOf("output_item")   .forGetter(EvaporatingBasinRecipe::output)).apply(i, EvaporatingBasinRecipe::new));
+                Codec.LONG.fieldOf("amount").forGetter(EvaporatingBasinRecipe::fluidCost),
+                ItemStack.CODEC.fieldOf("output_item").forGetter(EvaporatingBasinRecipe::output)).apply(i, EvaporatingBasinRecipe::new));
 
         public static final PacketCodec<RegistryByteBuf, EvaporatingBasinRecipe> STREAM = PacketCodec.ofStatic(
-                (buf, r) -> {FluidVariant.PACKET_CODEC.encode(buf, r.fluidInput());buf.writeVarLong(r.fluidCost());ItemStack.PACKET_CODEC.encode(buf, r.output());
-                },
-                buf -> new EvaporatingBasinRecipe(FluidVariant.PACKET_CODEC.decode(buf), buf.readVarLong(), ItemStack.PACKET_CODEC.decode(buf)
-                )
+                (buf, r) -> {FluidVariant.PACKET_CODEC.encode(buf, r.fluidInput());
+                    buf.writeVarLong(r.fluidCost());
+                    ItemStack.PACKET_CODEC.encode(buf, r.output());
+                    },
+                buf -> new EvaporatingBasinRecipe(FluidVariant.PACKET_CODEC.decode(buf),
+                        buf.readVarLong(),
+                        ItemStack.PACKET_CODEC.decode(buf))
         );
         @Override public MapCodec<EvaporatingBasinRecipe> codec() {
             return CODEC;

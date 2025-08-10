@@ -2,7 +2,7 @@ package net.edu.resprouted.item;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.util.ElixirUtil;
+import net.edu.resprouted.util.ElixirUtils;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -328,7 +328,7 @@ public class ModItemGroups {
                         entries.add(ModItems.DEATHSTALK_MUSHROOM);
                         entries.add(ModBlocks.CONDENSER);
                         entries.add(ModBlocks.RETORT);
-                        entries.addAll(ElixirUtil.getElixirs());
+                        entries.addAll(ElixirUtils.getElixirs());
                     }).build());
 
     public static void registerItemGroup(){

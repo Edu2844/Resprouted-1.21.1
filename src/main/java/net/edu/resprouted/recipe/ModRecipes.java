@@ -1,6 +1,7 @@
 package net.edu.resprouted.recipe;
 
 import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.recipe.custom.CondenserRecipe;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
 import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipe;
 import net.minecraft.recipe.RecipeSerializer;
@@ -35,6 +36,20 @@ public class ModRecipes {
     public static final RecipeSerializer<EvaporatingBasinRecipe> EV_BASIN_SERIALIZER = Registry.register(
             Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"evaporating_basin"),
             new EvaporatingBasinRecipe.Serializer());
+
+
+    public static final RecipeType<CondenserRecipe> CONDENSER_TYPE = Registry.register(
+            Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"condenser"),
+            new RecipeType<CondenserRecipe>() {
+                @Override
+                public String toString() {
+                    return "condenser";
+                }
+            });
+
+    public static final RecipeSerializer<CondenserRecipe> CONDENSER_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"condenser"),
+            new CondenserRecipe.Serializer());
 
     public static void registerRecipes() {
         Resprouted.LOGGER.info("Registering Custom Recipes for " + Resprouted.MOD_ID);

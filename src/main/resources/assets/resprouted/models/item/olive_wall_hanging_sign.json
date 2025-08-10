@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "resprouted:item/olive/olive_hanging_sign"
+    "layer0": "resprouted:item/olive_hanging_sign"
   }
 }

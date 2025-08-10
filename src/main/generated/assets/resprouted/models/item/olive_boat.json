@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "resprouted:item/olive/olive_boat"
+    "layer0": "resprouted:item/olive_boat"
   }
 }

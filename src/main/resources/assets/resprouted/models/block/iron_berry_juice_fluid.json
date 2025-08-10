@@ -1,6 +1,6 @@
 {
   "parent": "block/water",
   "textures": {
-    "particle": "resprouted:block/fluid/iron_berry_juice_still"
+    "particle": "resprouted:block/fluid/iron_berry_juice_overlay"
   }
 }

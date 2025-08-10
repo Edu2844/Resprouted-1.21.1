@@ -1,16 +1,17 @@
 package net.edu.resprouted.block.custom.alchemy;
 
-import net.edu.resprouted.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -60,14 +61,14 @@ public class RetortBlock extends Block {
 
     // ========= INTERACCIÓN =========
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        BlockPos offsetPos = pos.offset(state.get(FACING).getOpposite());
-        BlockState offsetState = world.getBlockState(offsetPos);
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        BlockPos condenserPos = pos.offset(state.get(FACING).getOpposite());
+        BlockState condenserState = world.getBlockState(condenserPos);
 
-        if (offsetState.getBlock() == ModBlocks.CONDENSER) { //|| offsetState.getBlock() == ModBlocks.CONDENSER_ADVANCED
-            return offsetState.onUse(world, player, hit);
+        if (!(condenserState.getBlock() instanceof CondenserBlock condenserBlock)) {
+            return ItemActionResult.FAIL;
         }
-        return ActionResult.PASS;
+        return condenserBlock.onUseWithItem(stack, condenserState, world, condenserPos, player, hand, hit);
     }
 
     // ========= FORMA Y TRANSFORMACIONES =========

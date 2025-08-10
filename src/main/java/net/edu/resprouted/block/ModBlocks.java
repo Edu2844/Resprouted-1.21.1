@@ -6,7 +6,7 @@ import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock
 import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.custom.agriculture.*;
-import net.edu.resprouted.block.custom.alchemy.CondenderBlock;
+import net.edu.resprouted.block.custom.alchemy.CondenserBlock;
 import net.edu.resprouted.block.custom.alchemy.RetortBlock;
 import net.edu.resprouted.block.custom.decorative.*;
 import net.edu.resprouted.fluid.ModFluids;
@@ -601,7 +601,7 @@ public class ModBlocks {
     // =================================================
     // ||                  ALCHEMY                    ||
     // =================================================
-    public static final Block CONDENSER = registerBlock("condenser", new CondenderBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
+    public static final Block CONDENSER = registerBlock("condenser", new CondenserBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
     public static final Block RETORT = registerBlock("retort", new RetortBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
 
     private static Block registerBlockWithoutBlockItem(String name, Block block) {

@@ -1,4 +1,4 @@
-package net.edu.resprouted.recipe.custom;
+package net.edu.resprouted.recipe.Input;
 
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.item.ItemStack;

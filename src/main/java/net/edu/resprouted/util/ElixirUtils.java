@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ElixirUtil {
+public class ElixirUtils {
     public static List<ItemStack> getElixirs() {
         List<ItemStack> elixirs = new ArrayList<>();
         elixirs.add(createElixir(StatusEffects.INSTANT_HEALTH, 0, 0));
@@ -51,7 +51,7 @@ public class ElixirUtil {
 
         return elixirs;
     }
-    private static ItemStack createElixir(RegistryEntry<StatusEffect> effect, int duration, int amplifier) {
+    public static ItemStack createElixir(RegistryEntry<StatusEffect> effect, int duration, int amplifier) {
         ItemStack stack = new ItemStack(ModItems.ELIXIR_BOTTLE);
         stack.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Optional.of(Potions.WATER), Optional.empty(), List.of(new StatusEffectInstance(effect, duration, amplifier))));
         return stack;

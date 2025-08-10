@@ -3,6 +3,7 @@ package net.edu.resprouted.recipe.custom;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.edu.resprouted.recipe.Input.CrushingTubRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.item.ItemStack;

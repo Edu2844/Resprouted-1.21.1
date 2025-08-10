@@ -24,7 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasinDisplay> {
-    public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/evaporating_basin_gui.png");
+    public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/recipe/evaporating_basin_gui.png");
     public static final CategoryIdentifier<EvaporatingBasinDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "evaporating_basin");
 
     @Override

@@ -1,6 +1,6 @@
-// 1.21.1	2025-08-01T22:34:18.583272	Resprouted/Tags for minecraft:block
+// 1.21.1	2025-08-06T22:41:56.9141687	Resprouted/Tags for minecraft:block
 bae413f2bcbeb5269437af17c363b31c4070989c data\minecraft\tags\block\fences.json
-161347e92c6241875fac1db1050d61e620b867d7 data\minecraft\tags\block\mineable\pickaxe.json
+9204338a539f4d8d08581f85c936dbc64974d4dd data\minecraft\tags\block\mineable\pickaxe.json
 7f08e1ec55467be8b6c829f8f63e452d7db4f044 data\minecraft\tags\block\logs_that_burn.json
 6e684c77bc468283a0028bc29cc2660d8ac47d46 data\minecraft\tags\block\fence_gates.json
 b2d2bbf7c4e2e09104fe9507b6b81e4419142f43 data\minecraft\tags\block\walls.json

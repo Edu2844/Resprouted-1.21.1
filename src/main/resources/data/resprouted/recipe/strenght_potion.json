@@ -1,0 +1,10 @@
+{
+  "type": "resprouted:condenser",
+  "ingredients": [
+    { "item": "resprouted:aloe_vera" },
+    { "item": "resprouted:blood_orchid" }
+  ],
+  "effect": "minecraft:strength",
+  "duration": 600,
+  "amplifier": 1
+}

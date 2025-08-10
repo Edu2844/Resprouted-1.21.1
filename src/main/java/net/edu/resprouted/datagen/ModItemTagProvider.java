@@ -120,5 +120,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.FLINT_AND_STEEL)
                 .add(Items.FIRE_CHARGE)
         ;
+        getOrCreateTagBuilder(ModTags.Items.FUELS)
+                .add(Items.CHARCOAL)
+        ;
     }
 }

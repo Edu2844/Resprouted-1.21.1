@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-01T22:34:18.594243	Resprouted/Block Loot Tables
+// 1.21.1	2025-08-06T22:41:56.9201543	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 e18718d6959508d33cab4d53b3189c7ba0c75954 data\resprouted\loot_table\blocks\bamboo_table.json
 327b905f23efd6a06058ec8aace92e8df372febd data\resprouted\loot_table\blocks\condenser.json
@@ -91,6 +91,7 @@ d804534e82fb4ea4856a190ca29ba3fcdefb35a4 data\resprouted\loot_table\blocks\iron_
 81d5f817b8c349ce4e37750c96b7781072b991e6 data\resprouted\loot_table\blocks\fertile_soil.json
 3cf077073901273f6a8f67e505e04a3b2d5228fb data\resprouted\loot_table\blocks\evaporating_basin.json
 a6137a1a8b3c5de957a1d2a7f6b515156dfc25ee data\resprouted\loot_table\blocks\mangrove_table.json
+ff571d45b70b01cbc1cbf00868e19227eb1e88d2 data\resprouted\loot_table\blocks\retort.json
 e704253c4e8c83d7ecab05a3da2be273e91e6013 data\resprouted\loot_table\blocks\dark_oak_chair.json
 4119bae943270d7243af1a3a6429fd36ba4f8cd5 data\resprouted\loot_table\blocks\wind_thistle_block.json
 efd7ebbff014f61f8fe77a333dbd5b1bb562eca7 data\resprouted\loot_table\blocks\golden_chain.json

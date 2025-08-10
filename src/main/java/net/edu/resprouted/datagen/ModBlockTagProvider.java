@@ -117,6 +117,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
                 //ALCHEMY
                 .add(ModBlocks.CONDENSER)
+                .add(ModBlocks.RETORT)
+
                 .add(ModBlocks.IRON_CANDLE_HOLDER)
 
         ;

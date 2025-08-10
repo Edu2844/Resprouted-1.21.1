@@ -6,9 +6,10 @@ import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.networking.ModMessages;
 import net.edu.resprouted.registry.ModCabinetRegistry;
+import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.util.FluidContainerLoader;
 import net.edu.resprouted.event.ModEvents;
-import net.edu.resprouted.util.BottleInteractionsUtil;
+import net.edu.resprouted.util.BottleInteractionsUtils;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItemGroups;
 import net.edu.resprouted.item.ModItems;
@@ -30,7 +31,7 @@ public class Resprouted implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModFluids.registerModFluids();
-		BottleInteractionsUtil.registerFluidInteractions();
+		BottleInteractionsUtils.registerFluidInteractions();
 		ModEffects.registerEffects();
 		ModItems.registerModItems();
 		ModBlockEntities.registerModBlockEntities();
@@ -45,6 +46,7 @@ public class Resprouted implements ModInitializer {
 		ModCabinetRegistry.getAllCabinetBlocks();
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
+		ModScreenHandlers.registerScreenHandlers();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
 
 

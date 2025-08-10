@@ -1,4 +1,4 @@
-package net.edu.resprouted.recipe.custom;
+package net.edu.resprouted.recipe.Input;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.input.RecipeInput;

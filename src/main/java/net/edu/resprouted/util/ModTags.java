@@ -40,6 +40,7 @@ public class ModTags {
         public static final TagKey<Item> IGNITERS = createTag("igniters");
         public static final TagKey<Item> CAN_BE_OILED = createTag("can_be_oiled");
         public static final TagKey<Item> OLIVE_OILED = createTag("olive_oiled");
+        public static final TagKey<Item> FUELS = createTag("fuels");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(Resprouted.MOD_ID, name));

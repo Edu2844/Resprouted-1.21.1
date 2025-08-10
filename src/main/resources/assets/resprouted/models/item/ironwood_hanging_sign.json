@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "resprouted:item/ironwood/ironwood_hanging_sign"
+    "layer0": "resprouted:item/ironwood_hanging_sign"
   }
 }

@@ -4,7 +4,7 @@ import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
-import net.edu.resprouted.recipe.custom.CrushingTubRecipeInput;
+import net.edu.resprouted.recipe.Input.CrushingTubRecipeInput;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;

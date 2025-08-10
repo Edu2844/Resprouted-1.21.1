@@ -4,6 +4,8 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.block.entity.custom.CondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.item.ModItems;
 import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
@@ -124,7 +126,8 @@ public class ModRegistry {
         BlockApiLookup<Storage<FluidVariant>, @Nullable Direction> registry = FluidStorage.SIDED;
         registry.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, ModBlockEntities.CRUSHING_TUB_BE);
         registry.registerForBlockEntity((blockEntity, direction) -> blockEntity.liquidbarrel, ModBlockEntities.LIQUID_BARREL_BE);
-        registry.registerForBlockEntity((blockEntity, direction) -> blockEntity.basin, ModBlockEntities.EVAPORATING_BASIN_BE);
+        FluidStorage.SIDED.registerForBlockEntity(EvaporatingBasinBlockEntity::getFluidTankProvider, ModBlockEntities.EVAPORATING_BASIN_BE);
+        FluidStorage.SIDED.registerForBlockEntity(CondenserBlockEntity::getFluidTankProvider, ModBlockEntities.CONDENSER_BE);
     }
     public static void registerBoats(){
         TerraformBoatType OliveBoat = new TerraformBoatType.Builder()

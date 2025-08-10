@@ -187,6 +187,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         //ALCHEMY
         addDrop(ModBlocks.CONDENSER);
+        addDrop(ModBlocks.RETORT);
 
         //CHANDELIER
         addDrop(ModBlocks.CHANDELIER);

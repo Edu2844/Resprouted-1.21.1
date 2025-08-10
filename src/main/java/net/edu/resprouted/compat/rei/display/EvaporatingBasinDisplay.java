@@ -35,6 +35,6 @@ public class EvaporatingBasinDisplay extends BasicDisplay {
         return fluid;
     }
     public long getAmount() {
-        return amount;
+        return (amount);
     }
 }

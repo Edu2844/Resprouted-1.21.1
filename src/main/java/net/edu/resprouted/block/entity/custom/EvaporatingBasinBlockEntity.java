@@ -4,10 +4,12 @@ import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipe;
-import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipeInput;
+import net.edu.resprouted.recipe.Input.EvaporatingBasinRecipeInput;
+import net.edu.resprouted.util.FluidStack;
 import net.edu.resprouted.util.ModTags;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
@@ -25,12 +27,13 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class EvaporatingBasinBlockEntity extends BlockEntity implements ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
-    private static final long MB_PER_TICK = 1;
+    private static final long MB_PER_TICK = 81;
     private static final long EV_BOOSTER = 2;
 
     public EvaporatingBasinBlockEntity(BlockPos pos, BlockState state) {
@@ -96,11 +99,11 @@ public class EvaporatingBasinBlockEntity extends BlockEntity implements Implemen
             if (extracted == mbPerTick) {
                 tx.commit();
                 be.progress += mbPerTick;
-
             }
         }
-        if (be.progress >= recipe.fluidCost()) {
-            be.progress -= recipe.fluidCost();
+        long cost = FluidStack.convertMbToDroplets(recipe.fluidCost());
+        if (be.progress >= cost) {
+            be.progress -= cost;
             be.spawnOrStore(recipe.output().copy());
             world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
         }
@@ -109,39 +112,14 @@ public class EvaporatingBasinBlockEntity extends BlockEntity implements Implemen
         ItemStack slot = inventory.getFirst();
         if (slot.isEmpty()) {
             inventory.set(0, stack);
-        } else if (ItemStack.areItemsAndComponentsEqual(slot, stack)
-                && slot.getCount() + stack.getCount() <= slot.getMaxCount()) {
+        } else if (ItemStack.areItemsAndComponentsEqual(slot, stack) && slot.getCount() + stack.getCount() <= slot.getMaxCount()) {
             slot.increment(stack.getCount());
         } else {
+            assert world != null;
             ItemScatterer.spawn(world, pos, DefaultedList.ofSize(1, stack));
         }
         markDirty();
     }
-    public final SingleVariantStorage<FluidVariant> basin = new SingleVariantStorage<>() {
-        @Override
-        protected FluidVariant getBlankVariant() {
-            return FluidVariant.blank();
-        }
-        @Override
-        protected long getCapacity(FluidVariant fluidVariant) {
-            return 6 * FluidConstants.BUCKET;
-        }
-        @Override
-        protected void onFinalCommit() {
-            markDirty();
-            if (world != null && !world.isClient) {
-                world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
-            }
-        }
-        @Override
-        protected boolean canInsert(FluidVariant variant) {
-            return true;
-        }
-        @Override
-        protected boolean canExtract(FluidVariant variant) {
-            return true;
-        }
-    };
     public FluidVariant getFluid() {
         for (StorageView<FluidVariant> view : basin) {
             if (!view.isResourceBlank() && view.getAmount() > 0) {
@@ -149,5 +127,14 @@ public class EvaporatingBasinBlockEntity extends BlockEntity implements Implemen
             }
         }
         return FluidVariant.blank();
+    }
+    public final SingleFluidStorage basin = SingleFluidStorage.withFixedCapacity(FluidConstants.BUCKET * 6, this::update);
+    private void update() {
+        markDirty();
+        if(world != null)
+            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+    }
+    public SingleFluidStorage getFluidTankProvider(Direction direction) {
+        return this.basin;
     }
 }
