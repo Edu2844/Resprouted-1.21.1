@@ -25,11 +25,14 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -50,9 +53,9 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
     private int burnTime = 0;
     private int fuelTime = 0;
     protected final PropertyDelegate propertyDelegate;
-    private int progress = 0;
+    public int progress = 0;
     private int maxProgress = 380;
-    private static final long RECIPE_FLUID_COST = 10125L;
+    private static final long RECIPE_FLUID_COST = 10125L; //10125L = 125mB
 
     public CondenserBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CONDENSER_BE, pos, state);
@@ -125,11 +128,31 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
             );
         }
     }
-    public void tick(World world, BlockPos pos, BlockState state) {
-        boolean wasBurning = isBurning();
-        boolean dirty = false;
+    public void clientTick(World world, BlockPos pos, BlockState state) {
+        if (state.get(CondenserBlock.LIT)) {
+            Direction facing = state.get(CondenserBlock.FACING);
+            double yVel = 0.125D;
 
-        if (!isBurning() && hasRecipe()) {
+            if (facing == Direction.NORTH || facing == Direction.SOUTH) {
+                spawnSmoke(world, pos.getX() - 0.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D, yVel);
+                spawnSmoke(world, pos.getX() + 1.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D, yVel);
+            } else if (facing == Direction.EAST || facing == Direction.WEST) {
+                spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() - 0.5D, yVel);
+                spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() + 1.5D, yVel);
+            }
+        }
+    }
+    private void spawnSmoke(World world, double x, double y, double z, double yVel) {
+        for (int i = 0; i < 5; i++) {
+            double extraY = i * 0.05D;
+            world.addParticle(ParticleTypes.SMOKE, x, y + extraY, z, 0, yVel, 0);
+        }
+    }
+    public void serverTick(World world, BlockPos pos, BlockState state) {
+        boolean dirty = false;
+        boolean hasFuelAvailable = !this.inventory.get(FUEL_SLOT).isEmpty() && FuelRegistry.INSTANCE.get(this.inventory.get(FUEL_SLOT).getItem()) > 0;
+
+        if (!isBurning() && hasRecipe() && hasFuelAvailable) {
             ItemStack fuelStack = this.inventory.get(FUEL_SLOT);
             int fuelBurnTime = FuelRegistry.INSTANCE.get(fuelStack.getItem());
             if (fuelBurnTime > 0) {
@@ -143,7 +166,6 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
             this.burnTime--;
             if (hasRecipe()) {
                 increaseCraftingProgress();
-
                 if (hasCraftingFinished()) {
                     craftItem();
                     resetProgress();
@@ -153,12 +175,13 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
                 resetProgress();
             }
             markDirty(world, pos, state);
-
         } else {
             resetProgress();
         }
-        if (wasBurning != isBurning()) {
-            world.setBlockState(pos, state.with(CondenserBlock.LIT, isBurning()), Block.NOTIFY_ALL);
+        boolean shouldBeLit = isBurning() || (hasFuelAvailable && hasRecipe());
+        if (state.get(CondenserBlock.LIT) != shouldBeLit) {
+            world.setBlockState(pos, state.with(CondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
+            dirty = true;
         }
         if (dirty) {
             markDirty(world, pos, state);
@@ -219,6 +242,7 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
         }
         markDirty();
         world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+        world.playSound(null, pos, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
     }
     private void resetProgress() {
         this.progress = 0;

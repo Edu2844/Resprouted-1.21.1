@@ -5,7 +5,6 @@ import net.edu.resprouted.util.FluidStack;
 import net.edu.resprouted.util.ScreenUtils;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;

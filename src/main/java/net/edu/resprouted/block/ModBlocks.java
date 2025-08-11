@@ -22,6 +22,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
+import static net.edu.resprouted.block.custom.alchemy.CondenserBlock.LIT;
+
 public class ModBlocks {
     // =================================================
     // ||                   SLATE                     ||
@@ -601,7 +603,7 @@ public class ModBlocks {
     // =================================================
     // ||                  ALCHEMY                    ||
     // =================================================
-    public static final Block CONDENSER = registerBlock("condenser", new CondenserBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
+    public static final Block CONDENSER = registerBlock("condenser", new CondenserBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).luminance(state -> state.get(LIT) ? 15 : 0).nonOpaque()));
     public static final Block RETORT = registerBlock("retort", new RetortBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
 
     private static Block registerBlockWithoutBlockItem(String name, Block block) {

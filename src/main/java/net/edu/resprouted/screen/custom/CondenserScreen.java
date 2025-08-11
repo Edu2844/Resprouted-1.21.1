@@ -13,8 +13,8 @@ import net.minecraft.util.math.MathHelper;
 
 public class CondenserScreen extends HandledScreen<CondenserScreenHandler> {
     private static final Identifier GUI_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/condenser/condenser.png");
-    private static final Identifier ARROW_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/container/condenser_progress.png");
-    private static final Identifier LIT_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/container/lit_progress.png");
+    private static final Identifier ARROW_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/condenser_progress.png");
+    private static final Identifier LIT_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/lit_progress.png");
     public CondenserScreen(CondenserScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
@@ -31,10 +31,7 @@ public class CondenserScreen extends HandledScreen<CondenserScreenHandler> {
 
         renderProgressArrow(context, x, y);
         renderProgressLit(context, x, y);
-        addDrawable(FluidWidget.builder(this.handler.getBlockEntity().getFluidTank())
-                .bounds(this.x + 133, this.y + 27, 16, 32)
-                .posSupplier(() -> this.handler.getBlockEntity().getPos())
-                .build());
+        addDrawable(FluidWidget.builder(this.handler.getBlockEntity().getFluidTank()).bounds(this.x + 133, this.y + 27, 16, 32).posSupplier(() -> this.handler.getBlockEntity().getPos()).build());
     }
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {

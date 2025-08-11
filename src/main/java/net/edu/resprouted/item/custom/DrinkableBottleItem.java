@@ -32,7 +32,6 @@ public class DrinkableBottleItem extends Item {
             }
             return result;
         }
-
         return stack;
     }
     @Override
