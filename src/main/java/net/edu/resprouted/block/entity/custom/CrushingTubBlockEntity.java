@@ -7,6 +7,7 @@ import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
 import net.edu.resprouted.recipe.Input.CrushingTubRecipeInput;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.minecraft.block.Block;
@@ -23,6 +24,7 @@ import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
@@ -42,8 +44,8 @@ public class CrushingTubBlockEntity extends BlockEntity implements ImplementedIn
         Inventories.writeNbt(nbt, inventory, registryLookup);
         //Fluidos
         NbtCompound fluidNbt = new NbtCompound();
-        SingleVariantStorage.writeNbt(fluidStorage, FluidVariant.CODEC, fluidNbt, registryLookup);
-        nbt.put("FluidStorage", fluidNbt);
+        SingleVariantStorage.writeNbt(crushing_tub, FluidVariant.CODEC, fluidNbt, registryLookup);
+        nbt.put("Fluid", fluidNbt);
 
     }
     @Override
@@ -51,12 +53,12 @@ public class CrushingTubBlockEntity extends BlockEntity implements ImplementedIn
         inventory.clear();
         Inventories.readNbt(nbt, inventory, registryLookup);
         //Fluidos
-        if (nbt.contains("FluidStorage", NbtElement.COMPOUND_TYPE)) {
+        if (nbt.contains("Fluid", NbtElement.COMPOUND_TYPE)) {
             SingleVariantStorage.readNbt(
-                    fluidStorage,
+                    crushing_tub,
                     FluidVariant.CODEC,
                     FluidVariant::blank,
-                    nbt.getCompound("FluidStorage"),
+                    nbt.getCompound("Fluid"),
                     registryLookup
             );
         }
@@ -71,34 +73,17 @@ public class CrushingTubBlockEntity extends BlockEntity implements ImplementedIn
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
     }
-    public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
-
-        @Override
-        protected FluidVariant getBlankVariant() {
-            return FluidVariant.blank();
-        }
-        @Override
-        protected long getCapacity(FluidVariant fluidVariant) {
-            return 8 * FluidConstants.BUCKET;
-        }
-        @Override
-        protected boolean canInsert(FluidVariant variant) {
-            return true;
-        }
-        @Override
-        protected void onFinalCommit() {
-            markDirty();
-            if (world != null && !world.isClient) {
-                world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_LISTENERS);
-            }
-        }
-        @Override
-        protected boolean canExtract(FluidVariant variant) {
-            return true;
-        }
-    };
+    public final SingleFluidStorage crushing_tub = SingleFluidStorage.withFixedCapacity(FluidConstants.BUCKET * 8, this::update);
+    private void update() {
+        markDirty();
+        if(world != null)
+            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+    }
+    public SingleFluidStorage getFluidTankProvider(Direction direction) {
+        return this.crushing_tub;
+    }
     public FluidVariant getFluid() {
-        for (StorageView<FluidVariant> view : fluidStorage) {
+        for (StorageView<FluidVariant> view : crushing_tub) {
             if (!view.isResourceBlank() && view.getAmount() > 0) {
                 return view.getResource();
             }

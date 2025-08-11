@@ -5,18 +5,15 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.entity.custom.CondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
 import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
+import net.edu.resprouted.block.entity.custom.LiquidBarrelBlockEntity;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.item.ModItems;
-import net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
-import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
 
 import static net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry.registerOxidizableBlockPair;
 import static net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry.registerWaxableBlockPair;
@@ -123,9 +120,8 @@ public class ModRegistry {
         registry.add(ModItems.OLIVES, 0.5F);
     }
     public static void registerFluidStorages() {
-        BlockApiLookup<Storage<FluidVariant>, @Nullable Direction> registry = FluidStorage.SIDED;
-        registry.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, ModBlockEntities.CRUSHING_TUB_BE);
-        registry.registerForBlockEntity((blockEntity, direction) -> blockEntity.liquidbarrel, ModBlockEntities.LIQUID_BARREL_BE);
+        FluidStorage.SIDED.registerForBlockEntity(CrushingTubBlockEntity::getFluidTankProvider, ModBlockEntities.CRUSHING_TUB_BE);
+        FluidStorage.SIDED.registerForBlockEntity(LiquidBarrelBlockEntity::getFluidTankProvider, ModBlockEntities.LIQUID_BARREL_BE);
         FluidStorage.SIDED.registerForBlockEntity(EvaporatingBasinBlockEntity::getFluidTankProvider, ModBlockEntities.EVAPORATING_BASIN_BE);
         FluidStorage.SIDED.registerForBlockEntity(CondenserBlockEntity::getFluidTankProvider, ModBlockEntities.CONDENSER_BE);
     }

@@ -79,8 +79,8 @@ public class CrushingTubBERenderer implements BlockEntityRenderer<CrushingTubBlo
         }
         //FLUID RENDER
         FluidVariant fluid = entity.getFluid();
-        long amount = entity.fluidStorage.getAmount();
-        long capacity = entity.fluidStorage.getCapacity();
+        long amount = entity.crushing_tub.getAmount();
+        long capacity = entity.crushing_tub.getCapacity();
 
         if (!fluid.isBlank() && amount > 0) {
             float fillPercentage = MathHelper.clamp((float) amount / capacity, 0, 1);

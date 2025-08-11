@@ -115,7 +115,7 @@ public class LiquidBarrelBlock extends BlockWithEntity implements BlockEntityPro
                             fluidNbt.putLong("amount", amount);
 
                             NbtCompound blockEntityTag = new NbtCompound();
-                            blockEntityTag.put("FluidStorage", fluidNbt);
+                            blockEntityTag.put("Fluid", fluidNbt);
                             blockEntityTag.putString("id", Objects.requireNonNull(Registries.BLOCK_ENTITY_TYPE.getId(ModBlockEntities.LIQUID_BARREL_BE)).toString());
 
                             stack.set(DataComponentTypes.BLOCK_ENTITY_DATA, NbtComponent.of(blockEntityTag));
@@ -128,7 +128,6 @@ public class LiquidBarrelBlock extends BlockWithEntity implements BlockEntityPro
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
-    //Apagar al jugador en llamas al ingresar en el barril con fluido
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (world.isClient) return;

@@ -50,15 +50,15 @@ public class EvaporatingBasinBlockEntity extends BlockEntity implements Implemen
         //Fluidos
         NbtCompound fluidNbt = new NbtCompound();
         SingleVariantStorage.writeNbt(basin, FluidVariant.CODEC, fluidNbt, registryLookup);
-        nbt.put("FluidStorage", fluidNbt);
+        nbt.put("Fluid", fluidNbt);
     }
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         inventory.clear();
         Inventories.readNbt(nbt, inventory, registryLookup);
         //Fluidos
-        if (nbt.contains("FluidStorage", NbtElement.COMPOUND_TYPE)) {
-            SingleVariantStorage.readNbt(basin, FluidVariant.CODEC, FluidVariant::blank, nbt.getCompound("FluidStorage"), registryLookup
+        if (nbt.contains("Fluid", NbtElement.COMPOUND_TYPE)) {
+            SingleVariantStorage.readNbt(basin, FluidVariant.CODEC, FluidVariant::blank, nbt.getCompound("Fluid"), registryLookup
             );
         }
         super.readNbt(nbt, registryLookup);

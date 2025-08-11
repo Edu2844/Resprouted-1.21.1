@@ -137,7 +137,7 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
         CrushingTubRecipe recipe = opt.get();
         FluidVariant recipeFluid  = recipe.fluidOutput();
         FluidVariant currentFluid = crushingTub.getFluid();
-        long currentAmount        = crushingTub.fluidStorage.getAmount();
+        long currentAmount        = crushingTub.crushing_tub.getAmount();
 
         boolean canInsertFluid = recipeFluid.isBlank() || currentFluid.isBlank() || currentFluid.equals(recipeFluid);
         boolean overCapacity   = !recipeFluid.isBlank() && (currentAmount + recipe.fluidAmount() > FluidConstants.BUCKET * 8);
@@ -151,7 +151,7 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
             boolean shouldCommit = true;
 
             if (!recipeFluid.isBlank() && recipe.fluidAmount() > 0) {
-                long inserted = crushingTub.fluidStorage.insert(recipeFluid, recipe.fluidAmount(), tx);
+                long inserted = crushingTub.crushing_tub.insert(recipeFluid, recipe.fluidAmount(), tx);
                 if (inserted != recipe.fluidAmount()) shouldCommit = false;
             }
             if (shouldCommit) {

@@ -29,7 +29,7 @@ public class LiquidBarrelItem extends BlockItem {
 
         if (nbt == null) return;
 
-        var tag = nbt.copyNbt().getCompound("FluidStorage");
+        var tag = nbt.copyNbt().getCompound("Fluid");
         if (!tag.contains("variant") || !tag.contains("amount")) return;
         try {
             var variant = FluidVariant.CODEC.parse(TOOLTIP_OPS, tag.get("variant")).result().orElse(FluidVariant.blank());
@@ -38,8 +38,8 @@ public class LiquidBarrelItem extends BlockItem {
                 var name = FluidVariantAttributes.getName(variant);
                 long amount = FluidStack.convertDropletsToMb(tag.getLong("amount"));
 
-                tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.DARK_PURPLE));
-                tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.DARK_PURPLE));
+                tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.GOLD));
+                tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.GOLD));
             }
         } catch (Exception e) {
             tooltip.add(Text.translatable("tooltip.resprouted.fluid_error").formatted(Formatting.RED));

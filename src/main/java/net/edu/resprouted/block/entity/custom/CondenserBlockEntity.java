@@ -108,7 +108,7 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
         //Fluidos
         NbtCompound fluidNbt = new NbtCompound();
         SingleVariantStorage.writeNbt(condenser, FluidVariant.CODEC, fluidNbt, registryLookup);
-        nbt.put("FluidStorage", fluidNbt);
+        nbt.put("Fluid", fluidNbt);
     }
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
@@ -118,12 +118,12 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
         maxProgress = nbt.getInt("condenser.max_progress");
         this.burnTime = nbt.getInt("BurnTime");
         //Fluidos
-        if (nbt.contains("FluidStorage", NbtElement.COMPOUND_TYPE)) {
+        if (nbt.contains("Fluid", NbtElement.COMPOUND_TYPE)) {
             SingleVariantStorage.readNbt(
                     condenser,
                     FluidVariant.CODEC,
                     FluidVariant::blank,
-                    nbt.getCompound("FluidStorage"),
+                    nbt.getCompound("Fluid"),
                     registryLookup
             );
         }

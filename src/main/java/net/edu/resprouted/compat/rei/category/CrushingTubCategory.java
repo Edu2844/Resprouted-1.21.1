@@ -53,13 +53,13 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createTexturedWidget(TEXTURE, startPoint.x, startPoint.y,0, 0, 130, 57));
 
-        //Slot input (sin fondo)
+        //Slot input
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 19, startPoint.y + 7))
                 .entries(display.getInputEntries().getFirst())
                 .disableBackground()
                 .markInput());
 
-        //Slot output (si existe)
+        //Slot output
         if (!display.getOutputEntries().isEmpty()) {
             boolean hasValidFluid = display.getFluid() != null && FluidVariantRendering.getSprite(display.getFluid()) != null;
 
