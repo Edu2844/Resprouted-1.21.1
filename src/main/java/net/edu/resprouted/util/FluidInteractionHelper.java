@@ -18,7 +18,7 @@ public class FluidInteractionHelper {
         if (player.getWorld().isClient) return ItemActionResult.FAIL;
         try (Transaction tx = Transaction.openOuter()) {
             for (FluidContainerMapping mapping : FluidContainerLoader.getEntries()) {
-                //Insertar
+                //Insert
                 if (allowInsert && mapping.direction().allowsInsert() && ItemStack.areItemsEqual(stack, mapping.fullItem())) {
                     long inserted = storage.insert(mapping.fluid(), mapping.amount(), tx);
                     if (inserted == mapping.amount()) {
@@ -33,7 +33,7 @@ public class FluidInteractionHelper {
                         return ItemActionResult.SUCCESS;
                     }
                 }
-                //Extraer
+                //Extract
                 if (allowExtract && mapping.direction().allowsExtract() && stack.isOf(mapping.emptyItem().getItem())) {
                     long extracted = storage.extract(mapping.fluid(), mapping.amount(), tx);
                     if (extracted == mapping.amount()) {

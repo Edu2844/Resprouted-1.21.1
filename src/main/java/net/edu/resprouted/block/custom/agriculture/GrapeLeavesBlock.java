@@ -236,9 +236,9 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.isOf(ModBlocks.GRAPE_LEAVES) && state.get(GrapeLeavesBlock.HAS_GRAPES)) {
-            //Dar item
+            //Give item
             player.giveItemStack(new ItemStack(ModItems.GRAPES, 1));
-            //Actualizar estado del bloque
+            //Update Blockstate
             world.setBlockState(pos, state.with(GrapeLeavesBlock.HAS_GRAPES, false), Block.NOTIFY_ALL);
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F);
             return ItemActionResult.SUCCESS;

@@ -21,13 +21,13 @@ public class HerbBlock extends CropBlock {
     public static final int MAX_AGE = 6;
     public static final IntProperty AGE = IntProperty.of("age", 0, 6);
     private static final VoxelShape[] SHAPE_TO_AGE = new VoxelShape[]{
-            Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 5.0F, 10.0F),  //Etapa 0
-            Block.createCuboidShape(5.0F, 0.0F, 5.0F, 11.0F, 6.0F, 11.0F),  //Etapa 1
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 8.0F, 12.0F),  //Etapa 2
-            Block.createCuboidShape(3.0F, 0.0F, 3.0F, 13.0F, 11.0F, 13.0F), //Etapa 3
-            Block.createCuboidShape(3.0F, 0.0F, 3.0F, 13.0F, 12.0F, 13.0F), //Etapa 4
-            Block.createCuboidShape(3.0F, 0.0F, 3.0F, 13.0F, 13.0F, 13.0F), //Etapa 5
-            Block.createCuboidShape(3.0F, 0.0F, 3.0F, 13.0F, 14.0F, 13.0F), //Etapa 6
+            Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 5.0F, 10.0F),
+            Block.createCuboidShape(5.0F, 0.0F, 5.0F, 11.0F, 6.0F, 11.0F),
+            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 8.0F, 12.0F),
+            Block.createCuboidShape(3.0F, 0.0F, 3.0F, 13.0F, 11.0F, 13.0F),
+            Block.createCuboidShape(3.0F, 0.0F, 3.0F, 13.0F, 12.0F, 13.0F),
+            Block.createCuboidShape(3.0F, 0.0F, 3.0F, 13.0F, 13.0F, 13.0F),
+            Block.createCuboidShape(3.0F, 0.0F, 3.0F, 13.0F, 14.0F, 13.0F),
     };
     public HerbBlock(Settings settings, Supplier<ItemConvertible> seedsSupplier) {
         super(settings);

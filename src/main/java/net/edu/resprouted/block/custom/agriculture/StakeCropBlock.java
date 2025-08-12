@@ -33,6 +33,7 @@ public class StakeCropBlock extends CropBlock {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
+
     // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
@@ -63,13 +64,13 @@ public class StakeCropBlock extends CropBlock {
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int age = getAge(state);
 
-        //Crecimiento normal
+        //Regular Growth
         if (age < getMaxAge() && world.getBaseLightLevel(pos, 0) >= 9) {
             if (random.nextInt(5) == 0) {
                 world.setBlockState(pos, state.with(AGE, age + 1));
             }
         }
-        //Crecimiento vertical a través de stake
+        //Vertical Growth Through Stake
         if (age >= 4 && pos.getY() < world.getTopY()) {
             BlockPos above = pos.up();
             BlockState aboveState = world.getBlockState(above);
@@ -92,7 +93,7 @@ public class StakeCropBlock extends CropBlock {
         return count;
     }
     protected int getMaxVerticalGrowth() {
-        return 2; //Este + 2 = 3 de alto
+        return 2; //This + 2 = 3 high
     }
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
@@ -122,7 +123,7 @@ public class StakeCropBlock extends CropBlock {
                 for (ItemStack drop : getHarvestResult(world.getRandom())) {
                     player.giveItemStack(drop);
                 }
-                //Resetear el estado de la planta
+                //Reset Crop Stake
                 world.setBlockState(pos, state.with(getAgeProperty(), getResetAge()), Block.NOTIFY_ALL);
                 world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES,
                         SoundCategory.BLOCKS, 1.0F, 1.0F);

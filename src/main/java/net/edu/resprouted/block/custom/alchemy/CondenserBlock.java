@@ -37,9 +37,9 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 public class CondenserBlock extends BlockWithEntity {
-    public static final BooleanProperty LIT = BooleanProperty.of("lit");
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty BOTTOM = BooleanProperty.of("bottom");
+    public static final BooleanProperty LIT = BooleanProperty.of("lit");
     private static final VoxelShape TOP_SHAPE = VoxelShapes.combineAndSimplify(
             Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 4.0F, 16.0F),
             Block.createCuboidShape(4.0F, 4.0F, 4.0F, 12.0F, 8.0F, 12.0F),
@@ -136,7 +136,7 @@ public class CondenserBlock extends BlockWithEntity {
 
         long amount = FluidConstants.BUCKET;
         try (Transaction transaction = Transaction.openOuter()) {
-            //Llenar
+            //Fill
             if (stack.isOf(Items.WATER_BUCKET)) {
                 if (condenserBE.condenser.insert(FluidVariant.of(Fluids.WATER), amount, transaction) == amount) {
                     if (!player.isCreative()) {
@@ -150,7 +150,7 @@ public class CondenserBlock extends BlockWithEntity {
                 }
                 return ItemActionResult.CONSUME;
             }
-            // Vaciar
+            //Empty
             if (stack.isOf(Items.BUCKET)) {
                 if (condenserBE.condenser.extract(FluidVariant.of(Fluids.WATER), amount, transaction) == amount) {
                     if (!player.isCreative()) {

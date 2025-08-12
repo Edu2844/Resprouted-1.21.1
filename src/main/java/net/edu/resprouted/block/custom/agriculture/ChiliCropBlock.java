@@ -20,7 +20,7 @@ public class ChiliCropBlock extends StakeCropBlock {
     }
     @Override
     protected int getMaxVerticalGrowth() {
-        return 1; //Este + 1 = 2 de alto
+        return 1; //This + 1 = 2 high
     }
     @Override
     protected List<ItemStack> getHarvestResult(Random random) {

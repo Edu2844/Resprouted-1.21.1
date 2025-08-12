@@ -120,7 +120,7 @@ public class StakeBlock extends Block {
         if (!state.isOf(ModBlocks.STAKE)) {
             return ItemActionResult.FAIL;
         }
-        //Caso 1: Plantar un cultivo
+        //Case 1: Plantar un cultivo
         if (!state.get(StakeBlock.HAS_ROPE) && world.getBlockState(pos.down()).isIn(ModTags.Blocks.FERTILE_SOILS)) {
             Optional<BlockState> crop = ModStakeCropRegistry.getCropForSeed(stack.getItem());
             if (crop.isPresent()) {
@@ -130,7 +130,7 @@ public class StakeBlock extends Block {
                 return ItemActionResult.SUCCESS;
             }
         }
-        //Caso 2: Colocar cuerda
+        //Case 2: Colocar cuerda
         if (stack.isOf(ModBlocks.ROPE.asItem()) && !state.get(StakeBlock.HAS_ROPE)) {
             world.setBlockState(pos, state.with(StakeBlock.HAS_ROPE, true), Block.NOTIFY_ALL);
             world.playSound(null, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);

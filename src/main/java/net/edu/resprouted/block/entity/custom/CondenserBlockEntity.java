@@ -45,16 +45,17 @@ import java.util.Optional;
 public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
 
+    private int burnTime = 0;
+    private int fuelTime = 0;
+    public int progress = 0;
+    private int maxProgress = 380;
     private static final int INPUT_SLOT_1 = 0;
     private static final int INPUT_SLOT_2 = 1;
     private static final int FUEL_SLOT = 2;
     private static final int BOTTLE_SLOT = 3;
     private static final int OUTPUT_SLOT = 4;
-    private int burnTime = 0;
-    private int fuelTime = 0;
     protected final PropertyDelegate propertyDelegate;
-    public int progress = 0;
-    private int maxProgress = 380;
+
     private static final long RECIPE_FLUID_COST = 10125L; //10125L = 125mB
 
     public CondenserBlockEntity(BlockPos pos, BlockState state) {
@@ -105,7 +106,7 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
         nbt.putInt("condenser.progress", progress);
         nbt.putInt("condenser.max_progress", maxProgress);
         nbt.putInt("BurnTime", this.burnTime);
-        //Fluidos
+        //Fluids
         NbtCompound fluidNbt = new NbtCompound();
         SingleVariantStorage.writeNbt(condenser, FluidVariant.CODEC, fluidNbt, registryLookup);
         nbt.put("Fluid", fluidNbt);
@@ -117,7 +118,7 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
         progress = nbt.getInt("condenser.progress");
         maxProgress = nbt.getInt("condenser.max_progress");
         this.burnTime = nbt.getInt("BurnTime");
-        //Fluidos
+        //Fluids
         if (nbt.contains("Fluid", NbtElement.COMPOUND_TYPE)) {
             SingleVariantStorage.readNbt(
                     condenser,
@@ -128,25 +129,29 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
             );
         }
     }
+    private int smokeTimer = 0;
     public void clientTick(World world, BlockPos pos, BlockState state) {
         if (state.get(CondenserBlock.LIT)) {
-            Direction facing = state.get(CondenserBlock.FACING);
-            double yVel = 0.125D;
+            smokeTimer++;
+            if (smokeTimer >= 3) {
+                Direction facing = state.get(CondenserBlock.FACING);
 
-            if (facing == Direction.NORTH || facing == Direction.SOUTH) {
-                spawnSmoke(world, pos.getX() - 0.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D, yVel);
-                spawnSmoke(world, pos.getX() + 1.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D, yVel);
-            } else if (facing == Direction.EAST || facing == Direction.WEST) {
-                spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() - 0.5D, yVel);
-                spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() + 1.5D, yVel);
+                if (facing == Direction.NORTH || facing == Direction.SOUTH) {
+                    spawnSmoke(world, pos.getX() - 0.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
+                    spawnSmoke(world, pos.getX() + 1.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
+                } else if (facing == Direction.EAST || facing == Direction.WEST) {
+                    spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() - 0.5D);
+                    spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() + 1.5D);
+                }
+                smokeTimer = 0;
             }
         }
     }
-    private void spawnSmoke(World world, double x, double y, double z, double yVel) {
-        for (int i = 0; i < 5; i++) {
-            double extraY = i * 0.05D;
-            world.addParticle(ParticleTypes.SMOKE, x, y + extraY, z, 0, yVel, 0);
-        }
+    private void spawnSmoke(World world, double x, double y, double z) {
+        double yVel = 0.06D;
+        double randomOffsetY = world.random.nextDouble() * 0.02D;
+
+        world.addParticle(ParticleTypes.SMOKE, x, y + randomOffsetY, z, 0, yVel, 0);
     }
     public void serverTick(World world, BlockPos pos, BlockState state) {
         boolean dirty = false;

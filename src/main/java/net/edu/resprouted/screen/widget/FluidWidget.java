@@ -133,27 +133,6 @@ public class FluidWidget implements Drawable, Widget {
         public Builder(SingleFluidStorage fluidStorage) {
             this.fluidStorage = fluidStorage;
         }
-        public Builder x(int x) {
-            this.x = x;
-            return this;
-        }
-        public Builder y(int y) {
-            this.y = y;
-            return this;
-        }
-        public Builder position(int x, int y) {
-            this.x = x;
-            this.y = y;
-            return this;
-        }
-        public Builder width(int width) {
-            this.width = width;
-            return this;
-        }
-        public Builder height(int height) {
-            this.height = height;
-            return this;
-        }
         public Builder bounds(int x, int y, int width, int height) {
             this.x = x;
             this.y = y;

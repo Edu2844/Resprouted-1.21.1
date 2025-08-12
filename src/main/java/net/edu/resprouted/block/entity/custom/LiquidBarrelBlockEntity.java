@@ -34,13 +34,7 @@ public class LiquidBarrelBlockEntity extends BlockEntity {
     public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
         if (nbt.contains("Fluid", NbtElement.COMPOUND_TYPE)) {
-            SingleVariantStorage.readNbt(
-                    liquidbarrel,
-                    FluidVariant.CODEC,
-                    FluidVariant::blank,
-                    nbt.getCompound("Fluid"),
-                    registryLookup
-            );
+            SingleVariantStorage.readNbt(liquidbarrel, FluidVariant.CODEC, FluidVariant::blank, nbt.getCompound("Fluid"), registryLookup);
         }
     }
     @Override

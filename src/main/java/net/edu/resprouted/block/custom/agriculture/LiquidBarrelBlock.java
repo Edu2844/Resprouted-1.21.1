@@ -89,14 +89,14 @@ public class LiquidBarrelBlock extends BlockWithEntity implements BlockEntityPro
         if (!state.isOf(newState.getBlock())) {
             if (!world.isClient && world instanceof ServerWorld serverWorld) {
                 PlayerEntity player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 5.0, false);
-                //Evitar drop en modo creativo
+                //Avoid drop on creative
                 boolean isCreative = player != null && player.isCreative();
 
                 if (!isCreative) {
                     BlockEntity be = world.getBlockEntity(pos);
                     if (be instanceof LiquidBarrelBlockEntity barrel) {
 
-                        //Obtener fluidos
+                        //Get fluid
                         FluidVariant variant = barrel.liquidbarrel.getResource();
                         long amount = barrel.liquidbarrel.getAmount();
 
@@ -120,7 +120,7 @@ public class LiquidBarrelBlock extends BlockWithEntity implements BlockEntityPro
 
                             stack.set(DataComponentTypes.BLOCK_ENTITY_DATA, NbtComponent.of(blockEntityTag));
                         }
-                        //Dropear ítem con el NBT del fluido
+                        //Drop ítem with NBT fluid
                         ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), stack);
                     }
                 }

@@ -32,7 +32,7 @@ public record FluidContainerMapping(FluidVariant fluid, ItemStack fullItem, Item
             FluidVariant.CODEC.fieldOf("fluid_variant").forGetter(FluidContainerMapping::fluid),
             ItemStack.CODEC.fieldOf("item").forGetter(FluidContainerMapping::fullItem),
             ItemStack.CODEC.fieldOf("empty_item").forGetter(FluidContainerMapping::emptyItem),
-            Codec.LONG.fieldOf("amount").forGetter(FluidContainerMapping::amount),
+            Codec.LONG.fieldOf("amount").xmap(mb -> mb * 81, droplets -> droplets / 81).forGetter(FluidContainerMapping::amount),
             DirectionMode.CODEC.fieldOf("direction").forGetter(FluidContainerMapping::direction)
     ).apply(inst, FluidContainerMapping::new));
     public static final Codec<FluidContainerMapping> CODEC = MAP_CODEC.codec();
