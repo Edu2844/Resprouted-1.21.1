@@ -5,7 +5,7 @@ import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipe;
 import net.edu.resprouted.recipe.Input.EvaporatingBasinRecipeInput;
-import net.edu.resprouted.util.FluidStack;
+import net.edu.resprouted.util.FluidUtils;
 import net.edu.resprouted.util.ModTags;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -100,7 +100,7 @@ public class EvaporatingBasinBlockEntity extends BlockEntity implements Implemen
                 be.progress += mbPerTick;
             }
         }
-        long cost = FluidStack.convertMbToDroplets(recipe.fluidCost());
+        long cost = FluidUtils.convertMbToDroplets(recipe.fluidCost());
         if (be.progress >= cost) {
             be.progress -= cost;
             be.spawnOrStore(recipe.output().copy());

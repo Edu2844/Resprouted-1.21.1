@@ -2,11 +2,11 @@ package net.edu.resprouted.util;
 
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 
-public class FluidStack {
+public class FluidUtils {
     public FluidVariant fluidVariant;
     public long amount;
 
-    public FluidStack(FluidVariant variant, long amount) {
+    public FluidUtils(FluidVariant variant, long amount) {
         this.fluidVariant = variant;
         this.amount = amount;
     }

@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.util.ModTags;
-import net.edu.resprouted.registry.ModStakeCropRegistry;
+import net.edu.resprouted.registry.StakeCropSeedRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -122,7 +122,7 @@ public class StakeBlock extends Block {
         }
         //Case 1: Plantar un cultivo
         if (!state.get(StakeBlock.HAS_ROPE) && world.getBlockState(pos.down()).isIn(ModTags.Blocks.FERTILE_SOILS)) {
-            Optional<BlockState> crop = ModStakeCropRegistry.getCropForSeed(stack.getItem());
+            Optional<BlockState> crop = StakeCropSeedRegistry.getCropForSeed(stack.getItem());
             if (crop.isPresent()) {
                 world.setBlockState(pos, crop.get(), Block.NOTIFY_ALL);
                 world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);

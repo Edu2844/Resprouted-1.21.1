@@ -14,7 +14,6 @@ import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItemGroups;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.registry.ModStakeCropRegistry;
 import net.edu.resprouted.registry.ModRegistry;
 import net.edu.resprouted.world.ModFoliagePlacerTypes;
 import net.fabricmc.api.ModInitializer;
@@ -42,21 +41,10 @@ public class Resprouted implements ModInitializer {
 		ModRecipes.registerRecipes();
 		ModEvents.registerModEvents();
 		ModRegistry.RegisterModStuffs();
-		ModStakeCropRegistry.registerStakeCropsSeeds();
 		ModCabinetRegistry.getAllCabinetBlocks();
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
 		ModScreenHandlers.registerScreenHandlers();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
-
-
-		/*
-		FluidStorage.SIDED.registerForBlockEntity(
-				(blockEntity, direction) -> blockEntity.fluidStorage, ModBlockEntities.CRUSHING_TUB_BE);
-		FluidStorage.SIDED.registerForBlockEntity(
-				(blockEntity, direction) -> blockEntity.liquidbarrel, ModBlockEntities.LIQUID_BARREL_BE);
-		FluidStorage.SIDED.registerForBlockEntity(
-				(blockEntity, direction) -> blockEntity.basin, ModBlockEntities.EVAPORATING_BASIN_BE);*/
 	}
-
 }

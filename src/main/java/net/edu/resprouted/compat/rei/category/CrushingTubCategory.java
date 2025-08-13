@@ -12,7 +12,7 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.compat.rei.display.CrushingTubDisplay;
-import net.edu.resprouted.util.FluidStack;
+import net.edu.resprouted.util.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.render.GameRenderer;
@@ -25,7 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> {
-    public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/recipe/crushing_tub_gui.png");
+    public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/recipe/crushing_tub_recipe.png");
     public static final CategoryIdentifier<CrushingTubDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "crushing_tub");
 
     @Override
@@ -72,7 +72,7 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
             FluidVariant fluidVariant = display.getFluid();
             Fluid fluid = fluidVariant.getFluid();
             long amount = display.getAmount();
-            String amountText = FluidStack.convertDropletsToMb(amount) + " mB";
+            String amountText = FluidUtils.convertDropletsToMb(amount) + " mB";
 
             Sprite sprite = FluidVariantRendering.getSprite(fluidVariant);
             if (sprite != null && sprite.getAtlasId() != null) {

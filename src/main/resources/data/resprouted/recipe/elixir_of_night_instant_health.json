@@ -1,0 +1,10 @@
+{
+  "type": "resprouted:condenser",
+  "ingredients": [
+    { "item": "minecraft:beef" },
+    { "item": "resprouted:chamomile" }
+  ],
+  "effect": "minecraft:instant_health",
+  "duration": 0,
+  "amplifier": 0
+}

@@ -27,6 +27,7 @@ public class ModRegistry {
         registerCompostables();
         registerFluidStorages();
         registerBoats();
+        registerStakeCropsSeeds();
     }
     public static void registerStrippables() {
         register(ModBlocks.IRONWOOD_LOG, ModBlocks.STRIPPED_IRONWOOD_LOG);
@@ -139,5 +140,9 @@ public class ModRegistry {
                 .planks(ModBlocks.IRONWOOD_PLANKS.asItem())
                 .build();
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, ModEntities.IRONWOOD_BOAT_KEY, IronwoodBoat);
+    }
+    public static void registerStakeCropsSeeds() {
+        StakeCropSeedRegistry.register(ModItems.TOMATO_SEEDS, ModBlocks.TOMATO_CROP::getDefaultState);
+        StakeCropSeedRegistry.register(ModItems.CHILI_PEPPER_SEEDS, ModBlocks.CHILI_CROP::getDefaultState);
     }
 }

@@ -5,7 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.recipe.Input.CrushingTubRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.util.FluidStack;
+import net.edu.resprouted.util.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
@@ -52,7 +52,7 @@ public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack output
                 ItemStack.CODEC.optionalFieldOf("output_item", ItemStack.EMPTY).forGetter(r -> r.outputItem == null ? ItemStack.EMPTY : r.outputItem),
                 Codec.INT.optionalFieldOf("output_chance", 100).forGetter(CrushingTubRecipe::outputChance),
                 FluidVariant.CODEC.optionalFieldOf("fluid_variant", FluidVariant.blank()).forGetter(CrushingTubRecipe::fluidOutput),
-                Codec.LONG.optionalFieldOf("amount", 0L).xmap(FluidStack::convertMbToDroplets, droplets -> droplets).forGetter(CrushingTubRecipe::fluidAmount))
+                Codec.LONG.optionalFieldOf("amount", 0L).xmap(FluidUtils::convertMbToDroplets, droplets -> droplets).forGetter(CrushingTubRecipe::fluidAmount))
                 .apply(inst, (input, output, chance, fluid, amount) ->
                 new CrushingTubRecipe(input, output.isEmpty() ? null : output, chance, fluid, amount)));
         public static final PacketCodec<RegistryByteBuf, CrushingTubRecipe> STREAM_CODEC = PacketCodec.ofStatic(

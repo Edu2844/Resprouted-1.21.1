@@ -1,6 +1,6 @@
 package net.edu.resprouted.item.custom;
 
-import net.edu.resprouted.util.FluidStack;
+import net.edu.resprouted.util.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes;
 import net.minecraft.block.Block;
@@ -36,10 +36,10 @@ public class LiquidBarrelItem extends BlockItem {
 
             if (!variant.isBlank()) {
                 var name = FluidVariantAttributes.getName(variant);
-                long amount = FluidStack.convertDropletsToMb(tag.getLong("amount"));
+                long amount = FluidUtils.convertDropletsToMb(tag.getLong("amount"));
 
-                tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.GOLD));
-                tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.GOLD));
+                tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.GRAY));
+                tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.GRAY));
             }
         } catch (Exception e) {
             tooltip.add(Text.translatable("tooltip.resprouted.fluid_error").formatted(Formatting.RED));

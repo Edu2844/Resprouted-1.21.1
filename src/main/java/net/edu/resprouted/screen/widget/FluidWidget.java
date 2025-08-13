@@ -1,7 +1,7 @@
 package net.edu.resprouted.screen.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.edu.resprouted.util.FluidStack;
+import net.edu.resprouted.util.FluidUtils;
 import net.edu.resprouted.util.ScreenUtils;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -16,6 +16,7 @@ import net.minecraft.client.texture.Sprite;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -85,13 +86,13 @@ public class FluidWidget implements Drawable, Widget {
         if(fluid != null && fluidAmount > 0) {
             List<Text> texts = List.of(
                     Text.translatable(fluid.getDefaultState().getBlockState().getBlock().getTranslationKey()),
-                    Text.literal("%s / %s mB".formatted(getMb(fluidAmount), getMb(fluidCapacity)))
+                    Text.literal("%s/%s mB".formatted(getMb(fluidAmount), getMb(fluidCapacity))).formatted(Formatting.GRAY)
             );
             context.drawTooltip(textRenderer, texts, mouseX, mouseY);
         }
     }
     private static long getMb(long amount) {
-        return (long) (float) FluidStack.convertDropletsToMb(amount);
+        return (long) (float) FluidUtils.convertDropletsToMb(amount);
     }
     private static boolean isPointWithinBounds(int x, int y, int width, int height, int pointX, int pointY) {
         return pointX >= x && pointX <= x + width &&

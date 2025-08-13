@@ -13,35 +13,25 @@ public class BottleInteractionsUtils {
     public static final Map<Block, FluidBottleData> FLUID_BOTTLE_MAP = new HashMap<>();
 
     public static void registerFluidInteractions() {
-        FLUID_BOTTLE_MAP.put(ModBlocks.HONEY_FLUID_BLOCK, new FluidBottleData(
-                Items.HONEY_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.HONEY_FLUID_BLOCK, new FluidBottleData(Items.HONEY_BOTTLE));
 
-        FLUID_BOTTLE_MAP.put(ModBlocks.APPLE_JUICE_FLUID_BLOCK, new FluidBottleData(
-                ModItems.APPLE_JUICE_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.APPLE_JUICE_FLUID_BLOCK, new FluidBottleData(ModItems.APPLE_JUICE_BOTTLE));
 
-        FLUID_BOTTLE_MAP.put(ModBlocks.GOLDEN_APPLE_JUICE_FLUID_BLOCK, new FluidBottleData(
-                ModItems.GOLDEN_APPLE_JUICE_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.GOLDEN_APPLE_JUICE_FLUID_BLOCK, new FluidBottleData(ModItems.GOLDEN_APPLE_JUICE_BOTTLE));
 
-        FLUID_BOTTLE_MAP.put(ModBlocks.GRAPE_JUICE_FLUID_BLOCK, new FluidBottleData(
-                ModItems.GRAPE_JUICE_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.GRAPE_JUICE_FLUID_BLOCK, new FluidBottleData(ModItems.GRAPE_JUICE_BOTTLE));
 
-        FLUID_BOTTLE_MAP.put(ModBlocks.SWEET_BERRY_JUICE_FLUID_BLOCK, new FluidBottleData(
-                ModItems.SWEET_BERRY_JUICE_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.SWEET_BERRY_JUICE_FLUID_BLOCK, new FluidBottleData(ModItems.SWEET_BERRY_JUICE_BOTTLE));
 
-        FLUID_BOTTLE_MAP.put(ModBlocks.OLIVE_OIL_FLUID_BLOCK, new FluidBottleData(
-                ModItems.OLIVE_OIL_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.OLIVE_OIL_FLUID_BLOCK, new FluidBottleData(ModItems.OLIVE_OIL_BOTTLE));
 
-        FLUID_BOTTLE_MAP.put(ModBlocks.VANTA_OIL_FLUID_BLOCK, new FluidBottleData(
-                ModItems.VANTA_OIL_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.VANTA_OIL_FLUID_BLOCK, new FluidBottleData(ModItems.VANTA_OIL_BOTTLE));
 
-        FLUID_BOTTLE_MAP.put(ModBlocks.GLOW_BERRY_JUICE_FLUID_BLOCK, new FluidBottleData(
-                ModItems.GLOW_BERRY_JUICE_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.GLOW_BERRY_JUICE_FLUID_BLOCK, new FluidBottleData(ModItems.GLOW_BERRY_JUICE_BOTTLE));
 
-        FLUID_BOTTLE_MAP.put(ModBlocks.IRON_BERRY_JUICE_FLUID_BLOCK, new FluidBottleData(
-                ModItems.IRON_BERRY_JUICE_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.IRON_BERRY_JUICE_FLUID_BLOCK, new FluidBottleData(ModItems.IRON_BERRY_JUICE_BOTTLE));
 
-        FLUID_BOTTLE_MAP.put(ModBlocks.ALE_WORT_FLUID_BLOCK, new FluidBottleData(
-                ModItems.ALE_WORT_BOTTLE));
+        FLUID_BOTTLE_MAP.put(ModBlocks.ALE_WORT_FLUID_BLOCK, new FluidBottleData(ModItems.ALE_WORT_BOTTLE));
     }
     public static FluidBottleData getFluidData(Block fluidBlock) {
         return FLUID_BOTTLE_MAP.get(fluidBlock);

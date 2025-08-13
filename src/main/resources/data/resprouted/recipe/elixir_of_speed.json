@@ -1,0 +1,10 @@
+{
+  "type": "resprouted:condenser",
+  "ingredients": [
+    { "item": "minecraft:sugar" },
+    { "item": "resprouted:wind_thistle" }
+  ],
+  "effect": "minecraft:speed",
+  "duration": 3600,
+  "amplifier": 0
+}
