@@ -2,20 +2,19 @@ package net.edu.resprouted.screen.custom;
 
 import net.edu.resprouted.block.entity.custom.CondenserBlockEntity;
 import net.edu.resprouted.screen.ModScreenHandlers;
-import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
+import net.edu.resprouted.screen.container.BottleSlot;
+import net.edu.resprouted.screen.container.CondenserFuelSlot;
+import net.edu.resprouted.screen.container.OutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-
-import static net.minecraft.screen.slot.FurnaceFuelSlot.isBucket;
 
 public class CondenserScreenHandler extends ScreenHandler {
     private final Inventory inventory;
@@ -113,50 +112,5 @@ public class CondenserScreenHandler extends ScreenHandler {
     }
     public CondenserBlockEntity getBlockEntity() {
         return this.blockEntity;
-    }
-    public static class BottleSlot extends Slot {
-        public BottleSlot(Inventory inventory, int index, int x, int y) {
-            super(inventory, index, x, y);
-        }
-        public boolean canInsert(ItemStack stack) {
-            return matches(stack);
-        }
-        public static boolean matches(ItemStack stack) {
-            return stack.isOf(Items.GLASS_BOTTLE);
-        }
-    }
-    public static class CondenserFuelSlot extends Slot {
-
-        public CondenserFuelSlot(Inventory inventory, int index, int x, int y) {
-            super(inventory, index, x, y);
-        }
-        public boolean canInsert(ItemStack stack) {
-            return isFuel(stack) || isBucket(stack);
-        }
-        protected static boolean isFuel(ItemStack itemStack) {
-            return AbstractFurnaceBlockEntity.canUseAsFuel(itemStack);
-        }
-    }
-    public static class OutputSlot extends Slot {
-        private int amount;
-
-        public OutputSlot(Inventory inventory, int index, int x, int y) {
-            super(inventory, index, x, y);
-        }
-        public boolean canInsert(ItemStack stack) {
-            return false;
-        }
-        public ItemStack takeStack(int amount) {
-            if (this.hasStack()) {
-                this.amount += Math.min(amount, this.getStack().getCount());
-            }
-            return super.takeStack(amount);
-        }
-        public int getAmount() {
-            return amount;
-        }
-        public void setAmount(int amount) {
-            this.amount = amount;
-        }
     }
 }

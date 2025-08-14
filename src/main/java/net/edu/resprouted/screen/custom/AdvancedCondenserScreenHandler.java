@@ -2,6 +2,9 @@ package net.edu.resprouted.screen.custom;
 
 import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
 import net.edu.resprouted.screen.ModScreenHandlers;
+import net.edu.resprouted.screen.container.BottleSlot;
+import net.edu.resprouted.screen.container.CondenserFuelSlot;
+import net.edu.resprouted.screen.container.OutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -32,9 +35,9 @@ public class AdvancedCondenserScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory, 1, 27, 35));
         this.addSlot(new Slot(inventory, 2, 27, 11));
         this.addSlot(new Slot(inventory, 3, 66, 7));
-        this.addSlot(new CondenserScreenHandler.CondenserFuelSlot(inventory, 4, 66, 62));
-        this.addSlot(new CondenserScreenHandler.BottleSlot(inventory, 5, 105, 7));
-        this.addSlot(new CondenserScreenHandler.OutputSlot(inventory, 6, 105, 35));
+        this.addSlot(new CondenserFuelSlot(inventory, 4, 66, 62));
+        this.addSlot(new BottleSlot(inventory, 5, 105, 7));
+        this.addSlot(new OutputSlot(inventory, 6, 105, 35));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -76,15 +79,15 @@ public class AdvancedCondenserScreenHandler extends ScreenHandler {
                     return ItemStack.EMPTY;
                 }
             } else {
-                if (CondenserScreenHandler.CondenserFuelSlot.isFuel(originalStack)) {
-                    if (!this.insertItem(originalStack, 2, 3, false))
+                if (CondenserFuelSlot.isFuel(originalStack)) {
+                    if (!this.insertItem(originalStack, 4, 5, false))
                         return ItemStack.EMPTY;
                 }
-                else if (CondenserScreenHandler.BottleSlot.matches(originalStack)) {
-                    if (!this.insertItem(originalStack, 3, 4, false))
+                else if (BottleSlot.matches(originalStack)) {
+                    if (!this.insertItem(originalStack, 5, 6, false))
                         return ItemStack.EMPTY;
                 }
-                else if (!this.insertItem(originalStack, 0, 2, false)) {
+                else if (!this.insertItem(originalStack, 0, 4, false)) {
                     return ItemStack.EMPTY;
                 }
             }

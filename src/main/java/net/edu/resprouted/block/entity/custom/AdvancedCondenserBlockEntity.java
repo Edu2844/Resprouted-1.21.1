@@ -135,9 +135,14 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
                 if (facing == Direction.NORTH || facing == Direction.SOUTH) {
                     spawnSmoke(world, pos.getX() - 0.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
                     spawnSmoke(world, pos.getX() + 1.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
+                    BlockPos backPos = pos.offset(facing.getOpposite());
+                    spawnSmoke(world, backPos.getX() + 0.5D, pos.getY() + 1.0625D, backPos.getZ() + 0.5D);
+
                 } else if (facing == Direction.EAST || facing == Direction.WEST) {
                     spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() - 0.5D);
                     spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() + 1.5D);
+                    BlockPos backPos = pos.offset(facing.getOpposite());
+                    spawnSmoke(world, backPos.getX() + 0.5D, pos.getY() + 1.0625D, backPos.getZ() + 0.5D);
                 }
                 smokeTimer = 0;
             }
@@ -199,7 +204,6 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
         return match.isPresent()
                 && canInsertItemIntoOutputSlot(match.get().value().craft(input, world.getRegistryManager()));
     }
-
     private boolean canInsertItemIntoOutputSlot(ItemStack result) {
         ItemStack outputStack = this.getStack(OUTPUT_SLOT);
         if (outputStack.isEmpty()) return true;
@@ -207,7 +211,6 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
         return ItemStack.areItemsAndComponentsEqual(outputStack, result)
                 && outputStack.getCount() + result.getCount() <= outputStack.getMaxCount();
     }
-
     private void craftItem() {
         AdvancedCondenserRecipeInput input = new AdvancedCondenserRecipeInput(
                 inventory.getFirst(),
@@ -232,32 +235,21 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
         } else if (ItemStack.areItemsAndComponentsEqual(outputStack, result)) {
             outputStack.increment(result.getCount());
         }
-
-        // Quitar inputs usados (solo los que existan en la receta)
         for (Ingredient ing : match.get().value().ingredients()) {
             removeOneMatching(ing, INPUT_SLOT_1, INPUT_SLOT_2, INPUT_SLOT_3);
         }
-
-        // Quitar modificador si la receta lo requiere
         match.get().value().modifier().ifPresent(modIng -> this.removeStack(MODIFIER_SLOT, 1));
 
-        // Quitar botella
         this.removeStack(BOTTLE_SLOT, 1);
 
-        // Consumir fluido
         this.advanced_condenser.amount -= RECIPE_FLUID_COST;
         if (this.advanced_condenser.amount < 0) {
             this.advanced_condenser.amount = 0;
         }
-
         markDirty();
         world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
         world.playSound(null, pos, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
     }
-
-    /**
-     * Quita un stack que coincida con el ingrediente desde los slots dados.
-     */
     private void removeOneMatching(Ingredient ingredient, int... slots) {
         for (int slot : slots) {
             ItemStack stack = this.getStack(slot);
