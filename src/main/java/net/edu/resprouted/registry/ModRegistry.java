@@ -4,10 +4,7 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.block.entity.custom.CondenserBlockEntity;
-import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
-import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
-import net.edu.resprouted.block.entity.custom.LiquidBarrelBlockEntity;
+import net.edu.resprouted.block.entity.custom.*;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.item.ModItems;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
@@ -125,6 +122,7 @@ public class ModRegistry {
         FluidStorage.SIDED.registerForBlockEntity(LiquidBarrelBlockEntity::getFluidTankProvider, ModBlockEntities.LIQUID_BARREL_BE);
         FluidStorage.SIDED.registerForBlockEntity(EvaporatingBasinBlockEntity::getFluidTankProvider, ModBlockEntities.EVAPORATING_BASIN_BE);
         FluidStorage.SIDED.registerForBlockEntity(CondenserBlockEntity::getFluidTankProvider, ModBlockEntities.CONDENSER_BE);
+        FluidStorage.SIDED.registerForBlockEntity(AdvancedCondenserBlockEntity::getFluidTankProvider, ModBlockEntities.ADVANCED_CONDENSER_BE);
     }
     public static void registerBoats(){
         TerraformBoatType OliveBoat = new TerraformBoatType.Builder()

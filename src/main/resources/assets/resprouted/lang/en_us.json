@@ -85,7 +85,6 @@
   "item.resprouted.ale_wort_bucket": "Ale Wort Bucket",
   "item.resprouted.ale_wort_bottle": "Ale Wort Bottle",
 
-
   "block.resprouted.cabinet": "Cabinet",
   "block.resprouted.oak_cabinet": "Oak Cabinet",
   "block.resprouted.dark_oak_cabinet": "Dark Oak Cabinet",
@@ -357,6 +356,8 @@
   "block.resprouted.stake": "Stake",
   "block.resprouted.condenser": "Condenser",
   "block.resprouted.retort": "Retort",
+  "block.resprouted.advanced_condenser": "Advanced Condenser",
+  "block.resprouted.advanced_retort": "Advanced Retort",
 
   "block.resprouted.blue_berry_cake": "Blue Berry Cake",
   "block.resprouted.blue_berry_bush": "Blue Berry Bush",

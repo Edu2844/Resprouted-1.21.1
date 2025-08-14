@@ -1,12 +1,12 @@
 package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.custom.alchemy.CondenserBlock;
+import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
+import net.edu.resprouted.recipe.Input.AdvancedCondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.recipe.custom.CondenserRecipe;
-import net.edu.resprouted.recipe.Input.CondenserRecipeInput;
-import net.edu.resprouted.screen.custom.CondenserScreenHandler;
+import net.edu.resprouted.recipe.custom.AdvancedCondenserRecipe;
+import net.edu.resprouted.screen.custom.AdvancedCondenserScreenHandler;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
@@ -26,6 +26,7 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
@@ -42,8 +43,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
+public class AdvancedCondenserBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>,ImplementedInventory {
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(7, ItemStack.EMPTY);
 
     private int burnTime = 0;
     private int fuelTime = 0;
@@ -51,33 +52,35 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
     private int maxProgress = 380;
     private static final int INPUT_SLOT_1 = 0;
     private static final int INPUT_SLOT_2 = 1;
-    private static final int FUEL_SLOT = 2;
-    private static final int BOTTLE_SLOT = 3;
-    private static final int OUTPUT_SLOT = 4;
+    private static final int INPUT_SLOT_3 = 2;
+    private static final int MODIFIER_SLOT = 3;
+    private static final int FUEL_SLOT = 4;
+    private static final int BOTTLE_SLOT = 5;
+    private static final int OUTPUT_SLOT = 6;
     protected final PropertyDelegate propertyDelegate;
 
     private static final long RECIPE_FLUID_COST = 10125L; //10125L = 125mB
 
-    public CondenserBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.CONDENSER_BE, pos, state);
+    public AdvancedCondenserBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.ADVANCED_CONDENSER_BE, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> CondenserBlockEntity.this.progress;
-                    case 1 -> CondenserBlockEntity.this.maxProgress;
-                    case 2 -> CondenserBlockEntity.this.burnTime;
-                    case 3 -> CondenserBlockEntity.this.fuelTime;
+                    case 0 -> AdvancedCondenserBlockEntity.this.progress;
+                    case 1 -> AdvancedCondenserBlockEntity.this.maxProgress;
+                    case 2 -> AdvancedCondenserBlockEntity.this.burnTime;
+                    case 3 -> AdvancedCondenserBlockEntity.this.fuelTime;
                     default -> 0;
                 };
             }
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0: CondenserBlockEntity.this.progress = value; break;
-                    case 1: CondenserBlockEntity.this.maxProgress = value; break;
-                    case 2: CondenserBlockEntity.this.burnTime = value; break;
-                    case 3: CondenserBlockEntity.this.fuelTime = value; break;
+                    case 0: AdvancedCondenserBlockEntity.this.progress = value; break;
+                    case 1: AdvancedCondenserBlockEntity.this.maxProgress = value; break;
+                    case 2: AdvancedCondenserBlockEntity.this.burnTime = value; break;
+                    case 3: AdvancedCondenserBlockEntity.this.fuelTime = value; break;
                 }
             }
             @Override
@@ -92,35 +95,29 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
     }
     @Override
     public Text getDisplayName() {
-        return Text.translatable("block.resprouted.condenser");
+        return Text.translatable("block.resprouted.advanced_condenser");
     }
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new CondenserScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+        return new AdvancedCondenserScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
         Inventories.writeNbt(nbt, inventory, registryLookup);
-        nbt.putInt("condenser.progress", progress);
-        nbt.putInt("condenser.max_progress", maxProgress);
-        nbt.putInt("BurnTime", this.burnTime);
         //Fluids
         NbtCompound fluidNbt = new NbtCompound();
-        SingleVariantStorage.writeNbt(condenser, FluidVariant.CODEC, fluidNbt, registryLookup);
+        SingleVariantStorage.writeNbt(advanced_condenser, FluidVariant.CODEC, fluidNbt, registryLookup);
         nbt.put("Fluid", fluidNbt);
     }
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
         Inventories.readNbt(nbt, inventory, registryLookup);
-        progress = nbt.getInt("condenser.progress");
-        maxProgress = nbt.getInt("condenser.max_progress");
-        this.burnTime = nbt.getInt("BurnTime");
         //Fluids
         if (nbt.contains("Fluid", NbtElement.COMPOUND_TYPE)) {
             SingleVariantStorage.readNbt(
-                    condenser,
+                    advanced_condenser,
                     FluidVariant.CODEC,
                     FluidVariant::blank,
                     nbt.getCompound("Fluid"),
@@ -130,10 +127,10 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
     }
     private int smokeTimer = 0;
     public void clientTick(World world, BlockPos pos, BlockState state) {
-        if (state.get(CondenserBlock.LIT)) {
+        if (state.get(AdvancedCondenserBlock.LIT)) {
             smokeTimer++;
             if (smokeTimer >= 3) {
-                Direction facing = state.get(CondenserBlock.FACING);
+                Direction facing = state.get(AdvancedCondenserBlock.FACING);
 
                 if (facing == Direction.NORTH || facing == Direction.SOUTH) {
                     spawnSmoke(world, pos.getX() - 0.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
@@ -146,15 +143,10 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
             }
         }
     }
-    private void spawnSmoke(World world, double x, double y, double z) {
-        double yVel = 0.06D;
-        double randomOffsetY = world.random.nextDouble() * 0.02D;
-
-        world.addParticle(ParticleTypes.SMOKE, x, y + randomOffsetY, z, 0, yVel, 0);
-    }
     public void serverTick(World world, BlockPos pos, BlockState state) {
         boolean dirty = false;
-        boolean hasFuelAvailable = !this.inventory.get(FUEL_SLOT).isEmpty() && FuelRegistry.INSTANCE.get(this.inventory.get(FUEL_SLOT).getItem()) > 0;
+        boolean hasFuelAvailable = !this.inventory.get(FUEL_SLOT).isEmpty()
+                && FuelRegistry.INSTANCE.get(this.inventory.get(FUEL_SLOT).getItem()) > 0;
 
         if (!isBurning() && hasRecipe() && hasFuelAvailable) {
             ItemStack fuelStack = this.inventory.get(FUEL_SLOT);
@@ -183,30 +175,31 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
             resetProgress();
         }
         boolean shouldBeLit = isBurning() || (hasFuelAvailable && hasRecipe());
-        if (state.get(CondenserBlock.LIT) != shouldBeLit) {
-            world.setBlockState(pos, state.with(CondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
+        if (state.get(AdvancedCondenserBlock.LIT) != shouldBeLit) {
+            world.setBlockState(pos, state.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
             dirty = true;
         }
         if (dirty) {
             markDirty(world, pos, state);
         }
     }
-    public boolean isBurning() {
-        return this.burnTime > 0;
-    }
     private boolean hasRecipe() {
-        CondenserRecipeInput input = new CondenserRecipeInput(
+        AdvancedCondenserRecipeInput input = new AdvancedCondenserRecipeInput(
                 inventory.getFirst(),
                 inventory.get(INPUT_SLOT_2),
+                inventory.get(INPUT_SLOT_3),
+                inventory.get(MODIFIER_SLOT),
                 inventory.get(FUEL_SLOT),
                 inventory.get(BOTTLE_SLOT),
                 this.pos
         );
         assert world != null;
-        Optional<RecipeEntry<CondenserRecipe>> match = world.getRecipeManager().getFirstMatch(ModRecipes.CONDENSER_TYPE, input, world);
+        Optional<RecipeEntry<AdvancedCondenserRecipe>> match = world.getRecipeManager()
+                .getFirstMatch(ModRecipes.ADVANCED_CONDENSER_TYPE, input, world);
         return match.isPresent()
                 && canInsertItemIntoOutputSlot(match.get().value().craft(input, world.getRegistryManager()));
     }
+
     private boolean canInsertItemIntoOutputSlot(ItemStack result) {
         ItemStack outputStack = this.getStack(OUTPUT_SLOT);
         if (outputStack.isEmpty()) return true;
@@ -214,17 +207,20 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
         return ItemStack.areItemsAndComponentsEqual(outputStack, result)
                 && outputStack.getCount() + result.getCount() <= outputStack.getMaxCount();
     }
+
     private void craftItem() {
-        CondenserRecipeInput input = new CondenserRecipeInput(
+        AdvancedCondenserRecipeInput input = new AdvancedCondenserRecipeInput(
                 inventory.getFirst(),
                 inventory.get(INPUT_SLOT_2),
+                inventory.get(INPUT_SLOT_3),
+                inventory.get(MODIFIER_SLOT),
                 inventory.get(FUEL_SLOT),
                 inventory.get(BOTTLE_SLOT),
                 this.pos
         );
         assert world != null;
-        Optional<RecipeEntry<CondenserRecipe>> match = world.getRecipeManager()
-                .getFirstMatch(ModRecipes.CONDENSER_TYPE, input, world);
+        Optional<RecipeEntry<AdvancedCondenserRecipe>> match = world.getRecipeManager()
+                .getFirstMatch(ModRecipes.ADVANCED_CONDENSER_TYPE, input, world);
 
         if (match.isEmpty()) return;
 
@@ -236,17 +232,51 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
         } else if (ItemStack.areItemsAndComponentsEqual(outputStack, result)) {
             outputStack.increment(result.getCount());
         }
-        this.removeStack(INPUT_SLOT_1, 1);
-        this.removeStack(INPUT_SLOT_2, 1);
+
+        // Quitar inputs usados (solo los que existan en la receta)
+        for (Ingredient ing : match.get().value().ingredients()) {
+            removeOneMatching(ing, INPUT_SLOT_1, INPUT_SLOT_2, INPUT_SLOT_3);
+        }
+
+        // Quitar modificador si la receta lo requiere
+        match.get().value().modifier().ifPresent(modIng -> this.removeStack(MODIFIER_SLOT, 1));
+
+        // Quitar botella
         this.removeStack(BOTTLE_SLOT, 1);
 
-        this.condenser.amount -=  RECIPE_FLUID_COST;
-        if (this.condenser.amount < 0) {
-            this.condenser.amount = 0;
+        // Consumir fluido
+        this.advanced_condenser.amount -= RECIPE_FLUID_COST;
+        if (this.advanced_condenser.amount < 0) {
+            this.advanced_condenser.amount = 0;
         }
+
         markDirty();
         world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
         world.playSound(null, pos, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
+    }
+
+    /**
+     * Quita un stack que coincida con el ingrediente desde los slots dados.
+     */
+    private void removeOneMatching(Ingredient ingredient, int... slots) {
+        for (int slot : slots) {
+            ItemStack stack = this.getStack(slot);
+            if (!stack.isEmpty() && ingredient.test(stack)) {
+                this.removeStack(slot, 1);
+                return;
+            }
+        }
+    }
+    private void spawnSmoke(World world, double x, double y, double z) {
+        double yVel = 0.06D;
+        double randomOffsetY = world.random.nextDouble() * 0.02D;
+        world.addParticle(ParticleTypes.SMOKE, x, y + randomOffsetY, z, 0, yVel, 0);
+    }
+    public boolean isBurning() {
+        return this.burnTime > 0;
+    }
+    public boolean hasFluid() {
+        return !advanced_condenser.variant.isBlank() && advanced_condenser.amount > 0;
     }
     private void resetProgress() {
         this.progress = 0;
@@ -270,19 +300,16 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
     }
-    public boolean hasFluid() {
-        return !condenser.variant.isBlank() && condenser.amount > 0;
-    }
-    public final SingleFluidStorage condenser = SingleFluidStorage.withFixedCapacity(FluidConstants.BUCKET * 8, this::update);
+    public final SingleFluidStorage advanced_condenser = SingleFluidStorage.withFixedCapacity(FluidConstants.BUCKET * 8, this::update);
     private void update() {
         markDirty();
         if(world != null)
             world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
     }
     public SingleFluidStorage getFluidTankProvider(Direction direction) {
-        return this.condenser;
+        return this.advanced_condenser;
     }
     public SingleFluidStorage getFluidTank() {
-        return this.condenser;
+        return this.advanced_condenser;
     }
 }

@@ -6,6 +6,8 @@ import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock
 import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.custom.agriculture.*;
+import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
+import net.edu.resprouted.block.custom.alchemy.AdvancedRetortBlock;
 import net.edu.resprouted.block.custom.alchemy.CondenserBlock;
 import net.edu.resprouted.block.custom.alchemy.RetortBlock;
 import net.edu.resprouted.block.custom.decorative.*;
@@ -604,7 +606,9 @@ public class ModBlocks {
     // ||                  ALCHEMY                    ||
     // =================================================
     public static final Block CONDENSER = registerBlock("condenser", new CondenserBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).luminance(state -> state.get(LIT) ? 15 : 0).nonOpaque()));
+    public static final Block ADVANCED_CONDENSER = registerBlock("advanced_condenser", new AdvancedCondenserBlock(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS).nonOpaque()));
     public static final Block RETORT = registerBlock("retort", new RetortBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
+    public static final Block ADVANCED_RETORT = registerBlock("advanced_retort", new AdvancedRetortBlock(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS).nonOpaque()));
 
     private static Block registerBlockWithoutBlockItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);

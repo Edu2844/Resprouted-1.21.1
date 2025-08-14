@@ -11,13 +11,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
-public class CondenserScreen extends HandledScreen<CondenserScreenHandler> {
+public class AdvancedCondenserScreen extends HandledScreen<AdvancedCondenserScreenHandler> {
     private final FluidWidget fluidWidget;
-    private static final Identifier GUI_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/condenser/condenser.png");
-    private static final Identifier ARROW_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/condenser_progress.png");
+    private static final Identifier GUI_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/condenser/advanced_condenser.png");
+    private static final Identifier ARROW_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/advanced_condenser_progress.png");
     private static final Identifier LIT_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/lit_progress.png");
 
-    public CondenserScreen(CondenserScreenHandler handler, PlayerInventory inventory, Text title) {
+    public AdvancedCondenserScreen(AdvancedCondenserScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         this.fluidWidget = FluidWidget.builder(handler.getBlockEntity().getFluidTank())
                 .bounds(this.x + 133, this.y + 27, 16, 32)
@@ -25,6 +25,7 @@ public class CondenserScreen extends HandledScreen<CondenserScreenHandler> {
                 .build();
         addDrawable(this.fluidWidget);
     }
+
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -43,7 +44,7 @@ public class CondenserScreen extends HandledScreen<CondenserScreenHandler> {
     }
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            context.drawTexture(ARROW_TEXTURE, x + 44, y + 29, 0, 0, handler.getScaledArrowProgress(), 27, 50, 28);
+            context.drawTexture(ARROW_TEXTURE, x + 44, y + 17, 0, 0, handler.getScaledArrowProgress(), 27, 50, 53);
         }
     }
     private void renderProgressLit(DrawContext context, int x, int y) {

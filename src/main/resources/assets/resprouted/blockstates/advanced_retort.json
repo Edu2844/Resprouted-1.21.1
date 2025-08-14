@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "resprouted:block/advanced_retort" },
+		"facing=east":	{ "model": "resprouted:block/advanced_retort", "y": 90},
+		"facing=south":	{ "model": "resprouted:block/advanced_retort", "y": 180 },
+		"facing=west":	{ "model": "resprouted:block/advanced_retort", "y": 270 }
+	}
+}

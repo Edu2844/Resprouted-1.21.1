@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-06T22:41:56.9112016	Resprouted/Recipes
+// 1.21.1	2025-08-13T18:20:22.3778066	Resprouted/Recipes
 6cfa2af217c559f1f6ae8a9a440e46b611a361ce data\resprouted\advancement\recipes\decorations\birch_chair.json
 4f9e050df6adaaf0e586457471e4ecf205611cb8 data\resprouted\recipe\birch_stool.json
 c90424c763dab36b50087bfcc3300dd3aebfe58d data\resprouted\recipe\bamboo_stool.json
@@ -11,8 +11,8 @@ d480c17963215f0e20a7340ce2cae8533139d9ab data\resprouted\recipe\birch_table.json
 52644bdfee163b9be0e7a626617a3a9262c4c472 data\resprouted\recipe\dark_oak_chair.json
 f2cd34b435b8aac43d9ae7e0f285a15b1df405df data\resprouted\recipe\ironwood_stool.json
 ab7b61146181e722cf5ccf1418d6daad44d07423 data\resprouted\recipe\mangrove_table.json
-8e6d308035188a57a37b542e9e087b910ea54612 data\resprouted\advancement\recipes\decorations\ironwood_chair.json
 2ae0a8f65c92c8d29f117e90cf89e014730404c1 data\resprouted\advancement\recipes\decorations\jungle_chair.json
+8e6d308035188a57a37b542e9e087b910ea54612 data\resprouted\advancement\recipes\decorations\ironwood_chair.json
 70df97acfa09897c34c8b279b296b5643c84026a data\resprouted\recipe\cherry_table.json
 cd7eb6e7a0a167221d6815e66b47ec5949a25499 data\resprouted\advancement\recipes\decorations\mangrove_stool.json
 1e05825b25d66b0879ff96bbcb5093f163a4785b data\resprouted\recipe\ironwood_table.json

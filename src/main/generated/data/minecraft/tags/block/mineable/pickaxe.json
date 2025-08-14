@@ -75,7 +75,9 @@
     "resprouted:waxed_oxidized_copper_soul_lantern",
     "resprouted:evaporating_basin",
     "resprouted:condenser",
+    "resprouted:advanced_condenser",
     "resprouted:retort",
+    "resprouted:advanced_retort",
     "resprouted:iron_candle_holder"
   ]
 }

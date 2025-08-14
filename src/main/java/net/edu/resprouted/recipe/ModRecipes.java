@@ -1,6 +1,7 @@
 package net.edu.resprouted.recipe;
 
 import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.recipe.custom.AdvancedCondenserRecipe;
 import net.edu.resprouted.recipe.custom.CondenserRecipe;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
 import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipe;
@@ -11,6 +12,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModRecipes {
+
+    //Crushing Tub
     public static final RecipeSerializer<CrushingTubRecipe> CRUSHING_TUB_SERIALIZER = Registry.register(
             Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "crushing_tub"),
             new CrushingTubRecipe.CrushingTubRecipeSerializer());
@@ -24,6 +27,11 @@ public class ModRecipes {
                 }
             });
 
+    //Evaporating Basin
+    public static final RecipeSerializer<EvaporatingBasinRecipe> EV_BASIN_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"evaporating_basin"),
+            new EvaporatingBasinRecipe.Serializer());
+
     public static final RecipeType<EvaporatingBasinRecipe> EV_BASIN_TYPE = Registry.register(
             Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"evaporating_basin"),
             new RecipeType<EvaporatingBasinRecipe>() {
@@ -33,10 +41,10 @@ public class ModRecipes {
                 }
             });
 
-    public static final RecipeSerializer<EvaporatingBasinRecipe> EV_BASIN_SERIALIZER = Registry.register(
-            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"evaporating_basin"),
-            new EvaporatingBasinRecipe.Serializer());
-
+    //Condenser
+    public static final RecipeSerializer<CondenserRecipe> CONDENSER_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"condenser"),
+            new CondenserRecipe.Serializer());
 
     public static final RecipeType<CondenserRecipe> CONDENSER_TYPE = Registry.register(
             Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"condenser"),
@@ -47,12 +55,22 @@ public class ModRecipes {
                 }
             });
 
-    public static final RecipeSerializer<CondenserRecipe> CONDENSER_SERIALIZER = Registry.register(
-            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"condenser"),
-            new CondenserRecipe.Serializer());
+    //Advanced Condenser
+    public static final RecipeSerializer<AdvancedCondenserRecipe> ADVANCED_CONDENSER_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"advanced_condenser"),
+            new AdvancedCondenserRecipe.Serializer());
+
+    public static final RecipeType<AdvancedCondenserRecipe> ADVANCED_CONDENSER_TYPE = Registry.register(
+            Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"advanced_condenser"),
+            new RecipeType<AdvancedCondenserRecipe>() {
+                @Override
+                public String toString() {
+                    return "advanced_condenser";
+                }
+            });
+
 
     public static void registerRecipes() {
         Resprouted.LOGGER.info("Registering Custom Recipes for " + Resprouted.MOD_ID);
-
     }
 }

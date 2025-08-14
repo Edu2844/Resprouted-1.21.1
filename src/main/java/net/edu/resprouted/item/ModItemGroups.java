@@ -328,6 +328,8 @@ public class ModItemGroups {
                         entries.add(ModItems.DEATHSTALK_MUSHROOM);
                         entries.add(ModBlocks.CONDENSER);
                         entries.add(ModBlocks.RETORT);
+                        entries.add(ModBlocks.ADVANCED_CONDENSER);
+                        entries.add(ModBlocks.ADVANCED_RETORT);
                         entries.addAll(ElixirUtils.getElixirs());
                     }).build());
 
