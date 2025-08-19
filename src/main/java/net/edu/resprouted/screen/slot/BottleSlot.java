@@ -1,4 +1,4 @@
-package net.edu.resprouted.screen.container;
+package net.edu.resprouted.screen.slot;
 
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;

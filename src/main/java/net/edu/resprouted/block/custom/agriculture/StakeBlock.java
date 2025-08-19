@@ -2,7 +2,6 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.util.ModTags;
-import net.edu.resprouted.registry.StakeCropSeedRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -78,11 +77,11 @@ public class StakeBlock extends Block {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (direction.getAxis().isHorizontal()) {
-            //Conexión con cuerda si coincide el eje
+            //Rope connection if axis coincides
             boolean connected = neighborState.getBlock() instanceof RopeBlock
                     && neighborState.contains(RopeBlock.AXIS)
                     && neighborState.get(RopeBlock.AXIS) == direction.getAxis();
-            //Conexión con GrapeLeavesBlock
+            //GrapeLeavesBlock connection
             if (neighborState.getBlock() instanceof GrapeLeavesBlock) {
                 connected = true;
             }
@@ -120,9 +119,9 @@ public class StakeBlock extends Block {
         if (!state.isOf(ModBlocks.STAKE)) {
             return ItemActionResult.FAIL;
         }
-        //Case 1: Plantar un cultivo
+        //Case 1: Crop
         if (!state.get(StakeBlock.HAS_ROPE) && world.getBlockState(pos.down()).isIn(ModTags.Blocks.FERTILE_SOILS)) {
-            Optional<BlockState> crop = StakeCropSeedRegistry.getCropForSeed(stack.getItem());
+            Optional<BlockState> crop = StakeCropBlock.getCropForSeed(stack.getItem());
             if (crop.isPresent()) {
                 world.setBlockState(pos, crop.get(), Block.NOTIFY_ALL);
                 world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -130,7 +129,7 @@ public class StakeBlock extends Block {
                 return ItemActionResult.SUCCESS;
             }
         }
-        //Case 2: Colocar cuerda
+        //Case 2: Rope
         if (stack.isOf(ModBlocks.ROPE.asItem()) && !state.get(StakeBlock.HAS_ROPE)) {
             world.setBlockState(pos, state.with(StakeBlock.HAS_ROPE, true), Block.NOTIFY_ALL);
             world.playSound(null, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);

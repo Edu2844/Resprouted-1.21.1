@@ -54,6 +54,10 @@ public class AdvancedCondenserScreen extends HandledScreen<AdvancedCondenserScre
         }
     }
     @Override
+    protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
+        context.drawText(this.textRenderer, this.title, this.titleX, this.titleY, 4210752, false);
+    }
+    @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);

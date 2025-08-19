@@ -4,8 +4,10 @@ import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -22,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class StakeCropBlock extends CropBlock {
     public static final int MAX_AGE = 7;
@@ -138,7 +141,17 @@ public class StakeCropBlock extends CropBlock {
     protected int getResetAge() {
         return 4;
     }
-
+    public static Optional<BlockState> getCropForSeed(Item seedItem) {
+        for (Block block : Registries.BLOCK) {
+            if (block instanceof StakeCropBlock stakeCrop) {
+                ItemConvertible seed = stakeCrop.getSeedsItem();
+                if (seed != null && seed.asItem() == seedItem) {
+                    return Optional.of(block.getDefaultState());
+                }
+            }
+        }
+        return Optional.empty();
+    }
     // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

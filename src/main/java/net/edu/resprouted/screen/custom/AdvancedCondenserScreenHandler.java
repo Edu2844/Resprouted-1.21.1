@@ -2,9 +2,9 @@ package net.edu.resprouted.screen.custom;
 
 import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
 import net.edu.resprouted.screen.ModScreenHandlers;
-import net.edu.resprouted.screen.container.BottleSlot;
-import net.edu.resprouted.screen.container.CondenserFuelSlot;
-import net.edu.resprouted.screen.container.OutputSlot;
+import net.edu.resprouted.screen.slot.BottleSlot;
+import net.edu.resprouted.screen.slot.CondenserFuelSlot;
+import net.edu.resprouted.screen.slot.OutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;

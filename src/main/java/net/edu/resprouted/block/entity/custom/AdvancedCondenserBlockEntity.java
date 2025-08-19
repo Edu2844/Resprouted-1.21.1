@@ -95,7 +95,7 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
     }
     @Override
     public Text getDisplayName() {
-        return Text.translatable("block.resprouted.advanced_condenser");
+        return Text.literal("");
     }
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
