@@ -606,7 +606,7 @@ public class ModBlocks {
     // ||                  ALCHEMY                    ||
     // =================================================
     public static final Block CONDENSER = registerBlock("condenser", new CondenserBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).luminance(state -> state.get(LIT) ? 15 : 0).nonOpaque()));
-    public static final Block ADVANCED_CONDENSER = registerBlock("advanced_condenser", new AdvancedCondenserBlock(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS).nonOpaque()));
+    public static final Block ADVANCED_CONDENSER = registerBlock("advanced_condenser", new AdvancedCondenserBlock(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS).luminance(state -> state.get(AdvancedCondenserBlock.LIT) ? 15 : 0).nonOpaque()));
     public static final Block RETORT = registerBlock("retort", new RetortBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
     public static final Block ADVANCED_RETORT = registerBlock("advanced_retort", new AdvancedRetortBlock(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS).nonOpaque()));
 

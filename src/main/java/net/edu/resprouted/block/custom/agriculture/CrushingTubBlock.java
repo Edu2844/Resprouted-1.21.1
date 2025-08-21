@@ -40,10 +40,8 @@ public class CrushingTubBlock extends BlockWithEntity {
     public CrushingTubBlock(Settings settings) {
         super(settings);
     }
-    @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
+
+    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
@@ -54,31 +52,40 @@ public class CrushingTubBlock extends BlockWithEntity {
         return new CrushingTubBlockEntity(pos, state);
     }
     @Override
-    protected BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!state.isOf(newState.getBlock())) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof CrushingTubBlockEntity crushingTub) {
+                ItemStack storedStack = crushingTub.getStack(0);
+                if (!storedStack.isEmpty()) {
+                    ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), storedStack);
+                }
+            }
+        }
+        super.onStateReplaced(state, world, pos, newState, moved);
     }
+
+    // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (!(blockEntity instanceof CrushingTubBlockEntity crushingTub)) {
             return ItemActionResult.FAIL;
         }
-        //Fluid logic
-        var storage = FluidStorage.SIDED.find(world, pos, hit.getSide());
 
+        /*---Fluid logic---*/
+        var storage = FluidStorage.SIDED.find(world, pos, hit.getSide());
         if (storage != null) {
             ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, storage, world, pos, false, true);
-
             if (result == ItemActionResult.SUCCESS) {
                 crushingTub.markDirty();
                 world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
-
                 return ItemActionResult.CONSUME;
             }
         }
-        //Inventory logic
-        ItemStack tubStack = crushingTub.getStack(0);
 
+        /*---Inventory logic---*/
+        ItemStack tubStack = crushingTub.getStack(0);
         if (stack.isEmpty()) {
             //Extract ítem
             if (!tubStack.isEmpty()) {
@@ -87,7 +94,6 @@ public class CrushingTubBlock extends BlockWithEntity {
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1.5f);
                 crushingTub.markDirty();
                 world.updateListeners(pos, state, state, 0);
-
                 return ItemActionResult.SUCCESS;
             }
         } else {
@@ -98,7 +104,6 @@ public class CrushingTubBlock extends BlockWithEntity {
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
                 crushingTub.markDirty();
                 world.updateListeners(pos, state, state, 0);
-
                 return ItemActionResult.SUCCESS;
 
             } else if (ItemStack.areItemsAndComponentsEqual(tubStack, stack)) {
@@ -109,27 +114,11 @@ public class CrushingTubBlock extends BlockWithEntity {
                     world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
                     crushingTub.markDirty();
                     world.updateListeners(pos, state, state, 0);
-
                     return ItemActionResult.SUCCESS;
                 }
             }
         }
         return ItemActionResult.FAIL;
-    }
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.isOf(newState.getBlock())) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-
-            if (blockEntity instanceof CrushingTubBlockEntity crushingTub) {
-                ItemStack storedStack = crushingTub.getStack(0);
-
-                if (!storedStack.isEmpty()) {
-                    ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), storedStack);
-                }
-            }
-        }
-        super.onStateReplaced(state, world, pos, newState, moved);
     }
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
@@ -193,6 +182,16 @@ public class CrushingTubBlock extends BlockWithEntity {
                 world.spawnEntity(itemEntity);
             }
         }
+    }
+
+    // ========= FORMA Y TRANSFORMACIONES =========
+    @Override
+    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
+    }
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 }
 

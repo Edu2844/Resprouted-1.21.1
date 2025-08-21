@@ -40,13 +40,12 @@ public class CondenserBlock extends BlockWithEntity {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty BOTTOM = BooleanProperty.of("bottom");
     public static final BooleanProperty LIT = BooleanProperty.of("lit");
+    public static final MapCodec<CondenserBlock> CODEC = CondenserBlock.createCodec(CondenserBlock::new);
     private static final VoxelShape TOP_SHAPE = VoxelShapes.combineAndSimplify(
             Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 4.0F, 16.0F),
             Block.createCuboidShape(4.0F, 4.0F, 4.0F, 12.0F, 8.0F, 12.0F),
             BooleanBiFunction.OR
     );
-    public static final MapCodec<CondenserBlock> CODEC = CondenserBlock.createCodec(CondenserBlock::new);
-
     public CondenserBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState()
@@ -55,6 +54,8 @@ public class CondenserBlock extends BlockWithEntity {
                 .with(LIT, false)
         );
     }
+
+    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, BOTTOM, LIT);
@@ -66,10 +67,6 @@ public class CondenserBlock extends BlockWithEntity {
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return state.get(BOTTOM) ? new CondenserBlockEntity(pos, state) : null;
-    }
-    @Override
-    protected BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
     }
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -116,10 +113,18 @@ public class CondenserBlock extends BlockWithEntity {
         }
         return world.getBlockState(pos.down()).isOf(this);
     }
+    @Nullable
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return state.get(BOTTOM) ? VoxelShapes.fullCube() : TOP_SHAPE;
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        if (world.isClient()) {
+            return validateTicker(type, ModBlockEntities.CONDENSER_BE,
+                    (world1, pos, state1, be) -> be.clientTick(world1, pos, state1));
+        }
+        return validateTicker(type, ModBlockEntities.CONDENSER_BE,
+                (world1, pos, state1, be) -> be.serverTick(world1, pos, state1));
     }
+
+    // ========= INTERACCIÓN =========
     @Override
     public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockPos targetPos = state.get(BOTTOM) ? pos : pos.down();
@@ -182,6 +187,7 @@ public class CondenserBlock extends BlockWithEntity {
         BlockPos southPos = pos.south();
 
         switch (facing) {
+
             case NORTH:
             case SOUTH:
                 if (!world.getBlockState(eastPos).isOf(ModBlocks.RETORT))
@@ -196,28 +202,24 @@ public class CondenserBlock extends BlockWithEntity {
 
             case WEST:
             case EAST:
-                if (!world.getBlockState(northPos).isOf(ModBlocks.RETORT))
-                    return false;
-                if (!world.getBlockState(southPos).isOf(ModBlocks.RETORT))
-                    return false;
-                if (world.getBlockState(northPos).get(RetortBlock.FACING) != Direction.NORTH)
-                    return false;
-                if (world.getBlockState(southPos).get(RetortBlock.FACING) != Direction.SOUTH)
-                    return false;
+                if (!world.getBlockState(northPos).isOf(ModBlocks.RETORT)) return false;
+                if (!world.getBlockState(southPos).isOf(ModBlocks.RETORT)) return false;
+                if (world.getBlockState(northPos).get(RetortBlock.FACING) != Direction.NORTH) return false;
+                if (world.getBlockState(southPos).get(RetortBlock.FACING) != Direction.SOUTH) return false;
                 break;
             default:
                 return false;
         }
         return true;
     }
-    @Nullable
+
+    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        if (world.isClient()) {
-            return validateTicker(type, ModBlockEntities.CONDENSER_BE,
-                    (world1, pos, state1, be) -> be.clientTick(world1, pos, state1));
-        }
-        return validateTicker(type, ModBlockEntities.CONDENSER_BE,
-                (world1, pos, state1, be) -> be.serverTick(world1, pos, state1));
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return state.get(BOTTOM) ? VoxelShapes.fullCube() : TOP_SHAPE;
+    }
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 }
