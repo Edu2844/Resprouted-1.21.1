@@ -1,18 +1,23 @@
 {
-	"variants": {
-		"bottom=true,lit=false,facing=north": { "model": "resprouted:block/advanced_condenser" },
-		"bottom=true,lit=false,facing=east":  { "model": "resprouted:block/advanced_condenser", "y": 90 },
-		"bottom=true,lit=false,facing=south": { "model": "resprouted:block/advanced_condenser", "y": 180 },
-		"bottom=true,lit=false,facing=west":  { "model": "resprouted:block/advanced_condenser", "y": 270 },
-		
-		"bottom=true,lit=true,facing=north": { "model": "resprouted:block/advanced_condenser" },
-		"bottom=true,lit=true,facing=east":  { "model": "resprouted:block/advanced_condenser", "y": 90 },
-		"bottom=true,lit=true,facing=south": { "model": "resprouted:block/advanced_condenser", "y": 180 },
-		"bottom=true,lit=true,facing=west":  { "model": "resprouted:block/advanced_condenser", "y": 270 },
-		
-		"bottom=false,facing=north": { "model": "resprouted:block/advanced_condenser_top" },
-		"bottom=false,facing=east":  { "model": "resprouted:block/advanced_condenser_top", "y": 90 },
-		"bottom=false,facing=south": { "model": "resprouted:block/advanced_condenser_top", "y": 180 },
-		"bottom=false,facing=west":  { "model": "resprouted:block/advanced_condenser_top", "y": 270 }
-	}
+  "variants": {
+    "bottom=true,lit=false,facing=north": { "model": "resprouted:block/advanced_condenser" },
+    "bottom=true,lit=false,facing=east":  { "model": "resprouted:block/advanced_condenser", "y": 90 },
+    "bottom=true,lit=false,facing=south": { "model": "resprouted:block/advanced_condenser", "y": 180 },
+    "bottom=true,lit=false,facing=west":  { "model": "resprouted:block/advanced_condenser", "y": 270 },
+    
+    "bottom=true,lit=true,facing=north": { "model": "resprouted:block/advanced_condenser_on" },
+    "bottom=true,lit=true,facing=east":  { "model": "resprouted:block/advanced_condenser_on", "y": 90 },
+    "bottom=true,lit=true,facing=south": { "model": "resprouted:block/advanced_condenser_on", "y": 180 },
+    "bottom=true,lit=true,facing=west":  { "model": "resprouted:block/advanced_condenser_on", "y": 270 },
+
+    "bottom=false,lit=false,facing=north": { "model": "resprouted:block/advanced_condenser_top" },
+    "bottom=false,lit=false,facing=east":  { "model": "resprouted:block/advanced_condenser_top", "y": 90 },
+    "bottom=false,lit=false,facing=south": { "model": "resprouted:block/advanced_condenser_top", "y": 180 },
+    "bottom=false,lit=false,facing=west":  { "model": "resprouted:block/advanced_condenser_top", "y": 270 },
+
+    "bottom=false,lit=true,facing=north": { "model": "resprouted:block/advanced_condenser_top_on" },
+    "bottom=false,lit=true,facing=east":  { "model": "resprouted:block/advanced_condenser_top_on", "y": 90 },
+    "bottom=false,lit=true,facing=south": { "model": "resprouted:block/advanced_condenser_top_on", "y": 180 },
+    "bottom=false,lit=true,facing=west":  { "model": "resprouted:block/advanced_condenser_top_on", "y": 270 }
+  }
 }

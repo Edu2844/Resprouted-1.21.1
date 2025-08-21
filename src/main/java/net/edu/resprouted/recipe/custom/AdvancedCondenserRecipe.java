@@ -3,10 +3,12 @@ package net.edu.resprouted.recipe.custom;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
 import net.edu.resprouted.recipe.Input.AdvancedCondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.util.ElixirUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -30,6 +32,7 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
     @Override
     public boolean matches(AdvancedCondenserRecipeInput input, World world) {
         if (world.isClient()) return false;
+
         if (ingredients.size() < 2 || ingredients.size() > 3) return false;
 
         List<ItemStack> actualInputs = new ArrayList<>();
@@ -45,8 +48,13 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
             if (!matched) return false;
         }
         boolean hasFuelOrBurning = false;
+        boolean hasRetorts = false;
         if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBlockEntity be) {
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
+            BlockState blockState = world.getBlockState(input.pos());
+            if (blockState.getBlock() instanceof AdvancedCondenserBlock advcondenser) {
+                hasRetorts = advcondenser.hasRetorts(world, input.pos(), blockState);
+            }
         }
         boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);
 
@@ -59,7 +67,7 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
                 return false;
             }
         }
-        return hasFuelOrBurning && hasBottle && hasFluid;
+        return hasFuelOrBurning && hasBottle && hasFluid && hasRetorts;
     }
     @Override
     public ItemStack craft(AdvancedCondenserRecipeInput input, RegistryWrapper.WrapperLookup lookup) {

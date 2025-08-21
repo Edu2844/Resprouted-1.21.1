@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
-public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProvider {
+public class CrushingTubBlock extends BlockWithEntity {
     private static final VoxelShape SHAPE = Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 9.0F, 16.0F);
     public static final MapCodec<CrushingTubBlock> CODEC = CrushingTubBlock.createCodec(CrushingTubBlock::new);
 
@@ -63,16 +63,20 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
         if (!(blockEntity instanceof CrushingTubBlockEntity crushingTub)) {
             return ItemActionResult.FAIL;
         }
-        //Fluid Logic
+        //Fluid logic
         var storage = FluidStorage.SIDED.find(world, pos, hit.getSide());
+
         if (storage != null) {
             ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, storage, world, pos, false, true);
+
             if (result == ItemActionResult.SUCCESS) {
                 crushingTub.markDirty();
                 world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
+
                 return ItemActionResult.CONSUME;
             }
         }
+        //Inventory logic
         ItemStack tubStack = crushingTub.getStack(0);
 
         if (stack.isEmpty()) {
@@ -83,6 +87,7 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1.5f);
                 crushingTub.markDirty();
                 world.updateListeners(pos, state, state, 0);
+
                 return ItemActionResult.SUCCESS;
             }
         } else {
@@ -93,7 +98,9 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
                 crushingTub.markDirty();
                 world.updateListeners(pos, state, state, 0);
+
                 return ItemActionResult.SUCCESS;
+
             } else if (ItemStack.areItemsAndComponentsEqual(tubStack, stack)) {
                 int maxTransfer = Math.min(stack.getCount(), tubStack.getMaxCount() - tubStack.getCount());
                 if (maxTransfer > 0) {
@@ -102,6 +109,7 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
                     world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
                     crushingTub.markDirty();
                     world.updateListeners(pos, state, state, 0);
+
                     return ItemActionResult.SUCCESS;
                 }
             }
@@ -112,8 +120,10 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
+
             if (blockEntity instanceof CrushingTubBlockEntity crushingTub) {
                 ItemStack storedStack = crushingTub.getStack(0);
+
                 if (!storedStack.isEmpty()) {
                     ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), storedStack);
                 }
@@ -142,6 +152,7 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
 
         boolean canInsertFluid = recipeFluid.isBlank() || currentFluid.isBlank() || currentFluid.equals(recipeFluid);
         boolean overCapacity = !recipeFluid.isBlank() && (currentAmount + recipe.fluidAmount() > FluidConstants.BUCKET * 8);
+
         if (!canInsertFluid || overCapacity) return;
 
         Item itemBeforeCrush = tubStack.getItem();
@@ -153,15 +164,18 @@ public class CrushingTubBlock extends BlockWithEntity implements BlockEntityProv
 
             if (!recipeFluid.isBlank() && recipe.fluidAmount() > 0) {
                 long inserted = crushingTub.crushing_tub.insert(recipeFluid, recipe.fluidAmount(), tx);
+
                 if (inserted != recipe.fluidAmount()) shouldCommit = false;
             }
             if (shouldCommit) {
                 crushingTub.removeStack(0, 1);
                 tx.commit();
+
             } else return;
         }
         crushingTub.markDirty();
         world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
+
         if (world instanceof ServerWorld serverWorld && !world.isClient) {
             serverWorld.getChunkManager().markForUpdate(pos);
         }

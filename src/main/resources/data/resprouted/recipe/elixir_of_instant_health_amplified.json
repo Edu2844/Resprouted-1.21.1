@@ -1,12 +1,18 @@
 {
   "type": "resprouted:advanced_condenser",
   "ingredients": [
-    { "item": "minecraft:spider_eye" },
-    { "item": "resprouted:mooncap_mushroom" },
-    { "item": "minecraft:ghast_tear" }
+    {
+      "item": "minecraft:beef"
+    },
+    {
+      "item": "resprouted:chamomile"
+    }
   ],
-  "modifier": { "item": "minecraft:redstone" },
-  "effect": "minecraft:night_vision",
-  "duration": 3600,
-  "amplifier": 0
+  "modifier":
+  {
+    "item": "resprouted:marsh_mallow"
+  },
+  "effect": "minecraft:instant_health",
+  "duration": 0,
+  "amplifier": 1
 }

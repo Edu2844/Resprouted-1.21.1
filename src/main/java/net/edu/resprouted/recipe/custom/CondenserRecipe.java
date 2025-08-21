@@ -3,10 +3,12 @@ package net.edu.resprouted.recipe.custom;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.edu.resprouted.block.custom.alchemy.CondenserBlock;
 import net.edu.resprouted.block.entity.custom.CondenserBlockEntity;
 import net.edu.resprouted.recipe.Input.CondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.util.ElixirUtils;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -37,15 +39,21 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
         boolean matchNormal = first.test(input.inputA()) && second.test(input.inputB());
         boolean matchSwapped = first.test(input.inputB()) && second.test(input.inputA());
         boolean hasFuelOrBurning = false;
+        boolean hasRetorts = false;
+
         if (world.getBlockEntity(input.pos()) instanceof CondenserBlockEntity be) {
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
+            BlockState blockState = world.getBlockState(input.pos());
+            if (blockState.getBlock() instanceof CondenserBlock condenserBlock) {
+                hasRetorts = condenserBlock.hasRetorts(world, input.pos(), blockState);
+            }
         }
         boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);
         boolean hasFluid = false;
         if (world.getBlockEntity(input.pos()) instanceof CondenserBlockEntity be) {
             hasFluid = be.hasFluid();
         }
-        return (matchNormal || matchSwapped) && hasFuelOrBurning && hasBottle && hasFluid;
+        return (matchNormal || matchSwapped) && hasFuelOrBurning && hasBottle && hasFluid && hasRetorts;
     }
     @Override
     public ItemStack craft(CondenserRecipeInput input, RegistryWrapper.WrapperLookup lookup) {

@@ -130,7 +130,8 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
     }
     private int smokeTimer = 0;
     public void clientTick(World world, BlockPos pos, BlockState state) {
-        if (state.get(CondenserBlock.LIT)) {
+        boolean shouldEmitSmoke = this.progress > 0;
+        if (shouldEmitSmoke) {
             smokeTimer++;
             if (smokeTimer >= 3) {
                 Direction facing = state.get(CondenserBlock.FACING);
@@ -204,8 +205,7 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
         );
         assert world != null;
         Optional<RecipeEntry<CondenserRecipe>> match = world.getRecipeManager().getFirstMatch(ModRecipes.CONDENSER_TYPE, input, world);
-        return match.isPresent()
-                && canInsertItemIntoOutputSlot(match.get().value().craft(input, world.getRegistryManager()));
+        return match.isPresent() && canInsertItemIntoOutputSlot(match.get().value().craft(input, world.getRegistryManager()));
     }
     private boolean canInsertItemIntoOutputSlot(ItemStack result) {
         ItemStack outputStack = this.getStack(OUTPUT_SLOT);
@@ -249,14 +249,26 @@ public class CondenserBlockEntity extends BlockEntity implements ExtendedScreenH
         world.playSound(null, pos, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
     }
     private void resetProgress() {
-        this.progress = 0;
-        this.maxProgress = 380;
+        if (this.progress != 0) {
+            this.progress = 0;
+            this.maxProgress = 380;
+            markDirty();
+            if (world != null) {
+                world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+            }
+        }
     }
     private boolean hasCraftingFinished() {
         return this.progress >= this.maxProgress;
     }
     private void increaseCraftingProgress() {
         this.progress++;
+        if (this.progress % 20 == 0) {
+            markDirty();
+            if (world != null) {
+                world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+            }
+        }
     }
     @Override
     public DefaultedList<ItemStack> getItems() {

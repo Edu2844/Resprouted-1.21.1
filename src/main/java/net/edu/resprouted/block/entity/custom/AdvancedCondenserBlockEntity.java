@@ -1,6 +1,7 @@
 package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
+import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.Input.AdvancedCondenserRecipeInput;
@@ -105,6 +106,9 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
         Inventories.writeNbt(nbt, inventory, registryLookup);
+        nbt.putInt("condenser.progress", progress);
+        nbt.putInt("condenser.max_progress", maxProgress);
+        nbt.putInt("BurnTime", this.burnTime);
         //Fluids
         NbtCompound fluidNbt = new NbtCompound();
         SingleVariantStorage.writeNbt(advanced_condenser, FluidVariant.CODEC, fluidNbt, registryLookup);
@@ -114,6 +118,9 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
         Inventories.readNbt(nbt, inventory, registryLookup);
+        progress = nbt.getInt("condenser.progress");
+        maxProgress = nbt.getInt("condenser.max_progress");
+        this.burnTime = nbt.getInt("BurnTime");
         //Fluids
         if (nbt.contains("Fluid", NbtElement.COMPOUND_TYPE)) {
             SingleVariantStorage.readNbt(
@@ -127,7 +134,9 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
     }
     private int smokeTimer = 0;
     public void clientTick(World world, BlockPos pos, BlockState state) {
-        if (state.get(AdvancedCondenserBlock.LIT)) {
+        boolean shouldEmitSmoke = this.progress > 0;
+
+        if (shouldEmitSmoke) {
             smokeTimer++;
             if (smokeTimer >= 3) {
                 Direction facing = state.get(AdvancedCondenserBlock.FACING);
@@ -182,6 +191,11 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
         boolean shouldBeLit = isBurning() || (hasFuelAvailable && hasRecipe());
         if (state.get(AdvancedCondenserBlock.LIT) != shouldBeLit) {
             world.setBlockState(pos, state.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
+            BlockPos topPos = pos.up();
+            BlockState topState = world.getBlockState(topPos);
+            if (topState.isOf(ModBlocks.ADVANCED_CONDENSER)) {
+                world.setBlockState(topPos, topState.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
+            }
             dirty = true;
         }
         if (dirty) {
@@ -271,14 +285,26 @@ public class AdvancedCondenserBlockEntity extends BlockEntity implements Extende
         return !advanced_condenser.variant.isBlank() && advanced_condenser.amount > 0;
     }
     private void resetProgress() {
-        this.progress = 0;
-        this.maxProgress = 380;
+        if (this.progress != 0) {
+            this.progress = 0;
+            this.maxProgress = 380;
+            markDirty();
+            if (world != null) {
+                world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+            }
+        }
     }
     private boolean hasCraftingFinished() {
         return this.progress >= this.maxProgress;
     }
     private void increaseCraftingProgress() {
         this.progress++;
+        if (this.progress % 20 == 0) {
+            markDirty();
+            if (world != null) {
+                world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+            }
+        }
     }
     @Override
     public DefaultedList<ItemStack> getItems() {

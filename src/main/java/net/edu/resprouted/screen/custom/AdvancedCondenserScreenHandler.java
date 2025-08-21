@@ -22,7 +22,7 @@ public class AdvancedCondenserScreenHandler extends ScreenHandler {
     public final AdvancedCondenserBlockEntity blockEntity;
 
     public AdvancedCondenserScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId, playerInventory, (AdvancedCondenserBlockEntity) playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
+        this(syncId, playerInventory, (AdvancedCondenserBlockEntity) playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(5));
     }
 
     public AdvancedCondenserScreenHandler(int syncId, PlayerInventory playerInventory, AdvancedCondenserBlockEntity blockEntity, PropertyDelegate propertyDelegate) {

@@ -24,7 +24,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class EvaporatingBasinBlock extends BlockWithEntity implements BlockEntityProvider {
+public class EvaporatingBasinBlock extends BlockWithEntity {
     private static final VoxelShape SHAPE = VoxelShapes.union(
             Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 1.0F, 12.0F),
             Block.createCuboidShape(2.0F, 0.0F, 4.0F, 4.0F, 6.0F, 12.0F),

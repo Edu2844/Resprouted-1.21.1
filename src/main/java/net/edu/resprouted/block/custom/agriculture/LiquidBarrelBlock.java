@@ -35,7 +35,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
-public class LiquidBarrelBlock extends BlockWithEntity implements BlockEntityProvider {
+public class LiquidBarrelBlock extends BlockWithEntity {
     private static final VoxelShape SHAPE = VoxelShapes.union(
             Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 2.0F),
             Block.createCuboidShape(2.0F, 0.0F, 2.0F, 14.0F, 1.0F, 14.0F),
