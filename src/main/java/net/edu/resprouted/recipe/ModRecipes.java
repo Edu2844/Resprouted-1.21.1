@@ -1,10 +1,7 @@
 package net.edu.resprouted.recipe;
 
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.recipe.custom.AdvancedCondenserRecipe;
-import net.edu.resprouted.recipe.custom.CondenserRecipe;
-import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
-import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipe;
+import net.edu.resprouted.recipe.custom.*;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
@@ -68,6 +65,11 @@ public class ModRecipes {
                     return "advanced_condenser";
                 }
             });
+
+    //Oiling
+    public static final RecipeSerializer<OilingRecipe> OLIVE_OIL_SERIALIZER =
+            Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "olive_oil_crafting"),
+                    new OilingRecipe.OilingRecipeSerializer());
 
 
     public static void registerRecipes() {

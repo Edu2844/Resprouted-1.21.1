@@ -2,6 +2,7 @@ package net.edu.resprouted;
 
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.networking.ModMessages;
@@ -45,6 +46,7 @@ public class Resprouted implements ModInitializer {
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
 		ModScreenHandlers.registerScreenHandlers();
+		ModDataComponentTypes.registerDataComponentTypes();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
 	}
 }

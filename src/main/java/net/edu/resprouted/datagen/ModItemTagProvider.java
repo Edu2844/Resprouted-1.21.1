@@ -123,5 +123,30 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTags.Items.FUELS)
                 .add(Items.CHARCOAL)
         ;
+        getOrCreateTagBuilder(ModTags.Items.CAN_BE_OILED)
+                .add(Items.BEEF)
+                .add(Items.COOKED_BEEF)
+                .add(Items.PORKCHOP)
+                .add(Items.COOKED_PORKCHOP)
+                .add(Items.MUTTON)
+                .add(Items.COOKED_MUTTON)
+                .add(Items.CHICKEN)
+                .add(Items.COOKED_CHICKEN)
+                .add(Items.RABBIT)
+                .add(Items.COOKED_RABBIT)
+                .add(Items.SALMON)
+                .add(Items.COOKED_SALMON)
+                .add(Items.COD)
+                .add(Items.COOKED_COD)
+                .add(Items.BREAD)
+                .add(Items.BAKED_POTATO)
+                .add(Items.POTATO)
+                .add(Items.CARROT)
+                .add(ModItems.TOMATO)
+                .add(ModItems.CHILI_PEPPER)
+                .add(ModItems.GRAPES)
+                .add(ModItems.IRON_BERRIES)
+
+        ;
     }
 }

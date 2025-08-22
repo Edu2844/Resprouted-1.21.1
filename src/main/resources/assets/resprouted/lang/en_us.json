@@ -389,5 +389,6 @@
   "category.resprouted.keys": "Rustic Resprout",
 
   "tooltip.resprouted.fluid": "Fluid: %s",
-  "tooltip.resprouted.amount": "Amount: %s mB"
+  "tooltip.resprouted.amount": "Amount: %s mB",
+  "tooltip.resprouted.olive_oil": "Oiled"
 }

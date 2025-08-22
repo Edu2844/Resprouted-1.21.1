@@ -5,6 +5,7 @@
   "mixins": [
     "CropBlockMixin",
     "GlassBottleItemMixin",
+    "FoodComponentMixin",
     "MushroomPlantBlockMixin",
     "SugarCaneBlockMixin"
   ],

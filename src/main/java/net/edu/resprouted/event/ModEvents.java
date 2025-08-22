@@ -1,8 +1,32 @@
 package net.edu.resprouted.event;
 
 
-public class ModEvents {
-    public static void registerModEvents() {
+import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.component.ModDataComponentTypes;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
+import java.util.List;
+
+public class ModEvents {
+
+    private static void onItemTooltip(ItemStack stack, Item.TooltipContext context, TooltipType type, List<Text> tooltip) {
+        if (stack.get(ModDataComponentTypes.OILED) != null && Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OILED))) {
+            Text oiledText = Text.translatable("tooltip.resprouted.olive_oil")
+                    .formatted(Formatting.DARK_GREEN);
+            if (!tooltip.isEmpty()) {
+                tooltip.add(1, oiledText);
+            } else {
+                tooltip.add(oiledText);
+            }
+        }
+    }
+    public static void registerModEvents() {
+        Resprouted.LOGGER.info("Registering Events for " + Resprouted.MOD_ID);
+        ItemTooltipCallback.EVENT.register(ModEvents::onItemTooltip);
     }
 }
