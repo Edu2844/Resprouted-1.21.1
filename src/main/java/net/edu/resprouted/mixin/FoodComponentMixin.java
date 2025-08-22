@@ -1,5 +1,6 @@
 package net.edu.resprouted.mixin;
 
+import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.minecraft.component.ComponentHolder;
 import net.minecraft.component.ComponentType;
@@ -38,8 +39,8 @@ public interface FoodComponentMixin {
     @Unique
     private FoodComponent modifyFoodComponent(FoodComponent original) {
         return new FoodComponent(
-                original.nutrition() + 2,
-                Math.max(0.1f, original.saturation() * 1.5f),
+                original.nutrition() + Resprouted.CONFIG.getOiledNutritionBonus(),
+                Math.max(0.1f, original.saturation() * Resprouted.CONFIG.getOiledSaturationModifier()),
                 original.canAlwaysEat(),
                 original.eatSeconds(),
                 original.usingConvertsTo(),

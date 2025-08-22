@@ -3,6 +3,7 @@ package net.edu.resprouted;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.component.ModDataComponentTypes;
+import net.edu.resprouted.config.ModConfiguration;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.networking.ModMessages;
@@ -26,7 +27,7 @@ import org.slf4j.LoggerFactory;
 public class Resprouted implements ModInitializer {
 	public static final String MOD_ID = "resprouted";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
+	public static ModConfiguration CONFIG;
 
 	@Override
 	public void onInitialize() {
@@ -48,5 +49,8 @@ public class Resprouted implements ModInitializer {
 		ModScreenHandlers.registerScreenHandlers();
 		ModDataComponentTypes.registerDataComponentTypes();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
+
+		CONFIG = ModConfiguration.load();
+		System.out.println("Resprouted config loaded:");
 	}
 }

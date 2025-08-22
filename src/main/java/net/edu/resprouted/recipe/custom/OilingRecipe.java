@@ -2,10 +2,10 @@ package net.edu.resprouted.recipe.custom;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.util.ModTags;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.RegistryByteBuf;
@@ -14,6 +14,7 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -43,7 +44,7 @@ public class OilingRecipe extends SpecialCraftingRecipe {
             ItemStack stack = input.getStackInSlot(i);
             if (stack.isEmpty()) continue;
 
-            if (stack.isIn(ModTags.Items.CAN_BE_OILED) && foodStack.isEmpty()) {
+            if (isValidFood(stack) && foodStack.isEmpty()) {
                 if (stack.get(ModDataComponentTypes.OILED) != null && Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OILED))) {
                     return false;
                 }
@@ -56,12 +57,16 @@ public class OilingRecipe extends SpecialCraftingRecipe {
         }
         return !foodStack.isEmpty() && !oilStack.isEmpty();
     }
+    private boolean isValidFood(ItemStack stack) {
+        String itemId = Registries.ITEM.getId(stack.getItem()).toString();
+        return Resprouted.CONFIG.getOliveOilFood().contains(itemId);
+    }
     @Override
     public ItemStack craft(CraftingRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         ItemStack foodStack = ItemStack.EMPTY;
         for (int i = 0; i < input.getSize(); i++) {
             ItemStack stack = input.getStackInSlot(i);
-            if (!stack.isEmpty() && stack.isIn(ModTags.Items.CAN_BE_OILED)) {
+            if (!stack.isEmpty() && isValidFood(stack)) {
                 foodStack = stack;
                 break;
             }

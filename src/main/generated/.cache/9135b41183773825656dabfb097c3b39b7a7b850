@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-21T22:23:08.7494859	Resprouted/Tags for minecraft:item
+// 1.21.1	2025-08-22T14:06:04.603441	Resprouted/Tags for minecraft:item
 2859ec709d0c7a50ba1a81d49f441ac86b90a536 data\resprouted\tags\item\ghost_pepper.json
 583c61b048f26dc4a732d8db2938a19214c6aa65 data\resprouted\tags\item\chili_pepper_seeds.json
 f470b0889459fb2d48176e69995c70ce18aa66ea data\resprouted\tags\item\fuels.json
@@ -10,7 +10,6 @@ dcb5cf9c7ab26ab2b93bbfcc48539452aa57ecc3 data\resprouted\tags\item\peppers.json
 3089a5f05c8aec5cac6c2ebce5576dfa64aa2590 data\resprouted\tags\item\crops.json
 1bb201cc87089fd742be594e3628681872c196eb data\resprouted\tags\item\tomato.json
 18609d98fa687192917f3a6904ca0e59f14547ab data\resprouted\tags\item\grape_seeds.json
-37efdf65095dabdd1f78849889d77a97d5005e28 data\resprouted\tags\item\can_be_oiled.json
 5556c889a860ff10c91900a85842977c03e7b392 data\resprouted\tags\item\chili_pepper.json
 4dcc822cba19e4afd7424f792b2b47c8f0f31750 data\resprouted\tags\item\grapes.json
 eeea9c75dbba6beccb4c9cd7f5594ce768727495 data\minecraft\tags\item\logs_that_burn.json

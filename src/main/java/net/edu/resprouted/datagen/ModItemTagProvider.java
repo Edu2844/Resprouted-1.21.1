@@ -26,7 +26,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.OLIVE_WOOD.asItem())
                 .add(ModBlocks.STRIPPED_OLIVE_LOG.asItem())
         ;
-
         getOrCreateTagBuilder(ItemTags.PLANKS)
                 .add(ModBlocks.IRONWOOD_PLANKS.asItem())
                 .add(ModBlocks.OLIVE_PLANKS.asItem())
@@ -102,10 +101,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.CHILI_PEPPER)
                 .add(ModItems.GRAPES)
         ;
-        getOrCreateTagBuilder(ModTags.Items.CAN_BE_OILED)
-                .add(ModItems.TOMATO)
-                .add(Items.COOKED_PORKCHOP)
-        ;
         getOrCreateTagBuilder(ModTags.Items.GLASS_BOTTLES)
                 .add(ModItems.GRAPE_JUICE_BOTTLE)
                 .add(ModItems.APPLE_JUICE_BOTTLE)
@@ -122,31 +117,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         ;
         getOrCreateTagBuilder(ModTags.Items.FUELS)
                 .add(Items.CHARCOAL)
-        ;
-        getOrCreateTagBuilder(ModTags.Items.CAN_BE_OILED)
-                .add(Items.BEEF)
-                .add(Items.COOKED_BEEF)
-                .add(Items.PORKCHOP)
-                .add(Items.COOKED_PORKCHOP)
-                .add(Items.MUTTON)
-                .add(Items.COOKED_MUTTON)
-                .add(Items.CHICKEN)
-                .add(Items.COOKED_CHICKEN)
-                .add(Items.RABBIT)
-                .add(Items.COOKED_RABBIT)
-                .add(Items.SALMON)
-                .add(Items.COOKED_SALMON)
-                .add(Items.COD)
-                .add(Items.COOKED_COD)
-                .add(Items.BREAD)
-                .add(Items.BAKED_POTATO)
-                .add(Items.POTATO)
-                .add(Items.CARROT)
-                .add(ModItems.TOMATO)
-                .add(ModItems.CHILI_PEPPER)
-                .add(ModItems.GRAPES)
-                .add(ModItems.IRON_BERRIES)
-
         ;
     }
 }
