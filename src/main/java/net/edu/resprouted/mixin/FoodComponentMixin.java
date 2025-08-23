@@ -20,7 +20,7 @@ public interface FoodComponentMixin {
     @Inject(method = "get(Lnet/minecraft/component/ComponentType;)Ljava/lang/Object;",
             at = @At("RETURN"),
             cancellable = true)
-    private <T> void onGetComponent(ComponentType<T> type, CallbackInfoReturnable<T> cir) {
+    default <T> void onGetComponent(ComponentType<T> type, CallbackInfoReturnable<T> cir) {
         if (type == DataComponentTypes.FOOD && cir.getReturnValue() != null) {
             ComponentHolder self = (ComponentHolder) this;
 
@@ -37,7 +37,7 @@ public interface FoodComponentMixin {
         }
     }
     @Unique
-    private FoodComponent modifyFoodComponent(FoodComponent original) {
+    default FoodComponent modifyFoodComponent(FoodComponent original) {
         return new FoodComponent(
                 original.nutrition() + Resprouted.CONFIG.getOiledNutritionBonus(),
                 Math.max(0.1f, original.saturation() * Resprouted.CONFIG.getOiledSaturationModifier()),

@@ -16,6 +16,7 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	maven { url "https://maven.ryanliptak.com/" }
 	maven { url "https://maven.shedaniel.me" }
 	maven {
 		name = 'TerraformersMC'
@@ -42,6 +43,9 @@ dependencies {
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:11.0.0"
 
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:16.0.777"
+	modCompileOnly("squeek.appleskin:appleskin-fabric:mc1.21-3.0.6:api") {
+		transitive = false
+	}
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:16.0.777"
 	modApi "dev.architectury:architectury-fabric:13.0.8"
 	modApi "me.shedaniel.cloth:cloth-config-fabric:15.0.140"

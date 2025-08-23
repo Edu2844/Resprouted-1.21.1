@@ -26,6 +26,9 @@
 		],
 		"rei_client": [
 			"net.edu.resprouted.compat.rei.REIClient"
+		],
+		"appleskin": [
+			"net.edu.resprouted.compat.AppleSkinEventHandler"
 		]
 	},
 	"mixins": [
