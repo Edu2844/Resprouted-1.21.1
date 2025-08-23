@@ -1,4 +1,4 @@
-package net.edu.resprouted.config;
+package net.edu.resprouted;
 
 import net.fabricmc.loader.api.FabricLoader;
 
@@ -11,14 +11,14 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 
-public class ModConfiguration {
+public class ResproutedConfiguration {
     private static final File CONFIG_FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "resprouted.json");
 
     private int OiledNutritionBonus = 2;
     private float OiledSaturationModifier = 1.5f;
     private List<String> OilableFoodList = new ArrayList<>();
 
-    public ModConfiguration() {
+    public ResproutedConfiguration() {
         OilableFoodList.add("minecraft:beef");
         OilableFoodList.add("minecraft:cooked_beef");
         OilableFoodList.add("minecraft:porkchop");
@@ -55,20 +55,20 @@ public class ModConfiguration {
         OilableFoodList.add("farmersdelight:onion");
         OilableFoodList.add("farmersdelight:cabbage_leaf");
     }
-    public static ModConfiguration load() {
-        ModConfiguration configuration = new ModConfiguration();
+    public static ResproutedConfiguration load() {
+        ResproutedConfiguration configuration = new ResproutedConfiguration();
         if (!CONFIG_FILE.exists()) {
             save(configuration);
             return configuration;
         }
         try (Reader reader = Files.newBufferedReader(CONFIG_FILE.toPath())) {
-            configuration = (new GsonBuilder().setPrettyPrinting().create()).fromJson(reader, ModConfiguration.class);
+            configuration = (new GsonBuilder().setPrettyPrinting().create()).fromJson(reader, ResproutedConfiguration.class);
         } catch (IOException e) {
             System.err.println("Error loading Resprouted config: " + e.getMessage());
         }
         return configuration;
     }
-    public static void save(ModConfiguration config) {
+    public static void save(ResproutedConfiguration config) {
         try (Writer writer = Files.newBufferedWriter(CONFIG_FILE.toPath())) {
             (new GsonBuilder().setPrettyPrinting().create()).toJson(config, writer);
         } catch (IOException e) {
