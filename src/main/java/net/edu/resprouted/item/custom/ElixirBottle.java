@@ -53,7 +53,6 @@ public class ElixirBottle extends PotionItem {
         user.emitGameEvent(GameEvent.DRINK);
         return stack;
     }
-    @Override
     public Text getName(ItemStack stack) {
         PotionContentsComponent potionContents = stack.get(DataComponentTypes.POTION_CONTENTS);
         if (potionContents != null) {
@@ -64,6 +63,7 @@ public class ElixirBottle extends PotionItem {
                 StatusEffectInstance firstEffect = iterator.next();
                 String effectKey = firstEffect.getEffectType().value().getTranslationKey();
                 String simplifiedKey = effectKey.replace("effect.minecraft.", "");
+
                 return Text.translatable(this.getTranslationKey() + ".effect." + simplifiedKey);
             }
         }

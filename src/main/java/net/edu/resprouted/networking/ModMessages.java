@@ -36,7 +36,6 @@ public class ModMessages {
                 }
             });
         });
-
     }
     public static void registerPayloads(){
         PayloadTypeRegistry.playC2S().register(FirePowerAttackPayload.ID, FirePowerAttackPayload.CODEC);

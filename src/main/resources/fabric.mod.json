@@ -29,6 +29,9 @@
 		],
 		"appleskin": [
 			"net.edu.resprouted.compat.AppleSkinEventHandler"
+		],
+		"modmenu": [
+			"net.edu.resprouted.config.ResproutedModMenu"
 		]
 	},
 	"mixins": [
