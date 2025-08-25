@@ -8,7 +8,7 @@ import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.networking.ModMessages;
 import net.edu.resprouted.registry.ModCabinetRegistry;
 import net.edu.resprouted.screen.ModScreenHandlers;
-import net.edu.resprouted.util.FluidContainerLoader;
+import net.edu.resprouted.resource.reload.FluidContainerLoader;
 import net.edu.resprouted.event.ModEvents;
 import net.edu.resprouted.util.BottleInteractionsUtils;
 import net.edu.resprouted.fluid.ModFluids;

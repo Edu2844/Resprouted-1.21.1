@@ -34,17 +34,15 @@ public class DrinkableBottleItem extends Item {
         }
         return stack;
     }
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.DRINK;
+    }
     @Override
     public SoundEvent getEatSound() {
         return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
     }
     @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.DRINK;
-    }
-    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        user.setCurrentHand(hand);
-        return TypedActionResult.consume(user.getStackInHand(hand));
+        return ItemUsage.consumeHeldItem(world, user, hand);
     }
 }

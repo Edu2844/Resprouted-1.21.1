@@ -1,4 +1,4 @@
-package net.edu.resprouted.util;
+package net.edu.resprouted.resource.reload;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
 import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.fluid.data.FluidContainerMapping;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;

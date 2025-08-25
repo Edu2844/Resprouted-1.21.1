@@ -1,4 +1,4 @@
-package net.edu.resprouted.util;
+package net.edu.resprouted.fluid.data;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;

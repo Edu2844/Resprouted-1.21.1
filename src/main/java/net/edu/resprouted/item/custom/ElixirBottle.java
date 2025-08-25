@@ -26,7 +26,6 @@ public class ElixirBottle extends PotionItem {
         if (playerEntity instanceof ServerPlayerEntity) {
             Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity)playerEntity, stack);
         }
-
         if (!world.isClient) {
             PotionContentsComponent potionContentsComponent = stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT);
             potionContentsComponent.forEachEffect((effect) -> {
@@ -53,18 +52,17 @@ public class ElixirBottle extends PotionItem {
         user.emitGameEvent(GameEvent.DRINK);
         return stack;
     }
+    @Override
     public Text getName(ItemStack stack) {
         PotionContentsComponent potionContents = stack.get(DataComponentTypes.POTION_CONTENTS);
+
         if (potionContents != null) {
-            Iterable<StatusEffectInstance> effects = potionContents.getEffects();
-            Iterator<StatusEffectInstance> iterator = effects.iterator();
+            Iterator<StatusEffectInstance> iterator = potionContents.getEffects().iterator();
 
             if (iterator.hasNext()) {
                 StatusEffectInstance firstEffect = iterator.next();
-                String effectKey = firstEffect.getEffectType().value().getTranslationKey();
-                String simplifiedKey = effectKey.replace("effect.minecraft.", "");
-
-                return Text.translatable(this.getTranslationKey() + ".effect." + simplifiedKey);
+                Text effectName = Text.translatable(firstEffect.getTranslationKey());
+                return Text.translatable("item.resprouted.elixir_bottle.effect", effectName);
             }
         }
         return Text.translatable("item.resprouted.elixir_bottle.empty");

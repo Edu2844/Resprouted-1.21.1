@@ -1,6 +1,9 @@
-package net.edu.resprouted.util;
+package net.edu.resprouted.fluid.util;
 
+import net.edu.resprouted.fluid.data.FluidContainerMapping;
 import net.edu.resprouted.fluid.ModFluids;
+import net.edu.resprouted.resource.reload.FluidContainerLoader;
+import net.edu.resprouted.util.ModTags;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;

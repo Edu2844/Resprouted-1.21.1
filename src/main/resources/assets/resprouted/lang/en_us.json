@@ -7,21 +7,9 @@
   "item.resprouted.olives": "Olives",
   "item.resprouted.elixir_icon": "§dElixir Icon",
 
-  "item.resprouted.elixir_bottle.empty": "Elixir Bottle",
-  "item.resprouted.elixir_bottle.effect.strength": "Elixir of Strength",
-  "item.resprouted.elixir_bottle.effect.speed": "Elixir of Speed",
-  "item.resprouted.elixir_bottle.effect.slow_falling": "Elixir of Slow Falling",
-  "item.resprouted.elixir_bottle.effect.absorption": "Elixir of Absorption",
-  "item.resprouted.elixir_bottle.effect.fire_resistance": "Elixir of Fire Resistance",
-  "item.resprouted.elixir_bottle.effect.regeneration": "Elixir of Regeneration",
-  "item.resprouted.elixir_bottle.effect.instant_health": "Elixir of Healing",
-  "item.resprouted.elixir_bottle.effect.night_vision": "Elixir of Night Vision",
-  "item.resprouted.elixir_bottle.effect.wither": "Elixir of Wither",
-  "item.resprouted.elixir_bottle.effect.health_boost": "Elixir of Health Boost",
-  "item.resprouted.elixir_bottle.effect.haste": "Elixir of Haste",
-
-  "item.resprouted.elixir_bottle.effect.effect.resprouted.full_metal": "Elixir of Full Metal",
-  "item.resprouted.elixir_bottle.effect.effect.resprouted.iron_skin": "Elixir of Iron Skin",
+  "item.resprouted.elixir_bottle": "Elixir Bottle",
+  "item.resprouted.elixir_bottle.empty": "Empty Elixir Bottle",
+  "item.resprouted.elixir_bottle.effect": "Elixir of %s",
 
   "item.resprouted.chili_pepper": "Chili Pepper",
   "item.resprouted.chili_pepper_seeds": "Chili Pepper Seeds",
@@ -380,6 +368,7 @@
 
   "tooltip.resprouted.olive_oiled":"Olive Oiled",
   "tooltip.resprouted.ghost_pepper.tooltip": "§ePossesed by Spirit of Hellfire",
+
   "effect.resprouted.full_metal":"Full Metal",
   "effect.resprouted.fire_power":"Fire Power",
   "effect.resprouted.iron_skin":"Iron Skin",

@@ -59,7 +59,6 @@ public abstract class Entry<T> {
             }
         };
     }
-
     public static Entry<Float> floatEntry(String name, Supplier<Float> current, Consumer<Float> saver, Float defaultValue, Float min, Float max, String... tooltip) {
         return new Entry<>(name, current, saver, defaultValue, min, max, tooltip) {
             @Override
@@ -74,11 +73,9 @@ public abstract class Entry<T> {
             }
         };
     }
-
     private Entry(String name, Supplier<T> current, Consumer<T> saver, T defaultValue, String... tooltip) {
         this(name, current, saver, defaultValue, null, null, tooltip);
     }
-
     private Entry(String name, Supplier<T> current, Consumer<T> saver, T defaultValue, T min, T max, String... tooltip) {
         this.text = name;
         this.current = current;
@@ -88,33 +85,26 @@ public abstract class Entry<T> {
         this.max = max;
         this.tooltip = tooltip;
     }
-
     abstract TooltipListEntry<T> build(ConfigEntryBuilder builder);
 
     public String getText() {
         return text;
     }
-
     public String[] getTooltip() {
         return tooltip;
     }
-
     public Supplier<T> getCurrent() {
         return current;
     }
-
     public Consumer<T> getSaver() {
         return saver;
     }
-
     public T getDefaultValue() {
         return defaultValue;
     }
-
     public T getMin() {
         return min;
     }
-
     public T getMax() {
         return max;
     }

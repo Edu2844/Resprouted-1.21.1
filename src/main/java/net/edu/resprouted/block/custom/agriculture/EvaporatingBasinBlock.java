@@ -3,7 +3,7 @@ package net.edu.resprouted.block.custom.agriculture;
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
-import net.edu.resprouted.util.FluidInteractionHelper;
+import net.edu.resprouted.fluid.util.FluidInteractionHelper;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;

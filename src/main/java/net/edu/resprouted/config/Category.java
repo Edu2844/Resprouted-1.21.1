@@ -1,6 +1,5 @@
 package net.edu.resprouted.config;
 
-
 import net.edu.resprouted.Resprouted;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

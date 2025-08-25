@@ -5,6 +5,7 @@ import net.edu.resprouted.effect.ModEffects;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Items;
 
 public class ModFoodComponents {
     public static final FoodComponent OLIVES = new FoodComponent.Builder().nutrition(1).saturationModifier(0.4f).statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA,200,1,true, false, false),0.95f).build();
@@ -16,6 +17,6 @@ public class ModFoodComponents {
     public static final FoodComponent BLUE_BERRIES = new FoodComponent.Builder().nutrition(2).saturationModifier(0.4f).build();
     public static final FoodComponent ROOT = new FoodComponent.Builder().nutrition(1).saturationModifier(0.4f).build();
     public static final FoodComponent CLOUDSBLUFF = new FoodComponent.Builder().nutrition(1).saturationModifier(0.4f).statusEffect(new StatusEffectInstance(StatusEffects.LEVITATION,100,0),0.95f).build();
-    public static final FoodComponent JUICE = new FoodComponent.Builder().nutrition(0).saturationModifier(0f).alwaysEdible().build();
+    public static final FoodComponent JUICE = new FoodComponent.Builder().nutrition(0).saturationModifier(0f).alwaysEdible().recipeRemainder(Items.GLASS_BOTTLE).build();
     public static final FoodComponent GLOW_BERRY_JUICE = new FoodComponent.Builder().nutrition(0).saturationModifier(0f).alwaysEdible().statusEffect(new StatusEffectInstance(StatusEffects.GLOWING,100,0,true, false, false),1f).build();
 }
