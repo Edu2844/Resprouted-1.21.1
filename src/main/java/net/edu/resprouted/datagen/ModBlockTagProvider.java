@@ -265,6 +265,5 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.MAGMA_BLOCK)
                 .add(Blocks.FIRE)
         ;
-
     }
 }
