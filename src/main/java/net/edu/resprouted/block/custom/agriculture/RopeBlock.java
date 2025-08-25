@@ -4,13 +4,20 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -95,11 +102,25 @@ public class RopeBlock extends ChainBlock{
         if (axis == Direction.Axis.Y) {
             BlockPos up = pos.up();
             BlockState upState = world.getBlockState(up);
-            return upState.isSolidBlock(world, up) || upState.getBlock() instanceof RopeBlock;
+            return upState.isSolidBlock(world, up)
+                    || upState.getBlock() instanceof RopeBlock
+                    || upState.getBlock() instanceof StakeBlock
+                    || upState.getBlock() instanceof GrapeLeavesBlock;
         } else {
             return hasHorizontalSupport(world, pos, new HashSet<>(), axis);
         }
     }
+    /*private boolean hasSupport(BlockState state, WorldView world, BlockPos pos) {
+        Direction.Axis axis = state.get(AXIS);
+
+        if (axis == Direction.Axis.Y) {
+            BlockPos up = pos.up();
+            BlockState upState = world.getBlockState(up);
+            return upState.isSolidBlock(world, up) || upState.getBlock() instanceof RopeBlock;
+        } else {
+            return hasHorizontalSupport(world, pos, new HashSet<>(), axis);
+        }
+    }*/
     private boolean hasHorizontalSupport(WorldView world, BlockPos pos, Set<BlockPos> visited, Direction.Axis axis) {
         if (visited.contains(pos) || visited.size() > 20) return false;
         visited.add(pos);
@@ -124,6 +145,43 @@ public class RopeBlock extends ChainBlock{
         return false;
     }
 
+    @Override
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
+                                             PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (stack.isOf(this.asItem())) {
+            int yOffset = 1;
+            while (yOffset < 64) {
+                BlockPos checkPos = pos.down(yOffset);
+                BlockState checkState = world.getBlockState(checkPos);
+
+                if (checkState.isOf(this)) {
+                    if (checkState.get(AXIS) != Direction.Axis.Y) {
+
+                        return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                    }
+                } else {
+                    if (checkState.isAir()) {
+                        BlockState newState = this.getDefaultState()
+                                .with(AXIS, Direction.Axis.Y)
+                                .with(WATERLOGGED, false);
+
+                        if (!world.isClient) {
+                            world.setBlockState(checkPos, newState, 3);
+                            if (!player.isCreative()) {
+                                stack.decrement(1);
+                            }
+                            world.playSound(null, checkPos, SoundEvents.BLOCK_WOOL_PLACE,
+                                    SoundCategory.BLOCKS, 1.0F, 0.8F);
+                        }
+                        return ItemActionResult.success(world.isClient);
+                    }
+                    break;
+                }
+                yOffset++;
+            }
+        }
+        return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
     // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
