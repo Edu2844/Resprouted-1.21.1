@@ -110,14 +110,34 @@ public class RopeBlock extends ChainBlock{
 
     // ========= INTERACCIÓN =========
     @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world,
-                                             BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+
+
         if (stack.getItem() != asItem()) return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
         Direction side = hit.getSide();
         if (side.getAxis() == state.get(AXIS) && side != Direction.UP)
             return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
+        // 🔥 Si la cuerda es horizontal, verificar que tenga soporte a ambos lados
+        if (state.get(AXIS) != Direction.Axis.Y) {
+            Direction.Axis axis = state.get(AXIS);
+            Direction dir1 = (axis == Direction.Axis.X) ? Direction.WEST : Direction.NORTH;
+            Direction dir2 = dir1.getOpposite();
+
+            BlockState left = world.getBlockState(pos.offset(dir1));
+            BlockState right = world.getBlockState(pos.offset(dir2));
+
+            boolean hasBridge = left.getBlock() instanceof RopeBlock && left.get(AXIS) == axis
+                    && right.getBlock() instanceof RopeBlock && right.get(AXIS) == axis;
+
+            if (!hasBridge) {
+                // ❌ No cumple → no se puede colgar nada
+                return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            }
+        }
+
+        // ✅ Lógica original de colocar hacia abajo
         BlockPos.Mutable cursor = pos.mutableCopy();
         for (int length = 1; length <= 64; length++) {
             cursor.move(Direction.DOWN);

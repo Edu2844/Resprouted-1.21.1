@@ -125,22 +125,22 @@ public class ModItems {
     // ||                   BOTTLES                   ||
     // =================================================
     public static final Item APPLE_JUICE_BOTTLE = registerItem("apple_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.REGULAR_JUICE).maxCount(16)));
 
     public static final Item GOLDEN_APPLE_JUICE_BOTTLE = registerItem("golden_apple_juice_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GOLDEN_APPLE_JUICE).maxCount(16)));
 
     public static final Item GRAPE_JUICE_BOTTLE = registerItem("grape_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.REGULAR_JUICE).maxCount(16)));
 
     public static final Item SWEET_BERRY_JUICE_BOTTLE = registerItem("sweet_berry_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.REGULAR_JUICE).maxCount(16)));
 
     public static final Item OLIVE_OIL_BOTTLE = registerItem("olive_oil_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.OLIVE_OIL).maxCount(16)));
 
     public static final Item VANTA_OIL_BOTTLE = registerItem("vanta_oil_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.VANTA_OIL).maxCount(16)));
 
     public static final Item GLOW_BERRY_JUICE_BOTTLE = registerItem("glow_berry_juice_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GLOW_BERRY_JUICE).maxCount(16)));
@@ -149,7 +149,7 @@ public class ModItems {
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.IRON_BERRIES).maxCount(16)));
 
     public static final Item ALE_WORT_BOTTLE = registerItem("ale_wort_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.ALE_WORT).maxCount(16)));
 
     // =================================================
     // ||                    FOOD                     ||
