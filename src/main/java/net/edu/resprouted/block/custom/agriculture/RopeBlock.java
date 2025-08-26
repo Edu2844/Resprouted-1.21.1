@@ -119,7 +119,6 @@ public class RopeBlock extends ChainBlock{
         if (side.getAxis() == state.get(AXIS) && side != Direction.UP)
             return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-        // 🔥 Si la cuerda es horizontal, verificar que tenga soporte a ambos lados
         if (state.get(AXIS) != Direction.Axis.Y) {
             Direction.Axis axis = state.get(AXIS);
             Direction dir1 = (axis == Direction.Axis.X) ? Direction.WEST : Direction.NORTH;
@@ -132,12 +131,9 @@ public class RopeBlock extends ChainBlock{
                     && right.getBlock() instanceof RopeBlock && right.get(AXIS) == axis;
 
             if (!hasBridge) {
-                // ❌ No cumple → no se puede colgar nada
                 return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
         }
-
-        // ✅ Lógica original de colocar hacia abajo
         BlockPos.Mutable cursor = pos.mutableCopy();
         for (int length = 1; length <= 64; length++) {
             cursor.move(Direction.DOWN);
