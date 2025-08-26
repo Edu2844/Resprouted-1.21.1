@@ -381,6 +381,9 @@
   "tooltip.resprouted.amount": "Amount: %s mB",
   "tooltip.resprouted.olive_oil": "Oiled",
 
+  "tooltip.resprouted.leaves.growth": "Growth: %s",
+  "tooltip.jade.crop_mature": "Mature",
+
   "config.resprouted.title": "Resprouted Configuration",
   "config.resprouted.category.general": "General",
   "config.resprouted.category.worldgen": "World",
@@ -392,5 +395,14 @@
   "config.resprouted.oiled_hunger_bonus.tooltip": "Extra hunger points when eating oiled foods",
 
   "config.resprouted.oilable_food_list": "Oilable Food List",
-  "config.resprouted.oilable_food_list.tooltip": "List of item IDs that can be oiled. One ID per line."
+  "config.resprouted.oilable_food_list.tooltip": "List of item IDs that can be oiled. One ID per line.",
+  "config.resprouted.bottle_effect_tooltip": "Effect Tooltips on Bottles",
+  "config.resprouted.bottle_effect_tooltip.tooltip": "When enabled, custom bottles will show their effect information in the tooltip.",
+  "config.resprouted.food_effect_tooltip": "Effect Tooltips on Food",
+  "config.resprouted.food_effect_tooltip.tooltip": "When enabled, custom food will show their effect information in the tooltip.",
+
+  "config.jade.plugin_resprouted.custom_leaves_progress": "Custom Leaves Progress"
+
+
+
 }

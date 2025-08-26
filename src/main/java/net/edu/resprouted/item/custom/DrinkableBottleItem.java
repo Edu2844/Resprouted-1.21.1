@@ -1,16 +1,22 @@
 package net.edu.resprouted.item.custom;
 
+import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.util.TextUtils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class DrinkableBottleItem extends Item {
 
@@ -44,5 +50,12 @@ public class DrinkableBottleItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return ItemUsage.consumeHeldItem(world, user, hand);
+    }
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+        super.appendTooltip(stack, context, tooltip, type);
+        if (Resprouted.CONFIG.BottleEffectTooltips) {
+            TextUtils.addFoodEffectTooltip(stack, context, tooltip);
+        }
     }
 }

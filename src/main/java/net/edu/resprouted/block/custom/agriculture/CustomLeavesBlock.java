@@ -33,15 +33,14 @@ public class CustomLeavesBlock extends LeavesBlock implements Fertilizable {
         super.appendProperties(builder);
         builder.add(AGE);
     }
-
-    protected int MaxAge() {
+    public int MaxAge() {
         return 3;
     }
     @Override
     public boolean hasRandomTicks(BlockState state) {
         return state.get(AGE) != MaxAge();
     }
-    private boolean isExposedToAir(WorldView world, BlockPos pos) {
+    public static boolean isExposedToAir(WorldView world, BlockPos pos) {
         return world.isAir(pos.down()) || world.isAir(pos.north()) || world.isAir(pos.south()) || world.isAir(pos.east()) || world.isAir(pos.west());
     }
     @Override
@@ -84,7 +83,7 @@ public class CustomLeavesBlock extends LeavesBlock implements Fertilizable {
         }
         return ItemActionResult.FAIL;
     }
-    protected ItemConvertible getHarvestResult() {
+    public ItemConvertible getHarvestResult() {
         return Items.APPLE;
     }
     protected int Count() {

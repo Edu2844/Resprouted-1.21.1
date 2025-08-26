@@ -1,0 +1,44 @@
+package net.edu.resprouted.util;
+
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffectUtil;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import java.util.List;
+
+public class TextUtils {
+
+    public static void addFoodEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
+        FoodComponent foodComponent = stack.get(DataComponentTypes.FOOD);
+        if (foodComponent == null) {
+            return;
+        }
+        if (foodComponent.effects().isEmpty()) {
+            //tooltip.add(Text.translatable("effect.none").formatted(Formatting.GRAY));
+            return;
+        }
+        for (FoodComponent.StatusEffectEntry entry : foodComponent.effects()) {
+            StatusEffectInstance effect = entry.effect();
+
+            MutableText text = Text.translatable(effect.getTranslationKey());
+
+            if (effect.getAmplifier() > 0) {
+                text = Text.translatable("potion.withAmplifier", text,
+                        Text.translatable("potion.potency." + effect.getAmplifier()));
+            }
+            if (!effect.isDurationBelow(20)) {
+                text = Text.translatable("potion.withDuration", text,
+                        StatusEffectUtil.getDurationText(effect, 1.0F, context.getUpdateTickRate()));
+            }
+            text.formatted(effect.getEffectType().value().getCategory().getFormatting());
+            tooltip.add(text);
+
+        }
+    }
+}
+
+

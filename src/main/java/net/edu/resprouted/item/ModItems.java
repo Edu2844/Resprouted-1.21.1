@@ -64,20 +64,20 @@ public class ModItems {
     public static final Item BLUE_BERRIES = registerItem("blue_berries", new AliasedBlockItem(ModBlocks.BLUE_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.BLUE_BERRIES)));
     public static final Item CATALOG = registerItem("catalog", new Item(new Item.Settings()));
     public static final Item COPPER_NUGGET = registerItem("copper_nugget", new Item(new Item.Settings()));
-    public static final Item CHILI_PEPPER = registerItem("chili_pepper", new Item(new Item.Settings().food(ModFoodComponents.CHILLI_PEPPER)));
+    public static final Item CHILI_PEPPER = registerItem("chili_pepper", new FoodItem(new Item.Settings().food(ModFoodComponents.CHILLI_PEPPER)));
     public static final Item CHILI_PEPPER_SEEDS = registerItem("chili_pepper_seeds", new Item(new Item.Settings()));
     public static final Item GOLDEN_DUST = registerItem("golden_dust", new Item(new Item.Settings()));
     public static final Item IRON_DUST = registerItem("iron_dust", new Item(new Item.Settings()));
     public static final Item GRAPE_SEEDS = registerItem("grape_seeds", new AliasedBlockItem(ModBlocks.GRAPE_STEM,new Item.Settings()));
     public static final Item GRAPES = registerItem("grapes", new Item(new Item.Settings().food(ModFoodComponents.GRAPES)));
-    public static final Item IRON_BERRIES = registerItem("iron_berries", new Item(new Item.Settings().food(ModFoodComponents.IRON_BERRIES)));
-    public static final Item OLIVES = registerItem("olives", new Item(new Item.Settings().food(ModFoodComponents.OLIVES)));
+    public static final Item IRON_BERRIES = registerItem("iron_berries", new FoodItem(new Item.Settings().food(ModFoodComponents.IRON_BERRIES)));
+    public static final Item OLIVES = registerItem("olives", new FoodItem(new Item.Settings().food(ModFoodComponents.OLIVES)));
     public static final Item TINY_IRON_DUST = registerItem("tiny_iron_dust", new Item(new Item.Settings()));
     public static final Item TINY_GOLDEN_DUST = registerItem("tiny_golden_dust", new Item(new Item.Settings()));
     public static final Item TINY_GLOWSTONE_DUST = registerItem("tiny_glowstone_dust", new Item(new Item.Settings()));
     public static final Item TOMATO = registerItem("tomato", new TomatoItem(new Item.Settings().food(ModFoodComponents.TOMATO).maxCount(64)));
     public static final Item TOMATO_SEEDS = registerItem("tomato_seeds", new Item(new Item.Settings()));
-    public static final Item GHOST_PEPPER = registerItem("ghost_pepper", new Item(new Item.Settings().food(ModFoodComponents.GHOST_PEPPER)){
+    public static final Item GHOST_PEPPER = registerItem("ghost_pepper", new FoodItem(new Item.Settings().food(ModFoodComponents.GHOST_PEPPER)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.resprouted.ghost_pepper.tooltip"));
@@ -128,7 +128,7 @@ public class ModItems {
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
 
     public static final Item GOLDEN_APPLE_JUICE_BOTTLE = registerItem("golden_apple_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GOLDEN_APPLE_JUICE).maxCount(16)));
 
     public static final Item GRAPE_JUICE_BOTTLE = registerItem("grape_juice_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.JUICE).maxCount(16)));

@@ -9,6 +9,15 @@ import java.util.Arrays;
 @Environment(EnvType.CLIENT)
 public enum Category {
     GENERAL("config.resprouted.category.general", false,
+
+            Entry.booleanEntry("config.resprouted.food_effect_tooltip",
+                    () -> Resprouted.CONFIG.FoodEffectTooltips,
+                    newValue -> Resprouted.CONFIG.FoodEffectTooltips = newValue, true, "config.resprouted.food_effect_tooltip.tooltip"),
+
+            Entry.booleanEntry("config.resprouted.bottle_effect_tooltip",
+                    () -> Resprouted.CONFIG.BottleEffectTooltips,
+                    newValue -> Resprouted.CONFIG.BottleEffectTooltips = newValue, true, "config.resprouted.bottle_effect_tooltip.tooltip"),
+
             Entry.floatEntry("config.resprouted.oiled_saturation_modifier",
                     () -> Resprouted.CONFIG.getOiledSaturationModifier(),
                     newValue -> Resprouted.CONFIG.setOiledSaturationModifier(newValue),

@@ -17,6 +17,8 @@ public class ResproutedConfiguration {
     private int OiledNutritionBonus = 2;
     private float OiledSaturationModifier = 1.5f;
     private List<String> OilableFoodList = new ArrayList<>();
+    public boolean BottleEffectTooltips = true;
+    public boolean FoodEffectTooltips = false;
 
     public ResproutedConfiguration() {
         OilableFoodList.add("minecraft:beef");

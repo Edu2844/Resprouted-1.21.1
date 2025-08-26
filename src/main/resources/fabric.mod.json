@@ -32,6 +32,9 @@
 		],
 		"modmenu": [
 			"net.edu.resprouted.config.ResproutedModMenu"
+		],
+		"jade": [
+			"net.edu.resprouted.compat.jade.JadePlugin"
 		]
 	},
 	"mixins": [
