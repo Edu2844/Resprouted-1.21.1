@@ -394,6 +394,8 @@
   "config.resprouted.oiled_hunger_bonus": "Oiled Hunger Bonus",
   "config.resprouted.oiled_hunger_bonus.tooltip": "Extra hunger points when eating oiled foods",
 
+  "config.resprouted.enable_olive_oiling": "Enable Olive Oiling",
+  "config.resprouted.enable_olive_oiling.tooltip": "When enabled, you have the ability to add olive oil to food.",
   "config.resprouted.oilable_food_list": "Oilable Food List",
   "config.resprouted.oilable_food_list.tooltip": "List of item IDs that can be oiled. One ID per line.",
   "config.resprouted.bottle_effect_tooltip": "Effect Tooltips on Bottles",

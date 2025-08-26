@@ -133,7 +133,8 @@ public class RopeBlock extends ChainBlock{
                 }
                 break;
             }
-            if (!(target.getBlock() instanceof RopeBlock) || target.get(AXIS) != Direction.Axis.Y) break;
+            if (!(target.getBlock() instanceof RopeBlock) || target.get(AXIS) != Direction.Axis.Y)
+                break;
         }
         return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }

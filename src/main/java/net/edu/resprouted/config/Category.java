@@ -10,6 +10,10 @@ import java.util.Arrays;
 public enum Category {
     GENERAL("config.resprouted.category.general", false,
 
+            Entry.booleanEntry("config.resprouted.enable_olive_oiling",
+                    () -> Resprouted.CONFIG.EnableOliveOiling,
+                    newValue -> Resprouted.CONFIG.EnableOliveOiling = newValue, true, "config.resprouted.enable_olive_oiling.tooltip"),
+
             Entry.booleanEntry("config.resprouted.food_effect_tooltip",
                     () -> Resprouted.CONFIG.FoodEffectTooltips,
                     newValue -> Resprouted.CONFIG.FoodEffectTooltips = newValue, true, "config.resprouted.food_effect_tooltip.tooltip"),
