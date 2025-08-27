@@ -1,5 +1,6 @@
 package net.edu.resprouted.util;
 
+import net.edu.resprouted.component.ModDataComponentTypes;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -8,6 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
 import java.util.List;
 
 public class TextUtils {
@@ -18,7 +21,6 @@ public class TextUtils {
             return;
         }
         if (foodComponent.effects().isEmpty()) {
-            //tooltip.add(Text.translatable("effect.none").formatted(Formatting.GRAY));
             return;
         }
         for (FoodComponent.StatusEffectEntry entry : foodComponent.effects()) {
@@ -36,8 +38,37 @@ public class TextUtils {
             }
             text.formatted(effect.getEffectType().value().getCategory().getFormatting());
             tooltip.add(text);
-
         }
+    }
+    public static void addVantaOilEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
+        if (!stack.contains(ModDataComponentTypes.VANTA_OIL_EFFECT)) {
+            return;
+        }
+        StatusEffectInstance vantaEffect = stack.get(ModDataComponentTypes.VANTA_OIL_EFFECT);
+        if (vantaEffect == null) {
+            return;
+        }
+        Text vantaText = Text.translatable("tooltip.resprouted.vanta_oiled").formatted(Formatting.DARK_PURPLE);
+        tooltip.add(vantaText);
+
+        MutableText effectName = Text.translatable(vantaEffect.getTranslationKey());
+
+        if (vantaEffect.getAmplifier() > 0) {
+            effectName = Text.translatable("potion.withAmplifier", effectName,
+                    Text.translatable("potion.potency." + vantaEffect.getAmplifier()));
+        }
+        if (!vantaEffect.getEffectType().value().isInstant()) {
+            int duration = VantaOilUtils.getNextVantaHitDuration(vantaEffect.getDuration());
+            effectName = Text.translatable("potion.withDuration", effectName,
+                    StatusEffectUtil.getDurationText(new StatusEffectInstance(vantaEffect.getEffectType(), duration, vantaEffect.getAmplifier()), 1.0F, context.getUpdateTickRate()));
+        }
+        effectName.formatted(vantaEffect.getEffectType().value().getCategory().getFormatting());
+        tooltip.add(effectName);
+
+        int uses = VantaOilUtils.getRemainingVantaUses(vantaEffect);
+        Text usesText = Text.translatable((uses == 1) ? "tooltip.resprouted.vanta_oil_use" : "tooltip.resprouted.vanta_oil_uses", uses)
+                .formatted(Formatting.GRAY);
+        tooltip.add(usesText);
     }
 }
 

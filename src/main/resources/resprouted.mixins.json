@@ -4,8 +4,9 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "CropBlockMixin",
-    "GlassBottleItemMixin",
     "FoodComponentMixin",
+    "GlassBottleItemMixin",
+    "LivingEntityMixin",
     "MushroomPlantBlockMixin",
     "SugarCaneBlockMixin"
   ],

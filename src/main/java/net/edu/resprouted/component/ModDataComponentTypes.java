@@ -3,6 +3,7 @@ package net.edu.resprouted.component;
 import com.mojang.serialization.Codec;
 import net.edu.resprouted.Resprouted;
 import net.minecraft.component.ComponentType;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -13,6 +14,9 @@ public class ModDataComponentTypes {
 
     public static final ComponentType<Boolean> OILED =
             register("oiled", builder -> builder.codec(Codec.BOOL));
+
+    public static final ComponentType<StatusEffectInstance> VANTA_OIL_EFFECT =
+            register("vanta_oil_effect", builder -> builder.codec(StatusEffectInstance.CODEC));
 
     private static <T> ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.DATA_COMPONENT_TYPE,

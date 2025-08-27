@@ -3,6 +3,7 @@ package net.edu.resprouted.event;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.component.ModDataComponentTypes;
+import net.edu.resprouted.util.TextUtils;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,8 +26,13 @@ public class ModEvents {
             }
         }
     }
+    private static void onWeaponTooltip(ItemStack stack, Item.TooltipContext context, TooltipType type, List<Text> tooltip){
+            TextUtils.addVantaOilEffectTooltip(stack, context, tooltip);
+    }
     public static void registerModEvents() {
         Resprouted.LOGGER.info("Registering Events for " + Resprouted.MOD_ID);
         ItemTooltipCallback.EVENT.register(ModEvents::onItemTooltip);
+        ItemTooltipCallback.EVENT.register(ModEvents::onWeaponTooltip);
     }
+
 }

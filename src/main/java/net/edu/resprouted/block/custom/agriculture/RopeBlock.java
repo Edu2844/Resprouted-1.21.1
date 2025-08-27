@@ -109,44 +109,24 @@ public class RopeBlock extends ChainBlock{
     }
 
     // ========= INTERACCIÓN =========
-    @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-
-
-        if (stack.getItem() != asItem()) return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-
-        Direction side = hit.getSide();
-        if (side.getAxis() == state.get(AXIS) && side != Direction.UP)
+    @Override protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world,
+                                                       BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (stack.getItem() != asItem())
             return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-
-        if (state.get(AXIS) != Direction.Axis.Y) {
-            Direction.Axis axis = state.get(AXIS);
-            Direction dir1 = (axis == Direction.Axis.X) ? Direction.WEST : Direction.NORTH;
-            Direction dir2 = dir1.getOpposite();
-
-            BlockState left = world.getBlockState(pos.offset(dir1));
-            BlockState right = world.getBlockState(pos.offset(dir2));
-
-            boolean hasBridge = left.getBlock() instanceof RopeBlock && left.get(AXIS) == axis
-                    && right.getBlock() instanceof RopeBlock && right.get(AXIS) == axis;
-
-            if (!hasBridge) {
-                return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            }
-        }
+        Direction side = hit.getSide(); if (side.getAxis() == state.get(AXIS) && side != Direction.UP)
+            return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         BlockPos.Mutable cursor = pos.mutableCopy();
         for (int length = 1; length <= 64; length++) {
             cursor.move(Direction.DOWN);
             BlockState target = world.getBlockState(cursor);
-
             if (target.isAir()) {
                 BlockState newRope = getDefaultState().with(AXIS, Direction.Axis.Y);
                 if (world.setBlockState(cursor, newRope, Block.NOTIFY_ALL)) {
-                    if (!player.getAbilities().creativeMode) stack.decrement(1);
+                    if (!player.getAbilities().creativeMode)
+                        stack.decrement(1);
                     world.playSound(null, cursor, getSoundGroup(newRope).getPlaceSound(),
                             SoundCategory.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
-                    return ItemActionResult.SUCCESS;
-                }
+                    return ItemActionResult.SUCCESS; }
                 break;
             }
             if (!(target.getBlock() instanceof RopeBlock) || target.get(AXIS) != Direction.Axis.Y)

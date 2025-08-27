@@ -118,5 +118,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTags.Items.FUELS)
                 .add(Items.CHARCOAL)
         ;
+        getOrCreateTagBuilder(ModTags.Items.VANTA_OILABLE_WEAPONS)
+                .add(Items.IRON_SWORD)
+        ;
     }
 }

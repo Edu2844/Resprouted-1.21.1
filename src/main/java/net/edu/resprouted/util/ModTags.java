@@ -39,6 +39,7 @@ public class ModTags {
         public static final TagKey<Item> GLASS_BOTTLES = createTag("glass_bottles");
         public static final TagKey<Item> IGNITERS = createTag("igniters");
         public static final TagKey<Item> FUELS = createTag("fuels");
+        public static final TagKey<Item> VANTA_OILABLE_WEAPONS = createTag("vanta_oilable_weapons");
 
         private static TagKey<Item> createTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(Resprouted.MOD_ID, name));

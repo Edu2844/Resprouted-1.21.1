@@ -366,7 +366,6 @@
   "itemgroup.resprouted.alchemy": "Rustic Alchemy",
   "itemgroup.resprouted.agriculture": "Rustic Agriculture",
 
-  "tooltip.resprouted.olive_oiled":"Olive Oiled",
   "tooltip.resprouted.ghost_pepper.tooltip": "§ePossesed by Spirit of Hellfire",
 
   "effect.resprouted.full_metal":"Full Metal",
@@ -380,6 +379,9 @@
   "tooltip.resprouted.fluid": "Fluid: %s",
   "tooltip.resprouted.amount": "Amount: %s mB",
   "tooltip.resprouted.olive_oil": "Oiled",
+  "tooltip.resprouted.vanta_oiled": "Vanta Oiled:",
+  "tooltip.resprouted.vanta_oil_use": "1 restant use",
+  "tooltip.resprouted.vanta_oil_uses": "%s restant uses",
 
   "tooltip.resprouted.leaves.growth": "Growth: %s",
   "tooltip.jade.crop_mature": "Mature",
