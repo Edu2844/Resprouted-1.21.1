@@ -10,6 +10,10 @@ import java.util.Arrays;
 public enum Category {
     GENERAL("config.resprouted.category.general", false,
 
+            Entry.booleanEntry("config.resprouted.enable_vanta_oiling",
+                    () -> Resprouted.CONFIG.EnableVantaOiling,
+                    newValue -> Resprouted.CONFIG.EnableVantaOiling = newValue, true, "config.resprouted.enable_vanta_oiling.tooltip"),
+
             Entry.booleanEntry("config.resprouted.enable_olive_oiling",
                     () -> Resprouted.CONFIG.EnableOliveOiling,
                     newValue -> Resprouted.CONFIG.EnableOliveOiling = newValue, true, "config.resprouted.enable_olive_oiling.tooltip"),
@@ -34,23 +38,32 @@ public enum Category {
                     2, 0, 10,
                     "config.resprouted.oiled_hunger_bonus.tooltip"),
 
-            Entry.stringListEntry("config.resprouted.oilable_food_list",
-                    () -> Resprouted.CONFIG.getOliveOilFood(),
-                    newValue -> Resprouted.CONFIG.setOliveOilFood(newValue),
+            Entry.stringListEntry("config.resprouted.vanta_oil_whitelist",
+                    () -> Resprouted.CONFIG.getVantaOilWhiteList(),
+                    newValue -> Resprouted.CONFIG.setVantaOilWhiteList(newValue),
+                    Arrays.asList("minecraft:bone","farmersdelight:iron_knife","farmersdelight:diamond_knife"
+                    ),
+                    "config.resprouted.vanta_oil_whitelist.tooltip"),
+
+            Entry.stringListEntry("config.resprouted.vanta_oil_blacklist",
+                    () -> Resprouted.CONFIG.getVantaOilBlackList(),
+                    newValue -> Resprouted.CONFIG.setVantaOilBlackList(newValue),
+                    Arrays.asList("modid:example_item"),
+                    "config.resprouted.vanta_oil_blacklist.tooltip"),
+
+            Entry.stringListEntry("config.resprouted.oilable_food_whitelist",
+                    () -> Resprouted.CONFIG.getOliveOilFoodWhiteList(),
+                    newValue -> Resprouted.CONFIG.setOliveOilFoodWhiteList(newValue),
                     Arrays.asList(
-                            "minecraft:beef", "minecraft:cooked_beef", "minecraft:porkchop",
-                            "minecraft:cooked_porkchop", "minecraft:mutton", "minecraft:cooked_mutton",
-                            "minecraft:chicken", "minecraft:cooked_chicken", "minecraft:rabbit",
-                            "minecraft:cooked_rabbit", "minecraft:salmon", "minecraft:cooked_salmon",
-                            "minecraft:cod", "minecraft:cooked_cod", "minecraft:tropical_fish",
-                            "minecraft:bread", "minecraft:baked_potato", "minecraft:potato",
-                            "minecraft:carrot", "minecraft:golden_carrot", "minecraft:beetroot",
-                            "minecraft:sweet_berries", "minecraft:glow_berries", "minecraft:apple",
-                            "minecraft:golden_apple", "resprouted:tomato", "resprouted:chili_pepper",
-                            "resprouted:grapes", "resprouted:iron_berries", "resprouted:olives",
                             "farmersdelight:tomato", "farmersdelight:onion", "farmersdelight:cabbage_leaf"
                     ),
-                    "config.resprouted.oilable_food_list.tooltip")
+                    "config.resprouted.oilable_food_whitelist.tooltip"),
+
+            Entry.stringListEntry("config.resprouted.oilable_food_blacklist",
+                    () -> Resprouted.CONFIG.getOliveOilFoodBlackList(),
+                    newValue -> Resprouted.CONFIG.setOliveOilFoodBlackList(newValue),
+                    Arrays.asList("modid:example_item"),
+                    "config.resprouted.oilable_food_blacklist.tooltip")
 
     ),
     WORLDGEN("config.resprouted.category.worldgen", false);

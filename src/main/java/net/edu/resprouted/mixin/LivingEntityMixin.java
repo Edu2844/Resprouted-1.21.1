@@ -1,7 +1,7 @@
 package net.edu.resprouted.mixin;
 
 import net.edu.resprouted.component.ModDataComponentTypes;
-import net.edu.resprouted.util.VantaOilUtils;
+import net.edu.resprouted.util.RecipeUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -41,7 +41,7 @@ public abstract class LivingEntityMixin extends Entity {
                     if (currentEffect.getEffectType().value().isInstant()) {
                         newDuration--;
                     } else {
-                        newDuration -= VantaOilUtils.getNextVantaHitDuration(currentEffect.getDuration());
+                        newDuration -= RecipeUtils.getNextVantaHitDuration(currentEffect.getDuration());
                     }
                     if (newDuration <= 0) {
                         weapon.remove(ModDataComponentTypes.VANTA_OIL_EFFECT);

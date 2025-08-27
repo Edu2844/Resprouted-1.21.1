@@ -14,50 +14,30 @@ import java.nio.file.Files;
 public class ResproutedConfiguration {
     private static final File CONFIG_FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "resprouted.json");
 
+    public boolean EnableVantaOiling = true;
     public boolean EnableOliveOiling = true;
     public boolean BottleEffectTooltips = true;
     public boolean FoodEffectTooltips = false;
     private int OiledNutritionBonus = 2;
     private float OiledSaturationModifier = 1.5f;
-    private List<String> OilableFoodList = new ArrayList<>();
+    private List<String> OilableFoodWhiteList = new ArrayList<>();
+    private List<String> OilableFoodBlackList = new ArrayList<>();
+    private List<String> VantaOilWhiteList = new ArrayList<>();
+    private List<String> VantaOilBlackList = new ArrayList<>();
 
 
     public ResproutedConfiguration() {
-        OilableFoodList.add("minecraft:beef");
-        OilableFoodList.add("minecraft:cooked_beef");
-        OilableFoodList.add("minecraft:porkchop");
-        OilableFoodList.add("minecraft:cooked_porkchop");
-        OilableFoodList.add("minecraft:mutton");
-        OilableFoodList.add("minecraft:cooked_mutton");
-        OilableFoodList.add("minecraft:chicken");
-        OilableFoodList.add("minecraft:cooked_chicken");
-        OilableFoodList.add("minecraft:rabbit");
-        OilableFoodList.add("minecraft:cooked_rabbit");
-        OilableFoodList.add("minecraft:salmon");
-        OilableFoodList.add("minecraft:cooked_salmon");
-        OilableFoodList.add("minecraft:cod");
-        OilableFoodList.add("minecraft:cooked_cod");
-        OilableFoodList.add("minecraft:tropical_fish");
-        OilableFoodList.add("minecraft:bread");
-        OilableFoodList.add("minecraft:baked_potato");
-        OilableFoodList.add("minecraft:potato");
-        OilableFoodList.add("minecraft:carrot");
-        OilableFoodList.add("minecraft:golden_carrot");
-        OilableFoodList.add("minecraft:beetroot");
-        OilableFoodList.add("minecraft:sweet_berries");
-        OilableFoodList.add("minecraft:glow_berries");
-        OilableFoodList.add("minecraft:apple");
-        OilableFoodList.add("minecraft:golden_apple");
 
-        OilableFoodList.add("resprouted:tomato");
-        OilableFoodList.add("resprouted:chili_pepper");
-        OilableFoodList.add("resprouted:grapes");
-        OilableFoodList.add("resprouted:iron_berries");
-        OilableFoodList.add("resprouted:olives");
+        OilableFoodWhiteList.add("farmersdelight:tomato");
+        OilableFoodWhiteList.add("farmersdelight:onion");
+        OilableFoodWhiteList.add("farmersdelight:cabbage_leaf");
+        OilableFoodBlackList.add("modid:example_item");
 
-        OilableFoodList.add("farmersdelight:tomato");
-        OilableFoodList.add("farmersdelight:onion");
-        OilableFoodList.add("farmersdelight:cabbage_leaf");
+        VantaOilWhiteList.add("minecraft:bone");
+        VantaOilWhiteList.add("farmersdelight:iron_knife");
+        VantaOilWhiteList.add("farmersdelight:diamond_knife");
+        VantaOilBlackList.add("modid:example_item");
+
     }
     public static ResproutedConfiguration load() {
         ResproutedConfiguration configuration = new ResproutedConfiguration();
@@ -91,11 +71,29 @@ public class ResproutedConfiguration {
     public void setOiledHungerBonus(int value) {
         this.OiledNutritionBonus = limit(0, 10, value);
     }
-    public List<String> getOliveOilFood() {
-        return OilableFoodList;
+    public List<String> getOliveOilFoodWhiteList() {
+        return OilableFoodWhiteList;
     }
-    public void setOliveOilFood(List<String> foods) {
-        this.OilableFoodList = foods != null ? foods : new ArrayList<>();
+    public void setOliveOilFoodWhiteList(List<String> foods) {
+        this.OilableFoodWhiteList = foods != null ? foods : new ArrayList<>();
+    }
+    public List<String> getOliveOilFoodBlackList() {
+        return OilableFoodBlackList;
+    }
+    public void setOliveOilFoodBlackList(List<String> oilableFoodBlackList) {
+        OilableFoodBlackList = oilableFoodBlackList;
+    }
+    public List<String> getVantaOilWhiteList() {
+        return VantaOilWhiteList;
+    }
+    public void setVantaOilWhiteList(List<String> vantaOilWhiteList) {
+        this.VantaOilWhiteList = vantaOilWhiteList;
+    }
+    public List<String> getVantaOilBlackList() {
+        return VantaOilBlackList;
+    }
+    public void setVantaOilBlackList(List<String> vantaOilBlackList) {
+        VantaOilBlackList = vantaOilBlackList;
     }
     private static float limit(float min, float max, float value) {
         return Math.max(min, Math.min(max, value));

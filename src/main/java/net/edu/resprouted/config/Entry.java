@@ -21,6 +21,8 @@ public abstract class Entry<T> {
     private final T min;
     private final T max;
 
+
+
     public static Entry<Boolean> booleanEntry(String name, Supplier<Boolean> current, Consumer<Boolean> saver, Boolean defaultValue, String... tooltip) {
         return new Entry<>(name, current, saver, defaultValue, tooltip) {
             @Override

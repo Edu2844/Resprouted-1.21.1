@@ -58,14 +58,14 @@ public class TextUtils {
                     Text.translatable("potion.potency." + vantaEffect.getAmplifier()));
         }
         if (!vantaEffect.getEffectType().value().isInstant()) {
-            int duration = VantaOilUtils.getNextVantaHitDuration(vantaEffect.getDuration());
+            int duration = RecipeUtils.getNextVantaHitDuration(vantaEffect.getDuration());
             effectName = Text.translatable("potion.withDuration", effectName,
                     StatusEffectUtil.getDurationText(new StatusEffectInstance(vantaEffect.getEffectType(), duration, vantaEffect.getAmplifier()), 1.0F, context.getUpdateTickRate()));
         }
         effectName.formatted(vantaEffect.getEffectType().value().getCategory().getFormatting());
         tooltip.add(effectName);
 
-        int uses = VantaOilUtils.getRemainingVantaUses(vantaEffect);
+        int uses = RecipeUtils.getRemainingVantaUses(vantaEffect);
         Text usesText = Text.translatable((uses == 1) ? "tooltip.resprouted.vanta_oil_use" : "tooltip.resprouted.vanta_oil_uses", uses)
                 .formatted(Formatting.GRAY);
         tooltip.add(usesText);

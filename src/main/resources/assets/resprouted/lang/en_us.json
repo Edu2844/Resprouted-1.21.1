@@ -378,7 +378,7 @@
 
   "tooltip.resprouted.fluid": "Fluid: %s",
   "tooltip.resprouted.amount": "Amount: %s mB",
-  "tooltip.resprouted.olive_oil": "Oiled",
+  "tooltip.resprouted.olive_oil": "Olive Oiled",
   "tooltip.resprouted.vanta_oiled": "Vanta Oiled:",
   "tooltip.resprouted.vanta_oil_use": "1 restant use",
   "tooltip.resprouted.vanta_oil_uses": "%s restant uses",
@@ -392,14 +392,27 @@
 
   "config.resprouted.oiled_saturation_modifier": "Oiled Saturation Modifier",
   "config.resprouted.oiled_saturation_modifier.tooltip": "Multiplier for saturation when eating oiled foods",
-
   "config.resprouted.oiled_hunger_bonus": "Oiled Hunger Bonus",
   "config.resprouted.oiled_hunger_bonus.tooltip": "Extra hunger points when eating oiled foods",
 
+  "config.resprouted.enable_vanta_oiling": "Enable Vanta Oiling",
+  "config.resprouted.enable_vanta_oiling.tooltip": "When enabled, you can access to vanta oil crafting.",
+
+  "config.resprouted.vanta_oil_whitelist": "Vanta Oil Whitelist",
+  "config.resprouted.vanta_oil_whitelist.tooltip": "List of item IDs that can be craftable with vanta oil and elixirs",
+
+  "config.resprouted.vanta_oil_blacklist": "Vanta Oil Blacklist",
+  "config.resprouted.vanta_oil_blacklist.tooltip": "List of vanilla item IDs that can't be craftable with vanta oil and elixirs",
+
   "config.resprouted.enable_olive_oiling": "Enable Olive Oiling",
   "config.resprouted.enable_olive_oiling.tooltip": "When enabled, you have the ability to add olive oil to food.",
-  "config.resprouted.oilable_food_list": "Oilable Food List",
-  "config.resprouted.oilable_food_list.tooltip": "List of item IDs that can be oiled. One ID per line.",
+
+  "config.resprouted.oilable_food_whitelist": "Oilable Food WhiteList",
+  "config.resprouted.oilable_food_whitelist.tooltip": "List of item IDs that can be olive oiled. One ID per line.",
+
+  "config.resprouted.oilable_food_blacklist": "Oilable Food BlackList",
+  "config.resprouted.oilable_food_blackelist.tooltip": "List of vanilla and Resprouted item IDs that can't be olive oiled. One ID per line.",
+
   "config.resprouted.bottle_effect_tooltip": "Effect Tooltips on Bottles",
   "config.resprouted.bottle_effect_tooltip.tooltip": "When enabled, custom bottles will show their effect information in the tooltip.",
   "config.resprouted.food_effect_tooltip": "Effect Tooltips on Food",
