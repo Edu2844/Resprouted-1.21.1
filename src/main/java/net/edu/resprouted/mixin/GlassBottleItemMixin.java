@@ -1,6 +1,6 @@
 package net.edu.resprouted.mixin;
 
-import net.edu.resprouted.util.BottleInteractionsUtils;
+import net.edu.resprouted.util.BottleInteractions;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,7 +39,7 @@ public class GlassBottleItemMixin {
         if (hit.getType() != HitResult.Type.BLOCK) return;
         BlockPos pos = hit.getBlockPos();
         BlockState state = world.getBlockState(pos);
-        BottleInteractionsUtils.FluidBottleData data = BottleInteractionsUtils.getFluidData(state.getBlock());
+        BottleInteractions.FluidBottleData data = BottleInteractions.getFluidData(state.getBlock());
 
         if (data != null) {
             if (!world.isClient) {

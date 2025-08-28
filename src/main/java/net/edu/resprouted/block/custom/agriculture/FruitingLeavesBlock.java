@@ -18,11 +18,11 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-public class CustomLeavesBlock extends LeavesBlock implements Fertilizable {
+public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
     private static final int GROW_CHANCE = 25;
     public static final IntProperty AGE = IntProperty.of("age", 0, 3);
 
-    public CustomLeavesBlock(Settings settings) {
+    public FruitingLeavesBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(PERSISTENT, false).with(DISTANCE, 1));
     }
@@ -74,10 +74,10 @@ public class CustomLeavesBlock extends LeavesBlock implements Fertilizable {
     // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (state.get(CustomLeavesBlock.AGE) == MaxAge()) {
+        if (state.get(FruitingLeavesBlock.AGE) == MaxAge()) {
             player.giveItemStack(new ItemStack(getHarvestResult(), Count()));
 
-            world.setBlockState(pos, state.with(CustomLeavesBlock.AGE, 0), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(FruitingLeavesBlock.AGE, 0), Block.NOTIFY_ALL);
             world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F + world.random.nextFloat() * 0.4F);
             return ItemActionResult.SUCCESS;
         }

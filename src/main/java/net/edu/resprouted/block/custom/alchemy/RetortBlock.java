@@ -12,7 +12,6 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
-import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -23,25 +22,21 @@ import net.minecraft.world.World;
 
 public class RetortBlock extends Block {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    private static final VoxelShape NORTH_SHAPE = VoxelShapes.combineAndSimplify(
+    private static final VoxelShape NORTH_SHAPE = VoxelShapes.union(
             Block.createCuboidShape(7.0F, 10.0F, 12.0F, 9.0F, 12.0F, 16.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F),
-            BooleanBiFunction.OR
+            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F)
     );
-    private static final VoxelShape SOUTH_SHAPE = VoxelShapes.combineAndSimplify(
+    private static final VoxelShape SOUTH_SHAPE = VoxelShapes.union(
             Block.createCuboidShape(7.0F, 10.0F, 0.0F, 9.0F, 12.0F, 4.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F),
-            BooleanBiFunction.OR
+            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F)
     );
-    private static final VoxelShape EAST_SHAPE = VoxelShapes.combineAndSimplify(
+    private static final VoxelShape EAST_SHAPE = VoxelShapes.union(
             Block.createCuboidShape(0.0F, 10.0F, 7.0F, 4.0F, 12.0F, 9.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F),
-            BooleanBiFunction.OR
+            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F)
     );
-    private static final VoxelShape WEST_SHAPE = VoxelShapes.combineAndSimplify(
+    private static final VoxelShape WEST_SHAPE = VoxelShapes.union(
             Block.createCuboidShape(12.0F, 10.0F, 7.0F, 16.0F, 12.0F, 9.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F),
-            BooleanBiFunction.OR
+            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F)
     );
 
     public RetortBlock(Settings settings) {

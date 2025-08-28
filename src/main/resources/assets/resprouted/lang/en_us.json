@@ -411,7 +411,7 @@
   "config.resprouted.oilable_food_whitelist.tooltip": "List of item IDs that can be olive oiled. One ID per line.",
 
   "config.resprouted.oilable_food_blacklist": "Oilable Food BlackList",
-  "config.resprouted.oilable_food_blackelist.tooltip": "List of vanilla and Resprouted item IDs that can't be olive oiled. One ID per line.",
+  "config.resprouted.oilable_food_blacklist.tooltip": "List of vanilla and Resprouted mod item IDs that can't be olive oiled. One ID per line.",
 
   "config.resprouted.bottle_effect_tooltip": "Effect Tooltips on Bottles",
   "config.resprouted.bottle_effect_tooltip.tooltip": "When enabled, custom bottles will show their effect information in the tooltip.",

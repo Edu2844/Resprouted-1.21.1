@@ -33,6 +33,7 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
             Block.createCuboidShape(2.0F, 0.0F, 12.0F, 14.0F, 6.0F, 14.0F)
     );
     public static final MapCodec<EvaporatingBasinBlock> CODEC = EvaporatingBasinBlock.createCodec(EvaporatingBasinBlock::new);
+
     public EvaporatingBasinBlock(Settings settings) {
         super(settings);
     }

@@ -28,7 +28,10 @@ import java.util.Optional;
 
 public class StakeBlock extends Block {
     protected static final VoxelShape SHAPE = Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F);
-    protected static final VoxelShape SHAPE_WITH_ROPE = VoxelShapes.union(VoxelShapes.union(Block.createCuboidShape(5.0F, 4.0F, 5.0F, 11.0F, 12.0F, 11.0F), Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F)));
+    protected static final VoxelShape SHAPE_WITH_ROPE = VoxelShapes.union(
+            Block.createCuboidShape(5.0F, 4.0F, 5.0F, 11.0F, 12.0F, 11.0F),
+            Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F)
+    );
     public static final BooleanProperty CONNECT_NORTH = BooleanProperty.of("connect_north");
     public static final BooleanProperty CONNECT_SOUTH = BooleanProperty.of("connect_south");
     public static final BooleanProperty CONNECT_EAST = BooleanProperty.of("connect_east");

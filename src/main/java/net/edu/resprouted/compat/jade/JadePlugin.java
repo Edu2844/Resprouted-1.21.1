@@ -1,6 +1,6 @@
 package net.edu.resprouted.compat.jade;
 
-import net.edu.resprouted.block.custom.agriculture.CustomLeavesBlock;
+import net.edu.resprouted.block.custom.agriculture.FruitingLeavesBlock;
 import net.edu.resprouted.compat.jade.component.CustomLeavesComponentProvider;
 import snownee.jade.api.IWailaClientRegistration;
 import snownee.jade.api.IWailaCommonRegistration;
@@ -14,6 +14,6 @@ public class JadePlugin implements IWailaPlugin {
     }
     @Override
     public void registerClient(IWailaClientRegistration registration) {
-        registration.registerBlockComponent(CustomLeavesComponentProvider.INSTANCE, CustomLeavesBlock.class);
+        registration.registerBlockComponent(CustomLeavesComponentProvider.INSTANCE, FruitingLeavesBlock.class);
     }
 }

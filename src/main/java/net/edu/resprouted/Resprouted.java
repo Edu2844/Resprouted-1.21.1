@@ -10,7 +10,7 @@ import net.edu.resprouted.registry.ModCabinetRegistry;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.resource.reload.FluidContainerLoader;
 import net.edu.resprouted.event.ModEvents;
-import net.edu.resprouted.util.BottleInteractionsUtils;
+import net.edu.resprouted.util.BottleInteractions;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItemGroups;
 import net.edu.resprouted.item.ModItems;
@@ -31,7 +31,7 @@ public class Resprouted implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModFluids.registerModFluids();
-		BottleInteractionsUtils.registerFluidInteractions();
+		BottleInteractions.registerFluidInteractions();
 		ModEffects.registerEffects();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();

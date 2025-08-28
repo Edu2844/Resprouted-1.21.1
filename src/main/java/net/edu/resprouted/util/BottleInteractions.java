@@ -9,7 +9,7 @@ import net.minecraft.item.Items;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BottleInteractionsUtils {
+public class BottleInteractions {
     public static final Map<Block, FluidBottleData> FLUID_BOTTLE_MAP = new HashMap<>();
 
     public static void registerFluidInteractions() {

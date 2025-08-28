@@ -53,7 +53,7 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
             BlockState blockState = world.getBlockState(input.pos());
             if (blockState.getBlock() instanceof AdvancedCondenserBlock advcondenser) {
-                hasRetorts = advcondenser.hasRetorts(world, input.pos(), blockState);
+                hasRetorts = advcondenser.hasRequiredRetorts(world, input.pos(), blockState);
             }
         }
         boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);

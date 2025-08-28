@@ -73,7 +73,7 @@ public class StakeCropBlock extends CropBlock {
                 world.setBlockState(pos, state.with(AGE, age + 1));
             }
         }
-        //Vertical Growth Through Stake
+        //Vertical Growth
         if (age >= 4 && pos.getY() < world.getTopY()) {
             BlockPos above = pos.up();
             BlockState aboveState = world.getBlockState(above);
@@ -123,17 +123,38 @@ public class StakeCropBlock extends CropBlock {
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (getAge(state) >= getMaxAge()) {
             if (!world.isClient) {
-                for (ItemStack drop : getHarvestResult(world.getRandom())) {
-                    player.giveItemStack(drop);
-                }
-                //Reset Crop Stake
-                world.setBlockState(pos, state.with(getAgeProperty(), getResetAge()), Block.NOTIFY_ALL);
-                world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES,
-                        SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+                harvestBlock(world, pos, state, player);
+                harvestVertical(world, pos, player, true);
+                harvestVertical(world, pos, player, false);
+
+                world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
             return ItemActionResult.SUCCESS;
         }
         return ItemActionResult.FAIL;
+    }
+    private void harvestVertical(World world, BlockPos origin, PlayerEntity player, boolean upwards) {
+        BlockPos.Mutable currentPos = origin.mutableCopy();
+        int direction = upwards ? 1 : -1;
+
+        while (true) {
+            currentPos.setY(currentPos.getY() + direction);
+            BlockState currentState = world.getBlockState(currentPos);
+
+            if (!currentState.isOf(this)) {
+                break;
+            }
+            if (getAge(currentState) >= getMaxAge()) {
+                harvestBlock(world, currentPos, currentState, player);
+            }
+        }
+    }
+    private void harvestBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        for (ItemStack drop : getHarvestResult(world.getRandom())) {
+            player.giveItemStack(drop);
+        }
+        world.setBlockState(pos, state.with(getAgeProperty(), getResetAge()), Block.NOTIFY_ALL);
     }
     protected List<ItemStack> getHarvestResult(Random random) {
         return Collections.emptyList();
@@ -152,6 +173,7 @@ public class StakeCropBlock extends CropBlock {
         }
         return Optional.empty();
     }
+
     // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
