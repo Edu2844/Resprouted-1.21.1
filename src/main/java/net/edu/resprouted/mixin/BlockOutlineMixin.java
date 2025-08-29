@@ -22,13 +22,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class BlockOutlineMixin {
     @Inject(method = "drawBlockOutline", at = @At("HEAD"))
     private void onDrawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (!(entity instanceof PlayerEntity player)) return;
+        if (!(entity instanceof PlayerEntity player))
+            return;
 
         ItemStack stack = player.getMainHandStack();
-        if (!(stack.getItem() instanceof BlockItem blockItem)) return;
-        if (!(blockItem.getBlock() instanceof IAdvancedRotationPlacement)) return;
+        if (!(stack.getItem() instanceof BlockItem blockItem))
+            return;
+
+        if (!(blockItem.getBlock() instanceof IAdvancedRotationPlacement))
+            return;
         World world = player.getWorld();
         boolean isSolid = state.isFullCube(world, pos);
+
         if (!isSolid) return;
         renderCustomXOutline(matrices, vertexConsumer, cameraX, cameraY, cameraZ, pos);
     }
@@ -44,17 +49,14 @@ public abstract class BlockOutlineMixin {
         double maxY = pos.getY() + 1;
         double maxZ = pos.getZ() + 1;
 
-        //Color
         float r = 0.0f;
         float g = 0.0f;
         float b = 0.0f;
         float a = 0.8f;
 
-        //Cara superior
         drawLine(matrices, vertexConsumer, minX, maxY, minZ, maxX, maxY, maxZ, r, g, b, a);
         drawLine(matrices, vertexConsumer, minX, maxY, maxZ, maxX, maxY, minZ, r, g, b, a);
 
-        //Cara inferior
         drawLine(matrices, vertexConsumer, minX, minY, minZ, maxX, minY, maxZ, r, g, b, a);
         drawLine(matrices, vertexConsumer, minX, minY, maxZ, maxX, minY, minZ, r, g, b, a);
 
@@ -67,6 +69,7 @@ public abstract class BlockOutlineMixin {
         float nx = 0f;
         float ny = 1f;
         float nz = 0f;
+
         vertexConsumer.vertex(matrix, (float)x1, (float)y1, (float)z1).color(r, g, b, a).normal(entry, nx, ny, nz);
         vertexConsumer.vertex(matrix, (float)x2, (float)y2, (float)z2).color(r, g, b, a).normal(entry, nx, ny, nz);
     }

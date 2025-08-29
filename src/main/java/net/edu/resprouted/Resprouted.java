@@ -51,5 +51,6 @@ public class Resprouted implements ModInitializer {
 
 		CONFIG = ResproutedConfiguration.load();
 		System.out.println("Resprouted config loaded:");
+
 	}
 }

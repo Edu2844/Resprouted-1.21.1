@@ -14,6 +14,7 @@ import java.nio.file.Files;
 public class ResproutedConfiguration {
     private static final File CONFIG_FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "resprouted.json");
 
+    public boolean EnableHoneyBottleEffect = true;
     public boolean EnableVantaOiling = true;
     public boolean EnableOliveOiling = true;
     public boolean BottleEffectTooltips = true;

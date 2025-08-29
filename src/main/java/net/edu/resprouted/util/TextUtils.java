@@ -5,8 +5,10 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectUtil;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -66,9 +68,30 @@ public class TextUtils {
         tooltip.add(effectName);
 
         int uses = RecipeUtils.getRemainingVantaUses(vantaEffect);
-        Text usesText = Text.translatable((uses == 1) ? "tooltip.resprouted.vanta_oil_use" : "tooltip.resprouted.vanta_oil_uses", uses)
-                .formatted(Formatting.GRAY);
+        Text usesText = Text.translatable((uses == 1) ? "tooltip.resprouted.vanta_oil_use" : "tooltip.resprouted.vanta_oil_uses", uses).formatted(Formatting.GRAY);
         tooltip.add(usesText);
+    }
+    public static void addHoneyEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
+        if (stack.getItem() != Items.HONEY_BOTTLE) {
+            return;
+        }
+        StatusEffectInstance effect = new StatusEffectInstance(
+                StatusEffects.REGENERATION,
+                80,
+                0,
+                false,
+                false,
+                true
+        );
+        MutableText text = Text.translatable(effect.getTranslationKey());
+
+        if (!effect.isDurationBelow(20)) {
+            text = Text.translatable("potion.withDuration", text,
+                    StatusEffectUtil.getDurationText(effect, 1.0F, context.getUpdateTickRate()));
+        }
+        text.formatted(effect.getEffectType().value().getCategory().getFormatting());
+
+        tooltip.add(1,text);
     }
 }
 
