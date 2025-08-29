@@ -44,12 +44,14 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
         if (world.getBlockEntity(input.pos()) instanceof CondenserBlockEntity be) {
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
             BlockState blockState = world.getBlockState(input.pos());
+
             if (blockState.getBlock() instanceof CondenserBlock condenserBlock) {
                 hasRetorts = condenserBlock.hasRequiredRetorts(world, input.pos(), blockState);
             }
         }
         boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);
         boolean hasFluid = false;
+
         if (world.getBlockEntity(input.pos()) instanceof CondenserBlockEntity be) {
             hasFluid = be.hasFluid();
         }

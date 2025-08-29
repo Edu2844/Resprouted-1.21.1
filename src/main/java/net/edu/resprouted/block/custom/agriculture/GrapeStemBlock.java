@@ -69,7 +69,7 @@ public class GrapeStemBlock extends CropBlock{
                     world.setBlockState(pos, state.with(AGE, currentAge + 1), Block.NOTIFY_LISTENERS);
                 }
             } else {
-                //Revisa que exista una cuerda arriba
+                //Check if exist ropeblock
                 BlockState aboveState = world.getBlockState(pos.up());
                 if (aboveState.isOf(ModBlocks.ROPE) && aboveState.get(RopeBlock.AXIS) != Direction.Axis.Y) {
                     float growthChance = getGrowthChance();

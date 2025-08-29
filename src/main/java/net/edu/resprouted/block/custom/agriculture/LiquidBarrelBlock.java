@@ -141,7 +141,8 @@ public class LiquidBarrelBlock extends BlockWithEntity {
                 FluidVariant fluid = barrel.getFluid();
                 long amount = barrel.liquidbarrel.getAmount();
 
-                if (!fluid.isBlank() && amount >= FluidConstants.BOTTLE) {livingEntity.extinguish();world.syncWorldEvent(1009, pos, 0);
+                if (!fluid.isBlank() && amount >= FluidConstants.BOTTLE) {
+                    livingEntity.extinguish();world.syncWorldEvent(1009, pos, 0);
                 }
             }
         }

@@ -1,8 +1,8 @@
 package net.edu.resprouted.block.custom.agriculture;
 
+import net.edu.resprouted.util.HarvestUtils;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
@@ -17,6 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+
+import java.util.List;
 
 public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
     private static final int GROW_CHANCE = 25;
@@ -56,15 +58,19 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
         if (isExposedToAir(world, pos)) {
             int currentStage = state.get(AGE);
             int nextStage = Math.min(currentStage + 1, MaxAge());
+
             world.setBlockState(pos, state.with(AGE, nextStage), Block.NOTIFY_LISTENERS);
         }
     }
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         super.randomTick(state, world, pos, random);
-        if (world.isClient) return;
+        if (world.isClient)
+            return;
+
         if (world.getBaseLightLevel(pos, 0) >= 9 && isExposedToAir(world, pos)) {
             int currentStage = state.get(AGE);
+
             if (currentStage < MaxAge() && random.nextInt(GROW_CHANCE) == 0) {
                 world.setBlockState(pos, state.with(AGE, currentStage + 1), Block.NOTIFY_LISTENERS);
             }
@@ -75,19 +81,22 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(FruitingLeavesBlock.AGE) == MaxAge()) {
-            player.giveItemStack(new ItemStack(getHarvestResult(), Count()));
-
+            for (ItemStack drop : getHarvestResult(world.random)) {
+                player.giveItemStack(drop);
+            }
             world.setBlockState(pos, state.with(FruitingLeavesBlock.AGE, 0), Block.NOTIFY_ALL);
-            world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F + world.random.nextFloat() * 0.4F);
+
+            world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES,
+                    SoundCategory.BLOCKS, 1.0F, 1.0F + world.random.nextFloat() * 0.4F);
+
             return ItemActionResult.SUCCESS;
         }
         return ItemActionResult.FAIL;
     }
-    public ItemConvertible getHarvestResult() {
-        return Items.APPLE;
-    }
-    protected int Count() {
-        return 1;
+    protected List<ItemStack> getHarvestResult(Random random) {
+        return HarvestUtils.create(random)
+                .add(Items.APPLE)
+                .generate();
     }
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {

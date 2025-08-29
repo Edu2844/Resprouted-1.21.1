@@ -22,6 +22,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -86,18 +87,6 @@ public class StakeCropBlock extends CropBlock {
             }
         }
     }
-    protected int countBelow(World world, BlockPos pos) {
-        int count = 0;
-        for (int i = 1; i <= getMaxVerticalGrowth(); i++) {
-            BlockState s = world.getBlockState(pos.down(i));
-            if (s.getBlock() instanceof StakeCropBlock) count++;
-            else break;
-        }
-        return count;
-    }
-    protected int getMaxVerticalGrowth() {
-        return 2; //This + 2 = 3 high
-    }
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
@@ -110,6 +99,7 @@ public class StakeCropBlock extends CropBlock {
         }
         super.onStateReplaced(state, world, pos, newState, moved);
     }
+
     protected void dropMatureItem(World world, BlockPos pos, BlockState state) {
         //dropStack(world, pos, new ItemStack((item), (count));
     }
@@ -134,6 +124,17 @@ public class StakeCropBlock extends CropBlock {
         }
         return ItemActionResult.FAIL;
     }
+    // ========= FORMA Y TRANSFORMACIONES =========
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return CROP_SHAPE;
+    }
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return STAKE_SHAPE;
+    }
+
+    // ========= HELPERS =========
     private void harvestVertical(World world, BlockPos origin, PlayerEntity player, boolean upwards) {
         BlockPos.Mutable currentPos = origin.mutableCopy();
         int direction = upwards ? 1 : -1;
@@ -156,6 +157,18 @@ public class StakeCropBlock extends CropBlock {
         }
         world.setBlockState(pos, state.with(getAgeProperty(), getResetAge()), Block.NOTIFY_ALL);
     }
+    protected int countBelow(World world, BlockPos pos) {
+        int count = 0;
+        for (int i = 1; i <= getMaxVerticalGrowth(); i++) {
+            BlockState s = world.getBlockState(pos.down(i));
+            if (s.getBlock() instanceof StakeCropBlock) count++;
+            else break;
+        }
+        return count;
+    }
+    protected int getMaxVerticalGrowth() {
+        return 2; //This + 2 = 3 high
+    }
     protected List<ItemStack> getHarvestResult(Random random) {
         return Collections.emptyList();
     }
@@ -172,16 +185,6 @@ public class StakeCropBlock extends CropBlock {
             }
         }
         return Optional.empty();
-    }
-
-    // ========= FORMA Y TRANSFORMACIONES =========
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return CROP_SHAPE;
-    }
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return STAKE_SHAPE;
     }
 }
 

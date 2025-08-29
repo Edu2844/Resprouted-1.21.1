@@ -385,6 +385,7 @@
 
   "tooltip.resprouted.leaves.growth": "Growth: %s",
   "tooltip.jade.crop_mature": "Mature",
+  "tooltip.jade.resprouted.grape_leaves": "§aHas Grapes",
 
   "config.resprouted.title": "Resprouted Configuration",
   "config.resprouted.category.general": "General",
@@ -418,8 +419,8 @@
   "config.resprouted.food_effect_tooltip": "Effect Tooltips on Food",
   "config.resprouted.food_effect_tooltip.tooltip": "When enabled, custom food will show their effect information in the tooltip.",
 
-  "config.jade.plugin_resprouted.custom_leaves_progress": "Custom Leaves Progress"
-
+  "config.jade.plugin_resprouted.fruiting_leaves_progress": "Fruiting Leaves Progress",
+  "config.jade.plugin_resprouted.grape_leaves_mature": "Grapes Leaves Mature"
 
 
 }

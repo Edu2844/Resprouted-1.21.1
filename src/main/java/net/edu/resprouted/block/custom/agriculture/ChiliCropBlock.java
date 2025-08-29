@@ -1,13 +1,13 @@
 package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.util.HarvestUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChiliCropBlock extends StakeCropBlock {
@@ -24,12 +24,10 @@ public class ChiliCropBlock extends StakeCropBlock {
     }
     @Override
     protected List<ItemStack> getHarvestResult(Random random) {
-        List<ItemStack> drops = new ArrayList<>();
-        drops.add(new ItemStack(ModItems.CHILI_PEPPER));
-        if (random.nextFloat() < 0.03f) {
-            drops.add(new ItemStack(ModItems.GHOST_PEPPER));
-        }
-        return drops;
+        return HarvestUtils.create(random)
+                .add(ModItems.CHILI_PEPPER)
+                .add(ModItems.GHOST_PEPPER, 0.03f)
+                .generate();
     }
     @Override
     protected void dropMatureItem(World world, BlockPos pos, BlockState state) {

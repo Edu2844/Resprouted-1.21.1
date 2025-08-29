@@ -13,18 +13,18 @@ import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.theme.IThemeHelper;
 
-public class CustomLeavesComponentProvider implements IBlockComponentProvider {
-    public static final CustomLeavesComponentProvider INSTANCE = new CustomLeavesComponentProvider();
+public class FruitingLeavesComponentProvider implements IBlockComponentProvider {
+    public static final FruitingLeavesComponentProvider INSTANCE = new FruitingLeavesComponentProvider();
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         BlockState state = accessor.getBlockState();
         Block block = state.getBlock();
 
-        if (block instanceof FruitingLeavesBlock customLeavesBlock) {
+        if (block instanceof FruitingLeavesBlock fruitingLeaves) {
             if (FruitingLeavesBlock.isExposedToAir(accessor.getLevel(), accessor.getPosition())) {
                 int currentAge = state.get(FruitingLeavesBlock.AGE);
-                int maxAge = customLeavesBlock.MaxAge();
+                int maxAge = fruitingLeaves.MaxAge();
                 float growthValue = (float) currentAge / maxAge;
 
                 addMaturityTooltip(tooltip, growthValue);
@@ -43,6 +43,6 @@ public class CustomLeavesComponentProvider implements IBlockComponentProvider {
     }
     @Override
     public Identifier getUid() {
-        return Identifier.of(Resprouted.MOD_ID, "custom_leaves_progress");
+        return Identifier.of(Resprouted.MOD_ID, "fruiting_leaves_progress");
     }
 }

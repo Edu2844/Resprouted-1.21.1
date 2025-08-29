@@ -51,14 +51,14 @@ public abstract class AbstractCondenserBlockEntity extends BlockEntity implement
         this.fluidStorage = SingleFluidStorage.withFixedCapacity(FluidConstants.BUCKET * 8, this::update);
     }
 
-    // ========= MÉTODOS ABSTRACTOS =========
+    // ========= ABSTRACT METHODS =========
     protected abstract PropertyDelegate createPropertyDelegate();
     protected abstract boolean hasRecipe();
     protected abstract void craftItem();
     public abstract Text getDisplayName();
     public abstract ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player);
 
-    // ========= PROPIEDADES Y NBT =========
+    // ========= PROPERTIES & NBT =========
     @Override
     public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return this.pos;
@@ -153,7 +153,7 @@ public abstract class AbstractCondenserBlockEntity extends BlockEntity implement
     protected abstract boolean hasFuelAvailable();
     protected abstract void updateLitState(World world, BlockPos pos, BlockState state, boolean shouldBeLit);
 
-    // ========= MÉTODOS COMUNES =========
+    // ========= METHODS =========
     protected void spawnSmoke(World world, double x, double y, double z) {
         double yVel = 0.06D;
         double randomOffsetY = world.random.nextDouble() * 0.02D;

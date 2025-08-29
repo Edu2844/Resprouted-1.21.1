@@ -80,7 +80,6 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
             if (state.get(HAS_GRAPES)) {
                 dropStack(world, pos, new ItemStack(ModItems.GRAPES));
             }
-            //Si es el bloque central, reemplazar sus laterales también
             if (dist == 0) {
                 BlockPos pos1 = axis == Direction.Axis.X ? pos.west() : pos.north();
                 BlockPos pos2 = axis == Direction.Axis.X ? pos.east() : pos.south();
@@ -92,7 +91,6 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
                     }
                 }
             }
-            //Reemplazar la hoja actual por cuerda en el axis que se encontraba
             world.setBlockState(pos, ModBlocks.ROPE.getDefaultState().with(RopeBlock.AXIS, axis), Block.NOTIFY_ALL);
         }
         super.onStateReplaced(state, world, pos, newState, moved);
@@ -125,17 +123,17 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
         boolean isSame = testState.isOf(this) && testState.get(AXIS) == state.get(AXIS);
         boolean isRope = testState.isOf(ModBlocks.ROPE) && testState.get(RopeBlock.AXIS) == state.get(AXIS);
         boolean isSideSolid = world.getBlockState(pos.offset(facing)).isSideSolidFullSquare(world, pos.offset(facing), facing.getOpposite());
-        boolean isTiedStake = testState.isOf(ModBlocks.STAKE) && testState.getBlock() instanceof StakeBlock && ((StakeBlock)testState.getBlock()).hasRope(testState);
+        boolean isTiedStake = testState.isOf(ModBlocks.STAKE) && testState.getBlock() instanceof StakeBlock
+                && ((StakeBlock)testState.getBlock()).hasRope(testState);
 
         return !isSame && !isRope && !isSideSolid && !isTiedStake;
     }
     private boolean isBlockSupported(World world, BlockPos pos, BlockState state) {
         if (state.get(AXIS) == Direction.Axis.X) {
-            return isSideSupported(world, pos, state, Direction.WEST) ||
-                    isSideSupported(world, pos, state, Direction.EAST);
+            return isSideSupported(world, pos, state, Direction.WEST) || isSideSupported(world, pos, state, Direction.EAST);
+
         } else if (state.get(AXIS) == Direction.Axis.Z) {
-            return isSideSupported(world, pos, state, Direction.NORTH) ||
-                    isSideSupported(world, pos, state, Direction.SOUTH);
+            return isSideSupported(world, pos, state, Direction.NORTH) || isSideSupported(world, pos, state, Direction.SOUTH);
         }
         return true;
     }
@@ -236,10 +234,11 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.isOf(ModBlocks.GRAPE_LEAVES) && state.get(GrapeLeavesBlock.HAS_GRAPES)) {
-            //Give item
+
             player.giveItemStack(new ItemStack(ModItems.GRAPES, 1));
-            //Update Blockstate
+
             world.setBlockState(pos, state.with(GrapeLeavesBlock.HAS_GRAPES, false), Block.NOTIFY_ALL);
+
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F);
             return ItemActionResult.SUCCESS;
         }

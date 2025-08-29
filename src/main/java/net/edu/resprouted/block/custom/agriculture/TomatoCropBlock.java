@@ -1,6 +1,7 @@
 package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.util.HarvestUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
@@ -19,7 +20,9 @@ public class TomatoCropBlock extends StakeCropBlock {
     }
     @Override
     protected List<ItemStack> getHarvestResult(Random random) {
-        return List.of(new ItemStack(ModItems.TOMATO));
+        return HarvestUtils.create(random)
+                .add(ModItems.TOMATO)
+                .generate();
     }
     @Override
     protected void dropMatureItem(World world, BlockPos pos, BlockState state) {

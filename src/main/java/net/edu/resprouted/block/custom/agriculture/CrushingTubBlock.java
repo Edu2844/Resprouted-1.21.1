@@ -2,11 +2,14 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
+import net.edu.resprouted.fluid.data.FluidContainerMapping;
 import net.edu.resprouted.fluid.util.FluidInteractionHelper;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
+import net.edu.resprouted.resource.reload.FluidContainerLoader;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -73,52 +76,86 @@ public class CrushingTubBlock extends BlockWithEntity {
             return ItemActionResult.FAIL;
         }
 
-        /*---Fluid logic---*/
+        /*--- Fluid logic ---*/
         var storage = FluidStorage.SIDED.find(world, pos, hit.getSide());
+        boolean hasFluid = false;
+
         if (storage != null) {
-            ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, storage, world, pos, false, true);
-            if (result == ItemActionResult.SUCCESS) {
-                crushingTub.markDirty();
-                world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
-                return ItemActionResult.CONSUME;
+            for (StorageView<FluidVariant> view : storage) {
+                if (!view.isResourceBlank() && view.getAmount() > 0) {
+                    hasFluid = true;
+                    break;
+                }
+            }
+            ItemActionResult result;
+            if (hasFluid) {
+                result = FluidInteractionHelper.handleFluidUse(player, stack, storage, world, pos, false, true);
+                if (result == ItemActionResult.SUCCESS) {
+                    crushingTub.markDirty();
+                    world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
+                    return ItemActionResult.CONSUME;
+                }
             }
         }
 
-        /*---Inventory logic---*/
+        /*--- Inventory logic ---*/
         ItemStack tubStack = crushingTub.getStack(0);
+
         if (stack.isEmpty()) {
-            //Extract ítem
+            // Extract ítem
             if (!tubStack.isEmpty()) {
                 player.getInventory().offerOrDrop(tubStack.copy());
                 crushingTub.setStack(0, ItemStack.EMPTY);
+
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1.5f);
+
                 crushingTub.markDirty();
                 world.updateListeners(pos, state, state, 0);
+
                 return ItemActionResult.SUCCESS;
             }
         } else {
-            //Insert ítem
-            if (tubStack.isEmpty()) {
-                crushingTub.setStack(0, stack.copy());
-                player.setStackInHand(hand, ItemStack.EMPTY);
-                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
-                crushingTub.markDirty();
-                world.updateListeners(pos, state, state, 0);
-                return ItemActionResult.SUCCESS;
+            // Insert ítem
+            boolean isFluidContainer = isFluidContainer(stack);
 
-            } else if (ItemStack.areItemsAndComponentsEqual(tubStack, stack)) {
-                int maxTransfer = Math.min(stack.getCount(), tubStack.getMaxCount() - tubStack.getCount());
-                if (maxTransfer > 0) {
-                    tubStack.increment(maxTransfer);
-                    stack.decrement(maxTransfer);
+            //Block fluid container items if has fluid
+            if (!(hasFluid && isFluidContainer)) {
+                if (tubStack.isEmpty()) {
+                    crushingTub.setStack(0, stack.copy());
+                    player.setStackInHand(hand, ItemStack.EMPTY);
+
                     world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
+
                     crushingTub.markDirty();
                     world.updateListeners(pos, state, state, 0);
+
                     return ItemActionResult.SUCCESS;
+
+                } else if (ItemStack.areItemsAndComponentsEqual(tubStack, stack)) {
+                    int maxTransfer = Math.min(stack.getCount(), tubStack.getMaxCount() - tubStack.getCount());
+                    if (maxTransfer > 0) {
+                        tubStack.increment(maxTransfer);
+                        stack.decrement(maxTransfer);
+
+                        world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
+
+                        crushingTub.markDirty();
+                        world.updateListeners(pos, state, state, 0);
+
+                        return ItemActionResult.SUCCESS;
+                    }
                 }
             }
         }
         return ItemActionResult.FAIL;
+    }
+    private boolean isFluidContainer(ItemStack stack) {
+        for (FluidContainerMapping mapping : FluidContainerLoader.getEntries()) {
+            if (ItemStack.areItemsEqual(stack, mapping.fullItem()) || stack.isOf(mapping.emptyItem().getItem())) {
+                return true;
+            }
+        }
+        return false;
     }
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
