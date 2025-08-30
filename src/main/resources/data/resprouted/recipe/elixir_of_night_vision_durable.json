@@ -1,0 +1,18 @@
+{
+  "type": "resprouted:advanced_condenser",
+  "ingredients": [
+    {
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "item": "resprouted:mooncap_mushroom"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:horsetail"
+  },
+  "effect": "minecraft:night_vision",
+  "duration": 9600,
+  "amplifier": 0
+}

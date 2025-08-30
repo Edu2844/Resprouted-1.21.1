@@ -17,6 +17,7 @@ import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.registry.ModRegistry;
 import net.edu.resprouted.world.ModFoliagePlacerTypes;
+import net.edu.resprouted.world.ModTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.resource.ResourceType;
@@ -39,6 +40,7 @@ public class Resprouted implements ModInitializer {
 		ModItemGroups.registerItemGroup();
 		ModEntities.registerModEntities();
 		ModFoliagePlacerTypes.registerModFoliagePlacers();
+		ModTrunkPlacerTypes.registerModTrunkPlacers();
 		ModRecipes.registerRecipes();
 		ModEvents.registerModEvents();
 		ModRegistry.RegisterModStuffs();

@@ -1,0 +1,18 @@
+{
+  "type": "resprouted:advanced_condenser",
+  "ingredients": [
+    {
+      "item": "resprouted:deathstalk_mushroom"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:marsh_mallow"
+  },
+  "effect": "minecraft:wither",
+  "duration": 440,
+  "amplifier": 1
+}

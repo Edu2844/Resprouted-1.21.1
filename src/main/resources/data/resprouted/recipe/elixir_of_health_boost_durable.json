@@ -1,0 +1,21 @@
+{
+  "type": "resprouted:advanced_condenser",
+  "ingredients": [
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "resprouted:blood_orchid"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:horsetail"
+  },
+  "effect": "minecraft:health_boost",
+  "duration": 9600,
+  "amplifier": 0
+}

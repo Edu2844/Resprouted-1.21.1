@@ -1,0 +1,21 @@
+{
+  "type": "resprouted:advanced_condenser",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:bone"
+    },
+    {
+      "item": "resprouted:ginseng"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:horsetail"
+  },
+  "effect": "minecraft:strength",
+  "duration": 9600,
+  "amplifier": 0
+}

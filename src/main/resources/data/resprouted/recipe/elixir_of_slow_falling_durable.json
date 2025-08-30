@@ -1,0 +1,21 @@
+{
+  "type": "resprouted:advanced_condenser",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "resprouted:cloudsbluff"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:horsetail"
+  },
+  "effect": "minecraft:slow_falling",
+  "duration": 9600,
+  "amplifier": 0
+}

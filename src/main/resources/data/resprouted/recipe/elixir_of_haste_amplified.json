@@ -1,0 +1,21 @@
+{
+  "type": "resprouted:advanced_condenser",
+  "ingredients": [
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:iron_nugget"
+    },
+    {
+      "item": "resprouted:core_root"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:marsh_mallow"
+  },
+  "effect": "minecraft:haste",
+  "duration": 1800,
+  "amplifier": 1
+}

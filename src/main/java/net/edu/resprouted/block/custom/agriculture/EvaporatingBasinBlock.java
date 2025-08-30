@@ -86,6 +86,7 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
         }
         return ItemActionResult.CONSUME;
     }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {

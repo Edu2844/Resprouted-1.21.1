@@ -1,0 +1,18 @@
+{
+  "type": "resprouted:advanced_condenser",
+  "ingredients": [
+    {
+      "item": "minecraft:honeycomb"
+    },
+    {
+      "item": "resprouted:cohosh"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:horsetail"
+  },
+  "effect": "minecraft:regeneration",
+  "duration": 1800,
+  "amplifier": 0
+}
