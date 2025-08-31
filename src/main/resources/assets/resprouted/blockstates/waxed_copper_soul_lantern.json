@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "hanging=false": {
       "model": "resprouted:block/copper_soul_lantern"
+    },
+    "hanging=true": {
+      "model": "resprouted:block/copper_soul_lantern_hanging"
     }
   }
 }

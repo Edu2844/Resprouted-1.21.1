@@ -47,7 +47,8 @@ public class ElixirUtils {
         elixirs.add(createElixir(ModEffects.IRON_SKIN, 1800, 1));
         elixirs.add(createElixir(StatusEffects.SLOW_FALLING, 3600, 0));
         elixirs.add(createElixir(StatusEffects.SLOW_FALLING, 9600, 0));
-
+        elixirs.add(createElixir(ModEffects.BLAZING_TRAIL, 3600, 0));
+        elixirs.add(createElixir(ModEffects.BLAZING_TRAIL, 9600, 0));
 
         return elixirs;
     }

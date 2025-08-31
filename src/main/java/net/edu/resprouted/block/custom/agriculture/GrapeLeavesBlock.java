@@ -2,6 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.util.HarvestUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
@@ -13,7 +14,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
@@ -30,32 +30,29 @@ import net.minecraft.world.WorldView;
 import java.util.List;
 
 public class GrapeLeavesBlock extends Block implements Fertilizable {
+
     private static final VoxelShape BRANCH_Z_SHAPE = Block.createCuboidShape(3.0F, 3.0F, 0.0F, 13.0F, 13.0F, 16.0F);
     private static final VoxelShape BRANCH_X_SHAPE = Block.createCuboidShape(0.0F, 3.0, 3.0F, 16.0F, 13.0F, 13.0F);
     private static final VoxelShape FULL_SHAPE = Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F);
     public static final IntProperty DIST = IntProperty.of("distance", 0, 1);
-    public static final BooleanProperty HAS_GRAPES = BooleanProperty.of("has_grapes");
+    public static final IntProperty AGE = IntProperty.of("age", 0, 3);
     public static final EnumProperty<Direction.Axis> AXIS = Properties.HORIZONTAL_AXIS;
+    public static final int MAX_AGE = 3;
 
     public GrapeLeavesBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(HAS_GRAPES, false).with(DIST, 0).with(AXIS, Direction.Axis.X));
+        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(DIST, 0).with(AXIS, Direction.Axis.X));
     }
+
+    // ========= PROPERTIES & STATE =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(HAS_GRAPES,AXIS,DIST);
-    }
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(DIST) < 1) {
-            return FULL_SHAPE;
-        }
-        return state.get(AXIS) == Direction.Axis.Z ? BRANCH_Z_SHAPE : BRANCH_X_SHAPE;
+        builder.add(AGE, AXIS, DIST);
     }
     @Override
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         if (state.get(DIST) > 0) {
-            return !state.get(HAS_GRAPES) && world.isAir(pos.down());
+            return state.get(AGE) < MAX_AGE && world.isAir(pos.down());
         }
         return canSpread((World) world, pos, state);
     }
@@ -76,8 +73,9 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
         if (!state.isOf(newState.getBlock()) && !world.isClient) {
             Direction.Axis axis = state.get(AXIS);
             int dist = state.get(DIST);
+            int age = state.get(AGE);
 
-            if (state.get(HAS_GRAPES)) {
+            if (age == MAX_AGE) {
                 dropStack(world, pos, new ItemStack(ModItems.GRAPES));
             }
             if (dist == 0) {
@@ -114,9 +112,93 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
             }
         }
     }
+    @Override
+    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+        int dist = state.get(DIST);
+        int age = state.get(AGE);
+
+        if (dist > 0 && age < MAX_AGE && world.isAir(pos.down())) {
+            world.setBlockState(pos, state.with(AGE, Math.min(age + 1, MAX_AGE)), Block.NOTIFY_ALL);
+        } else if (dist < 1) {
+            spread(world, pos, state);
+        }
+    }
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (isBlockSupported(world, pos, state)) {
+            world.breakBlock(pos, true);
+            return;
+        }
+        if (world.getLightLevel(pos.up()) >= 9) {
+            int dist = state.get(DIST);
+            int age = state.get(AGE);
+
+            if (dist > 0 && age < MAX_AGE && world.isAir(pos.down())) {
+                float growthChance = getGrowthChance();
+
+                if (random.nextInt((int)(35.0F / growthChance) + 1) == 0) {
+                    world.setBlockState(pos, state.with(AGE, age + 1), Block.NOTIFY_ALL);
+                }
+            } else if (dist < 1 && canSpread(world, pos, state)) {
+                float growthChance = getGrowthChance();
+
+                if (random.nextInt((int)(30.0F / growthChance) + 1) == 0) {
+                    spread(world, pos, state);
+                }
+            }
+        }
+    }
+    @Override
+    public boolean hasRandomTicks(BlockState state) {
+        if (state.get(DIST) > 0) {
+            return state.get(AGE) < MAX_AGE;
+        } else {
+            return true;
+        }
+    }
+
+    // ========= INTERACTIONS =========
+    @Override
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (state.isOf(ModBlocks.GRAPE_LEAVES) && state.get(AGE) == MAX_AGE) {
+
+            for (ItemStack drop : getHarvestResult(world.random)) {
+                player.giveItemStack(drop);
+            }
+
+            world.setBlockState(pos, state.with(AGE, 0), Block.NOTIFY_ALL);
+
+            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            return ItemActionResult.SUCCESS;
+        }
+        return ItemActionResult.FAIL;
+    }
+
+    // ========= FORM Y TRANSFORMATIONS =========
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(DIST) < 1) {
+            return FULL_SHAPE;
+        }
+        return state.get(AXIS) == Direction.Axis.Z ? BRANCH_Z_SHAPE : BRANCH_X_SHAPE;
+    }
+
+    // ========= HELPER METHODS =========
+
     private boolean isCenterValid(BlockState state, Direction.Axis axis) {
         return state.isOf(this) && state.get(DIST) == 0 && state.get(AXIS) == axis;
     }
+
+    private boolean isBlockSupported(World world, BlockPos pos, BlockState state) {
+        if (state.get(AXIS) == Direction.Axis.X) {
+            return isSideSupported(world, pos, state, Direction.WEST) || isSideSupported(world, pos, state, Direction.EAST);
+
+        } else if (state.get(AXIS) == Direction.Axis.Z) {
+            return isSideSupported(world, pos, state, Direction.NORTH) || isSideSupported(world, pos, state, Direction.SOUTH);
+        }
+        return true;
+    }
+
     private boolean isSideSupported(World world, BlockPos pos, BlockState state, Direction facing) {
         BlockState testState = world.getBlockState(pos.offset(facing));
 
@@ -128,50 +210,7 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
         return !isSame && !isRope && !isSideSolid && !isTiedStake;
     }
-    private boolean isBlockSupported(World world, BlockPos pos, BlockState state) {
-        if (state.get(AXIS) == Direction.Axis.X) {
-            return isSideSupported(world, pos, state, Direction.WEST) || isSideSupported(world, pos, state, Direction.EAST);
 
-        } else if (state.get(AXIS) == Direction.Axis.Z) {
-            return isSideSupported(world, pos, state, Direction.NORTH) || isSideSupported(world, pos, state, Direction.SOUTH);
-        }
-        return true;
-    }
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (isBlockSupported(world, pos, state)) {
-            world.breakBlock(pos, true);
-            return;
-        }
-        if (world.getLightLevel(pos.up()) >= 9) {
-            int dist = state.get(DIST);
-
-            if (dist > 0 && !state.get(HAS_GRAPES) && world.isAir(pos.down())) {
-                float growthChance = getGrowthChance();
-
-                if (random.nextInt((int)(35.0F / growthChance) + 1) == 0) {
-                    world.setBlockState(pos, state.with(HAS_GRAPES, true), Block.NOTIFY_ALL);
-                }
-            } else if (dist < 1 && canSpread(world, pos, state)) {
-                float growthChance = getGrowthChance();
-
-                if (random.nextInt((int)(30.0F / growthChance) + 1) == 0) {
-                    spread(world, pos, state);
-                }
-            }
-        }
-    }
-    protected float getGrowthChance() {
-        return 1.0F;
-    }
-    @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        if (state.get(DIST) > 0) {
-            world.setBlockState(pos, state.with(HAS_GRAPES, true), Block.NOTIFY_ALL);
-        } else {
-            spread(world, pos, state);
-        }
-    }
     private boolean canSpread(World world, BlockPos pos, BlockState state) {
         if (state.get(DIST) == 0) {
             switch (state.get(AXIS)) {
@@ -227,23 +266,15 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
                 getDefaultState().with(AXIS, axis).with(DIST, 1),
                 Block.NOTIFY_ALL);
     }
-    @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return true;
+    public static int getMaxAge(){
+        return MAX_AGE;
     }
-    @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (state.isOf(ModBlocks.GRAPE_LEAVES) && state.get(GrapeLeavesBlock.HAS_GRAPES)) {
-
-            player.giveItemStack(new ItemStack(ModItems.GRAPES, 1));
-
-            world.setBlockState(pos, state.with(GrapeLeavesBlock.HAS_GRAPES, false), Block.NOTIFY_ALL);
-
-            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            return ItemActionResult.SUCCESS;
-        }
-        return ItemActionResult.FAIL;
+    protected float getGrowthChance() {
+        return 1.0F;
     }
-
+    protected List<ItemStack> getHarvestResult(Random random) {
+        return HarvestUtils.create(random)
+                .add(ModItems.GRAPES)
+                .generate();
+    }
 }
-

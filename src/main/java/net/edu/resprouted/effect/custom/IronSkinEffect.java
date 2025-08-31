@@ -16,9 +16,5 @@ public class IronSkinEffect extends StatusEffect {
         this.addAttributeModifier(EntityAttributes.GENERIC_ARMOR, Identifier.of(ARMOR_UUID.toString()), 3.0, EntityAttributeModifier.Operation.ADD_VALUE);
         this.addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, Identifier.of(TOUGHNESS_UUID.toString()), 2.0, EntityAttributeModifier.Operation.ADD_VALUE);
     }
-    @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return false;
-    }
 }
 

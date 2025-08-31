@@ -58,5 +58,6 @@ public class HarvestUtils {
     }
 
     private record DropEntry(Item item, Supplier<Integer> countSupplier, float chance) {
+
     }
 }

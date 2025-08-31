@@ -31,7 +31,7 @@ public class FruitingLeavesComponentProvider implements IBlockComponentProvider 
             }
         }
     }
-    private static void addMaturityTooltip(ITooltip tooltip, float growthValue) {
+    public static void addMaturityTooltip(ITooltip tooltip, float growthValue) {
         MutableText component;
 
         if (growthValue < 1.0F) {

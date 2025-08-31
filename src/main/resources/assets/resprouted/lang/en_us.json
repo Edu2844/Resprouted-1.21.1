@@ -362,15 +362,16 @@
   "fluid.resprouted.golden_apple_juice_still": "Golden Apple Juice Still",
   "fluid.resprouted.honey_still": "Honey Still",
 
-  "itemgroup.resprouted.decoration": "Rustic Decoration",
-  "itemgroup.resprouted.alchemy": "Rustic Alchemy",
-  "itemgroup.resprouted.agriculture": "Rustic Agriculture",
+  "itemgroup.resprouted.decoration": "Resprouted Decoration",
+  "itemgroup.resprouted.alchemy": "Resprouted Alchemy",
+  "itemgroup.resprouted.agriculture": "Resprouted Agriculture",
 
   "tooltip.resprouted.ghost_pepper.tooltip": "§ePossesed by Spirit of Hellfire",
 
   "effect.resprouted.full_metal":"Full Metal",
   "effect.resprouted.fire_power":"Fire Power",
   "effect.resprouted.iron_skin":"Iron Skin",
+  "effect.resprouted.blazing_trail":"Blazing Trail",
 
   "key.resprouted.firepower": "Throw a fire ball",
   "text.resprouted.press_to_launch": "Press %s to launch fireball",

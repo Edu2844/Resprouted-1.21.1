@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "hanging=false": {
       "model": "resprouted:block/oxidized_copper_lantern"
+    },
+    "hanging=true": {
+      "model": "resprouted:block/oxidized_copper_lantern_hanging"
     }
   }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "resprouted:advanced_condenser",
+  "ingredients": [
+    {
+      "item": "minecraft:netherrack"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "resprouted:chili_pepper"
+    }
+  ],
+  "effect": "resprouted:blazing_trail",
+  "duration": 3600,
+  "amplifier": 0
+}

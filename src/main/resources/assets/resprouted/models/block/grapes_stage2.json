@@ -1,0 +1,6 @@
+{
+    "parent": "resprouted:block/grapes_stage0",
+    "textures": {
+        "0": "resprouted:block/crops/grapes_stage_2"
+    }
+}
