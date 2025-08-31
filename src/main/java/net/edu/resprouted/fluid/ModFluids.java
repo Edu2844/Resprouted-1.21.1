@@ -42,6 +42,6 @@ public class ModFluids {
         return Registry.register(Registries.FLUID, Identifier.of(Resprouted.MOD_ID, name), flowableFluid);
     }
     public static void registerModFluids(){
-        Resprouted.LOGGER.info("Registering Mod Fluids for " + Resprouted.MOD_ID);
+        Resprouted.LOGGER.info("Registering Fluids for " + Resprouted.MOD_ID);
     }
 }

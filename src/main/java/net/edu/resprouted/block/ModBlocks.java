@@ -626,6 +626,6 @@ public class ModBlocks {
         return registerBlock(name, block);
     }
     public static void registerModBlocks(){
-        Resprouted.LOGGER.info("Registering Mod Blocks for " + Resprouted.MOD_ID);
+        Resprouted.LOGGER.info("Registering Blocks for " + Resprouted.MOD_ID);
     }
 }

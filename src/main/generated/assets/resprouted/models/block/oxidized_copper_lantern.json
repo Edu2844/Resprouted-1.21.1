@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/template_lantern",
+  "parent": "resprouted:block/copper_lantern",
   "textures": {
-    "lantern": "resprouted:block/oxidized_copper_lantern"
+    "0": "resprouted:block/oxidized_copper_lantern",
+    "1": "resprouted:block/oxidized_copper_lantern_2"
   }
 }

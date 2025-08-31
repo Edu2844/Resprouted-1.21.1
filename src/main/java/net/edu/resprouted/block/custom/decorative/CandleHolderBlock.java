@@ -88,10 +88,15 @@ public class CandleHolderBlock extends Block {
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         Direction direction = state.get(FACING);
         BlockPos blockPos = pos.offset(direction.getOpposite());
+        BlockState adjacentState = world.getBlockState(blockPos);
+
+        if (adjacentState.getBlock() instanceof ChandelierBlock) {
+            return true;
+        }
         return direction == Direction.UP ?
                 Block.sideCoversSmallSquare(world, blockPos, Direction.UP) ||
-                        world.getBlockState(blockPos).isSideSolid(world, blockPos, Direction.UP, SideShapeType.CENTER)
-                : world.getBlockState(blockPos).isSideSolid(world, blockPos, direction, SideShapeType.CENTER);
+                        adjacentState.isSideSolid(world, blockPos, Direction.UP, SideShapeType.CENTER) :
+                adjacentState.isSideSolid(world, blockPos, direction, SideShapeType.CENTER);
     }
 
     // ========= INTERACCIÓN =========

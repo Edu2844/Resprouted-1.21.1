@@ -149,7 +149,6 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerLantern(ModBlocks.GOLDEN_LANTERN);
         blockStateModelGenerator.registerLantern(ModBlocks.GOLDEN_SOUL_LANTERN);
 
-        blockStateModelGenerator.registerLantern(ModBlocks.COPPER_LANTERN);
         blockStateModelGenerator.registerLantern(ModBlocks.EXPOSED_COPPER_LANTERN);
         blockStateModelGenerator.registerLantern(ModBlocks.WEATHERED_COPPER_LANTERN);
         blockStateModelGenerator.registerLantern(ModBlocks.OXIDIZED_COPPER_LANTERN);

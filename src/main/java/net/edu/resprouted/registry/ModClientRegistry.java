@@ -11,6 +11,7 @@ import net.edu.resprouted.effect.render.FullMetalOverlay;
 import net.edu.resprouted.effect.render.IronSkinLayer;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.entity.client.ChairEntityRenderer;
+import net.edu.resprouted.entity.client.StoolEntityRenderer;
 import net.edu.resprouted.entity.client.TomatoEntityRenderer;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
@@ -55,6 +56,7 @@ public class ModClientRegistry {
     }
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(ModEntities.CHAIR, ChairEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.STOOL, StoolEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.THROWN_TOMATO, TomatoEntityRenderer::new);
         TerraformBoatClientHelper.registerModelLayers(ModEntities.OLIVE_BOAT, false);
         TerraformBoatClientHelper.registerModelLayers(ModEntities.IRONWOOD_BOAT, false);

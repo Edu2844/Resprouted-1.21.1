@@ -4,6 +4,7 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.entity.custom.ChairEntity;
+import net.edu.resprouted.entity.custom.StoolEntity;
 import net.edu.resprouted.entity.custom.ThrownTomatoEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -16,6 +17,10 @@ public class ModEntities {
     public static final EntityType<ChairEntity> CHAIR = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(Resprouted.MOD_ID, "chair_entity"),
             EntityType.Builder.create(ChairEntity::new, SpawnGroup.MISC).dimensions(0.5f, 0.5f).build());
+
+    public static final EntityType<StoolEntity> STOOL = Registry.register(Registries.ENTITY_TYPE,
+            Identifier.of(Resprouted.MOD_ID, "stool_entity"),
+            EntityType.Builder.create(StoolEntity::new, SpawnGroup.MISC).dimensions(0.5f, 0.6f).build());
 
     public static final EntityType<ThrownTomatoEntity> THROWN_TOMATO = Registry.register(
             Registries.ENTITY_TYPE,
@@ -34,6 +39,6 @@ public class ModEntities {
     public static final RegistryKey<TerraformBoatType> IRONWOOD_BOAT_KEY = TerraformBoatTypeRegistry.createKey(IRONWOOD_BOAT);
 
     public static void registerModEntities() {
-        Resprouted.LOGGER.info("Registering Mod Entities for " + Resprouted.MOD_ID);
+        Resprouted.LOGGER.info("Registering Entities for " + Resprouted.MOD_ID);
     }
 }

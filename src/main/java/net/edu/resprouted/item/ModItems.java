@@ -168,6 +168,6 @@ public class ModItems {
         return Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name), item);
     }
     public static void registerModItems() {
-        Resprouted.LOGGER.info("Registering Mod Items for " +  Resprouted.MOD_ID);
+        Resprouted.LOGGER.info("Registering Items for " +  Resprouted.MOD_ID);
     }
 }

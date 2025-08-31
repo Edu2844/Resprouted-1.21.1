@@ -66,6 +66,10 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
             if (!modifier.get().test(input.modifier())) {
                 return false;
             }
+        } else {
+            if (!input.modifier().isEmpty()) {
+                return false;
+            }
         }
         return hasFuelOrBurning && hasBottle && hasFluid && hasRetorts;
     }

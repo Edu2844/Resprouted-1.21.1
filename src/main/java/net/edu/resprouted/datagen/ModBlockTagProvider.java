@@ -208,6 +208,16 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
                 //STOOLS
                 .add(ModBlocks.OAK_STOOL)
+                .add(ModBlocks.DARK_OAK_STOOL)
+                .add(ModBlocks.BIRCH_STOOL)
+                .add(ModBlocks.SPRUCE_STOOL)
+                .add(ModBlocks.ACACIA_STOOL)
+                .add(ModBlocks.JUNGLE_STOOL)
+                .add(ModBlocks.BAMBOO_STOOL)
+                .add(ModBlocks.CRIMSON_STOOL)
+                .add(ModBlocks.WARPED_STOOL)
+                .add(ModBlocks.IRONWOOD_STOOL)
+                .add(ModBlocks.OLIVE_STOOL)
 
                 //TABLE
                 .add(ModBlocks.OAK_TABLE)

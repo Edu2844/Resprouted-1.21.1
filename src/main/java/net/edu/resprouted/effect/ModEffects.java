@@ -25,6 +25,6 @@ public class ModEffects {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(Resprouted.MOD_ID, name), statusEffect);
     }
     public static void registerEffects() {
-        Resprouted.LOGGER.info("Registering Mod Effects for " + Resprouted.MOD_ID);
+        Resprouted.LOGGER.info("Registering Effects for " + Resprouted.MOD_ID);
     }
 }

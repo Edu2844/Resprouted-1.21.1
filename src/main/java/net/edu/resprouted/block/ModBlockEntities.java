@@ -33,6 +33,6 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.create(AdvancedCondenserBlockEntity::new, ModBlocks.ADVANCED_CONDENSER).build(null));
 
     public static void registerModBlockEntities() {
-        Resprouted.LOGGER.info("Registering Mod Block Entities for " + Resprouted.MOD_ID);
+        Resprouted.LOGGER.info("Registering Block Entities for " + Resprouted.MOD_ID);
     }
 }
