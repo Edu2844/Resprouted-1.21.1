@@ -2,11 +2,11 @@
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "resprouted:block/blue_berry_cake_bottom",
-		"1": "resprouted:block/blue_berry_cake_inner",
-		"2": "resprouted:block/blue_berry_cake_side",
-		"3": "resprouted:block/blue_berry_cake_top",
-		"particle": "resprouted:block/blue_berry_cake_bottom"
+		"0": "resprouted:block/iron_berry_cake_bottom",
+		"1": "resprouted:block/iron_berry_cake_inner",
+		"2": "resprouted:block/iron_berry_cake_side",
+		"3": "resprouted:block/iron_berry_cake_top",
+		"particle": "resprouted:block/iron_berry_cake_bottom"
 	},
 	"elements": [
 		{

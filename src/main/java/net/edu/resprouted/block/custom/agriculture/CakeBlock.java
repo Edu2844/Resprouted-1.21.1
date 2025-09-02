@@ -1,12 +1,18 @@
-package net.edu.resprouted.block.custom.decorative;
+package net.edu.resprouted.block.custom.agriculture;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particle.BlockStateParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -23,7 +29,7 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 
 @SuppressWarnings("deprecation")
-public class CustomCakeBlock extends Block {
+public class CakeBlock extends Block {
     public static final int MAX_BITES = 3;
     public static final IntProperty BITES = IntProperty.of("bites", 0, 3);
     private static final VoxelShape[] BITES_TO_SHAPE = new VoxelShape[] {
@@ -32,8 +38,18 @@ public class CustomCakeBlock extends Block {
             Block.createCuboidShape(8, 0, 1, 15, 8, 15),
             Block.createCuboidShape(8, 0, 1, 15, 8, 8)
     };
-    public CustomCakeBlock(Settings settings) {
+    private final RegistryEntry<StatusEffect> statusEffect;
+    private final int effectDuration;
+    private final int effectAmplifier;
+
+    public CakeBlock(Settings settings) {
+        this(settings, null, 0, 0);
+    }
+    public CakeBlock(Settings settings, RegistryEntry<StatusEffect> statusEffect, int effectDuration, int effectAmplifier) {
         super(settings);
+        this.statusEffect = statusEffect;
+        this.effectDuration = effectDuration;
+        this.effectAmplifier = effectAmplifier;
         setDefaultState(this.stateManager.getDefaultState().with(BITES, 0));
     }
     @Override
@@ -57,23 +73,51 @@ public class CustomCakeBlock extends Block {
         }
         return tryEat(world, pos, state, player);
     }
-    protected static ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
+    protected ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canConsume(false)) {
             return ActionResult.PASS;
         }
+
         player.incrementStat(Stats.EAT_CAKE_SLICE);
         world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.BLOCKS, 1.0F, 1.0F);
         player.getHungerManager().add(2, 0.1F);
-        int i = state.get(BITES);
 
+        // Aplicar efecto de poción si está configurado
+        if (statusEffect != null && !world.isClient()) {
+            player.addStatusEffect(new StatusEffectInstance(
+                    statusEffect,
+                    effectDuration,
+                    effectAmplifier
+            ));
+        }
+        if (world instanceof World serverWorld) {
+            BlockState blockState = world.getBlockState(pos);
+
+            for (int i = 0; i < 8; i++) {
+                double offsetX = (serverWorld.random.nextDouble() - 0.5) * 0.5;
+                double offsetY = serverWorld.random.nextDouble() * 0.5;
+                double offsetZ = (serverWorld.random.nextDouble() - 0.5) * 0.5;
+
+                serverWorld.addParticle(
+                        new BlockStateParticleEffect(ParticleTypes.BLOCK, blockState),
+                        pos.getX() + 0.5 + offsetX,
+                        pos.getY() + 0.5 + offsetY,
+                        pos.getZ() + 0.5 + offsetZ,
+                        offsetX * 0.1,
+                        offsetY * 0.1 + 0.05,
+                        offsetZ * 0.1
+                );
+            }
+        }
+        int i = state.get(BITES);
         world.emitGameEvent(player, GameEvent.EAT, pos);
+
         if (i < MAX_BITES) {
             world.setBlockState(pos, state.with(BITES, i + 1), 3);
         } else {
             world.removeBlock(pos, false);
             world.emitGameEvent(player, GameEvent.BLOCK_DESTROY, pos);
         }
-
         return ActionResult.SUCCESS;
     }
     @Override
@@ -95,6 +139,7 @@ public class CustomCakeBlock extends Block {
     protected boolean hasComparatorOutput(BlockState state) {
         return true;
     }
+
     @Override
     protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         return false;

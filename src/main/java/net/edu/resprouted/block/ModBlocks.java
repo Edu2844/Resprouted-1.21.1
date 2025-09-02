@@ -6,14 +6,16 @@ import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock
 import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.custom.agriculture.*;
+import net.edu.resprouted.block.custom.agriculture.CakeBlock;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.block.custom.alchemy.AdvancedRetortBlock;
 import net.edu.resprouted.block.custom.alchemy.CondenserBlock;
 import net.edu.resprouted.block.custom.alchemy.RetortBlock;
 import net.edu.resprouted.block.custom.decorative.*;
+import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
-import net.edu.resprouted.registry.ModCabinetRegistry;
+import net.edu.resprouted.registry.ResproutedCabinetRegistry;
 import net.edu.resprouted.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -531,7 +533,7 @@ public class ModBlocks {
     public static final Block CRUSHING_TUB = registerBlock("crushing_tub", new CrushingTubBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
     public static final Block EVAPORATING_BASIN = registerBlock("evaporating_basin", new EvaporatingBasinBlock(AbstractBlock.Settings.copy(Blocks.TERRACOTTA).nonOpaque()));
     public static final Block LIQUID_BARREL = registerBlock("liquid_barrel" , new LiquidBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block BLUE_BERRY_CAKE = registerBlock("blue_berry_cake", new CustomCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE)));
+    public static final Block IRON_BERRY_CAKE = registerBlock("iron_berry_cake", new CakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ModEffects.FULL_METAL, 200, 0));
 
     // =================================================
     // ||                 FLUID BLOCKS                ||
@@ -622,7 +624,7 @@ public class ModBlocks {
                 new BlockItem(block, new Item.Settings()));
     }
     private static Block registerCabinetBlock(String name, Block block) {
-        ModCabinetRegistry.registerCabinet(block);
+        ResproutedCabinetRegistry.registerCabinet(block);
         return registerBlock(name, block);
     }
     public static void registerModBlocks(){

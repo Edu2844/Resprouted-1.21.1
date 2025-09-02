@@ -54,7 +54,7 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
         if (state.get(DIST) > 0) {
             return state.get(AGE) < MAX_AGE && world.isAir(pos.down());
         }
-        return canSpread((World) world, pos, state);
+        return canSpread((ServerWorld) world, pos, state);
     }
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {

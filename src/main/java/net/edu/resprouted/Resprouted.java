@@ -6,7 +6,7 @@ import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.networking.ModMessages;
-import net.edu.resprouted.registry.ModCabinetRegistry;
+import net.edu.resprouted.registry.ResproutedCabinetRegistry;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.resource.reload.FluidContainerLoader;
 import net.edu.resprouted.event.ModEvents;
@@ -44,7 +44,7 @@ public class Resprouted implements ModInitializer {
 		ModRecipes.registerRecipes();
 		ModEvents.registerModEvents();
 		ModRegistry.RegisterModStuffs();
-		ModCabinetRegistry.getAllCabinetBlocks();
+		ResproutedCabinetRegistry.getAllCabinetBlocks();
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
 		ModScreenHandlers.registerScreenHandlers();

@@ -80,7 +80,7 @@ public class ModItemGroups {
 
                         entries.add(ModItems.LAMB_STEW);
                         entries.add(ModItems.HONEY_GLAZED_CARROTS);
-                        entries.add(ModBlocks.BLUE_BERRY_CAKE);
+                        entries.add(ModBlocks.IRON_BERRY_CAKE);
 
 
                     }).build());

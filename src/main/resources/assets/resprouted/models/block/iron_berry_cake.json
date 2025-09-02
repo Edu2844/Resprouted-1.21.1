@@ -2,10 +2,10 @@
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "resprouted:block/blue_berry_cake_side",
-		"1": "resprouted:block/blue_berry_cake_top",
-		"2": "resprouted:block/blue_berry_cake_bottom",
-		"particle": "resprouted:block/blue_berry_cake_side"
+		"0": "resprouted:block/iron_berry_cake_side",
+		"1": "resprouted:block/iron_berry_cake_top",
+		"2": "resprouted:block/iron_berry_cake_bottom",
+		"particle": "resprouted:block/iron_berry_cake_side"
 	},
 	"elements": [
 		{

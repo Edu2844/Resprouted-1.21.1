@@ -1,7 +1,7 @@
 package net.edu.resprouted.block;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.entity.custom.*;
-import net.edu.resprouted.registry.ModCabinetRegistry;
+import net.edu.resprouted.registry.ResproutedCabinetRegistry;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -22,7 +22,7 @@ public class ModBlockEntities {
 
     public static final BlockEntityType<CabinetBlockEntity> CABINET_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "cabinet_be"),
-                    BlockEntityType.Builder.create(CabinetBlockEntity::new, ModCabinetRegistry.getAllCabinetBlocks()).build(null));
+                    BlockEntityType.Builder.create(CabinetBlockEntity::new, ResproutedCabinetRegistry.getAllCabinetBlocks()).build(null));
 
     public static final BlockEntityType<CondenserBlockEntity> CONDENSER_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "condenser_be"),

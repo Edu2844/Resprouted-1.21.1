@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModCabinetRegistry {
+public class ResproutedCabinetRegistry {
     private static final List<Block> REGISTERED_CABINETS = new ArrayList<>();
     public static void registerCabinet(Block cabinetBlock) {
         if (cabinetBlock instanceof CabinetBlock) {

@@ -9,7 +9,7 @@
       "item": "minecraft:sugar"
     },
     "D": {
-      "item": "resprouted:blue_berries"
+      "item": "resprouted:iron_berries"
     },
     "E": {
       "item": "minecraft:egg"
@@ -22,6 +22,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "resprouted:blue_berry_cake"
+    "id": "resprouted:iron_berry_cake"
   }
 }
