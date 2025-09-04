@@ -8,29 +8,29 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlockEntities {
-    public static final BlockEntityType<CrushingTubBlockEntity> CRUSHING_TUB_BE =
+    public static final BlockEntityType<CrushingTubBE> CRUSHING_TUB_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "crushing_tub_be"),
-                    BlockEntityType.Builder.create(CrushingTubBlockEntity::new, ModBlocks.CRUSHING_TUB).build(null));
+                    BlockEntityType.Builder.create(CrushingTubBE::new, ModBlocks.CRUSHING_TUB).build(null));
 
-    public static final BlockEntityType<LiquidBarrelBlockEntity> LIQUID_BARREL_BE =
+    public static final BlockEntityType<LiquidBarrelBE> LIQUID_BARREL_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "liquid_barrel_be"),
-                    BlockEntityType.Builder.create(LiquidBarrelBlockEntity::new, ModBlocks.LIQUID_BARREL).build(null));
+                    BlockEntityType.Builder.create(LiquidBarrelBE::new, ModBlocks.LIQUID_BARREL).build(null));
 
-    public static final BlockEntityType<EvaporatingBasinBlockEntity> EVAPORATING_BASIN_BE =
+    public static final BlockEntityType<EvaporatingBasinBE> EVAPORATING_BASIN_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "evaporating_basin_be"),
-                    BlockEntityType.Builder.create(EvaporatingBasinBlockEntity::new, ModBlocks.EVAPORATING_BASIN).build(null));
+                    BlockEntityType.Builder.create(EvaporatingBasinBE::new, ModBlocks.EVAPORATING_BASIN).build(null));
 
-    public static final BlockEntityType<CabinetBlockEntity> CABINET_BE =
+    public static final BlockEntityType<CabinetBE> CABINET_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "cabinet_be"),
-                    BlockEntityType.Builder.create(CabinetBlockEntity::new, ResproutedCabinetRegistry.getAllCabinetBlocks()).build(null));
+                    BlockEntityType.Builder.create(CabinetBE::new, ResproutedCabinetRegistry.getAllCabinetBlocks()).build(null));
 
-    public static final BlockEntityType<CondenserBlockEntity> CONDENSER_BE =
+    public static final BlockEntityType<CondenserBE> CONDENSER_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "condenser_be"),
-                    BlockEntityType.Builder.create(CondenserBlockEntity::new, ModBlocks.CONDENSER).build(null));
+                    BlockEntityType.Builder.create(CondenserBE::new, ModBlocks.CONDENSER).build(null));
 
-    public static final BlockEntityType<AdvancedCondenserBlockEntity> ADVANCED_CONDENSER_BE =
+    public static final BlockEntityType<AdvancedCondenserBE> ADVANCED_CONDENSER_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "advanced_condenser_be"),
-                    BlockEntityType.Builder.create(AdvancedCondenserBlockEntity::new, ModBlocks.ADVANCED_CONDENSER).build(null));
+                    BlockEntityType.Builder.create(AdvancedCondenserBE::new, ModBlocks.ADVANCED_CONDENSER).build(null));
 
     public static void registerModBlockEntities() {
         Resprouted.LOGGER.info("Registering Block Entities for " + Resprouted.MOD_ID);

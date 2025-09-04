@@ -372,6 +372,7 @@
   "effect.resprouted.fire_power":"Fire Power",
   "effect.resprouted.iron_skin":"Iron Skin",
   "effect.resprouted.blazing_trail":"Blazing Trail",
+  "effect.resprouted.tipsy":"Inebriated",
 
   "key.resprouted.firepower": "Throw a fire ball",
   "text.resprouted.press_to_launch": "Press %s to launch fireball",

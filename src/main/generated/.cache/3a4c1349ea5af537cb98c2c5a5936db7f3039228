@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-30T12:13:06.4209666	Resprouted/Block Loot Tables
+// 1.21.1	2025-09-03T20:28:22.8086396	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 327b905f23efd6a06058ec8aace92e8df372febd data\resprouted\loot_table\blocks\condenser.json
 634967a8bb65c47a8b6be880b25af0ffafaf001f data\resprouted\loot_table\blocks\slate_brick_stairs.json
@@ -189,8 +189,8 @@ a31b5d7b68d504eca2b1fcad2cde3beff4151375 data\resprouted\loot_table\blocks\warpe
 2c741ae88884febd65af13993064f50e0f8fc217 data\resprouted\loot_table\blocks\magenta_painted_planks.json
 db8e3b628a0184511ab983027750cf521a8d2e60 data\resprouted\loot_table\blocks\ironwood_fence_gate.json
 d400af09e62db52562f2589e7537b57a8d8a710d data\resprouted\loot_table\blocks\olive_button.json
-ef2f5438f10d17521d7b77d2413d33acb70fbe71 data\resprouted\loot_table\blocks\polished_sandstone.json
 6d8ca3440e63b9af7c8dd0ae6026a5f96ca4a8dd data\resprouted\loot_table\blocks\brown_painted_planks.json
+ef2f5438f10d17521d7b77d2413d33acb70fbe71 data\resprouted\loot_table\blocks\polished_sandstone.json
 f86b5da1b522a36108dd8b38ea6b0d01afb57ba0 data\resprouted\loot_table\blocks\oxidized_copper_chain.json
 b438e6fa9534ef1bb1d52262fbbf4f5caed84830 data\resprouted\loot_table\blocks\slate.json
 a8dc4c6dbdc8a6e00ee2ef84ae25f40c1a916500 data\resprouted\loot_table\blocks\gray_iron_candle_holder.json

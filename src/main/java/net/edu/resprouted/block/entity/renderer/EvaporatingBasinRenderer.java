@@ -1,11 +1,10 @@
 package net.edu.resprouted.block.entity.renderer;
 
-import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
+import net.edu.resprouted.block.entity.custom.EvaporatingBasinBE;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
@@ -17,17 +16,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
-import net.minecraft.world.LightType;
-import net.minecraft.world.World;
 import org.joml.Matrix4f;
 
 import java.util.Random;
 
-public class EvaporatingBasinRenderer implements BlockEntityRenderer<EvaporatingBasinBlockEntity> {
+public class EvaporatingBasinRenderer extends AbstractFluidStorageRenderer<EvaporatingBasinBE> {
+
     public EvaporatingBasinRenderer(BlockEntityRendererFactory.Context context) {
+        super(context, 1f/16f, 5f/16f);
     }
+
     @Override
-    public void render(EvaporatingBasinBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    protected void renderCustomContent(EvaporatingBasinBE entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         if (!entity.getStack(0).isEmpty()) {
             ItemStack stack = entity.getStack(0);
 
@@ -78,31 +78,41 @@ public class EvaporatingBasinRenderer implements BlockEntityRenderer<Evaporating
             }
             matrices.pop();
         }
-        //FLUID RENDER
-        FluidVariant fluid   = entity.getFluid();
-        long         amount  = entity.basin.getAmount();
-        long         capacity= entity.basin.getCapacity();
+    }
+    @Override
+    protected void renderFluid(EvaporatingBasinBE entity, float tickDelta, MatrixStack matrices,
+                               VertexConsumerProvider vertexConsumers, int light) {
+
+        FluidVariant fluid = entity.getFluidStorage().getResource();
+        long amount = entity.getFluidStorage().getAmount();
+        long capacity = entity.getFluidStorage().getCapacity();
 
         if (fluid.isBlank() || amount <= 0) return;
 
-        float fill = MathHelper.clamp((float) amount / capacity, 0f, 1f);
-        int   argb = FluidVariantRendering.getColor(fluid, entity.getWorld(), entity.getPos());
+        BlockPos pos = entity.getPos();
+        SmoothFloat animation = fluidAnimations.computeIfAbsent(pos, k -> new SmoothFloat());
 
-        int a = (argb >>> 24) & 0xFF;
-        int r = (argb >>> 16) & 0xFF;
-        int g = (argb >>>  8) & 0xFF;
-        int b =  argb         & 0xFF;
+        float target = MathHelper.clamp((float) amount / capacity, 0f, 1f);
+        animation.update(target, 0.15f);
 
-        Sprite sprite = FluidVariantRendering.getSprites(fluid)[0];
-        RenderLayer renderLayer = RenderLayers.getFluidLayer(fluid.getFluid().getDefaultState());
-        VertexConsumer buf = vertexConsumers.getBuffer(renderLayer);
+        float fill = animation.get(tickDelta);
 
-        final float MIN = 4f  / 16f;
+        final float MIN = 4f / 16f;
         final float MAX = 12f / 16f;
         final float BASE_Y = 1f / 16f;
         final float MAX_HEIGHT = 5f / 16f;
 
         float y = BASE_Y + fill * MAX_HEIGHT;
+
+        int argb = FluidVariantRendering.getColor(fluid, entity.getWorld(), entity.getPos());
+        int a = (argb >>> 24) & 0xFF;
+        int r = (argb >>> 16) & 0xFF;
+        int g = (argb >>> 8) & 0xFF;
+        int b = argb & 0xFF;
+
+        Sprite sprite = FluidVariantRendering.getSprites(fluid)[0];
+        RenderLayer renderLayer = RenderLayers.getFluidLayer(fluid.getFluid().getDefaultState());
+        VertexConsumer buf = vertexConsumers.getBuffer(renderLayer);
 
         matrices.push();
         matrices.translate(0, y - 0.0005f, 0);
@@ -119,12 +129,5 @@ public class EvaporatingBasinRenderer implements BlockEntityRenderer<Evaporating
         buf.vertex(mat, MAX, 0, MIN).color(r, g, b, a).texture(u2, v1).light(light).normal(0, 1, 0);
 
         matrices.pop();
-    }
-    private int getLightLevel(World world, BlockPos pos) {
-        if (world == null) return LightmapTextureManager.MAX_LIGHT_COORDINATE;
-        return LightmapTextureManager.pack(
-                world.getLightLevel(LightType.BLOCK, pos),
-                world.getLightLevel(LightType.SKY, pos)
-        );
     }
 }

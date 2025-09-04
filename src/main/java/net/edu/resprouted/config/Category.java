@@ -5,6 +5,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public enum Category {
@@ -19,17 +20,22 @@ public enum Category {
                     () -> Resprouted.CONFIG.EnableVantaOiling,
                     newValue -> Resprouted.CONFIG.EnableVantaOiling = newValue, true, "config.resprouted.enable_vanta_oiling.tooltip"),
 
+            Entry.stringListEntry("config.resprouted.vanta_oil_whitelist",
+                    () -> Resprouted.CONFIG.getVantaOilWhiteList(),
+                    newValue -> Resprouted.CONFIG.setVantaOilWhiteList(newValue),
+                    Arrays.asList("minecraft:bone","farmersdelight:iron_knife","farmersdelight:diamond_knife"
+                    ),
+                    "config.resprouted.vanta_oil_whitelist.tooltip"),
+
+            Entry.stringListEntry("config.resprouted.vanta_oil_blacklist",
+                    () -> Resprouted.CONFIG.getVantaOilBlackList(),
+                    newValue -> Resprouted.CONFIG.setVantaOilBlackList(newValue),
+                    List.of("modid:example_item"),
+                    "config.resprouted.vanta_oil_blacklist.tooltip"),
+
             Entry.booleanEntry("config.resprouted.enable_olive_oiling",
                     () -> Resprouted.CONFIG.EnableOliveOiling,
                     newValue -> Resprouted.CONFIG.EnableOliveOiling = newValue, true, "config.resprouted.enable_olive_oiling.tooltip"),
-
-            Entry.booleanEntry("config.resprouted.food_effect_tooltip",
-                    () -> Resprouted.CONFIG.FoodEffectTooltips,
-                    newValue -> Resprouted.CONFIG.FoodEffectTooltips = newValue, true, "config.resprouted.food_effect_tooltip.tooltip"),
-
-            Entry.booleanEntry("config.resprouted.bottle_effect_tooltip",
-                    () -> Resprouted.CONFIG.BottleEffectTooltips,
-                    newValue -> Resprouted.CONFIG.BottleEffectTooltips = newValue, true, "config.resprouted.bottle_effect_tooltip.tooltip"),
 
             Entry.floatEntry("config.resprouted.oiled_saturation_modifier",
                     () -> Resprouted.CONFIG.getOiledSaturationModifier(),
@@ -43,19 +49,6 @@ public enum Category {
                     2, 0, 10,
                     "config.resprouted.oiled_hunger_bonus.tooltip"),
 
-            Entry.stringListEntry("config.resprouted.vanta_oil_whitelist",
-                    () -> Resprouted.CONFIG.getVantaOilWhiteList(),
-                    newValue -> Resprouted.CONFIG.setVantaOilWhiteList(newValue),
-                    Arrays.asList("minecraft:bone","farmersdelight:iron_knife","farmersdelight:diamond_knife"
-                    ),
-                    "config.resprouted.vanta_oil_whitelist.tooltip"),
-
-            Entry.stringListEntry("config.resprouted.vanta_oil_blacklist",
-                    () -> Resprouted.CONFIG.getVantaOilBlackList(),
-                    newValue -> Resprouted.CONFIG.setVantaOilBlackList(newValue),
-                    Arrays.asList("modid:example_item"),
-                    "config.resprouted.vanta_oil_blacklist.tooltip"),
-
             Entry.stringListEntry("config.resprouted.oilable_food_whitelist",
                     () -> Resprouted.CONFIG.getOliveOilFoodWhiteList(),
                     newValue -> Resprouted.CONFIG.setOliveOilFoodWhiteList(newValue),
@@ -67,8 +60,18 @@ public enum Category {
             Entry.stringListEntry("config.resprouted.oilable_food_blacklist",
                     () -> Resprouted.CONFIG.getOliveOilFoodBlackList(),
                     newValue -> Resprouted.CONFIG.setOliveOilFoodBlackList(newValue),
-                    Arrays.asList("modid:example_item"),
-                    "config.resprouted.oilable_food_blacklist.tooltip")
+                    List.of("modid:example_item"),
+                    "config.resprouted.oilable_food_blacklist.tooltip"),
+
+            Entry.booleanEntry("config.resprouted.food_effect_tooltip",
+                    () -> Resprouted.CONFIG.FoodEffectTooltips,
+                    newValue -> Resprouted.CONFIG.FoodEffectTooltips = newValue, true, "config.resprouted.food_effect_tooltip.tooltip"),
+
+            Entry.booleanEntry("config.resprouted.bottle_effect_tooltip",
+                    () -> Resprouted.CONFIG.BottleEffectTooltips,
+                    newValue -> Resprouted.CONFIG.BottleEffectTooltips = newValue, true, "config.resprouted.bottle_effect_tooltip.tooltip")
+
+
 
     ),
     WORLDGEN("config.resprouted.category.worldgen", false);

@@ -117,11 +117,11 @@ public class ModRegistry {
         registry.add(ModItems.OLIVES, 0.5F);
     }
     public static void registerFluidStorages() {
-        FluidStorage.SIDED.registerForBlockEntity(CrushingTubBlockEntity::getFluidTankProvider, ModBlockEntities.CRUSHING_TUB_BE);
-        FluidStorage.SIDED.registerForBlockEntity(LiquidBarrelBlockEntity::getFluidTankProvider, ModBlockEntities.LIQUID_BARREL_BE);
-        FluidStorage.SIDED.registerForBlockEntity(EvaporatingBasinBlockEntity::getFluidTankProvider, ModBlockEntities.EVAPORATING_BASIN_BE);
-        FluidStorage.SIDED.registerForBlockEntity(CondenserBlockEntity::getFluidTankProvider, ModBlockEntities.CONDENSER_BE);
-        FluidStorage.SIDED.registerForBlockEntity(AdvancedCondenserBlockEntity::getFluidTankProvider, ModBlockEntities.ADVANCED_CONDENSER_BE);
+        FluidStorage.SIDED.registerForBlockEntity(CrushingTubBE::getFluidTankProvider, ModBlockEntities.CRUSHING_TUB_BE);
+        FluidStorage.SIDED.registerForBlockEntity(LiquidBarrelBE::getFluidTankProvider, ModBlockEntities.LIQUID_BARREL_BE);
+        FluidStorage.SIDED.registerForBlockEntity(EvaporatingBasinBE::getFluidTankProvider, ModBlockEntities.EVAPORATING_BASIN_BE);
+        FluidStorage.SIDED.registerForBlockEntity(CondenserBE::getFluidTankProvider, ModBlockEntities.CONDENSER_BE);
+        FluidStorage.SIDED.registerForBlockEntity(AdvancedCondenserBE::getFluidTankProvider, ModBlockEntities.ADVANCED_CONDENSER_BE);
     }
     public static void registerBoats(){
         TerraformBoatType OliveBoat = new TerraformBoatType.Builder()

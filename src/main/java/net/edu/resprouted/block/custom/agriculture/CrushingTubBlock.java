@@ -1,7 +1,7 @@
 package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
-import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
+import net.edu.resprouted.block.entity.custom.CrushingTubBE;
 import net.edu.resprouted.fluid.data.FluidContainerMapping;
 import net.edu.resprouted.fluid.util.FluidInteractionHelper;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
@@ -52,13 +52,13 @@ public class CrushingTubBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CrushingTubBlockEntity(pos, state);
+        return new CrushingTubBE(pos, state);
     }
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CrushingTubBlockEntity crushingTub) {
+            if (blockEntity instanceof CrushingTubBE crushingTub) {
                 ItemStack storedStack = crushingTub.getStack(0);
                 if (!storedStack.isEmpty()) {
                     ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), storedStack);
@@ -72,7 +72,7 @@ public class CrushingTubBlock extends BlockWithEntity {
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (!(blockEntity instanceof CrushingTubBlockEntity crushingTub)) {
+        if (!(blockEntity instanceof CrushingTubBE crushingTub)) {
             return ItemActionResult.FAIL;
         }
 
@@ -163,7 +163,7 @@ public class CrushingTubBlock extends BlockWithEntity {
         if (!(entity instanceof PlayerEntity)) return;
 
         BlockEntity be = world.getBlockEntity(pos);
-        if (!(be instanceof CrushingTubBlockEntity crushingTub)) return;
+        if (!(be instanceof CrushingTubBE crushingTub)) return;
 
         ItemStack tubStack = crushingTub.getStack(0);
         if (tubStack.isEmpty()) return;
@@ -173,8 +173,8 @@ public class CrushingTubBlock extends BlockWithEntity {
 
         CrushingTubRecipe recipe = opt.get();
         FluidVariant recipeFluid  = recipe.fluidOutput();
-        FluidVariant currentFluid = crushingTub.getFluid();
-        long currentAmount = crushingTub.crushing_tub.getAmount();
+        FluidVariant currentFluid = crushingTub.getFluidStorage().getResource();
+        long currentAmount = crushingTub.getFluidStorage().getAmount();
 
         boolean canInsertFluid = recipeFluid.isBlank() || currentFluid.isBlank() || currentFluid.equals(recipeFluid);
         boolean overCapacity = !recipeFluid.isBlank() && (currentAmount + recipe.fluidAmount() > FluidConstants.BUCKET * 8);
@@ -189,7 +189,7 @@ public class CrushingTubBlock extends BlockWithEntity {
             boolean shouldCommit = true;
 
             if (!recipeFluid.isBlank() && recipe.fluidAmount() > 0) {
-                long inserted = crushingTub.crushing_tub.insert(recipeFluid, recipe.fluidAmount(), tx);
+                long inserted = crushingTub.getFluidStorage().insert(recipeFluid, recipe.fluidAmount(), tx);
 
                 if (inserted != recipe.fluidAmount()) shouldCommit = false;
             }

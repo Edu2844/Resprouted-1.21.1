@@ -14,6 +14,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -32,7 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public abstract class AbstractCondenserBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
+public abstract class AbstractCondenserBE extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
     protected final DefaultedList<ItemStack> inventory;
     protected int burnTime = 0;
     protected int fuelTime = 0;
@@ -44,7 +45,7 @@ public abstract class AbstractCondenserBlockEntity extends BlockEntity implement
 
     private int smokeTimer = 0;
 
-    protected AbstractCondenserBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize) {
+    protected AbstractCondenserBE(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize) {
         super(type, pos, state);
         this.inventory = DefaultedList.ofSize(inventorySize, ItemStack.EMPTY);
         this.propertyDelegate = createPropertyDelegate();
@@ -163,7 +164,8 @@ public abstract class AbstractCondenserBlockEntity extends BlockEntity implement
         return this.burnTime > 0;
     }
     public boolean hasFluid() {
-        return !fluidStorage.variant.isBlank() && fluidStorage.amount > 0;
+        return !fluidStorage.variant.isBlank() && fluidStorage.amount >= 10125 &&
+                fluidStorage.variant.isOf(Fluids.WATER);
     }
     protected void resetProgress() {
         if (this.progress != 0) {

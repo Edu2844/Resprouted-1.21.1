@@ -3,7 +3,7 @@ package net.edu.resprouted.block.custom.alchemy;
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.block.entity.custom.CondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.CondenserBE;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -25,7 +25,7 @@ public class CondenserBlock extends AbstractCondenserBlock {
     }
     @Override
     protected BlockEntity createSpecificBlockEntity(BlockPos pos, BlockState state) {
-        return new CondenserBlockEntity(pos, state);
+        return new CondenserBE(pos, state);
     }
     @Override
     public boolean hasRequiredRetorts(World world, BlockPos pos, BlockState state) {

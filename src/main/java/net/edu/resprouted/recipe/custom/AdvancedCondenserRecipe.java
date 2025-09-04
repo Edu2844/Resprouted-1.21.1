@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
-import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.AdvancedCondenserBE;
 import net.edu.resprouted.recipe.Input.AdvancedCondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.util.ElixirUtils;
@@ -27,18 +27,17 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ingredient> modifier, RegistryEntry<StatusEffect> effect, int duration, int amplifier) implements Recipe<AdvancedCondenserRecipeInput> {
     @Override
     public boolean matches(AdvancedCondenserRecipeInput input, World world) {
         if (world.isClient()) return false;
-
         if (ingredients.size() < 2 || ingredients.size() > 3) return false;
 
-        List<ItemStack> actualInputs = new ArrayList<>();
-        if (!input.inputA().isEmpty()) actualInputs.add(input.inputA());
-        if (!input.inputB().isEmpty()) actualInputs.add(input.inputB());
-        if (!input.inputC().isEmpty()) actualInputs.add(input.inputC());
+        List<ItemStack> actualInputs = Stream.of(input.inputA(), input.inputB(), input.inputC())
+                .filter(stack -> !stack.isEmpty())
+                .toList();
 
         if (ingredients.size() != actualInputs.size()) return false;
 
@@ -49,7 +48,7 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
         }
         boolean hasFuelOrBurning = false;
         boolean hasRetorts = false;
-        if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBlockEntity be) {
+        if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBE be) {
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
             BlockState blockState = world.getBlockState(input.pos());
             if (blockState.getBlock() instanceof AdvancedCondenserBlock advcondenser) {
@@ -59,7 +58,7 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
         boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);
 
         boolean hasFluid = false;
-        if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBlockEntity be) {
+        if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBE be) {
             hasFluid = be.hasFluid();
         }
         if (modifier.isPresent()) {

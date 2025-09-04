@@ -24,10 +24,10 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class CabinetBlockEntity extends LootableContainerBlockEntity implements NamedScreenHandlerFactory {
+public class CabinetBE extends LootableContainerBlockEntity implements NamedScreenHandlerFactory {
     private DefaultedList<ItemStack> inventory;
 
-    public CabinetBlockEntity(BlockPos pos, BlockState state) {
+    public CabinetBE(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CABINET_BE, pos, state);
         inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
     }
@@ -105,7 +105,7 @@ public class CabinetBlockEntity extends LootableContainerBlockEntity implements 
     public final ViewerCountManager stateManager = new ViewerCountManager() {
         @Override
         protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
-            if (CabinetBlockEntity.this.isMainPart()) {
+            if (CabinetBE.this.isMainPart()) {
                 if (!state.get(CabinetBlock.OPEN)) {
                     world.setBlockState(pos, state.with(CabinetBlock.OPEN, true), 3);
                     world.playSound(null, pos, SoundEvents.BLOCK_BARREL_OPEN, SoundCategory.BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
@@ -114,7 +114,7 @@ public class CabinetBlockEntity extends LootableContainerBlockEntity implements 
         }
         @Override
         protected void onContainerClose(World world, BlockPos pos, BlockState state) {
-            if (CabinetBlockEntity.this.isMainPart()) {
+            if (CabinetBE.this.isMainPart()) {
                 if (state.get(CabinetBlock.OPEN)) {
                     world.setBlockState(pos, state.with(CabinetBlock.OPEN, false), 3);
                     world.playSound(null, pos, SoundEvents.BLOCK_BARREL_CLOSE, SoundCategory.BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
@@ -138,8 +138,8 @@ public class CabinetBlockEntity extends LootableContainerBlockEntity implements 
         protected boolean isPlayerViewing(PlayerEntity player) {
             if (player.currentScreenHandler instanceof GenericContainerScreenHandler handler) {
                 Inventory inventory = handler.getInventory();
-                return inventory == CabinetBlockEntity.this
-                        || (inventory instanceof DoubleInventory di && di.isPart(CabinetBlockEntity.this));
+                return inventory == CabinetBE.this
+                        || (inventory instanceof DoubleInventory di && di.isPart(CabinetBE.this));
             }
             return false;
         }

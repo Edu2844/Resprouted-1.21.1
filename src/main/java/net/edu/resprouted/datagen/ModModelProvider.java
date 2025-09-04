@@ -143,20 +143,6 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.WHITE_PAINTED_PLANKS);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.YELLOW_PAINTED_PLANKS);
 
-        // =================================================
-        // ||                  LANTERNS                   ||
-        // =================================================
-        blockStateModelGenerator.registerLantern(ModBlocks.GOLDEN_LANTERN);
-        blockStateModelGenerator.registerLantern(ModBlocks.GOLDEN_SOUL_LANTERN);
-
-        blockStateModelGenerator.registerLantern(ModBlocks.EXPOSED_COPPER_LANTERN);
-        blockStateModelGenerator.registerLantern(ModBlocks.WEATHERED_COPPER_LANTERN);
-        blockStateModelGenerator.registerLantern(ModBlocks.OXIDIZED_COPPER_LANTERN);
-
-        blockStateModelGenerator.registerLantern(ModBlocks.COPPER_SOUL_LANTERN);
-        blockStateModelGenerator.registerLantern(ModBlocks.EXPOSED_COPPER_SOUL_LANTERN);
-        blockStateModelGenerator.registerLantern(ModBlocks.WEATHERED_COPPER_SOUL_LANTERN);
-        blockStateModelGenerator.registerLantern(ModBlocks.OXIDIZED_COPPER_SOUL_LANTERN);
 
         // =================================================
         // ||                  CHAIRS                     ||

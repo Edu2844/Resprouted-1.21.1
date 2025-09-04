@@ -30,7 +30,7 @@ public class ElixirBottle extends PotionItem {
             PotionContentsComponent potionContentsComponent = stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT);
             potionContentsComponent.forEachEffect((effect) -> {
                 if (effect.getEffectType().value().isInstant()) {
-                    effect.getEffectType().value().applyInstantEffect(playerEntity, playerEntity, user, effect.getAmplifier(), 1.0F);
+                    effect.getEffectType().value().applyInstantEffect(playerEntity, playerEntity, user, effect.getAmplifier(), 1.0);
                 } else {
                     user.addStatusEffect(effect);
                 }
@@ -52,6 +52,7 @@ public class ElixirBottle extends PotionItem {
         user.emitGameEvent(GameEvent.DRINK);
         return stack;
     }
+
     @Override
     public Text getName(ItemStack stack) {
         PotionContentsComponent potionContents = stack.get(DataComponentTypes.POTION_CONTENTS);

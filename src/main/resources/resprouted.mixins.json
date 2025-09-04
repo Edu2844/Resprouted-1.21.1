@@ -9,7 +9,8 @@
     "HoneyBottleMixin",
     "LivingEntityMixin",
     "MushroomPlantBlockMixin",
-    "SugarCaneBlockMixin"
+    "SugarCaneBlockMixin",
+    "MilkBucketItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

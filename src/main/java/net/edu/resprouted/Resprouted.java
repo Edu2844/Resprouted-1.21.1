@@ -31,9 +31,9 @@ public class Resprouted implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModEffects.registerEffects();
 		ModFluids.registerModFluids();
 		BottleInteractions.registerFluidInteractions();
-		ModEffects.registerEffects();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
@@ -50,9 +50,7 @@ public class Resprouted implements ModInitializer {
 		ModScreenHandlers.registerScreenHandlers();
 		ModDataComponentTypes.registerDataComponentTypes();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
-
 		CONFIG = ResproutedConfiguration.load();
 		System.out.println("Resprouted config loaded:");
-
 	}
 }

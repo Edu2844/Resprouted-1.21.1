@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.decorative;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.entity.custom.CabinetBlockEntity;
+import net.edu.resprouted.block.entity.custom.CabinetBE;
 import net.edu.resprouted.block.enums.CabinetType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -35,7 +35,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> implements Waterloggable {
+public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Waterloggable {
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final MapCodec<CabinetBlock> CODEC = CabinetBlock.createCodec(CabinetBlock::new);
@@ -62,7 +62,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
     }
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CabinetBlockEntity(pos, state);
+        return new CabinetBE(pos, state);
     }
     @Override
     public boolean hasComparatorOutput(BlockState state) {
@@ -78,14 +78,14 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
         CabinetType type = state.get(CABINET_TYPE);
         BlockEntity be = world.getBlockEntity(pos);
 
-        if (!(be instanceof CabinetBlockEntity self)) return null;
+        if (!(be instanceof CabinetBE self)) return null;
 
         if (type == CabinetType.SINGLE) return self;
 
         BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
         BlockEntity otherBe = world.getBlockEntity(otherPos);
 
-        if (otherBe instanceof CabinetBlockEntity other) {
+        if (otherBe instanceof CabinetBE other) {
             return new DoubleInventory(
                     type == CabinetType.BOTTOM ? self : other,
                     type == CabinetType.BOTTOM ? other : self
@@ -171,7 +171,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return world.isClient ? null : (w, pos, s, be) -> {
-            if (be instanceof CabinetBlockEntity cabinet) {
+            if (be instanceof CabinetBE cabinet) {
                 CabinetType cabinetType = s.get(CabinetBlock.CABINET_TYPE);
                 BlockPos bottomPos = cabinetType == CabinetType.TOP ? pos.down() : pos;
 
@@ -181,9 +181,9 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
             }
         };
     }
-    private static @NotNull NamedScreenHandlerFactory getNamedScreenHandlerFactory(CabinetBlockEntity self, CabinetType type, CabinetBlockEntity other) {
-        CabinetBlockEntity lower = type == CabinetType.BOTTOM ? self : other;
-        CabinetBlockEntity upper = type == CabinetType.BOTTOM ? other : self;
+    private static @NotNull NamedScreenHandlerFactory getNamedScreenHandlerFactory(CabinetBE self, CabinetType type, CabinetBE other) {
+        CabinetBE lower = type == CabinetType.BOTTOM ? self : other;
+        CabinetBE upper = type == CabinetType.BOTTOM ? other : self;
         return new NamedScreenHandlerFactory() {
             @Override
             public Text getDisplayName() {
@@ -195,24 +195,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
             }
         };
     }
-    @Override
-    public DoubleBlockProperties.PropertySource<CabinetBlockEntity> getBlockEntitySource(BlockState state, World world, BlockPos pos, boolean ignoreBlocked) {
-        return DoubleBlockProperties.toPropertySource(
-                ModBlockEntities.CABINET_BE,
-                (BlockState s) -> {
-                    CabinetType type = s.get(CABINET_TYPE);
-                    return switch (type) {
-                        case SINGLE -> DoubleBlockProperties.Type.SINGLE;
-                        case BOTTOM -> DoubleBlockProperties.Type.FIRST;
-                        case TOP -> DoubleBlockProperties.Type.SECOND;
-                    };
-                },
-                (BlockState s) -> s.get(FACING), FACING, state, world, pos, (w, p) -> {
-                    BlockEntity be = w.getBlockEntity(p);
-                    return be instanceof CabinetBlockEntity;
-                }
-        );
-    }
+
     private DoorHinge getHingeSide(ItemPlacementContext context) {
         Direction facing = context.getHorizontalPlayerFacing();
         Vec3d hit = context.getHitPos();
@@ -238,7 +221,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
             return ActionResult.CONSUME;
         }
         BlockEntity selfBE = world.getBlockEntity(pos);
-        if (!(selfBE instanceof CabinetBlockEntity self)) return ActionResult.PASS;
+        if (!(selfBE instanceof CabinetBE self)) return ActionResult.PASS;
 
         CabinetType type = state.get(CABINET_TYPE);
         BlockPos otherPos = switch (type) {
@@ -246,10 +229,10 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
             case TOP -> pos.down();
             default -> null;
         };
-        CabinetBlockEntity other = null;
+        CabinetBE other = null;
         if (otherPos != null) {
             BlockEntity be = world.getBlockEntity(otherPos);
-            if (be instanceof CabinetBlockEntity cbe) {
+            if (be instanceof CabinetBE cbe) {
                 other = cbe;
             }
         }

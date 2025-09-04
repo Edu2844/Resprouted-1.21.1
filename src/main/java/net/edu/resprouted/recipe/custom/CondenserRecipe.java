@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.block.custom.alchemy.CondenserBlock;
-import net.edu.resprouted.block.entity.custom.CondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.CondenserBE;
 import net.edu.resprouted.recipe.Input.CondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.util.ElixirUtils;
@@ -33,29 +33,24 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
         if (world.isClient()) return false;
         if (ingredients.size() != 2) return false;
 
-        Ingredient first = ingredients.get(0);
-        Ingredient second = ingredients.get(1);
+        boolean matchesIngredients = (ingredients.get(0).test(input.inputA()) && ingredients.get(1).test(input.inputB())) ||
+                (ingredients.get(0).test(input.inputB()) && ingredients.get(1).test(input.inputA()));
 
-        boolean matchNormal = first.test(input.inputA()) && second.test(input.inputB());
-        boolean matchSwapped = first.test(input.inputB()) && second.test(input.inputA());
         boolean hasFuelOrBurning = false;
         boolean hasRetorts = false;
+        boolean hasFluid = false;
+        boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);
 
-        if (world.getBlockEntity(input.pos()) instanceof CondenserBlockEntity be) {
+        if (world.getBlockEntity(input.pos()) instanceof CondenserBE be) {
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
-            BlockState blockState = world.getBlockState(input.pos());
+            hasFluid = be.hasFluid();
 
+            BlockState blockState = world.getBlockState(input.pos());
             if (blockState.getBlock() instanceof CondenserBlock condenserBlock) {
                 hasRetorts = condenserBlock.hasRequiredRetorts(world, input.pos(), blockState);
             }
         }
-        boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);
-        boolean hasFluid = false;
-
-        if (world.getBlockEntity(input.pos()) instanceof CondenserBlockEntity be) {
-            hasFluid = be.hasFluid();
-        }
-        return (matchNormal || matchSwapped) && hasFuelOrBurning && hasBottle && hasFluid && hasRetorts;
+        return matchesIngredients && hasFuelOrBurning && hasBottle && hasFluid && hasRetorts;
     }
     @Override
     public ItemStack craft(CondenserRecipeInput input, RegistryWrapper.WrapperLookup lookup) {

@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.entity.custom.LiquidBarrelBlockEntity;
+import net.edu.resprouted.block.entity.custom.LiquidBarrelBE;
 import net.edu.resprouted.fluid.util.FluidInteractionHelper;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
@@ -63,12 +63,12 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new LiquidBarrelBlockEntity(pos, state);
+        return new LiquidBarrelBE(pos, state);
     }
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (!(blockEntity instanceof LiquidBarrelBlockEntity barrel)) {
+        if (!(blockEntity instanceof LiquidBarrelBE barrel)) {
             return ItemActionResult.FAIL;
         }
         var storage = FluidStorage.SIDED.find(world, pos, hit.getSide());
@@ -94,11 +94,11 @@ public class LiquidBarrelBlock extends BlockWithEntity {
 
                 if (!isCreative) {
                     BlockEntity be = world.getBlockEntity(pos);
-                    if (be instanceof LiquidBarrelBlockEntity barrel) {
+                    if (be instanceof LiquidBarrelBE barrel) {
 
                         //Get fluid
-                        FluidVariant variant = barrel.liquidbarrel.getResource();
-                        long amount = barrel.liquidbarrel.getAmount();
+                        FluidVariant variant = barrel.getFluidStorage().getResource();
+                        long amount = barrel.getFluidStorage().getAmount();
 
                         Item blockItem = Registries.ITEM.get(Registries.BLOCK.getId(this));
                         ItemStack stack = new ItemStack(blockItem);
@@ -137,9 +137,9 @@ public class LiquidBarrelBlock extends BlockWithEntity {
         double fluidSurfaceY = pos.getY() + 0.4;
         if (entity.getY() <= fluidSurfaceY) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof LiquidBarrelBlockEntity barrel) {
-                FluidVariant fluid = barrel.getFluid();
-                long amount = barrel.liquidbarrel.getAmount();
+            if (blockEntity instanceof LiquidBarrelBE barrel) {
+                FluidVariant fluid = barrel.getFluidStorage().getResource();
+                long amount = barrel.getFluidStorage().getAmount();
 
                 if (!fluid.isBlank() && amount >= FluidConstants.BOTTLE) {
                     livingEntity.extinguish();world.syncWorldEvent(1009, pos, 0);

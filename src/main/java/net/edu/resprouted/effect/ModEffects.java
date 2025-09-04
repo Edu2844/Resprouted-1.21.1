@@ -1,10 +1,7 @@
 package net.edu.resprouted.effect;
 
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.effect.custom.BlazingTrailEffect;
-import net.edu.resprouted.effect.custom.FirePowerEffect;
-import net.edu.resprouted.effect.custom.FullMetalEffect;
-import net.edu.resprouted.effect.custom.IronSkinEffect;
+import net.edu.resprouted.effect.custom.*;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
@@ -24,6 +21,10 @@ public class ModEffects {
 
     public static final RegistryEntry<StatusEffect> BLAZING_TRAIL = registerStatusEffect("blazing_trail",
             new BlazingTrailEffect(StatusEffectCategory.BENEFICIAL, 0xFB6800));
+
+    public static final RegistryEntry<StatusEffect> TIPSY = registerStatusEffect("tipsy",
+            new TipsyEffect(StatusEffectCategory.HARMFUL, 0x789C62));
+
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(Resprouted.MOD_ID, name), statusEffect);

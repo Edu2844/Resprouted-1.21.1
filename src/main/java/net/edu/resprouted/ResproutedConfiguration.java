@@ -16,15 +16,15 @@ public class ResproutedConfiguration {
 
     public boolean EnableHoneyBottleEffect = true;
     public boolean EnableVantaOiling = true;
+    private List<String> VantaOilWhiteList = new ArrayList<>();
+    private List<String> VantaOilBlackList = new ArrayList<>();
     public boolean EnableOliveOiling = true;
-    public boolean BottleEffectTooltips = true;
-    public boolean FoodEffectTooltips = false;
     private int OiledNutritionBonus = 2;
     private float OiledSaturationModifier = 1.5f;
     private List<String> OilableFoodWhiteList = new ArrayList<>();
     private List<String> OilableFoodBlackList = new ArrayList<>();
-    private List<String> VantaOilWhiteList = new ArrayList<>();
-    private List<String> VantaOilBlackList = new ArrayList<>();
+    public boolean BottleEffectTooltips = true;
+    public boolean FoodEffectTooltips = false;
 
 
     public ResproutedConfiguration() {
