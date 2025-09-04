@@ -38,3 +38,4 @@ public class BottleInteractions {
     }
     public record FluidBottleData(Item bottleItem) {}
 }
+//Pero la quería tanto...

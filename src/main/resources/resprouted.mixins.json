@@ -21,6 +21,6 @@
   "client": [
     "BackgroundRendererMixin",
     "BlockOutlineMixin",
-    "LeavesCutoutMixin"
+    "LeavesRendererMixin"
   ]
 }

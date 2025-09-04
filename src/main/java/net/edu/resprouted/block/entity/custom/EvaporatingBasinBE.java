@@ -21,7 +21,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EvaporatingBasinBE extends AbstractFluidStorageBE implements ImplementedInventory {
+public class EvaporatingBasinBE extends FluidStorageBE implements ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
     private static final long MB_PER_TICK = 81;
     private static final long EV_BOOSTER = 2;

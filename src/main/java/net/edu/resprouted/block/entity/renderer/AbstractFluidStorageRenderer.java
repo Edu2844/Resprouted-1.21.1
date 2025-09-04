@@ -1,6 +1,6 @@
 package net.edu.resprouted.block.entity.renderer;
 
-import net.edu.resprouted.block.entity.custom.AbstractFluidStorageBE;
+import net.edu.resprouted.block.entity.custom.FluidStorageBE;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.render.*;
@@ -17,7 +17,7 @@ import org.joml.Matrix4f;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractFluidStorageRenderer<T extends AbstractFluidStorageBE> implements BlockEntityRenderer<T> {
+public abstract class AbstractFluidStorageRenderer<T extends FluidStorageBE> implements BlockEntityRenderer<T> {
     final Map<BlockPos, SmoothFloat> fluidAnimations = new HashMap<>();
     private final float minHeight;
     private final float heightMultiplier;

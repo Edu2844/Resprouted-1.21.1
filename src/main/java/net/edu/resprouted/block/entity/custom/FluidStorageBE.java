@@ -17,10 +17,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractFluidStorageBE extends BlockEntity {
+public abstract class FluidStorageBE extends BlockEntity {
     private final SingleFluidStorage fluidStorage;
 
-    public AbstractFluidStorageBE(BlockEntityType<?> type, BlockPos pos, BlockState state, long capacity) {
+    public FluidStorageBE(BlockEntityType<?> type, BlockPos pos, BlockState state, long capacity) {
         super(type, pos, state);
         this.fluidStorage = SingleFluidStorage.withFixedCapacity(capacity, this::markDirtyAndUpdate);
     }

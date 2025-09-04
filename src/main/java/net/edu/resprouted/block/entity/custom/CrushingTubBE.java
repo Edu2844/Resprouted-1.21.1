@@ -16,7 +16,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import java.util.Optional;
 
-public class CrushingTubBE extends AbstractFluidStorageBE implements ImplementedInventory {
+public class CrushingTubBE extends FluidStorageBE implements ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
 
     public CrushingTubBE(BlockPos pos, BlockState state) {

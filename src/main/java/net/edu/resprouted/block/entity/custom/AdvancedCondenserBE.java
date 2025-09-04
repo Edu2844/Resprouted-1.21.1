@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class AdvancedCondenserBE extends AbstractCondenserBE {
+public class AdvancedCondenserBE extends CondenserBaseBE {
     private static final int INPUT_SLOT_1 = 0;
     private static final int INPUT_SLOT_2 = 1;
     private static final int INPUT_SLOT_3 = 2;

@@ -1,7 +1,7 @@
 package net.edu.resprouted.block.custom.alchemy;
 
 import com.mojang.serialization.MapCodec;
-import net.edu.resprouted.block.entity.custom.AbstractCondenserBE;
+import net.edu.resprouted.block.entity.custom.CondenserBaseBE;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
@@ -95,7 +95,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
     protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof AbstractCondenserBE condenserBE) {
+            if (blockEntity instanceof CondenserBaseBE condenserBE) {
                 ItemScatterer.spawn(world, pos, condenserBE);
                 world.updateComparators(pos, this);
             }
@@ -131,7 +131,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
         if (!hasRequiredRetorts(world, targetPos, targetState))
             return ItemActionResult.FAIL;
 
-        if (!(world.getBlockEntity(targetPos) instanceof AbstractCondenserBE condenserBE))
+        if (!(world.getBlockEntity(targetPos) instanceof CondenserBaseBE condenserBE))
             return ItemActionResult.CONSUME;
 
         long amount = FluidConstants.BUCKET;
@@ -184,9 +184,9 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         if (world.isClient()) {
             return validateTicker(type, getBlockEntityType(),
-                    (world1, pos, state1, be) -> ((AbstractCondenserBE) be).clientTick(world1, pos, state1));
+                    (world1, pos, state1, be) -> ((CondenserBaseBE) be).clientTick(world1, pos, state1));
         }
         return validateTicker(type, getBlockEntityType(),
-                (world1, pos, state1, be) -> ((AbstractCondenserBE) be).serverTick(world1, pos, state1));
+                (world1, pos, state1, be) -> ((CondenserBaseBE) be).serverTick(world1, pos, state1));
     }
 }

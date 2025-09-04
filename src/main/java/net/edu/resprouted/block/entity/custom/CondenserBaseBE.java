@@ -33,7 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public abstract class AbstractCondenserBE extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
+public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
     protected final DefaultedList<ItemStack> inventory;
     protected int burnTime = 0;
     protected int fuelTime = 0;
@@ -45,7 +45,7 @@ public abstract class AbstractCondenserBE extends BlockEntity implements Extende
 
     private int smokeTimer = 0;
 
-    protected AbstractCondenserBE(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize) {
+    protected CondenserBaseBE(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize) {
         super(type, pos, state);
         this.inventory = DefaultedList.ofSize(inventorySize, ItemStack.EMPTY);
         this.propertyDelegate = createPropertyDelegate();
@@ -71,8 +71,6 @@ public abstract class AbstractCondenserBE extends BlockEntity implements Extende
         nbt.putInt("condenser.progress", progress);
         nbt.putInt("condenser.max_progress", maxProgress);
         nbt.putInt("BurnTime", this.burnTime);
-
-        // Fluids
         NbtCompound fluidNbt = new NbtCompound();
         SingleVariantStorage.writeNbt(fluidStorage, FluidVariant.CODEC, fluidNbt, registryLookup);
         nbt.put("Fluid", fluidNbt);
@@ -84,8 +82,6 @@ public abstract class AbstractCondenserBE extends BlockEntity implements Extende
         progress = nbt.getInt("condenser.progress");
         maxProgress = nbt.getInt("condenser.max_progress");
         this.burnTime = nbt.getInt("BurnTime");
-
-        // Fluids
         if (nbt.contains("Fluid", NbtElement.COMPOUND_TYPE)) {
             SingleVariantStorage.readNbt(
                     fluidStorage,
