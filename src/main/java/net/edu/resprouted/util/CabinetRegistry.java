@@ -1,4 +1,4 @@
-package net.edu.resprouted.registry;
+package net.edu.resprouted.util;
 
 import net.edu.resprouted.block.custom.decorative.CabinetBlock;
 import net.minecraft.block.Block;
@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResproutedCabinetRegistry {
+public class CabinetRegistry {
     private static final List<Block> REGISTERED_CABINETS = new ArrayList<>();
     public static void registerCabinet(Block cabinetBlock) {
         if (cabinetBlock instanceof CabinetBlock) {

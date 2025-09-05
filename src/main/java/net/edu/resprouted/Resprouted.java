@@ -6,7 +6,7 @@ import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.networking.ModMessages;
-import net.edu.resprouted.registry.ResproutedCabinetRegistry;
+import net.edu.resprouted.util.CabinetRegistry;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.resource.reload.FluidContainerLoader;
 import net.edu.resprouted.event.ModEvents;
@@ -44,12 +44,13 @@ public class Resprouted implements ModInitializer {
 		ModRecipes.registerRecipes();
 		ModEvents.registerModEvents();
 		ModRegistry.RegisterModStuffs();
-		ResproutedCabinetRegistry.getAllCabinetBlocks();
+		CabinetRegistry.getAllCabinetBlocks();
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
 		ModScreenHandlers.registerScreenHandlers();
 		ModDataComponentTypes.registerDataComponentTypes();
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
+
 		CONFIG = ResproutedConfiguration.load();
 		System.out.println("Resprouted config loaded:");
 	}

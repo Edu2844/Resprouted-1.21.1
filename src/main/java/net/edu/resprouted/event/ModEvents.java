@@ -2,9 +2,12 @@ package net.edu.resprouted.event;
 
 
 import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.component.ModDataComponentTypes;
+import net.edu.resprouted.util.RopeDispenser;
 import net.edu.resprouted.util.TextUtils;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -40,6 +43,7 @@ public class ModEvents {
         ItemTooltipCallback.EVENT.register(ModEvents::onItemTooltip);
         ItemTooltipCallback.EVENT.register(ModEvents::onWeaponTooltip);
         ItemTooltipCallback.EVENT.register(ModEvents::onHoneyTooltip);
+        DispenserBlock.registerBehavior((ModBlocks.ROPE.asItem()), new RopeDispenser());
 
     }
 }

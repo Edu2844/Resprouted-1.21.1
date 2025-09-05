@@ -15,7 +15,7 @@ import net.edu.resprouted.block.custom.decorative.*;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
-import net.edu.resprouted.registry.ResproutedCabinetRegistry;
+import net.edu.resprouted.util.CabinetRegistry;
 import net.edu.resprouted.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -624,7 +624,7 @@ public class ModBlocks {
                 new BlockItem(block, new Item.Settings()));
     }
     private static Block registerCabinetBlock(String name, Block block) {
-        ResproutedCabinetRegistry.registerCabinet(block);
+        CabinetRegistry.registerCabinet(block);
         return registerBlock(name, block);
     }
     public static void registerModBlocks(){

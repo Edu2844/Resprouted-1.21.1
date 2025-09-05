@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-04T20:16:51.934077	Resprouted/Tags for minecraft:item
+// 1.21.1	2025-09-04T22:54:50.6956092	Resprouted/Tags for minecraft:item
 2859ec709d0c7a50ba1a81d49f441ac86b90a536 data\resprouted\tags\item\ghost_pepper.json
 583c61b048f26dc4a732d8db2938a19214c6aa65 data\resprouted\tags\item\chili_pepper_seeds.json
 f470b0889459fb2d48176e69995c70ce18aa66ea data\resprouted\tags\item\fuels.json
@@ -16,6 +16,7 @@ e2915cf7ef73c5cb6f956d3069615f688880cda6 data\resprouted\tags\item\can_be_oiled.
 eeea9c75dbba6beccb4c9cd7f5594ce768727495 data\minecraft\tags\item\logs_that_burn.json
 84447924df854006f3ebfc166de6785531cf85df data\minecraft\tags\item\planks.json
 38c8795066e0b0693d5827e5c1f5c1fe56d4f032 data\resprouted\tags\item\olives.json
+74b0188cad8e6d47a1af8a4fa4c1e6d9221ff4d3 data\minecraft\tags\item\chicken_food.json
 b3bde38f0076db7328e1d575546c7494e712d3ab data\resprouted\tags\item\dusts.json
 666a5c22bbda65aa5e43dde49b375dbe80ba3a2d data\resprouted\tags\item\iron_berries.json
 47be456ad97366b91300f74739cd8cac544f698d data\resprouted\tags\item\igniters.json

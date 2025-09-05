@@ -150,5 +150,11 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.IRON_BERRIES)
                 .add(ModItems.OLIVES)
         ;
+        getOrCreateTagBuilder(ItemTags.CHICKEN_FOOD)
+                .add(ModItems.TOMATO_SEEDS)
+                .add(ModItems.CHILI_PEPPER_SEEDS)
+                .add(ModItems.GRAPE_SEEDS)
+
+        ;
     }
 }
