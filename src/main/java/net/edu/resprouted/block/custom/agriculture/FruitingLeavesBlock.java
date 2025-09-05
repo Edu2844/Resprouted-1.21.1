@@ -35,33 +35,40 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
         super.appendProperties(builder);
         builder.add(AGE);
     }
-    public int MaxAge() {
+
+    public int getMaxAge() {
         return 3;
     }
+
     @Override
     public boolean hasRandomTicks(BlockState state) {
-        return state.get(AGE) != MaxAge();
+        return state.get(AGE) != getMaxAge();
     }
+
     public static boolean isExposedToAir(WorldView world, BlockPos pos) {
         return world.isAir(pos.down()) || world.isAir(pos.north()) || world.isAir(pos.south()) || world.isAir(pos.east()) || world.isAir(pos.west());
     }
+
     @Override
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-        return state.get(AGE) < MaxAge() && isExposedToAir(world, pos);
+        return state.get(AGE) < getMaxAge() && isExposedToAir(world, pos);
     }
+
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
         return true;
     }
+
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         if (isExposedToAir(world, pos)) {
             int currentStage = state.get(AGE);
-            int nextStage = Math.min(currentStage + 1, MaxAge());
+            int nextStage = Math.min(currentStage + 1, getMaxAge());
 
             world.setBlockState(pos, state.with(AGE, nextStage), Block.NOTIFY_LISTENERS);
         }
     }
+
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         super.randomTick(state, world, pos, random);
@@ -71,7 +78,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
         if (world.getBaseLightLevel(pos, 0) >= 9 && isExposedToAir(world, pos)) {
             int currentStage = state.get(AGE);
 
-            if (currentStage < MaxAge() && random.nextInt(GROW_CHANCE) == 0) {
+            if (currentStage < getMaxAge() && random.nextInt(GROW_CHANCE) == 0) {
                 world.setBlockState(pos, state.with(AGE, currentStage + 1), Block.NOTIFY_LISTENERS);
             }
         }
@@ -80,7 +87,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
     // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (state.get(FruitingLeavesBlock.AGE) == MaxAge()) {
+        if (state.get(FruitingLeavesBlock.AGE) == getMaxAge()) {
             for (ItemStack drop : getHarvestResult(world.random)) {
                 player.giveItemStack(drop);
             }
@@ -93,22 +100,25 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
         }
         return ItemActionResult.FAIL;
     }
+
     protected List<ItemStack> getHarvestResult(Random random) {
         return HarvestUtils.create(random)
                 .add(Items.APPLE)
                 .generate();
     }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             if (!world.isClient) {
-                if (state.get(AGE) == MaxAge()) {
+                if (state.get(AGE) == getMaxAge()) {
                     dropMatureItem(world, pos);
                 }
             }
         }
         super.onStateReplaced(state, world, pos, newState, moved);
     }
+
     protected void dropMatureItem(World world, BlockPos pos) {
         dropStack(world, pos, new ItemStack(Items.APPLE, 1));
     }

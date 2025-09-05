@@ -14,16 +14,19 @@ public class TomatoCropBlock extends StakeCropBlock {
     public TomatoCropBlock(Settings settings) {
         super(settings);
     }
+
     @Override
     protected ItemConvertible getSeedsItem() {
         return ModItems.TOMATO_SEEDS;
     }
+
     @Override
     protected List<ItemStack> getHarvestResult(Random random) {
         return HarvestUtils.create(random)
                 .add(ModItems.TOMATO)
                 .generate();
     }
+
     @Override
     protected void dropMatureItem(World world, BlockPos pos, BlockState state) {
         dropStack(world, pos, new ItemStack(ModItems.TOMATO, 1));

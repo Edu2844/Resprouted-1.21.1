@@ -15,6 +15,7 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
+import net.minecraft.world.gen.foliage.DarkOakFoliagePlacer;
 import net.minecraft.world.gen.foliage.PineFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
@@ -36,11 +37,10 @@ public class ModConfiguredFeatures {
                 BlockStateProvider.of(ModBlocks.OLIVE_LOG),
                 new OliveTrunkPlacer(6, 0, 0),
                 BlockStateProvider.of(ModBlocks.OLIVE_LEAVES),
-                new BlobFoliagePlacer(
-                        ConstantIntProvider.create(1),
-                        ConstantIntProvider.create(2),
-                        1),
-                new TwoLayersFeatureSize(1, 0, 2)
+                new DarkOakFoliagePlacer(
+                        ConstantIntProvider.create(0),
+                        ConstantIntProvider.create(2)),
+                new TwoLayersFeatureSize(2, 0, 3)
         ).build());
 
         register(context, APPLE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(

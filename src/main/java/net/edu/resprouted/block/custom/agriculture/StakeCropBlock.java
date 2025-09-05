@@ -43,27 +43,33 @@ public class StakeCropBlock extends CropBlock {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
+
     @Override
     public IntProperty getAgeProperty() {
         return AGE;
     }
+
     @Override
     public int getMaxAge() {
         return MAX_AGE;
     }
+
     @Override
     protected ItemConvertible getSeedsItem() {
         return null;
     }
+
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isIn(ModTags.Blocks.FERTILE_SOILS);
     }
+
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockState below = world.getBlockState(pos.down());
         return below.isIn(ModTags.Blocks.FERTILE_SOILS) || below.getBlock() instanceof StakeCropBlock;
     }
+
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int age = getAge(state);
@@ -87,6 +93,7 @@ public class StakeCropBlock extends CropBlock {
             }
         }
     }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
@@ -103,6 +110,7 @@ public class StakeCropBlock extends CropBlock {
     protected void dropMatureItem(World world, BlockPos pos, BlockState state) {
         //dropStack(world, pos, new ItemStack((item), (count));
     }
+
     @Override
     public boolean hasRandomTicks(BlockState state) {
         return true;
@@ -124,11 +132,13 @@ public class StakeCropBlock extends CropBlock {
         }
         return ItemActionResult.FAIL;
     }
+
     // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return CROP_SHAPE;
     }
+
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return STAKE_SHAPE;
@@ -151,12 +161,14 @@ public class StakeCropBlock extends CropBlock {
             }
         }
     }
+
     private void harvestBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         for (ItemStack drop : getHarvestResult(world.getRandom())) {
             player.giveItemStack(drop);
         }
         world.setBlockState(pos, state.with(getAgeProperty(), getResetAge()), Block.NOTIFY_ALL);
     }
+
     protected int countBelow(World world, BlockPos pos) {
         int count = 0;
         for (int i = 1; i <= getMaxVerticalGrowth(); i++) {
@@ -166,24 +178,31 @@ public class StakeCropBlock extends CropBlock {
         }
         return count;
     }
+
     protected int getMaxVerticalGrowth() {
         return 2; //This + 2 = 3 high
     }
+
     protected List<ItemStack> getHarvestResult(Random random) {
         return Collections.emptyList();
     }
+
     protected int getResetAge() {
         return 4;
     }
+
     public static Optional<BlockState> getCropForSeed(Item seedItem) {
         for (Block block : Registries.BLOCK) {
+
             if (block instanceof StakeCropBlock stakeCrop) {
                 ItemConvertible seed = stakeCrop.getSeedsItem();
+
                 if (seed != null && seed.asItem() == seedItem) {
                     return Optional.of(block.getDefaultState());
                 }
             }
         }
+
         return Optional.empty();
     }
 }

@@ -75,6 +75,7 @@ public class GlassBottleItemMixin {
                 if (!user.getAbilities().creativeMode) {
                     itemStack.decrement(1);
                 }
+
                 if (!user.getInventory().insertStack(filled)) {
                     user.dropItem(filled, false);
                 }

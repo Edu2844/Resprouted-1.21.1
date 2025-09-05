@@ -30,7 +30,6 @@ import net.minecraft.world.WorldView;
 import java.util.List;
 
 public class GrapeLeavesBlock extends Block implements Fertilizable {
-
     private static final VoxelShape BRANCH_Z_SHAPE = Block.createCuboidShape(3.0F, 3.0F, 0.0F, 13.0F, 13.0F, 16.0F);
     private static final VoxelShape BRANCH_X_SHAPE = Block.createCuboidShape(0.0F, 3.0, 3.0F, 16.0F, 13.0F, 13.0F);
     private static final VoxelShape FULL_SHAPE = Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F);
@@ -49,6 +48,7 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE, AXIS, DIST);
     }
+
     @Override
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         if (state.get(DIST) > 0) {
@@ -56,18 +56,22 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
         }
         return canSpread((World) world, pos, state);
     }
+
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
         return true;
     }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return getDefaultState();
     }
+
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return false;
     }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock()) && !world.isClient) {
@@ -78,21 +82,26 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
             if (age == MAX_AGE) {
                 dropStack(world, pos, new ItemStack(ModItems.GRAPES));
             }
+
             if (dist == 0) {
                 BlockPos pos1 = axis == Direction.Axis.X ? pos.west() : pos.north();
                 BlockPos pos2 = axis == Direction.Axis.X ? pos.east() : pos.south();
 
                 for (BlockPos neighbor : List.of(pos1, pos2)) {
                     BlockState neighborState = world.getBlockState(neighbor);
+
                     if (neighborState.isOf(this) && neighborState.get(DIST) == 1 && neighborState.get(AXIS) == axis) {
                         world.setBlockState(neighbor, ModBlocks.ROPE.getDefaultState().with(RopeBlock.AXIS, axis), Block.NOTIFY_ALL);
                     }
                 }
             }
+
             world.setBlockState(pos, ModBlocks.ROPE.getDefaultState().with(RopeBlock.AXIS, axis), Block.NOTIFY_ALL);
         }
+
         super.onStateReplaced(state, world, pos, newState, moved);
     }
+
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
         if (!world.isClient) {
@@ -112,6 +121,7 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
             }
         }
     }
+
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         int dist = state.get(DIST);
@@ -123,6 +133,7 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
             spread(world, pos, state);
         }
     }
+
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (isBlockSupported(world, pos, state)) {
@@ -139,6 +150,7 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
                 if (random.nextInt((int)(35.0F / growthChance) + 1) == 0) {
                     world.setBlockState(pos, state.with(AGE, age + 1), Block.NOTIFY_ALL);
                 }
+
             } else if (dist < 1 && canSpread(world, pos, state)) {
                 float growthChance = getGrowthChance();
 
@@ -148,6 +160,7 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
             }
         }
     }
+
     @Override
     public boolean hasRandomTicks(BlockState state) {
         if (state.get(DIST) > 0) {
@@ -228,6 +241,7 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
         }
         return false;
     }
+
     private void spread(World world, BlockPos pos, BlockState state) {
         if (state.get(DIST) < 1) {
             switch (state.get(AXIS)) {
@@ -260,18 +274,22 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
             }
         }
     }
+
     private void spreadToValidRope(World world, BlockPos newPos) {
         Direction.Axis axis = world.getBlockState(newPos).get(RopeBlock.AXIS);
         world.setBlockState(newPos,
                 getDefaultState().with(AXIS, axis).with(DIST, 1),
                 Block.NOTIFY_ALL);
     }
+
     public static int getMaxAge(){
         return MAX_AGE;
     }
+
     protected float getGrowthChance() {
         return 7.0F;
     }
+
     protected List<ItemStack> getHarvestResult(Random random) {
         return HarvestUtils.create(random)
                 .add(ModItems.GRAPES)

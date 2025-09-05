@@ -31,100 +31,123 @@ public class CabinetBE extends LootableContainerBlockEntity implements NamedScre
         super(ModBlockEntities.CABINET_BE, pos, state);
         inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
     }
+
     @Override
     protected Text getContainerName() {
         return Text.translatable("container.resprouted.cabinet");
     }
+
     @Override
     public int size() {
         return inventory.size();
     }
+
     @Override
     protected DefaultedList<ItemStack> getHeldStacks() {
         return inventory;
     }
+
     @Override
     protected void setHeldStacks(DefaultedList<ItemStack> list) {
         this.inventory = list;
     }
+
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory inv) {
         return GenericContainerScreenHandler.createGeneric9x3(syncId, inv, this);
     }
+
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup lookup) {
         super.writeNbt(nbt, lookup);
         Inventories.writeNbt(nbt, inventory, lookup);
     }
+
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup lookup) {
         super.readNbt(nbt, lookup);
         inventory = DefaultedList.ofSize(size(), ItemStack.EMPTY);
         Inventories.readNbt(nbt, inventory, lookup);
     }
+
     @Override
     public void onOpen(PlayerEntity player) {
         super.onOpen(player);
         stateManager.openContainer(player, world, pos, this.getCachedState());
     }
+
     @Override
     public void onClose(PlayerEntity player) {
         super.onClose(player);
         stateManager.closeContainer(player, world, pos, this.getCachedState());
     }
+
     public boolean isMainPart() {
         BlockState state = getCachedState();
         CabinetType type = state.get(CabinetBlock.CABINET_TYPE);
 
         if (type == CabinetType.SINGLE) return true;
+
         return type == CabinetType.BOTTOM;
     }
+
     @Override
     public void setStack(int slot, ItemStack stack) {
         super.setStack(slot, stack);
         markDirtyAndUpdate();
     }
+
     @Override
     public ItemStack removeStack(int slot, int amount) {
         ItemStack stack = super.removeStack(slot, amount);
         markDirtyAndUpdate();
+
         return stack;
     }
+
     @Override
     public ItemStack removeStack(int slot) {
         ItemStack stack = super.removeStack(slot);
         markDirtyAndUpdate();
+
         return stack;
     }
+
     private void markDirtyAndUpdate() {
         this.markDirty();
         if (this.world != null && this.isMainPart()) {
             this.world.updateComparators(this.pos, this.getCachedState().getBlock());
         }
     }
+
     public final ViewerCountManager stateManager = new ViewerCountManager() {
         @Override
         protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
             if (CabinetBE.this.isMainPart()) {
+
                 if (!state.get(CabinetBlock.OPEN)) {
                     world.setBlockState(pos, state.with(CabinetBlock.OPEN, true), 3);
                     world.playSound(null, pos, SoundEvents.BLOCK_BARREL_OPEN, SoundCategory.BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
                 }
             }
         }
+
         @Override
         protected void onContainerClose(World world, BlockPos pos, BlockState state) {
             if (CabinetBE.this.isMainPart()) {
+
                 if (state.get(CabinetBlock.OPEN)) {
                     world.setBlockState(pos, state.with(CabinetBlock.OPEN, false), 3);
                     world.playSound(null, pos, SoundEvents.BLOCK_BARREL_CLOSE, SoundCategory.BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
                 }
             }
         }
+
         @Override
         public void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldCount, int newCount) {
             boolean open = state.get(CabinetBlock.OPEN);
             if (oldCount > 0 && newCount == 0) {
+
                 if (open) {
                     world.setBlockState(pos, state.with(CabinetBlock.OPEN, false), 3);
                 }
@@ -134,13 +157,15 @@ public class CabinetBE extends LootableContainerBlockEntity implements NamedScre
                 }
             }
         }
+
         @Override
         protected boolean isPlayerViewing(PlayerEntity player) {
             if (player.currentScreenHandler instanceof GenericContainerScreenHandler handler) {
                 Inventory inventory = handler.getInventory();
-                return inventory == CabinetBE.this
-                        || (inventory instanceof DoubleInventory di && di.isPart(CabinetBE.this));
+
+                return inventory == CabinetBE.this || (inventory instanceof DoubleInventory di && di.isPart(CabinetBE.this));
             }
+
             return false;
         }
 

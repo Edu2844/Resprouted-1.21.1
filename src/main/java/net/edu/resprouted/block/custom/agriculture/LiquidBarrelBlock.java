@@ -48,23 +48,28 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     public LiquidBarrelBlock(Settings settings) {
         super(settings);
     }
+
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
+
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
     }
+
     @Override
     protected BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
+
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new LiquidBarrelBE(pos, state);
     }
+
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -84,6 +89,7 @@ public class LiquidBarrelBlock extends BlockWithEntity {
         }
         return ItemActionResult.CONSUME;
     }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
@@ -128,15 +134,20 @@ public class LiquidBarrelBlock extends BlockWithEntity {
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
+
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (world.isClient) return;
+
         if (!(entity instanceof LivingEntity livingEntity)) return;
+
         if (!livingEntity.isOnFire()) return;
 
         double fluidSurfaceY = pos.getY() + 0.4;
+
         if (entity.getY() <= fluidSurfaceY) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
+
             if (blockEntity instanceof LiquidBarrelBE barrel) {
                 FluidVariant fluid = barrel.getFluidStorage().getResource();
                 long amount = barrel.getFluidStorage().getAmount();

@@ -21,6 +21,7 @@ public abstract class LivingEntityMixin extends Entity {
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
+
     @Inject(method = "damage", at = @At("HEAD"))
     private void onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (!this.getWorld().isClient() && source.getAttacker() instanceof PlayerEntity player) {
@@ -38,11 +39,13 @@ public abstract class LivingEntityMixin extends Entity {
                     ), player);
 
                     int newDuration = currentEffect.getDuration();
+
                     if (currentEffect.getEffectType().value().isInstant()) {
                         newDuration--;
                     } else {
                         newDuration -= RecipeUtils.getNextVantaHitDuration(currentEffect.getDuration());
                     }
+
                     if (newDuration <= 0) {
                         weapon.remove(ModDataComponentTypes.VANTA_OIL_EFFECT);
                     } else {

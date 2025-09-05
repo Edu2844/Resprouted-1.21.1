@@ -14,6 +14,7 @@ public class CustomBucketItem extends BucketItem {
     public CustomBucketItem(Fluid fluid, Settings settings) {
         super(fluid, settings);
     }
+
     @Override
     protected void playEmptyingSound(@Nullable PlayerEntity player, WorldAccess world, BlockPos pos) {
         world.playSound(player, pos, SoundEvents.BLOCK_HONEY_BLOCK_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);

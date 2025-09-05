@@ -22,21 +22,25 @@ public class CrushingTubBE extends FluidStorageBE implements ImplementedInventor
     public CrushingTubBE(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CRUSHING_TUB_BE, pos, state, FluidConstants.BUCKET * 8);
     }
+
     @Override
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
+
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
         Inventories.writeNbt(nbt, inventory, registryLookup);
     }
+
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
         inventory.clear();
         Inventories.readNbt(nbt, inventory, registryLookup);
     }
+
     public Optional<CrushingTubRecipe> findMatchingRecipe() {
         if (world == null || world.isClient) return Optional.empty();
 

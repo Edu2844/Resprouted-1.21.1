@@ -53,6 +53,7 @@ public class StakeBlock extends Block {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HAS_ROPE, CONNECT_NORTH, CONNECT_SOUTH, CONNECT_EAST, CONNECT_WEST);
     }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!world.isClient && state.get(HAS_ROPE) && !state.isOf(newState.getBlock())) {
@@ -63,6 +64,7 @@ public class StakeBlock extends Block {
         }
         super.onStateReplaced(state, world, pos, newState, moved);
     }
+
     @Override
     public BlockSoundGroup getSoundGroup(BlockState state) {
         if (state.get(HAS_ROPE)) {
@@ -70,6 +72,7 @@ public class StakeBlock extends Block {
         }
         return super.getSoundGroup(state);
     }
+
     @Override
     public float calcBlockBreakingDelta(BlockState state, PlayerEntity player, BlockView world, BlockPos pos) {
         if (state.get(HAS_ROPE)) {
@@ -77,6 +80,7 @@ public class StakeBlock extends Block {
         }
         return super.calcBlockBreakingDelta(state, player, world, pos);
     }
+
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (direction.getAxis().isHorizontal()) {
@@ -92,6 +96,7 @@ public class StakeBlock extends Block {
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
+
     private BooleanProperty getPropertyForDirection(Direction dir) {
         return switch (dir) {
             case NORTH -> CONNECT_NORTH;
@@ -101,6 +106,7 @@ public class StakeBlock extends Block {
             default -> throw new IllegalArgumentException("Invalid direction: " + dir);
         };
     }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         WorldAccess world = ctx.getWorld();
@@ -112,6 +118,7 @@ public class StakeBlock extends Block {
                 .with(CONNECT_EAST, world.getBlockState(pos.east()).getBlock() instanceof RopeBlock)
                 .with(CONNECT_WEST, world.getBlockState(pos.west()).getBlock() instanceof RopeBlock);
     }
+
     public boolean hasRope(BlockState state) {
         return state.contains(HAS_ROPE) && state.get(HAS_ROPE);
     }

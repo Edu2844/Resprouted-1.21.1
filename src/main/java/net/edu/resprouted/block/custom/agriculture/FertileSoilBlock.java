@@ -26,6 +26,7 @@ public class FertileSoilBlock extends FarmlandBlock {
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return true;
     }
+
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(MOISTURE) < 7) {
@@ -34,14 +35,18 @@ public class FertileSoilBlock extends FarmlandBlock {
         BlockPos cropPos = pos.up();
         BlockState cropState = world.getBlockState(cropPos);
         Block block = cropState.getBlock();
+
         if (cropState.getBlock() instanceof CropBlock crop) {
+
             if (random.nextFloat() < GROWTH_BOOST) {
+
                 if (crop.canGrow(world, random, cropPos, cropState)) {
                     crop.applyGrowth(world, cropPos, cropState);
                 }
             }
         }
         else if (block instanceof SugarCaneBlock && random.nextFloat() < GROWTH_BOOST) {
+
             if (world.getBlockState(cropPos.up()).isAir()) {
                 world.setBlockState(cropPos.up(), Blocks.SUGAR_CANE.getDefaultState());
             }
@@ -64,6 +69,7 @@ public class FertileSoilBlock extends FarmlandBlock {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);
     }
+
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 15.0, 16.0);

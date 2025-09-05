@@ -53,6 +53,7 @@ public class EvaporatingBasinBE extends FluidStorageBE implements ImplementedInv
         if (world.isClient) return;
         FluidVariant fluid = be.getFluidStorage().getResource();
         long amt = be.getFluidStorage().getAmount();
+
         if (fluid.isBlank() || amt == 0) {
             be.progress = 0;
             return;
@@ -74,6 +75,7 @@ public class EvaporatingBasinBE extends FluidStorageBE implements ImplementedInv
             boolean boosted = belowState.isIn(ModTags.Blocks.EVAPORATING_BOOSTERS);
             long mbPerTick = boosted ? MB_PER_TICK * EV_BOOSTER : MB_PER_TICK;
             long extracted = be.getFluidStorage().extract(fluid, mbPerTick, tx);
+
             if (extracted == mbPerTick) {
                 tx.commit();
                 be.progress += mbPerTick;
@@ -81,6 +83,7 @@ public class EvaporatingBasinBE extends FluidStorageBE implements ImplementedInv
         }
 
         long cost = FluidUtils.convertMbToDroplets(recipe.fluidCost());
+
         if (be.progress >= cost) {
             be.progress -= cost;
             be.spawnOrStore(recipe.output().copy());
@@ -90,6 +93,7 @@ public class EvaporatingBasinBE extends FluidStorageBE implements ImplementedInv
 
     private void spawnOrStore(ItemStack stack) {
         ItemStack slot = inventory.getFirst();
+
         if (slot.isEmpty()) {
             inventory.set(0, stack);
         } else if (ItemStack.areItemsAndComponentsEqual(slot, stack) && slot.getCount() + stack.getCount() <= slot.getMaxCount()) {
@@ -98,6 +102,7 @@ public class EvaporatingBasinBE extends FluidStorageBE implements ImplementedInv
             assert world != null;
             ItemScatterer.spawn(world, pos, DefaultedList.ofSize(1, stack));
         }
+
         markDirty();
     }
 }

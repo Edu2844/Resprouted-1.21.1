@@ -51,15 +51,18 @@ public class CakeBlock extends Block {
         this.effectAmplifier = effectAmplifier;
         setDefaultState(this.stateManager.getDefaultState().with(BITES, 0));
     }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(BITES);
     }
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         int bites = state.get(BITES);
         return BITES_TO_SHAPE[bites];
     }
+
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) {
@@ -70,8 +73,10 @@ public class CakeBlock extends Block {
                 return ActionResult.CONSUME;
             }
         }
+
         return tryEat(world, pos, state, player);
     }
+
     protected ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canConsume(false)) {
             return ActionResult.PASS;
@@ -81,7 +86,6 @@ public class CakeBlock extends Block {
         world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.BLOCKS, 1.0F, 1.0F);
         player.getHungerManager().add(2, 0.1F);
 
-        // Aplicar efecto de poción si está configurado
         if (statusEffect != null && !world.isClient()) {
             player.addStatusEffect(new StatusEffectInstance(
                     statusEffect,
@@ -108,6 +112,7 @@ public class CakeBlock extends Block {
                 );
             }
         }
+
         int i = state.get(BITES);
         world.emitGameEvent(player, GameEvent.EAT, pos);
 
@@ -117,23 +122,29 @@ public class CakeBlock extends Block {
             world.removeBlock(pos, false);
             world.emitGameEvent(player, GameEvent.BLOCK_DESTROY, pos);
         }
+
         return ActionResult.SUCCESS;
     }
+
     @Override
     protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
+
     @Override
     protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return world.getBlockState(pos.down()).isSolid();
     }
+
     @Override
     protected int getComparatorOutput(BlockState state, World world, BlockPos pos) {
         return getComparatorOutput(state.get(BITES));
     }
+
     public static int getComparatorOutput(int bites) {
         return (MAX_BITES + 1 - bites) * 2;
     }
+
     @Override
     protected boolean hasComparatorOutput(BlockState state) {
         return true;

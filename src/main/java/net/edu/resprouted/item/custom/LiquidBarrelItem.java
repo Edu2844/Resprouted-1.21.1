@@ -22,6 +22,7 @@ public class LiquidBarrelItem extends BlockItem {
     public LiquidBarrelItem(Block block, Settings settings) {
         super(block, settings);
     }
+
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, tooltip, type);
@@ -30,6 +31,7 @@ public class LiquidBarrelItem extends BlockItem {
         if (nbt == null) return;
 
         var tag = nbt.copyNbt().getCompound("Fluid");
+
         if (!tag.contains("variant") || !tag.contains("amount")) return;
         try {
             var variant = FluidVariant.CODEC.parse(TOOLTIP_OPS, tag.get("variant")).result().orElse(FluidVariant.blank());
@@ -41,7 +43,8 @@ public class LiquidBarrelItem extends BlockItem {
                 tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.GRAY));
                 tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.GRAY));
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             tooltip.add(Text.translatable("tooltip.resprouted.fluid_error").formatted(Formatting.RED));
         }
     }

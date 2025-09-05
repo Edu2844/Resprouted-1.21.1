@@ -20,15 +20,18 @@ public class ElixirBottle extends PotionItem {
     public ElixirBottle(Settings settings) {
         super(settings);
     }
+
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
+
         if (playerEntity instanceof ServerPlayerEntity) {
             Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity)playerEntity, stack);
         }
         if (!world.isClient) {
             PotionContentsComponent potionContentsComponent = stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT);
             potionContentsComponent.forEachEffect((effect) -> {
+
                 if (effect.getEffectType().value().isInstant()) {
                     effect.getEffectType().value().applyInstantEffect(playerEntity, playerEntity, user, effect.getAmplifier(), 1.0);
                 } else {
@@ -45,11 +48,14 @@ public class ElixirBottle extends PotionItem {
             if (stack.isEmpty()) {
                 return new ItemStack(Items.GLASS_BOTTLE);
             }
+
             if (playerEntity != null) {
                 playerEntity.getInventory().insertStack(new ItemStack(Items.GLASS_BOTTLE));
             }
         }
+
         user.emitGameEvent(GameEvent.DRINK);
+
         return stack;
     }
 
@@ -63,9 +69,11 @@ public class ElixirBottle extends PotionItem {
             if (iterator.hasNext()) {
                 StatusEffectInstance firstEffect = iterator.next();
                 Text effectName = Text.translatable(firstEffect.getTranslationKey());
+
                 return Text.translatable("item.resprouted.elixir_bottle.effect", effectName);
             }
         }
+
         return Text.translatable("item.resprouted.elixir_bottle.empty");
     }
 }

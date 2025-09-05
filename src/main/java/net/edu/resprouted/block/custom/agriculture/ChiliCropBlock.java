@@ -14,14 +14,17 @@ public class ChiliCropBlock extends StakeCropBlock {
     public ChiliCropBlock(Settings settings) {
         super(settings);
     }
+
     @Override
     protected ItemConvertible getSeedsItem() {
         return ModItems.CHILI_PEPPER_SEEDS;
     }
+
     @Override
     protected int getMaxVerticalGrowth() {
         return 1; //This + 1 = 2 high
     }
+
     @Override
     protected List<ItemStack> getHarvestResult(Random random) {
         return HarvestUtils.create(random)
@@ -29,6 +32,7 @@ public class ChiliCropBlock extends StakeCropBlock {
                 .add(ModItems.GHOST_PEPPER, 0.03f)
                 .generate();
     }
+
     @Override
     protected void dropMatureItem(World world, BlockPos pos, BlockState state) {
         dropStack(world, pos, new ItemStack(ModItems.CHILI_PEPPER, 1));

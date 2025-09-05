@@ -53,6 +53,7 @@ public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScr
     }
 
     // ========= ABSTRACT METHODS =========
+
     protected abstract PropertyDelegate createPropertyDelegate();
     protected abstract boolean hasRecipe();
     protected abstract void craftItem();
@@ -64,24 +65,30 @@ public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScr
     public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return this.pos;
     }
+
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
         Inventories.writeNbt(nbt, inventory, registryLookup);
+
         nbt.putInt("condenser.progress", progress);
         nbt.putInt("condenser.max_progress", maxProgress);
         nbt.putInt("BurnTime", this.burnTime);
+
         NbtCompound fluidNbt = new NbtCompound();
         SingleVariantStorage.writeNbt(fluidStorage, FluidVariant.CODEC, fluidNbt, registryLookup);
         nbt.put("Fluid", fluidNbt);
     }
+
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
         Inventories.readNbt(nbt, inventory, registryLookup);
+
         progress = nbt.getInt("condenser.progress");
         maxProgress = nbt.getInt("condenser.max_progress");
         this.burnTime = nbt.getInt("BurnTime");
+
         if (nbt.contains("Fluid", NbtElement.COMPOUND_TYPE)) {
             SingleVariantStorage.readNbt(
                     fluidStorage,
@@ -99,12 +106,14 @@ public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScr
 
         if (shouldEmitSmoke) {
             smokeTimer++;
+
             if (smokeTimer >= 3) {
                 spawnSmokeParticles(world, pos, state);
                 smokeTimer = 0;
             }
         }
     }
+
     protected abstract void spawnSmokeParticles(World world, BlockPos pos, BlockState state);
 
     public void serverTick(World world, BlockPos pos, BlockState state) {
@@ -114,6 +123,7 @@ public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScr
         if (!isBurning() && hasRecipe() && hasFuelAvailable) {
             ItemStack fuelStack = getFuelStack();
             int fuelBurnTime = FuelRegistry.INSTANCE.get(fuelStack.getItem());
+
             if (fuelBurnTime > 0) {
                 this.burnTime = fuelBurnTime;
                 this.fuelTime = fuelBurnTime;
@@ -121,27 +131,35 @@ public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScr
                 dirty = true;
             }
         }
+
         if (isBurning()) {
             this.burnTime--;
+
             if (hasRecipe()) {
                 increaseCraftingProgress();
+
                 if (hasCraftingFinished()) {
                     craftItem();
                     resetProgress();
                     dirty = true;
                 }
+
             } else {
                 resetProgress();
             }
+
             markDirty(world, pos, state);
+
         } else {
             resetProgress();
         }
         boolean shouldBeLit = isBurning() || (hasFuelAvailable && hasRecipe());
+
         if (state.get(AbstractCondenserBlock.LIT) != shouldBeLit) {
             updateLitState(world, pos, state, shouldBeLit);
             dirty = true;
         }
+
         if (dirty) {
             markDirty(world, pos, state);
         }
@@ -156,30 +174,39 @@ public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScr
         double randomOffsetY = world.random.nextDouble() * 0.02D;
         world.addParticle(ParticleTypes.SMOKE, x, y + randomOffsetY, z, 0, yVel, 0);
     }
+
     public boolean isBurning() {
         return this.burnTime > 0;
     }
+
     public boolean hasFluid() {
         return !fluidStorage.variant.isBlank() && fluidStorage.amount >= 10125 &&
                 fluidStorage.variant.isOf(Fluids.WATER);
     }
+
     protected void resetProgress() {
         if (this.progress != 0) {
             this.progress = 0;
             this.maxProgress = 380;
+
             markDirty();
+
             if (world != null) {
                 world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
             }
         }
     }
+
     protected boolean hasCraftingFinished() {
         return this.progress >= this.maxProgress;
     }
+
     protected void increaseCraftingProgress() {
         this.progress++;
+
         if (this.progress % 20 == 0) {
             markDirty();
+
             if (world != null) {
                 world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
             }
@@ -191,25 +218,31 @@ public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScr
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
+
     @Override
     public Packet<ClientPlayPacketListener> toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);
     }
+
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
     }
+
     private void update() {
         markDirty();
         if (world != null)
             world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
     }
+
     public SingleFluidStorage getFluidStorage() {
         return this.fluidStorage;
     }
+
     public SingleFluidStorage getFluidTankProvider(Direction direction) {
         return this.fluidStorage;
     }
+
     public SingleFluidStorage getFluidTank() {
         return this.fluidStorage;
     }

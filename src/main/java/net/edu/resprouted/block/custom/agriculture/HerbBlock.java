@@ -39,14 +39,17 @@ public class HerbBlock extends CropBlock {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
+
     @Override
     protected ItemConvertible getSeedsItem() {
         return  seedsSupplier.get();
     }
+
     @Override
     public IntProperty getAgeProperty() {
         return AGE;
     }
+
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         if(this == ModBlocks.ALOE_VERA_BLOCK) {
@@ -54,6 +57,7 @@ public class HerbBlock extends CropBlock {
         }
         return floor.isIn(ModTags.Blocks.FERTILE_SOILS)||floor.isIn(ModTags.Blocks.ALLOWS_GROWTH);
     }
+
     @Override
     public int getMaxAge() {
         return MAX_AGE;

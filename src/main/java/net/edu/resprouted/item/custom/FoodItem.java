@@ -13,6 +13,7 @@ public class FoodItem extends Item {
     public FoodItem(Settings settings) {
         super(settings);
     }
+
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, tooltip, type);

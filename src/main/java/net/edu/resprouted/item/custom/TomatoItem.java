@@ -15,6 +15,7 @@ public class TomatoItem extends Item {
     public TomatoItem(Settings settings) {
         super(settings);
     }
+
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
@@ -29,11 +30,14 @@ public class TomatoItem extends Item {
                 tomato.setItem(stack.copyWithCount(1));
                 world.spawnEntity(tomato);
             }
+
             if (!user.getAbilities().creativeMode) {
                 stack.decrement(1);
             }
+
             return TypedActionResult.success(stack, world.isClient());
         }
+
         return super.use(world, user, hand);
     }
 }

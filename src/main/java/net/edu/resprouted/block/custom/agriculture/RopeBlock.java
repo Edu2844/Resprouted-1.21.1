@@ -31,13 +31,18 @@ import java.util.Set;
 public class RopeBlock extends ChainBlock{
     public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
     public static final BooleanProperty HAS_KNOT = BooleanProperty.of("has_knot");
+    protected static final VoxelShape Y_SHAPE = Block.createCuboidShape(7.0, 0.0, 7.0, 9.0, 16.0, 9.0);
+    protected static final VoxelShape Z_SHAPE = Block.createCuboidShape(7.0, 7.0, 0.0, 9.0, 9.0, 16.0);
+    protected static final VoxelShape X_SHAPE = Block.createCuboidShape(0.0, 7.0, 7.0, 16.0, 9.0, 9.0);
     private static final VoxelShape X_SHAPE_KNOT = VoxelShapes.union(
-            Block.createCuboidShape(0, 6.5, 6.5, 16, 9.5, 9.5),
-            Block.createCuboidShape(6.5, 0, 6.5, 9.5, 6.5, 9.5)
+            Block.createCuboidShape(0, 7.0, 7.0, 16, 9.0, 9.0),
+            Block.createCuboidShape(7.0, 0, 7.0, 9.0, 7.0, 9.0),
+            Block.createCuboidShape(6.5, 6.5, 6.5, 9.5, 9.5, 9.5)
     );
     private static final VoxelShape Z_SHAPE_KNOT = VoxelShapes.union(
-            Block.createCuboidShape(6.5, 6.5, 0, 9.5, 9.5, 16),
-            Block.createCuboidShape(6.5, 0, 6.5, 9.5, 6.5, 9.5)
+            Block.createCuboidShape(7.0, 7.0, 0, 9.0, 9.0, 16),
+            Block.createCuboidShape(7.0, 0, 7.0, 9.0, 7.0, 9.0),
+            Block.createCuboidShape(6.5, 6.5, 6.5, 9.5, 9.5, 9.5)
     );
     public RopeBlock(Settings settings) {
         super(settings);
@@ -52,26 +57,32 @@ public class RopeBlock extends ChainBlock{
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AXIS, WATERLOGGED, HAS_KNOT);
     }
+
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return hasSupport(state, world, pos);
     }
+
     @Override
     public boolean canReplace(BlockState state, ItemPlacementContext context) {
         return context.getSide() != Direction.UP && super.canReplace(state, context);
     }
+
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (!hasSupport(state, world, pos)) {
             world.breakBlock(pos, true);
+
             for (Direction dir : Direction.values()) {
                 BlockPos adj = pos.offset(dir);
+
                 if (world.getBlockState(adj).getBlock() instanceof RopeBlock) {
                     world.scheduleBlockTick(adj, this, 1);
                 }
             }
         }
     }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         Direction.Axis axis = ctx.getSide().getAxis();
@@ -82,6 +93,7 @@ public class RopeBlock extends ChainBlock{
 
         return getDefaultState().with(AXIS, axis).with(HAS_KNOT, knot);
     }
+
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos fromPos, boolean notify) {
 
@@ -90,21 +102,26 @@ public class RopeBlock extends ChainBlock{
         if (dir != null && dir.getAxis() == state.get(AXIS)) {
             if (dir == Direction.UP || !isBlockSupported(world, pos, state)) {
                 world.breakBlock(pos, true);
+
                 return;
             }
         }
+
         super.neighborUpdate(state, world, pos, sourceBlock, fromPos, notify);
     }
+
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction dir, BlockState neighbor, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (!hasSupport(state, world, pos)) {
             world.scheduleBlockTick(pos, this, 1);
         }
         if (state.get(AXIS) != Direction.Axis.Y && dir == Direction.DOWN) {
-            boolean knot = neighbor.getBlock() instanceof RopeBlock &&
-                    neighbor.get(RopeBlock.AXIS) == Direction.Axis.Y;
+            boolean knot = neighbor.getBlock() instanceof RopeBlock
+                    && neighbor.get(RopeBlock.AXIS) == Direction.Axis.Y;
+
             state = state.with(HAS_KNOT, knot);
         }
+
         return super.getStateForNeighborUpdate(state, dir, neighbor, world, pos, neighborPos);
     }
 
@@ -113,25 +130,34 @@ public class RopeBlock extends ChainBlock{
                                                        BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (stack.getItem() != asItem())
             return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
         Direction side = hit.getSide(); if (side.getAxis() == state.get(AXIS) && side != Direction.UP)
             return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
         BlockPos.Mutable cursor = pos.mutableCopy();
+
         for (int length = 1; length <= 64; length++) {
             cursor.move(Direction.DOWN);
             BlockState target = world.getBlockState(cursor);
+
             if (target.isAir()) {
                 BlockState newRope = getDefaultState().with(AXIS, Direction.Axis.Y);
+
                 if (world.setBlockState(cursor, newRope, Block.NOTIFY_ALL)) {
                     if (!player.getAbilities().creativeMode)
                         stack.decrement(1);
+
                     world.playSound(null, cursor, getSoundGroup(newRope).getPlaceSound(),
                             SoundCategory.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
+
                     return ItemActionResult.SUCCESS; }
                 break;
             }
+
             if (!(target.getBlock() instanceof RopeBlock) || target.get(AXIS) != Direction.Axis.Y)
                 break;
         }
+
         return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
@@ -149,6 +175,7 @@ public class RopeBlock extends ChainBlock{
     private boolean hasSupport(BlockState state, WorldView world, BlockPos pos) {
         return state.get(AXIS) == Direction.Axis.Y ? hasVerticalSupport(world, pos) : hasHorizontalSupport(world, pos, new HashSet<>(), state.get(AXIS));
     }
+
     private boolean hasVerticalSupport(WorldView world, BlockPos pos) {
         BlockState up = world.getBlockState(pos.up());
         Block upBlock = up.getBlock();
@@ -157,10 +184,13 @@ public class RopeBlock extends ChainBlock{
                 || upBlock instanceof StakeBlock
                 || upBlock instanceof GrapeLeavesBlock;
     }
+
     private boolean hasHorizontalSupport(WorldView world, BlockPos pos, Set<BlockPos> visited, Direction.Axis axis) {
         if (!visited.add(pos) || visited.size() > 20)
             return false;
+
         for (Direction dir : Direction.Type.HORIZONTAL) {
+
             if (dir.getAxis() != axis) continue;
             BlockPos off = pos.offset(dir);
             BlockState neighbor = world.getBlockState(off);
@@ -171,8 +201,10 @@ public class RopeBlock extends ChainBlock{
             if (neighbor.getBlock() instanceof RopeBlock && neighbor.get(AXIS) == axis && hasHorizontalSupport(world, off, visited, axis))
                 return true;
         }
+
         return false;
     }
+
     private boolean isBlockSupported(WorldView world, BlockPos pos, BlockState state) {
         return switch (state.get(AXIS)) {
             case X -> isSideSupported(world, pos, state, Direction.WEST) && isSideSupported(world, pos, state, Direction.EAST);
@@ -180,6 +212,7 @@ public class RopeBlock extends ChainBlock{
             case Z -> isSideSupported(world, pos, state, Direction.NORTH) && isSideSupported(world, pos, state, Direction.SOUTH);
         };
     }
+
     private boolean isSideSupported(WorldView world, BlockPos pos, BlockState state, Direction facing) {
         if (facing == Direction.DOWN) return false;
         BlockPos off = pos.offset(facing);

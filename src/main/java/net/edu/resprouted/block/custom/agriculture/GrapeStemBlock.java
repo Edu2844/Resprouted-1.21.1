@@ -33,30 +33,37 @@ public class GrapeStemBlock extends CropBlock{
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(AXIS, Direction.Axis.Y));
     }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE).add(AXIS);
     }
+
     @Override
     public IntProperty getAgeProperty() {
         return AGE;
     }
+
     @Override
     public int getMaxAge() {
         return MAX_AGE;
     }
+
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isOf(Blocks.FARMLAND)|| floor.isIn(ModTags.Blocks.FERTILE_SOILS);
     }
+
     @Override
     protected ItemConvertible getSeedsItem() {
         return ModItems.GRAPE_SEEDS;
     }
+
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE_TO_AGE[this.getAge(state)];
     }
+
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (world.getLightLevel(pos.up()) >= 9) {
@@ -68,6 +75,7 @@ public class GrapeStemBlock extends CropBlock{
                 if (random.nextInt((int)(25.0F / growthChance) + 1) == 0) {
                     world.setBlockState(pos, state.with(AGE, currentAge + 1), Block.NOTIFY_LISTENERS);
                 }
+
             } else {
                 //Check if ropeblock exists
                 BlockState aboveState = world.getBlockState(pos.up());
@@ -76,6 +84,7 @@ public class GrapeStemBlock extends CropBlock{
 
                     if (random.nextInt((int)(25.0F / growthChance) + 1) == 0) {
                         Direction.Axis axis = aboveState.get(RopeBlock.AXIS);
+
                         world.setBlockState(pos.up(),
                                 ModBlocks.GRAPE_LEAVES.getDefaultState()
                                         .with(GrapeLeavesBlock.AXIS, axis)
@@ -86,9 +95,7 @@ public class GrapeStemBlock extends CropBlock{
             }
         }
     }
-    protected static float getGrowthChance() {
-        return 7.0F;
-    }
+
     @Override
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         return state.get(AGE) < getMaxAge() ||
@@ -96,6 +103,7 @@ public class GrapeStemBlock extends CropBlock{
                         && world.getBlockState(pos.up()).isOf(ModBlocks.ROPE)
                         && world.getBlockState(pos.up()).get(RopeBlock.AXIS) != Direction.Axis.Y);
     }
+
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         int currentAge = state.get(AGE);
@@ -103,12 +111,16 @@ public class GrapeStemBlock extends CropBlock{
 
         if (currentAge < maxAge) {
             int newAge = currentAge + getBonemealAgeIncrease();
+
             if (newAge > maxAge) {
                 newAge = maxAge;
             }
+
             world.setBlockState(pos, state.with(AGE, newAge), Block.NOTIFY_LISTENERS);
+
         } else {
             BlockState aboveState = world.getBlockState(pos.up());
+
             if (aboveState.isOf(ModBlocks.ROPE)) {
                 Direction.Axis axis = aboveState.get(RopeBlock.AXIS);
                 world.setBlockState(pos.up(),
@@ -116,22 +128,30 @@ public class GrapeStemBlock extends CropBlock{
             }
         }
     }
-    protected int getBonemealAgeIncrease() {
-        return Random.create().nextBetween(2, 5);
-    }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return getDefaultState();
     }
+
     @Override
     public boolean hasRandomTicks(BlockState state) {
         return true;
     }
+
     @Override
     public BlockSoundGroup getSoundGroup(BlockState state) {
         if (state.get(GrapeStemBlock.AGE) == 3) {
             return BlockSoundGroup.WOOD;
         }
         return super.getSoundGroup(state);
+    }
+
+    protected int getBonemealAgeIncrease() {
+        return Random.create().nextBetween(2, 5);
+    }
+
+    protected static float getGrowthChance() {
+        return 7.0F;
     }
 }

@@ -23,6 +23,7 @@ public class DrinkableBottleItem extends Item {
     public DrinkableBottleItem(Settings settings) {
         super(settings);
     }
+
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         FoodComponent foodComponent = stack.get(DataComponentTypes.FOOD);
@@ -40,17 +41,21 @@ public class DrinkableBottleItem extends Item {
         }
         return stack;
     }
+
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
     }
+
     @Override
     public SoundEvent getEatSound() {
         return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
     }
+
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         return ItemUsage.consumeHeldItem(world, user, hand);
     }
+
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, tooltip, type);

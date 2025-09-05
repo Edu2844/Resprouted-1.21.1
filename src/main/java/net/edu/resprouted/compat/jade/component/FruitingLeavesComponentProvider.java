@@ -24,7 +24,7 @@ public class FruitingLeavesComponentProvider implements IBlockComponentProvider 
         if (block instanceof FruitingLeavesBlock fruitingLeaves) {
             if (FruitingLeavesBlock.isExposedToAir(accessor.getLevel(), accessor.getPosition())) {
                 int currentAge = state.get(FruitingLeavesBlock.AGE);
-                int maxAge = fruitingLeaves.MaxAge();
+                int maxAge = fruitingLeaves.getMaxAge();
                 float growthValue = (float) currentAge / maxAge;
 
                 addMaturityTooltip(tooltip, growthValue);

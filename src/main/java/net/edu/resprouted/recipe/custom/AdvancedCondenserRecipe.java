@@ -46,6 +46,7 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
             boolean matched = ingredientsCopy.removeIf(ing -> ing.test(stack));
             if (!matched) return false;
         }
+
         boolean hasFuelOrBurning = false;
         boolean hasRetorts = false;
         if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBE be) {
@@ -58,9 +59,11 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
         boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);
 
         boolean hasFluid = false;
+
         if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBE be) {
             hasFluid = be.hasFluid();
         }
+
         if (modifier.isPresent()) {
             if (!modifier.get().test(input.modifier())) {
                 return false;
@@ -70,28 +73,35 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
                 return false;
             }
         }
+
         return hasFuelOrBurning && hasBottle && hasFluid && hasRetorts;
     }
+
     @Override
     public ItemStack craft(AdvancedCondenserRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return ElixirUtils.createElixir(effect, duration, amplifier);
     }
+
     @Override
     public boolean fits(int width, int height) {
         return true;
     }
+
     @Override
     public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
         return ElixirUtils.createElixir(effect, duration, amplifier);
     }
+
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.ADVANCED_CONDENSER_SERIALIZER;
     }
+
     @Override
     public RecipeType<?> getType() {
         return ModRecipes.ADVANCED_CONDENSER_TYPE;
     }
+
     public static class Serializer implements RecipeSerializer<AdvancedCondenserRecipe> {
 
         public static final MapCodec<AdvancedCondenserRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
@@ -110,10 +120,12 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
                 PacketCodecs.VAR_INT, AdvancedCondenserRecipe::amplifier,
                 AdvancedCondenserRecipe::new
         );
+
         @Override
         public MapCodec<AdvancedCondenserRecipe> codec() {
             return CODEC;
         }
+
         @Override
         public PacketCodec<RegistryByteBuf, AdvancedCondenserRecipe> packetCodec() {
             return STREAM_CODEC;
