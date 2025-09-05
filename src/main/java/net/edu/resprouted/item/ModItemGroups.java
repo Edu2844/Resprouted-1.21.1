@@ -82,6 +82,8 @@ public class ModItemGroups {
                         entries.add(ModItems.HONEY_GLAZED_CARROTS);
                         entries.add(ModBlocks.IRON_BERRY_CAKE);
 
+                        entries.add(ModBlocks.BREWING_BARREL);
+
 
                     }).build());
     public static  final ItemGroup DECORATION_GROUP = Registry.register(Registries.ITEM_GROUP,

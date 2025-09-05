@@ -32,6 +32,11 @@ public class ModBlockEntities {
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "advanced_condenser_be"),
                     BlockEntityType.Builder.create(AdvancedCondenserBE::new, ModBlocks.ADVANCED_CONDENSER).build(null));
 
+    public static final BlockEntityType<BrewingBarrelBE> BREWING_BARREL_BE =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "brewing_barrel_be"),
+                    BlockEntityType.Builder.create(BrewingBarrelBE::new, ModBlocks.BREWING_BARREL).build(null));
+
+
     public static void registerModBlockEntities() {
         Resprouted.LOGGER.info("Registering Block Entities for " + Resprouted.MOD_ID);
     }

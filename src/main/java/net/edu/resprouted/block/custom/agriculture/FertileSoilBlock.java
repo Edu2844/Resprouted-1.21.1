@@ -32,7 +32,7 @@ public class FertileSoilBlock extends FarmlandBlock {
         if (state.get(MOISTURE) < 7) {
             world.setBlockState(pos, state.with(MOISTURE, 7), Block.NOTIFY_LISTENERS);
         }
-        BlockPos cropPos = pos.up();
+        /*BlockPos cropPos = pos.up();
         BlockState cropState = world.getBlockState(cropPos);
         Block block = cropState.getBlock();
 
@@ -50,7 +50,7 @@ public class FertileSoilBlock extends FarmlandBlock {
             if (world.getBlockState(cropPos.up()).isAir()) {
                 world.setBlockState(cropPos.up(), Blocks.SUGAR_CANE.getDefaultState());
             }
-        }
+        }*/
     }
 
     // ========= INTERACCIÓN =========

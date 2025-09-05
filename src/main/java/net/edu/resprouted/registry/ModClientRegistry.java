@@ -80,6 +80,7 @@ public class ModClientRegistry {
         registry.putBlock(ModBlocks.DEATHSTALK_MUSHROOM, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.CORE_ROOT, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.APPLE_LEAVES, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BREWING_BARREL, RenderLayer.getCutout());
         //Agriculture
         registry.putBlock(ModBlocks.GRAPE_STEM, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.GRAPE_LEAVES, RenderLayer.getCutout());

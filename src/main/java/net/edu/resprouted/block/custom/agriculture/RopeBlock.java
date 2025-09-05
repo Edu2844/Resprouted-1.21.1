@@ -88,8 +88,8 @@ public class RopeBlock extends ChainBlock{
         Direction.Axis axis = ctx.getSide().getAxis();
 
         boolean knot = axis != Direction.Axis.Y
-                && ctx.getWorld().getBlockState(ctx.getBlockPos().down()).getBlock() instanceof RopeBlock br
-                && br.getDefaultState().get(AXIS) == Direction.Axis.Y;
+                && ctx.getWorld().getBlockState(ctx.getBlockPos().down()).getBlock() instanceof RopeBlock rb
+                && rb.getDefaultState().get(AXIS) == Direction.Axis.Y;
 
         return getDefaultState().with(AXIS, axis).with(HAS_KNOT, knot);
     }

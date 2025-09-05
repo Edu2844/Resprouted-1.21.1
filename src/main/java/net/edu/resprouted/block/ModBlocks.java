@@ -533,6 +533,9 @@ public class ModBlocks {
     public static final Block CRUSHING_TUB = registerBlock("crushing_tub", new CrushingTubBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
     public static final Block EVAPORATING_BASIN = registerBlock("evaporating_basin", new EvaporatingBasinBlock(AbstractBlock.Settings.copy(Blocks.TERRACOTTA).nonOpaque()));
     public static final Block LIQUID_BARREL = registerBlock("liquid_barrel" , new LiquidBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block BREWING_BARREL = registerBlock("brewing_barrel" , new BrewingBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+
+
     public static final Block IRON_BERRY_CAKE = registerBlock("iron_berry_cake", new CakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ModEffects.FULL_METAL, 200, 0));
 
     // =================================================
@@ -611,6 +614,7 @@ public class ModBlocks {
     public static final Block ADVANCED_CONDENSER = registerBlock("advanced_condenser", new AdvancedCondenserBlock(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS).luminance(state -> state.get(AdvancedCondenserBlock.LIT) ? 15 : 0).nonOpaque()));
     public static final Block RETORT = registerBlock("retort", new RetortBlock(AbstractBlock.Settings.copy(Blocks.BRICKS).nonOpaque()));
     public static final Block ADVANCED_RETORT = registerBlock("advanced_retort", new AdvancedRetortBlock(AbstractBlock.Settings.copy(Blocks.NETHER_BRICKS).nonOpaque()));
+
 
     private static Block registerBlockWithoutBlockItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);
