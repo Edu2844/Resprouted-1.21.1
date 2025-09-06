@@ -38,9 +38,9 @@ public class ModConfiguredFeatures {
                 new OliveTrunkPlacer(6, 0, 0),
                 BlockStateProvider.of(ModBlocks.OLIVE_LEAVES),
                 new DarkOakFoliagePlacer(
-                        ConstantIntProvider.create(0),
+                        ConstantIntProvider.create(2),
                         ConstantIntProvider.create(2)),
-                new TwoLayersFeatureSize(2, 0, 3)
+                new TwoLayersFeatureSize(3, 0, 2)
         ).build());
 
         register(context, APPLE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(

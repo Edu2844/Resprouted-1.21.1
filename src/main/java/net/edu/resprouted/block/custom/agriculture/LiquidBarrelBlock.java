@@ -73,20 +73,25 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
+
         if (!(blockEntity instanceof LiquidBarrelBE barrel)) {
             return ItemActionResult.FAIL;
         }
+
         var storage = FluidStorage.SIDED.find(world, pos, hit.getSide());
         if (storage == null) {
             return ItemActionResult.FAIL;
         }
+
         ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, storage, world, pos, true, true);
 
         if (result == ItemActionResult.SUCCESS) {
             barrel.markDirty();
             world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
+
             return ItemActionResult.SUCCESS;
         }
+
         return ItemActionResult.CONSUME;
     }
 
@@ -95,14 +100,13 @@ public class LiquidBarrelBlock extends BlockWithEntity {
         if (!state.isOf(newState.getBlock())) {
             if (!world.isClient && world instanceof ServerWorld serverWorld) {
                 PlayerEntity player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 5.0, false);
-                //Avoid drop on creative
+
                 boolean isCreative = player != null && player.isCreative();
 
                 if (!isCreative) {
                     BlockEntity be = world.getBlockEntity(pos);
                     if (be instanceof LiquidBarrelBE barrel) {
 
-                        //Get fluid
                         FluidVariant variant = barrel.getFluidStorage().getResource();
                         long amount = barrel.getFluidStorage().getAmount();
 
@@ -126,7 +130,7 @@ public class LiquidBarrelBlock extends BlockWithEntity {
 
                             stack.set(DataComponentTypes.BLOCK_ENTITY_DATA, NbtComponent.of(blockEntityTag));
                         }
-                        //Drop ítem with NBT fluid
+
                         ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), stack);
                     }
                 }

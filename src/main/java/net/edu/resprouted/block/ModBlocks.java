@@ -535,7 +535,6 @@ public class ModBlocks {
     public static final Block LIQUID_BARREL = registerBlock("liquid_barrel" , new LiquidBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
     public static final Block BREWING_BARREL = registerBlock("brewing_barrel" , new BrewingBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
 
-
     public static final Block IRON_BERRY_CAKE = registerBlock("iron_berry_cake", new CakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ModEffects.FULL_METAL, 200, 0));
 
     // =================================================

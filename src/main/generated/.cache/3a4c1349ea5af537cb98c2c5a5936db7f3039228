@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-04T22:54:50.6936146	Resprouted/Block Loot Tables
+// 1.21.1	2025-09-05T23:47:36.265677	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 327b905f23efd6a06058ec8aace92e8df372febd data\resprouted\loot_table\blocks\condenser.json
 634967a8bb65c47a8b6be880b25af0ffafaf001f data\resprouted\loot_table\blocks\slate_brick_stairs.json
@@ -157,8 +157,8 @@ d6f48c5b4c60e9032f4496f38c72a3ffcdd30755 data\resprouted\loot_table\blocks\waxed
 9cde9490c29afab2fe4b2487d6b3d8bd379beff3 data\resprouted\loot_table\blocks\weathered_copper_lantern.json
 d9be65c4da2b3f630a8a6e6cb6f206c0619ac19b data\resprouted\loot_table\blocks\exposed_copper_lantern.json
 6cac493ca9b761d849aaccb30eccc395160b6f8c data\resprouted\loot_table\blocks\mooncap_mushroom.json
-97f1cbbd8dc27aaca920a81f763e9b02e0d00d97 data\resprouted\loot_table\blocks\copper_chain.json
 b35f7eb1d6482a134c3c74779abf1f457529c0ec data\resprouted\loot_table\blocks\ironwood_stairs.json
+97f1cbbd8dc27aaca920a81f763e9b02e0d00d97 data\resprouted\loot_table\blocks\copper_chain.json
 3156c6450cbb49e0707a8580c278084152d0d677 data\resprouted\loot_table\blocks\light_blue_golden_candle_holder.json
 27c840a1775f83574aacf799535dfcd4eb21bb0e data\resprouted\loot_table\blocks\stripped_olive_log.json
 a479af34b545fa904c01852d788d2698d3996376 data\resprouted\loot_table\blocks\olive_slab.json
@@ -174,8 +174,8 @@ d93d45136c1be275798a19cd2c71702dd0640269 data\resprouted\loot_table\blocks\olive
 f8f89d91efbb72f61ba5ecd2240f0051338eb9b4 data\resprouted\loot_table\blocks\stone_pillar.json
 4c6cfce1adaf835e41ac90dcda6dd153c84ebd14 data\resprouted\loot_table\blocks\ironwood_slab.json
 10e2d7c2c04ea536c4c654b1ef27da00f5ac537e data\resprouted\loot_table\blocks\sandstone_bricks.json
-3ee940b056eead698b38a4fc9b044817d9817b77 data\resprouted\loot_table\blocks\pink_painted_planks.json
 671e00e395491cee2a15ad2a6604670960c3ac0a data\resprouted\loot_table\blocks\gray_painted_planks.json
+3ee940b056eead698b38a4fc9b044817d9817b77 data\resprouted\loot_table\blocks\pink_painted_planks.json
 8f8f04dbcee2fde6db949e7b0319550d6451d7ed data\resprouted\loot_table\blocks\acacia_table.json
 bd3890b5c501e37b16fa14e9c92b2d4f75223501 data\resprouted\loot_table\blocks\exposed_copper_soul_lantern.json
 3c93a4ca957607b80714e696d34a4d52f01cc486 data\resprouted\loot_table\blocks\acacia_chair.json

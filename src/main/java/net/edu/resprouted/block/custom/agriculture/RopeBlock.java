@@ -36,13 +36,13 @@ public class RopeBlock extends ChainBlock{
     protected static final VoxelShape X_SHAPE = Block.createCuboidShape(0.0, 7.0, 7.0, 16.0, 9.0, 9.0);
     private static final VoxelShape X_SHAPE_KNOT = VoxelShapes.union(
             Block.createCuboidShape(0, 7.0, 7.0, 16, 9.0, 9.0),
-            Block.createCuboidShape(7.0, 0, 7.0, 9.0, 7.0, 9.0),
-            Block.createCuboidShape(6.5, 6.5, 6.5, 9.5, 9.5, 9.5)
+            Block.createCuboidShape(7.0, 0, 7.0, 9.0, 7.0, 9.0)
+
     );
     private static final VoxelShape Z_SHAPE_KNOT = VoxelShapes.union(
             Block.createCuboidShape(7.0, 7.0, 0, 9.0, 9.0, 16),
-            Block.createCuboidShape(7.0, 0, 7.0, 9.0, 7.0, 9.0),
-            Block.createCuboidShape(6.5, 6.5, 6.5, 9.5, 9.5, 9.5)
+            Block.createCuboidShape(7.0, 0, 7.0, 9.0, 7.0, 9.0)
+
     );
     public RopeBlock(Settings settings) {
         super(settings);
