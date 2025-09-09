@@ -62,7 +62,7 @@ public class ModItems {
     // =================================================
     public static final Item APPLE_SEEDS = registerItem("apple_seeds", new AliasedBlockItem(ModBlocks.APPLE_TREE,new Item.Settings()));
     public static final Item BLUE_BERRIES = registerItem("blue_berries", new AliasedBlockItem(ModBlocks.BLUE_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.BLUE_BERRIES)));
-    public static final Item CATALOG = registerItem("catalog", new Item(new Item.Settings()));
+    public static final Item CATALOG = registerItem("catalog", new CatalogItem(new Item.Settings()));
     public static final Item COPPER_NUGGET = registerItem("copper_nugget", new Item(new Item.Settings()));
     public static final Item CHILI_PEPPER = registerItem("chili_pepper", new FoodItem(new Item.Settings().food(ModFoodComponents.CHILLI_PEPPER)));
     public static final Item CHILI_PEPPER_SEEDS = registerItem("chili_pepper_seeds", new Item(new Item.Settings()));

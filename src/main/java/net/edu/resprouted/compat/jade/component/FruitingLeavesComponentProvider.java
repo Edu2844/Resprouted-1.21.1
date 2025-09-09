@@ -39,7 +39,7 @@ public class FruitingLeavesComponentProvider implements IBlockComponentProvider 
         } else {
             component = IThemeHelper.get().success(Text.translatable("tooltip.jade.crop_mature"));
         }
-        tooltip.add(Text.translatable("tooltip.resprouted.leaves.growth", component));
+        tooltip.add(Text.translatable("tooltip.jade.leaves.growth", component));
     }
     @Override
     public Identifier getUid() {

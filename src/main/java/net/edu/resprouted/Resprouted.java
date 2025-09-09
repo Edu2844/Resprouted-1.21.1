@@ -2,6 +2,7 @@ package net.edu.resprouted;
 
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.book.CatalogData;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
@@ -31,6 +32,7 @@ public class Resprouted implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		CatalogData.init();
 		ModEffects.registerEffects();
 		ModFluids.registerModFluids();
 		BottleInteractions.registerFluidInteractions();

@@ -6,11 +6,9 @@
   "item.resprouted.tiny_glowstone_dust": "Tiny Glowstone Dust",
   "item.resprouted.olives": "Olives",
   "item.resprouted.elixir_icon": "§dElixir Icon",
-
   "item.resprouted.elixir_bottle": "Elixir Bottle",
   "item.resprouted.elixir_bottle.empty": "Empty Elixir Bottle",
   "item.resprouted.elixir_bottle.effect": "Elixir of %s",
-
   "item.resprouted.chili_pepper": "Chili Pepper",
   "item.resprouted.chili_pepper_seeds": "Chili Pepper Seeds",
   "item.resprouted.ghost_pepper": "§bGhost Pepper",
@@ -22,7 +20,7 @@
   "item.resprouted.tomato": "Tomato",
   "item.resprouted.tomato_seeds": "Tomato Seeds",
   "item.resprouted.apple_seeds": "Apple Seeds",
-  "item.resprouted.catalog": "Catalog",
+  "item.resprouted.catalog": "Almanac",
   "item.resprouted.aloe_vera": "Aloe Vera",
   "item.resprouted.blood_orchid": "Blood Orchid",
   "item.resprouted.chamomile": "Chamomile",
@@ -40,38 +38,28 @@
   "item.resprouted.olive_chest_boat": "Olive Chest Boat",
   "item.resprouted.ironwood_boat": "Ironwood Boat",
   "item.resprouted.ironwood_chest_boat": "Ironwood Chest Boat",
-
   "item.resprouted.lamb_stew": "Lamb Stew",
   "item.resprouted.honey_glazed_carrots": "Honey Glazed Carrots",
-
   "item.resprouted.honey_bucket": "Honey Bucket",
-
   "item.resprouted.apple_juice_bucket": "Apple Juice Bucket",
   "item.resprouted.apple_juice_bottle": "Apple Juice Bottle",
-
   "item.resprouted.golden_apple_juice_bucket": "Golden Apple Juice Bucket",
   "item.resprouted.golden_apple_juice_bottle": "Golden Apple Juice Bottle",
-
   "item.resprouted.grape_juice_bucket": "Grape Juice Bucket",
   "item.resprouted.grape_juice_bottle": "Grape Juice Bottle",
-
   "item.resprouted.sweet_berry_juice_bucket": "Sweet Berry Juice Bucket",
   "item.resprouted.sweet_berry_juice_bottle": "Sweet Berry Juice Bottle",
-
   "item.resprouted.olive_oil_bucket": "Olive Oil Bucket",
   "item.resprouted.olive_oil_bottle": "Olive Oil Bottle",
-
   "item.resprouted.vanta_oil_bucket": "Vanta Oil Bucket",
   "item.resprouted.vanta_oil_bottle": "Vanta Oil Bottle",
-
   "item.resprouted.glow_berry_juice_bucket": "Glow Berry Juice Bucket",
   "item.resprouted.glow_berry_juice_bottle": "Glow Berry Juice Bottle",
-
   "item.resprouted.iron_berry_juice_bucket": "Iron Berry Juice Bucket",
   "item.resprouted.iron_berry_juice_bottle": "Iron Berry Juice Bottle",
-
   "item.resprouted.ale_wort_bucket": "Ale Wort Bucket",
   "item.resprouted.ale_wort_bottle": "Ale Wort Bottle",
+
 
   "block.resprouted.cabinet": "Cabinet",
   "block.resprouted.oak_cabinet": "Oak Cabinet",
@@ -86,7 +74,6 @@
   "block.resprouted.warped_cabinet": "Warped Cabinet",
   "block.resprouted.ironwood_cabinet": "Ironwood Cabinet",
   "block.resprouted.olive_cabinet": "Olive Cabinet",
-
   "block.resprouted.honey_fluid_block": "Honey",
   "block.resprouted.apple_juice_fluid_block": "Apple Juice",
   "block.resprouted.golden_apple_juice_fluid_block": "Golden Apple Juice",
@@ -97,7 +84,6 @@
   "block.resprouted.glow_berry_juice_fluid_block": "Glow Berry Juice",
   "block.resprouted.iron_berry_juice_fluid_block": "Iron Berry Juice",
   "block.resprouted.ale_wort_fluid_block": "Ale Wort",
-
   "block.resprouted.slate": "Slate",
   "block.resprouted.polished_slate": "Polished Slate",
   "block.resprouted.polished_slate_slab": "Polished Slate Slab",
@@ -112,40 +98,31 @@
   "block.resprouted.slate_roof_stairs": "Slate Roof Stairs",
   "block.resprouted.chiseled_slate": "Chiseled Slate Bricks",
   "block.resprouted.slate_pillar": "Slate Pillar",
-
   "block.resprouted.andesite_bricks": "Andesite Bricks",
   "block.resprouted.cracked_andesite_bricks": "Cracked Andesite Bricks",
   "block.resprouted.chiseled_andesite": "Chiseled Andesite",
   "block.resprouted.andesite_pillar": "Andesite Pillar",
-
   "block.resprouted.diorite_bricks": "Diorite Bricks",
   "block.resprouted.cracked_diorite_bricks": "Cracked Diorite Bricks",
   "block.resprouted.chiseled_diorite": "Chiseled Diorite",
   "block.resprouted.diorite_pillar": "Diorite Pillar",
-
   "block.resprouted.granite_bricks": "Granite Bricks",
   "block.resprouted.cracked_granite_bricks": "Cracked Granite Bricks",
   "block.resprouted.chiseled_granite": "Chiseled Granite",
   "block.resprouted.granite_pillar": "Granite Pillar",
-
   "block.resprouted.polished_stone": "Polished Stone",
   "block.resprouted.stone_pillar": "Stone Pillar",
-
   "block.resprouted.polished_sandstone": "Polished Sandstone",
   "block.resprouted.sandstone_bricks": "Sandstone Brick",
   "block.resprouted.sandstone_pillar": "Sandstone Pillar",
-
   "block.resprouted.polished_red_sandstone": "Polished Red Sandstone",
   "block.resprouted.red_sandstone_bricks": "Red Sandstone Brick",
   "block.resprouted.red_sandstone_pillar": "Red Sandstone Pillar",
-
   "block.resprouted.wrought_iron_block": "Wrought Iron Block",
   "block.resprouted.cut_wrought_iron_block": "Cut Wrought Iron Block",
-
   "block.resprouted.clay_wall": "Clay Wall",
   "block.resprouted.clay_wall_cross": "Clay Wall Cross",
   "block.resprouted.clay_wall_diagonal": "Clay Wall Diagonal",
-
   "block.resprouted.black_painted_planks": "Black Painted Planks",
   "block.resprouted.blue_painted_planks": "Blue Painted Planks",
   "block.resprouted.brown_painted_planks": "Brown Painted Planks",
@@ -162,7 +139,6 @@
   "block.resprouted.light_gray_painted_planks": "Light Gray Painted Planks",
   "block.resprouted.white_painted_planks": "White Painted Planks",
   "block.resprouted.yellow_painted_planks": "Yellow Painted Planks",
-
   "block.resprouted.golden_chain": "Golden Chain",
   "block.resprouted.copper_chain": "Copper Chain",
   "block.resprouted.exposed_copper_chain": "Exposed Copper Chain",
@@ -172,10 +148,8 @@
   "block.resprouted.waxed_exposed_copper_chain": "Waxed Exposed Copper Chain",
   "block.resprouted.waxed_weathered_copper_chain": "Waxed Weathered Copper Chain",
   "block.resprouted.waxed_oxidized_copper_chain": "Waxed Oxidized Copper Chain",
-
   "block.resprouted.golden_lantern": "Golden Lantern",
   "block.resprouted.golden_soul_lantern": "Golden Soul Lantern",
-
   "block.resprouted.copper_lantern": "Copper Lantern",
   "block.resprouted.exposed_copper_lantern": "Exposed Copper Lantern",
   "block.resprouted.weathered_copper_lantern": "Weathered Copper Lantern",
@@ -184,7 +158,6 @@
   "block.resprouted.waxed_exposed_copper_lantern": "Waxed Exposed Copper Lantern",
   "block.resprouted.waxed_weathered_copper_lantern": "Waxed Weathered Copper Lantern",
   "block.resprouted.waxed_oxidized_copper_lantern": "Waxed Oxidized Copper Lantern",
-
   "block.resprouted.copper_soul_lantern": "Copper Soul Lantern",
   "block.resprouted.exposed_copper_soul_lantern": "Exposed Copper Soul Lantern",
   "block.resprouted.weathered_copper_soul_lantern": "Weathered Copper Soul Lantern",
@@ -193,10 +166,8 @@
   "block.resprouted.waxed_exposed_copper_soul_lantern": "Waxed Exposed Copper Soul Lantern",
   "block.resprouted.waxed_weathered_copper_soul_lantern": "Waxed Weathered Copper Soul Lantern",
   "block.resprouted.waxed_oxidized_copper_soul_lantern": "Waxed Oxidized Copper Soul Lantern",
-
   "block.resprouted.chandelier": "Chandelier",
   "block.resprouted.golden_chandelier": "Golden Chandelier",
-
   "block.resprouted.copper_chandelier": "Copper Chandelier",
   "block.resprouted.exposed_copper_chandelier": "Exposed Copper Chandelier",
   "block.resprouted.weathered_copper_chandelier": "Weathered Copper Chandelier",
@@ -205,7 +176,6 @@
   "block.resprouted.waxed_exposed_copper_chandelier": "Waxed Exposed Copper Chandelier",
   "block.resprouted.waxed_weathered_copper_chandelier": "Waxed Weathered Copper Chandelier",
   "block.resprouted.waxed_oxidized_copper_chandelier": "Waxed Oxidized Copper Chandelier",
-
   "block.resprouted.iron_candle_holder": "Iron Candle Holder",
   "block.resprouted.white_iron_candle_holder": "White Iron Candle Holder",
   "block.resprouted.light_gray_iron_candle_holder": "Light Gray Iron Candle Holder",
@@ -222,7 +192,6 @@
   "block.resprouted.purple_iron_candle_holder": "Purple Iron Candle Holder",
   "block.resprouted.magenta_iron_candle_holder": "Magenta Iron Candle Holder",
   "block.resprouted.pink_iron_candle_holder": "Pink Iron Candle Holder",
-
   "block.resprouted.golden_candle_holder": "Golden Candle Holder",
   "block.resprouted.white_golden_candle_holder": "White Golden Candle Holder",
   "block.resprouted.light_gray_golden_candle_holder": "Light Gray Golden Candle Holder",
@@ -239,7 +208,6 @@
   "block.resprouted.purple_golden_candle_holder": "Purple Golden Candle Holder",
   "block.resprouted.magenta_golden_candle_holder": "Magenta Golden Candle Holder",
   "block.resprouted.pink_golden_candle_holder": "Pink Golden Candle Holder",
-
   "block.resprouted.oak_chair": "Oak Chair",
   "block.resprouted.dark_oak_chair": "Dark Oak Chair",
   "block.resprouted.acacia_chair": "Acacia Chair",
@@ -253,7 +221,6 @@
   "block.resprouted.warped_chair": "Warped Chair",
   "block.resprouted.ironwood_chair": "Ironwood Chair",
   "block.resprouted.olive_chair": "Olive Chair",
-
   "block.resprouted.oak_stool": "Oak Stool",
   "block.resprouted.dark_oak_stool": "Dark Oak Stool",
   "block.resprouted.acacia_stool": "Acacia Stool",
@@ -267,7 +234,6 @@
   "block.resprouted.warped_stool": "Warped Stool",
   "block.resprouted.ironwood_stool": "Ironwood Stool",
   "block.resprouted.olive_stool": "Olive Stool",
-
   "block.resprouted.oak_table": "Oak Table",
   "block.resprouted.dark_oak_table": "Dark Oak Table",
   "block.resprouted.acacia_table": "Acacia Table",
@@ -281,7 +247,6 @@
   "block.resprouted.warped_table": "Warped Table",
   "block.resprouted.ironwood_table": "Ironwood Table",
   "block.resprouted.olive_table": "Olive Table",
-
   "block.resprouted.ironwood_leaves": "Ironwood Leaves",
   "block.resprouted.ironwood_log": "Ironwood Log",
   "block.resprouted.ironwood_wood": "Ironwood Wood",
@@ -299,7 +264,6 @@
   "block.resprouted.ironwood_trapdoor": "Ironwood Trapdoor",
   "block.resprouted.ironwood_sign": "Ironwood Sign",
   "block.resprouted.ironwood_hanging_sign": "Ironwood Hanging Sign",
-
   "block.resprouted.olive_leaves": "Olive Leaves",
   "block.resprouted.olive_log": "Olive Log",
   "block.resprouted.olive_wood": "Olive Wood",
@@ -317,7 +281,6 @@
   "block.resprouted.olive_trapdoor": "Olive Trapdoor",
   "block.resprouted.olive_sign": "Olive Sign",
   "block.resprouted.olive_hanging_sign": "Olive Hanging Sign",
-
   "block.resprouted.fertile_soil": "Fertile Soil",
   "block.resprouted.aloe_vera_block": "Aloe Vera Herb",
   "block.resprouted.horsetail_block": "Horsetail Herb",
@@ -329,7 +292,6 @@
   "block.resprouted.vanta_lily_block": "Vanta Lily Herb",
   "block.resprouted.mooncap_mushroom": "Mooncap Mushroom",
   "block.resprouted.deathstalk_mushroom": "Deathstalk Mushroom",
-
   "block.resprouted.grape_leaves": "Grape Leaves",
   "block.resprouted.grape_stem": "Grape Stem",
   "block.resprouted.tomato_crop": "Tomato Crop",
@@ -347,7 +309,6 @@
   "block.resprouted.retort": "Retort",
   "block.resprouted.advanced_condenser": "Advanced Condenser",
   "block.resprouted.advanced_retort": "Advanced Retort",
-
   "block.resprouted.iron_berry_cake": "Iron Berry Cake",
   "block.resprouted.blue_berry_bush": "Blue Berry Bush",
 
@@ -368,6 +329,12 @@
   "itemgroup.resprouted.agriculture": "Resprouted Agriculture",
 
   "tooltip.resprouted.ghost_pepper.tooltip": "§ePossesed by Spirit of Hellfire",
+  "tooltip.resprouted.fluid": "Fluid: %s",
+  "tooltip.resprouted.amount": "Amount: %s mB",
+  "tooltip.resprouted.olive_oil": "Olive Oiled",
+  "tooltip.resprouted.vanta_oiled": "Vanta Oiled:",
+  "tooltip.resprouted.vanta_oil_use": "1 restant use",
+  "tooltip.resprouted.vanta_oil_uses": "%s restant uses",
 
   "effect.resprouted.full_metal":"Full Metal",
   "effect.resprouted.fire_power":"Fire Power",
@@ -376,58 +343,107 @@
   "effect.resprouted.tipsy":"Inebriated",
 
   "key.resprouted.firepower": "Throw a fire ball",
+
   "text.resprouted.press_to_launch": "Press %s to launch fireball",
   "category.resprouted.keys": "Rustic Resprout",
 
-  "tooltip.resprouted.fluid": "Fluid: %s",
-  "tooltip.resprouted.amount": "Amount: %s mB",
-  "tooltip.resprouted.olive_oil": "Olive Oiled",
-  "tooltip.resprouted.vanta_oiled": "Vanta Oiled:",
-  "tooltip.resprouted.vanta_oil_use": "1 restant use",
-  "tooltip.resprouted.vanta_oil_uses": "%s restant uses",
-
-  "tooltip.resprouted.leaves.growth": "Growth: %s",
+  "tooltip.jade.leaves.growth": "Growth: %s",
   "tooltip.jade.crop_mature": "Mature",
   "tooltip.jade.resprouted.grape_leaves": "§aHas Grapes",
 
   "config.resprouted.title": "Resprouted Configuration",
   "config.resprouted.category.general": "General",
   "config.resprouted.category.worldgen": "World",
-
   "config.resprouted.oiled_saturation_modifier": "Oiled Saturation Modifier",
   "config.resprouted.oiled_saturation_modifier.tooltip": "Multiplier for saturation when eating oiled foods",
-
   "config.resprouted.oiled_hunger_bonus": "Oiled Hunger Bonus",
   "config.resprouted.oiled_hunger_bonus.tooltip": "Extra hunger points when eating oiled foods",
-
   "config.resprouted.enable_honey_bottle_effect": "Enable Honey Bottle regeneration effect",
   "config.resprouted.enable_honey_bottle_effect.tooltip": "When enabled, honey bottles gives Regeneration Effect",
-
   "config.resprouted.enable_vanta_oiling": "Enable Vanta Oiling",
   "config.resprouted.enable_vanta_oiling.tooltip": "When enabled, you can access to vanta oil crafting.",
-
   "config.resprouted.vanta_oil_whitelist": "Vanta Oil Whitelist",
   "config.resprouted.vanta_oil_whitelist.tooltip": "List of item IDs that can be craftable with vanta oil and elixirs",
-
   "config.resprouted.vanta_oil_blacklist": "Vanta Oil Blacklist",
   "config.resprouted.vanta_oil_blacklist.tooltip": "List of vanilla item IDs that can't be craftable with vanta oil and elixirs",
-
   "config.resprouted.enable_olive_oiling": "Enable Olive Oiling",
   "config.resprouted.enable_olive_oiling.tooltip": "When enabled, you have the ability to add olive oil to food.",
-
   "config.resprouted.oilable_food_whitelist": "Oilable Food WhiteList",
   "config.resprouted.oilable_food_whitelist.tooltip": "List of item IDs that can be olive oiled. One ID per line.",
-
   "config.resprouted.oilable_food_blacklist": "Oilable Food BlackList",
   "config.resprouted.oilable_food_blacklist.tooltip": "List of vanilla and Resprouted mod item IDs that can't be olive oiled. One ID per line.",
-
   "config.resprouted.bottle_effect_tooltip": "Effect Tooltips on Bottles",
   "config.resprouted.bottle_effect_tooltip.tooltip": "When enabled, custom bottles will show their effect information in the tooltip.",
   "config.resprouted.food_effect_tooltip": "Effect Tooltips on Food",
   "config.resprouted.food_effect_tooltip.tooltip": "When enabled, custom food will show their effect information in the tooltip.",
 
   "config.jade.plugin_resprouted.fruiting_leaves_progress": "Fruiting Leaves Progress",
-  "config.jade.plugin_resprouted.grape_leaves_mature": "Grapes Leaves Mature"
+  "config.jade.plugin_resprouted.grape_leaves_mature": "Grapes Leaves Mature",
 
+  "text.resprouted.main": "Here you will find everything related to the mod. This almanac contains guides, and useful information about all the added features.",
+  "text.resprouted.categories": "Categories",
+  "text.category.resprouted.agriculture": "Agriculture",
+  "text.category.resprouted.decoration": "Decoration",
+  "text.category.resprouted.production": "Production",
+
+
+  "page.resprouted.fertile_soil.desc": "Description 1 of Fertile Soil",
+
+  "entry.resprouted.stake_crops": "Stake Crops",
+  "page.resprouted.stake_crops.desc": "Description 1 of Stake Crops",
+
+  "entry.resprouted.chili_peppers": "Chili Peppers",
+  "page.resprouted.chili_peppers.desc": "Description 1 of Chili Peppers",
+
+  "entry.resprouted.tomatoes": "Tomatoes",
+  "page.resprouted.tomatoes.desc1": "Tomato seeds found by breaking tall grass must be planted exclusively on crop stakes placed over farmland or fertile soil to grow into fruit-bearing vines.",
+  "page.resprouted.tomatoes.desc2": "The vines grow up to 3 blocks high; harvest tomatoes by interacting with them (without breaking the vine for continuous production) to either eat or throw at players to shame them.",
+
+  "page.resprouted.grapes.desc": "Description 1 of Grapes",
+
+  "entry.resprouted.apple_tree": "Apple Tree",
+  "page.resprouted.apple_tree.desc": "Description 1 of Apple Tree",
+
+  "entry.resprouted.olives": "Olives",
+  "page.resprouted.olives.desc": "Description 1 of Olives",
+
+  "entry.resprouted.iron_berries": "Iron Berries",
+  "page.resprouted.iron_berries.desc": "Description 1 of Iron Berries",
+
+  "entry.resprouted.herbs": "Herbs",
+  "page.resprouted.herbs.desc": "Description 1 of Herbs",
+
+  "entry.resprouted.cabinets": "Cabinets",
+  "page.resprouted.cabinets.desc": "Description 1 of Cabinets",
+
+  "entry.resprouted.rope": "Rope",
+  "page.resprouted.rope.desc": "Description 1 of Rope",
+
+  "entry.resprouted.golden_chain": "Golden Chain",
+  "page.resprouted.golden_chain.desc": "Description 1 of Golden Chain",
+
+  "entry.resprouted.table": "Table",
+  "page.resprouted.table.desc": "Description 1 of Table",
+
+  "entry.resprouted.chair": "Chair",
+  "page.resprouted.chair.desc": "Description 1 of Chair",
+
+  "entry.resprouted.condenser": "Condenser",
+  "page.resprouted.condenser.desc": "Description 1 of Condenser",
+
+  "entry.resprouted.elixirs": "Elixirs",
+  "page.resprouted.elixirs.desc": "Description 1 of Elixirs",
+
+  "entry.resprouted.vanta_oil": "Vanta Oil",
+  "page.resprouted.vanta_oil.desc": "Description 1 of Vanta Oil",
+
+  "entry.resprouted.brewing": "Brewing",
+  "page.resprouted.brewing.desc": "Description 1 of Brewing",
+
+  "entry.resprouted.crushing": "Crushing",
+  "page.resprouted.crushing.desc": "Description 1 of Crushing",
+
+  "entry.resprouted.drying": "Drying",
+  "page.resprouted.drying.desc": "Description 1 of Drying"
 
 }

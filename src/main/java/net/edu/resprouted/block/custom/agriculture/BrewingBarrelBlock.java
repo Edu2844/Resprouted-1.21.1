@@ -17,21 +17,12 @@ import org.jetbrains.annotations.Nullable;
 public class BrewingBarrelBlock extends BlockWithEntity {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     private static final VoxelShape NORTH_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(2, 4, 2, 14, 16, 16),
-            Block.createCuboidShape(2, 0, 3, 14, 4, 15)
+            Block.createCuboidShape(2, 4, 1, 14, 16, 15),
+            Block.createCuboidShape(2, 0, 2, 14, 4, 14)
     );
-    private static final VoxelShape SOUTH_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(2, 4, 0, 14, 16, 14),
-            Block.createCuboidShape(2, 0, 1, 14, 4, 13)
-    );
-
     private static final VoxelShape EAST_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(0, 4, 2, 14, 16, 14),
-            Block.createCuboidShape(1, 0, 2, 13, 4, 14)
-    );
-    private static final VoxelShape WEST_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(2, 4, 2, 16, 16, 14),
-            Block.createCuboidShape(3, 0, 2, 15, 4, 14)
+            Block.createCuboidShape(1, 4, 2, 15, 16, 14),
+            Block.createCuboidShape(2, 0, 2, 14, 4, 14)
     );
     public static final MapCodec<BrewingBarrelBlock> CODEC = BrewingBarrelBlock.createCodec(BrewingBarrelBlock::new);
 
@@ -70,9 +61,7 @@ public class BrewingBarrelBlock extends BlockWithEntity {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction direction = state.get(FACING);
         return switch (direction) {
-            case EAST -> EAST_SHAPE;
-            case WEST -> WEST_SHAPE;
-            case SOUTH -> SOUTH_SHAPE;
+            case EAST, WEST -> EAST_SHAPE;
             default -> NORTH_SHAPE;
         };
     }
