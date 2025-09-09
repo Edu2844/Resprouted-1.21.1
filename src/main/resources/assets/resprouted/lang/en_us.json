@@ -12,7 +12,7 @@
   "item.resprouted.chili_pepper": "Chili Pepper",
   "item.resprouted.chili_pepper_seeds": "Chili Pepper Seeds",
   "item.resprouted.ghost_pepper": "§bGhost Pepper",
-  "item.resprouted.iron_berries": "Ironberries",
+  "item.resprouted.iron_berries": "Iron Berries",
   "item.resprouted.blue_berries": "Blueberries",
   "item.resprouted.copper_nugget": "Copper Nugget",
   "item.resprouted.grapes": "Grapes",
@@ -387,10 +387,10 @@
   "text.category.resprouted.production": "Production",
 
 
-  "page.resprouted.fertile_soil.desc": "Description 1 of Fertile Soil",
+  "page.resprouted.fertile_soil.desc": "Fertile soil acts like vanilla farmland, but it doesn't require water to stay hydrated, it can't be trampled, and sugar cane can grow on it without an adjacent water block",
 
   "entry.resprouted.stake_crops": "Stake Crops",
-  "page.resprouted.stake_crops.desc": "Description 1 of Stake Crops",
+  "page.resprouted.stake_crops.desc": "Crop Stakes are wooden poles used to support the growth of tall crops, like chili peppers and tomatoes. Crop stakes can also have ropes tied to them.",
 
   "entry.resprouted.chili_peppers": "Chili Peppers",
   "page.resprouted.chili_peppers.desc": "Description 1 of Chili Peppers",
@@ -407,8 +407,9 @@
   "entry.resprouted.olives": "Olives",
   "page.resprouted.olives.desc": "Description 1 of Olives",
 
-  "entry.resprouted.iron_berries": "Iron Berries",
-  "page.resprouted.iron_berries.desc": "Description 1 of Iron Berries",
+  "entry.resprouted.ironwood_trees": "Iron Wood Trees",
+  "page.resprouted.ironwood_trees.desc1": "Ironwood Trees grow naturally in the overworld in forests, plains, mountains, swamps, and jungles. They do not grow naturally in dry biomes.",
+  "page.resprouted.ironwood_trees.desc2": "The logs can be crafted into ironwood planks, which can be used to make ironwood variants of many wood blocks. Ironwood leaves drop ironwood saplings and ironberries.",
 
   "entry.resprouted.herbs": "Herbs",
   "page.resprouted.herbs.desc": "Description 1 of Herbs",

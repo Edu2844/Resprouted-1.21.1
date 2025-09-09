@@ -217,7 +217,7 @@ public class CatalogScreen extends Screen {
                     BACK_CATEGORY_WIDTH, BACK_CATEGORY_HEIGHT)) {
                 currentState = PageState.CATEGORY_LIST;
                 selectedEntry = null;
-                playPageClickSound();
+                playPageTurnSound();
                 return true;
             }
 

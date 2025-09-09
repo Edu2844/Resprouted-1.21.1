@@ -42,7 +42,6 @@ public class CatalogData {
         agriculture.addEntry(new Entry(
                 Text.translatable("entry.resprouted.tomatoes"), new ItemStack(ModItems.TOMATO), Entry.Side.LEFT)
                 .addPage(new TextPage(Text.translatable("page.resprouted.tomatoes.desc1"),Text.translatable("page.resprouted.tomatoes.desc2")))
-                .addPage(new TextPage(Text.translatable("page.resprouted.tomatoes.desc3"),Text.translatable("page.resprouted.tomatoes.desc4")))
         );
 
         agriculture.addEntry(new Entry(Text.translatable("item.resprouted.grapes"), new ItemStack(ModItems.GRAPES),
@@ -57,9 +56,9 @@ public class CatalogData {
                 new ItemStack(ModItems.OLIVES), Entry.Side.RIGHT)
                 .addPage(new TextPage(Text.translatable("page.resprouted.olives.desc"))));
 
-        agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.iron_berries"), new ItemStack(ModItems.IRON_BERRIES),
+        agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.ironwood_trees"), new ItemStack(ModItems.IRON_BERRIES),
                 Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.iron_berries.desc"))));
+                .addPage(new TextPage(Text.translatable("page.resprouted.ironwood_trees.desc1"),Text.translatable("page.resprouted.ironwood_trees.desc2"))));
 
         agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.herbs"),
                 new ItemStack(ModItems.ALOE_VERA), Entry.Side.RIGHT)
