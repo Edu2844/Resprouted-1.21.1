@@ -387,22 +387,25 @@
   "text.category.resprouted.production": "Production",
 
 
-  "page.resprouted.fertile_soil.desc": "Fertile soil acts like vanilla farmland, but it doesn't require water to stay hydrated, it can't be trampled, and sugar cane can grow on it without an adjacent water block",
+  "text.resprouted.fertile_soil": "Fertile soil works like regular farmland, but with some perks: it doesn’t need water to stay hydrated, can’t be trampled, and lets sugar cane grow without a nearby water block.",
 
   "entry.resprouted.stake_crops": "Stake Crops",
-  "page.resprouted.stake_crops.desc": "Crop Stakes are wooden poles used to support the growth of tall crops, like chili peppers and tomatoes. Crop stakes can also have ropes tied to them.",
+  "text.resprouted.stake_crops.1": "Crop stakes are wooden poles that support the growth of tall crops such as chili peppers and tomatoes. They can also be used to tie ropes.",
 
   "entry.resprouted.chili_peppers": "Chili Peppers",
-  "page.resprouted.chili_peppers.desc": "Description 1 of Chili Peppers",
+  "text.resprouted.chili_peppers.1": "Chili peppers are best harvested by interacting with mature plants instead of breaking them, since broken ones take time to regrow. They can be eaten for a small speed boost, though their spiciness might",
+  "text.resprouted.chili_peppers.2": "sting, and they also serve as an alchemy ingredient. Rarely, harvesting may yield a ghost pepper, which grants temporary fire powers, making your attacks launch fireballs.",
 
   "entry.resprouted.tomatoes": "Tomatoes",
-  "page.resprouted.tomatoes.desc1": "Tomato seeds found by breaking tall grass must be planted exclusively on crop stakes placed over farmland or fertile soil to grow into fruit-bearing vines.",
-  "page.resprouted.tomatoes.desc2": "The vines grow up to 3 blocks high; harvest tomatoes by interacting with them (without breaking the vine for continuous production) to either eat or throw at players to shame them.",
+  "text.resprouted.tomatoes.1": "Tomatoes grow on vines supported by crop stakes, with seeds obtained from tall grass and planted on stakes above farmland or fertile soil. The vines can climb up to three blocks high and eventually",
+  "text.resprouted.tomatoes.2": "produce tomatoes. Harvesting is best done by interacting with mature vines, since breaking them resets their growth. Tomatoes can be eaten or even thrown at others while sneaking.",
 
-  "page.resprouted.grapes.desc": "Description 1 of Grapes",
+  "text.resprouted.grapes.1": "Grapes grow from seeds found in vines and planted on farmland or fertile soil. With ropes above, the stems spread into vines that extend outwardand produce grapes if no block is beneath them.",
+  "text.resprouted.grapes.2": "Harvesting by interaction is best, since breaking resets growth. Grapes can be eaten quickly, turned into juice with a crushing tub, and later brewed into wine.",
 
   "entry.resprouted.apple_tree": "Apple Tree",
-  "page.resprouted.apple_tree.desc": "Description 1 of Apple Tree",
+  "text.resprouted.apple_tree.1": "Apple trees grow from saplings obtained by crushing apples for seeds. They yield oak wood but are more reliable for apple production than regular oaks. Their leaves generate apples",
+  "text.resprouted.apple_tree.2": "when exposed to air, and ripe apples can be collected by interacting with the leaves. Breaking leaves isn’t ideal, since they don’t regrow, though they can drop saplings and any apples inside. Crushing apples also produces seeds and juice, which can be bottled or brewed into cider.",
 
   "entry.resprouted.olives": "Olives",
   "page.resprouted.olives.desc": "Description 1 of Olives",

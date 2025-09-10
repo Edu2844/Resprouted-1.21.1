@@ -28,29 +28,29 @@ public class CatalogData {
         agriculture.addEntry(new Entry(
                 Text.translatable("block.resprouted.fertile_soil"), new ItemStack(ModBlocks.FERTILE_SOIL),
                 Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.fertile_soil.desc"))));
+                .addPage(new TextPage(Text.translatable("text.resprouted.fertile_soil"))));
 
         agriculture.addEntry(new Entry(
                 Text.translatable("entry.resprouted.stake_crops"), new ItemStack(ModBlocks.STAKE), Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.stake_crops.desc"))));
+                .addPage(new TextPage(Text.translatable("text.resprouted.stake_crops.1"))));
+
+        agriculture.addEntry(new Entry(
+                Text.translatable("entry.resprouted.tomatoes"), new ItemStack(ModItems.TOMATO), Entry.Side.LEFT)
+                .addPage(new TextPage(Text.translatable("text.resprouted.tomatoes.1"),Text.translatable("text.resprouted.tomatoes.2")))
+        );
 
         agriculture.addEntry(new Entry(
                 Text.translatable("entry.resprouted.chili_peppers"), new ItemStack(ModItems.CHILI_PEPPER),
                 Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.chili_peppers.desc"))));
-
-        agriculture.addEntry(new Entry(
-                Text.translatable("entry.resprouted.tomatoes"), new ItemStack(ModItems.TOMATO), Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.tomatoes.desc1"),Text.translatable("page.resprouted.tomatoes.desc2")))
-        );
+                .addPage(new TextPage(Text.translatable("text.resprouted.chili_peppers.1"),Text.translatable("text.resprouted.chili_peppers.2"))));
 
         agriculture.addEntry(new Entry(Text.translatable("item.resprouted.grapes"), new ItemStack(ModItems.GRAPES),
                 Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.grapes.desc"))));
+                .addPage(new TextPage(Text.translatable("text.resprouted.grapes.1"),Text.translatable("text.resprouted.grapes.2"))));
 
         agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.apple_tree"), new ItemStack(Items.APPLE),
                 Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.apple_tree.desc"))));
+                .addPage(new TextPage(Text.translatable("text.resprouted.apple_tree.1"),Text.translatable("text.resprouted.apple_tree.2"))));
 
         agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.olives"),
                 new ItemStack(ModItems.OLIVES), Entry.Side.RIGHT)

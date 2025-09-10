@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(RenderLayers.class)
 public abstract class LeavesRendererMixin {
     @Inject(method = "getBlockLayer", at = @At("HEAD"), cancellable = true)
-    private static void forceCutoutForCustomLeaves(BlockState state, CallbackInfoReturnable<RenderLayer> cir) {
+    private static void forceCutoutForFruitingLeaves(BlockState state, CallbackInfoReturnable<RenderLayer> cir) {
         Block block = state.getBlock();
 
         if (block instanceof FruitingLeavesBlock) {
