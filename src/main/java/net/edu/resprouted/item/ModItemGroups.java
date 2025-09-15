@@ -2,6 +2,7 @@ package net.edu.resprouted.item;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.item.custom.BoozeBottleItem;
 import net.edu.resprouted.util.ElixirUtils;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
@@ -83,6 +84,10 @@ public class ModItemGroups {
                         entries.add(ModBlocks.IRON_BERRY_CAKE);
 
                         entries.add(ModBlocks.BREWING_BARREL);
+
+                        ItemStack aleBottleWithQuality = new ItemStack(ModItems.ALE_BOTTLE);
+                        BoozeBottleItem.setQuality(aleBottleWithQuality, 0.75f);
+                        entries.add(aleBottleWithQuality);
 
 
                     }).build());

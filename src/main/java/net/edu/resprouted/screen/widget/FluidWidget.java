@@ -1,6 +1,7 @@
 package net.edu.resprouted.screen.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.util.FluidUtils;
 import net.edu.resprouted.util.ScreenUtils;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
@@ -13,6 +14,7 @@ import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.texture.Sprite;
+import net.minecraft.component.ComponentChanges;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.text.Text;
@@ -20,7 +22,9 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -84,11 +88,69 @@ public class FluidWidget implements Drawable, Widget {
 
         TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
         if(fluid != null && fluidAmount > 0) {
-            List<Text> texts = List.of(
-                    Text.translatable(fluid.getDefaultState().getBlockState().getBlock().getTranslationKey()),
-                    Text.literal("%s/%s mB".formatted(getMb(fluidAmount), getMb(fluidCapacity))).formatted(Formatting.GRAY)
-            );
-            context.drawTooltip(textRenderer, texts, mouseX, mouseY);
+            List<Text> tooltipLines = new ArrayList<>();
+
+            tooltipLines.add(Text.translatable(fluid.getDefaultState().getBlockState().getBlock().getTranslationKey()));
+
+            ComponentChanges components = this.fluidStorage.variant.getComponents();
+            if (components != null) {
+
+                try {
+                    Optional<?> qualityOpt = components.get(ModDataComponentTypes.FLUID_QUALITY);
+
+                    if (qualityOpt != null && qualityOpt.isPresent() && qualityOpt.get() instanceof Float quality) {
+                        int qualityPercent = (int) (quality * 100);
+
+                        String qualityName;
+                        Formatting nameColor;
+
+                        if (quality >= 0.9f) {
+                            qualityName = "divine";
+                            nameColor = Formatting.GOLD;
+                        } else if (quality >= 0.8f) {
+                            qualityName = "exquisite";
+                            nameColor = Formatting.YELLOW;
+                        } else if (quality >= 0.7f) {
+                            qualityName = "flavorful";
+                            nameColor = Formatting.GREEN;
+                        } else if (quality >= 0.6f) {
+                            qualityName = "fine";
+                            nameColor = Formatting.DARK_PURPLE;
+                        } else if (quality >= 0.5f) {
+                            qualityName = "decent";
+                            nameColor = Formatting.AQUA;
+                        } else if (quality >= 0.4f) {
+                            qualityName = "average";
+                            nameColor = Formatting.BLUE;
+                        } else if (quality >= 0.3f) {
+                            qualityName = "mediocre";
+                            nameColor = Formatting.YELLOW;
+                        } else if (quality >= 0.2f) {
+                            qualityName = "poor";
+                            nameColor = Formatting.RED;
+                        } else if (quality >= 0.1f) {
+                            qualityName = "awful";
+                            nameColor = Formatting.DARK_RED;
+                        } else {
+                            qualityName = "sewage";
+                            nameColor = Formatting.DARK_GRAY;
+                        }
+
+                        Text qualityText = Text.empty()
+                                .append(Text.literal("Quality: ").formatted(Formatting.GRAY))
+                                .append(Text.translatable("tooltip.resprouted.quality." + qualityName).formatted(nameColor))
+                                .append(Text.literal(" [" + qualityPercent + "%]").formatted(Formatting.DARK_GRAY));
+
+                        tooltipLines.add(qualityText);
+                    }
+                } catch (Exception ignored) {
+
+                }
+            }
+
+            tooltipLines.add(Text.literal("%s/%s mB".formatted(getMb(fluidAmount), getMb(fluidCapacity))).formatted(Formatting.GRAY));
+
+            context.drawTooltip(textRenderer, tooltipLines, mouseX, mouseY);
         }
     }
     private static long getMb(long amount) {

@@ -10,7 +10,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import java.util.List;
 
-public class ChiliCropBlock extends StakeCropBlock {
+public class ChiliCropBlock extends CropStakeBlock {
     public ChiliCropBlock(Settings settings) {
         super(settings);
     }

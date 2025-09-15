@@ -31,8 +31,8 @@ public class CatalogData {
                 .addPage(new TextPage(Text.translatable("text.resprouted.fertile_soil"))));
 
         agriculture.addEntry(new Entry(
-                Text.translatable("entry.resprouted.stake_crops"), new ItemStack(ModBlocks.STAKE), Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("text.resprouted.stake_crops.1"))));
+                Text.translatable("entry.resprouted.crop_stakes"), new ItemStack(ModBlocks.STAKE), Entry.Side.LEFT)
+                .addPage(new TextPage(Text.translatable("text.resprouted.crop_stakes.1"))));
 
         agriculture.addEntry(new Entry(
                 Text.translatable("entry.resprouted.tomatoes"), new ItemStack(ModItems.TOMATO), Entry.Side.LEFT)

@@ -24,6 +24,7 @@ public class CondenserScreenHandler extends ScreenHandler {
     public CondenserScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
         this(syncId, playerInventory, (CondenserBE) playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
     }
+
     public CondenserScreenHandler(int syncId, PlayerInventory playerInventory, CondenserBE blockEntity, PropertyDelegate propertyDelegate) {
         super(ModScreenHandlers.CONDENSER_SCREEN_HANDLER, syncId);
         this.inventory = blockEntity;
@@ -41,29 +42,12 @@ public class CondenserScreenHandler extends ScreenHandler {
 
         this.addProperties(propertyDelegate);
     }
+
     @Override
     public boolean canUse(PlayerEntity player) {
         return inventory.canPlayerUse(player);
     }
-    public boolean isCrafting() {
-        return propertyDelegate.get(0) > 0;
-    }
-    public int getScaledArrowProgress() {
-        int progress = this.propertyDelegate.get(0);
-        int maxProgress = this.propertyDelegate.get(1);
-        int arrowPixelWidth = 50;
-        return (maxProgress == 0 || progress == 0) ? 0 : progress * arrowPixelWidth / maxProgress;
-    }
-    public boolean isBurning() {
-        return this.propertyDelegate.get(2) > 0;
-    }
-    public float getFuelProgress() {
-        int total = this.propertyDelegate.get(3);
-        if (total == 0) {
-            total = 200;
-        }
-        return MathHelper.clamp((float) this.propertyDelegate.get(2) / (float) total, 0.0F, 1.0F);
-    }
+
     @Override
     public ItemStack quickMove(PlayerEntity player, int index) {
         ItemStack newStack = ItemStack.EMPTY;
@@ -98,6 +82,7 @@ public class CondenserScreenHandler extends ScreenHandler {
         }
         return newStack;
     }
+
     private void addPlayerInventory(PlayerInventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int l = 0; l < 9; l++) {
@@ -105,12 +90,38 @@ public class CondenserScreenHandler extends ScreenHandler {
             }
         }
     }
+
     private void addPlayerHotbar(PlayerInventory playerInventory) {
         for (int i = 0; i < 9; i++) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
+
     public CondenserBE getBlockEntity() {
         return this.blockEntity;
+    }
+
+    public boolean isCrafting() {
+        return propertyDelegate.get(0) > 0;
+    }
+
+    public int getScaledArrowProgress() {
+        int progress = this.propertyDelegate.get(0);
+        int maxProgress = this.propertyDelegate.get(1);
+        int arrowPixelWidth = 50;
+        return (maxProgress == 0 || progress == 0) ? 0 : progress * arrowPixelWidth / maxProgress;
+    }
+
+    public boolean isBurning() {
+        return this.propertyDelegate.get(2) > 0;
+    }
+
+    public float getFuelProgress() {
+        int total = this.propertyDelegate.get(3);
+        if (total == 0) {
+            total = 200;
+        }
+
+        return MathHelper.clamp((float) this.propertyDelegate.get(2) / (float) total, 0.0F, 1.0F);
     }
 }

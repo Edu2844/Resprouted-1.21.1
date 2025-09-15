@@ -26,6 +26,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.color.item.ItemColorProvider;
 import net.minecraft.client.color.world.BiomeColors;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
@@ -42,11 +43,12 @@ public class ModClientRegistry {
         registerBlockEntityRenderers();
         registerEntityRenderers();
         registerBlockRenderers();
-        registerFluidRenderers();
+        registerFluidColors();
         registerBlockColors();
         registerItemColors();
         registerHudRenderers();
         registerLivingEntityRenderers();
+        registerEatingAnimationsCompat();
     }
     public static void registerBlockEntityRenderers() {
         BlockEntityRendererFactories.register(ModBlockEntities.CRUSHING_TUB_BE, CrushingTubBERenderer::new);
@@ -178,7 +180,7 @@ public class ModClientRegistry {
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.IRON_BERRY_JUICE_STILL, ModFluids.IRON_BERRY_JUICE_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.ALE_WORT_STILL, ModFluids.ALE_WORT_FLOWING);
     }
-    public static void registerFluidRenderers() {
+    public static void registerFluidColors() {
         FluidRenderHandlerRegistry registry = FluidRenderHandlerRegistry.INSTANCE;
         //Honey
         registry.register(ModFluids.HONEY_STILL, ModFluids.HONEY_FLOWING, new SimpleFluidRenderHandler(
@@ -240,6 +242,12 @@ public class ModClientRegistry {
                 Identifier.of("resprouted:block/fluid/ale_wort_flow"),
                 Identifier.of("resprouted:block/fluid/ale_wort_overlay")
         ));
+        //Ale
+        registry.register(ModFluids.ALE_STILL, ModFluids.ALE_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/booze/ale_still"),
+                Identifier.of("resprouted:block/fluid/booze/ale_flow"),
+                Identifier.of("resprouted:block/fluid/booze/ale_overlay")
+        ));
     }
     public static void registerBlockColors() {
         ColorProviderRegistry<Block, BlockColorProvider> registry = ColorProviderRegistry.BLOCK;
@@ -275,6 +283,28 @@ public class ModClientRegistry {
             }
             return -1;
         }, ModItems.ELIXIR_BOTTLE);
+
+    }
+    public static void registerEatingAnimationsCompat() {
+        ModelPredicateProviderRegistry.register(ModItems.ELIXIR_BOTTLE,
+                Identifier.of("drinking"),
+                (itemStack, clientWorld, livingEntity, seed) -> {
+                    if (livingEntity == null) {
+                        return 0.0F;
+                    }
+                    return livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
+                });
+
+        ModelPredicateProviderRegistry.register(ModItems.ELIXIR_BOTTLE,
+                Identifier.of("drink"),
+                (itemStack, clientWorld, livingEntity, seed) -> {
+                    if (livingEntity == null) {
+                        return 0.0F;
+                    }
+                    return livingEntity.getActiveItem() != itemStack ? 0.0F :
+                            (itemStack.getMaxUseTime(livingEntity) - livingEntity.getItemUseTimeLeft()) / 30.0F;
+                });
+
     }
     public static void registerHudRenderers() {
         HudRenderCallback.EVENT.register((drawContext, tickDelta) -> FullMetalOverlay.render(drawContext));

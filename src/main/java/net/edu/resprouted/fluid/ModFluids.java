@@ -38,6 +38,9 @@ public class ModFluids {
     public static final FlowableFluid ALE_WORT_STILL = register("ale_wort_still", new AleWort.Still());
     public static final FlowableFluid ALE_WORT_FLOWING = register("ale_wort_flowing", new AleWort.Flowing());
 
+    public static final FlowableFluid ALE_STILL = register("ale_still", new Ale.Still());
+    public static final FlowableFluid ALE_FLOWING = register("ale_flowing", new Ale.Flowing());
+
     private static FlowableFluid register(String name, FlowableFluid flowableFluid) {
         return Registry.register(Registries.FLUID, Identifier.of(Resprouted.MOD_ID, name), flowableFluid);
     }

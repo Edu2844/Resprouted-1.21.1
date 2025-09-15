@@ -134,6 +134,21 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
         if (!(world.getBlockEntity(targetPos) instanceof CondenserBaseBE condenserBE))
             return ItemActionResult.CONSUME;
 
+        if (player.isSneaking() && stack.isEmpty()) {
+            if (!world.isClient) {
+                try (Transaction transaction = Transaction.openOuter()) {
+                    long extracted = condenserBE.getFluidStorage().extract(FluidVariant.of(Fluids.WATER), Long.MAX_VALUE, transaction);
+
+                    if (extracted > 0) {
+                        transaction.commit();
+                        world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
+                        world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS);
+                        return ItemActionResult.SUCCESS;
+                    }
+                }
+            }
+            return ItemActionResult.CONSUME;
+        }
         long amount = FluidConstants.BUCKET;
         try (Transaction transaction = Transaction.openOuter()) {
             // Fill
@@ -165,7 +180,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
                 return ItemActionResult.CONSUME;
             }
         }
-        if (!world.isClient && condenserBE.hasFluid()) {
+        if (!world.isClient) {
             player.openHandledScreen(condenserBE);
             return ItemActionResult.SUCCESS;
         }

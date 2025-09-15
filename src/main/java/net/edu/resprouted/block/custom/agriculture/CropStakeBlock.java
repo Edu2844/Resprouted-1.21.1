@@ -27,13 +27,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class StakeCropBlock extends CropBlock {
+public class CropStakeBlock extends CropBlock {
     public static final int MAX_AGE = 7;
     public static final IntProperty AGE = IntProperty.of("age", 0, 7);
     protected static final VoxelShape CROP_SHAPE = Block.createCuboidShape(2.0F, 0.0F, 2.0F, 14.0F, 16.0F, 14.0F);
     protected static final VoxelShape STAKE_SHAPE = Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F);
 
-    public StakeCropBlock(Settings settings) {
+    public CropStakeBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
@@ -67,7 +67,7 @@ public class StakeCropBlock extends CropBlock {
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockState below = world.getBlockState(pos.down());
-        return below.isIn(ModTags.Blocks.FERTILE_SOILS) || below.getBlock() instanceof StakeCropBlock;
+        return below.isIn(ModTags.Blocks.FERTILE_SOILS) || below.getBlock() instanceof CropStakeBlock;
     }
 
     @Override
@@ -173,7 +173,7 @@ public class StakeCropBlock extends CropBlock {
         int count = 0;
         for (int i = 1; i <= getMaxVerticalGrowth(); i++) {
             BlockState s = world.getBlockState(pos.down(i));
-            if (s.getBlock() instanceof StakeCropBlock) count++;
+            if (s.getBlock() instanceof CropStakeBlock) count++;
             else break;
         }
         return count;
@@ -194,7 +194,7 @@ public class StakeCropBlock extends CropBlock {
     public static Optional<BlockState> getCropForSeed(Item seedItem) {
         for (Block block : Registries.BLOCK) {
 
-            if (block instanceof StakeCropBlock stakeCrop) {
+            if (block instanceof CropStakeBlock stakeCrop) {
                 ItemConvertible seed = stakeCrop.getSeedsItem();
 
                 if (seed != null && seed.asItem() == seedItem) {

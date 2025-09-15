@@ -3,6 +3,7 @@ package net.edu.resprouted.item;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.effect.BoozeEffects;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
@@ -30,6 +31,7 @@ public class ModItems {
 
     public static final Item OLIVE_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_BOAT, ModEntities.OLIVE_BOAT_KEY, false);
     public static final Item OLIVE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_CHEST_BOAT, ModEntities.OLIVE_BOAT_KEY, true);
+
     // =================================================
     // ||                  IRONWOOD                   ||
     // =================================================
@@ -150,6 +152,10 @@ public class ModItems {
 
     public static final Item ALE_WORT_BOTTLE = registerItem("ale_wort_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.ALE_WORT).maxCount(16)));
+
+    public static final Item ALE_BOTTLE = registerItem("ale_bottle",
+            new BoozeBottleItem(ModFluids.ALE_STILL, new Item.Settings().maxCount(16), BoozeEffects::applyAleEffects)
+                    .setInebriationChance(0.5f));
 
     // =================================================
     // ||                    FOOD                     ||

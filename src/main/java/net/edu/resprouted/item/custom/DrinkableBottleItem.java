@@ -41,7 +41,10 @@ public class DrinkableBottleItem extends Item {
         }
         return stack;
     }
-
+    @Override
+    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+        return 32;
+    }
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
     }

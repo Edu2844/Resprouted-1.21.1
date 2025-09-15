@@ -570,6 +570,9 @@ public class ModBlocks {
     public static final Block ALE_WORT_FLUID_BLOCK = registerBlockWithoutBlockItem("ale_wort_fluid_block", new
             FluidBlock(ModFluids.ALE_WORT_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
 
+    public static final Block ALE_FLUID_BLOCK = registerBlockWithoutBlockItem("ale_fluid_block", new
+            FluidBlock(ModFluids.ALE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     // =================================================
     // ||                   HERBS                     ||
     // =================================================

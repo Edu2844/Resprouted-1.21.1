@@ -5,6 +5,5 @@
     {"item": "resprouted:cohosh"}
   ],
   "effect": "minecraft:regeneration",
-  "duration": 900,
-  "amplifier": 0
+  "duration": 900
 }

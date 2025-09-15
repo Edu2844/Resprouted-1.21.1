@@ -77,8 +77,8 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
         public static final MapCodec<CondenserRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients").forGetter(CondenserRecipe::ingredients),
                 StatusEffect.ENTRY_CODEC.fieldOf("effect").forGetter(CondenserRecipe::effect),
-                Codec.INT.fieldOf("duration").forGetter(CondenserRecipe::duration),
-                Codec.INT.fieldOf("amplifier").forGetter(CondenserRecipe::amplifier)
+                Codec.INT.optionalFieldOf("duration",0).forGetter(CondenserRecipe::duration),
+                Codec.INT.optionalFieldOf("amplifier",0).forGetter(CondenserRecipe::amplifier)
         ).apply(inst, CondenserRecipe::new));
 
         public static final PacketCodec<RegistryByteBuf, CondenserRecipe> STREAM_CODEC = PacketCodec.tuple(

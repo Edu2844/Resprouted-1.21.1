@@ -25,7 +25,9 @@ public class ResproutedConfiguration {
     private List<String> OilableFoodBlackList = new ArrayList<>();
     public boolean BottleEffectTooltips = true;
     public boolean FoodEffectTooltips = false;
-
+    public int MinBrewQualityChange = -1;
+    public int MaxBrewQualityChange = 4;
+    public int MaxBrewTime  = 380; //12000
 
     public ResproutedConfiguration() {
 
@@ -96,6 +98,30 @@ public class ResproutedConfiguration {
     public void setVantaOilBlackList(List<String> vantaOilBlackList) {
         VantaOilBlackList = vantaOilBlackList;
     }
+    public int getMinBrewQualityChange() {
+        return MinBrewQualityChange;
+    }
+
+    public void setMinBrewQualityChange(int minBrewQualityChange) {
+        MinBrewQualityChange = minBrewQualityChange;
+    }
+
+    public int getMaxBrewQualityChange() {
+        return MaxBrewQualityChange;
+    }
+
+    public void setMaxBrewQualityChange(int maxBrewQualityChange) {
+        MaxBrewQualityChange = maxBrewQualityChange;
+    }
+
+    public int getMaxBrewTime() {
+        return MaxBrewTime;
+    }
+
+    public void setMaxBrewTime(int maxBrewTime) {
+        MaxBrewTime = maxBrewTime;
+    }
+
     private static float limit(float min, float max, float value) {
         return Math.max(min, Math.min(max, value));
     }

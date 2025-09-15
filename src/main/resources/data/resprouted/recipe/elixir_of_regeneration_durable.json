@@ -13,6 +13,5 @@
     "item": "resprouted:horsetail"
   },
   "effect": "minecraft:regeneration",
-  "duration": 1800,
-  "amplifier": 0
+  "duration": 1800
 }

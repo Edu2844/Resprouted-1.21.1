@@ -16,6 +16,5 @@
     "item": "resprouted:horsetail"
   },
   "effect": "minecraft:strength",
-  "duration": 9600,
-  "amplifier": 0
+  "duration": 9600
 }

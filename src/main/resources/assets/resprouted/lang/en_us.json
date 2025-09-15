@@ -59,6 +59,7 @@
   "item.resprouted.iron_berry_juice_bottle": "Iron Berry Juice Bottle",
   "item.resprouted.ale_wort_bucket": "Ale Wort Bucket",
   "item.resprouted.ale_wort_bottle": "Ale Wort Bottle",
+  "item.resprouted.ale_bottle": "Ale Bottle",
 
 
   "block.resprouted.cabinet": "Cabinet",
@@ -84,6 +85,7 @@
   "block.resprouted.glow_berry_juice_fluid_block": "Glow Berry Juice",
   "block.resprouted.iron_berry_juice_fluid_block": "Iron Berry Juice",
   "block.resprouted.ale_wort_fluid_block": "Ale Wort",
+  "block.resprouted.ale_fluid_block": "Ale",
   "block.resprouted.slate": "Slate",
   "block.resprouted.polished_slate": "Polished Slate",
   "block.resprouted.polished_slate_slab": "Polished Slate Slab",
@@ -324,6 +326,9 @@
   "fluid.resprouted.golden_apple_juice_still": "Golden Apple Juice Still",
   "fluid.resprouted.honey_still": "Honey Still",
 
+  "fluid.resprouted.ale_still": "Ale Still",
+  "fluid.resprouted.ale_flowing": "Ale Flowing",
+
   "itemgroup.resprouted.decoration": "Resprouted Decoration",
   "itemgroup.resprouted.alchemy": "Resprouted Alchemy",
   "itemgroup.resprouted.agriculture": "Resprouted Agriculture",
@@ -335,6 +340,20 @@
   "tooltip.resprouted.vanta_oiled": "Vanta Oiled:",
   "tooltip.resprouted.vanta_oil_use": "1 restant use",
   "tooltip.resprouted.vanta_oil_uses": "%s restant uses",
+
+  "tooltip.resprouted.quality_format": "Quality: %s [%d%%]",
+
+  "tooltip.resprouted.quality.divine": "Divine",
+  "tooltip.resprouted.quality.exquisite": "Exquisite",
+  "tooltip.resprouted.quality.flavorful": "Flavorful",
+  "tooltip.resprouted.quality.fine": "Fine",
+  "tooltip.resprouted.quality.decent": "Decent",
+  "tooltip.resprouted.quality.average": "Average",
+  "tooltip.resprouted.quality.mediocre": "Mediocre",
+  "tooltip.resprouted.quality.poor": "Poor",
+  "tooltip.resprouted.quality.awful": "Awful",
+  "tooltip.resprouted.quality.sewage": "Sewage",
+
 
   "effect.resprouted.full_metal":"Full Metal",
   "effect.resprouted.fire_power":"Fire Power",
@@ -389,8 +408,8 @@
 
   "text.resprouted.fertile_soil": "Fertile soil works like regular farmland, but with some perks: it doesn’t need water to stay hydrated, can’t be trampled, and lets sugar cane grow without a nearby water block.",
 
-  "entry.resprouted.stake_crops": "Stake Crops",
-  "text.resprouted.stake_crops.1": "Crop stakes are wooden poles that support the growth of tall crops such as chili peppers and tomatoes. They can also be used to tie ropes.",
+  "entry.resprouted.crop_stakes": "Crop Stake",
+  "text.resprouted.crop_stakes.1": "Crop stakes are wooden poles that support the growth of tall crops such as chili peppers and tomatoes. They can also be used to tie ropes.",
 
   "entry.resprouted.chili_peppers": "Chili Peppers",
   "text.resprouted.chili_peppers.1": "Chili peppers are best harvested by interacting with mature plants instead of breaking them, since broken ones take time to regrow. They can be eaten for a small speed boost, though their spiciness might",

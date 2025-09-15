@@ -108,8 +108,8 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
                 Ingredient.DISALLOW_EMPTY_CODEC.listOf().fieldOf("ingredients").forGetter(AdvancedCondenserRecipe::ingredients),
                 Ingredient.DISALLOW_EMPTY_CODEC.optionalFieldOf("modifier").forGetter(AdvancedCondenserRecipe::modifier),
                 StatusEffect.ENTRY_CODEC.fieldOf("effect").forGetter(AdvancedCondenserRecipe::effect),
-                Codec.INT.fieldOf("duration").forGetter(AdvancedCondenserRecipe::duration),
-                Codec.INT.fieldOf("amplifier").forGetter(AdvancedCondenserRecipe::amplifier)
+                Codec.INT.optionalFieldOf("duration",0).forGetter(AdvancedCondenserRecipe::duration),
+                Codec.INT.optionalFieldOf("amplifier",0).forGetter(AdvancedCondenserRecipe::amplifier)
         ).apply(inst, AdvancedCondenserRecipe::new));
 
         public static final PacketCodec<RegistryByteBuf, AdvancedCondenserRecipe> STREAM_CODEC = PacketCodec.tuple(

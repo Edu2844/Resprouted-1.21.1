@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-05T23:47:36.265677	Resprouted/Block Loot Tables
+// 1.21.1	2025-09-14T21:58:21.9235409	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 327b905f23efd6a06058ec8aace92e8df372febd data\resprouted\loot_table\blocks\condenser.json
 634967a8bb65c47a8b6be880b25af0ffafaf001f data\resprouted\loot_table\blocks\slate_brick_stairs.json
@@ -157,8 +157,8 @@ d6f48c5b4c60e9032f4496f38c72a3ffcdd30755 data\resprouted\loot_table\blocks\waxed
 9cde9490c29afab2fe4b2487d6b3d8bd379beff3 data\resprouted\loot_table\blocks\weathered_copper_lantern.json
 d9be65c4da2b3f630a8a6e6cb6f206c0619ac19b data\resprouted\loot_table\blocks\exposed_copper_lantern.json
 6cac493ca9b761d849aaccb30eccc395160b6f8c data\resprouted\loot_table\blocks\mooncap_mushroom.json
-b35f7eb1d6482a134c3c74779abf1f457529c0ec data\resprouted\loot_table\blocks\ironwood_stairs.json
 97f1cbbd8dc27aaca920a81f763e9b02e0d00d97 data\resprouted\loot_table\blocks\copper_chain.json
+b35f7eb1d6482a134c3c74779abf1f457529c0ec data\resprouted\loot_table\blocks\ironwood_stairs.json
 3156c6450cbb49e0707a8580c278084152d0d677 data\resprouted\loot_table\blocks\light_blue_golden_candle_holder.json
 27c840a1775f83574aacf799535dfcd4eb21bb0e data\resprouted\loot_table\blocks\stripped_olive_log.json
 a479af34b545fa904c01852d788d2698d3996376 data\resprouted\loot_table\blocks\olive_slab.json

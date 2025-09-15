@@ -15,7 +15,6 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -100,10 +99,7 @@ public class OilingRecipe extends SpecialCraftingRecipe {
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.OLIVE_OIL_SERIALIZER;
     }
-    @Override
-    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
-        return ItemStack.EMPTY;
-    }
+
     public static class OilingRecipeSerializer implements RecipeSerializer<OilingRecipe> {
 
         public static final MapCodec<OilingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(

@@ -16,6 +16,5 @@
     "item": "resprouted:horsetail"
   },
   "effect": "minecraft:health_boost",
-  "duration": 9600,
-  "amplifier": 0
+  "duration": 9600
 }

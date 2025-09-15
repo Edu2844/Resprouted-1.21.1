@@ -7,6 +7,7 @@ import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.networking.ModMessages;
+import net.edu.resprouted.recipe.custom.BrewingRecipes;
 import net.edu.resprouted.util.CabinetRegistry;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.resource.reload.FluidContainerLoader;
@@ -51,7 +52,10 @@ public class Resprouted implements ModInitializer {
 		ModMessages.registerC2SPackets();
 		ModScreenHandlers.registerScreenHandlers();
 		ModDataComponentTypes.registerDataComponentTypes();
+		BrewingRecipes.registerRecipes();
+		LOGGER.info("Brewing recipes registered: " + BrewingRecipes.RECIPES.size());
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
+
 
 		CONFIG = ResproutedConfiguration.load();
 		System.out.println("Resprouted config loaded:");

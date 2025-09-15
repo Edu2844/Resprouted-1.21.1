@@ -131,7 +131,7 @@ public class StakeBlock extends Block {
         }
         //Case 1: Crop
         if (!state.get(StakeBlock.HAS_ROPE) && world.getBlockState(pos.down()).isIn(ModTags.Blocks.FERTILE_SOILS)) {
-            Optional<BlockState> crop = StakeCropBlock.getCropForSeed(stack.getItem());
+            Optional<BlockState> crop = CropStakeBlock.getCropForSeed(stack.getItem());
             if (crop.isPresent()) {
                 world.setBlockState(pos, crop.get(), Block.NOTIFY_ALL);
                 world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1.0F, 1.0F);

@@ -156,5 +156,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.GRAPE_SEEDS)
 
         ;
+        getOrCreateTagBuilder(ModTags.Items.MODIFIERS)
+                .add(ModItems.HORSETAIL)
+                .add(ModItems.MARSH_MALLOW)
+        ;
+        getOrCreateTagBuilder(ModTags.Items.BOOZE_BOTTLES)
+                .add(ModItems.ALE_BOTTLE)
+        ;
     }
 }

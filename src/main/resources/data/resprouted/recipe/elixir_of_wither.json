@@ -5,6 +5,5 @@
     { "item": "resprouted:deathstalk_mushroom" }
   ],
   "effect": "minecraft:wither",
-  "duration": 900,
-  "amplifier": 0
+  "duration": 900
 }

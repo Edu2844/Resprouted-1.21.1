@@ -5,6 +5,5 @@
     { "item": "resprouted:wind_thistle" }
   ],
   "effect": "minecraft:speed",
-  "duration": 3600,
-  "amplifier": 0
+  "duration": 3600
 }

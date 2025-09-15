@@ -30,9 +30,9 @@ import net.minecraft.world.WorldView;
 import java.util.List;
 
 public class GrapeLeavesBlock extends Block implements Fertilizable {
-    private static final VoxelShape BRANCH_Z_SHAPE = Block.createCuboidShape(3.0F, 3.0F, 0.0F, 13.0F, 13.0F, 16.0F);
-    private static final VoxelShape BRANCH_X_SHAPE = Block.createCuboidShape(0.0F, 3.0, 3.0F, 16.0F, 13.0F, 13.0F);
-    private static final VoxelShape FULL_SHAPE = Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 16.0F);
+    private static final VoxelShape BRANCH_Z_SHAPE = Block.createCuboidShape(3.0, 3.0, 0.0, 13.0, 13.0, 16.0);
+    private static final VoxelShape BRANCH_X_SHAPE = Block.createCuboidShape(0.0, 3.0, 3.0, 16.0, 13.0, 13.0);
+    private static final VoxelShape FULL_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);
     public static final IntProperty DIST = IntProperty.of("distance", 0, 1);
     public static final IntProperty AGE = IntProperty.of("age", 0, 3);
     public static final EnumProperty<Direction.Axis> AXIS = Properties.HORIZONTAL_AXIS;

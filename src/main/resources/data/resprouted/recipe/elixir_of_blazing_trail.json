@@ -12,6 +12,5 @@
     }
   ],
   "effect": "resprouted:blazing_trail",
-  "duration": 3600,
-  "amplifier": 0
+  "duration": 3600
 }
