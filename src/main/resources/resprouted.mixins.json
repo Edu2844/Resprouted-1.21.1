@@ -8,9 +8,10 @@
     "GlassBottleItemMixin",
     "HoneyBottleMixin",
     "LivingEntityMixin",
+    "MilkBucketItemMixin",
     "MushroomPlantBlockMixin",
     "SugarCaneBlockMixin",
-    "MilkBucketItemMixin"
+    "effect.LivingEntityEffectsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

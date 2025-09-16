@@ -90,4 +90,4 @@ public class GlassBottleItemMixin {
         }
     }
 }
-//No se que diablos hice, pero evita que aparezcan botellas de agua
+//No se que diablos hice, pero evita que aparezcan botellas de agua con las botellas custom

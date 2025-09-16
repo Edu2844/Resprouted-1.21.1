@@ -2,8 +2,10 @@ package net.edu.resprouted.item.custom;
 
 import dev.architectury.fluid.FluidStack;
 import net.edu.resprouted.component.ModDataComponentTypes;
+import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.util.FluidQualityHelper;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -44,30 +46,15 @@ public class BoozeBottleItem extends Item {
         this(fluidType, settings, context -> {});
     }
 
-    public BoozeBottleItem setInebriationChance(float chance) {
-        this.inebriationChance = chance;
-        return this;
-    }
-
-    public static Fluid getFluidFromBottle(ItemStack bottleStack) {
-        Item item = bottleStack.getItem();
-
-        for (Fluid fluid : Registries.FLUID) {
-            BoozeBottleItem bottleItem = BoozeBottleItem.getBottleForFluid(fluid);
-            if (bottleItem == item) {
-                return fluid;
-            }
-        }
-
-        return Fluids.EMPTY;
-    }
-
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (!world.isClient() && user instanceof PlayerEntity player) {
             float quality = getQuality(stack);
 
             effectConsumer.accept(new BoozeConsumptionContext(world, player, quality));
+
+            inebriate(world, player, quality);
+
 
             stack.decrement(1);
             if (stack.isEmpty()) return new ItemStack(Items.GLASS_BOTTLE);
@@ -76,37 +63,6 @@ public class BoozeBottleItem extends Item {
         return stack;
     }
 
-    public static float getQuality(ItemStack stack) {
-        Float quality = stack.get(ModDataComponentTypes.FLUID_QUALITY);
-        return quality != null ? quality : 0f;
-    }
-
-    public static void setQuality(ItemStack stack, float quality) {
-        stack.set(ModDataComponentTypes.FLUID_QUALITY, Math.max(0f, Math.min(1f, quality)));
-    }
-
-    public static ItemStack fromFluidStack(FluidStack fluidStack) {
-        Fluid fluid = fluidStack.getFluid();
-        BoozeBottleItem bottleItem = FLUID_TO_BOTTLE.get(fluid);
-
-        if (bottleItem != null) {
-            float quality = FluidQualityHelper.getQuality(fluidStack);
-            ItemStack bottle = new ItemStack(bottleItem);
-            setQuality(bottle, quality);
-            return bottle;
-        }
-
-        return ItemStack.EMPTY;
-    }
-
-    public FluidStack toFluidStack(ItemStack bottle) {
-        float quality = getQuality(bottle);
-        return FluidQualityHelper.withQuality(fluidType, 250, quality);
-    }
-
-    public static BoozeBottleItem getBottleForFluid(Fluid fluid) {
-        return FLUID_TO_BOTTLE.get(fluid);
-    }
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
@@ -175,5 +131,82 @@ public class BoozeBottleItem extends Item {
 
         tooltip.add(qualityText);
     }
+
+    public static float getQuality(ItemStack stack) {
+        Float quality = stack.get(ModDataComponentTypes.FLUID_QUALITY);
+        return quality != null ? quality : 0f;
+    }
+
+    public static void setQuality(ItemStack stack, float quality) {
+        stack.set(ModDataComponentTypes.FLUID_QUALITY, Math.max(0f, Math.min(1f, quality)));
+    }
+
+    public static ItemStack fromFluidStack(FluidStack fluidStack) {
+        Fluid fluid = fluidStack.getFluid();
+        BoozeBottleItem bottleItem = FLUID_TO_BOTTLE.get(fluid);
+
+        if (bottleItem != null) {
+            float quality = FluidQualityHelper.getQuality(fluidStack);
+            ItemStack bottle = new ItemStack(bottleItem);
+            setQuality(bottle, quality);
+            return bottle;
+        }
+
+        return ItemStack.EMPTY;
+    }
+
+    public FluidStack toFluidStack(ItemStack bottle) {
+        float quality = getQuality(bottle);
+        return FluidQualityHelper.withQuality(fluidType, 250, quality);
+    }
+
+    public static BoozeBottleItem getBottleForFluid(Fluid fluid) {
+        return FLUID_TO_BOTTLE.get(fluid);
+    }
+
+    public static Fluid getFluidFromBottle(ItemStack bottleStack) {
+        Item item = bottleStack.getItem();
+
+        for (Fluid fluid : Registries.FLUID) {
+            BoozeBottleItem bottleItem = BoozeBottleItem.getBottleForFluid(fluid);
+            if (bottleItem == item) {
+                return fluid;
+            }
+        }
+
+        return Fluids.EMPTY;
+    }
+
+    public BoozeBottleItem setInebriationChance(float chance) {
+        this.inebriationChance = chance;
+        return this;
+    }
+
+    protected void inebriate(World world, PlayerEntity player, float quality) {
+        int duration = (quality >= 0.5f)
+                ? ((int) (12000 * (Math.max(1 - Math.abs(quality - 0.75F), 0.5F))))
+                : ((int) (12000 * (Math.max(1 - (quality * 0.5F), 0.5F))));
+
+        float inebriationChanceMod = Math.max(Math.min(1 - Math.abs(0.67F * (quality - 0.75F)), 1), 0);
+
+        StatusEffectInstance tipsyEffect = player.getStatusEffect(ModEffects.TIPSY);
+
+        if (world.random.nextFloat() < this.inebriationChance * inebriationChanceMod) {
+            if (tipsyEffect == null) {
+                player.addStatusEffect(new StatusEffectInstance(
+                        ModEffects.TIPSY, duration, 0, false, false
+                ));
+            } else if (tipsyEffect.getAmplifier() < 2) {
+                player.addStatusEffect(new StatusEffectInstance(
+                        ModEffects.TIPSY,
+                        Math.max(duration, tipsyEffect.getDuration()),
+                        tipsyEffect.getAmplifier() + 1,
+                        false,
+                        false
+                ));
+            }
+        }
+    }
+
     public record BoozeConsumptionContext(World world, PlayerEntity player, float quality) {}
 }

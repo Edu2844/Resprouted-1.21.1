@@ -27,7 +27,7 @@ public class ResproutedConfiguration {
     public boolean FoodEffectTooltips = false;
     public int MinBrewQualityChange = -1;
     public int MaxBrewQualityChange = 4;
-    public int MaxBrewTime  = 380; //12000
+    private int MaxBrewTime  = 12000; //12000
 
     public ResproutedConfiguration() {
 
@@ -42,6 +42,7 @@ public class ResproutedConfiguration {
         VantaOilBlackList.add("modid:example_item");
 
     }
+
     public static ResproutedConfiguration load() {
         ResproutedConfiguration configuration = new ResproutedConfiguration();
         if (!CONFIG_FILE.exists()) {
@@ -55,6 +56,7 @@ public class ResproutedConfiguration {
         }
         return configuration;
     }
+
     public static void save(ResproutedConfiguration config) {
         try (Writer writer = Files.newBufferedWriter(CONFIG_FILE.toPath())) {
             (new GsonBuilder().setPrettyPrinting().create()).toJson(config, writer);
@@ -62,39 +64,51 @@ public class ResproutedConfiguration {
             System.err.println("Error saving Resprouted config: " + e.getMessage());
         }
     }
+
     public float getOiledSaturationModifier() {
         return OiledSaturationModifier;
     }
+
     public void setOiledSaturationModifier(float value) {
         this.OiledSaturationModifier = limit(0.1f, 5.0f, value);
     }
+
     public int getOiledNutritionBonus() {
         return OiledNutritionBonus;
     }
+
     public void setOiledHungerBonus(int value) {
         this.OiledNutritionBonus = limit(0, 10, value);
     }
+
     public List<String> getOliveOilFoodWhiteList() {
         return OilableFoodWhiteList;
     }
+
     public void setOliveOilFoodWhiteList(List<String> foods) {
         this.OilableFoodWhiteList = foods != null ? foods : new ArrayList<>();
     }
+
     public List<String> getOliveOilFoodBlackList() {
         return OilableFoodBlackList;
     }
+
     public void setOliveOilFoodBlackList(List<String> oilableFoodBlackList) {
         OilableFoodBlackList = oilableFoodBlackList;
     }
+
     public List<String> getVantaOilWhiteList() {
         return VantaOilWhiteList;
     }
+
     public void setVantaOilWhiteList(List<String> vantaOilWhiteList) {
         this.VantaOilWhiteList = vantaOilWhiteList;
     }
+
     public List<String> getVantaOilBlackList() {
         return VantaOilBlackList;
     }
+
     public void setVantaOilBlackList(List<String> vantaOilBlackList) {
         VantaOilBlackList = vantaOilBlackList;
     }
@@ -118,8 +132,8 @@ public class ResproutedConfiguration {
         return MaxBrewTime;
     }
 
-    public void setMaxBrewTime(int maxBrewTime) {
-        MaxBrewTime = maxBrewTime;
+    public void setMaxBrewTime(int value) {
+        this.MaxBrewTime = limit(200, 120000, value);
     }
 
     private static float limit(float min, float max, float value) {

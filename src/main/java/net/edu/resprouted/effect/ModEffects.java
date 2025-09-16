@@ -25,6 +25,18 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> TIPSY = registerStatusEffect("tipsy",
             new TipsyEffect(StatusEffectCategory.HARMFUL, 0x789C62));
 
+    public static final RegistryEntry<StatusEffect> FULL = registerStatusEffect("full",
+            new FullEffect(StatusEffectCategory.BENEFICIAL, 0xA86A34));
+
+    public static final RegistryEntry<StatusEffect> MAGIC_RESISTANCE = registerStatusEffect("magic_resistance",
+            new MagicResistanceEffect(StatusEffectCategory.BENEFICIAL, 0x10511560));
+
+    public static final RegistryEntry<StatusEffect> WITHER_WARD = registerStatusEffect("wither_ward",
+            new WitherWardEffect(StatusEffectCategory.BENEFICIAL, 0x11842760));
+
+    public static final RegistryEntry<StatusEffect> UNDYING = registerStatusEffect("undying",
+            new UndyingEffect(StatusEffectCategory.BENEFICIAL, 0xEADB84));
+
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(Resprouted.MOD_ID, name), statusEffect);

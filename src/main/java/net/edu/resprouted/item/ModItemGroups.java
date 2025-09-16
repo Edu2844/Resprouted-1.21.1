@@ -89,6 +89,10 @@ public class ModItemGroups {
                         BoozeBottleItem.setQuality(aleBottleWithQuality, 0.75f);
                         entries.add(aleBottleWithQuality);
 
+                        ItemStack IronWineBottleWithQuality = new ItemStack(ModItems.IRON_WINE_BOTTLE);
+                        BoozeBottleItem.setQuality(IronWineBottleWithQuality, 0.75f);
+                        entries.add(IronWineBottleWithQuality);
+
 
                     }).build());
     public static  final ItemGroup DECORATION_GROUP = Registry.register(Registries.ITEM_GROUP,

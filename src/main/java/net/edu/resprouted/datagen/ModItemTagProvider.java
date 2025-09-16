@@ -162,6 +162,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         ;
         getOrCreateTagBuilder(ModTags.Items.BOOZE_BOTTLES)
                 .add(ModItems.ALE_BOTTLE)
+                .add(ModItems.IRON_WINE_BOTTLE)
         ;
     }
 }

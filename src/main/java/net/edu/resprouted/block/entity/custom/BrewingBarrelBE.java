@@ -216,7 +216,7 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
         return auxiliary;
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, BrewingBarrelBE blockEntity) {
+    public static void tick(World world, BrewingBarrelBE blockEntity) {
         if (world.isClient()) return;
 
         blockEntity.maxProgress = Resprouted.CONFIG.getMaxBrewTime();

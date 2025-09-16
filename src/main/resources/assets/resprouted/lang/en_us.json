@@ -60,6 +60,7 @@
   "item.resprouted.ale_wort_bucket": "Ale Wort Bucket",
   "item.resprouted.ale_wort_bottle": "Ale Wort Bottle",
   "item.resprouted.ale_bottle": "Ale Bottle",
+  "item.resprouted.iron_wine_bottle": "Iron Wine Bottle",
 
 
   "block.resprouted.cabinet": "Cabinet",
@@ -86,6 +87,7 @@
   "block.resprouted.iron_berry_juice_fluid_block": "Iron Berry Juice",
   "block.resprouted.ale_wort_fluid_block": "Ale Wort",
   "block.resprouted.ale_fluid_block": "Ale",
+  "block.resprouted.iron_wine_fluid_block": "Iron Wine",
   "block.resprouted.slate": "Slate",
   "block.resprouted.polished_slate": "Polished Slate",
   "block.resprouted.polished_slate_slab": "Polished Slate Slab",
@@ -329,6 +331,9 @@
   "fluid.resprouted.ale_still": "Ale Still",
   "fluid.resprouted.ale_flowing": "Ale Flowing",
 
+  "fluid.resprouted.iron_wine_still": "Iron Wine Still",
+  "fluid.resprouted.iron_wine_flowing": "Iron Wine Flowing",
+
   "itemgroup.resprouted.decoration": "Resprouted Decoration",
   "itemgroup.resprouted.alchemy": "Resprouted Alchemy",
   "itemgroup.resprouted.agriculture": "Resprouted Agriculture",
@@ -359,6 +364,10 @@
   "effect.resprouted.fire_power":"Fire Power",
   "effect.resprouted.iron_skin":"Iron Skin",
   "effect.resprouted.blazing_trail":"Blazing Trail",
+  "effect.resprouted.full":"Full Stomach",
+  "effect.resprouted.magic_resistance":"Magic Resistance",
+  "effect.resprouted.wither_ward":"Wither Ward",
+  "effect.resprouted.undying":"Undying",
   "effect.resprouted.tipsy":"Inebriated",
 
   "key.resprouted.firepower": "Throw a fire ball",
@@ -395,6 +404,8 @@
   "config.resprouted.bottle_effect_tooltip.tooltip": "When enabled, custom bottles will show their effect information in the tooltip.",
   "config.resprouted.food_effect_tooltip": "Effect Tooltips on Food",
   "config.resprouted.food_effect_tooltip.tooltip": "When enabled, custom food will show their effect information in the tooltip.",
+  "config.resprouted.max_brew_time": "Brewing Time",
+  "config.resprouted.max_brew_time.tooltip":"The total time, in ticks, required for a brewing process to complete. | Range: 1200 (1 min) - 120000 (100 min). | Default: 12000 (10 min).",
 
   "config.jade.plugin_resprouted.fruiting_leaves_progress": "Fruiting Leaves Progress",
   "config.jade.plugin_resprouted.grape_leaves_mature": "Grapes Leaves Mature",

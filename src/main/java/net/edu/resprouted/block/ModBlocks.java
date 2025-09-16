@@ -573,6 +573,9 @@ public class ModBlocks {
     public static final Block ALE_FLUID_BLOCK = registerBlockWithoutBlockItem("ale_fluid_block", new
             FluidBlock(ModFluids.ALE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
 
+    public static final Block IRON_WINE_FLUID_BLOCK = registerBlockWithoutBlockItem("iron_wine_fluid_block", new
+            FluidBlock(ModFluids.IRON_WINE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     // =================================================
     // ||                   HERBS                     ||
     // =================================================

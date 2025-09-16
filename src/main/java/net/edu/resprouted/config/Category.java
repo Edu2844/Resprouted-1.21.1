@@ -69,9 +69,13 @@ public enum Category {
 
             Entry.booleanEntry("config.resprouted.bottle_effect_tooltip",
                     () -> Resprouted.CONFIG.BottleEffectTooltips,
-                    newValue -> Resprouted.CONFIG.BottleEffectTooltips = newValue, true, "config.resprouted.bottle_effect_tooltip.tooltip")
+                    newValue -> Resprouted.CONFIG.BottleEffectTooltips = newValue, true, "config.resprouted.bottle_effect_tooltip.tooltip"),
 
-
+            Entry.integerEntry("config.resprouted.max_brew_time",
+                    () -> Resprouted.CONFIG.getMaxBrewTime(),
+                    newValue -> Resprouted.CONFIG.setMaxBrewTime(newValue),
+                    12000, 200, 120000,
+                    "config.resprouted.max_brew_time.tooltip")
 
     ),
     WORLDGEN("config.resprouted.category.worldgen", false);

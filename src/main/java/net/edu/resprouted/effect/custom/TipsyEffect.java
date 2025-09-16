@@ -16,8 +16,8 @@ public class TipsyEffect extends StatusEffect {
     }
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (!entity.getWorld().isClient() && amplifier > 1) {
-            if (amplifier > 2) {
+        if (!entity.getWorld().isClient() && amplifier > 0) {
+            if (amplifier > 1) {
                 entity.addStatusEffect(new StatusEffectInstance(
                         StatusEffects.NAUSEA,
                         400, 1, false, false, false

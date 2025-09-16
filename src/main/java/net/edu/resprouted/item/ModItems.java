@@ -154,7 +154,11 @@ public class ModItems {
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.ALE_WORT).maxCount(16)));
 
     public static final Item ALE_BOTTLE = registerItem("ale_bottle",
-            new BoozeBottleItem(ModFluids.ALE_STILL, new Item.Settings().maxCount(16), BoozeEffects::applyAleEffects)
+            new BoozeBottleItem(ModFluids.ALE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyAleEffects)
+                    .setInebriationChance(0.5f));
+
+    public static final Item IRON_WINE_BOTTLE = registerItem("iron_wine_bottle",
+            new BoozeBottleItem(ModFluids.IRON_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyIronWineEffects)
                     .setInebriationChance(0.5f));
 
     // =================================================

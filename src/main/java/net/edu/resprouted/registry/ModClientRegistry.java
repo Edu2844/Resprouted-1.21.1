@@ -248,6 +248,12 @@ public class ModClientRegistry {
                 Identifier.of("resprouted:block/fluid/booze/ale_flow"),
                 Identifier.of("resprouted:block/fluid/booze/ale_overlay")
         ));
+        //Iron Wine
+        registry.register(ModFluids.IRON_WINE_STILL, ModFluids.IRON_WINE_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/booze/iron_wine_still"),
+                Identifier.of("resprouted:block/fluid/booze/iron_wine_flow"),
+                Identifier.of("resprouted:block/fluid/booze/iron_wine_overlay")
+        ));
     }
     public static void registerBlockColors() {
         ColorProviderRegistry<Block, BlockColorProvider> registry = ColorProviderRegistry.BLOCK;

@@ -18,6 +18,10 @@ public class BrewingRecipes {
                 FluidStack.create(ModFluids.ALE_STILL, 81000),
                 FluidStack.create(ModFluids.ALE_WORT_STILL, 81000)
         ));
+        register(new BrewingRecipe(
+                FluidStack.create(ModFluids.IRON_WINE_STILL, 81000),
+                FluidStack.create(ModFluids.IRON_BERRY_JUICE_STILL, 81000)
+        ));
     }
 
     public static void register(BrewingRecipe recipe) {

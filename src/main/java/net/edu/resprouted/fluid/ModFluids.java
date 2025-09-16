@@ -41,6 +41,9 @@ public class ModFluids {
     public static final FlowableFluid ALE_STILL = register("ale_still", new Ale.Still());
     public static final FlowableFluid ALE_FLOWING = register("ale_flowing", new Ale.Flowing());
 
+    public static final FlowableFluid IRON_WINE_STILL = register("iron_wine_still", new IronWine.Still());
+    public static final FlowableFluid IRON_WINE_FLOWING = register("iron_wine_flowing", new IronWine.Flowing());
+
     private static FlowableFluid register(String name, FlowableFluid flowableFluid) {
         return Registry.register(Registries.FLUID, Identifier.of(Resprouted.MOD_ID, name), flowableFluid);
     }
