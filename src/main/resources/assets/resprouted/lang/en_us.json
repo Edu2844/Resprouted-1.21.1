@@ -11,7 +11,7 @@
   "item.resprouted.elixir_bottle.effect": "Elixir of %s",
   "item.resprouted.chili_pepper": "Chili Pepper",
   "item.resprouted.chili_pepper_seeds": "Chili Pepper Seeds",
-  "item.resprouted.ghost_pepper": "§bGhost Pepper",
+  "item.resprouted.ghost_pepper": "Ghost Pepper",
   "item.resprouted.iron_berries": "Iron Berries",
   "item.resprouted.blue_berries": "Blueberries",
   "item.resprouted.copper_nugget": "Copper Nugget",
@@ -61,6 +61,11 @@
   "item.resprouted.ale_wort_bottle": "Ale Wort Bottle",
   "item.resprouted.ale_bottle": "Ale Bottle",
   "item.resprouted.iron_wine_bottle": "Iron Wine Bottle",
+  "item.resprouted.wine_bottle": "Wine Bottle",
+  "item.resprouted.sweet_berry_wine_bottle": "Sweet Berry Wine Bottle",
+  "item.resprouted.cider_bottle": "Cider Bottle",
+  "item.resprouted.mead_bottle": "Mead Bottle",
+  "item.resprouted.ambrosia_bottle": "Ambrosia Bottle",
 
 
   "block.resprouted.cabinet": "Cabinet",
@@ -88,6 +93,13 @@
   "block.resprouted.ale_wort_fluid_block": "Ale Wort",
   "block.resprouted.ale_fluid_block": "Ale",
   "block.resprouted.iron_wine_fluid_block": "Iron Wine",
+  "block.resprouted.wine_fluid_block": "Wine",
+  "block.resprouted.sweet_berry_wine_fluid_block": "Sweet Berry Wine",
+  "block.resprouted.cider_fluid_block": "Cider",
+  "block.resprouted.mead_fluid_block": "Mead",
+  "block.resprouted.ambrosia_fluid_block": "Ambrosia",
+
+
   "block.resprouted.slate": "Slate",
   "block.resprouted.polished_slate": "Polished Slate",
   "block.resprouted.polished_slate_slab": "Polished Slate Slab",
@@ -333,6 +345,12 @@
 
   "fluid.resprouted.iron_wine_still": "Iron Wine Still",
   "fluid.resprouted.iron_wine_flowing": "Iron Wine Flowing",
+
+  "fluid.resprouted.wine_still": "Wine Still",
+  "fluid.resprouted.wine_flowing": "Wine Flowing",
+
+  "fluid.resprouted.sweet_berry_wine_still": "Sweet Berry Wine Still",
+  "fluid.resprouted.sweet_berry_wine_flowing": "Sweet Berry Wine Flowing",
 
   "itemgroup.resprouted.decoration": "Resprouted Decoration",
   "itemgroup.resprouted.alchemy": "Resprouted Alchemy",

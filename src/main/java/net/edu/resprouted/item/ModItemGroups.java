@@ -90,8 +90,28 @@ public class ModItemGroups {
                         entries.add(aleBottleWithQuality);
 
                         ItemStack IronWineBottleWithQuality = new ItemStack(ModItems.IRON_WINE_BOTTLE);
-                        BoozeBottleItem.setQuality(IronWineBottleWithQuality, 0.75f);
+                        BoozeBottleItem.setQuality(IronWineBottleWithQuality, 0.08f);
                         entries.add(IronWineBottleWithQuality);
+
+                        ItemStack WineBottleWithQuality = new ItemStack(ModItems.WINE_BOTTLE);
+                        BoozeBottleItem.setQuality(WineBottleWithQuality, 0.75f);
+                        entries.add(WineBottleWithQuality);
+
+                        ItemStack SweetBerryWineBottleWithQuality = new ItemStack(ModItems.SWEET_BERRY_WINE_BOTTLE);
+                        BoozeBottleItem.setQuality(SweetBerryWineBottleWithQuality, 0.75f);
+                        entries.add(SweetBerryWineBottleWithQuality);
+
+                        ItemStack CiderBottleWithQuality = new ItemStack(ModItems.CIDER_BOTTLE);
+                        BoozeBottleItem.setQuality(CiderBottleWithQuality, 0.75f);
+                        entries.add(CiderBottleWithQuality);
+
+                        ItemStack MeadBottleWithQuality = new ItemStack(ModItems.MEAD_BOTTLE);
+                        BoozeBottleItem.setQuality(MeadBottleWithQuality, 0.75f);
+                        entries.add(MeadBottleWithQuality);
+
+                        ItemStack AmbrosiaBottleWithQuality = new ItemStack(ModItems.AMBROSIA_BOTTLE);
+                        BoozeBottleItem.setQuality(AmbrosiaBottleWithQuality, 0.75f);
+                        entries.add(AmbrosiaBottleWithQuality);
 
 
                     }).build());

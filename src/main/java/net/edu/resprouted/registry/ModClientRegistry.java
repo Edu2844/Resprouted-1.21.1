@@ -254,6 +254,36 @@ public class ModClientRegistry {
                 Identifier.of("resprouted:block/fluid/booze/iron_wine_flow"),
                 Identifier.of("resprouted:block/fluid/booze/iron_wine_overlay")
         ));
+        //Cider
+        registry.register(ModFluids.CIDER_STILL, ModFluids.CIDER_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/booze/cider_still"),
+                Identifier.of("resprouted:block/fluid/booze/cider_flow"),
+                Identifier.of("resprouted:block/fluid/booze/cider_overlay")
+        ));
+        //Mead
+        registry.register(ModFluids.MEAD_STILL, ModFluids.MEAD_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/booze/mead_still"),
+                Identifier.of("resprouted:block/fluid/booze/mead_flow"),
+                Identifier.of("resprouted:block/fluid/booze/mead_overlay")
+        ));
+        //Wine
+        registry.register(ModFluids.WINE_STILL, ModFluids.WINE_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/booze/wine_still"),
+                Identifier.of("resprouted:block/fluid/booze/wine_flow"),
+                Identifier.of("resprouted:block/fluid/booze/wine_overlay")
+        ));
+        //Sweet Berry Wine
+        registry.register(ModFluids.SWEET_BERRY_WINE_STILL, ModFluids.SWEET_BERRY_WINE_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/booze/sweet_berry_wine_still"),
+                Identifier.of("resprouted:block/fluid/booze/sweet_berry_wine_flow"),
+                Identifier.of("resprouted:block/fluid/booze/sweet_berry_wine_overlay")
+        ));
+        //Ambrosia
+        registry.register(ModFluids.AMBROSIA_STILL, ModFluids.AMBROSIA_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/booze/ambrosia_still"),
+                Identifier.of("resprouted:block/fluid/booze/ambrosia_flow"),
+                Identifier.of("resprouted:block/fluid/booze/ambrosia_overlay")
+        ));
     }
     public static void registerBlockColors() {
         ColorProviderRegistry<Block, BlockColorProvider> registry = ColorProviderRegistry.BLOCK;

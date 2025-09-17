@@ -14,6 +14,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 import java.util.List;
 
@@ -79,7 +80,7 @@ public class ModItems {
     public static final Item TINY_GLOWSTONE_DUST = registerItem("tiny_glowstone_dust", new Item(new Item.Settings()));
     public static final Item TOMATO = registerItem("tomato", new TomatoItem(new Item.Settings().food(ModFoodComponents.TOMATO).maxCount(64)));
     public static final Item TOMATO_SEEDS = registerItem("tomato_seeds", new Item(new Item.Settings()));
-    public static final Item GHOST_PEPPER = registerItem("ghost_pepper", new FoodItem(new Item.Settings().food(ModFoodComponents.GHOST_PEPPER)){
+    public static final Item GHOST_PEPPER = registerItem("ghost_pepper", new FoodItem(new Item.Settings().food(ModFoodComponents.GHOST_PEPPER).rarity(Rarity.RARE)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.resprouted.ghost_pepper.tooltip"));
@@ -130,7 +131,7 @@ public class ModItems {
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.REGULAR_JUICE).maxCount(16)));
 
     public static final Item GOLDEN_APPLE_JUICE_BOTTLE = registerItem("golden_apple_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GOLDEN_APPLE_JUICE).maxCount(16)));
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GOLDEN_APPLE_JUICE).maxCount(16).rarity(Rarity.EPIC)));
 
     public static final Item GRAPE_JUICE_BOTTLE = registerItem("grape_juice_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.REGULAR_JUICE).maxCount(16)));
@@ -153,6 +154,7 @@ public class ModItems {
     public static final Item ALE_WORT_BOTTLE = registerItem("ale_wort_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.ALE_WORT).maxCount(16)));
 
+    //Booze bottles
     public static final Item ALE_BOTTLE = registerItem("ale_bottle",
             new BoozeBottleItem(ModFluids.ALE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyAleEffects)
                     .setInebriationChance(0.5f));
@@ -160,6 +162,27 @@ public class ModItems {
     public static final Item IRON_WINE_BOTTLE = registerItem("iron_wine_bottle",
             new BoozeBottleItem(ModFluids.IRON_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyIronWineEffects)
                     .setInebriationChance(0.5f));
+
+    public static final Item CIDER_BOTTLE = registerItem("cider_bottle",
+            new BoozeBottleItem(ModFluids.CIDER_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyCiderEffects)
+                    .setInebriationChance(0.5f));
+
+    public static final Item MEAD_BOTTLE = registerItem("mead_bottle",
+            new BoozeBottleItem(ModFluids.MEAD_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyMeadEffects)
+                    .setInebriationChance(0.5f));
+
+    public static final Item SWEET_BERRY_WINE_BOTTLE = registerItem("sweet_berry_wine_bottle",
+            new BoozeBottleItem(ModFluids.SWEET_BERRY_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applySweetBerryWineEffects)
+                    .setInebriationChance(0.85f));
+
+    public static final Item WINE_BOTTLE = registerItem("wine_bottle",
+            new BoozeBottleItem(ModFluids.WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyWineEffects)
+                    .setInebriationChance(0.5f));
+
+    public static final Item AMBROSIA_BOTTLE = registerItem("ambrosia_bottle",
+            new BoozeBottleItem(ModFluids.AMBROSIA_STILL, new Item.Settings().maxCount(64).rarity(Rarity.EPIC), BoozeEffects::applyAmbrosiaEffects)
+                    .setInebriationChance(1.0f));
+
 
     // =================================================
     // ||                    FOOD                     ||

@@ -196,7 +196,7 @@ public class BoozeBottleItem extends Item {
                 player.addStatusEffect(new StatusEffectInstance(
                         ModEffects.TIPSY, duration, 0, false, false
                 ));
-            } else if (tipsyEffect.getAmplifier() < 2) {
+            } else if (tipsyEffect.getAmplifier() < 3) {
                 player.addStatusEffect(new StatusEffectInstance(
                         ModEffects.TIPSY,
                         Math.max(duration, tipsyEffect.getDuration()),

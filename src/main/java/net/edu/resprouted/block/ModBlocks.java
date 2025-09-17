@@ -576,6 +576,21 @@ public class ModBlocks {
     public static final Block IRON_WINE_FLUID_BLOCK = registerBlockWithoutBlockItem("iron_wine_fluid_block", new
             FluidBlock(ModFluids.IRON_WINE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
 
+    public static final Block CIDER_FLUID_BLOCK = registerBlockWithoutBlockItem("cider_fluid_block", new
+            FluidBlock(ModFluids.CIDER_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block MEAD_FLUID_BLOCK = registerBlockWithoutBlockItem("mead_fluid_block", new
+            FluidBlock(ModFluids.MEAD_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block WINE_FLUID_BLOCK = registerBlockWithoutBlockItem("wine_fluid_block", new
+            FluidBlock(ModFluids.WINE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block SWEET_BERRY_WINE_FLUID_BLOCK = registerBlockWithoutBlockItem("sweet_berry_wine_fluid_block", new
+            FluidBlock(ModFluids.SWEET_BERRY_WINE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block AMBROSIA_FLUID_BLOCK = registerBlockWithoutBlockItem("ambrosia_fluid_block", new
+            FluidBlock(ModFluids.AMBROSIA_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     // =================================================
     // ||                   HERBS                     ||
     // =================================================

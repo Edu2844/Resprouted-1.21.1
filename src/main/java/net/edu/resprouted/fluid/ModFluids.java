@@ -44,6 +44,21 @@ public class ModFluids {
     public static final FlowableFluid IRON_WINE_STILL = register("iron_wine_still", new IronWine.Still());
     public static final FlowableFluid IRON_WINE_FLOWING = register("iron_wine_flowing", new IronWine.Flowing());
 
+    public static final FlowableFluid CIDER_STILL = register("cider_still", new Cider.Still());
+    public static final FlowableFluid CIDER_FLOWING = register("cider_flowing", new Cider.Flowing());
+
+    public static final FlowableFluid MEAD_STILL = register("mead_still", new Mead.Still());
+    public static final FlowableFluid MEAD_FLOWING = register("mead_flowing", new Mead.Flowing());
+
+    public static final FlowableFluid WINE_STILL = register("wine_still", new Wine.Still());
+    public static final FlowableFluid WINE_FLOWING = register("wine_flowing", new Wine.Flowing());
+
+    public static final FlowableFluid SWEET_BERRY_WINE_STILL = register("sweet_berry_wine_still", new SweetBerryWine.Still());
+    public static final FlowableFluid SWEET_BERRY_WINE_FLOWING = register("sweet_berry_wine_flowing", new SweetBerryWine.Flowing());
+
+    public static final FlowableFluid AMBROSIA_STILL = register("ambrosia_still", new Ambrosia.Still());
+    public static final FlowableFluid AMBROSIA_FLOWING = register("ambrosia_flowing", new Ambrosia.Flowing());
+
     private static FlowableFluid register(String name, FlowableFluid flowableFluid) {
         return Registry.register(Registries.FLUID, Identifier.of(Resprouted.MOD_ID, name), flowableFluid);
     }

@@ -22,6 +22,26 @@ public class BrewingRecipes {
                 FluidStack.create(ModFluids.IRON_WINE_STILL, 81000),
                 FluidStack.create(ModFluids.IRON_BERRY_JUICE_STILL, 81000)
         ));
+        register(new BrewingRecipe(
+                FluidStack.create(ModFluids.WINE_STILL, 81000),
+                FluidStack.create(ModFluids.GRAPE_JUICE_STILL, 81000)
+        ));
+        register(new BrewingRecipe(
+                FluidStack.create(ModFluids.SWEET_BERRY_WINE_STILL, 81000),
+                FluidStack.create(ModFluids.SWEET_BERRY_JUICE_STILL, 81000)
+        ));
+        register(new BrewingRecipe(
+                FluidStack.create(ModFluids.CIDER_STILL, 81000),
+                FluidStack.create(ModFluids.APPLE_JUICE_STILL, 81000)
+        ));
+        register(new BrewingRecipe(
+                FluidStack.create(ModFluids.MEAD_STILL, 81000),
+                FluidStack.create(ModFluids.HONEY_STILL, 81000)
+        ));
+        register(new BrewingRecipe(
+                FluidStack.create(ModFluids.AMBROSIA_STILL, 81000),
+                FluidStack.create(ModFluids.GOLDEN_APPLE_JUICE_STILL, 81000)
+        ));
     }
 
     public static void register(BrewingRecipe recipe) {
