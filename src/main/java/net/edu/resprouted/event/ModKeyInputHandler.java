@@ -12,7 +12,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import org.lwjgl.glfw.GLFW;
 
-public class ModKeybinds {
+public class ModKeyInputHandler {
     public static KeyBinding firepowerattack;
 
     public static void registerKeyInputs() {

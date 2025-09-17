@@ -18,10 +18,12 @@ import net.edu.resprouted.item.ModItemGroups;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.registry.ModRegistry;
+import net.edu.resprouted.util.RopeDispenser;
 import net.edu.resprouted.world.ModFoliagePlacerTypes;
 import net.edu.resprouted.world.ModTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.resource.ResourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,8 +54,9 @@ public class Resprouted implements ModInitializer {
 		ModMessages.registerC2SPackets();
 		ModScreenHandlers.registerScreenHandlers();
 		ModDataComponentTypes.registerDataComponentTypes();
+		DispenserBlock.registerBehavior((ModBlocks.ROPE.asItem()), new RopeDispenser());
 		BrewingRecipes.registerRecipes();
-		LOGGER.info("Brewing recipes registered: " + BrewingRecipes.RECIPES.size());
+        LOGGER.info("Brewing recipes registered: {}", BrewingRecipes.RECIPES.size());
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
 
 

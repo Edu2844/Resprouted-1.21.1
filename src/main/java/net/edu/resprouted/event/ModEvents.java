@@ -2,14 +2,11 @@ package net.edu.resprouted.event;
 
 
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
-import net.edu.resprouted.util.RopeDispenser;
 import net.edu.resprouted.util.TextUtils;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -25,6 +22,18 @@ import net.minecraft.util.Formatting;
 import java.util.List;
 
 public class ModEvents {
+
+    public static void registerModEvents() {
+        Resprouted.LOGGER.info("Registering Events for " + Resprouted.MOD_ID);
+
+        ItemTooltipCallback.EVENT.register(ModEvents::onItemTooltip);
+        ItemTooltipCallback.EVENT.register(ModEvents::onWeaponTooltip);
+        ItemTooltipCallback.EVENT.register(ModEvents::onHoneyTooltip);
+        ServerLivingEntityEvents.ALLOW_DEATH.register(ModEvents::onAllowDeath);
+
+    }
+
+    // ========== TOOLTIP EVENTS ==========
 
     private static void onItemTooltip(ItemStack stack, Item.TooltipContext context, TooltipType type, List<Text> tooltip) {
         if (stack.get(ModDataComponentTypes.OILED) != null && Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OILED))) {
@@ -46,6 +55,8 @@ public class ModEvents {
             TextUtils.addHoneyEffectTooltip(stack, context, tooltip);
         }
     }
+
+    // ========== ENTITY EVENTS ==========
 
     private static boolean onAllowDeath(LivingEntity entity, DamageSource source, float damageAmount) {
         if (source.isSourceCreativePlayer()) return true;
@@ -77,15 +88,5 @@ public class ModEvents {
         }
 
         return false;
-    }
-
-    public static void registerModEvents() {
-        Resprouted.LOGGER.info("Registering Events for " + Resprouted.MOD_ID);
-        ItemTooltipCallback.EVENT.register(ModEvents::onItemTooltip);
-        ItemTooltipCallback.EVENT.register(ModEvents::onWeaponTooltip);
-        ItemTooltipCallback.EVENT.register(ModEvents::onHoneyTooltip);
-        ServerLivingEntityEvents.ALLOW_DEATH.register(ModEvents::onAllowDeath);
-        DispenserBlock.registerBehavior((ModBlocks.ROPE.asItem()), new RopeDispenser());
-
     }
 }
