@@ -23,20 +23,20 @@ import net.minecraft.world.World;
 public class RetortBlock extends Block {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final VoxelShape NORTH_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(7.0F, 10.0F, 12.0F, 9.0F, 12.0F, 16.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F)
+            Block.createCuboidShape(7.0, 10.0, 12.0, 9.0, 12.0, 16.0),
+            Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0)
     );
     private static final VoxelShape SOUTH_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(7.0F, 10.0F, 0.0F, 9.0F, 12.0F, 4.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F)
+            Block.createCuboidShape(7.0, 10.0, 0.0, 9.0, 12.0, 4.0),
+            Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0)
     );
     private static final VoxelShape EAST_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(0.0F, 10.0F, 7.0F, 4.0F, 12.0F, 9.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F)
+            Block.createCuboidShape(0.0, 10.0, 7.0, 4.0, 12.0, 9.0),
+            Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0)
     );
     private static final VoxelShape WEST_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(12.0F, 10.0F, 7.0F, 16.0F, 12.0F, 9.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F)
+            Block.createCuboidShape(12.0, 10.0, 7.0, 16.0, 12.0, 9.0),
+            Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0)
     );
 
     public RetortBlock(Settings settings) {
@@ -60,7 +60,7 @@ public class RetortBlock extends Block {
         BlockPos condenserPos = pos.offset(state.get(FACING).getOpposite());
         BlockState condenserState = world.getBlockState(condenserPos);
 
-        if (!(condenserState.getBlock() instanceof CondenserBlock condenserBlock)) {
+        if (!(condenserState.getBlock() instanceof BasicCondenserBlock condenserBlock)) {
             return ItemActionResult.FAIL;
         }
         return condenserBlock.onUseWithItem(stack, condenserState, world, condenserPos, player, hand, hit);

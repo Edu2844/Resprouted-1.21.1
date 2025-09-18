@@ -37,7 +37,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class CrushingTubBlock extends BlockWithEntity {
-    private static final VoxelShape SHAPE = Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 9.0F, 16.0F);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 9.0, 16.0);
     public static final MapCodec<CrushingTubBlock> CODEC = CrushingTubBlock.createCodec(CrushingTubBlock::new);
 
     public CrushingTubBlock(Settings settings) {

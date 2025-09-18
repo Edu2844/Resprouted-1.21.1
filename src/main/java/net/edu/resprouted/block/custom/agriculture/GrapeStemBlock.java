@@ -24,10 +24,10 @@ public class GrapeStemBlock extends CropBlock{
     public static final IntProperty AGE = IntProperty.of("age", 0, 3);
     public static final int MAX_AGE = 3;
     private static final VoxelShape[] SHAPE_TO_AGE = new VoxelShape[]{
-            Block.createCuboidShape(7.0F, 0.0F, 7.0F, 9.0F, 3.0F, 9.0F),
-            Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 9.0F, 10.0F),
-            Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 15.0F, 10.0F),
-            Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F)
+            Block.createCuboidShape(7.0, 0.0, 7.0, 9.0, 3.0, 9.0),
+            Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 9.0, 10.0),
+            Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 15.0, 10.0),
+            Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 16.0, 10.0)
     };
     public GrapeStemBlock(Settings settings) {
         super(settings);

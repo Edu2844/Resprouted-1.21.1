@@ -3,6 +3,7 @@ package net.edu.resprouted.block.custom.alchemy;
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.block.abstracts.AbstractCondenserBlock;
 import net.edu.resprouted.block.entity.custom.AdvancedCondenserBE;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,8 +16,8 @@ import net.minecraft.world.World;
 
 public class AdvancedCondenserBlock extends AbstractCondenserBlock {
     private static final VoxelShape TOP_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 12.0F, 16.0F),
-            Block.createCuboidShape(4.0F, 12.0F, 4.0F, 12.0F, 16.0F, 12.0F)
+            Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 12.0, 16.0),
+            Block.createCuboidShape(4.0, 12.0, 4.0, 12.0, 16.0, 12.0)
     );
     public static final MapCodec<AdvancedCondenserBlock> CODEC = AdvancedCondenserBlock.createCodec(AdvancedCondenserBlock::new);
 

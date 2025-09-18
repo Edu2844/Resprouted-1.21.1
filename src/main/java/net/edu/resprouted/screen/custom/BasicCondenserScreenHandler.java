@@ -1,6 +1,6 @@
 package net.edu.resprouted.screen.custom;
 
-import net.edu.resprouted.block.entity.custom.CondenserBE;
+import net.edu.resprouted.block.entity.custom.BasicCondenserBE;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.screen.slot.BottleSlot;
 import net.edu.resprouted.screen.slot.CondenserFuelSlot;
@@ -16,16 +16,16 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
-public class CondenserScreenHandler extends ScreenHandler {
+public class BasicCondenserScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
-    public final CondenserBE blockEntity;
+    public final BasicCondenserBE blockEntity;
 
-    public CondenserScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId, playerInventory, (CondenserBE) playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
+    public BasicCondenserScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
+        this(syncId, playerInventory, (BasicCondenserBE) playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
     }
 
-    public CondenserScreenHandler(int syncId, PlayerInventory playerInventory, CondenserBE blockEntity, PropertyDelegate propertyDelegate) {
+    public BasicCondenserScreenHandler(int syncId, PlayerInventory playerInventory, BasicCondenserBE blockEntity, PropertyDelegate propertyDelegate) {
         super(ModScreenHandlers.CONDENSER_SCREEN_HANDLER, syncId);
         this.inventory = blockEntity;
         this.blockEntity = blockEntity;
@@ -97,7 +97,7 @@ public class CondenserScreenHandler extends ScreenHandler {
         }
     }
 
-    public CondenserBE getBlockEntity() {
+    public BasicCondenserBE getBlockEntity() {
         return this.blockEntity;
     }
 

@@ -1,6 +1,6 @@
 package net.edu.resprouted.block.custom.decorative;
 
-import net.edu.resprouted.block.interfaces.IAdvancedRotationPlacement;
+import net.edu.resprouted.block.interfaces.AdvancedRotationPlacement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
@@ -10,7 +10,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 
-public class ClayWallDiagBlock extends Block implements IAdvancedRotationPlacement {
+public class ClayWallDiagBlock extends Block implements AdvancedRotationPlacement {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
     public ClayWallDiagBlock(Settings settings) {

@@ -24,9 +24,9 @@ public class ModBlockEntities {
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "cabinet_be"),
                     BlockEntityType.Builder.create(CabinetBE::new, CabinetRegistry.getAllCabinetBlocks()).build(null));
 
-    public static final BlockEntityType<CondenserBE> CONDENSER_BE =
+    public static final BlockEntityType<BasicCondenserBE> CONDENSER_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "condenser_be"),
-                    BlockEntityType.Builder.create(CondenserBE::new, ModBlocks.CONDENSER).build(null));
+                    BlockEntityType.Builder.create(BasicCondenserBE::new, ModBlocks.CONDENSER).build(null));
 
     public static final BlockEntityType<AdvancedCondenserBE> ADVANCED_CONDENSER_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "advanced_condenser_be"),

@@ -3,7 +3,8 @@ package net.edu.resprouted.block.custom.alchemy;
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.block.entity.custom.CondenserBE;
+import net.edu.resprouted.block.abstracts.AbstractCondenserBlock;
+import net.edu.resprouted.block.entity.custom.BasicCondenserBE;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -13,19 +14,19 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
 
-public class CondenserBlock extends AbstractCondenserBlock {
+public class BasicCondenserBlock extends AbstractCondenserBlock {
     private static final VoxelShape TOP_SHAPE = VoxelShapes.union(
             Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 4.0F, 16.0F),
             Block.createCuboidShape(4.0F, 4.0F, 4.0F, 12.0F, 8.0F, 12.0F)
     );
-    public static final MapCodec<CondenserBlock> CODEC = CondenserBlock.createCodec(CondenserBlock::new);
+    public static final MapCodec<BasicCondenserBlock> CODEC = BasicCondenserBlock.createCodec(BasicCondenserBlock::new);
 
-    public CondenserBlock(Settings settings) {
+    public BasicCondenserBlock(Settings settings) {
         super(settings, TOP_SHAPE, CODEC);
     }
     @Override
     protected BlockEntity createSpecificBlockEntity(BlockPos pos, BlockState state) {
-        return new CondenserBE(pos, state);
+        return new BasicCondenserBE(pos, state);
     }
     @Override
     public boolean hasRequiredRetorts(World world, BlockPos pos, BlockState state) {

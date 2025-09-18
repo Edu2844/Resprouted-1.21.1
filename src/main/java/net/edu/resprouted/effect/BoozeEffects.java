@@ -15,7 +15,7 @@ public class BoozeEffects {
         if (quality >= 0.5F) {
             player.getHungerManager().add(2, 4F * quality);
             int duration = 1200 + ((int) (10800 * quality));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, duration));
+            player.addStatusEffect(new StatusEffectInstance(ModEffects.FULL, duration));
         } else {
             int duration = (int) (6000 * (1 - quality));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, duration));
@@ -163,8 +163,8 @@ public class BoozeEffects {
                 if (effect.getEffectType().value().getCategory() == StatusEffectCategory.BENEFICIAL) {
                     int newDuration = effect.getDuration() - durationDecrease;
 
+                    player.removeStatusEffect(effect.getEffectType());
                     if (newDuration > 0) {
-                        player.removeStatusEffect(effect.getEffectType());
                         player.addStatusEffect(new StatusEffectInstance(
                                 effect.getEffectType(),
                                 newDuration,
@@ -173,8 +173,6 @@ public class BoozeEffects {
                                 effect.shouldShowParticles(),
                                 effect.shouldShowIcon()
                         ));
-                    } else {
-                        player.removeStatusEffect(effect.getEffectType());
                     }
                 }
             }
@@ -201,6 +199,67 @@ public class BoozeEffects {
 
         } else {
             player.damage(player.getDamageSources().magic(), Float.MAX_VALUE);
+        }
+    }
+    public static void applyGlowBerryWineEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+        PlayerEntity player = context.player();
+        float quality = context.quality();
+
+        if (quality >= 0.5F) {
+            player.getHungerManager().add(1, 2F * quality);
+
+            int baseDuration = 1200;
+            int bonusDuration = (int) (4800 * quality);
+
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.NIGHT_VISION,
+                    baseDuration + bonusDuration,
+                    0, false, false, true
+            ));
+
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.GLOWING,
+                    baseDuration + bonusDuration,
+                    0, false, false, true
+            ));
+
+            if (quality >= 0.8F) {
+
+                int resistanceDuration = (int) (3600 * (quality - 0.8F) * 5);
+                player.addStatusEffect(new StatusEffectInstance(
+                        ModEffects.WITHER_WARD,
+                        resistanceDuration,
+                        0, false, false, true
+                ));
+            }
+
+        }
+
+        else {
+            player.getHungerManager().add(1, 0.5F * quality);
+
+            int negativeDuration = (int) (6000 * (1 - quality));
+
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.BLINDNESS,
+                    negativeDuration,
+                    0, false, true, true
+            ));
+
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.NAUSEA,
+                    negativeDuration / 2,
+                    0, false, true, true
+            ));
+
+            if (quality <= 0.2F) {
+
+                player.addStatusEffect(new StatusEffectInstance(
+                        StatusEffects.DARKNESS,
+                        negativeDuration / 2,
+                        0, false, true, true
+                ));
+            }
         }
     }
 }

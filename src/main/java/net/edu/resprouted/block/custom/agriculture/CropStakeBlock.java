@@ -30,8 +30,8 @@ import java.util.Optional;
 public class CropStakeBlock extends CropBlock {
     public static final int MAX_AGE = 7;
     public static final IntProperty AGE = IntProperty.of("age", 0, 7);
-    protected static final VoxelShape CROP_SHAPE = Block.createCuboidShape(2.0F, 0.0F, 2.0F, 14.0F, 16.0F, 14.0F);
-    protected static final VoxelShape STAKE_SHAPE = Block.createCuboidShape(6.0F, 0.0F, 6.0F, 10.0F, 16.0F, 10.0F);
+    protected static final VoxelShape CROP_SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
+    protected static final VoxelShape STAKE_SHAPE = Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
 
     public CropStakeBlock(Settings settings) {
         super(settings);

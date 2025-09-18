@@ -1,6 +1,7 @@
 package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
+import net.edu.resprouted.block.abstracts.AbstractFluidStorageBlockEntity;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipe;
@@ -21,7 +22,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EvaporatingBasinBE extends FluidStorageBE implements ImplementedInventory {
+public class EvaporatingBasinBE extends AbstractFluidStorageBlockEntity implements ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
     private static final long MB_PER_TICK = 81;
     private static final long EV_BOOSTER = 2;

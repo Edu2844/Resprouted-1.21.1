@@ -1,6 +1,6 @@
-package net.edu.resprouted.mixin;
+package net.edu.resprouted.mixin.render;
 
-import net.edu.resprouted.block.interfaces.IAdvancedRotationPlacement;
+import net.edu.resprouted.block.interfaces.AdvancedRotationPlacement;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.WorldRenderer;
@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WorldRenderer.class)
-public abstract class BlockOutlineMixin {
+public abstract class WorldRendererMixin {
     @Inject(method = "drawBlockOutline", at = @At("HEAD"))
     private void onDrawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos pos, BlockState state, CallbackInfo ci) {
         if (!(entity instanceof PlayerEntity player))
@@ -29,7 +29,7 @@ public abstract class BlockOutlineMixin {
         if (!(stack.getItem() instanceof BlockItem blockItem))
             return;
 
-        if (!(blockItem.getBlock() instanceof IAdvancedRotationPlacement))
+        if (!(blockItem.getBlock() instanceof AdvancedRotationPlacement))
             return;
         World world = player.getWorld();
         boolean isSolid = state.isFullCube(world, pos);

@@ -175,6 +175,10 @@ public class ModItems {
             new BoozeBottleItem(ModFluids.SWEET_BERRY_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applySweetBerryWineEffects)
                     .setInebriationChance(0.85f));
 
+    public static final Item GLOW_BERRY_WINE_BOTTLE = registerItem("glow_berry_wine_bottle",
+            new BoozeBottleItem(ModFluids.GLOW_BERRY_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyGlowBerryWineEffects)
+                    .setInebriationChance(0.5f));
+
     public static final Item WINE_BOTTLE = registerItem("wine_bottle",
             new BoozeBottleItem(ModFluids.WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyWineEffects)
                     .setInebriationChance(0.5f));

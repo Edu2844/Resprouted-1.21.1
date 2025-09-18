@@ -1,4 +1,4 @@
-package net.edu.resprouted.mixin;
+package net.edu.resprouted.mixin.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.edu.resprouted.util.ModTags;

@@ -278,6 +278,12 @@ public class ModClientRegistry {
                 Identifier.of("resprouted:block/fluid/booze/sweet_berry_wine_flow"),
                 Identifier.of("resprouted:block/fluid/booze/sweet_berry_wine_overlay")
         ));
+        //Glow Berry Wine
+        registry.register(ModFluids.GLOW_BERRY_WINE_STILL, ModFluids.GLOW_BERRY_WINE_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/booze/glow_berry_wine_still"),
+                Identifier.of("resprouted:block/fluid/booze/glow_berry_wine_flow"),
+                Identifier.of("resprouted:block/fluid/booze/glow_berry_wine_overlay")
+        ));
         //Ambrosia
         registry.register(ModFluids.AMBROSIA_STILL, ModFluids.AMBROSIA_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/booze/ambrosia_still"),

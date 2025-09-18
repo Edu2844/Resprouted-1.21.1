@@ -37,11 +37,11 @@ import java.util.Objects;
 
 public class LiquidBarrelBlock extends BlockWithEntity {
     private static final VoxelShape SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 2.0F),
-            Block.createCuboidShape(2.0F, 0.0F, 2.0F, 14.0F, 1.0F, 14.0F),
-            Block.createCuboidShape(0.0F, 0.0F, 14.0F, 16.0F, 16.0F, 16.0F),
-            Block.createCuboidShape(14.0F, 0.0F, 2.0F, 16.0F, 16.0F, 14.0F),
-            Block.createCuboidShape(0.0F, 0.0F, 2.0F, 2.0F, 16.0F, 14.0F)
+            Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 2.0),
+            Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 1.0, 14.0),
+            Block.createCuboidShape(0.0, 0.0, 14.0, 16.0, 16.0, 16.0),
+            Block.createCuboidShape(14.0, 0.0, 2.0, 16.0, 16.0, 14.0),
+            Block.createCuboidShape(0.0, 0.0, 2.0, 2.0, 16.0, 14.0)
     );
     public static final MapCodec<LiquidBarrelBlock> CODEC = LiquidBarrelBlock.createCodec(LiquidBarrelBlock::new);
 

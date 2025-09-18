@@ -4,7 +4,6 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.block.entity.custom.*;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.item.ModItems;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
@@ -117,11 +116,11 @@ public class ModRegistry {
         registry.add(ModItems.OLIVES, 0.5F);
     }
     public static void registerFluidStorages() {
-        FluidStorage.SIDED.registerForBlockEntity(CrushingTubBE::getFluidTankProvider, ModBlockEntities.CRUSHING_TUB_BE);
-        FluidStorage.SIDED.registerForBlockEntity(LiquidBarrelBE::getFluidTankProvider, ModBlockEntities.LIQUID_BARREL_BE);
-        FluidStorage.SIDED.registerForBlockEntity(EvaporatingBasinBE::getFluidTankProvider, ModBlockEntities.EVAPORATING_BASIN_BE);
-        FluidStorage.SIDED.registerForBlockEntity(CondenserBE::getFluidTankProvider, ModBlockEntities.CONDENSER_BE);
-        FluidStorage.SIDED.registerForBlockEntity(AdvancedCondenserBE::getFluidTankProvider, ModBlockEntities.ADVANCED_CONDENSER_BE);
+        FluidStorage.SIDED.registerForBlockEntity((crushingTubBE, direction2) -> crushingTubBE.getFluidTankProvider(), ModBlockEntities.CRUSHING_TUB_BE);
+        FluidStorage.SIDED.registerForBlockEntity((liquidBarrelBE, direction1) -> liquidBarrelBE.getFluidTankProvider(), ModBlockEntities.LIQUID_BARREL_BE);
+        FluidStorage.SIDED.registerForBlockEntity((evaporatingBasinBE, direction) -> evaporatingBasinBE.getFluidTankProvider(), ModBlockEntities.EVAPORATING_BASIN_BE);
+        FluidStorage.SIDED.registerForBlockEntity((condenserBE, direction1) -> condenserBE.getFluidTankProvider(), ModBlockEntities.CONDENSER_BE);
+        FluidStorage.SIDED.registerForBlockEntity((advancedCondenserBE, direction) -> advancedCondenserBE.getFluidTankProvider(), ModBlockEntities.ADVANCED_CONDENSER_BE);
     }
     public static void registerBoats(){
         TerraformBoatType OliveBoat = new TerraformBoatType.Builder()

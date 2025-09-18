@@ -18,23 +18,23 @@ import net.minecraft.world.World;
 
 public class AdvancedRetortBlock extends RetortBlock{
     private static final VoxelShape NORTH_SHAPE = VoxelShapes.combineAndSimplify(
-            Block.createCuboidShape(7.0F, 5.0F, 12.0F, 9.0F, 7.0F, 16.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F),
+            Block.createCuboidShape(7.0, 5.0, 12.0, 9.0, 7.0, 16.0),
+            Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0),
             BooleanBiFunction.OR
     );
     private static final VoxelShape SOUTH_SHAPE = VoxelShapes.combineAndSimplify(
-            Block.createCuboidShape(7.0F, 5.0F, 0.0F, 9.0F, 7.0F, 4.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F),
+            Block.createCuboidShape(7.0, 5.0, 0.0, 9.0, 7.0, 4.0),
+            Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0),
             BooleanBiFunction.OR
     );
     private static final VoxelShape EAST_SHAPE = VoxelShapes.combineAndSimplify(
-            Block.createCuboidShape(0.0F, 5.0F, 7.0F, 4.0F, 7.0F, 9.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F),
+            Block.createCuboidShape(0.0, 5.0, 7.0, 4.0, 7.0, 9.0),
+            Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0),
             BooleanBiFunction.OR
     );
     private static final VoxelShape WEST_SHAPE = VoxelShapes.combineAndSimplify(
-            Block.createCuboidShape(12.0F, 5.0F, 7.0F, 16.0F, 7.0F, 9.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 16.0F, 12.0F),
+            Block.createCuboidShape(12.0, 5.0, 7.0, 16.0, 7.0, 9.0),
+            Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 16.0, 12.0),
             BooleanBiFunction.OR
     );
     public AdvancedRetortBlock(Settings settings) {

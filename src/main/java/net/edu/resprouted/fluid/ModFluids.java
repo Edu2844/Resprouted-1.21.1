@@ -56,6 +56,9 @@ public class ModFluids {
     public static final FlowableFluid SWEET_BERRY_WINE_STILL = register("sweet_berry_wine_still", new SweetBerryWine.Still());
     public static final FlowableFluid SWEET_BERRY_WINE_FLOWING = register("sweet_berry_wine_flowing", new SweetBerryWine.Flowing());
 
+    public static final FlowableFluid GLOW_BERRY_WINE_STILL = register("glow_berry_wine_still", new GlowBerryWine.Still());
+    public static final FlowableFluid GLOW_BERRY_WINE_FLOWING = register("glow_berry_wine_flowing", new GlowBerryWine.Flowing());
+
     public static final FlowableFluid AMBROSIA_STILL = register("ambrosia_still", new Ambrosia.Still());
     public static final FlowableFluid AMBROSIA_FLOWING = register("ambrosia_flowing", new Ambrosia.Flowing());
 

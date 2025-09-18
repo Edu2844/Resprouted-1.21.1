@@ -85,21 +85,14 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.BREWING_BARREL);
 
+
+                        ItemStack IronWineBottleWithQuality = new ItemStack(ModItems.IRON_WINE_BOTTLE);
+                        BoozeBottleItem.setQuality(IronWineBottleWithQuality, 0.75f);
+                        entries.add(IronWineBottleWithQuality);
+
                         ItemStack aleBottleWithQuality = new ItemStack(ModItems.ALE_BOTTLE);
                         BoozeBottleItem.setQuality(aleBottleWithQuality, 0.75f);
                         entries.add(aleBottleWithQuality);
-
-                        ItemStack IronWineBottleWithQuality = new ItemStack(ModItems.IRON_WINE_BOTTLE);
-                        BoozeBottleItem.setQuality(IronWineBottleWithQuality, 0.08f);
-                        entries.add(IronWineBottleWithQuality);
-
-                        ItemStack WineBottleWithQuality = new ItemStack(ModItems.WINE_BOTTLE);
-                        BoozeBottleItem.setQuality(WineBottleWithQuality, 0.75f);
-                        entries.add(WineBottleWithQuality);
-
-                        ItemStack SweetBerryWineBottleWithQuality = new ItemStack(ModItems.SWEET_BERRY_WINE_BOTTLE);
-                        BoozeBottleItem.setQuality(SweetBerryWineBottleWithQuality, 0.75f);
-                        entries.add(SweetBerryWineBottleWithQuality);
 
                         ItemStack CiderBottleWithQuality = new ItemStack(ModItems.CIDER_BOTTLE);
                         BoozeBottleItem.setQuality(CiderBottleWithQuality, 0.75f);
@@ -112,6 +105,21 @@ public class ModItemGroups {
                         ItemStack AmbrosiaBottleWithQuality = new ItemStack(ModItems.AMBROSIA_BOTTLE);
                         BoozeBottleItem.setQuality(AmbrosiaBottleWithQuality, 0.75f);
                         entries.add(AmbrosiaBottleWithQuality);
+
+                        ItemStack GlowBerryBottleWithQuality = new ItemStack(ModItems.GLOW_BERRY_WINE_BOTTLE);
+                        BoozeBottleItem.setQuality(GlowBerryBottleWithQuality, 0.75f);
+                        entries.add(GlowBerryBottleWithQuality);
+
+                        ItemStack SweetBerryWineBottleWithQuality = new ItemStack(ModItems.SWEET_BERRY_WINE_BOTTLE);
+                        BoozeBottleItem.setQuality(SweetBerryWineBottleWithQuality, 0.75f);
+                        entries.add(SweetBerryWineBottleWithQuality);
+
+                        ItemStack WineBottleWithQuality = new ItemStack(ModItems.WINE_BOTTLE);
+                        BoozeBottleItem.setQuality(WineBottleWithQuality, 0.75f);
+                        entries.add(WineBottleWithQuality);
+
+
+
 
 
                     }).build());

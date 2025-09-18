@@ -1,11 +1,12 @@
 package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.custom.alchemy.CondenserBlock;
+import net.edu.resprouted.block.abstracts.AbstractCondenserBlockEntity;
+import net.edu.resprouted.block.custom.alchemy.BasicCondenserBlock;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.CondenserRecipe;
 import net.edu.resprouted.recipe.Input.CondenserRecipeInput;
-import net.edu.resprouted.screen.custom.CondenserScreenHandler;
+import net.edu.resprouted.screen.custom.BasicCondenserScreenHandler;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -24,14 +25,14 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class CondenserBE extends CondenserBaseBE {
+public class BasicCondenserBE extends AbstractCondenserBlockEntity {
     private static final int INPUT_SLOT_1 = 0;
     private static final int INPUT_SLOT_2 = 1;
     private static final int FUEL_SLOT = 2;
     private static final int BOTTLE_SLOT = 3;
     private static final int OUTPUT_SLOT = 4;
 
-    public CondenserBE(BlockPos pos, BlockState state) {
+    public BasicCondenserBE(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CONDENSER_BE, pos, state, 5);
     }
 
@@ -42,10 +43,10 @@ public class CondenserBE extends CondenserBaseBE {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> CondenserBE.this.progress;
-                    case 1 -> CondenserBE.this.maxProgress;
-                    case 2 -> CondenserBE.this.burnTime;
-                    case 3 -> CondenserBE.this.fuelTime;
+                    case 0 -> BasicCondenserBE.this.progress;
+                    case 1 -> BasicCondenserBE.this.maxProgress;
+                    case 2 -> BasicCondenserBE.this.burnTime;
+                    case 3 -> BasicCondenserBE.this.fuelTime;
                     default -> 0;
                 };
             }
@@ -53,10 +54,10 @@ public class CondenserBE extends CondenserBaseBE {
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0: CondenserBE.this.progress = value; break;
-                    case 1: CondenserBE.this.maxProgress = value; break;
-                    case 2: CondenserBE.this.burnTime = value; break;
-                    case 3: CondenserBE.this.fuelTime = value; break;
+                    case 0: BasicCondenserBE.this.progress = value; break;
+                    case 1: BasicCondenserBE.this.maxProgress = value; break;
+                    case 2: BasicCondenserBE.this.burnTime = value; break;
+                    case 3: BasicCondenserBE.this.fuelTime = value; break;
                 }
             }
 
@@ -74,12 +75,12 @@ public class CondenserBE extends CondenserBaseBE {
 
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new CondenserScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+        return new BasicCondenserScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
     @Override
     protected void spawnSmokeParticles(World world, BlockPos pos, BlockState state) {
-        Direction facing = state.get(CondenserBlock.FACING);
+        Direction facing = state.get(BasicCondenserBlock.FACING);
 
         if (facing == Direction.NORTH || facing == Direction.SOUTH) {
             spawnSmoke(world, pos.getX() - 0.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
@@ -103,7 +104,7 @@ public class CondenserBE extends CondenserBaseBE {
 
     @Override
     protected void updateLitState(World world, BlockPos pos, BlockState state, boolean shouldBeLit) {
-        world.setBlockState(pos, state.with(CondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
+        world.setBlockState(pos, state.with(BasicCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
     }
 
     @Override

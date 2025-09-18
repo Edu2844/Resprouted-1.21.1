@@ -1,6 +1,7 @@
 package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
+import net.edu.resprouted.block.abstracts.AbstractFluidStorageBlockEntity;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
@@ -16,7 +17,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import java.util.Optional;
 
-public class CrushingTubBE extends FluidStorageBE implements ImplementedInventory {
+public class CrushingTubBE extends AbstractFluidStorageBlockEntity implements ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
 
     public CrushingTubBE(BlockPos pos, BlockState state) {

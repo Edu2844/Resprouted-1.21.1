@@ -257,6 +257,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ALE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.IRON_WINE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.SWEET_BERRY_WINE_BOTTLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GLOW_BERRY_WINE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.WINE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.CIDER_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.MEAD_BOTTLE, Models.GENERATED);

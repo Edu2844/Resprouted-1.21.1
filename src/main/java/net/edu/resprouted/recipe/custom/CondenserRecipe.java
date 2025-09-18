@@ -3,8 +3,8 @@ package net.edu.resprouted.recipe.custom;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.edu.resprouted.block.custom.alchemy.CondenserBlock;
-import net.edu.resprouted.block.entity.custom.CondenserBE;
+import net.edu.resprouted.block.custom.alchemy.BasicCondenserBlock;
+import net.edu.resprouted.block.entity.custom.BasicCondenserBE;
 import net.edu.resprouted.recipe.Input.CondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.util.ElixirUtils;
@@ -41,12 +41,12 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
         boolean hasFluid = false;
         boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);
 
-        if (world.getBlockEntity(input.pos()) instanceof CondenserBE be) {
+        if (world.getBlockEntity(input.pos()) instanceof BasicCondenserBE be) {
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
             hasFluid = be.hasFluid();
 
             BlockState blockState = world.getBlockState(input.pos());
-            if (blockState.getBlock() instanceof CondenserBlock condenserBlock) {
+            if (blockState.getBlock() instanceof BasicCondenserBlock condenserBlock) {
                 hasRetorts = condenserBlock.hasRequiredRetorts(world, input.pos(), blockState);
             }
         }

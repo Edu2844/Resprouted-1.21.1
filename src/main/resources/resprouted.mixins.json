@@ -3,15 +3,14 @@
   "package": "net.edu.resprouted.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "CropBlockMixin",
-    "FoodComponentMixin",
-    "GlassBottleItemMixin",
-    "HoneyBottleMixin",
-    "LivingEntityMixin",
-    "MilkBucketItemMixin",
-    "MushroomPlantBlockMixin",
-    "SugarCaneBlockMixin",
-    "effect.LivingEntityEffectsMixin"
+    "gameplay.CropBlockMixin",
+    "gameplay.FoodComponentMixin",
+    "gameplay.GlassBottleItemMixin",
+    "gameplay.HoneyBottleMixin",
+    "gameplay.LivingEntityMixin",
+    "gameplay.MilkBucketItemMixin",
+    "gameplay.MushroomPlantBlockMixin",
+    "gameplay.SugarCaneBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -20,8 +19,8 @@
     "requireAnnotations": true
   },
   "client": [
-    "BackgroundRendererMixin",
-    "BlockOutlineMixin",
-    "LeavesRendererMixin"
+    "render.BackgroundRendererMixin",
+    "render.WorldRendererMixin",
+    "render.RenderLayersMixin"
   ]
 }

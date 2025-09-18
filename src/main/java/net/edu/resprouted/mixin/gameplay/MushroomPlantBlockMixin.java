@@ -1,4 +1,4 @@
-package net.edu.resprouted.mixin;
+package net.edu.resprouted.mixin.gameplay;
 
 import net.edu.resprouted.block.custom.agriculture.FertileSoilBlock;
 import net.minecraft.block.BlockState;

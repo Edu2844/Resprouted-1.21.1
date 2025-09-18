@@ -1,6 +1,5 @@
-package net.edu.resprouted.block.entity.custom;
+package net.edu.resprouted.block.abstracts;
 
-import net.edu.resprouted.block.custom.alchemy.AbstractCondenserBlock;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -30,10 +29,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
+public abstract class AbstractCondenserBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
     protected final DefaultedList<ItemStack> inventory;
     protected int burnTime = 0;
     protected int fuelTime = 0;
@@ -45,7 +43,7 @@ public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScr
 
     private int smokeTimer = 0;
 
-    protected CondenserBaseBE(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize) {
+    protected AbstractCondenserBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize) {
         super(type, pos, state);
         this.inventory = DefaultedList.ofSize(inventorySize, ItemStack.EMPTY);
         this.propertyDelegate = createPropertyDelegate();
@@ -239,11 +237,8 @@ public abstract class CondenserBaseBE extends BlockEntity implements ExtendedScr
         return this.fluidStorage;
     }
 
-    public SingleFluidStorage getFluidTankProvider(Direction direction) {
+    public SingleFluidStorage getFluidTankProvider() {
         return this.fluidStorage;
     }
 
-    public SingleFluidStorage getFluidTank() {
-        return this.fluidStorage;
-    }
 }

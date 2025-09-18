@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "resprouted:booze_bottles"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:glass_bottle"
+  }
+}

@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-16T18:45:38.9475934	Resprouted/Block Loot Tables
+// 1.21.1	2025-09-17T16:51:41.8579001	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 327b905f23efd6a06058ec8aace92e8df372febd data\resprouted\loot_table\blocks\condenser.json
 634967a8bb65c47a8b6be880b25af0ffafaf001f data\resprouted\loot_table\blocks\slate_brick_stairs.json
@@ -116,8 +116,8 @@ d53e355823becb2c8ce80b09aa369d481f636fe0 data\resprouted\loot_table\blocks\slate
 60db865970d474fb294d778f98afb772389f2642 data\resprouted\loot_table\blocks\light_gray_painted_planks.json
 cf610c4502d5390cd2da4dc448fc1ef44b94705a data\resprouted\loot_table\blocks\olive_trapdoor.json
 45cdcf5466e1c7b00df4aada8a6e951adb376188 data\resprouted\loot_table\blocks\clay_wall_cross.json
-8fdf582402ebf95012fca41bd215ddce13603ef6 data\resprouted\loot_table\blocks\copper_chandelier.json
 472fe702968631f01d17aaa1815ec28e5ad4afec data\resprouted\loot_table\blocks\ironwood_door.json
+8fdf582402ebf95012fca41bd215ddce13603ef6 data\resprouted\loot_table\blocks\copper_chandelier.json
 f87e84b6b119dd69e87b98828c8ebc3be47395ea data\resprouted\loot_table\blocks\lime_golden_candle_holder.json
 2e67ba21ec72214491eae77d6771e93ccead812e data\resprouted\loot_table\blocks\red_iron_candle_holder.json
 cbbad26f7aab771b978cf27f8e64e3ef1ad33410 data\resprouted\loot_table\blocks\ironwood_trapdoor.json
@@ -148,8 +148,8 @@ d0646d9fd1e003377052d043969313dec8e46d22 data\resprouted\loot_table\blocks\red_s
 b161d11822478dac7b10d0b6c11425bd97e88ef0 data\resprouted\loot_table\blocks\clay_wall_diagonal.json
 81d5f817b8c349ce4e37750c96b7781072b991e6 data\resprouted\loot_table\blocks\fertile_soil.json
 911659ea171b3084f082a2c9951803fa2791f077 data\resprouted\loot_table\blocks\light_blue_iron_candle_holder.json
-4119bae943270d7243af1a3a6429fd36ba4f8cd5 data\resprouted\loot_table\blocks\wind_thistle_block.json
 ff571d45b70b01cbc1cbf00868e19227eb1e88d2 data\resprouted\loot_table\blocks\retort.json
+4119bae943270d7243af1a3a6429fd36ba4f8cd5 data\resprouted\loot_table\blocks\wind_thistle_block.json
 efd7ebbff014f61f8fe77a333dbd5b1bb562eca7 data\resprouted\loot_table\blocks\golden_chain.json
 37d916cf758fd92a0d56711b083b84497e8c54fa data\resprouted\loot_table\blocks\ironwood_table.json
 d6f48c5b4c60e9032f4496f38c72a3ffcdd30755 data\resprouted\loot_table\blocks\waxed_weathered_copper_chain.json

@@ -14,12 +14,12 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
-public class CondenserScreen extends HandledScreen<CondenserScreenHandler> {
+public class BasicCondenserScreen extends HandledScreen<BasicCondenserScreenHandler> {
     private static final Identifier GUI_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/condenser/condenser.png");
     private static final Identifier ARROW_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/condenser_progress.png");
     private static final Identifier LIT_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/lit_progress.png");
 
-    public CondenserScreen(CondenserScreenHandler handler, PlayerInventory inventory, Text title) {
+    public BasicCondenserScreen(BasicCondenserScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
 
     }
@@ -28,7 +28,7 @@ public class CondenserScreen extends HandledScreen<CondenserScreenHandler> {
     protected void init() {
         super.init();
 
-        addDrawable(FluidWidget.builder(this.handler.getBlockEntity().getFluidTank())
+        addDrawable(FluidWidget.builder(this.handler.getBlockEntity().getFluidStorage())
                 .bounds(this.x + 133, this.y + 27, 16, 32)
                 .posSupplier(() -> this.handler.getBlockEntity().getPos())
                 .build());

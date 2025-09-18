@@ -18,10 +18,10 @@ public class CustomMushroomBlock extends CropBlock {
     public static final int MAX_AGE = 3;
     public static final IntProperty AGE = IntProperty.of("age", 0, 3);
     private static final VoxelShape[] SHAPE_TO_AGE = new VoxelShape[]{
-            Block.createCuboidShape(5.0F, 0.0F, 5.0F, 11.0F, 5.0F, 11.0F),
-            Block.createCuboidShape(4.0F, 0.0F, 4.0F, 12.0F, 8.0F, 12.0F),
-            Block.createCuboidShape(3.0F, 0.0F, 3.0F, 13.0F, 9.0F, 13.0F),
-            Block.createCuboidShape(2.0F, 0.0F, 2.0F, 14.0F, 12.0F, 14.0F),
+            Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 5.0, 11.0),
+            Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 8.0, 12.0),
+            Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 9.0, 13.0),
+            Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0),
     };
 
     public CustomMushroomBlock(Settings settings, Supplier<ItemConvertible> mushroomSupplier, Predicate<BlockState> growthCondition) {

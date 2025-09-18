@@ -2,6 +2,7 @@ package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.block.abstracts.AbstractCondenserBlockEntity;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.recipe.Input.AdvancedCondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
@@ -26,7 +27,7 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class AdvancedCondenserBE extends CondenserBaseBE {
+public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
     private static final int INPUT_SLOT_1 = 0;
     private static final int INPUT_SLOT_2 = 1;
     private static final int INPUT_SLOT_3 = 2;

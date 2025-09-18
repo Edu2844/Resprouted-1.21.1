@@ -42,6 +42,10 @@ public class BrewingRecipes {
                 FluidStack.create(ModFluids.AMBROSIA_STILL, 81000),
                 FluidStack.create(ModFluids.GOLDEN_APPLE_JUICE_STILL, 81000)
         ));
+        register(new BrewingRecipe(
+                FluidStack.create(ModFluids.GLOW_BERRY_WINE_STILL, 81000),
+                FluidStack.create(ModFluids.GLOW_BERRY_JUICE_STILL, 81000)
+        ));
     }
 
     public static void register(BrewingRecipe recipe) {

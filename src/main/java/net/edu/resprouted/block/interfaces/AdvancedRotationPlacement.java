@@ -9,7 +9,7 @@ import net.minecraft.util.math.Direction;
  * con lógica especial cuando se coloca desde arriba o abajo (eje Y).
  */
 
-public interface IAdvancedRotationPlacement {
+public interface AdvancedRotationPlacement {
     /**
      * Calcula el estado del bloque con la rotación adecuada basada en cómo el jugador lo coloca.
      *

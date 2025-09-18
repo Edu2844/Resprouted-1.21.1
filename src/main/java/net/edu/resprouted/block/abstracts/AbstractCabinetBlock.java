@@ -1,4 +1,4 @@
-package net.edu.resprouted.block.custom.decorative;
+package net.edu.resprouted.block.abstracts;
 
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;

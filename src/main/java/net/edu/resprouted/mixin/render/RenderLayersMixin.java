@@ -1,4 +1,4 @@
-package net.edu.resprouted.mixin;
+package net.edu.resprouted.mixin.render;
 
 import net.edu.resprouted.block.custom.agriculture.FruitingLeavesBlock;
 import net.minecraft.block.Block;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(RenderLayers.class)
-public abstract class LeavesRendererMixin {
+public abstract class RenderLayersMixin {
     @Inject(method = "getBlockLayer", at = @At("HEAD"), cancellable = true)
     private static void forceCutoutForFruitingLeaves(BlockState state, CallbackInfoReturnable<RenderLayer> cir) {
         Block block = state.getBlock();

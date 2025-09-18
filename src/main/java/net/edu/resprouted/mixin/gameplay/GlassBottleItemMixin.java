@@ -1,4 +1,4 @@
-package net.edu.resprouted.mixin;
+package net.edu.resprouted.mixin.gameplay;
 
 import net.edu.resprouted.util.BottleInteractions;
 import net.minecraft.block.BlockState;

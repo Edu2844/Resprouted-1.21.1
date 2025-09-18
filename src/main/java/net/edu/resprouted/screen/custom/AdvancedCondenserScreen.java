@@ -27,7 +27,7 @@ public class AdvancedCondenserScreen extends HandledScreen<AdvancedCondenserScre
     protected void init() {
         super.init();
 
-        addDrawable(FluidWidget.builder(this.handler.getBlockEntity().getFluidTank())
+        addDrawable(FluidWidget.builder(this.handler.getBlockEntity().getFluidStorage())
                 .bounds(this.x + 133, this.y + 27, 16, 32)
                 .posSupplier(() -> this.handler.getBlockEntity().getPos())
                 .build());

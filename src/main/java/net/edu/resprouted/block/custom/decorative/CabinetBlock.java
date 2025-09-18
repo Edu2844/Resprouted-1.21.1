@@ -2,6 +2,7 @@ package net.edu.resprouted.block.custom.decorative;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
+import net.edu.resprouted.block.abstracts.AbstractCabinetBlock;
 import net.edu.resprouted.block.entity.custom.CabinetBE;
 import net.edu.resprouted.block.enums.CabinetType;
 import net.minecraft.block.*;

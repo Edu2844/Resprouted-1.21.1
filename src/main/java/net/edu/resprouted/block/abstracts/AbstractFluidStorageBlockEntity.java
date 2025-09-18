@@ -1,4 +1,4 @@
-package net.edu.resprouted.block.entity.custom;
+package net.edu.resprouted.block.abstracts;
 
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
@@ -14,13 +14,12 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class FluidStorageBE extends BlockEntity {
+public abstract class AbstractFluidStorageBlockEntity extends BlockEntity {
     private final SingleFluidStorage fluidStorage;
 
-    public FluidStorageBE(BlockEntityType<?> type, BlockPos pos, BlockState state, long capacity) {
+    public AbstractFluidStorageBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, long capacity) {
         super(type, pos, state);
         this.fluidStorage = SingleFluidStorage.withFixedCapacity(capacity, this::markDirtyAndUpdate);
     }
@@ -36,7 +35,7 @@ public abstract class FluidStorageBE extends BlockEntity {
         return fluidStorage;
     }
 
-    public SingleFluidStorage getFluidTankProvider(Direction direction) {
+    public SingleFluidStorage getFluidTankProvider() {
         return fluidStorage;
     }
 
