@@ -45,6 +45,8 @@ public class ModRegistry {
         registry.add(ModBlocks.OLIVE_PLANKS,5,20);
         registry.add(ModBlocks.OLIVE_LEAVES,30,60);
         registry.add(ModBlocks.APPLE_LEAVES,30,60);
+        registry.add(ModBlocks.TOMATO_CROP,30,60);
+        registry.add(ModBlocks.CHILI_CROP,30,60);
         registry.add(ModBlocks.CRUSHING_TUB,5,20);
         registry.add(ModBlocks.LIQUID_BARREL,5,20);
     }

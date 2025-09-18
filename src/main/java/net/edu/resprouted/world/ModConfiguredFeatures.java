@@ -2,7 +2,6 @@ package net.edu.resprouted.world;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.world.tree.OliveTrunkPlacer;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -15,9 +14,10 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
-import net.minecraft.world.gen.foliage.DarkOakFoliagePlacer;
+import net.minecraft.world.gen.foliage.LargeOakFoliagePlacer;
 import net.minecraft.world.gen.foliage.PineFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
 public class ModConfiguredFeatures {
@@ -28,18 +28,17 @@ public class ModConfiguredFeatures {
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
         register(context, IRONWOOD_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.IRONWOOD_LOG),
-                new StraightTrunkPlacer(10, 1, 0),
+                new StraightTrunkPlacer(10, 2, 0),
                 BlockStateProvider.of(ModBlocks.IRONWOOD_LEAVES),
                 new PineFoliagePlacer(ConstantIntProvider.create(3),ConstantIntProvider.create(0), ConstantIntProvider.create(3)),
-                new TwoLayersFeatureSize(3, 1, 2)).build());
+                new TwoLayersFeatureSize(3, 1, 2)
+        ).build());
 
         register(context, OLIVE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.OLIVE_LOG),
-                new OliveTrunkPlacer(6, 0, 0),
+                new LargeOakTrunkPlacer(4, 2, 2),
                 BlockStateProvider.of(ModBlocks.OLIVE_LEAVES),
-                new DarkOakFoliagePlacer(
-                        ConstantIntProvider.create(2),
-                        ConstantIntProvider.create(2)),
+                new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(3),3),
                 new TwoLayersFeatureSize(3, 0, 2)
         ).build());
 
@@ -48,7 +47,7 @@ public class ModConfiguredFeatures {
                 new StraightTrunkPlacer(4, 2, 0),
                 BlockStateProvider.of(ModBlocks.APPLE_LEAVES),
                 new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
-                new TwoLayersFeatureSize(3, 0, 2)
+                new TwoLayersFeatureSize(1, 0, 1)
         ).build());
 
     }

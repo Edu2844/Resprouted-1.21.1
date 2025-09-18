@@ -15,6 +15,7 @@ import net.edu.resprouted.entity.client.StoolEntityRenderer;
 import net.edu.resprouted.entity.client.TomatoEntityRenderer;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.item.custom.BoozeBottleItem;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
@@ -35,8 +36,11 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+
 
 public class ModClientRegistry {
     public static void RegisterModClientStuffs(){
@@ -328,7 +332,17 @@ public class ModClientRegistry {
 
     }
     public static void registerEatingAnimationsCompat() {
-        ModelPredicateProviderRegistry.register(ModItems.ELIXIR_BOTTLE,
+        registerDrinkingAnimationsForItem(ModItems.ELIXIR_BOTTLE);
+
+        for (Item item : Registries.ITEM) {
+            if (item instanceof BoozeBottleItem) {
+                registerDrinkingAnimationsForItem(item);
+            }
+        }
+    }
+
+    private static void registerDrinkingAnimationsForItem(Item item) {
+        ModelPredicateProviderRegistry.register(item,
                 Identifier.of("drinking"),
                 (itemStack, clientWorld, livingEntity, seed) -> {
                     if (livingEntity == null) {
@@ -337,7 +351,7 @@ public class ModClientRegistry {
                     return livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
                 });
 
-        ModelPredicateProviderRegistry.register(ModItems.ELIXIR_BOTTLE,
+        ModelPredicateProviderRegistry.register(item,
                 Identifier.of("drink"),
                 (itemStack, clientWorld, livingEntity, seed) -> {
                     if (livingEntity == null) {
@@ -346,7 +360,6 @@ public class ModClientRegistry {
                     return livingEntity.getActiveItem() != itemStack ? 0.0F :
                             (itemStack.getMaxUseTime(livingEntity) - livingEntity.getItemUseTimeLeft()) / 30.0F;
                 });
-
     }
     public static void registerHudRenderers() {
         HudRenderCallback.EVENT.register((drawContext, tickDelta) -> FullMetalOverlay.render(drawContext));

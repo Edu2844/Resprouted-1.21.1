@@ -94,7 +94,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
             world.setBlockState(pos, state.with(FruitingLeavesBlock.AGE, 0), Block.NOTIFY_ALL);
 
             world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES,
-                    SoundCategory.BLOCKS, 1.0F, 1.0F + world.random.nextFloat() * 0.4F);
+                    SoundCategory.BLOCKS, 1.0F, 1.0F);
 
             return ItemActionResult.SUCCESS;
         }

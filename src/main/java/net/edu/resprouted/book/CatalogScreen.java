@@ -227,7 +227,7 @@ public class CatalogScreen extends Screen {
                 currentState = PageState.MAIN_MENU;
                 selectedEntry = null;
                 selectedCategory = null;
-                playPageClickSound();
+                playPageTurnSound();
                 return true;
             }
         }
