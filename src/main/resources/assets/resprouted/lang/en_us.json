@@ -49,6 +49,8 @@
   "item.resprouted.grape_juice_bottle": "Grape Juice Bottle",
   "item.resprouted.sweet_berry_juice_bucket": "Sweet Berry Juice Bucket",
   "item.resprouted.sweet_berry_juice_bottle": "Sweet Berry Juice Bottle",
+  "item.resprouted.sugar_cane_juice_bucket": "Sugar Cane Juice Bucket",
+  "item.resprouted.sugar_cane_juice_bottle": "Sugar Cane Juice Bottle",
   "item.resprouted.olive_oil_bucket": "Olive Oil Bucket",
   "item.resprouted.olive_oil_bottle": "Olive Oil Bottle",
   "item.resprouted.vanta_oil_bucket": "Vanta Oil Bucket",
@@ -66,6 +68,7 @@
   "item.resprouted.glow_berry_wine_bottle": "Glow Berry Wine Bottle",
   "item.resprouted.cider_bottle": "Cider Bottle",
   "item.resprouted.mead_bottle": "Mead Bottle",
+  "item.resprouted.rum_bottle": "Rum Bottle",
   "item.resprouted.ambrosia_bottle": "Ambrosia Bottle",
 
 
@@ -91,6 +94,7 @@
   "block.resprouted.sweet_berry_juice_fluid_block": "Sweet Berry Juice",
   "block.resprouted.glow_berry_juice_fluid_block": "Glow Berry Juice",
   "block.resprouted.iron_berry_juice_fluid_block": "Iron Berry Juice",
+  "block.resprouted.sugar_cane_juice_fluid_block": "Sugar Cane Juice",
   "block.resprouted.ale_wort_fluid_block": "Ale Wort",
   "block.resprouted.ale_fluid_block": "Ale",
   "block.resprouted.iron_wine_fluid_block": "Iron Wine",
@@ -99,6 +103,7 @@
   "block.resprouted.glow_berry_wine_fluid_block": "Glow Berry Wine",
   "block.resprouted.cider_fluid_block": "Cider",
   "block.resprouted.mead_fluid_block": "Mead",
+  "block.resprouted.rum_fluid_block": "Rum",
   "block.resprouted.ambrosia_fluid_block": "Ambrosia",
 
 
@@ -384,7 +389,7 @@
   "effect.resprouted.fire_power":"Fire Power",
   "effect.resprouted.iron_skin":"Iron Skin",
   "effect.resprouted.blazing_trail":"Blazing Trail",
-  "effect.resprouted.full":"Full Stomach",
+  "effect.resprouted.full_stomach":"Full Stomach",
   "effect.resprouted.magic_resistance":"Magic Resistance",
   "effect.resprouted.wither_ward":"Wither Ward",
   "effect.resprouted.undying":"Undying",
@@ -402,6 +407,7 @@
   "config.resprouted.title": "Resprouted Configuration",
   "config.resprouted.category.general": "General",
   "config.resprouted.category.worldgen": "World",
+  "config.resprouted.enable_fire_power_effect_icon": "Enable Fire Power Effect Icon",
   "config.resprouted.oiled_saturation_modifier": "Oiled Saturation Modifier",
   "config.resprouted.oiled_saturation_modifier.tooltip": "Multiplier for saturation when eating oiled foods",
   "config.resprouted.oiled_hunger_bonus": "Oiled Hunger Bonus",
@@ -431,7 +437,7 @@
   "config.jade.plugin_resprouted.grape_leaves_mature": "Grapes Leaves Mature",
 
   "text.resprouted.main": "Here you will find everything related to the mod. This almanac contains guides, and useful information about all the added features.",
-  "text.resprouted.categories": "Categories",
+  "text.resprouted.categories": "Index",
   "text.category.resprouted.agriculture": "Agriculture",
   "text.category.resprouted.decoration": "Decoration",
   "text.category.resprouted.production": "Production",
@@ -443,19 +449,20 @@
   "text.resprouted.crop_stakes.1": "Crop stakes are wooden poles that support the growth of tall crops such as chili peppers and tomatoes. They can also be used to tie ropes.",
 
   "entry.resprouted.chili_peppers": "Chili Peppers",
-  "text.resprouted.chili_peppers.1": "Chili peppers are best harvested by interacting with mature plants instead of breaking them, since broken ones take time to regrow. They can be eaten for a small speed boost, though their spiciness might",
-  "text.resprouted.chili_peppers.2": "sting, and they also serve as an alchemy ingredient. Rarely, harvesting may yield a ghost pepper, which grants temporary fire powers, making your attacks launch fireballs.",
+  "text.resprouted.chili_peppers.1": "Chili peppers are best harvested by interacting with mature plants instead of breaking them, since broken ones take time to regrow.",
+  "text.resprouted.chili_peppers.2": "They can be eaten for a small speed boost, though their spiciness might sting, and they also serve as an alchemy ingredient. Rarely, harvesting may yield a ghost pepper, which grants temporary fire powers, making your attacks launch fireballs.",
 
   "entry.resprouted.tomatoes": "Tomatoes",
-  "text.resprouted.tomatoes.1": "Tomatoes grow on vines supported by crop stakes, with seeds obtained from tall grass and planted on stakes above farmland or fertile soil. The vines can climb up to three blocks high and eventually",
-  "text.resprouted.tomatoes.2": "produce tomatoes. Harvesting is best done by interacting with mature vines, since breaking them resets their growth. Tomatoes can be eaten or even thrown at others while sneaking.",
+  "text.resprouted.tomatoes.1": "Tomatoes grow on vines supported by crop stakes, with seeds obtained from tall grass and planted on stakes above farmland or fertile soil.",
+  "text.resprouted.tomatoes.2": "The vines can climb up to three blocks high and eventually produce tomatoes. Harvesting is best done by interacting with mature vines, since breaking them resets their growth. Tomatoes can be eaten or even thrown at others while sneaking.",
 
   "text.resprouted.grapes.1": "Grapes grow from seeds found in vines and planted on farmland or fertile soil. With ropes above, the stems spread into vines that extend outwardand produce grapes if no block is beneath them.",
   "text.resprouted.grapes.2": "Harvesting by interaction is best, since breaking resets growth. Grapes can be eaten quickly, turned into juice with a crushing tub, and later brewed into wine.",
 
   "entry.resprouted.apple_tree": "Apple Tree",
-  "text.resprouted.apple_tree.1": "Apple trees grow from saplings obtained by crushing apples for seeds. They yield oak wood but are more reliable for apple production than regular oaks. Their leaves generate apples",
-  "text.resprouted.apple_tree.2": "when exposed to air, and ripe apples can be collected by interacting with the leaves. Breaking leaves isn’t ideal, since they don’t regrow, though they can drop saplings and any apples inside. Crushing apples also produces seeds and juice, which can be bottled or brewed into cider.",
+  "text.resprouted.apple_tree.1": "Apple trees grow from saplings obtained by crushing apples for seeds. They yield oak wood but are more reliable for apple production than regular oaks.",
+  "text.resprouted.apple_tree.2": "Their leaves generate apples when exposed to air, and ripe apples can be collected by interacting with the leaves. Breaking leaves isn’t ideal, since they don’t regrow, though they can drop saplings and any apples inside.",
+  "text.resprouted.apple_tree.3": "Crushing apples also produces seeds and juice, which can be bottled or brewed into cider.",
 
   "entry.resprouted.olives": "Olives",
   "page.resprouted.olives.desc": "Description 1 of Olives",

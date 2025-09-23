@@ -19,9 +19,8 @@ public record EvaporatingBasinRecipe(FluidVariant fluidInput, long fluidCost, It
 
     @Override
     public boolean matches(EvaporatingBasinRecipeInput in, World world) {
-        boolean notClient = !world.isClient;
         boolean sameFluid = fluidInput.getFluid() == in.fluid().getFluid();
-        return notClient && sameFluid;
+        return !world.isClient && sameFluid;
     }
     @Override public ItemStack craft(EvaporatingBasinRecipeInput in, RegistryWrapper.WrapperLookup l) {
         return output.copy();

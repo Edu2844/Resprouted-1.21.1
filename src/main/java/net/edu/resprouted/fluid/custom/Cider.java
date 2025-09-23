@@ -13,6 +13,7 @@ import net.minecraft.state.StateManager;
 import java.util.Optional;
 
 public abstract class Cider extends BaseFluid {
+
     @Override
     public Fluid getFlowing() {
         return ModFluids.CIDER_FLOWING;

@@ -5,7 +5,7 @@ import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.item.custom.BoozeBottleItem;
-import net.edu.resprouted.recipe.custom.BrewingRecipes;
+import net.edu.resprouted.recipe.custom.BrewingBarrelRecipe;
 import net.edu.resprouted.screen.custom.BrewingBarrelScreenHandler;
 import net.edu.resprouted.util.FluidQualityHelper;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -43,7 +43,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
-
 
 public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos>,ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(6, ItemStack.EMPTY);
@@ -227,28 +226,28 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
     }
 
     public void handleBucketInteractions() {
-        ItemStack inputStack = getStack(INPUT_IN_SLOT);
-        ItemStack outputStack = getStack(INPUT_OUT_SLOT);
+        ItemStack i = getStack(INPUT_IN_SLOT);
+        ItemStack j = getStack(INPUT_OUT_SLOT);
 
-        boolean isInsertingEmptyBucket = inputStack.isOf(Items.BUCKET);
+        boolean isInsertingEmptyBucket = i.isOf(Items.BUCKET);
 
-        if (!outputStack.isEmpty() && isInsertingEmptyBucket) return;
-        if (inputStack.isEmpty()) return;
+        if (!j.isEmpty() && isInsertingEmptyBucket) return;
+        if (i.isEmpty()) return;
 
         try (Transaction transaction = Transaction.openOuter()) {
 
-            if (inputStack.getItem() instanceof BucketItem && inputStack.getItem() != Items.BUCKET) {
-                Fluid fluid = getFluidFromBucket(inputStack);
+            if (i.getItem() instanceof BucketItem && i.getItem() != Items.BUCKET) {
+                Fluid fluid = getFluidFromBucket(i);
 
                 if (fluid != Fluids.EMPTY) {
                     FluidVariant variant = FluidVariant.of(fluid);
                     long amount = FluidConstants.BUCKET;
 
-                    if ((input.isResourceBlank() || input.getResource().isOf(fluid)) &&
-                            input.insert(variant, amount, transaction) == amount) {
+                    if ((this.input.isResourceBlank() || this.input.getResource().isOf(fluid)) &&
+                            this.input.insert(variant, amount, transaction) == amount) {
 
-                        inputStack.decrement(1);
-                        if (inputStack.isEmpty()) {
+                        i.decrement(1);
+                        if (i.isEmpty()) {
                             setStack(INPUT_IN_SLOT, ItemStack.EMPTY);
                         }
 
@@ -271,17 +270,17 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
                 }
             }
 
-            if (inputStack.isOf(Items.BUCKET) && !input.isResourceBlank()) {
-                FluidVariant currentFluid = input.getResource();
+            if (i.isOf(Items.BUCKET) && !this.input.isResourceBlank()) {
+                FluidVariant currentFluid = this.input.getResource();
                 long amount = FluidConstants.BUCKET;
 
-                if (input.extract(currentFluid, amount, transaction) == amount) {
+                if (this.input.extract(currentFluid, amount, transaction) == amount) {
                     Item filledBucket = currentFluid.getFluid().getBucketItem();
 
                     if (filledBucket != null && filledBucket != Items.AIR) {
 
-                        inputStack.decrement(1);
-                        if (inputStack.isEmpty()) {
+                        i.decrement(1);
+                        if (i.isEmpty()) {
                             setStack(INPUT_IN_SLOT, ItemStack.EMPTY);
                         }
 
@@ -314,12 +313,12 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
         return Fluids.EMPTY;
     }
     public void handleBottleInteractions() {
-        ItemStack auxInputStack = getStack(AUX_IN_SLOT);
+        ItemStack k = getStack(AUX_IN_SLOT);
 
-        if (auxInputStack.getItem() instanceof BoozeBottleItem boozeBottle) {
-            try (Transaction transaction = Transaction.openOuter()) {
+        if (k.getItem() instanceof BoozeBottleItem boozeBottle) {
+            try (Transaction t = Transaction.openOuter()) {
 
-                FluidStack fluidFromBottle = boozeBottle.toFluidStack(auxInputStack);
+                FluidStack fluidFromBottle = boozeBottle.toFluidStack(k);
 
                 FluidVariant variant = FluidVariant.of(fluidFromBottle.getFluid())
                         .withComponentChanges(fluidFromBottle.getComponents().getChanges());
@@ -327,46 +326,46 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
                 long amount = FluidConstants.BUCKET;
 
                 if ((auxiliary.isResourceBlank() || auxiliary.getResource().equals(variant)) &&
-                        auxiliary.insert(variant, amount, transaction) == amount) {
+                        auxiliary.insert(variant, amount, t) == amount) {
 
-                    auxInputStack.decrement(1);
-                    if (auxInputStack.isEmpty()) {
+                    k.decrement(1);
+                    if (k.isEmpty()) {
                         setStack(AUX_IN_SLOT, ItemStack.EMPTY);
                     }
 
-                    ItemStack currentAuxOutput = getStack(AUX_OUT_SLOT);
-                    if (currentAuxOutput.isEmpty()) {
+                    ItemStack l = getStack(AUX_OUT_SLOT);
+                    if (l.isEmpty()) {
                         setStack(AUX_OUT_SLOT, new ItemStack(Items.GLASS_BOTTLE));
-                    } else if (currentAuxOutput.isOf(Items.GLASS_BOTTLE) &&
-                            currentAuxOutput.getCount() < currentAuxOutput.getMaxCount()) {
-                        currentAuxOutput.increment(1);
-                        setStack(AUX_OUT_SLOT, currentAuxOutput);
+                    } else if (l.isOf(Items.GLASS_BOTTLE) &&
+                            l.getCount() < l.getMaxCount()) {
+                        l.increment(1);
+                        setStack(AUX_OUT_SLOT, l);
                     } else {
                         return;
                     }
 
-                    transaction.commit();
+                    t.commit();
                     markDirty();
                 }
             }
         }
 
-        else if (auxInputStack.isOf(Items.GLASS_BOTTLE) && !auxiliary.isResourceBlank()) {
-            try (Transaction transaction = Transaction.openOuter()) {
+        else if (k.isOf(Items.GLASS_BOTTLE) && !auxiliary.isResourceBlank()) {
+            try (Transaction t = Transaction.openOuter()) {
 
-                FluidVariant currentFluidVariant = auxiliary.getResource();
+                FluidVariant currentFluid = auxiliary.getResource();
                 long amount = FluidConstants.BUCKET;
 
-                if (auxiliary.extract(currentFluidVariant, amount, transaction) == amount) {
+                if (auxiliary.extract(currentFluid, amount, t) == amount) {
 
-                    FluidStack extractedFluid = FluidStack.create(currentFluidVariant.getFluid(), amount);
-                    extractedFluid.applyComponents(currentFluidVariant.getComponents());
+                    FluidStack extractedFluid = FluidStack.create(currentFluid.getFluid(), amount);
+                    extractedFluid.applyComponents(currentFluid.getComponents());
 
                     ItemStack filledBottle = BoozeBottleItem.fromFluidStack(extractedFluid);
 
                     if (!filledBottle.isEmpty()) {
-                        auxInputStack.decrement(1);
-                        if (auxInputStack.isEmpty()) {
+                        k.decrement(1);
+                        if (k.isEmpty()) {
                             setStack(AUX_IN_SLOT, ItemStack.EMPTY);
                         }
 
@@ -382,7 +381,7 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
                             return;
                         }
 
-                        transaction.commit();
+                        t.commit();
                         markDirty();
                     }
                 }
@@ -390,12 +389,12 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
         }
     }
     public void handleOutputBottleInteractions() {
-        ItemStack in = getStack(OUTPUT_IN_SLOT);
-        ItemStack out = getStack(OUTPUT_OUT_SLOT);
+        ItemStack m = getStack(OUTPUT_IN_SLOT);
+        ItemStack n = getStack(OUTPUT_OUT_SLOT);
 
-        if (!in.isOf(Items.GLASS_BOTTLE) || output.isResourceBlank()) return;
+        if (!m.isOf(Items.GLASS_BOTTLE) || output.isResourceBlank()) return;
 
-        if (!out.isEmpty() && output.getResource().getFluid() != BoozeBottleItem.getFluidFromBottle(out)) return;
+        if (!n.isEmpty() && output.getResource().getFluid() != BoozeBottleItem.getFluidFromBottle(n)) return;
 
         try (Transaction t = Transaction.openOuter()) {
             FluidVariant variant = output.getResource();
@@ -408,18 +407,18 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
                 ItemStack bottle = BoozeBottleItem.fromFluidStack(fluid);
                 if (bottle.isEmpty()) return;
 
-                if (!out.isEmpty() && (out.getItem() != bottle.getItem() ||
-                        BoozeBottleItem.getQuality(out) != BoozeBottleItem.getQuality(bottle) ||
-                        out.getCount() >= out.getMaxCount())) return;
+                if (!n.isEmpty() && (n.getItem() != bottle.getItem() ||
+                        BoozeBottleItem.getQuality(n) != BoozeBottleItem.getQuality(bottle) ||
+                        n.getCount() >= n.getMaxCount())) return;
 
-                in.decrement(1);
-                if (in.isEmpty()) setStack(OUTPUT_IN_SLOT, ItemStack.EMPTY);
+                m.decrement(1);
+                if (m.isEmpty()) setStack(OUTPUT_IN_SLOT, ItemStack.EMPTY);
 
-                if (out.isEmpty()) {
+                if (n.isEmpty()) {
                     setStack(OUTPUT_OUT_SLOT, bottle);
                 } else {
-                    out.increment(1);
-                    setStack(OUTPUT_OUT_SLOT, out);
+                    n.increment(1);
+                    setStack(OUTPUT_OUT_SLOT, n);
                 }
 
                 t.commit();
@@ -437,26 +436,24 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
 
         inputFluid.applyComponents(input.getResource().getComponents());
 
-        FluidStack auxiliaryFluid = null;
+        FluidStack auxFluid = null;
         if (!auxiliary.isResourceBlank()) {
-            auxiliaryFluid = FluidStack.create(
+            auxFluid = FluidStack.create(
                     auxiliary.getResource().getFluid(),
                     (int) auxiliary.getAmount()
             );
 
-            auxiliaryFluid.applyComponents(auxiliary.getResource().getComponents());
+            auxFluid.applyComponents(auxiliary.getResource().getComponents());
         }
 
-        Optional<BrewingRecipes.BrewingRecipe> recipeOpt = BrewingRecipes.findMatchingRecipe(
-                inputFluid, auxiliaryFluid
-        );
+        Optional<BrewingBarrelRecipe> recipeOpt = BrewingBarrelRecipe.findMatchingRecipe(inputFluid, auxFluid);
 
 
         if (recipeOpt.isPresent() && canCraft()) {
             progress++;
 
             if (progress >= maxProgress) {
-                craft(recipeOpt.get(), inputFluid, auxiliaryFluid);
+                craft(recipeOpt.get(), inputFluid, auxFluid);
                 progress = 0;
             }
             markDirty();
@@ -473,15 +470,15 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
                 output.getAmount() < output.getCapacity();
     }
 
-    private void craft(BrewingRecipes.BrewingRecipe recipe, FluidStack inputFluid, FluidStack auxiliaryFluid) {
-        try (Transaction transaction = Transaction.openOuter()) {
+    private void craft(BrewingBarrelRecipe recipe, FluidStack inputFluid, FluidStack auxiliaryFluid) {
+        try (Transaction t = Transaction.openOuter()) {
 
             long availableSpace = output.getCapacity() - output.getAmount();
             long amountToConvert = Math.min(availableSpace, input.getAmount());
 
             if (amountToConvert <= 0) return;
 
-            input.extract(input.getResource(), amountToConvert, transaction);
+            input.extract(input.getResource(), amountToConvert, t);
 
             assert world != null;
             FluidStack newResult = recipe.getResult(inputFluid, auxiliaryFluid, world.random);
@@ -504,10 +501,10 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
                 FluidVariant resultVariant = FluidVariant.of(newResult.getFluid())
                         .withComponentChanges(newResult.getComponents().getChanges());
 
-                output.insert(resultVariant, newResult.getAmount(), transaction);
+                output.insert(resultVariant, newResult.getAmount(), t);
             }
 
-            transaction.commit();
+            t.commit();
             markDirty();
         }
     }

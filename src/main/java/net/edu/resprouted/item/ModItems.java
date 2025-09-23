@@ -8,13 +8,20 @@ import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
 import net.minecraft.component.type.FoodComponents;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -92,9 +99,14 @@ public class ModItems {
     // =================================================
     // ||                 FLUID BUCKETS               ||
     // =================================================
-    public static final Item HONEY_BUCKET = registerItem("honey_bucket", new CustomBucketItem(ModFluids.HONEY_STILL,new Item
-            .Settings()
-            .maxCount(1)));
+    public static final Item HONEY_BUCKET = registerItem("honey_bucket", new BucketItem(ModFluids.HONEY_STILL,new Item.Settings().maxCount(1)){
+        @Override
+        protected void playEmptyingSound(@Nullable PlayerEntity player, WorldAccess world, BlockPos pos) {
+            world.playSound(player, pos, SoundEvents.BLOCK_HONEY_BLOCK_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.emitGameEvent(player, GameEvent.FLUID_PLACE, pos);
+        }
+    });
+
     public static final Item APPLE_JUICE_BUCKET = registerItem("apple_juice_bucket", new BucketItem(ModFluids.APPLE_JUICE_STILL,new Item
             .Settings()
             .maxCount(1)));
@@ -117,6 +129,10 @@ public class ModItems {
             .Settings()
             .maxCount(1)));
     public static final Item IRON_BERRY_JUICE_BUCKET = registerItem("iron_berry_juice_bucket", new BucketItem(ModFluids.IRON_BERRY_JUICE_STILL,new Item
+            .Settings()
+            .maxCount(1)));
+
+    public static final Item SUGAR_CANE_JUICE_BUCKET = registerItem("sugar_cane_juice_bucket", new BucketItem(ModFluids.SUGAR_CANE_JUICE_STILL,new Item
             .Settings()
             .maxCount(1)));
 
@@ -150,6 +166,9 @@ public class ModItems {
 
     public static final Item IRON_BERRY_JUICE_BOTTLE = registerItem("iron_berry_juice_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.IRON_BERRY_JUICE).maxCount(16)));
+
+    public static final Item SUGAR_CANE_JUICE_BOTTLE = registerItem("sugar_cane_juice_bottle",
+            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.REGULAR_JUICE).maxCount(16)));
 
     public static final Item ALE_WORT_BOTTLE = registerItem("ale_wort_bottle",
             new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.ALE_WORT).maxCount(16)));
@@ -186,6 +205,10 @@ public class ModItems {
     public static final Item AMBROSIA_BOTTLE = registerItem("ambrosia_bottle",
             new BoozeBottleItem(ModFluids.AMBROSIA_STILL, new Item.Settings().maxCount(64).rarity(Rarity.EPIC), BoozeEffects::applyAmbrosiaEffects)
                     .setInebriationChance(1.0f));
+
+    public static final Item RUM_BOTTLE = registerItem("rum_bottle",
+            new BoozeBottleItem(ModFluids.RUM_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyRumEffects)
+                    .setInebriationChance(0.6f));
 
 
     // =================================================

@@ -31,6 +31,8 @@ public class BottleInteractions {
 
         FLUID_BOTTLE_MAP.put(ModBlocks.IRON_BERRY_JUICE_FLUID_BLOCK, new FluidBottleData(ModItems.IRON_BERRY_JUICE_BOTTLE));
 
+        FLUID_BOTTLE_MAP.put(ModBlocks.SUGAR_CANE_JUICE_FLUID_BLOCK, new FluidBottleData(ModItems.SUGAR_CANE_JUICE_BOTTLE));
+
         FLUID_BOTTLE_MAP.put(ModBlocks.ALE_WORT_FLUID_BLOCK, new FluidBottleData(ModItems.ALE_WORT_BOTTLE));
     }
     public static FluidBottleData getFluidData(Block fluidBlock) {

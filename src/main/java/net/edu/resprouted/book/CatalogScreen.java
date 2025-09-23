@@ -185,7 +185,7 @@ public class CatalogScreen extends Screen {
                     MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT)) {
                 currentState = PageState.MAIN_MENU;
                 selectedCategory = null;
-                playPageClickSound();
+                playPageTurnSound();
                 return true;
             }
         }

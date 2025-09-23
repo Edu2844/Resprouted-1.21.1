@@ -66,6 +66,7 @@ public class ModItemGroups {
                         entries.add(ModItems.VANTA_OIL_BOTTLE);
                         entries.add(ModItems.GLOW_BERRY_JUICE_BOTTLE);
                         entries.add(ModItems.IRON_BERRY_JUICE_BOTTLE);
+                        entries.add(ModItems.SUGAR_CANE_JUICE_BOTTLE);
                         entries.add(ModItems.ALE_WORT_BOTTLE);
 
                         entries.add(ModItems.HONEY_BUCKET);
@@ -77,6 +78,7 @@ public class ModItemGroups {
                         entries.add(ModItems.VANTA_OIL_BUCKET);
                         entries.add(ModItems.GLOW_BERRY_JUICE_BUCKET);
                         entries.add(ModItems.IRON_BERRY_JUICE_BUCKET);
+                        entries.add(ModItems.SUGAR_CANE_JUICE_BUCKET);
                         entries.add(ModItems.ALE_WORT_BUCKET);
 
                         entries.add(ModItems.LAMB_STEW);
@@ -109,6 +111,10 @@ public class ModItemGroups {
                         ItemStack GlowBerryBottleWithQuality = new ItemStack(ModItems.GLOW_BERRY_WINE_BOTTLE);
                         BoozeBottleItem.setQuality(GlowBerryBottleWithQuality, 0.75f);
                         entries.add(GlowBerryBottleWithQuality);
+
+                        ItemStack RumBottleWithQuality = new ItemStack(ModItems.RUM_BOTTLE);
+                        BoozeBottleItem.setQuality(RumBottleWithQuality, 0.75f);
+                        entries.add(RumBottleWithQuality);
 
                         ItemStack SweetBerryWineBottleWithQuality = new ItemStack(ModItems.SWEET_BERRY_WINE_BOTTLE);
                         BoozeBottleItem.setQuality(SweetBerryWineBottleWithQuality, 0.75f);

@@ -3,12 +3,8 @@
   "input_item": {
     "item": "minecraft:sugar_cane"
   },
-  "output_item": {
-    "id": "minecraft:sugar",
-    "count": 1
-  },
   "fluid_variant": {
-    "fluid": "minecraft:water"
+    "fluid": "resprouted:sugar_cane_juice_still"
   },
   "amount": 250
 }

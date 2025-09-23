@@ -42,8 +42,8 @@ public abstract class LivingEntityMixin extends Entity {
         }
 
         //Full Stomach
-        if (source.isOf(DamageTypes.STARVE) && entity.hasStatusEffect(ModEffects.FULL)) {
-            StatusEffectInstance effect = entity.getStatusEffect(ModEffects.FULL);
+        if (source.isOf(DamageTypes.STARVE) && entity.hasStatusEffect(ModEffects.FULL_STOMACH)) {
+            StatusEffectInstance effect = entity.getStatusEffect(ModEffects.FULL_STOMACH);
             if (effect != null) {
                 return Math.max(amount - (effect.getAmplifier() + 1), 0);
             }

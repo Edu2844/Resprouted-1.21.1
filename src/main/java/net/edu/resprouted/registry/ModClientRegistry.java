@@ -183,6 +183,7 @@ public class ModClientRegistry {
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.GLOW_BERRY_JUICE_STILL, ModFluids.GLOW_BERRY_JUICE_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.IRON_BERRY_JUICE_STILL, ModFluids.IRON_BERRY_JUICE_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.ALE_WORT_STILL, ModFluids.ALE_WORT_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.SUGAR_CANE_JUICE_STILL, ModFluids.SUGAR_CANE_JUICE_FLOWING);
     }
     public static void registerFluidColors() {
         FluidRenderHandlerRegistry registry = FluidRenderHandlerRegistry.INSTANCE;
@@ -246,6 +247,12 @@ public class ModClientRegistry {
                 Identifier.of("resprouted:block/fluid/ale_wort_flow"),
                 Identifier.of("resprouted:block/fluid/ale_wort_overlay")
         ));
+        //Sugar Cane
+        registry.register(ModFluids.SUGAR_CANE_JUICE_STILL, ModFluids.SUGAR_CANE_JUICE_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/sugar_cane_juice_still"),
+                Identifier.of("resprouted:block/fluid/sugar_cane_juice_flow"),
+                Identifier.of("resprouted:block/fluid/sugar_cane_juice_overlay")
+        ));
         //Ale
         registry.register(ModFluids.ALE_STILL, ModFluids.ALE_FLOWING, new SimpleFluidRenderHandler(
                 Identifier.of("resprouted:block/fluid/booze/ale_still"),
@@ -287,6 +294,12 @@ public class ModClientRegistry {
                 Identifier.of("resprouted:block/fluid/booze/glow_berry_wine_still"),
                 Identifier.of("resprouted:block/fluid/booze/glow_berry_wine_flow"),
                 Identifier.of("resprouted:block/fluid/booze/glow_berry_wine_overlay")
+        ));
+        //Rum
+        registry.register(ModFluids.RUM_STILL, ModFluids.RUM_FLOWING, new SimpleFluidRenderHandler(
+                Identifier.of("resprouted:block/fluid/booze/rum_still"),
+                Identifier.of("resprouted:block/fluid/booze/rum_flow"),
+                Identifier.of("resprouted:block/fluid/booze/rum_overlay")
         ));
         //Ambrosia
         registry.register(ModFluids.AMBROSIA_STILL, ModFluids.AMBROSIA_FLOWING, new SimpleFluidRenderHandler(
@@ -332,16 +345,16 @@ public class ModClientRegistry {
 
     }
     public static void registerEatingAnimationsCompat() {
-        registerDrinkingAnimationsForItem(ModItems.ELIXIR_BOTTLE);
+        registerDrinkingForEACompat(ModItems.ELIXIR_BOTTLE);
 
         for (Item item : Registries.ITEM) {
             if (item instanceof BoozeBottleItem) {
-                registerDrinkingAnimationsForItem(item);
+                registerDrinkingForEACompat(item);
             }
         }
     }
 
-    private static void registerDrinkingAnimationsForItem(Item item) {
+    private static void registerDrinkingForEACompat(Item item) {
         ModelPredicateProviderRegistry.register(item,
                 Identifier.of("drinking"),
                 (itemStack, clientWorld, livingEntity, seed) -> {
@@ -370,12 +383,11 @@ public class ModClientRegistry {
             if (entityType == EntityType.PLAYER && entityRenderer instanceof FeatureRendererContext<?, ?> genericContext) {
                 try {
                     @SuppressWarnings("unchecked")
-                    FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>> typedContext =
-                            (FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>>) genericContext;
+                    FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>> typedContext = (FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>>) genericContext;
                     registrationHelper.register(new IronSkinLayer(typedContext));
                     registrationHelper.register(new FullMetalLayer(typedContext));
                 } catch (ClassCastException e) {
-                    System.err.println("No se pudo registrar capa para jugador: " + e.getMessage());
+                    System.err.println("Could not register player layer: " + e.getMessage());
                 }
             }
         });

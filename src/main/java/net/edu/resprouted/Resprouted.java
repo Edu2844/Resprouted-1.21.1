@@ -7,7 +7,6 @@ import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.networking.ModMessages;
-import net.edu.resprouted.recipe.custom.BrewingRecipes;
 import net.edu.resprouted.util.CabinetRegistry;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.resource.reload.FluidContainerLoader;
@@ -21,6 +20,7 @@ import net.edu.resprouted.registry.ModRegistry;
 import net.edu.resprouted.util.RopeDispenser;
 import net.edu.resprouted.world.ModFoliagePlacerTypes;
 import net.edu.resprouted.world.ModTrunkPlacerTypes;
+import net.edu.resprouted.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.DispenserBlock;
@@ -44,6 +44,7 @@ public class Resprouted implements ModInitializer {
 		ModBlockEntities.registerModBlockEntities();
 		ModItemGroups.registerItemGroup();
 		ModEntities.registerModEntities();
+		ModWorldGeneration.generateModWorldGen();
 		ModFoliagePlacerTypes.registerModFoliagePlacers();
 		ModTrunkPlacerTypes.registerModTrunkPlacers();
 		ModRecipes.registerRecipes();
@@ -55,8 +56,6 @@ public class Resprouted implements ModInitializer {
 		ModScreenHandlers.registerScreenHandlers();
 		ModDataComponentTypes.registerDataComponentTypes();
 		DispenserBlock.registerBehavior((ModBlocks.ROPE.asItem()), new RopeDispenser());
-		BrewingRecipes.registerRecipes();
-        LOGGER.info("Brewing recipes registered: {}", BrewingRecipes.RECIPES.size());
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
 
 

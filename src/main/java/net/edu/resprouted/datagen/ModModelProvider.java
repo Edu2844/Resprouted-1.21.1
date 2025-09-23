@@ -247,6 +247,8 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.GLOW_BERRY_JUICE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.IRON_BERRY_JUICE_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItems.IRON_BERRY_JUICE_BOTTLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SUGAR_CANE_JUICE_BUCKET, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SUGAR_CANE_JUICE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.LAMB_STEW, Models.GENERATED);
         itemModelGenerator.register(ModItems.HONEY_GLAZED_CARROTS, Models.GENERATED);
         itemModelGenerator.register(ModItems.OLIVE_BOAT, Models.GENERATED);
@@ -261,6 +263,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.WINE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.CIDER_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.MEAD_BOTTLE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RUM_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.AMBROSIA_BOTTLE, Models.GENERATED);
     }
 }

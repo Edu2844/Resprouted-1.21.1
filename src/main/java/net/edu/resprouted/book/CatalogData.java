@@ -14,7 +14,8 @@ public class CatalogData {
     public static final List<Category> CATEGORIES = new ArrayList<>();
 
     public static void init() {
-        // Categorías
+
+        //Categoríes
         Category agriculture = new Category("agriculture");
         Category decoration = new Category("decoration");
         Category production = new Category("production");
@@ -24,7 +25,7 @@ public class CatalogData {
         CATEGORIES.add(production);
 
 
-        // Agricultura
+        //Agriculture
         agriculture.addEntry(new Entry(
                 Text.translatable("block.resprouted.fertile_soil"), new ItemStack(ModBlocks.FERTILE_SOIL),
                 Entry.Side.LEFT)
@@ -50,7 +51,8 @@ public class CatalogData {
 
         agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.apple_tree"), new ItemStack(Items.APPLE),
                 Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("text.resprouted.apple_tree.1"),Text.translatable("text.resprouted.apple_tree.2"))));
+                .addPage(new TextPage(Text.translatable("text.resprouted.apple_tree.1"),Text.translatable("text.resprouted.apple_tree.2")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.apple_tree.3"))));
 
         agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.olives"),
                 new ItemStack(ModItems.OLIVES), Entry.Side.RIGHT)
@@ -65,7 +67,7 @@ public class CatalogData {
                 .addPage(new TextPage(Text.translatable("page.resprouted.herbs.desc"))));
 
 
-        // Decoración
+        //Decoration
         decoration.addEntry(new Entry(Text.translatable("entry.resprouted.cabinets"), new ItemStack(ModBlocks.OAK_CABINET_BLOCK))
                 .addPage(new TextPage(Text.translatable("page.resprouted.cabinets.desc"))));
 
@@ -82,7 +84,7 @@ public class CatalogData {
                 .addPage(new TextPage(Text.translatable("page.resprouted.chair.desc"))));
 
 
-        // Producción
+        //Production
         production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.condenser"),
                 new ItemStack(ModBlocks.CONDENSER)

@@ -35,6 +35,9 @@ public class ModFluids {
     public static final FlowableFluid IRON_BERRY_JUICE_STILL = register("iron_berry_juice_still", new IronBerryJuice.Still());
     public static final FlowableFluid IRON_BERRY_JUICE_FLOWING = register("iron_berry_juice_flowing", new IronBerryJuice.Flowing());
 
+    public static final FlowableFluid SUGAR_CANE_JUICE_STILL = register("sugar_cane_juice_still", new SugarCaneJuice.Still());
+    public static final FlowableFluid SUGAR_CANE_JUICE_FLOWING = register("sugar_cane_juice_flowing", new SugarCaneJuice.Flowing());
+
     public static final FlowableFluid ALE_WORT_STILL = register("ale_wort_still", new AleWort.Still());
     public static final FlowableFluid ALE_WORT_FLOWING = register("ale_wort_flowing", new AleWort.Flowing());
 
@@ -61,6 +64,9 @@ public class ModFluids {
 
     public static final FlowableFluid AMBROSIA_STILL = register("ambrosia_still", new Ambrosia.Still());
     public static final FlowableFluid AMBROSIA_FLOWING = register("ambrosia_flowing", new Ambrosia.Flowing());
+
+    public static final FlowableFluid RUM_STILL = register("rum_still", new Rum.Still());
+    public static final FlowableFluid RUM_FLOWING = register("rum_flowing", new Rum.Flowing());
 
     private static FlowableFluid register(String name, FlowableFluid flowableFluid) {
         return Registry.register(Registries.FLUID, Identifier.of(Resprouted.MOD_ID, name), flowableFluid);

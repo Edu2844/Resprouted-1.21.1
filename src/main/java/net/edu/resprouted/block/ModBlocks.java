@@ -567,6 +567,9 @@ public class ModBlocks {
     public static final Block IRON_BERRY_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("iron_berry_juice_fluid_block", new
             FluidBlock(ModFluids.IRON_BERRY_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
 
+    public static final Block SUGAR_CANE_JUICE_FLUID_BLOCK = registerBlockWithoutBlockItem("sugar_cane_juice_fluid_block", new
+            FluidBlock(ModFluids.SUGAR_CANE_JUICE_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
     public static final Block ALE_WORT_FLUID_BLOCK = registerBlockWithoutBlockItem("ale_wort_fluid_block", new
             FluidBlock(ModFluids.ALE_WORT_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
 
@@ -593,6 +596,9 @@ public class ModBlocks {
 
     public static final Block AMBROSIA_FLUID_BLOCK = registerBlockWithoutBlockItem("ambrosia_fluid_block", new
             FluidBlock(ModFluids.AMBROSIA_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
+
+    public static final Block RUM_FLUID_BLOCK = registerBlockWithoutBlockItem("rum_fluid_block", new
+            FluidBlock(ModFluids.RUM_STILL,(AbstractBlock.Settings.copy(Blocks.WATER).noCollision().nonOpaque().dropsNothing())));
 
     // =================================================
     // ||                   HERBS                     ||

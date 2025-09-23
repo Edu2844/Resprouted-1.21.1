@@ -13,6 +13,7 @@ import net.minecraft.state.StateManager;
 import java.util.Optional;
 
 public abstract class SweetBerryWine extends BaseFluid{
+
     @Override
     public Fluid getFlowing() {
         return ModFluids.SWEET_BERRY_WINE_FLOWING;

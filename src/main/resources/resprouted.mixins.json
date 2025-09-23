@@ -20,7 +20,7 @@
   },
   "client": [
     "render.BackgroundRendererMixin",
-    "render.WorldRendererMixin",
-    "render.RenderLayersMixin"
+    "render.RenderLayersMixin",
+    "render.WorldRendererMixin"
   ]
 }

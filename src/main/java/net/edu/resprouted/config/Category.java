@@ -15,7 +15,6 @@ public enum Category {
                     () -> Resprouted.CONFIG.EnableHoneyBottleEffect,
                     newValue -> Resprouted.CONFIG.EnableHoneyBottleEffect = newValue, true, "config.resprouted.enable_honey_bottle_effect.tooltip"),
 
-
             Entry.booleanEntry("config.resprouted.enable_vanta_oiling",
                     () -> Resprouted.CONFIG.EnableVantaOiling,
                     newValue -> Resprouted.CONFIG.EnableVantaOiling = newValue, true, "config.resprouted.enable_vanta_oiling.tooltip"),

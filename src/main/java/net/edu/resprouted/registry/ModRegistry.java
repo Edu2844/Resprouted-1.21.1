@@ -5,7 +5,9 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.entity.ModEntities;
+import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.recipe.custom.BrewingBarrelRecipe;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
@@ -23,6 +25,7 @@ public class ModRegistry {
         registerCompostables();
         registerFluidStorages();
         registerBoats();
+        registerBrewingBarrelRecipes();
     }
     public static void registerStrippables() {
         register(ModBlocks.IRONWOOD_LOG, ModBlocks.STRIPPED_IRONWOOD_LOG);
@@ -49,6 +52,9 @@ public class ModRegistry {
         registry.add(ModBlocks.CHILI_CROP,30,60);
         registry.add(ModBlocks.CRUSHING_TUB,5,20);
         registry.add(ModBlocks.LIQUID_BARREL,5,20);
+        registry.add(ModBlocks.STAKE,5,20);
+        registry.add(ModBlocks.GRAPE_STEM,5,5);
+        registry.add(ModBlocks.GRAPE_LEAVES,30,60);
     }
     public static void registerOxidizablesAndWaxables() {
         //Chain
@@ -138,5 +144,16 @@ public class ModRegistry {
                 .planks(ModBlocks.IRONWOOD_PLANKS.asItem())
                 .build();
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, ModEntities.IRONWOOD_BOAT_KEY, IronwoodBoat);
+    }
+    public static void registerBrewingBarrelRecipes(){
+        BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.ALE_STILL, ModFluids.ALE_WORT_STILL));
+        BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.IRON_WINE_STILL, ModFluids.IRON_BERRY_JUICE_STILL));
+        BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.WINE_STILL, ModFluids.GRAPE_JUICE_STILL));
+        BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.SWEET_BERRY_WINE_STILL, ModFluids.SWEET_BERRY_JUICE_STILL));
+        BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.CIDER_STILL, ModFluids.APPLE_JUICE_STILL));
+        BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.MEAD_STILL, ModFluids.HONEY_STILL));
+        BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.AMBROSIA_STILL, ModFluids.GOLDEN_APPLE_JUICE_STILL));
+        BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.GLOW_BERRY_WINE_STILL, ModFluids.GLOW_BERRY_JUICE_STILL));
+        BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.RUM_STILL, ModFluids.SUGAR_CANE_JUICE_STILL));
     }
 }

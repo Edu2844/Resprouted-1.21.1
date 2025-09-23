@@ -9,6 +9,8 @@ import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.AdvancedCondenserRecipe;
 import net.edu.resprouted.screen.custom.AdvancedCondenserScreenHandler;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,7 +39,8 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
     private static final int OUTPUT_SLOT = 6;
 
     public AdvancedCondenserBE(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.ADVANCED_CONDENSER_BE, pos, state, 7);
+        super(ModBlockEntities.ADVANCED_CONDENSER_BE, pos, state, 7, FluidConstants.BUCKET * 8);
+
     }
 
     @Override
@@ -185,11 +188,13 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
 
         this.removeStack(BOTTLE_SLOT, 1);
 
-        this.fluidStorage.amount -= RECIPE_FLUID_COST;
+        SingleFluidStorage fluidStorage = getFluidStorage();
+        fluidStorage.amount -= RECIPE_FLUID_COST;
 
-        if (this.fluidStorage.amount < 0) {
-            this.fluidStorage.amount = 0;
+        if (fluidStorage.amount < 0) {
+            fluidStorage.amount = 0;
         }
+
 
         markDirty();
         world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);

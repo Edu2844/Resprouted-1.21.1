@@ -15,7 +15,7 @@ public class BoozeEffects {
         if (quality >= 0.5F) {
             player.getHungerManager().add(2, 4F * quality);
             int duration = 1200 + ((int) (10800 * quality));
-            player.addStatusEffect(new StatusEffectInstance(ModEffects.FULL, duration));
+            player.addStatusEffect(new StatusEffectInstance(ModEffects.FULL_STOMACH, duration));
         } else {
             int duration = (int) (6000 * (1 - quality));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, duration));
@@ -260,6 +260,25 @@ public class BoozeEffects {
                         0, false, true, true
                 ));
             }
+        }
+    }
+    public static void applyRumEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+        PlayerEntity player = context.player();
+        float quality = context.quality();
+
+        if (quality >= 0.5F) {
+            player.getHungerManager().add(1, 2F * quality);
+
+            int duration = 1200 + ((int) (6000 * (Math.max(Math.abs((quality - 0.5F) * 2F), 0F))));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, duration, 0, false, false));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, duration, 0, false, false));
+
+        } else {
+            int duration = (int) (6000 * Math.max(1 - quality, 0.25));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, duration));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, duration));
+
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, duration));
         }
     }
 }

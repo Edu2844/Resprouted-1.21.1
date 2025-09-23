@@ -168,6 +168,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.GLOW_BERRY_WINE_BOTTLE)
                 .add(ModItems.CIDER_BOTTLE)
                 .add(ModItems.AMBROSIA_BOTTLE)
+                .add(ModItems.RUM_BOTTLE)
                 .add(ModItems.MEAD_BOTTLE)
         ;
     }
