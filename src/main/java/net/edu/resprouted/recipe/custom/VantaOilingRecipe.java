@@ -205,10 +205,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.VANTA_OIL_SERIALIZER;
     }
-    @Override
-    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
-        return ItemStack.EMPTY;
-    }
+
     public static class VantaOilRecipeSerializer implements RecipeSerializer<VantaOilingRecipe> {
 
         public static final MapCodec<VantaOilingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
