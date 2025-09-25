@@ -41,7 +41,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
     }
     @Override
     public boolean matches(CraftingRecipeInput input, World world) {
-        if (!Resprouted.CONFIG.EnableVantaOiling) {
+        if (!Resprouted.CONFIG.isVantaOilingEnabled()) {
             return false;
         }
         if (world.isClient())

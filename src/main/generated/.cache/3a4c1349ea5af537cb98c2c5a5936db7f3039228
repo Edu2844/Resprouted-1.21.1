@@ -1,4 +1,4 @@
-// 1.21.1	2025-09-20T22:20:59.4632342	Resprouted/Block Loot Tables
+// 1.21.1	2025-09-24T23:47:11.4499023	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 327b905f23efd6a06058ec8aace92e8df372febd data\resprouted\loot_table\blocks\condenser.json
 634967a8bb65c47a8b6be880b25af0ffafaf001f data\resprouted\loot_table\blocks\slate_brick_stairs.json
@@ -100,8 +100,8 @@ c5f9de3a74e7d84cf408769c8f807b9f9f844ad8 data\resprouted\loot_table\blocks\black
 e63f6b80c801b3f17022aac3e0205718d5137907 data\resprouted\loot_table\blocks\black_golden_candle_holder.json
 e18718d6959508d33cab4d53b3189c7ba0c75954 data\resprouted\loot_table\blocks\bamboo_table.json
 1d2bac8cb33591dbd713cea9ae405f377e90847a data\resprouted\loot_table\blocks\waxed_weathered_copper_soul_lantern.json
-fd3a1a90fce0aa494eb6ddb3716fc82f0f553bd4 data\resprouted\loot_table\blocks\oak_table.json
 87a80ec86a9027ee11d6e40856e60318cb88fe01 data\resprouted\loot_table\blocks\granite_pillar.json
+fd3a1a90fce0aa494eb6ddb3716fc82f0f553bd4 data\resprouted\loot_table\blocks\oak_table.json
 e2a120c7cb6b41e23d75b03a47a0691e393e1c4a data\resprouted\loot_table\blocks\sandstone_pillar.json
 25c0d70b96216ffadebbf82feeaebfdad0c5c452 data\resprouted\loot_table\blocks\blue_iron_candle_holder.json
 fb5b3c7ade9a0d6367ced15341a8ac16a2af98e0 data\resprouted\loot_table\blocks\jungle_chair.json

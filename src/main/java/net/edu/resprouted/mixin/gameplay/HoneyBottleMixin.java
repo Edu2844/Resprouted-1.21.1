@@ -17,7 +17,7 @@ public class HoneyBottleMixin {
 
     @Inject(method = "finishUsing", at = @At("HEAD"))
     private void onFinishUsing(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
-        if (!world.isClient() && stack.getItem() == Items.HONEY_BOTTLE && Resprouted.CONFIG.EnableHoneyBottleEffect) {
+        if (!world.isClient() && stack.getItem() == Items.HONEY_BOTTLE && Resprouted.CONFIG.isHoneyBottleEffectEnabled()) {
             user.addStatusEffect(new StatusEffectInstance(
                     StatusEffects.REGENERATION,
                     80,

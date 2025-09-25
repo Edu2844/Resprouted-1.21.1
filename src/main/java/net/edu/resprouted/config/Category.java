@@ -12,12 +12,12 @@ public enum Category {
     GENERAL("config.resprouted.category.general", false,
 
             Entry.booleanEntry("config.resprouted.enable_honey_bottle_effect",
-                    () -> Resprouted.CONFIG.EnableHoneyBottleEffect,
-                    newValue -> Resprouted.CONFIG.EnableHoneyBottleEffect = newValue, true, "config.resprouted.enable_honey_bottle_effect.tooltip"),
+                    () -> Resprouted.CONFIG.isHoneyBottleEffectEnabled(),
+                    newValue -> Resprouted.CONFIG.setEnableHoneyBottleEffect(newValue), true, "config.resprouted.enable_honey_bottle_effect.tooltip"),
 
             Entry.booleanEntry("config.resprouted.enable_vanta_oiling",
-                    () -> Resprouted.CONFIG.EnableVantaOiling,
-                    newValue -> Resprouted.CONFIG.EnableVantaOiling = newValue, true, "config.resprouted.enable_vanta_oiling.tooltip"),
+                    () -> Resprouted.CONFIG.isVantaOilingEnabled(),
+                    newValue -> Resprouted.CONFIG.setEnableVantaOiling(newValue), true, "config.resprouted.enable_vanta_oiling.tooltip"),
 
             Entry.stringListEntry("config.resprouted.vanta_oil_whitelist",
                     () -> Resprouted.CONFIG.getVantaOilWhiteList(),
@@ -33,8 +33,8 @@ public enum Category {
                     "config.resprouted.vanta_oil_blacklist.tooltip"),
 
             Entry.booleanEntry("config.resprouted.enable_olive_oiling",
-                    () -> Resprouted.CONFIG.EnableOliveOiling,
-                    newValue -> Resprouted.CONFIG.EnableOliveOiling = newValue, true, "config.resprouted.enable_olive_oiling.tooltip"),
+                    () -> Resprouted.CONFIG.isOliveOilingEnabled(),
+                    newValue -> Resprouted.CONFIG.setEnableOliveOiling(newValue), true, "config.resprouted.enable_olive_oiling.tooltip"),
 
             Entry.floatEntry("config.resprouted.oiled_saturation_modifier",
                     () -> Resprouted.CONFIG.getOiledSaturationModifier(),
@@ -63,12 +63,12 @@ public enum Category {
                     "config.resprouted.oilable_food_blacklist.tooltip"),
 
             Entry.booleanEntry("config.resprouted.food_effect_tooltip",
-                    () -> Resprouted.CONFIG.FoodEffectTooltips,
-                    newValue -> Resprouted.CONFIG.FoodEffectTooltips = newValue, true, "config.resprouted.food_effect_tooltip.tooltip"),
+                    () -> Resprouted.CONFIG.isFoodEffectTooltipsEnabled(),
+                    newValue -> Resprouted.CONFIG.setFoodEffectTooltips(newValue), true, "config.resprouted.food_effect_tooltip.tooltip"),
 
             Entry.booleanEntry("config.resprouted.bottle_effect_tooltip",
-                    () -> Resprouted.CONFIG.BottleEffectTooltips,
-                    newValue -> Resprouted.CONFIG.BottleEffectTooltips = newValue, true, "config.resprouted.bottle_effect_tooltip.tooltip"),
+                    () -> Resprouted.CONFIG.isBottleEffectTooltipsEnabled(),
+                    newValue -> Resprouted.CONFIG.setBottleEffectTooltips(newValue), true, "config.resprouted.bottle_effect_tooltip.tooltip"),
 
             Entry.integerEntry("config.resprouted.max_brew_time",
                     () -> Resprouted.CONFIG.getMaxBrewTime(),

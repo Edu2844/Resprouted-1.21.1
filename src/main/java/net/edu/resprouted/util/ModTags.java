@@ -8,8 +8,6 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
-import java.util.List;
-
 public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> FERTILE_SOILS = createTag("fertile_soils");
@@ -56,16 +54,7 @@ public class ModTags {
         public static final TagKey<Fluid> APPLE_JUICE = createTag("apple_juice");
         public static final TagKey<Fluid> GOLDEN_APPLE_JUICE = createTag("golden_apple_juice");
         public static final TagKey<Fluid> OLIVE_OIL = createTag("olive_oil");
-        public static final List<TagKey<Fluid>> ALL_FLUID_TAGS = List.of(
-                HONEY,
-                IRON_BERRY_JUICE,
-                SWEET_BERRY_JUICE,
-                GLOW_BERRY_JUICE,
-                GRAPE_JUICE,
-                APPLE_JUICE,
-                GOLDEN_APPLE_JUICE,
-                OLIVE_OIL
-        );
+
         private static TagKey<Fluid> createTag(String name) {
             return TagKey.of(RegistryKeys.FLUID, Identifier.of(Resprouted.MOD_ID, name));
         }

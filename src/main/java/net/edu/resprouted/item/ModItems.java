@@ -32,23 +32,19 @@ public class ModItems {
     // =================================================
     // ||                   OLIVE                     ||
     // =================================================
-    public static final Item OLIVE_SIGN = registerItem("olive_sign",
-            new SignItem(new Item.Settings().maxCount(16), ModBlocks.OLIVE_SIGN, ModBlocks.OLIVE_WALL_SIGN));
-    public static final Item OLIVE_HANGING_SIGN = registerItem("olive_hanging_sign",
-            new HangingSignItem(ModBlocks.OLIVE_HANGING_SIGN , ModBlocks.OLIVE_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
+    public static final Item OLIVE_SIGN = registerItem("olive_sign", new SignItem(new Item.Settings().maxCount(16), ModBlocks.OLIVE_SIGN, ModBlocks.OLIVE_WALL_SIGN));
+    public static final Item OLIVE_HANGING_SIGN = registerItem("olive_hanging_sign", new HangingSignItem(ModBlocks.OLIVE_HANGING_SIGN , ModBlocks.OLIVE_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
-    public static final Item OLIVE_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_BOAT, ModEntities.OLIVE_BOAT_KEY, false);
-    public static final Item OLIVE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_CHEST_BOAT, ModEntities.OLIVE_BOAT_KEY, true);
+    public static Item OLIVE_BOAT;
+    public static Item OLIVE_CHEST_BOAT;
 
     // =================================================
     // ||                  IRONWOOD                   ||
     // =================================================
-    public static final Item IRONWOOD_SIGN = registerItem("ironwood_sign",
-            new SignItem(new Item.Settings().maxCount(16), ModBlocks.IRONWOOD_SIGN, ModBlocks.IRONWOOD_WALL_SIGN));
-    public static final Item IRONWOOD_HANGING_SIGN = registerItem("ironwood_hanging_sign",
-            new HangingSignItem(ModBlocks.IRONWOOD_HANGING_SIGN , ModBlocks.IRONWOOD_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
-    public static final Item IRONWOOD_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_BOAT, ModEntities.IRONWOOD_BOAT_KEY, false);
-    public static final Item IRONWOOD_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_CHEST_BOAT, ModEntities.IRONWOOD_BOAT_KEY, true);
+    public static final Item IRONWOOD_SIGN = registerItem("ironwood_sign", new SignItem(new Item.Settings().maxCount(16), ModBlocks.IRONWOOD_SIGN, ModBlocks.IRONWOOD_WALL_SIGN));
+    public static final Item IRONWOOD_HANGING_SIGN = registerItem("ironwood_hanging_sign", new HangingSignItem(ModBlocks.IRONWOOD_HANGING_SIGN , ModBlocks.IRONWOOD_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
+    public static Item IRONWOOD_BOAT;
+    public static Item IRONWOOD_CHEST_BOAT;
 
     // =================================================
     // ||                   HERBS                     ||
@@ -227,7 +223,23 @@ public class ModItems {
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name), item);
     }
+
+    public static void registerBoats() {
+        if (!Resprouted.IS_CONNECTOR_INSTALLED) {
+
+            OLIVE_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_BOAT_ID, ModEntities.OLIVE_BOAT_KEY, false);
+            OLIVE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_CHEST_BOAT_ID, ModEntities.OLIVE_BOAT_KEY, true);
+            IRONWOOD_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_BOAT_ID, ModEntities.IRONWOOD_BOAT_KEY, false);
+            IRONWOOD_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_CHEST_BOAT_ID, ModEntities.IRONWOOD_BOAT_KEY, true);
+
+            Resprouted.LOGGER.info("Registering item boats for " +  Resprouted.MOD_ID);
+        } else {
+            Resprouted.LOGGER.info("Item Boats not registered due to issues with neoforge");
+        }
+    }
+
     public static void registerModItems() {
+        registerBoats();
         Resprouted.LOGGER.info("Registering Items for " +  Resprouted.MOD_ID);
     }
 }

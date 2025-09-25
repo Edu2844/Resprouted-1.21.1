@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "resprouted:item/elixir_bottle_overlay_drinking_0",
+    "layer1": "resprouted:item/elixir_bottle_without_cork"
+  }
+}

@@ -62,7 +62,7 @@ public class DrinkableBottleItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, tooltip, type);
-        if (Resprouted.CONFIG.BottleEffectTooltips) {
+        if (Resprouted.CONFIG.isBottleEffectTooltipsEnabled()) {
             TextUtils.addFoodEffectTooltip(stack, context, tooltip);
         }
     }

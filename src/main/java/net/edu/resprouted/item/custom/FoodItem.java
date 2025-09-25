@@ -17,7 +17,7 @@ public class FoodItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, tooltip, type);
-        if (Resprouted.CONFIG.FoodEffectTooltips) {
+        if (Resprouted.CONFIG.isFoodEffectTooltipsEnabled()) {
             TextUtils.addFoodEffectTooltip(stack, context, tooltip);
         }
     }

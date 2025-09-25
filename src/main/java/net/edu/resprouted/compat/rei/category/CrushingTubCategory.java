@@ -49,7 +49,7 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
         Point startPoint = new Point(bounds.getCenterX() - 52, bounds.getCenterY() - 22);
         List<Widget> widgets = new LinkedList<>();
 
-        //Fondo
+        //Backgroung
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createTexturedWidget(TEXTURE, startPoint.x, startPoint.y,0, 0, 130, 57));
 
@@ -72,18 +72,17 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
             FluidVariant fluidVariant = display.getFluid();
             Fluid fluid = fluidVariant.getFluid();
             long amount = display.getAmount();
-            String amountText = FluidUtils.convertDropletsToMb(amount) + " mB";
+            String amountText = FluidUtils.convertDropletsToMb(amount) + "/8000 mB";
 
             Sprite sprite = FluidVariantRendering.getSprite(fluidVariant);
             if (sprite != null && sprite.getAtlasId() != null) {
 
-                // Determinar posición basada en si hay output item
                 boolean hasOutputItem = !display.getOutputEntries().isEmpty();
                 int fluidX = startPoint.x + 82;
                 int fluidY = hasOutputItem ? startPoint.y + 25 : startPoint.y + 15;
                 int tooltipY = hasOutputItem ? startPoint.y + 25 : startPoint.y + 15;
 
-                // Renderizado del fluido
+                //Fluid
                 widgets.add(Widgets.createDrawableWidget((helper, mouseX, mouseY, delta) -> {
                     helper.drawTexture(Identifier.of("textures/gui/sprites/container/slot.png"),
                             fluidX - 1, fluidY - 1, 0, 0, 18, 18, 18, 18);
@@ -100,7 +99,7 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
                     helper.drawSprite(fluidX, fluidY, 0, 16, 16, sprite);
                     RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
                 }));
-                // Tooltip
+                //Tooltip
                 widgets.add(Widgets.createTooltip(
                         new Rectangle(fluidX, tooltipY, 16, 16),
                         List.of(fluid.getDefaultState().getBlockState().getBlock().getName(), Text.literal(amountText).formatted(Formatting.GRAY))

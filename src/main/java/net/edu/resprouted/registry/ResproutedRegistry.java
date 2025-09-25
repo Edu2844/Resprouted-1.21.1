@@ -17,7 +17,7 @@ import static net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry.register
 import static net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry.registerWaxableBlockPair;
 import static net.fabricmc.fabric.api.registry.StrippableBlockRegistry.register;
 
-public class ModRegistry {
+public class ResproutedRegistry {
     public static void RegisterModStuffs(){
         registerStrippables();
         registerFlammables();
@@ -129,6 +129,7 @@ public class ModRegistry {
         FluidStorage.SIDED.registerForBlockEntity((evaporatingBasinBE, direction) -> evaporatingBasinBE.getFluidTankProvider(), ModBlockEntities.EVAPORATING_BASIN_BE);
         FluidStorage.SIDED.registerForBlockEntity((condenserBE, direction1) -> condenserBE.getFluidTankProvider(), ModBlockEntities.CONDENSER_BE);
         FluidStorage.SIDED.registerForBlockEntity((advancedCondenserBE, direction) -> advancedCondenserBE.getFluidTankProvider(), ModBlockEntities.ADVANCED_CONDENSER_BE);
+
     }
     public static void registerBoats(){
         TerraformBoatType OliveBoat = new TerraformBoatType.Builder()

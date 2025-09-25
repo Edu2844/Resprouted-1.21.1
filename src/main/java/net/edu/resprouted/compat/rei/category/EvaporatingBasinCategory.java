@@ -81,7 +81,7 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
                     new Rectangle(fluidX, fluidY, 16, 16),
                     List.of(
                             fluidVariant.getFluid().getDefaultState().getBlockState().getBlock().getName(),
-                            Text.literal( display.getAmount() + " mB").formatted(Formatting.GRAY)
+                            Text.literal( display.getAmount() + "/6000 mB").formatted(Formatting.GRAY)
                     )
             ));
         }

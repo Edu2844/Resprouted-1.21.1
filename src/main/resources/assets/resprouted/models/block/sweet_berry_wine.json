@@ -1,0 +1,6 @@
+{
+  "parent": "block/water",
+  "textures": {
+    "particle": "resprouted:block/fluid/booze/sweet_berry_wine_overlay"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "resprouted:item/golden_apple_juice_bottle_drinking_1"
+  }
+}

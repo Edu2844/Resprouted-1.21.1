@@ -71,7 +71,6 @@
   "item.resprouted.rum_bottle": "Rum Bottle",
   "item.resprouted.ambrosia_bottle": "Ambrosia Bottle",
 
-
   "block.resprouted.cabinet": "Cabinet",
   "block.resprouted.oak_cabinet": "Oak Cabinet",
   "block.resprouted.dark_oak_cabinet": "Dark Oak Cabinet",
@@ -85,6 +84,7 @@
   "block.resprouted.warped_cabinet": "Warped Cabinet",
   "block.resprouted.ironwood_cabinet": "Ironwood Cabinet",
   "block.resprouted.olive_cabinet": "Olive Cabinet",
+
   "block.resprouted.honey_fluid_block": "Honey",
   "block.resprouted.apple_juice_fluid_block": "Apple Juice",
   "block.resprouted.golden_apple_juice_fluid_block": "Golden Apple Juice",
@@ -105,7 +105,6 @@
   "block.resprouted.mead_fluid_block": "Mead",
   "block.resprouted.rum_fluid_block": "Rum",
   "block.resprouted.ambrosia_fluid_block": "Ambrosia",
-
 
   "block.resprouted.slate": "Slate",
   "block.resprouted.polished_slate": "Polished Slate",
@@ -215,6 +214,7 @@
   "block.resprouted.purple_iron_candle_holder": "Purple Iron Candle Holder",
   "block.resprouted.magenta_iron_candle_holder": "Magenta Iron Candle Holder",
   "block.resprouted.pink_iron_candle_holder": "Pink Iron Candle Holder",
+  "block.resprouted.green_iron_candle_holder": "Green Iron Candle Holder",
   "block.resprouted.golden_candle_holder": "Golden Candle Holder",
   "block.resprouted.white_golden_candle_holder": "White Golden Candle Holder",
   "block.resprouted.light_gray_golden_candle_holder": "Light Gray Golden Candle Holder",
@@ -231,6 +231,7 @@
   "block.resprouted.purple_golden_candle_holder": "Purple Golden Candle Holder",
   "block.resprouted.magenta_golden_candle_holder": "Magenta Golden Candle Holder",
   "block.resprouted.pink_golden_candle_holder": "Pink Golden Candle Holder",
+  "block.resprouted.green_golden_candle_holder": "Green Golden Candle Holder",
   "block.resprouted.oak_chair": "Oak Chair",
   "block.resprouted.dark_oak_chair": "Dark Oak Chair",
   "block.resprouted.acacia_chair": "Acacia Chair",
@@ -338,26 +339,46 @@
   "container.resprouted.cabinet_double": "Large Cabinet",
   "container.resprouted.cabinet": "Cabinet",
 
-  "fluid.resprouted.grape_juice_still": "Grape Juice Still",
-  "fluid.resprouted.sweet_berry_juice_still": "Sweet Berry Juice Still",
-  "fluid.resprouted.iron_berry_juice_still": "Iron Berry Juice Still",
-  "fluid.resprouted.glow_berry_juice_still": "Glow Berry Juice Still",
-  "fluid.resprouted.apple_juice_still": "Apple Juice Still",
-  "fluid.resprouted.olive_oil_still": "Apple Juice Still",
-  "fluid.resprouted.golden_apple_juice_still": "Golden Apple Juice Still",
-  "fluid.resprouted.honey_still": "Honey Still",
-
-  "fluid.resprouted.ale_still": "Ale Still",
-  "fluid.resprouted.ale_flowing": "Ale Flowing",
-
-  "fluid.resprouted.iron_wine_still": "Iron Wine Still",
-  "fluid.resprouted.iron_wine_flowing": "Iron Wine Flowing",
-
-  "fluid.resprouted.wine_still": "Wine Still",
-  "fluid.resprouted.wine_flowing": "Wine Flowing",
-
-  "fluid.resprouted.sweet_berry_wine_still": "Sweet Berry Wine Still",
-  "fluid.resprouted.sweet_berry_wine_flowing": "Sweet Berry Wine Flowing",
+  "fluid.resprouted.honey_still": "Honey",
+  "fluid.resprouted.honey_flowing": "Flowing Honey",
+  "fluid.resprouted.apple_juice_still": "Apple Juice",
+  "fluid.resprouted.apple_juice_flowing": "Flowing Apple Juice",
+  "fluid.resprouted.golden_apple_juice_still": "Golden Apple Juice",
+  "fluid.resprouted.golden_apple_juice_flowing": "Flowing Golden Apple Juice",
+  "fluid.resprouted.grape_juice_still": "Grape Juice",
+  "fluid.resprouted.grape_juice_flowing": "Flowing Grape Juice",
+  "fluid.resprouted.sweet_berry_juice_still": "Sweet Berry Juice",
+  "fluid.resprouted.sweet_berry_juice_flowing": "Flowing Sweet Berry Juice",
+  "fluid.resprouted.olive_oil_still": "Olive Oil",
+  "fluid.resprouted.olive_oil_flowing": "Flowing Olive Oil",
+  "fluid.resprouted.vanta_oil_still": "Vanta Oil",
+  "fluid.resprouted.vanta_oil_flowing": "Flowing Vanta Oil",
+  "fluid.resprouted.glow_berry_juice_still": "Glow Berry Juice",
+  "fluid.resprouted.glow_berry_juice_flowing": "Flowing Glow Berry Juice",
+  "fluid.resprouted.iron_berry_juice_still": "Iron Berry Juice",
+  "fluid.resprouted.iron_berry_juice_flowing": "Flowing Iron Berry Juice",
+  "fluid.resprouted.sugar_cane_juice_still": "Sugar Cane Juice",
+  "fluid.resprouted.sugar_cane_juice_flowing": "Flowing Sugar Cane Juice",
+  "fluid.resprouted.ale_wort_still": "Ale Wort",
+  "fluid.resprouted.ale_wort_flowing": "Flowing Ale Wort",
+  "fluid.resprouted.ale_still": "Ale",
+  "fluid.resprouted.ale_flowing": "Flowing Ale",
+  "fluid.resprouted.iron_wine_still": "Iron Wine",
+  "fluid.resprouted.iron_wine_flowing": "Flowing Iron Wine",
+  "fluid.resprouted.cider_still": "Cider",
+  "fluid.resprouted.cider_flowing": "Flowing Cider",
+  "fluid.resprouted.mead_still": "Mead",
+  "fluid.resprouted.mead_flowing": "Flowing Mead",
+  "fluid.resprouted.wine_still": "Wine",
+  "fluid.resprouted.wine_flowing": "Flowing Wine",
+  "fluid.resprouted.sweet_berry_wine_still": "Sweet Berry Wine",
+  "fluid.resprouted.sweet_berry_wine_flowing": "Flowing Sweet Berry Wine",
+  "fluid.resprouted.glow_berry_wine_still": "Glow Berry Wine",
+  "fluid.resprouted.glow_berry_wine_flowing": "Flowing Glow Berry Wine",
+  "fluid.resprouted.ambrosia_still": "Ambrosia",
+  "fluid.resprouted.ambrosia_flowing": "Flowing Ambrosia",
+  "fluid.resprouted.rum_still": "Rum",
+  "fluid.resprouted.rum_flowing": "Flowing Rum",
 
   "itemgroup.resprouted.decoration": "Resprouted Decoration",
   "itemgroup.resprouted.alchemy": "Resprouted Alchemy",
@@ -384,7 +405,6 @@
   "tooltip.resprouted.quality.awful": "Awful",
   "tooltip.resprouted.quality.sewage": "Sewage",
 
-
   "effect.resprouted.full_metal":"Full Metal",
   "effect.resprouted.fire_power":"Fire Power",
   "effect.resprouted.iron_skin":"Iron Skin",
@@ -399,10 +419,6 @@
 
   "text.resprouted.press_to_launch": "Press %s to launch fireball",
   "category.resprouted.keys": "Rustic Resprout",
-
-  "tooltip.jade.leaves.growth": "Growth: %s",
-  "tooltip.jade.crop_mature": "Mature",
-  "tooltip.jade.resprouted.grape_leaves": "§aHas Grapes",
 
   "config.resprouted.title": "Resprouted Configuration",
   "config.resprouted.category.general": "General",
@@ -433,15 +449,19 @@
   "config.resprouted.max_brew_time": "Brewing Time",
   "config.resprouted.max_brew_time.tooltip":"The total time, in ticks, required for a brewing process to complete. | Range: 1200 (1 min) - 120000 (100 min). | Default: 12000 (10 min).",
 
+  "pack.resprouted.eatinganimationid": "Resprouted + Eating Animations Mod Compat",
+
   "config.jade.plugin_resprouted.fruiting_leaves_progress": "Fruiting Leaves Progress",
   "config.jade.plugin_resprouted.grape_leaves_mature": "Grapes Leaves Mature",
+  "tooltip.jade.leaves.growth": "Growth: %s",
+  "tooltip.jade.crop_mature": "Mature",
+  "tooltip.jade.resprouted.grape_leaves": "§aHas Grapes",
 
   "text.resprouted.main": "Here you will find everything related to the mod. This almanac contains guides, and useful information about all the added features.",
   "text.resprouted.categories": "Index",
   "text.category.resprouted.agriculture": "Agriculture",
   "text.category.resprouted.decoration": "Decoration",
   "text.category.resprouted.production": "Production",
-
 
   "text.resprouted.fertile_soil": "Fertile soil works like regular farmland, but with some perks: it doesn’t need water to stay hydrated, can’t be trampled, and lets sugar cane grow without a nearby water block.",
 

@@ -263,6 +263,21 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.CLAY_WALL_CROSS)
                 .add(ModBlocks.CLAY_WALL_DIAGONAL)
         ;
+        getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS)
+                .add(ModBlocks.IRONWOOD_HANGING_SIGN)
+                .add(ModBlocks.OLIVE_HANGING_SIGN)
+
+        ;
+        getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS)
+                .add(ModBlocks.IRONWOOD_WALL_HANGING_SIGN)
+                .add(ModBlocks.OLIVE_WALL_HANGING_SIGN)
+
+        ;
+        getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
+                .add(ModBlocks.IRONWOOD_WALL_SIGN)
+                .add(ModBlocks.OLIVE_WALL_SIGN)
+
+        ;
         getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
                 //IRONWOOD
                 .add(ModBlocks.IRONWOOD_LOG)

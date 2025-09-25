@@ -29,7 +29,10 @@ import net.minecraft.client.color.item.ItemColorProvider;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.render.block.entity.HangingSignBlockEntityRenderer;
+import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.component.DataComponentTypes;
@@ -42,7 +45,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
 
-public class ModClientRegistry {
+public class ResproutedClientRegistry {
     public static void RegisterModClientStuffs(){
         registerBlockEntityRenderers();
         registerEntityRenderers();
@@ -64,8 +67,8 @@ public class ModClientRegistry {
         EntityRendererRegistry.register(ModEntities.CHAIR, ChairEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.STOOL, StoolEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.THROWN_TOMATO, TomatoEntityRenderer::new);
-        TerraformBoatClientHelper.registerModelLayers(ModEntities.OLIVE_BOAT, false);
-        TerraformBoatClientHelper.registerModelLayers(ModEntities.IRONWOOD_BOAT, false);
+        TerraformBoatClientHelper.registerModelLayers(ModEntities.OLIVE_BOAT_ID, false);
+        TerraformBoatClientHelper.registerModelLayers(ModEntities.IRONWOOD_BOAT_ID, false);
     }
     public static void registerBlockRenderers() {
         BlockRenderLayerMap registry = BlockRenderLayerMap.INSTANCE;
@@ -153,6 +156,7 @@ public class ModClientRegistry {
         registry.putBlock(ModBlocks.PURPLE_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.MAGENTA_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.PINK_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.GREEN_IRON_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WHITE_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.LIGHT_GRAY_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -169,6 +173,7 @@ public class ModClientRegistry {
         registry.putBlock(ModBlocks.PURPLE_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.MAGENTA_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.PINK_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.GREEN_GOLDEN_CANDLE_HOLDER, RenderLayer.getCutout());
         //Doors&Trapdoors
         registry.putBlock(ModBlocks.IRONWOOD_DOOR, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.IRONWOOD_TRAPDOOR, RenderLayer.getCutout());
@@ -184,6 +189,12 @@ public class ModClientRegistry {
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.IRON_BERRY_JUICE_STILL, ModFluids.IRON_BERRY_JUICE_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.ALE_WORT_STILL, ModFluids.ALE_WORT_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.SUGAR_CANE_JUICE_STILL, ModFluids.SUGAR_CANE_JUICE_FLOWING);
+
+        TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ResproutedWoodTypes.IRONWOOD, TexturedRenderLayers.getSignTextureId(ResproutedWoodTypes.IRONWOOD));
+        TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ResproutedWoodTypes.OLIVE, TexturedRenderLayers.getSignTextureId(ResproutedWoodTypes.OLIVE));
+        BlockEntityRendererFactories.register(ModBlockEntities.MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.MOD_HANGING_SIGN_BLOCK_ENTITY, HangingSignBlockEntityRenderer::new);
+
     }
     public static void registerFluidColors() {
         FluidRenderHandlerRegistry registry = FluidRenderHandlerRegistry.INSTANCE;

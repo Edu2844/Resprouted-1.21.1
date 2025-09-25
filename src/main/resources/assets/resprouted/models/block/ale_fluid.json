@@ -1,6 +1,6 @@
 {
   "parent": "block/water",
   "textures": {
-    "particle": "resprouted:block/fluid/ale_overlay"
+    "particle": "resprouted:block/fluid/booze/ale_overlay"
   }
 }

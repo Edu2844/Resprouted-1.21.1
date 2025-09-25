@@ -127,7 +127,7 @@ public class CabinetBE extends LootableContainerBlockEntity implements NamedScre
 
                 if (!state.get(CabinetBlock.OPEN)) {
                     world.setBlockState(pos, state.with(CabinetBlock.OPEN, true), 3);
-                    world.playSound(null, pos, SoundEvents.BLOCK_BARREL_OPEN, SoundCategory.BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
+                    world.playSound(null, pos, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
                 }
             }
         }
@@ -138,7 +138,7 @@ public class CabinetBE extends LootableContainerBlockEntity implements NamedScre
 
                 if (state.get(CabinetBlock.OPEN)) {
                     world.setBlockState(pos, state.with(CabinetBlock.OPEN, false), 3);
-                    world.playSound(null, pos, SoundEvents.BLOCK_BARREL_CLOSE, SoundCategory.BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
+                    world.playSound(null, pos, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f);
                 }
             }
         }

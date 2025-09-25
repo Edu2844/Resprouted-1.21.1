@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "resprouted:item/iron_wine_bottle_drinking_1"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "resprouted:item/elixir_bottle_overlay_drinking_1",
+    "layer1": "resprouted:item/elixir_bottle_without_cork"
+  }
+}

@@ -31,7 +31,7 @@ public class OilingRecipe extends SpecialCraftingRecipe {
     }
     @Override
     public boolean matches(CraftingRecipeInput input, World world) {
-        if (!Resprouted.CONFIG.EnableOliveOiling) {
+        if (!Resprouted.CONFIG.isOliveOilingEnabled()) {
             return false;
         }
         if (world.isClient()) return false;

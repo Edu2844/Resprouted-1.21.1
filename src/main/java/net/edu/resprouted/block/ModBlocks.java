@@ -15,6 +15,7 @@ import net.edu.resprouted.block.custom.decorative.*;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.registry.ResproutedWoodTypes;
 import net.edu.resprouted.util.CabinetRegistry;
 import net.edu.resprouted.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
@@ -151,9 +152,6 @@ public class ModBlocks {
     // =================================================
     // ||                  IRONWOOD                   ||
     // =================================================
-    public static final Identifier IRONWOOD_SIGN_TEXTURE = Identifier.of(Resprouted.MOD_ID, "entity/signs/ironwood");
-    public static final Identifier IRONWOOD_HANGING_SIGN_TEXTURE = Identifier.of(Resprouted.MOD_ID, "entity/signs/hanging/ironwood");
-    public static final Identifier IRONWOOD_HANGING_SIGN_GUI_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/hanging_signs/ironwood");
 
     public static final Block IRONWOOD_LEAVES = registerBlock("ironwood_leaves",
             new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
@@ -186,21 +184,14 @@ public class ModBlocks {
     public static final Block IRONWOOD_TRAPDOOR = registerBlock("ironwood_trapdoor",
             new TrapdoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
 
-    public static final Block IRONWOOD_SIGN = registerBlock("ironwood_sign",
-            new TerraformSignBlock(IRONWOOD_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN)));
-    public static final Block IRONWOOD_WALL_SIGN = Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, "ironwood_wall_sign"),
-            new TerraformWallSignBlock(IRONWOOD_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).dropsLike(ModBlocks.IRONWOOD_SIGN)));
-    public static final Block IRONWOOD_HANGING_SIGN = registerBlock("ironwood_hanging_sign",
-            new TerraformHangingSignBlock(IRONWOOD_HANGING_SIGN_TEXTURE,IRONWOOD_HANGING_SIGN_GUI_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN)));
-    public static final Block IRONWOOD_WALL_HANGING_SIGN = registerBlock("ironwood_wall_hanging_sign",
-            new TerraformWallHangingSignBlock(IRONWOOD_HANGING_SIGN_TEXTURE,IRONWOOD_HANGING_SIGN_GUI_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).dropsLike(ModBlocks.IRONWOOD_HANGING_SIGN)));
+    public static final Block IRONWOOD_SIGN = registerBlockWithoutBlockItem("ironwood_sign", new ModStandingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
+    public static final Block IRONWOOD_WALL_SIGN = registerBlockWithoutBlockItem("ironwood_wall_sign", new ModWallSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_SIGN)));
+    public static final Block IRONWOOD_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_hanging_sign", new ModHangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
+    public static final Block IRONWOOD_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_wall_hanging_sign", new ModWallHangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_HANGING_SIGN)));
 
     // =================================================
     // ||                    OLIVE                    ||
     // =================================================
-    public static final Identifier OLIVE_SIGN_TEXTURE = Identifier.of(Resprouted.MOD_ID, "entity/signs/olive");
-    public static final Identifier OLIVE_HANGING_SIGN_TEXTURE = Identifier.of(Resprouted.MOD_ID, "entity/signs/hanging/olive");
-    public static final Identifier OLIVE_HANGING_SIGN_GUI_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/hanging_signs/olive");
 
     public static final Block OLIVE_LEAVES = registerBlock("olive_leaves",
             new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
@@ -232,15 +223,11 @@ public class ModBlocks {
             new DoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
     public static final Block OLIVE_TRAPDOOR = registerBlock("olive_trapdoor",
             new TrapdoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
-    public static final Block OLIVE_SIGN = registerBlock("olive_sign",
-            new TerraformSignBlock(OLIVE_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN)));
-    public static final Block OLIVE_WALL_SIGN = Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, "olive_wall_sign"),
-            new TerraformWallSignBlock(OLIVE_SIGN_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).dropsLike(ModBlocks.OLIVE_SIGN)));
-    public static final Block OLIVE_HANGING_SIGN = registerBlock("olive_hanging_sign",
-            new TerraformHangingSignBlock(OLIVE_HANGING_SIGN_TEXTURE,OLIVE_HANGING_SIGN_GUI_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN)));
-    public static final Block OLIVE_WALL_HANGING_SIGN = registerBlock("olive_wall_hanging_sign",
-            new TerraformWallHangingSignBlock(OLIVE_HANGING_SIGN_TEXTURE,OLIVE_HANGING_SIGN_GUI_TEXTURE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).dropsLike(ModBlocks.OLIVE_HANGING_SIGN)));
 
+    public static final Block OLIVE_SIGN = registerBlockWithoutBlockItem("olive_sign", new ModStandingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
+    public static final Block OLIVE_WALL_SIGN = registerBlockWithoutBlockItem("olive_wall_sign", new ModWallSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_SIGN)));
+    public static final Block OLIVE_HANGING_SIGN = registerBlockWithoutBlockItem("olive_hanging_sign", new ModHangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
+    public static final Block OLIVE_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("olive_wall_hanging_sign", new ModWallHangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_HANGING_SIGN)));
 
     // =================================================
     // ||               PAINTED PLANKS                ||
@@ -499,6 +486,7 @@ public class ModBlocks {
     public static final Block PURPLE_IRON_CANDLE_HOLDER = registerBlock("purple_iron_candle_holder", new CandleHolderBlock());
     public static final Block MAGENTA_IRON_CANDLE_HOLDER = registerBlock("magenta_iron_candle_holder", new CandleHolderBlock());
     public static final Block PINK_IRON_CANDLE_HOLDER = registerBlock("pink_iron_candle_holder", new CandleHolderBlock());
+    public static final Block GREEN_IRON_CANDLE_HOLDER = registerBlock("green_iron_candle_holder", new CandleHolderBlock());
     //Gold
     public static final Block GOLDEN_CANDLE_HOLDER = registerBlock("golden_candle_holder", new CandleHolderBlock());
     public static final Block WHITE_GOLDEN_CANDLE_HOLDER = registerBlock("white_golden_candle_holder", new CandleHolderBlock());
@@ -516,6 +504,7 @@ public class ModBlocks {
     public static final Block PURPLE_GOLDEN_CANDLE_HOLDER = registerBlock("purple_golden_candle_holder", new CandleHolderBlock());
     public static final Block MAGENTA_GOLDEN_CANDLE_HOLDER = registerBlock("magenta_golden_candle_holder", new CandleHolderBlock());
     public static final Block PINK_GOLDEN_CANDLE_HOLDER = registerBlock("pink_golden_candle_holder", new CandleHolderBlock());
+    public static final Block GREEN_GOLDEN_CANDLE_HOLDER = registerBlock("green_golden_candle_holder", new CandleHolderBlock());
 
     // =================================================
     // ||                AGRICULTURE                  ||
@@ -534,7 +523,6 @@ public class ModBlocks {
     public static final Block EVAPORATING_BASIN = registerBlock("evaporating_basin", new EvaporatingBasinBlock(AbstractBlock.Settings.copy(Blocks.TERRACOTTA).nonOpaque()));
     public static final Block LIQUID_BARREL = registerBlock("liquid_barrel" , new LiquidBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
     public static final Block BREWING_BARREL = registerBlock("brewing_barrel" , new BrewingBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-
     public static final Block IRON_BERRY_CAKE = registerBlock("iron_berry_cake", new CakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ModEffects.FULL_METAL, 200, 0));
 
     // =================================================

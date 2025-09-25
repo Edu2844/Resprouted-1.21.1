@@ -127,7 +127,7 @@ public class CandleHolderBlock extends Block {
     protected void extinguish(World world, BlockPos pos, BlockState state) {
         world.setBlockState(pos, state.with(LIT, false), Block.NOTIFY_ALL);
 
-        this.getParticleOffsets(state).forEach(offset -> world.addParticle(ParticleTypes.SMOKE, pos.getX() + offset.getX(), pos.getY() + offset.getY(), pos.getZ() + offset.getZ(), 0.0D, 0.1D, 0.0D));
+        //this.getParticleOffsets(state).forEach(offset -> world.addParticle(ParticleTypes.SMOKE, pos.getX() + offset.getX(), pos.getY() + offset.getY(), pos.getZ() + offset.getZ(), 0.0D, 0.1D, 0.0D));
         world.playSound(null, pos, SoundEvents.BLOCK_CANDLE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
     }

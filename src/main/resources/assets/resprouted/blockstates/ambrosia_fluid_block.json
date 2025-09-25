@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "level=0": {"model": "resprouted:block/ambrosia"},
+    "level=1": { "model": "resprouted:block/ambrosia" },
+    "level=2": { "model": "resprouted:block/ambrosia" },
+    "level=3": { "model": "resprouted:block/ambrosia" },
+    "level=4": { "model": "resprouted:block/ambrosia" },
+    "level=5": { "model": "resprouted:block/ambrosia" },
+    "level=6": { "model": "resprouted:block/ambrosia" },
+    "level=7": { "model": "resprouted:block/ambrosia" },
+    "level=8": { "model": "resprouted:block/ambrosia" },
+    "level=9": { "model": "resprouted:block/ambrosia" },
+    "level=10": { "model": "resprouted:block/ambrosia" },
+    "level=11": { "model": "resprouted:block/ambrosia" },
+    "level=12": { "model": "resprouted:block/ambrosia" },
+    "level=13": { "model": "resprouted:block/ambrosia" },
+    "level=14": { "model": "resprouted:block/ambrosia" },
+    "level=15": { "model": "resprouted:block/ambrosia" }
+  }
+}

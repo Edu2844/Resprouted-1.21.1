@@ -51,7 +51,7 @@ public class ModEvents {
     }
 
     private static void onHoneyTooltip(ItemStack stack, Item.TooltipContext context, TooltipType type, List<Text> tooltip) {
-        if (Resprouted.CONFIG.BottleEffectTooltips && Resprouted.CONFIG.EnableHoneyBottleEffect){
+        if (Resprouted.CONFIG.isBottleEffectTooltipsEnabled() && Resprouted.CONFIG.isHoneyBottleEffectEnabled()){
             TextUtils.addHoneyEffectTooltip(stack, context, tooltip);
         }
     }

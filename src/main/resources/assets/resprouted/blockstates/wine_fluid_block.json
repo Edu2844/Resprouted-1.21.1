@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "level=0": {"model": "resprouted:block/wine"},
+    "level=1": { "model": "resprouted:block/wine" },
+    "level=2": { "model": "resprouted:block/wine" },
+    "level=3": { "model": "resprouted:block/wine" },
+    "level=4": { "model": "resprouted:block/wine" },
+    "level=5": { "model": "resprouted:block/wine" },
+    "level=6": { "model": "resprouted:block/wine" },
+    "level=7": { "model": "resprouted:block/wine" },
+    "level=8": { "model": "resprouted:block/wine" },
+    "level=9": { "model": "resprouted:block/wine" },
+    "level=10": { "model": "resprouted:block/wine" },
+    "level=11": { "model": "resprouted:block/wine" },
+    "level=12": { "model": "resprouted:block/wine" },
+    "level=13": { "model": "resprouted:block/wine" },
+    "level=14": { "model": "resprouted:block/wine" },
+    "level=15": { "model": "resprouted:block/wine" }
+  }
+}

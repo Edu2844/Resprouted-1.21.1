@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "resprouted:item/ambrosia_bottle"
+  },
+  "overrides": [
+
+    {
+      "predicate": {
+        "drinking": 1,
+        "drink": 0.35
+      },
+      "model": "resprouted:item/ambrosia_bottle_drinking_0"
+    },
+    {
+      "predicate": {
+        "drinking": 1,
+        "drink": 0.70
+      },
+      "model": "resprouted:item/ambrosia_bottle_drinking_1"
+    },
+
+    {
+      "predicate": {
+
+        "drinking": 1,
+        "drink": 0.90
+      },
+      "model": "resprouted:item/ambrosia_bottle_drinking_2"
+    }
+  ]
+}

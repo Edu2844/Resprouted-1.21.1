@@ -27,7 +27,7 @@ public class ResproutedConfiguration {
     public boolean FoodEffectTooltips = false;
     public int MinBrewQualityChange = -1;
     public int MaxBrewQualityChange = 4;
-    private int MaxBrewTime  = 12000; //12000
+    private int MaxBrewTime  = 12000; //12000 default
 
     public ResproutedConfiguration() {
 
@@ -47,12 +47,14 @@ public class ResproutedConfiguration {
         ResproutedConfiguration configuration = new ResproutedConfiguration();
         if (!CONFIG_FILE.exists()) {
             save(configuration);
+            Resprouted.LOGGER.info("Created new config file for " + Resprouted.MOD_ID);
             return configuration;
         }
         try (Reader reader = Files.newBufferedReader(CONFIG_FILE.toPath())) {
             configuration = (new GsonBuilder().setPrettyPrinting().create()).fromJson(reader, ResproutedConfiguration.class);
+            Resprouted.LOGGER.info("Config loaded successfully for " + Resprouted.MOD_ID);
         } catch (IOException e) {
-            System.err.println("Error loading Resprouted config: " + e.getMessage());
+            Resprouted.LOGGER.error("Error loading Resprouted config: {}", e.getMessage());
         }
         return configuration;
     }
@@ -60,9 +62,50 @@ public class ResproutedConfiguration {
     public static void save(ResproutedConfiguration config) {
         try (Writer writer = Files.newBufferedWriter(CONFIG_FILE.toPath())) {
             (new GsonBuilder().setPrettyPrinting().create()).toJson(config, writer);
+            Resprouted.LOGGER.info("Config saved successfully for " + Resprouted.MOD_ID);
         } catch (IOException e) {
-            System.err.println("Error saving Resprouted config: " + e.getMessage());
+            Resprouted.LOGGER.error("Error saving Resprouted config: " + e.getMessage());
         }
+    }
+
+    public boolean isBottleEffectTooltipsEnabled() {
+        return BottleEffectTooltips;
+    }
+
+    public void setBottleEffectTooltips(boolean v) {
+        BottleEffectTooltips = v;
+    }
+
+    public boolean isHoneyBottleEffectEnabled() {
+        return EnableHoneyBottleEffect;
+    }
+
+    public void setEnableHoneyBottleEffect(boolean v) {
+        EnableHoneyBottleEffect = v;
+    }
+
+    public boolean isVantaOilingEnabled() {
+        return EnableVantaOiling;
+    }
+
+    public void setEnableVantaOiling(boolean v) {
+        EnableVantaOiling = v;
+    }
+
+    public boolean isOliveOilingEnabled() {
+        return EnableOliveOiling;
+    }
+
+    public void setEnableOliveOiling(boolean v) {
+        EnableOliveOiling = v;
+    }
+
+    public boolean isFoodEffectTooltipsEnabled() {
+        return FoodEffectTooltips;
+    }
+
+    public void setFoodEffectTooltips(boolean v) {
+        FoodEffectTooltips = v;
     }
 
     public float getOiledSaturationModifier() {
