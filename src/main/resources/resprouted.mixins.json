@@ -10,7 +10,8 @@
     "gameplay.LivingEntityMixin",
     "gameplay.MilkBucketItemMixin",
     "gameplay.MushroomPlantBlockMixin",
-    "gameplay.SugarCaneBlockMixin"
+    "gameplay.SugarCaneBlockMixin",
+    "helper.BlockEntityTypeAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,0 +1,15 @@
+{
+  "containers": [
+    {
+      "filled": [
+        "resprouted:olive_oil_bottle"
+      ],
+      "empty": "minecraft:glass_bottle",
+      "capacity": 1
+    }
+  ],
+  "from_mod": "resprouted",
+  "flowing_texture": "resprouted:block/fluid/olive_oil_flow",
+  "still_texture": "resprouted:block/fluid/olive_oil_still",
+  "translation_key": "item.resprouted.olive_oil_bottle"
+}

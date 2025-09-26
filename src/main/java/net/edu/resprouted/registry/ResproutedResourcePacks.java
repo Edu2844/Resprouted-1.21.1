@@ -14,9 +14,17 @@ public class ResproutedResourcePacks {
 
     private static void registerBuiltinResourcePack(ModContainer modContainer, String forModID) {
         ResourceManagerHelper.registerBuiltinResourcePack(
-                Identifier.of(Resprouted.MOD_ID, forModID + "_compat"),
+                Identifier.of(Resprouted.MOD_ID, forModID + "_rp"),
                 modContainer,
                 Text.translatable("pack." + Resprouted.MOD_ID + "." + forModID),
+                ResourcePackActivationType.ALWAYS_ENABLED
+        );
+    }
+    private static void registerBuiltinDataPack(ModContainer modContainer, String packId) {
+        ResourceManagerHelper.registerBuiltinResourcePack(
+                Identifier.of(Resprouted.MOD_ID, packId + "_dp"),
+                modContainer,
+                Text.translatable("datapack." + Resprouted.MOD_ID + "." + packId),
                 ResourcePackActivationType.ALWAYS_ENABLED
         );
     }
@@ -28,6 +36,9 @@ public class ResproutedResourcePacks {
 
             if (Resprouted.isModLoaded(Resprouted.EATING_ANIMATIONS_MOD_ID)) {
                 registerBuiltinResourcePack(modContainer.get(), Resprouted.EATING_ANIMATIONS_MOD_ID);
+            }
+            if (Resprouted.isModLoaded(Resprouted.AMENDMENTS_MOD_ID)) {
+                registerBuiltinDataPack(modContainer.get(), Resprouted.AMENDMENTS_MOD_ID);
             }
         }
     }

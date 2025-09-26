@@ -1,0 +1,15 @@
+{
+  "containers": [
+    {
+      "filled": [
+        "resprouted:sugar_cane_juice_bottle"
+      ],
+      "empty": "minecraft:glass_bottle",
+      "capacity": 1
+    }
+  ],
+  "from_mod": "resprouted",
+  "flowing_texture": "resprouted:block/fluid/sugar_cane_juice_flow",
+  "still_texture": "resprouted:block/fluid/sugar_cane_juice_still",
+  "translation_key": "item.resprouted.sugar_cane_juice_bottle"
+}

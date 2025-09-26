@@ -1,0 +1,15 @@
+{
+  "containers": [
+    {
+      "filled": [
+        "resprouted:apple_juice_bottle"
+      ],
+      "empty": "minecraft:glass_bottle",
+      "capacity": 1
+    }
+  ],
+  "from_mod": "resprouted",
+  "flowing_texture": "resprouted:block/fluid/apple_juice_flow",
+  "still_texture": "resprouted:block/fluid/apple_juice_still",
+  "translation_key": "item.resprouted.apple_juice_bottle"
+}

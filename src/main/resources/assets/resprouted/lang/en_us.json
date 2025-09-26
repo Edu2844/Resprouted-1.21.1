@@ -39,6 +39,7 @@
   "item.resprouted.ironwood_boat": "Ironwood Boat",
   "item.resprouted.ironwood_chest_boat": "Ironwood Chest Boat",
   "item.resprouted.lamb_stew": "Lamb Stew",
+  "item.resprouted.iron_berry_cake_slice": "Iron Berry Cake Slice",
   "item.resprouted.honey_glazed_carrots": "Honey Glazed Carrots",
   "item.resprouted.honey_bucket": "Honey Bucket",
   "item.resprouted.apple_juice_bucket": "Apple Juice Bucket",
@@ -450,6 +451,7 @@
   "config.resprouted.max_brew_time.tooltip":"The total time, in ticks, required for a brewing process to complete. | Range: 1200 (1 min) - 120000 (100 min). | Default: 12000 (10 min).",
 
   "pack.resprouted.eatinganimationid": "Resprouted + Eating Animations Mod Compat",
+  "datapack.resprouted.amendments": "Resprouted + Amendments Data Pack",
 
   "config.jade.plugin_resprouted.fruiting_leaves_progress": "Fruiting Leaves Progress",
   "config.jade.plugin_resprouted.grape_leaves_mature": "Grapes Leaves Mature",

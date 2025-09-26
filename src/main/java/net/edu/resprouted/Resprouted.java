@@ -6,6 +6,7 @@ import net.edu.resprouted.book.CatalogData;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
+import net.edu.resprouted.mixin.helper.BlockEntityTypeAccessor;
 import net.edu.resprouted.networking.ModMessages;
 import net.edu.resprouted.registry.ResproutedResourcePacks;
 import net.edu.resprouted.util.CabinetRegistry;
@@ -25,10 +26,15 @@ import net.edu.resprouted.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.resource.ResourceType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Resprouted implements ModInitializer {
 	public static final String MOD_ID = "resprouted";
@@ -37,13 +43,13 @@ public class Resprouted implements ModInitializer {
 
 	//Other mods id's
 	public static final String EATING_ANIMATIONS_MOD_ID = "eatinganimationid";
+	public static final String FARMERS_DELIGHT_MOD_ID = "farmersdelight";
+	public static final String AMENDMENTS_MOD_ID = "amendments";
 	public static final String CONNECTOR_MOD_ID = "connector";
-	public static final boolean IS_CONNECTOR_INSTALLED = FabricLoader.getInstance().isModLoaded(CONNECTOR_MOD_ID);
 
 	public static boolean isModLoaded(String modId) {
 		return FabricLoader.getInstance().isModLoaded(modId);
 	}
-
 
 	@Override
 	public void onInitialize() {
@@ -72,5 +78,20 @@ public class Resprouted implements ModInitializer {
 		DispenserBlock.registerBehavior((ModBlocks.ROPE.asItem()), new RopeDispenser());
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
 
+		Set<Block> vanillaSigns = ((BlockEntityTypeAccessor) BlockEntityType.SIGN).getBlocks();
+		Set<Block> newSigns = new HashSet<>(vanillaSigns);
+		newSigns.add(ModBlocks.OLIVE_SIGN);
+		newSigns.add(ModBlocks.OLIVE_WALL_SIGN);
+		newSigns.add(ModBlocks.IRONWOOD_SIGN);
+		newSigns.add(ModBlocks.IRONWOOD_WALL_SIGN);
+		((BlockEntityTypeAccessor) BlockEntityType.SIGN).setBlocks(newSigns);
+
+		Set<Block> vanillaHanging = ((BlockEntityTypeAccessor) BlockEntityType.HANGING_SIGN).getBlocks();
+		Set<Block> newHanging = new HashSet<>(vanillaHanging);
+		newHanging.add(ModBlocks.OLIVE_HANGING_SIGN);
+		newHanging.add(ModBlocks.OLIVE_WALL_HANGING_SIGN);
+		newHanging.add(ModBlocks.IRONWOOD_HANGING_SIGN);
+		newHanging.add(ModBlocks.IRONWOOD_WALL_HANGING_SIGN);
+		((BlockEntityTypeAccessor) BlockEntityType.HANGING_SIGN).setBlocks(newHanging);
 	}
 }

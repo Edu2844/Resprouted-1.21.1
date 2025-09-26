@@ -15,12 +15,10 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -28,23 +26,26 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 
 @SuppressWarnings("deprecation")
-public class CakeBlock extends Block {
-    public static final int MAX_BITES = 3;
-    public static final IntProperty BITES = IntProperty.of("bites", 0, 3);
+public class CustomCakeBlock extends Block {
+    public static final int MAX_BITES = 6;
+    public static final IntProperty BITES = IntProperty.of("bites", 0, 6);
     private static final VoxelShape[] BITES_TO_SHAPE = new VoxelShape[] {
-            Block.createCuboidShape(1, 0, 1, 15, 8, 15),
-            VoxelShapes.combine(Block.createCuboidShape(8, 0, 1, 15, 8, 15), Block.createCuboidShape(1, 0, 8, 8, 8, 15), BooleanBiFunction.OR),
-            Block.createCuboidShape(8, 0, 1, 15, 8, 15),
-            Block.createCuboidShape(8, 0, 1, 15, 8, 8)
+            Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 8.0, 15.0),
+            Block.createCuboidShape(3.0, 0.0, 1.0, 15.0, 8.0, 15.0),
+            Block.createCuboidShape(5.0, 0.0, 1.0, 15.0, 8.0, 15.0),
+            Block.createCuboidShape(7.0, 0.0, 1.0, 15.0, 8.0, 15.0),
+            Block.createCuboidShape(9.0, 0.0, 1.0, 15.0, 8.0, 15.0),
+            Block.createCuboidShape(11.0, 0.0, 1.0, 15.0, 8.0, 15.0),
+            Block.createCuboidShape(13.0, 0.0, 1.0, 15.0, 8.0, 15.0)
     };
     private final RegistryEntry<StatusEffect> statusEffect;
     private final int effectDuration;
     private final int effectAmplifier;
 
-    public CakeBlock(Settings settings) {
+    public CustomCakeBlock(Settings settings) {
         this(settings, null, 0, 0);
     }
-    public CakeBlock(Settings settings, RegistryEntry<StatusEffect> statusEffect, int effectDuration, int effectAmplifier) {
+    public CustomCakeBlock(Settings settings, RegistryEntry<StatusEffect> statusEffect, int effectDuration, int effectAmplifier) {
         super(settings);
         this.statusEffect = statusEffect;
         this.effectDuration = effectDuration;

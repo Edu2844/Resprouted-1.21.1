@@ -213,11 +213,19 @@ public class ModItems {
     public static final Item LAMB_STEW = registerItem("lamb_stew", new Item(new Item.Settings().food(FoodComponents.RABBIT_STEW)));
     public static final Item HONEY_GLAZED_CARROTS = registerItem("honey_glazed_carrots", new Item(new Item.Settings().food(FoodComponents.RABBIT_STEW)));
 
+    public static Item IRON_BERRY_CAKE_SLICE;
+
     // =================================================
     // ||                   ALCHEMY                   ||
     // =================================================
     public static final Item ELIXIR_BOTTLE = registerItem("elixir_bottle", new ElixirBottle(new Item.Settings().maxCount(16)));
     public static final Item ELIXIR_ICON = registerItem("elixir_icon", new Item(new Item.Settings()));
+
+    // =================================================
+    // ||                   TESTING                   ||
+    // =================================================
+
+
 
 
     private static Item registerItem(String name, Item item){
@@ -225,7 +233,7 @@ public class ModItems {
     }
 
     public static void registerBoats() {
-        if (!Resprouted.IS_CONNECTOR_INSTALLED) {
+        if (!Resprouted.isModLoaded(Resprouted.CONNECTOR_MOD_ID)) {
 
             OLIVE_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_BOAT_ID, ModEntities.OLIVE_BOAT_KEY, false);
             OLIVE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_CHEST_BOAT_ID, ModEntities.OLIVE_BOAT_KEY, true);
@@ -237,8 +245,15 @@ public class ModItems {
             Resprouted.LOGGER.info("Item Boats not registered due to issues with neoforge");
         }
     }
+    public static void registerCompatItem() {
+        if (Resprouted.isModLoaded(Resprouted.FARMERS_DELIGHT_MOD_ID)) {
+            IRON_BERRY_CAKE_SLICE = registerItem("iron_berry_cake_slice", new Item(new Item.Settings().food(ModFoodComponents.IRON_BERRIES)));
+
+        }
+    }
 
     public static void registerModItems() {
+        registerCompatItem();
         registerBoats();
         Resprouted.LOGGER.info("Registering Items for " +  Resprouted.MOD_ID);
     }

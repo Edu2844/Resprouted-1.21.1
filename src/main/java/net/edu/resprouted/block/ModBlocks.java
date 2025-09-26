@@ -2,7 +2,7 @@ package net.edu.resprouted.block;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.custom.agriculture.*;
-import net.edu.resprouted.block.custom.agriculture.CakeBlock;
+import net.edu.resprouted.block.custom.agriculture.CustomCakeBlock;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.block.custom.alchemy.AdvancedRetortBlock;
 import net.edu.resprouted.block.custom.alchemy.BasicCondenserBlock;
@@ -519,7 +519,7 @@ public class ModBlocks {
     public static final Block EVAPORATING_BASIN = registerBlock("evaporating_basin", new EvaporatingBasinBlock(AbstractBlock.Settings.copy(Blocks.TERRACOTTA).nonOpaque()));
     public static final Block LIQUID_BARREL = registerBlock("liquid_barrel" , new LiquidBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
     public static final Block BREWING_BARREL = registerBlock("brewing_barrel" , new BrewingBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block IRON_BERRY_CAKE = registerBlock("iron_berry_cake", new CakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ModEffects.FULL_METAL, 200, 0));
+    public static final Block IRON_BERRY_CAKE = registerBlock("iron_berry_cake", new CustomCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ModEffects.FULL_METAL, 200, 0));
 
     // =================================================
     // ||                 FLUID BLOCKS                ||

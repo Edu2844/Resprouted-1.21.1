@@ -31,8 +31,6 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.render.block.entity.HangingSignBlockEntityRenderer;
-import net.minecraft.client.render.block.entity.SignBlockEntityRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.component.DataComponentTypes;
@@ -192,8 +190,6 @@ public class ResproutedClientRegistry {
 
         TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ResproutedWoodTypes.IRONWOOD, TexturedRenderLayers.getSignTextureId(ResproutedWoodTypes.IRONWOOD));
         TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ResproutedWoodTypes.OLIVE, TexturedRenderLayers.getSignTextureId(ResproutedWoodTypes.OLIVE));
-        BlockEntityRendererFactories.register(ModBlockEntities.MOD_SIGN_BLOCK_ENTITY, SignBlockEntityRenderer::new);
-        BlockEntityRendererFactories.register(ModBlockEntities.MOD_HANGING_SIGN_BLOCK_ENTITY, HangingSignBlockEntityRenderer::new);
 
     }
     public static void registerFluidColors() {

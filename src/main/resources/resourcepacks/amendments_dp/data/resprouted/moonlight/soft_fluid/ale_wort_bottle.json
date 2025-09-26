@@ -1,0 +1,15 @@
+{
+  "containers": [
+    {
+      "filled": [
+        "resprouted:ale_wort_bottle"
+      ],
+      "empty": "minecraft:glass_bottle",
+      "capacity": 1
+    }
+  ],
+  "from_mod": "resprouted",
+  "flowing_texture": "resprouted:block/fluid/ale_wort_flow",
+  "still_texture": "resprouted:block/fluid/ale_wort_still",
+  "translation_key": "item.resprouted.ale_wort_bottle"
+}
