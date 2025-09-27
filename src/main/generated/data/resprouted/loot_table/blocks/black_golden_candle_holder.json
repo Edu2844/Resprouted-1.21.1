@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "resprouted:black_golden_candle_holder"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0

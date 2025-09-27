@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [
+		" B ",
+		"BEB",
+		"BCB"
+	],
+	"key": {
+		"B": {
+			"item": "minecraft:brick"
+		},
+		"E": {
+			"item": "minecraft:bucket"
+		},
+		"C": {
+			"item": "minecraft:white_terracotta"
+		}
+	},
+	"result": {
+		"count": 1,
+		"id": "resprouted:condenser"
+	}
+}

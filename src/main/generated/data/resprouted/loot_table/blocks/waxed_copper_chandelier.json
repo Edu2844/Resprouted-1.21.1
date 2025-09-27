@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "resprouted:waxed_copper_chandelier"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0

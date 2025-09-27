@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"pattern": [
+		" B ",
+		"BEB",
+		"BIB"
+	],
+	"key": {
+		"B": {
+			"item": "minecraft:nether_brick"
+		},
+		"E": {
+			"item": "minecraft:bucket"
+		},
+		"I": {
+			"item": "minecraft:iron_block"
+		}
+	},
+	"result": {
+		"count": 1,
+		"id": "resprouted:advanced_condenser"
+	}
+}

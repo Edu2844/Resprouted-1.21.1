@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "resprouted:ironwood_fence"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0

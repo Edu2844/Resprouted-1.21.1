@@ -1,10 +1,12 @@
 package net.edu.resprouted.datagen;
 
+import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.custom.agriculture.BlueBerrieBush;
 import net.edu.resprouted.block.custom.agriculture.CustomMushroomBlock;
 import net.edu.resprouted.block.custom.agriculture.HerbBlock;
 import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.registry.ResproutedBoatTypes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
@@ -251,12 +253,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SUGAR_CANE_JUICE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.LAMB_STEW, Models.GENERATED);
         itemModelGenerator.register(ModItems.HONEY_GLAZED_CARROTS, Models.GENERATED);
-        itemModelGenerator.register(ModItems.IRON_BERRY_CAKE_SLICE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.OLIVE_BOAT, Models.GENERATED);
-        itemModelGenerator.register(ModItems.OLIVE_CHEST_BOAT, Models.GENERATED);
-        itemModelGenerator.register(ModItems.IRONWOOD_BOAT, Models.GENERATED);
-        itemModelGenerator.register(ModItems.IRONWOOD_CHEST_BOAT, Models.GENERATED);
-
         itemModelGenerator.register(ModItems.ALE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.IRON_WINE_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.SWEET_BERRY_WINE_BOTTLE, Models.GENERATED);
@@ -266,5 +262,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.MEAD_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RUM_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.AMBROSIA_BOTTLE, Models.GENERATED);
+        ResproutedBoatTypes.getAllBoatItems().forEach(item -> itemModelGenerator.register(item, Models.GENERATED));
     }
 }

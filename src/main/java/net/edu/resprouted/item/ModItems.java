@@ -1,12 +1,11 @@
 package net.edu.resprouted.item;
 
-import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.effect.BoozeEffects;
-import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
+import net.edu.resprouted.registry.ResproutedBoatTypes;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -24,9 +23,7 @@ import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-
 import static net.edu.resprouted.block.ModBlocks.LIQUID_BARREL;
-
 public class ModItems {
 
     // =================================================
@@ -35,16 +32,23 @@ public class ModItems {
     public static final Item OLIVE_SIGN = registerItem("olive_sign", new SignItem(new Item.Settings().maxCount(16), ModBlocks.OLIVE_SIGN, ModBlocks.OLIVE_WALL_SIGN));
     public static final Item OLIVE_HANGING_SIGN = registerItem("olive_hanging_sign", new HangingSignItem(ModBlocks.OLIVE_HANGING_SIGN , ModBlocks.OLIVE_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
-    public static Item OLIVE_BOAT;
-    public static Item OLIVE_CHEST_BOAT;
+    public static final Item OLIVE_BOAT = registerItem("olive_boat",
+            new BoatItem(false, ResproutedBoatTypes.OLIVE, new Item.Settings().maxCount(1)));
+
+    public static final Item OLIVE_CHEST_BOAT = registerItem("olive_chest_boat",
+            new BoatItem(true, ResproutedBoatTypes.OLIVE, new Item.Settings().maxCount(1)));
 
     // =================================================
     // ||                  IRONWOOD                   ||
     // =================================================
     public static final Item IRONWOOD_SIGN = registerItem("ironwood_sign", new SignItem(new Item.Settings().maxCount(16), ModBlocks.IRONWOOD_SIGN, ModBlocks.IRONWOOD_WALL_SIGN));
     public static final Item IRONWOOD_HANGING_SIGN = registerItem("ironwood_hanging_sign", new HangingSignItem(ModBlocks.IRONWOOD_HANGING_SIGN , ModBlocks.IRONWOOD_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
-    public static Item IRONWOOD_BOAT;
-    public static Item IRONWOOD_CHEST_BOAT;
+
+    public static final Item IRONWOOD_BOAT = registerItem("ironwood_boat",
+            new BoatItem(false, ResproutedBoatTypes.IRONWOOD, new Item.Settings().maxCount(1)));
+
+    public static final Item IRONWOOD_CHEST_BOAT = registerItem("ironwood_chest_boat",
+            new BoatItem(true, ResproutedBoatTypes.IRONWOOD, new Item.Settings().maxCount(1)));
 
     // =================================================
     // ||                   HERBS                     ||
@@ -221,30 +225,15 @@ public class ModItems {
     public static final Item ELIXIR_BOTTLE = registerItem("elixir_bottle", new ElixirBottle(new Item.Settings().maxCount(16)));
     public static final Item ELIXIR_ICON = registerItem("elixir_icon", new Item(new Item.Settings()));
 
-    // =================================================
-    // ||                   TESTING                   ||
-    // =================================================
-
-
-
+    static {
+        ResproutedBoatTypes.addBoatTypeItems(ResproutedBoatTypes.IRONWOOD, IRONWOOD_BOAT, IRONWOOD_CHEST_BOAT);
+        ResproutedBoatTypes.addBoatTypeItems(ResproutedBoatTypes.OLIVE, OLIVE_BOAT, OLIVE_CHEST_BOAT);
+    }
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name), item);
     }
 
-    public static void registerBoats() {
-        if (!Resprouted.isModLoaded(Resprouted.CONNECTOR_MOD_ID)) {
-
-            OLIVE_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_BOAT_ID, ModEntities.OLIVE_BOAT_KEY, false);
-            OLIVE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.OLIVE_CHEST_BOAT_ID, ModEntities.OLIVE_BOAT_KEY, true);
-            IRONWOOD_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_BOAT_ID, ModEntities.IRONWOOD_BOAT_KEY, false);
-            IRONWOOD_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModEntities.IRONWOOD_CHEST_BOAT_ID, ModEntities.IRONWOOD_BOAT_KEY, true);
-
-            Resprouted.LOGGER.info("Registering item boats for " +  Resprouted.MOD_ID);
-        } else {
-            Resprouted.LOGGER.info("Item Boats not registered due to issues with neoforge");
-        }
-    }
     public static void registerCompatItem() {
         if (Resprouted.isModLoaded(Resprouted.FARMERS_DELIGHT_MOD_ID)) {
             IRON_BERRY_CAKE_SLICE = registerItem("iron_berry_cake_slice", new Item(new Item.Settings().food(ModFoodComponents.IRON_BERRIES)));
@@ -254,7 +243,6 @@ public class ModItems {
 
     public static void registerModItems() {
         registerCompatItem();
-        registerBoats();
         Resprouted.LOGGER.info("Registering Items for " +  Resprouted.MOD_ID);
     }
 }

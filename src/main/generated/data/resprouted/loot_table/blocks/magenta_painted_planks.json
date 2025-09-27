@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "resprouted:magenta_painted_planks"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0
