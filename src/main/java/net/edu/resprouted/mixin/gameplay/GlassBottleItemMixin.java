@@ -23,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GlassBottleItem.class)
+
 public class GlassBottleItemMixin {
     @Redirect(
             method = "use",
@@ -31,6 +32,7 @@ public class GlassBottleItemMixin {
                     target = "Lnet/minecraft/item/GlassBottleItem;raycast(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/world/RaycastContext$FluidHandling;)Lnet/minecraft/util/hit/BlockHitResult;"
             )
     )
+
     private BlockHitResult resprouted$redirectRaycast(World world, PlayerEntity user, RaycastContext.FluidHandling fluidHandling) {
         Vec3d cameraPos = user.getCameraPosVec(1.0F);
         Vec3d rotation = user.getRotationVec(1.0F);
@@ -50,6 +52,7 @@ public class GlassBottleItemMixin {
     }
 
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
+
     private void resprouted$injectUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
         ItemStack itemStack = user.getStackInHand(hand);
 

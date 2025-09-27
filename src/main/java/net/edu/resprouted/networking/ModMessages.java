@@ -16,6 +16,7 @@ public class ModMessages {
     public static final Identifier FIRE_POWER_ATTACK = Identifier.of(Resprouted.MOD_ID, "fire_power_attack");
 
     public static void registerC2SPackets(){
+
         ServerPlayNetworking.registerGlobalReceiver(FirePowerAttackPayload.ID, (payload, context) -> {
             ServerPlayerEntity player = context.player();
             MinecraftServer server = player.getServer();
@@ -24,6 +25,7 @@ public class ModMessages {
             if (player.getItemCooldownManager().isCoolingDown(Items.SNOWBALL)) {
                 return;
             }
+
             server.execute(() -> {
 
                 if (player.hasStatusEffect(ModEffects.FIRE_POWER)) {Vec3d lookVec = player.getRotationVec(1.0F);
@@ -37,6 +39,7 @@ public class ModMessages {
             });
         });
     }
+
     public static void registerPayloads(){
         PayloadTypeRegistry.playC2S().register(FirePowerAttackPayload.ID, FirePowerAttackPayload.CODEC);
 

@@ -20,5 +20,6 @@
   "result": {
     "count": 1,
     "id": "resprouted:crushing_tub"
-  }
+  },
+  "show_notification": true
 }

@@ -12,8 +12,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SugarCaneBlock.class)
 public abstract class SugarCaneBlockMixin {
+
     @Inject(method = "canPlaceAt", at = @At("HEAD"), cancellable = true)
+
     private void onCanPlaceAt(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+
         if (world.getBlockState(pos.down()).getBlock() instanceof FertileSoilBlock) {
             cir.setReturnValue(true);
         }

@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "building",
+	"key": {
+		"#": {
+			"item": "minecraft:nether_bricks"
+		},
+		"@": {
+			"item": "minecraft:bucket"
+		},
+		"^": {
+			"item": "minecraft:iron_ingot"
+		}
+	},
+	"pattern": [
+		" #",
+		"^@",
+		" #"
+	],
+	"result": {
+		"count": 1,
+		"id": "resprouted:advanced_retort"
+	},
+	"show_notification": true
+}

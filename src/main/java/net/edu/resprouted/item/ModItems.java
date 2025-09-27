@@ -23,7 +23,6 @@ import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import static net.edu.resprouted.block.ModBlocks.LIQUID_BARREL;
 public class ModItems {
 
     // =================================================
@@ -94,7 +93,6 @@ public class ModItems {
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
-    public static final Item LIQUID_BARREL_ITEM = registerItem("liquid_barrel", new LiquidBarrelItem(LIQUID_BARREL, new Item.Settings()));
 
     // =================================================
     // ||                 FLUID BUCKETS               ||

@@ -4,9 +4,11 @@ import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.entity.custom.LiquidBarrelBE;
 import net.edu.resprouted.fluid.util.FluidInteractionHelper;
+import net.edu.resprouted.util.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.DataComponentTypes;
@@ -16,13 +18,17 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.registry.BuiltinRegistries;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryOps;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.ItemScatterer;
@@ -33,9 +39,12 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 import java.util.Objects;
 
 public class LiquidBarrelBlock extends BlockWithEntity {
+    private static final RegistryOps<NbtElement> TOOLTIP_OPS = RegistryOps.of(NbtOps.INSTANCE, BuiltinRegistries.createWrapperLookup());
     private static final VoxelShape SHAPE = VoxelShapes.union(
             Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 2.0),
             Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 1.0, 14.0),
@@ -68,6 +77,32 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new LiquidBarrelBE(pos, state);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
+        super.appendTooltip(stack, context, tooltip, type);
+        var nbt = stack.get(DataComponentTypes.BLOCK_ENTITY_DATA);
+
+        if (nbt == null) return;
+
+        var tag = nbt.copyNbt().getCompound("Fluid");
+
+        if (!tag.contains("variant") || !tag.contains("amount")) return;
+        try {
+            var variant = FluidVariant.CODEC.parse(TOOLTIP_OPS, tag.get("variant")).result().orElse(FluidVariant.blank());
+
+            if (!variant.isBlank()) {
+                var name = FluidVariantAttributes.getName(variant);
+                long amount = FluidUtils.convertDropletsToMb(tag.getLong("amount"));
+
+                tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.GRAY));
+                tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.GRAY));
+            }
+        }
+        catch (Exception e) {
+            tooltip.add(Text.translatable("tooltip.resprouted.fluid_error").formatted(Formatting.RED));
+        }
     }
 
     @Override

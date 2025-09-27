@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import java.util.Set;
 
 @Mixin(BlockEntityType.class)
+
 public interface BlockEntityTypeAccessor {
     @Accessor("blocks")
     Set<Block> getBlocks();

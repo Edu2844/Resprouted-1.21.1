@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(net.minecraft.item.HoneyBottleItem.class)
+
 public class HoneyBottleMixin {
 
     @Inject(method = "finishUsing", at = @At("HEAD"))

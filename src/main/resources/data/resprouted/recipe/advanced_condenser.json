@@ -20,5 +20,6 @@
 	"result": {
 		"count": 1,
 		"id": "resprouted:advanced_condenser"
-	}
+	},
+	"show_notification": true
 }

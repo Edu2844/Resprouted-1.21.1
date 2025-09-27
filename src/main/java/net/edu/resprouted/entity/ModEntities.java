@@ -1,7 +1,5 @@
 package net.edu.resprouted.entity;
 
-import com.terraformersmc.terraform.boat.api.TerraformBoatType;
-import com.terraformersmc.terraform.boat.api.TerraformBoatTypeRegistry;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.entity.custom.ChairEntity;
 import net.edu.resprouted.entity.custom.StoolEntity;
@@ -10,7 +8,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
 public class ModEntities {

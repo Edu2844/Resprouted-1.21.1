@@ -15,16 +15,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @SuppressWarnings("unchecked")
 @Mixin(ComponentHolder.class)
+
 public interface FoodComponentMixin {
 
     @Inject(method = "get(Lnet/minecraft/component/ComponentType;)Ljava/lang/Object;",
             at = @At("RETURN"),
             cancellable = true)
+
     default <T> void onGetComponent(ComponentType<T> type, CallbackInfoReturnable<T> cir) {
+
         if (type == DataComponentTypes.FOOD && cir.getReturnValue() != null) {
             ComponentHolder self = (ComponentHolder) this;
 
             if (self instanceof ItemStack stack) {
+
                 if (stack.get(ModDataComponentTypes.OILED) != null &&
                         Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OILED))) {
 
@@ -36,6 +40,7 @@ public interface FoodComponentMixin {
             }
         }
     }
+
     @Unique
     default FoodComponent modifyFoodComponent(FoodComponent original) {
         return new FoodComponent(

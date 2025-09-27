@@ -41,9 +41,6 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:11.0.0"
-	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:11.0.0"
-
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:16.0.777"
 	modCompileOnly("squeek.appleskin:appleskin-fabric:mc1.21-3.0.6:api") {
 		transitive = false

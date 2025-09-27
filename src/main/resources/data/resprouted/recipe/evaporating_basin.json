@@ -1,17 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:terracotta"
+    }
+  },
   "pattern": [
     "# #",
     " # "
   ],
-  "key": {
-    "#": {
-        "item": "minecraft:terracota"
-    }
-  },
   "result": {
-    "count": 1,
     "id": "resprouted:evaporating_basin"
   }
 }

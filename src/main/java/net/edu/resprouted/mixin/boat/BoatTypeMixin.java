@@ -1,6 +1,5 @@
 package net.edu.resprouted.mixin.boat;
 
-import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.registry.ResproutedBoatTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -20,6 +19,9 @@ import java.util.Arrays;
 
 @Mixin(BoatEntity.Type.class)
 public class BoatTypeMixin {
+
+    // Credit: nyuppo - https://github.com/nyuppo/fabric-boat-example
+
     @SuppressWarnings("ShadowTarget")
     @Final
     @Shadow
@@ -41,6 +43,7 @@ public class BoatTypeMixin {
                     shift = At.Shift.AFTER
             )
     )
+
     private static void addCustomBoatType(CallbackInfo info) {
         var types = new ArrayList<>(Arrays.asList(field_7724));
         var last = types.getLast();

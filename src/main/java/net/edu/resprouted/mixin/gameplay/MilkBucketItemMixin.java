@@ -15,8 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MilkBucketItem.class)
 public abstract class MilkBucketItemMixin {
+
     @Inject(method = "finishUsing", at = @At("HEAD"), cancellable = true)
+
     private void onFinishUsing(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
+
         if (user.hasStatusEffect(ModEffects.TIPSY)) {
             cir.setReturnValue(ItemUsage.exchangeStack(stack, (PlayerEntity) user, new ItemStack(Items.BUCKET)));
         }

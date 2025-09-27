@@ -19,24 +19,28 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WorldRenderer.class)
+
 public abstract class WorldRendererMixin {
+
     @Inject(method = "drawBlockOutline", at = @At("HEAD"))
+
     private void onDrawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos pos, BlockState state, CallbackInfo ci) {
-        if (!(entity instanceof PlayerEntity player))
-            return;
+
+        if (!(entity instanceof PlayerEntity player)) return;
 
         ItemStack stack = player.getMainHandStack();
-        if (!(stack.getItem() instanceof BlockItem blockItem))
-            return;
 
-        if (!(blockItem.getBlock() instanceof AdvancedRotationPlacement))
-            return;
+        if (!(stack.getItem() instanceof BlockItem blockItem)) return;
+
+        if (!(blockItem.getBlock() instanceof AdvancedRotationPlacement)) return;
+
         World world = player.getWorld();
         boolean isSolid = state.isFullCube(world, pos);
 
         if (!isSolid) return;
         renderCustomXOutline(matrices, vertexConsumer, cameraX, cameraY, cameraZ, pos);
     }
+
     @Unique
     private void renderCustomXOutline(MatrixStack matrices, VertexConsumer vertexConsumer, double cameraX, double cameraY, double cameraZ, BlockPos pos) {
         matrices.push();
@@ -62,6 +66,7 @@ public abstract class WorldRendererMixin {
 
         matrices.pop();
     }
+
     @Unique
     private void drawLine(MatrixStack matrices, VertexConsumer vertexConsumer, double x1, double y1, double z1, double x2, double y2, double z2, float r, float g, float b, float a) {
         MatrixStack.Entry entry = matrices.peek();
