@@ -26,7 +26,7 @@ import java.util.List;
 
 public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> {
     public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/recipe/crushing_tub_recipe.png");
-    public static final CategoryIdentifier<CrushingTubDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "crushing_tub");
+    public static final CategoryIdentifier<CrushingTubDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "plugin/crushing");
 
     @Override
     public CategoryIdentifier<? extends CrushingTubDisplay> getCategoryIdentifier() {
@@ -45,21 +45,24 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
         return 60;
     }
     @Override
+    public int getDisplayWidth(CrushingTubDisplay display) {
+        return 110;
+    }
+    @Override
     public List<Widget> setupDisplay(CrushingTubDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 52, bounds.getCenterY() - 22);
         List<Widget> widgets = new LinkedList<>();
 
-        //Backgroung
         widgets.add(Widgets.createRecipeBase(bounds));
+
         widgets.add(Widgets.createTexturedWidget(TEXTURE, startPoint.x, startPoint.y,0, 0, 130, 57));
 
-        //Slot input
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 19, startPoint.y + 7))
                 .entries(display.getInputEntries().getFirst())
                 .disableBackground()
                 .markInput());
 
-        //Slot output
+
         if (!display.getOutputEntries().isEmpty()) {
             boolean hasValidFluid = display.getFluid() != null && FluidVariantRendering.getSprite(display.getFluid()) != null;
 
@@ -68,6 +71,7 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
 
             widgets.add(Widgets.createSlot(new Point(slotX, slotY)).entries(display.getOutputEntries().getFirst()).markOutput());
         }
+
         if (display.getFluid() != null) {
             FluidVariant fluidVariant = display.getFluid();
             Fluid fluid = fluidVariant.getFluid();
@@ -82,7 +86,6 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
                 int fluidY = hasOutputItem ? startPoint.y + 25 : startPoint.y + 15;
                 int tooltipY = hasOutputItem ? startPoint.y + 25 : startPoint.y + 15;
 
-                //Fluid
                 widgets.add(Widgets.createDrawableWidget((helper, mouseX, mouseY, delta) -> {
                     helper.drawTexture(Identifier.of("textures/gui/sprites/container/slot.png"),
                             fluidX - 1, fluidY - 1, 0, 0, 18, 18, 18, 18);

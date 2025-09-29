@@ -6,10 +6,17 @@
       ],
       "empty": "minecraft:glass_bottle",
       "capacity": 1
+    },
+    {
+      "filled": [
+        "resprouted:vanta_oil_bucket"
+      ],
+      "empty": "minecraft:bucket",
+      "capacity": 3
     }
   ],
   "from_mod": "resprouted",
   "flowing_texture": "resprouted:block/fluid/vanta_oil_flow",
   "still_texture": "resprouted:block/fluid/vanta_oil_still",
-  "translation_key": "item.resprouted.vanta_oil_bottle"
+  "translation_key": "item.resprouted.vanta_oil_bucket"
 }

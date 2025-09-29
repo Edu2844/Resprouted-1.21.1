@@ -63,7 +63,7 @@ public class AdvancedCondenserScreen extends HandledScreen<AdvancedCondenserScre
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
             context.drawTexture
-                    (ARROW_TEXTURE, x + 44, y + 17, 0, 0, handler.getScaledArrowProgress(), 52, 50, 53);
+                    (ARROW_TEXTURE, x + 44, y + 16, 0, 0, handler.getScaledArrowProgress(), 53, 50, 53);
         }
     }
 

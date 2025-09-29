@@ -54,7 +54,14 @@ public class ElixirUtils {
     }
     public static ItemStack createElixir(RegistryEntry<StatusEffect> effect, int duration, int amplifier) {
         ItemStack stack = new ItemStack(ModItems.ELIXIR_BOTTLE);
-        stack.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Optional.of(Potions.WATER), Optional.empty(), List.of(new StatusEffectInstance(effect, duration, amplifier))));
+        stack.set(DataComponentTypes.POTION_CONTENTS,
+                new PotionContentsComponent(
+                        Optional.of(Potions.WATER),
+                        Optional.empty(),
+                        List.of(new StatusEffectInstance(effect, duration, amplifier))
+
+        ));
+
         return stack;
     }
 }

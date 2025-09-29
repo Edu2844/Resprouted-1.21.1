@@ -25,7 +25,7 @@ import java.util.List;
 
 public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasinDisplay> {
     public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/recipe/evaporating_basin_recipe.png");
-    public static final CategoryIdentifier<EvaporatingBasinDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "evaporating_basin");
+    public static final CategoryIdentifier<EvaporatingBasinDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "plugin/evaporating");
 
     @Override
     public CategoryIdentifier<? extends EvaporatingBasinDisplay> getCategoryIdentifier() {
@@ -44,15 +44,19 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
         return 75;
     }
     @Override
+    public int getDisplayWidth(EvaporatingBasinDisplay display) {
+        return 110;
+    }
+    @Override
     public List<Widget> setupDisplay(EvaporatingBasinDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 52, bounds.getCenterY() - 22);
         List<Widget> widgets = new LinkedList<>();
 
-        //Fondo
+        //Background
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createTexturedWidget(TEXTURE, startPoint.x, startPoint.y, 0, 0, 113, 63));
 
-        //Slot de fluido
+        //Fluid Slot
         int fluidX = startPoint.x + 20;
         int fluidY = startPoint.y + 4;
 
@@ -60,10 +64,10 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
         Sprite sprite = FluidVariantRendering.getSprite(fluidVariant);
         if (sprite != null) {
             widgets.add(Widgets.createDrawableWidget((helper, mouseX, mouseY, delta) -> {
-                // Dibujar slot
+                //Slot
                 helper.drawTexture(Identifier.of("textures/gui/sprites/container/slot.png"),
                         fluidX - 1, fluidY - 1, 0, 0, 18, 18, 18, 18);
-                // Dibujar fluido
+
                 int color = FluidVariantRendering.getColor(fluidVariant);
                 RenderSystem.setShader(GameRenderer::getPositionTexColorProgram);
                 RenderSystem.setShaderTexture(0, sprite.getAtlasId());
@@ -76,7 +80,7 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
                 helper.drawSprite(fluidX, fluidY, 0, 16, 16, sprite);
                 RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
             }));
-            // Tooltip para el fluido
+            //Fluid Tooltip
             widgets.add(Widgets.createTooltip(
                     new Rectangle(fluidX, fluidY, 16, 16),
                     List.of(
@@ -85,7 +89,7 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
                     )
             ));
         }
-        // Slot de output
+        //Output Slot
         int outputX = startPoint.x + 80;
         int outputY = startPoint.y + 25;
         widgets.add(Widgets.createSlot(new Point(outputX, outputY))

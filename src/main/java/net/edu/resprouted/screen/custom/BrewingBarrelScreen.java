@@ -15,6 +15,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class BrewingBarrelScreen extends HandledScreen<BrewingBarrelScreenHandler> {
     private static final Identifier GUI_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/brewing_barrel/brewing_barrel.png");
+    private static final Identifier ARROW_TEXTURE_1 = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/brewing_progress_1.png");
     private static final Identifier ARROW_TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/brewing_progress_2.png");
     private static final Identifier BUBBLES_TEXTURE = Identifier.ofVanilla("container/brewing_stand/bubbles");
     private static final int[] BUBBLE_PROGRESS = new int[]{0, 6, 11, 16, 20, 24, 29};
@@ -75,6 +76,8 @@ public class BrewingBarrelScreen extends HandledScreen<BrewingBarrelScreenHandle
             if (n > 0) {
                 context.drawTexture(ARROW_TEXTURE,
                         x + 85, y + 35, 0, 0, handler.getScaledArrowProgress(), 16, 24, 16);
+                context.drawTexture(ARROW_TEXTURE_1,
+                        x + 45, y + 37, 0, 0, handler.getScaledAuxArrowProgress(), 10, 13, 10);
             }
             n = BUBBLE_PROGRESS[m / 3 % 7];
             if (n > 0) {

@@ -57,7 +57,7 @@ public class BasicCondenserScreen extends HandledScreen<BasicCondenserScreenHand
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            context.drawTexture(ARROW_TEXTURE, x + 44, y + 29, 0, 0, handler.getScaledArrowProgress(), 27, 50, 28);
+            context.drawTexture(ARROW_TEXTURE, x + 44, y + 28, 0, 0, handler.getScaledArrowProgress(), 27, 50, 28);
         }
     }
 

@@ -45,6 +45,7 @@ public class Resprouted implements ModInitializer {
 	public static final String EATING_ANIMATIONS_MOD_ID = "eatinganimationid";
 	public static final String FARMERS_DELIGHT_MOD_ID = "farmersdelight";
 	public static final String AMENDMENTS_MOD_ID = "amendments";
+	public static final String BOTANY_POTS_MOD_ID = "botanypots";
 
 	public static boolean isModLoaded(String modId) {
 		return FabricLoader.getInstance().isModLoaded(modId);

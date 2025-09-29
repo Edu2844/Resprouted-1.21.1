@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
-    private static final List<BrewingBarrelRecipe> RECIPES = new ArrayList<>();
+    public static final List<BrewingBarrelRecipe> RECIPES = new ArrayList<>();
 
     public boolean matches(FluidStack in, FluidStack aux) {
         if (inputFluid != null && in != null && in.getFluid() != null) {
@@ -92,4 +92,9 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
                 .filter(recipe -> recipe.matches(input, auxiliary))
                 .findFirst();
     }
+
+    public static List<BrewingBarrelRecipe> getRecipes() {
+        return new ArrayList<>(RECIPES);
+    }
+
 }

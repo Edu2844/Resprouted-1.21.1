@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "resprouted:block/herbs/chamomile_5"
+    "cross": "resprouted:block/herbs/chamomile_6"
   }
 }

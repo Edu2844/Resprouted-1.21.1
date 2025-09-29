@@ -31,7 +31,7 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
     protected int burnTime = 0;
     protected int fuelTime = 0;
     protected int progress = 0;
-    protected int maxProgress = 380;
+    protected int maxProgress = 400;
     protected final PropertyDelegate propertyDelegate;
     protected static final long RECIPE_FLUID_COST = 10125L; //10125L = 125mB
 

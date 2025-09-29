@@ -6,10 +6,17 @@
       ],
       "empty": "minecraft:glass_bottle",
       "capacity": 1
+    },
+    {
+      "filled": [
+        "resprouted:iron_berry_juice_bucket"
+      ],
+      "empty": "minecraft:bucket",
+      "capacity": 3
     }
   ],
   "from_mod": "resprouted",
   "flowing_texture": "resprouted:block/fluid/iron_berry_juice_flow",
   "still_texture": "resprouted:block/fluid/iron_berry_juice_still",
-  "translation_key": "item.resprouted.iron_berry_juice_bottle"
+  "translation_key": "item.resprouted.iron_berry_juice_bucket"
 }

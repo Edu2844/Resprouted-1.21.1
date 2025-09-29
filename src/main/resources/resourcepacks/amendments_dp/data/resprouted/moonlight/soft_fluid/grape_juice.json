@@ -6,10 +6,17 @@
       ],
       "empty": "minecraft:glass_bottle",
       "capacity": 1
+    },
+    {
+      "filled": [
+        "resprouted:grape_juice_bucket"
+      ],
+      "empty": "minecraft:bucket",
+      "capacity": 3
     }
   ],
   "from_mod": "resprouted",
   "flowing_texture": "resprouted:block/fluid/grape_juice_flow",
   "still_texture": "resprouted:block/fluid/grape_juice_still",
-  "translation_key": "item.resprouted.grape_juice_bottle"
+  "translation_key": "item.resprouted.grape_juice_bucket"
 }

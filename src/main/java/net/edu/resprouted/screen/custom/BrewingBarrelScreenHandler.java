@@ -111,4 +111,12 @@ public class BrewingBarrelScreenHandler extends ScreenHandler {
 
         return (maxProgress == 0 || progress == 0) ? 0 : progress * arrowProgressWidth / maxProgress;
     }
+
+    public int getScaledAuxArrowProgress() {
+        int progress = this.propertyDelegate.get(0);
+        int maxProgress = this.propertyDelegate.get(1);
+        int arrowProgressWidth = 13;
+
+        return (maxProgress == 0 || progress == 0) ? 0 : progress * arrowProgressWidth / maxProgress;
+    }
 }

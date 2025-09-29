@@ -3,7 +3,7 @@
   "fluid_variant": {
     "fluid": "resprouted:glow_berry_juice_still"
   },
-  "amount": 500,
+  "amount": 100,
   "output_item": {
     "id": "resprouted:tiny_glowstone_dust",
     "count": 1
