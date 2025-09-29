@@ -47,22 +47,22 @@ public class BrewingBarrelCategory implements DisplayCategory<BrewingBarrelDispl
 
     @Override
     public int getDisplayHeight() {
-        return 90;
+        return 65;
     }
 
     @Override
     public List<Widget> setupDisplay(BrewingBarrelDisplay display, Rectangle bounds) {
-        Point startPoint = new Point(bounds.getCenterX() - 57, bounds.getCenterY() - 40);
+        Point startPoint = new Point(bounds.getCenterX() - 57, bounds.getCenterY() - 20);
         List<Widget> widgets = new LinkedList<>();
 
         widgets.add(Widgets.createRecipeBase(bounds));
-        widgets.add(Widgets.createTexturedWidget(TEXTURE, startPoint.x, startPoint.y, 0, 0, 114, 80));
+        widgets.add(Widgets.createTexturedWidget(TEXTURE, startPoint.x, startPoint.y, 0, 0, 114, 40));
 
         //Input tank
-        widgets.add(createFluidSlot(display.getInputFluid(), startPoint.x + 40, startPoint.y + 24,16,32));
+        widgets.add(createFluidSlot(display.getInputFluid(), startPoint.x + 40, startPoint.y + 4,16,32));
 
         //Aux tank
-        widgets.add(createFluidSlot(display.getOutputFluid(), startPoint.x + 4, startPoint.y + 32,16,16));
+        widgets.add(createFluidSlot(display.getOutputFluid(), startPoint.x + 4, startPoint.y + 12,16,16));
 
         //Arrow
         widgets.add(Widgets.createDrawableWidget((graphics, mouseX, mouseY, delta) -> {
@@ -70,7 +70,7 @@ public class BrewingBarrelCategory implements DisplayCategory<BrewingBarrelDispl
             long currentTime = MinecraftClient.getInstance().world.getTime();
             int ticksPassed = (int) (currentTime % 500);
             int arrowAnimationWidth = (ticksPassed * 24) / 500;
-            graphics.drawTexture(ARROW, startPoint.x + 63, startPoint.y + 31, 0, 0, arrowAnimationWidth, 16, 24, 16);
+            graphics.drawTexture(ARROW, startPoint.x + 63, startPoint.y + 11, 0, 0, arrowAnimationWidth, 16, 24, 16);
         }));
 
         //Aux Arrow
@@ -79,11 +79,16 @@ public class BrewingBarrelCategory implements DisplayCategory<BrewingBarrelDispl
             long currentTime = MinecraftClient.getInstance().world.getTime();
             int ticksPassed = (int) (currentTime % 500);
             int arrowAnimationWidth = (ticksPassed * 13) / 500;
-            graphics.drawTexture(ARROW_1, startPoint.x + 23, startPoint.y + 34, 0, 0, arrowAnimationWidth, 10, 13, 10);
+            graphics.drawTexture(ARROW_1, startPoint.x + 23, startPoint.y + 14, 0, 0, arrowAnimationWidth, 10, 13, 10);
         }));
 
         //Output tank
-        widgets.add(createFluidSlot(display.getOutputFluid(), startPoint.x + 94, startPoint.y + 24,16,32));
+        widgets.add(createFluidSlot(display.getOutputFluid(), startPoint.x + 94, startPoint.y + 4,16,32));
+
+        widgets.add(Widgets.createTooltip(
+                new Rectangle(startPoint.x + 8, startPoint.y + 31, 7, 7),
+                List.of(Text.translatable("rei.resprouted.brewing_barrel_tooltip"))
+        ));
 
         return widgets;
     }

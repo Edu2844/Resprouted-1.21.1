@@ -16,6 +16,7 @@ import net.edu.resprouted.screen.custom.BasicCondenserScreen;
 import net.edu.resprouted.screen.custom.BrewingBarrelScreen;
 
 public class REIClient implements REIClientPlugin {
+
     @Override
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new CrushingTubCategory());
@@ -35,9 +36,8 @@ public class REIClient implements REIClientPlugin {
         registry.registerRecipeFiller(EvaporatingBasinRecipe.class, ModRecipes.EV_BASIN_TYPE, EvaporatingBasinDisplay::new);
         registry.registerRecipeFiller(CondenserRecipe.class, ModRecipes.CONDENSER_TYPE, CondenserDisplay::new);
         registry.registerRecipeFiller(AdvancedCondenserRecipe.class, ModRecipes.ADVANCED_CONDENSER_TYPE, AdvancedCondenserDisplay::new);
-        BrewingBarrelRecipe.RECIPES.forEach(recipe -> {
-            registry.add(new BrewingBarrelDisplay(recipe));
-        });
+
+        BrewingBarrelRecipe.RECIPES.forEach(recipe -> registry.add(new BrewingBarrelDisplay(recipe)));
     }
 
     @Override
