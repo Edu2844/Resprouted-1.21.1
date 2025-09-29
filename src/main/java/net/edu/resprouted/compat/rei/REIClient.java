@@ -14,6 +14,11 @@ import net.edu.resprouted.recipe.custom.*;
 import net.edu.resprouted.screen.custom.AdvancedCondenserScreen;
 import net.edu.resprouted.screen.custom.BasicCondenserScreen;
 import net.edu.resprouted.screen.custom.BrewingBarrelScreen;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.RecipeEntry;
+import net.minecraft.recipe.RecipeManager;
 
 public class REIClient implements REIClientPlugin {
 
@@ -24,10 +29,12 @@ public class REIClient implements REIClientPlugin {
         registry.add(new CondenserCategory());
         registry.add(new AdvancedCondenserCategory());
         registry.add(new BrewingBarrelCategory());
+        registry.add(new OliveOilingCategory());
 
         registry.addWorkstations(CondenserCategory.ID, EntryStacks.of(ModBlocks.CONDENSER));
         registry.addWorkstations(AdvancedCondenserCategory.ID, EntryStacks.of(ModBlocks.ADVANCED_CONDENSER));
         registry.addWorkstations(BrewingBarrelCategory.ID, EntryStacks.of(ModBlocks.BREWING_BARREL));
+        registry.addWorkstations(OliveOilingCategory.ID, EntryStacks.of(Items.CRAFTING_TABLE));
 
     }
     @Override
@@ -36,8 +43,21 @@ public class REIClient implements REIClientPlugin {
         registry.registerRecipeFiller(EvaporatingBasinRecipe.class, ModRecipes.EV_BASIN_TYPE, EvaporatingBasinDisplay::new);
         registry.registerRecipeFiller(CondenserRecipe.class, ModRecipes.CONDENSER_TYPE, CondenserDisplay::new);
         registry.registerRecipeFiller(AdvancedCondenserRecipe.class, ModRecipes.ADVANCED_CONDENSER_TYPE, AdvancedCondenserDisplay::new);
+        registerOilingRecipes(registry);
 
         BrewingBarrelRecipe.RECIPES.forEach(recipe -> registry.add(new BrewingBarrelDisplay(recipe)));
+    }
+    private void registerOilingRecipes(DisplayRegistry registry) {
+        ClientWorld world = MinecraftClient.getInstance().world;
+        if (world == null) return;
+
+        RecipeManager recipeManager = world.getRecipeManager();
+
+        for (RecipeEntry<?> entry : recipeManager.values()) {
+            if (entry.value() instanceof OilingRecipe oilingRecipe) {
+                registry.add(new OliveOilingDisplay(oilingRecipe));
+            }
+        }
     }
 
     @Override

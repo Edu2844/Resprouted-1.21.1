@@ -71,6 +71,7 @@ public class ModRecipes {
             Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "olive_oil_crafting"),
                     new OilingRecipe.OilingRecipeSerializer());
 
+
     //Vanta Oiling
     public static final RecipeSerializer<VantaOilingRecipe> VANTA_OIL_SERIALIZER =
             Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "vanta_oil_crafting"),
