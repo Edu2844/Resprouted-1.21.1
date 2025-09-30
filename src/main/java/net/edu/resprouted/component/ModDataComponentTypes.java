@@ -21,6 +21,8 @@ public class ModDataComponentTypes {
     public static final ComponentType<Float> FLUID_QUALITY =
             register("fluid_quality", builder -> builder.codec(Codec.FLOAT));
 
+
+
     private static <T> ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.DATA_COMPONENT_TYPE,
                 Identifier.of(Resprouted.MOD_ID, name),

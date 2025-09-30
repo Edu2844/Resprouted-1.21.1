@@ -130,7 +130,6 @@ public class CrushingTubBlock extends BlockWithEntity {
             // Insert ítem
             boolean isFluidContainer = isFluidContainer(stack);
 
-            //Block fluid container items if has fluid
             if (!(hasFluid && isFluidContainer)) {
 
                 if (tubStack.isEmpty()) {

@@ -459,7 +459,9 @@
   "tooltip.jade.crop_mature": "Mature",
   "tooltip.jade.resprouted.grape_leaves": "§aHas Grapes",
 
-  "rei.resprouted.brewing_barrel_tooltip": "Auxiliary tank is optional",
+  "rei.resprouted.olive_oiling": "Olive Oiling",
+  "rei.resprouted.vanta_oiling": "Vanta Oiling",
+  "rei.resprouted.brewing_barrel_tooltip": "The starter culture fluid is optional",
 
   "text.resprouted.main": "Here you will find everything related to the mod. This almanac contains guides, and useful information about all the added features.",
   "text.resprouted.categories": "Index",

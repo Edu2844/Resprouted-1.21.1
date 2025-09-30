@@ -1,0 +1,15 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "botanypots"
+      ]
+    }
+  ],
+  "type": "botanypots:block_derived_crop",
+  "block": "resprouted:core_root",
+  "input": {
+    "item": "resprouted:core_root"
+  }
+}

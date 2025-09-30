@@ -6,10 +6,13 @@ import net.edu.resprouted.effect.BoozeEffects;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
 import net.edu.resprouted.registry.ResproutedBoatTypes;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponents;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.potion.Potions;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundCategory;
@@ -53,18 +56,18 @@ public class ModItems {
     // ||                   HERBS                     ||
     // =================================================
     public static final Item ALOE_VERA = registerItem("aloe_vera", new AliasedBlockItem(ModBlocks.ALOE_VERA_BLOCK, new Item.Settings()));
-    public static final Item CLOUDSBLUFF = registerItem("cloudsbluff", new AliasedBlockItem(ModBlocks.CLOUDSBLUFF_BLOCK, new Item.Settings().food(ModFoodComponents.CLOUDSBLUFF)));
-    public static final Item COHOSH = registerItem("cohosh", new AliasedBlockItem(ModBlocks.COHOSH_BLOCK ,new Item.Settings()));
     public static final Item BLOOD_ORCHID = registerItem("blood_orchid", new AliasedBlockItem(ModBlocks.BLOOD_ORCHID_BLOCK ,new Item.Settings()));
     public static final Item CHAMOMILE = registerItem("chamomile", new AliasedBlockItem(ModBlocks.CHAMOMILE_BLOCK ,new Item.Settings()));
+    public static final Item CLOUDSBLUFF = registerItem("cloudsbluff", new AliasedBlockItem(ModBlocks.CLOUDSBLUFF_BLOCK, new Item.Settings().food(ModFoodComponents.CLOUDSBLUFF)));
+    public static final Item COHOSH = registerItem("cohosh", new AliasedBlockItem(ModBlocks.COHOSH_BLOCK ,new Item.Settings()));
     public static final Item CORE_ROOT = registerItem("core_root", new AliasedBlockItem(ModBlocks.CORE_ROOT ,new Item.Settings().food(ModFoodComponents.ROOT)));
+    public static final Item DEATHSTALK_MUSHROOM = registerItem("deathstalk_mushroom", new AliasedBlockItem(ModBlocks.DEATHSTALK_MUSHROOM, new Item.Settings()));
     public static final Item GINSENG = registerItem("ginseng", new AliasedBlockItem(ModBlocks.GINSENG_BLOCK ,new Item.Settings().food(ModFoodComponents.ROOT)));
     public static final Item HORSETAIL = registerItem("horsetail", new AliasedBlockItem(ModBlocks.HORSETAIL_BLOCK, new  Item.Settings()));
     public static final Item MARSH_MALLOW = registerItem("marsh_mallow", new AliasedBlockItem(ModBlocks.MARSHMALLOW_BLOCK ,new Item.Settings().food(ModFoodComponents.ROOT)));
+    public static final Item MOONCAP_MUSHROOM = registerItem("mooncap_mushroom", new AliasedBlockItem(ModBlocks.MOONCAP_MUSHROOM, new Item.Settings()));
     public static final Item VANTA_LILY = registerItem("vanta_lily", new AliasedBlockItem(ModBlocks.VANTA_LILY_BLOCK ,new Item.Settings()));
     public static final Item WIND_THISTLE = registerItem("wind_thistle", new AliasedBlockItem(ModBlocks.WIND_THISTLE_BLOCK ,new Item.Settings()));
-    public static final Item MOONCAP_MUSHROOM = registerItem("mooncap_mushroom", new AliasedBlockItem(ModBlocks.MOONCAP_MUSHROOM, new Item.Settings()));
-    public static final Item DEATHSTALK_MUSHROOM = registerItem("deathstalk_mushroom", new AliasedBlockItem(ModBlocks.DEATHSTALK_MUSHROOM, new Item.Settings()));
 
     // =================================================
     // ||                AGRICULTURE                  ||
@@ -220,7 +223,11 @@ public class ModItems {
     // =================================================
     // ||                   ALCHEMY                   ||
     // =================================================
-    public static final Item ELIXIR_BOTTLE = registerItem("elixir_bottle", new ElixirBottle(new Item.Settings().maxCount(16)));
+    public static final Item ELIXIR_BOTTLE = registerItem("elixir_bottle",
+            new ElixirBottle(new Item.Settings()
+                    .maxCount(16)
+                    .component(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Potions.WATER))
+            ));
     public static final Item ELIXIR_ICON = registerItem("elixir_icon", new Item(new Item.Settings()));
 
     static {

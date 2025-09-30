@@ -73,24 +73,19 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
         }
 
         if (display.getFluid() != null) {
-            FluidVariant fluidVariant = display.getFluid();
-            Fluid fluid = fluidVariant.getFluid();
-            long amount = display.getAmount();
-            String amountText = FluidUtils.convertDropletsToMb(amount) + "/8000 mB";
 
-            Sprite sprite = FluidVariantRendering.getSprite(fluidVariant);
-            if (sprite != null && sprite.getAtlasId() != null) {
-
+            Sprite sprite = FluidVariantRendering.getSprite(display.getFluid());
+            if (sprite != null) {
                 boolean hasOutputItem = !display.getOutputEntries().isEmpty();
                 int fluidX = startPoint.x + 82;
                 int fluidY = hasOutputItem ? startPoint.y + 25 : startPoint.y + 15;
                 int tooltipY = hasOutputItem ? startPoint.y + 25 : startPoint.y + 15;
 
-                widgets.add(Widgets.createDrawableWidget((helper, mouseX, mouseY, delta) -> {
-                    helper.drawTexture(Identifier.of("textures/gui/sprites/container/slot.png"),
-                            fluidX - 1, fluidY - 1, 0, 0, 18, 18, 18, 18);
-                    int color = FluidVariantRendering.getColor(fluidVariant);
+                widgets.add(Widgets.createSlotBackground(new Point(fluidX, fluidY)));
 
+                //Fluid
+                widgets.add(Widgets.createDrawableWidget((helper, mouseX, mouseY, delta) -> {
+                    int color = FluidVariantRendering.getColor(display.getFluid());
                     RenderSystem.setShader(GameRenderer::getPositionTexColorProgram);
                     RenderSystem.setShaderTexture(0, sprite.getAtlasId());
                     RenderSystem.setShaderColor(
@@ -102,13 +97,19 @@ public class CrushingTubCategory implements DisplayCategory<CrushingTubDisplay> 
                     helper.drawSprite(fluidX, fluidY, 0, 16, 16, sprite);
                     RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
                 }));
-                //Tooltip
+
+                //Fluid Tooltip
                 widgets.add(Widgets.createTooltip(
                         new Rectangle(fluidX, tooltipY, 16, 16),
-                        List.of(fluid.getDefaultState().getBlockState().getBlock().getName(), Text.literal(amountText).formatted(Formatting.GRAY))
+                        List.of(display.getFluid().getFluid()
+                                .getDefaultState()
+                                .getBlockState()
+                                .getBlock()
+                                .getName(), Text.literal(FluidUtils.convertDropletsToMb(display.getAmount()) + "/8000 mB").formatted(Formatting.GRAY))
                 ));
             }
         }
+
         return widgets;
     }
 }

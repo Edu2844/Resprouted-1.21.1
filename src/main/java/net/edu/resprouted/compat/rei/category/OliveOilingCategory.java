@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class OliveOilingCategory implements DisplayCategory<OliveOilingDisplay> {
-    public static final CategoryIdentifier<OliveOilingDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "plugin/oiling");
+    public static final CategoryIdentifier<OliveOilingDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "plugin/olive_oiling");
 
     @Override
     public CategoryIdentifier<? extends OliveOilingDisplay> getCategoryIdentifier() {
@@ -27,12 +27,12 @@ public class OliveOilingCategory implements DisplayCategory<OliveOilingDisplay> 
 
     @Override
     public Text getTitle() {
-        return Text.translatable("rei.resprouted.oiling");
+        return Text.translatable("rei.resprouted.olive_oiling");
     }
 
     @Override
     public Renderer getIcon() {
-        return EntryStacks.of(ModItems.OLIVE_OIL_BOTTLE); // Icono más representativo
+        return EntryStacks.of(ModItems.OLIVE_OIL_BOTTLE);
     }
 
 
@@ -44,30 +44,35 @@ public class OliveOilingCategory implements DisplayCategory<OliveOilingDisplay> 
         widgets.add(Widgets.createRecipeBase(bounds));
 
         List<EntryIngredient> inputEntries = display.getInputEntries();
-        if (inputEntries.size() >= 2) {
-            widgets.add(Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 10))
+
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 1))
                     .entries(inputEntries.get(0))
                     .markInput());
 
-            widgets.add(Widgets.createSlot(new Point(startPoint.x + 19, startPoint.y + 10))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 19, startPoint.y + 1))
                     .entries(inputEntries.get(1))
                     .markInput());
-        }
 
-        widgets.add(Widgets.createArrow(new Point(startPoint.x + 45, startPoint.y + 9))
-                .animationDurationTicks(20));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 37, startPoint.y + 1)));
+
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 19)));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 19, startPoint.y + 19)));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 37, startPoint.y + 19)));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 37)));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 19, startPoint.y + 37)));
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 37, startPoint.y + 37)));
+
+        widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 18)).disableAnimation());
 
         if (!display.getOutputEntries().isEmpty()) {
-            widgets.add(Widgets.createSlot(new Point(startPoint.x + 80, startPoint.y + 9))
+            widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 19))
                     .entries(display.getOutputEntries().getFirst())
                     .disableBackground()
                     .markOutput());
         }
-
-        widgets.add(Widgets.createTooltip(
-                new Rectangle(bounds.x, bounds.y + bounds.height - 10, bounds.width, 10),
-                List.of(Text.translatable("rei.resprouted.oiling_tooltip"))
-        ));
+        if (!display.getOutputEntries().isEmpty()) {
+            widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 19)));
+        }
 
         return widgets;
     }

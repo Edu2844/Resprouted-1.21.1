@@ -57,18 +57,16 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
         widgets.add(Widgets.createTexturedWidget(TEXTURE, startPoint.x, startPoint.y, 0, 0, 113, 63));
 
         //Fluid Slot
-        int fluidX = startPoint.x + 20;
-        int fluidY = startPoint.y + 4;
+        int fluidX = startPoint.x + 36;
+        int fluidY = startPoint.y + 5;
 
         FluidVariant fluidVariant = display.getFluid();
-        Sprite sprite = FluidVariantRendering.getSprite(fluidVariant);
+        Sprite sprite = FluidVariantRendering.getSprite(display.getFluid());
         if (sprite != null) {
+            widgets.add(Widgets.createSlotBackground(new Point(fluidX, fluidY)));
             widgets.add(Widgets.createDrawableWidget((helper, mouseX, mouseY, delta) -> {
-                //Slot
-                helper.drawTexture(Identifier.of("textures/gui/sprites/container/slot.png"),
-                        fluidX - 1, fluidY - 1, 0, 0, 18, 18, 18, 18);
 
-                int color = FluidVariantRendering.getColor(fluidVariant);
+                int color = FluidVariantRendering.getColor(display.getFluid());
                 RenderSystem.setShader(GameRenderer::getPositionTexColorProgram);
                 RenderSystem.setShaderTexture(0, sprite.getAtlasId());
                 RenderSystem.setShaderColor(
@@ -80,21 +78,26 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
                 helper.drawSprite(fluidX, fluidY, 0, 16, 16, sprite);
                 RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
             }));
+
             //Fluid Tooltip
-            widgets.add(Widgets.createTooltip(
-                    new Rectangle(fluidX, fluidY, 16, 16),
-                    List.of(
-                            fluidVariant.getFluid().getDefaultState().getBlockState().getBlock().getName(),
-                            Text.literal( display.getAmount() + "/6000 mB").formatted(Formatting.GRAY)
-                    )
-            ));
+            widgets.add(Widgets.createTooltip(new Rectangle(fluidX, fluidY, 16, 16),
+                    List.of(fluidVariant
+                            .getFluid()
+                            .getDefaultState()
+                            .getBlockState()
+                            .getBlock()
+                            .getName(), Text.literal(display.getAmount() + "/6000 mB").formatted(Formatting.GRAY))));
+
+            //Arrow
+            widgets.add(Widgets.createArrow(new Point(startPoint.x + 51, startPoint.y + 28)).animationDurationTicks(500));
         }
+
         //Output Slot
-        int outputX = startPoint.x + 80;
-        int outputY = startPoint.y + 25;
-        widgets.add(Widgets.createSlot(new Point(outputX, outputY))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 80, startPoint.y + 25))
                 .entries(display.getOutputEntries().getFirst())
                 .markOutput());
+
+
         return widgets;
     }
 }

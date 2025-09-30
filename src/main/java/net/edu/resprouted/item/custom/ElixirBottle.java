@@ -6,9 +6,8 @@ import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.PotionItem;
+import net.minecraft.item.*;
+import net.minecraft.potion.Potions;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
@@ -17,8 +16,16 @@ import net.minecraft.world.event.GameEvent;
 import java.util.Iterator;
 
 public class ElixirBottle extends PotionItem {
+
+
     public ElixirBottle(Settings settings) {
         super(settings);
+    }
+    @Override
+    public ItemStack getDefaultStack() {
+        ItemStack itemStack = super.getDefaultStack();
+        itemStack.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Potions.WATER));
+        return itemStack;
     }
 
     @Override

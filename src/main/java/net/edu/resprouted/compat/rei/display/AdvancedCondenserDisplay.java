@@ -4,7 +4,6 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.edu.resprouted.compat.rei.category.AdvancedCondenserCategory;
 import net.edu.resprouted.recipe.custom.AdvancedCondenserRecipe;
 import net.minecraft.entity.effect.StatusEffect;
@@ -24,7 +23,9 @@ public class AdvancedCondenserDisplay extends BasicDisplay {
 
     public AdvancedCondenserDisplay(RecipeEntry<AdvancedCondenserRecipe> entry) {
         super(createInputEntries(entry.value()),
-                List.of(EntryIngredient.of(EntryStacks.of(entry.value().getResult(null))))
+                List.of(EntryIngredients.ofItemStacks(
+                        List.of(entry.value().getResult(null))
+                ))
         );
         this.effect = entry.value().effect();
         this.duration = entry.value().duration();

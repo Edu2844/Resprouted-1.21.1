@@ -16,6 +16,7 @@ import net.edu.resprouted.compat.rei.display.AdvancedCondenserDisplay;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.LinkedList;
@@ -64,13 +65,13 @@ public class AdvancedCondenserCategory implements DisplayCategory<AdvancedConden
         }));
 
         BurningFire fire = Widgets.createBurningFire(new Point(startPoint.x + 44, startPoint.y + 43));
-        fire.animationDurationMS(42000);
+        fire.animationDurationTicks(400);
         widgets.add(fire);
 
         widgets.add(Widgets.createTooltip(
                 new Rectangle(startPoint.x + 110, startPoint.y + 24, 16, 32),
                 Text.translatable("block.minecraft.water"),
-                Text.literal("125/8000 mB")
+                Text.literal("125/8000 mB").formatted(Formatting.GRAY)
         ));
 
 

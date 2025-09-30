@@ -15,6 +15,7 @@ import net.edu.resprouted.compat.rei.display.CondenserDisplay;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 
@@ -51,7 +52,6 @@ public class CondenserCategory implements DisplayCategory<CondenserDisplay> {
         Point startPoint = new Point(bounds.getCenterX() - 65, bounds.getCenterY() - 31);
         List<Widget> widgets = new LinkedList<>();
 
-
         widgets.add(Widgets.createRecipeBase(bounds));
 
         widgets.add(Widgets.createTexturedWidget(TEXTURE, startPoint.x, startPoint.y, 0, 0, 130, 79));
@@ -68,7 +68,7 @@ public class CondenserCategory implements DisplayCategory<CondenserDisplay> {
         widgets.add(Widgets.createTooltip(
                 new Rectangle(startPoint.x + 110, startPoint.y + 24, 16, 32),
                 Text.translatable("block.minecraft.water"),
-                Text.literal("125/8000 mB")
+                Text.literal("125/8000 mB").formatted(Formatting.GRAY)
         ));
 
         BurningFire fire = Widgets.createBurningFire(new Point(startPoint.x + 44, startPoint.y + 45));

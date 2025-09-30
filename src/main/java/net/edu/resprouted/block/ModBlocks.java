@@ -589,30 +589,42 @@ public class ModBlocks {
     // =================================================
     public static final Block ALOE_VERA_BLOCK = registerBlockWithoutBlockItem("aloe_vera_block",
             new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.ALOE_VERA));
-    public static final Block HORSETAIL_BLOCK = registerBlockWithoutBlockItem("horsetail_block",
-            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.HORSETAIL));
-    public static final Block COHOSH_BLOCK = registerBlockWithoutBlockItem("cohosh_block",
-            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.COHOSH));
-    public static final Block CHAMOMILE_BLOCK = registerBlockWithoutBlockItem("chamomile_block",
-            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.CHAMOMILE));
-    public static final Block CLOUDSBLUFF_BLOCK = registerBlockWithoutBlockItem("cloudsbluff_block",
-            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.CLOUDSBLUFF));
+
     public static final Block BLOOD_ORCHID_BLOCK = registerBlockWithoutBlockItem("blood_orchid_block",
             new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.BLOOD_ORCHID));
-    public static final Block GINSENG_BLOCK = registerBlockWithoutBlockItem("ginseng_block",
-            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.GINSENG));
-    public static final Block MARSHMALLOW_BLOCK = registerBlockWithoutBlockItem("marshmallow_block",
-            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.MARSH_MALLOW));
-    public static final Block VANTA_LILY_BLOCK = registerBlockWithoutBlockItem("vanta_lily_block",
-            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.VANTA_LILY));
-    public static final Block WIND_THISTLE_BLOCK = registerBlockWithoutBlockItem("wind_thistle_block",
-            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.WIND_THISTLE));
-    public static final Block MOONCAP_MUSHROOM = registerBlockWithoutBlockItem("mooncap_mushroom",
-            new CustomMushroomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.MOONCAP_MUSHROOM));
-    public static final Block DEATHSTALK_MUSHROOM = registerBlockWithoutBlockItem("deathstalk_mushroom",
-            CustomMushroomBlock.NetherMushroom(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.DEATHSTALK_MUSHROOM));
+
+    public static final Block CHAMOMILE_BLOCK = registerBlockWithoutBlockItem("chamomile_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.CHAMOMILE));
+
+    public static final Block CLOUDSBLUFF_BLOCK = registerBlockWithoutBlockItem("cloudsbluff_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.CLOUDSBLUFF));
+
+    public static final Block COHOSH_BLOCK = registerBlockWithoutBlockItem("cohosh_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.COHOSH));
+
     public static final Block CORE_ROOT = registerBlockWithoutBlockItem("core_root",
             new CustomMushroomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.CORE_ROOT));
+
+    public static final Block DEATHSTALK_MUSHROOM = registerBlockWithoutBlockItem("deathstalk_mushroom",
+            CustomMushroomBlock.NetherMushroom(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.DEATHSTALK_MUSHROOM));
+
+    public static final Block GINSENG_BLOCK = registerBlockWithoutBlockItem("ginseng_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.GINSENG));
+
+    public static final Block HORSETAIL_BLOCK = registerBlockWithoutBlockItem("horsetail_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.HORSETAIL));
+
+    public static final Block MARSHMALLOW_BLOCK = registerBlockWithoutBlockItem("marshmallow_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.MARSH_MALLOW));
+
+    public static final Block MOONCAP_MUSHROOM = registerBlockWithoutBlockItem("mooncap_mushroom",
+            new CustomMushroomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.MOONCAP_MUSHROOM));
+
+    public static final Block VANTA_LILY_BLOCK = registerBlockWithoutBlockItem("vanta_lily_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.VANTA_LILY));
+
+    public static final Block WIND_THISTLE_BLOCK = registerBlockWithoutBlockItem("wind_thistle_block",
+            new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.WIND_THISTLE));
 
     // =================================================
     // ||                   BUSHES                    ||

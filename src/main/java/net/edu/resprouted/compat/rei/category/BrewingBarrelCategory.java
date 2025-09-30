@@ -14,7 +14,6 @@ import net.edu.resprouted.compat.rei.display.BrewingBarrelDisplay;
 import net.edu.resprouted.util.ScreenUtils;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.text.Text;
@@ -25,8 +24,6 @@ import java.util.List;
 
 
 public class BrewingBarrelCategory implements DisplayCategory<BrewingBarrelDisplay> {
-    private static final Identifier ARROW_1 = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/brewing_progress_1.png");
-    private static final Identifier ARROW = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/brewing_progress_2.png");
     public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/recipe/brewing_barrel_recipe.png");
     public static final CategoryIdentifier<BrewingBarrelDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "plugin/brewing_barrel");
 
@@ -65,22 +62,7 @@ public class BrewingBarrelCategory implements DisplayCategory<BrewingBarrelDispl
         widgets.add(createFluidSlot(display.getOutputFluid(), startPoint.x + 4, startPoint.y + 12,16,16));
 
         //Arrow
-        widgets.add(Widgets.createDrawableWidget((graphics, mouseX, mouseY, delta) -> {
-            assert MinecraftClient.getInstance().world != null;
-            long currentTime = MinecraftClient.getInstance().world.getTime();
-            int ticksPassed = (int) (currentTime % 500);
-            int arrowAnimationWidth = (ticksPassed * 24) / 500;
-            graphics.drawTexture(ARROW, startPoint.x + 63, startPoint.y + 11, 0, 0, arrowAnimationWidth, 16, 24, 16);
-        }));
-
-        //Aux Arrow
-        widgets.add(Widgets.createDrawableWidget((graphics, mouseX, mouseY, delta) -> {
-            assert MinecraftClient.getInstance().world != null;
-            long currentTime = MinecraftClient.getInstance().world.getTime();
-            int ticksPassed = (int) (currentTime % 500);
-            int arrowAnimationWidth = (ticksPassed * 13) / 500;
-            graphics.drawTexture(ARROW_1, startPoint.x + 23, startPoint.y + 14, 0, 0, arrowAnimationWidth, 10, 13, 10);
-        }));
+        widgets.add(Widgets.createArrow(new Point(startPoint.x + 63, startPoint.y + 11)).animationDurationTicks(500));
 
         //Output tank
         widgets.add(createFluidSlot(display.getOutputFluid(), startPoint.x + 94, startPoint.y + 4,16,32));

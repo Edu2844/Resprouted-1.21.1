@@ -1,24 +1,40 @@
 package net.edu.resprouted.compat.rei;
 
 import me.shedaniel.math.Rectangle;
+import me.shedaniel.rei.api.client.entry.renderer.EntryRendererRegistry;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
+import me.shedaniel.rei.api.client.registry.entry.EntryRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
+import me.shedaniel.rei.api.common.entry.EntryStack;
+import me.shedaniel.rei.api.common.entry.comparison.ComparisonContext;
+import me.shedaniel.rei.api.common.entry.comparison.ItemComparatorRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.compat.rei.category.*;
 import net.edu.resprouted.compat.rei.display.*;
+import net.edu.resprouted.component.ModDataComponentTypes;
+import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.item.custom.ElixirBottle;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.*;
 import net.edu.resprouted.screen.custom.AdvancedCondenserScreen;
 import net.edu.resprouted.screen.custom.BasicCondenserScreen;
 import net.edu.resprouted.screen.custom.BrewingBarrelScreen;
+import net.edu.resprouted.util.ElixirUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Potion;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeManager;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
+
+import java.util.List;
 
 public class REIClient implements REIClientPlugin {
 
@@ -30,13 +46,16 @@ public class REIClient implements REIClientPlugin {
         registry.add(new AdvancedCondenserCategory());
         registry.add(new BrewingBarrelCategory());
         registry.add(new OliveOilingCategory());
+        registry.add(new VantaOilingCategory());
 
         registry.addWorkstations(CondenserCategory.ID, EntryStacks.of(ModBlocks.CONDENSER));
         registry.addWorkstations(AdvancedCondenserCategory.ID, EntryStacks.of(ModBlocks.ADVANCED_CONDENSER));
         registry.addWorkstations(BrewingBarrelCategory.ID, EntryStacks.of(ModBlocks.BREWING_BARREL));
         registry.addWorkstations(OliveOilingCategory.ID, EntryStacks.of(Items.CRAFTING_TABLE));
+        registry.addWorkstations(VantaOilingCategory.ID, EntryStacks.of(Items.CRAFTING_TABLE));
 
     }
+
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerRecipeFiller(CrushingTubRecipe.class, ModRecipes.CRUSHING_TUB_TYPE, CrushingTubDisplay::new);
@@ -44,20 +63,9 @@ public class REIClient implements REIClientPlugin {
         registry.registerRecipeFiller(CondenserRecipe.class, ModRecipes.CONDENSER_TYPE, CondenserDisplay::new);
         registry.registerRecipeFiller(AdvancedCondenserRecipe.class, ModRecipes.ADVANCED_CONDENSER_TYPE, AdvancedCondenserDisplay::new);
         registerOilingRecipes(registry);
+        registerVantaOilingRecipes(registry);
 
         BrewingBarrelRecipe.RECIPES.forEach(recipe -> registry.add(new BrewingBarrelDisplay(recipe)));
-    }
-    private void registerOilingRecipes(DisplayRegistry registry) {
-        ClientWorld world = MinecraftClient.getInstance().world;
-        if (world == null) return;
-
-        RecipeManager recipeManager = world.getRecipeManager();
-
-        for (RecipeEntry<?> entry : recipeManager.values()) {
-            if (entry.value() instanceof OilingRecipe oilingRecipe) {
-                registry.add(new OliveOilingDisplay(oilingRecipe));
-            }
-        }
     }
 
     @Override
@@ -79,5 +87,55 @@ public class REIClient implements REIClientPlugin {
                 BrewingBarrelScreen.class,
                 BrewingBarrelCategory.ID
         );
+    }
+
+    @Override
+    public void registerEntries(EntryRegistry registry) {
+        if (ModItems.ELIXIR_BOTTLE != null) {
+            List<ItemStack> elixirs = ElixirUtils.getElixirs();
+            for (ItemStack elixir : elixirs) {
+                registry.addEntry(EntryStacks.of(elixir));
+            }
+        }
+    }
+
+    @Override
+    public void registerItemComparators(ItemComparatorRegistry registry) {
+        registry.registerComponents(ModItems.ELIXIR_BOTTLE);
+    }
+
+    private void registerOilingRecipes(DisplayRegistry registry) {
+        ClientWorld world = MinecraftClient.getInstance().world;
+        if (world == null) return;
+
+        RecipeManager recipeManager = world.getRecipeManager();
+
+        for (RecipeEntry<?> entry : recipeManager.values()) {
+            if (entry.value() instanceof OilingRecipe) {
+                registry.add(new OliveOilingDisplay());
+            }
+        }
+    }
+
+    private void registerVantaOilingRecipes(DisplayRegistry registry) {
+        for (int numPotions = 1; numPotions <= 7; numPotions++) {
+
+            for (RegistryEntry<Potion> potionEntry : Registries.POTION.getIndexedEntries()) {
+                Potion potion = potionEntry.value();
+                if (potion.getEffects().size() == 1) {
+                    registry.add(new VantaOilingDisplay(numPotions, potionEntry));
+                }
+            }
+
+            if (ModItems.ELIXIR_BOTTLE != null) {
+                List<ItemStack> elixirs = ElixirUtils.getElixirs();
+                for (ItemStack elixir : elixirs) {
+                    StatusEffectInstance effect = VantaOilingRecipe.getIngredientEffect(elixir);
+                    if (effect != null) {
+                        registry.add(new VantaOilingDisplay(numPotions, elixir));
+                    }
+                }
+            }
+        }
     }
 }
