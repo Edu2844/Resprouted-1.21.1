@@ -40,10 +40,10 @@ public class CatalogScreen extends Screen {
     private static final int MAIN_MENU_WIDTH = 22;
     private static final int MAIN_MENU_HEIGHT = 31;
 
-    private static final int BACK_CATEGORY_X = 285;
-    private static final int BACK_CATEGORY_Y = 14;
-    private static final int BACK_CATEGORY_WIDTH = 30;
-    private static final int BACK_CATEGORY_HEIGHT = 24;
+    private static final int BACK_CATEGORY_X = 9;
+    private static final int BACK_CATEGORY_Y = 5;
+    private static final int BACK_CATEGORY_WIDTH = 13;
+    private static final int BACK_CATEGORY_HEIGHT = 15;
 
     private static final int BOOK_WIDTH = 293;
     private static final int BOOK_HEIGHT = 184;

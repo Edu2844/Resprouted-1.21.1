@@ -1,22 +1,17 @@
 package net.edu.resprouted.compat.rei;
 
 import me.shedaniel.math.Rectangle;
-import me.shedaniel.rei.api.client.entry.renderer.EntryRendererRegistry;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.client.registry.entry.EntryRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ScreenRegistry;
-import me.shedaniel.rei.api.common.entry.EntryStack;
-import me.shedaniel.rei.api.common.entry.comparison.ComparisonContext;
 import me.shedaniel.rei.api.common.entry.comparison.ItemComparatorRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.compat.rei.category.*;
 import net.edu.resprouted.compat.rei.display.*;
-import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.item.ModItems;
-import net.edu.resprouted.item.custom.ElixirBottle;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.*;
 import net.edu.resprouted.screen.custom.AdvancedCondenserScreen;

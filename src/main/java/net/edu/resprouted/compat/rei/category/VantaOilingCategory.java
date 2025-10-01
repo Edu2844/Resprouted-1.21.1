@@ -46,13 +46,11 @@ public class VantaOilingCategory implements DisplayCategory<VantaOilingDisplay> 
         List<EntryIngredient> inputEntries = display.getInputEntries();
         int numPotions = display.getNumPotions();
 
-        // Slots fijos (0 y 1)
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 1))
                 .entries(inputEntries.get(0)).markInput());
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 19, startPoint.y + 1))
                 .entries(inputEntries.get(1)).markInput());
 
-        // Slots de pociones (2-8) con coordenadas predefinidas
         Point[] potionSlots = {
                 new Point(startPoint.x + 37, startPoint.y + 1),   // Slot 2
                 new Point(startPoint.x + 1, startPoint.y + 19),   // Slot 3
@@ -64,7 +62,7 @@ public class VantaOilingCategory implements DisplayCategory<VantaOilingDisplay> 
         };
 
         for (int i = 0; i < potionSlots.length; i++) {
-            int slotIndex = i + 2; // +2 porque empieza desde el slot 2
+            int slotIndex = i + 2;
             if (numPotions >= i + 1) {
                 widgets.add(Widgets.createSlot(potionSlots[i])
                         .entries(inputEntries.get(slotIndex)).markInput());
