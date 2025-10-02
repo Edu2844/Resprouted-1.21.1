@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.recipe.Input.EvaporatingBasinRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
+import net.edu.resprouted.util.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
@@ -41,7 +42,7 @@ public record EvaporatingBasinRecipe(FluidVariant fluidInput, long fluidCost, It
 
         public static final MapCodec<EvaporatingBasinRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
                 FluidVariant.CODEC.fieldOf("fluid_variant").forGetter(EvaporatingBasinRecipe::fluidInput),
-                Codec.LONG.fieldOf("amount").forGetter(EvaporatingBasinRecipe::fluidCost),
+                Codec.LONG.fieldOf("amount").xmap(FluidUtils::convertMbToDroplets, droplets -> droplets).forGetter(EvaporatingBasinRecipe::fluidCost),
                 ItemStack.CODEC.fieldOf("output_item").forGetter(EvaporatingBasinRecipe::output)).apply(i, EvaporatingBasinRecipe::new));
 
         public static final PacketCodec<RegistryByteBuf, EvaporatingBasinRecipe> STREAM = PacketCodec.ofStatic(

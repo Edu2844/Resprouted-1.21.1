@@ -83,7 +83,7 @@ public class EvaporatingBasinBE extends AbstractFluidStorageBlockEntity implemen
             }
         }
 
-        long cost = FluidUtils.convertMbToDroplets(recipe.fluidCost());
+        long cost = (recipe.fluidCost());
 
         if (be.progress >= cost) {
             be.progress -= cost;

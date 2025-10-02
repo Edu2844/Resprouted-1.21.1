@@ -40,7 +40,6 @@ public class VantaOilingDisplay extends BasicDisplay {
     private static List<EntryIngredient> getInputsForPotion(int numPotions, RegistryEntry<Potion> potionEntry) {
         List<EntryIngredient> inputs = new ArrayList<>();
 
-        // armas válidas
         List<ItemStack> weapons = new ArrayList<>();
         for (Item item : Registries.ITEM) {
             ItemStack stack = new ItemStack(item);

@@ -102,14 +102,16 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.GRAPES)
         ;
         getOrCreateTagBuilder(ModTags.Items.GLASS_BOTTLES)
+                .add(ModItems.ALE_WORT_BOTTLE)
                 .add(ModItems.GRAPE_JUICE_BOTTLE)
                 .add(ModItems.APPLE_JUICE_BOTTLE)
                 .add(ModItems.GOLDEN_APPLE_JUICE_BOTTLE)
                 .add(ModItems.GLOW_BERRY_JUICE_BOTTLE)
                 .add(ModItems.IRON_BERRY_JUICE_BOTTLE)
                 .add(ModItems.SWEET_BERRY_JUICE_BOTTLE)
-                .add(ModItems.SWEET_BERRY_JUICE_BOTTLE)
+                .add(ModItems.VANTA_OIL_BOTTLE)
                 .add(ModItems.OLIVE_OIL_BOTTLE)
+                .add(ModItems.SUGAR_CANE_JUICE_BOTTLE)
         ;
         getOrCreateTagBuilder(ModTags.Items.IGNITERS)
                 .add(Items.FLINT_AND_STEEL)

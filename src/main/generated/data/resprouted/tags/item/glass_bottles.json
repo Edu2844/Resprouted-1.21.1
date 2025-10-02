@@ -1,12 +1,14 @@
 {
   "values": [
+    "resprouted:ale_wort_bottle",
     "resprouted:grape_juice_bottle",
     "resprouted:apple_juice_bottle",
     "resprouted:golden_apple_juice_bottle",
     "resprouted:glow_berry_juice_bottle",
     "resprouted:iron_berry_juice_bottle",
     "resprouted:sweet_berry_juice_bottle",
-    "resprouted:sweet_berry_juice_bottle",
-    "resprouted:olive_oil_bottle"
+    "resprouted:vanta_oil_bottle",
+    "resprouted:olive_oil_bottle",
+    "resprouted:sugar_cane_juice_bottle"
   ]
 }

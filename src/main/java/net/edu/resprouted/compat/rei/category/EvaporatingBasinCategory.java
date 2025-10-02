@@ -49,7 +49,7 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
     }
     @Override
     public List<Widget> setupDisplay(EvaporatingBasinDisplay display, Rectangle bounds) {
-        Point startPoint = new Point(bounds.getCenterX() - 52, bounds.getCenterY() - 22);
+        Point startPoint = new Point(bounds.getCenterX() - 57, bounds.getCenterY() - 26);
         List<Widget> widgets = new LinkedList<>();
 
         //Background
@@ -63,7 +63,6 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
         FluidVariant fluidVariant = display.getFluid();
         Sprite sprite = FluidVariantRendering.getSprite(display.getFluid());
         if (sprite != null) {
-            widgets.add(Widgets.createSlotBackground(new Point(fluidX, fluidY)));
             widgets.add(Widgets.createDrawableWidget((helper, mouseX, mouseY, delta) -> {
 
                 int color = FluidVariantRendering.getColor(display.getFluid());
@@ -89,12 +88,13 @@ public class EvaporatingBasinCategory implements DisplayCategory<EvaporatingBasi
                             .getName(), Text.literal(display.getAmount() + "/6000 mB").formatted(Formatting.GRAY))));
 
             //Arrow
-            widgets.add(Widgets.createArrow(new Point(startPoint.x + 51, startPoint.y + 28)).animationDurationTicks(500));
+            widgets.add(Widgets.createArrow(new Point(startPoint.x + 49, startPoint.y + 28)).animationDurationTicks(500));
         }
 
         //Output Slot
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 80, startPoint.y + 25))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 82, startPoint.y + 28))
                 .entries(display.getOutputEntries().getFirst())
+                .disableBackground()
                 .markOutput());
 
 
