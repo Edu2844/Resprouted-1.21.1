@@ -469,41 +469,47 @@
   "text.resprouted.back_menu": "Back to Index",
 
   "text.resprouted.main": "Here you will find everything related to the mod. This almanac contains guides, and useful information about all the added features.",
-  "text.resprouted.categories": "Index",
-  "text.category.resprouted.agriculture": "Agriculture",
-  "text.category.resprouted.decoration": "Decoration",
-  "text.category.resprouted.production": "Production",
 
-  "text.resprouted.fertile_soil": "Fertile soil works like regular farmland, but with some perks: it doesn’t need water to stay hydrated, can’t be trampled, and lets sugar cane grow without a nearby water block.",
+  "text.category.resprouted.agriculture": "Agriculture",
+  "text.resprouted.fertile_soil": "Fertile soil works like regular farmland but it doesn’t need water to stay hydrated, can’t be trampled and lets sugar cane grow without a nearby water block",
 
   "entry.resprouted.crop_stakes": "Crop Stake",
   "text.resprouted.crop_stakes.1": "Crop stakes are wooden poles that support the growth of tall crops such as chili peppers and tomatoes. They can also be used to tie ropes.",
 
-  "entry.resprouted.chili_peppers": "Chili Peppers",
-  "text.resprouted.chili_peppers.1": "Chili peppers are best harvested by interacting with mature plants instead of breaking them, since broken ones take time to regrow.",
-  "text.resprouted.chili_peppers.2": "They can be eaten for a small speed boost, though their spiciness might sting, and they also serve as an alchemy ingredient. Rarely, harvesting may yield a ghost pepper, which grants temporary fire powers, making your attacks launch fireballs.",
-
   "entry.resprouted.tomatoes": "Tomatoes",
-  "text.resprouted.tomatoes.1": "Tomatoes grow on vines supported by crop stakes, with seeds obtained from tall grass and planted on stakes above farmland or fertile soil.",
-  "text.resprouted.tomatoes.2": "The vines can climb up to three blocks high and eventually produce tomatoes. Harvesting is best done by interacting with mature vines, since breaking them resets their growth. Tomatoes can be eaten or even thrown at others while sneaking.",
+  "text.resprouted.tomatoes.1": "Tomatoes grow on crop stakes placed over fertile soil or farmland. You can find seeds by breaking tall and normal grass and plant them by interacting with a stake while holding the seeds.",
+  "text.resprouted.tomatoes.2": "The vines can reach up three blocks in height. To harvest, interact with the plant instead of breaking it. Tomatoes can be eaten or even thrown at others while sneaking.",
 
-  "text.resprouted.grapes.1": "Grapes grow from seeds found in vines and planted on farmland or fertile soil. With ropes above, the stems spread into vines that extend outwardand produce grapes if no block is beneath them.",
-  "text.resprouted.grapes.2": "Harvesting by interaction is best, since breaking resets growth. Grapes can be eaten quickly, turned into juice with a crushing tub, and later brewed into wine.",
+  "entry.resprouted.chili_peppers": "Chili Peppers",
+  "text.resprouted.chili_peppers.1": "Chili peppers grow on crop stakes placed over fertile soil or farmland. You can find seeds by breaking tall and normal grass and plant them by interacting with a stake while holding the seeds.",
+  "text.resprouted.chili_peppers.2": "Mature plants produce chili peppers and can reach up to two blocks in height. To harvest, interact with the plant instead of breaking it. Chili peppers can be eaten for a short speed boost, though their spiciness might burn you. They also work as an alchemy ingredient. ",
+  "text.resprouted.chili_peppers.3": "Sometimes, harvesting may yield a ghost pepper. Eating one gives you temporary fire powers, allowing you to shoot fireballs.",
+
+  "text.resprouted.grapes.1": "Grapes come from vines that grown from seeds planted in fertile soil or farmland. These seeds are found by breaking vines. With ropes above, the stems the stems will climb and form grape vines.",
+  "text.resprouted.grapes.2": "Grapes can be collected by interacting with the vine. Breaking it slows its recovery, so it's better to leave it intact. Grapes can be eaten or turned into juice with a crushing tub, which can be bottled and brewed into wine.",
 
   "entry.resprouted.apple_tree": "Apple Tree",
   "text.resprouted.apple_tree.1": "Apple trees grow from saplings obtained by crushing apples for seeds. They yield oak wood but are more reliable for apple production than regular oaks.",
   "text.resprouted.apple_tree.2": "Their leaves generate apples when exposed to air, and ripe apples can be collected by interacting with the leaves. Breaking leaves isn’t ideal, since they don’t regrow, though they can drop saplings and any apples inside.",
   "text.resprouted.apple_tree.3": "Crushing apples also produces seeds and juice, which can be bottled or brewed into cider.",
 
-  "entry.resprouted.olives": "Olives",
-  "page.resprouted.olives.desc": "Description 1 of Olives",
-
   "entry.resprouted.ironwood_trees": "Iron Wood Trees",
-  "page.resprouted.ironwood_trees.desc1": "Ironwood Trees grow naturally in the overworld in forests, plains, mountains, swamps, and jungles. They do not grow naturally in dry biomes.",
-  "page.resprouted.ironwood_trees.desc2": "The logs can be crafted into ironwood planks, which can be used to make ironwood variants of many wood blocks. Ironwood leaves drop ironwood saplings and ironberries.",
+  "text.resprouted.ironwood_trees.desc1": "Ironwood Trees grow naturally in the overworld in forests, plains, mountains, swamps, and jungles. They do not grow naturally in dry biomes.",
+  "text.resprouted.ironwood_trees.desc2": "The logs can be crafted into ironwood planks, which can be used to make ironwood variants of many wood blocks. Ironwood leaves drop ironwood saplings and iron berries.",
+
+  "entry.resprouted.olives": "Olives",
+  "text.resprouted.olives.desc1": "Olives grow on olive trees found naturally in forests, plains and mountains, but never in snowy areas. Their logs can be crafted into olive wood planks, which serve to create olive wood versions of many wooden blocks. The leaves drop saplings and olives.",
+  "text.resprouted.olives.desc2": "Raw olives should not be eaten, as they contain harmful toxins. When crushed in a crushing tub, they produce olive oil. This oil is too strong to enjoy on its own, but when combined with food in a crafting table, it makes meals more filling and satisfying. Olive oil can be added to any food.",
 
   "entry.resprouted.herbs": "Herbs",
-  "page.resprouted.herbs.desc": "Description 1 of Herbs",
+  "text.resprouted.herbs.desc1": "Herbs appear naturally across many climates in both the overworld and the nether. Some can be eaten, and all of them serve as ingredients or modifiers in alchemy. Once collected, herbs can be planted as crops.",
+  "text.resprouted.herbs.desc2": "Aloe vera: spawns in sandy biomes, savanna biomes, and mesa biomes. \n\nChamomile: spawns in plains biomes, forest biomes and swamp biomes.\n\nCloudsbluff: spawns in mountain biomes. It is edible and gives the levitation effect on consumption.",
+  "text.resprouted.herbs.desc3": "Cohosh: spawns in forest biomes. \n\nCore root: spawns in caves and is edible. \n\nDeathstalk mushrooms: spawn in the nether. \n\nGinseng: spawns in plains and forest biomes. It is edible.",
+  "text.resprouted.herbs.desc4": "Horsetail: spawns in jungle, swamp, plains and forest biomes. \n\nMarsh mallow: spawns in jungle and swamp biomes. It is edible. \n\nMooncap mushroom: spawns in jungle biomes and caves. \n\nWind thistle: spawns in mountain and plains biomes.",
+  "text.resprouted.herbs.desc5": "Vanta lily: spawns in plains and forest biomes. It can be crushed into vanta oil.",
+
+
+  "text.category.resprouted.decoration": "Decoration",
 
   "entry.resprouted.cabinets": "Cabinets",
   "page.resprouted.cabinets.desc": "Description 1 of Cabinets",
@@ -520,22 +526,28 @@
   "entry.resprouted.chair": "Chair",
   "page.resprouted.chair.desc": "Description 1 of Chair",
 
-  "entry.resprouted.condenser": "Condenser",
-  "page.resprouted.condenser.desc": "Description 1 of Condenser",
-
-  "entry.resprouted.elixirs": "Elixirs",
-  "page.resprouted.elixirs.desc": "Description 1 of Elixirs",
-
-  "entry.resprouted.vanta_oil": "Vanta Oil",
-  "page.resprouted.vanta_oil.desc": "Description 1 of Vanta Oil",
-
-  "entry.resprouted.brewing": "Brewing",
-  "page.resprouted.brewing.desc": "Description 1 of Brewing",
+  "text.category.resprouted.production": "Production",
 
   "entry.resprouted.crushing": "Crushing",
-  "page.resprouted.crushing.desc": "Description 1 of Crushing",
+  "text.resprouted.crushing.desc1": "A crushing tub turns solid items into fluids. It can hold up to one stack of items and eight buckets of liquid. To use it, place the tub and insert items by interacting with it while holding them. You can remove items with an empty hand.",
+  "text.resprouted.crushing.desc2": "If the inserted items match a valid recipe, jumping on the tub will crush them into fluid, one at a time. Crushing won’t work if the tub is too full. You can empty the fluid by interacting with an empty bucket or glass bottle. Some recipes also produce item byproducts.",
 
   "entry.resprouted.drying": "Drying",
-  "page.resprouted.drying.desc": "Description 1 of Drying"
+  "text.resprouted.drying.desc1": "Description 1 of Drying",
+
+  "entry.resprouted.condenser": "Alchemy I",
+  "text.resprouted.condenser.desc1": "Description 1 of Condenser",
+
+  "entry.resprouted.advanced_condenser": "Alchemy II",
+  "text.resprouted.advanced_condenser.desc1": "Description 1 of Condenser",
+
+  "entry.resprouted.elixirs": "Elixirs",
+  "text.resprouted.elixirs.desc1": "Description 1 of Elixirs",
+
+  "entry.resprouted.vanta_oil": "Vanta Oil",
+  "text.resprouted.vanta_oil.desc1": "Description 1 of Vanta Oil",
+
+  "entry.resprouted.brewing": "Brewing",
+  "text.resprouted.brewing.desc1": "Description 1 of Brewing"
 
 }

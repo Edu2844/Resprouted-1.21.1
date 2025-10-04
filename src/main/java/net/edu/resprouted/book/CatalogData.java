@@ -43,7 +43,8 @@ public class CatalogData {
         agriculture.addEntry(new Entry(
                 Text.translatable("entry.resprouted.chili_peppers"), new ItemStack(ModItems.CHILI_PEPPER),
                 Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("text.resprouted.chili_peppers.1"),Text.translatable("text.resprouted.chili_peppers.2"))));
+                .addPage(new TextPage(Text.translatable("text.resprouted.chili_peppers.1"),Text.translatable("text.resprouted.chili_peppers.2")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.chili_peppers.3"))));
 
         agriculture.addEntry(new Entry(Text.translatable("item.resprouted.grapes"), new ItemStack(ModItems.GRAPES),
                 Entry.Side.LEFT)
@@ -56,15 +57,18 @@ public class CatalogData {
 
         agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.olives"),
                 new ItemStack(ModItems.OLIVES), Entry.Side.RIGHT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.olives.desc"))));
+                .addPage(new TextPage(Text.translatable("text.resprouted.olives.desc1"),Text.translatable("text.resprouted.olives.desc2"))));
 
         agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.ironwood_trees"), new ItemStack(ModItems.IRON_BERRIES),
                 Entry.Side.LEFT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.ironwood_trees.desc1"),Text.translatable("page.resprouted.ironwood_trees.desc2"))));
+                .addPage(new TextPage(Text.translatable("text.resprouted.ironwood_trees.desc1"),Text.translatable("text.resprouted.ironwood_trees.desc2"))));
 
         agriculture.addEntry(new Entry(Text.translatable("entry.resprouted.herbs"),
-                new ItemStack(ModItems.ALOE_VERA), Entry.Side.RIGHT)
-                .addPage(new TextPage(Text.translatable("page.resprouted.herbs.desc"))));
+                new ItemStack(ModItems.CHAMOMILE), Entry.Side.RIGHT)
+                .addPage(new TextPage(Text.translatable("text.resprouted.herbs.desc1"),Text.translatable("text.resprouted.herbs.desc2")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.herbs.desc3"),Text.translatable("text.resprouted.herbs.desc4")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.herbs.desc5")))
+        );
 
 
         //Decoration
@@ -86,34 +90,39 @@ public class CatalogData {
 
         //Production
         production.addEntry(new Entry(
-                Text.translatable("entry.resprouted.condenser"),
-                new ItemStack(ModBlocks.CONDENSER)
-        ).addPage(new TextPage(Text.translatable("page.resprouted.condenser.desc"))));
-
-        production.addEntry(new Entry(
-                Text.translatable("entry.resprouted.elixirs"),
-                new ItemStack(ModItems.ELIXIR_ICON)
-        ).addPage(new TextPage(Text.translatable("page.resprouted.elixirs.desc"))));
-
-        production.addEntry(new Entry(
-                Text.translatable("entry.resprouted.vanta_oil"),
-                new ItemStack(ModItems.VANTA_OIL_BOTTLE)
-        ).addPage(new TextPage(Text.translatable("page.resprouted.vanta_oil.desc"))));
-
-        production.addEntry(new Entry(
-                Text.translatable("entry.resprouted.brewing"),
-                new ItemStack(ModBlocks.BREWING_BARREL)
-        ).addPage(new TextPage(Text.translatable("page.resprouted.brewing.desc"))));
-
-        production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.crushing"),
-                new ItemStack(ModBlocks.CRUSHING_TUB)
-        ).addPage(new TextPage(Text.translatable("page.resprouted.crushing.desc"))));
+                new ItemStack(ModBlocks.CRUSHING_TUB))
+                .addPage(new TextPage(Text.translatable("text.resprouted.crushing.desc1"),Text.translatable("text.resprouted.crushing.desc2"))));
 
         production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.drying"),
                 new ItemStack(ModBlocks.EVAPORATING_BASIN)
-        ).addPage(new TextPage(Text.translatable("page.resprouted.drying.desc"))));
+        ).addPage(new TextPage(Text.translatable("text.resprouted.drying.desc1"))));
+
+        production.addEntry(new Entry(
+                Text.translatable("entry.resprouted.condenser"),
+                new ItemStack(ModBlocks.CONDENSER)
+        ).addPage(new TextPage(Text.translatable("text.resprouted.condenser.desc1"))));
+
+        production.addEntry(new Entry(
+                Text.translatable("entry.resprouted.advanced_condenser"),
+                new ItemStack(ModBlocks.ADVANCED_CONDENSER)
+        ).addPage(new TextPage(Text.translatable("text.resprouted.advanced_condenser.desc1"))));
+
+        production.addEntry(new Entry(
+                Text.translatable("entry.resprouted.elixirs"),
+                new ItemStack(ModItems.ELIXIR_ICON)
+        ).addPage(new TextPage(Text.translatable("text.resprouted.elixirs.desc1"))));
+
+        production.addEntry(new Entry(
+                Text.translatable("entry.resprouted.vanta_oil"),
+                new ItemStack(ModItems.VANTA_OIL_BOTTLE)
+        ).addPage(new TextPage(Text.translatable("text.resprouted.vanta_oil.desc1"))));
+
+        production.addEntry(new Entry(
+                Text.translatable("entry.resprouted.brewing"),
+                new ItemStack(ModBlocks.BREWING_BARREL)
+        ).addPage(new TextPage(Text.translatable("text.resprouted.brewing.desc1"))));
     }
 
     public static abstract class Page {

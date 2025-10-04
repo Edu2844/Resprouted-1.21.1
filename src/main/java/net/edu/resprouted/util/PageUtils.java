@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PageUtils {
 
-    public static final int PAGE_WIDTH = 105;
+    public static final int PAGE_WIDTH = 112;
     public static final int PAGE_HEIGHT = 150;
     public static final int LEFT_PAGE_X = 18;
     public static final int LEFT_PAGE_Y = 5;
@@ -54,7 +54,6 @@ public class PageUtils {
             context.drawText(textRenderer, lines.get(i), baseX + 8, baseY + relY + (i * textRenderer.fontHeight), color, false);
         }
     }
-
 
     public void drawText(Text text, int relX, int relY, int color) {
         context.drawText(textRenderer, text, baseX + relX, baseY + relY, color, false);

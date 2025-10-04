@@ -47,9 +47,9 @@ public class CatalogScreen extends Screen {
     private static final int ANIMATION_FRAMES = 8;
     private static final int FRAME_HEIGHT = 64;
     private static final int FRAME_WIDTH = 64;
-    private static final int FRAME_DURATION = 30;
+    private static final int FRAME_DURATION = 25;
 
-    private int currentHoveredIcon = -1; // -1 = ninguno, 0 = agriculture, 1 = decoration, 2 = production
+    private int currentHoveredIcon = -1; // -1 = none, 0 = agriculture, 1 = decoration, 2 = production
     private long hoverStartTime = -1;
 
     private enum PageState { MAIN_MENU, CATEGORY_LIST, ENTRY_PAGES }
@@ -550,7 +550,7 @@ public class CatalogScreen extends Screen {
         leftPage.drawIcon(SEPARATOR, 12, 22, SEP_WIDTH, SEP_HEIGHT);
 
         if (page instanceof CatalogData.TextPage textPage) {
-            leftPage.drawParagraph(textPage.getLeftText(), 40, COLOR);
+            leftPage.drawParagraph(textPage.getLeftText(), 30, COLOR);
 
             if (textPage.getRightText() != null) {
                 rightPage.drawParagraph(textPage.getRightText(), 10, COLOR);
