@@ -30,7 +30,6 @@ public class PageUtils {
         this.baseY = baseY;
     }
 
-
     public static PageUtils createLeftPage(DrawContext context, TextRenderer textRenderer, int bookX, int bookY) {
         return new PageUtils(context, textRenderer, bookX + LEFT_PAGE_X, bookY + LEFT_PAGE_Y);
     }
@@ -56,22 +55,10 @@ public class PageUtils {
         }
     }
 
-    public void drawRightAlignedText(Text text, int relY, int color) {
-        int textWidth = textRenderer.getWidth(text);
-        int x = baseX + PAGE_WIDTH - textWidth;
-        context.drawText(textRenderer, text, x, baseY + relY, color, false);
-    }
 
     public void drawText(Text text, int relX, int relY, int color) {
         context.drawText(textRenderer, text, baseX + relX, baseY + relY, color, false);
     }
-
-    public boolean canFitText(int relY, int linesNeeded) {
-        return (baseY + relY + (linesNeeded * textRenderer.fontHeight)) <= (baseY + PAGE_HEIGHT);
-    }
-
-    public int getWidth() { return PAGE_WIDTH; }
-    public int getHeight() { return PAGE_HEIGHT; }
 
     public void drawIcon(Identifier texture, int relX, int relY, int width, int height) {
         context.drawTexture(texture, baseX + relX, baseY + relY, 0, 0, width, height, width, height);
@@ -79,5 +66,38 @@ public class PageUtils {
 
     public void drawItemStackIcon(ItemStack stack, int x, int y) {
         context.drawItem(stack, baseX + x, baseY + y);
+    }
+
+    public void drawIconWithTooltip(Identifier texture, int relX, int relY, int width, int height, Text tooltip, int mouseX, int mouseY) {
+        drawIcon(texture, relX, relY, width, height);
+
+        int iconX = baseX + relX;
+        int iconY = baseY + relY;
+
+        if (isMouseOver(mouseX, mouseY, iconX, iconY, width, height)) {
+            context.drawTooltip(textRenderer, tooltip, mouseX, mouseY);
+        }
+    }
+
+    public boolean isMouseOverEntry(int mouseX, int mouseY, int relY, int width, int height) {
+        int entryX = baseX + 8;
+        int entryY = baseY + relY;
+        return isMouseOver(mouseX, mouseY, entryX, entryY, width, height);
+    }
+
+    private boolean isMouseOver(int mouseX, int mouseY, int x, int y, int width, int height) {
+        return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
+    }
+
+    public DrawContext getContext() {
+        return context;
+    }
+
+    public int getBaseX() {
+        return baseX;
+    }
+
+    public int getBaseY() {
+        return baseY;
     }
 }

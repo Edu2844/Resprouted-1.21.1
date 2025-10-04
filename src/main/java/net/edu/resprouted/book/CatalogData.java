@@ -116,19 +116,10 @@ public class CatalogData {
         ).addPage(new TextPage(Text.translatable("page.resprouted.drying.desc"))));
     }
 
-    public static class Category {
-        private final String name;
-        private final List<Entry> entries = new ArrayList<>();
-
-        public Category(String name) { this.name = name; }
-        public String getName() { return name; }
-        public List<Entry> getEntries() { return entries; }
-        public void addEntry(Entry entry) { entries.add(entry); }
-    }
-
     public static abstract class Page {
 
     }
+
     public static class TextPage extends Page {
         private final Text leftText;
         private final Text rightText;
@@ -145,19 +136,12 @@ public class CatalogData {
         public Text getLeftText() { return leftText; }
         public Text getRightText() { return rightText; }
     }
+
     public static class Entry {
         private final Text name;
         private final ItemStack icon;
         private final List<Page> pages = new ArrayList<>();
         private final Side side;
-
-        public Entry(String name, ItemStack icon) {
-            this(Text.literal(name), icon, Side.LEFT);
-        }
-
-        public Entry(String name, ItemStack icon, Side side) {
-            this(Text.literal(name), icon, side);
-        }
 
         public Entry(Text name, ItemStack icon) {
             this(name, icon, Side.LEFT);
@@ -192,6 +176,24 @@ public class CatalogData {
 
         public enum Side {
             LEFT, RIGHT
+        }
+    }
+
+    public static class Category {
+        private final String name;
+        private final List<Entry> entries = new ArrayList<>();
+
+        public Category(String name) {
+            this.name = name;
+        }
+        public String getName() {
+            return name;
+        }
+        public List<Entry> getEntries() {
+            return entries;
+        }
+        public void addEntry(Entry entry) {
+            entries.add(entry);
         }
     }
 }

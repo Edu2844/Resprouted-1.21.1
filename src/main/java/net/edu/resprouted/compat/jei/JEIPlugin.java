@@ -18,8 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
-
-
 @SuppressWarnings("removal")
 public class JEIPlugin implements IModPlugin {
 
@@ -48,6 +46,7 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipes(CONDENSER, ResproutedJEIRecipes.getCondenserRecipes());
         registration.addRecipes(ADVANCED_CONDENSER, ResproutedJEIRecipes.getAdvancedCondenserRecipes());
         registration.addRecipes(BREWING_BARREL, ResproutedJEIRecipes.getBrewingBarrelRecipes());
+
     }
 
     @Override
@@ -91,5 +90,6 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerItemSubtypes(ISubtypeRegistration registry) {
         registry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, ModItems.ELIXIR_BOTTLE, (itemStack, context) -> itemStack.getComponents().toString());
+
     }
 }
