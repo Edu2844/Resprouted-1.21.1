@@ -17,7 +17,6 @@ import java.util.Iterator;
 
 public class ElixirBottle extends PotionItem {
 
-
     public ElixirBottle(Settings settings) {
         super(settings);
     }

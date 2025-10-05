@@ -3,6 +3,8 @@ package net.edu.resprouted.item;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.effect.BoozeEffects;
+import net.edu.resprouted.effect.ModEffects;
+import net.edu.resprouted.entity.custom.ThrownTomatoEntity;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
 import net.edu.resprouted.registry.ResproutedBoatTypes;
@@ -11,6 +13,7 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
@@ -20,9 +23,12 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -88,8 +94,35 @@ public class ModItems {
     public static final Item TINY_IRON_DUST = registerItem("tiny_iron_dust", new Item(new Item.Settings()));
     public static final Item TINY_GOLDEN_DUST = registerItem("tiny_golden_dust", new Item(new Item.Settings()));
     public static final Item TINY_GLOWSTONE_DUST = registerItem("tiny_glowstone_dust", new Item(new Item.Settings()));
-    public static final Item TOMATO = registerItem("tomato", new TomatoItem(new Item.Settings().food(ModFoodComponents.TOMATO).maxCount(64)));
     public static final Item TOMATO_SEEDS = registerItem("tomato_seeds", new Item(new Item.Settings()));
+
+    public static final Item TOMATO = registerItem("tomato", new Item(new Item.Settings().food(ModFoodComponents.TOMATO).maxCount(64)){
+        @Override
+        public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+            ItemStack stack = user.getStackInHand(hand);
+            if (user.isSneaking()) {
+                user.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 0.5f, 0.5f);
+
+                if (!world.isClient()) {
+                    ThrownTomatoEntity tomato = new ThrownTomatoEntity(world, user);
+                    Vec3d pos = user.getEyePos().add(user.getRotationVec(1.0F).multiply(1.5));
+                    tomato.setPosition(pos);
+                    tomato.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 1.0f, 1.0f);
+                    tomato.setItem(stack.copyWithCount(1));
+                    world.spawnEntity(tomato);
+                }
+
+                if (!user.getAbilities().creativeMode) {
+                    stack.decrement(1);
+                }
+
+                return TypedActionResult.success(stack, world.isClient());
+            }
+
+            return super.use(world, user, hand);
+        }
+
+    });
 
     public static final Item IRON_BERRIES = registerItem("iron_berries", new Item(new Item.Settings().food(ModFoodComponents.IRON_BERRIES)){
         @Override
@@ -135,7 +168,7 @@ public class ModItems {
     });
 
     // =================================================
-    // ||                 FLUID BUCKETS               ||
+    // ||                   BUCKETS                   ||
     // =================================================
     public static final Item HONEY_BUCKET = registerItem("honey_bucket", new BucketItem(ModFluids.HONEY_STILL,new Item.Settings().maxCount(1)){
         @Override
@@ -240,13 +273,39 @@ public class ModItems {
             new BoozeBottleItem(ModFluids.WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyWineEffects)
                     .setInebriationChance(0.5f));
 
-    public static final Item AMBROSIA_BOTTLE = registerItem("ambrosia_bottle",
-            new BoozeBottleItem(ModFluids.AMBROSIA_STILL, new Item.Settings().maxCount(64).rarity(Rarity.EPIC), BoozeEffects::applyAmbrosiaEffects)
-                    .setInebriationChance(1.0f));
-
     public static final Item RUM_BOTTLE = registerItem("rum_bottle",
             new BoozeBottleItem(ModFluids.RUM_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyRumEffects)
                     .setInebriationChance(0.6f));
+
+    public static final Item AMBROSIA_BOTTLE = registerItem("ambrosia_bottle",
+            new BoozeBottleItem(ModFluids.AMBROSIA_STILL, new Item.Settings().maxCount(64).rarity(Rarity.EPIC), BoozeEffects::applyAmbrosiaEffects) {
+                @Override
+                protected void inebriate(World world, PlayerEntity player, float quality) {
+                    int duration = (quality >= 0.5f)
+                            ? ((int) (12000 * (Math.max(1 - Math.abs(quality - 0.75F), 0.5F))))
+                            : ((int) (12000 * (Math.max(1 - (quality * 0.5F), 0.5F))));
+
+                    StatusEffectInstance tipsyEffect = player.getStatusEffect(ModEffects.TIPSY);
+
+                    if (world.random.nextFloat() < this.inebriationChance) {
+                        if (tipsyEffect == null) {
+                            int amp = (quality > 0.99F) ? 1 : 0;
+                            player.addStatusEffect(new StatusEffectInstance(
+                                    ModEffects.TIPSY, duration, amp, false, false
+                            ));
+                        } else if (tipsyEffect.getAmplifier() < 3) {
+                            int newAmp = Math.min(tipsyEffect.getAmplifier() + ((quality >0.99F) ? 2 :1), 3);
+                            player.addStatusEffect(new StatusEffectInstance(
+                                    ModEffects.TIPSY,
+                                    Math.max(duration, tipsyEffect.getDuration()),
+                                    newAmp,
+                                    false,
+                                    false
+                            ));
+                        }
+                    }
+                }
+            }.setInebriationChance(1.0f));
 
 
     // =================================================
@@ -266,6 +325,8 @@ public class ModItems {
                     .component(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Potions.WATER))
             ));
     public static final Item ELIXIR_ICON = registerItem("elixir_icon", new Item(new Item.Settings()));
+
+
 
     static {
         ResproutedBoatTypes.addBoatTypeItems(ResproutedBoatTypes.IRONWOOD, IRONWOOD_BOAT, IRONWOOD_CHEST_BOAT);
