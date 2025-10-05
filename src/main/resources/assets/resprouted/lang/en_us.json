@@ -530,22 +530,33 @@
 
   "entry.resprouted.crushing": "Crushing",
   "text.resprouted.crushing.desc1": "A crushing tub turns solid items into fluids. It can hold up to one stack of items and eight buckets of liquid. To use it, place the tub and insert items by interacting with it while holding them. You can remove items with an empty hand.",
-  "text.resprouted.crushing.desc2": "If the inserted items match a valid recipe, jumping on the tub will crush them into fluid, one at a time. Crushing won’t work if the tub is too full. You can empty the fluid by interacting with an empty bucket or glass bottle. Some recipes also produce item byproducts.",
+  "text.resprouted.crushing.desc2": "If the inserted items match a valid recipe, jumping on the tub will crush them into fluid, one at a time. Crushing won’t work if the tub is too full. You can empty the fluid by interacting with an empty bucket or a glass bottle. Some recipes also produce item byproducts.",
 
   "entry.resprouted.drying": "Drying",
-  "text.resprouted.drying.desc1": "Description 1 of Drying",
+  "text.resprouted.drying.desc1": "A drying basin extracts items from fluids through evaporation. It can hold up to one stack of items and six buckets of liquid. To use it, place the basin and insert fluid by interacting with it while holding a filled bucket.",
+  "text.resprouted.drying.desc2": "You can remove fluid with an empty bucket or a glass bottle. Evaporation happens automatically over time, at a rate of one fiftieth of a bucket per second. When enough fluid has evaporated to match a recipe, the result will appear in the basin if there is space.",
+  "text.resprouted.drying.desc3": "Items can be collected by interacting with the basin with an empty hand.",
 
   "entry.resprouted.condenser": "Alchemy I",
-  "text.resprouted.condenser.desc1": "Description 1 of Condenser",
+  "text.resprouted.condenser.desc1": "Alchemy is the process of brewing elixirs using condensers. To work properly, condensers need retorts attached to them. Making an elixir requires water, a glass bottle, ingredients and optionally modifiers, along with fuel.",
+  "text.resprouted.condenser.desc2": "Basic condensers can brew elixirs with up to two ingredients. They must have two retorts connected, one on each side, facing the condenser so their tubes link correctly. Condensers have an internal tank that can be filled or emptied with a bucket. Sneaking and interacting with an empty hand will clear the tank completely.",
+  "text.resprouted.condenser.desc3": "The condenser’s GUI shows the fluid inside. The two slots on the left are for ingredients, and their arrangement doesn’t matter. The top-right slot is for glass bottles, and the large slot below it is the output. The bottom-middle slot is for fuel.",
 
   "entry.resprouted.advanced_condenser": "Alchemy II",
-  "text.resprouted.advanced_condenser.desc1": "Description 1 of Condenser",
+  "text.resprouted.advanced_condenser.desc1": "Advanced condensers work much like basic ones, but with a few important differences. They require three advanced retorts, attached to the lower half on the left, right and back sides, relative to the direction the condenser is facing.",
+  "text.resprouted.advanced_condenser.desc2": "The retorts must be connected properly, with their tubes facing the condenser. These condensers can brew elixirs with up to three ingredients, plus an optional modifier. Modifiers adjust certain properties of the final elixir and can be placed in the top-middle slot of the GUI, just above the fuel slot.",
+  "text.resprouted.advanced_condenser.desc3": "The interface also includes a third ingredient slot, in addition to the two found in basic condensers. ",
 
   "entry.resprouted.elixirs": "Elixirs",
-  "text.resprouted.elixirs.desc1": "Description 1 of Elixirs",
+  "text.resprouted.elixirs.desc1": "Elixirs are magical mixtures created through alchemy using condensers. They behave much like potions but can be stacked up to sixteen. Unlike potions, they cannot be combined with arrows or turned into splash or lingering forms.",
 
   "entry.resprouted.vanta_oil": "Vanta Oil",
-  "text.resprouted.vanta_oil.desc1": "Description 1 of Vanta Oil",
+  "text.resprouted.vanta_oil.desc1": "Vanta oil is made by crushing vanta lilies. It can be combined with most melee weapons and any number of identical elixirs or potions to give the weapon their effects. When striking a creature, the weapon uses some of its oil to apply the effect to the target.",
+  "text.resprouted.vanta_oil.desc2": "Non-instant effects last around fifteen seconds per hit, and repeated strikes extend the duration. You can recharge an oiled weapon by crafting it again with more vanta oil and more elixirs or potions of the same type.",
+
+  "entry.resprouted.alcohol": "Alcohol",
+  "text.resprouted.alcohol.desc1": "a",
+  "text.resprouted.alcohol.desc2": "e",
 
   "entry.resprouted.brewing": "Brewing",
   "text.resprouted.brewing.desc1": "Description 1 of Brewing"

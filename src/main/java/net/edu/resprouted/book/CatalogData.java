@@ -96,33 +96,43 @@ public class CatalogData {
 
         production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.drying"),
-                new ItemStack(ModBlocks.EVAPORATING_BASIN)
-        ).addPage(new TextPage(Text.translatable("text.resprouted.drying.desc1"))));
+                new ItemStack(ModBlocks.EVAPORATING_BASIN))
+                .addPage(new TextPage(Text.translatable("text.resprouted.drying.desc1"),Text.translatable("text.resprouted.drying.desc2")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.drying.desc3"))));
 
         production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.condenser"),
-                new ItemStack(ModBlocks.CONDENSER)
-        ).addPage(new TextPage(Text.translatable("text.resprouted.condenser.desc1"))));
+                new ItemStack(ModBlocks.CONDENSER))
+                .addPage(new TextPage(Text.translatable("text.resprouted.condenser.desc1"),Text.translatable("text.resprouted.condenser.desc2")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.condenser.desc3")))
+        );
 
         production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.advanced_condenser"),
-                new ItemStack(ModBlocks.ADVANCED_CONDENSER)
-        ).addPage(new TextPage(Text.translatable("text.resprouted.advanced_condenser.desc1"))));
+                new ItemStack(ModBlocks.ADVANCED_CONDENSER))
+                .addPage(new TextPage(Text.translatable("text.resprouted.advanced_condenser.desc1"),Text.translatable("text.resprouted.advanced_condenser.desc2")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.advanced_condenser.desc3")))
+        );
 
         production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.elixirs"),
-                new ItemStack(ModItems.ELIXIR_ICON)
-        ).addPage(new TextPage(Text.translatable("text.resprouted.elixirs.desc1"))));
+                new ItemStack(ModItems.ELIXIR_ICON))
+                .addPage(new TextPage(Text.translatable("text.resprouted.elixirs.desc1"))));
 
         production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.vanta_oil"),
-                new ItemStack(ModItems.VANTA_OIL_BOTTLE)
-        ).addPage(new TextPage(Text.translatable("text.resprouted.vanta_oil.desc1"))));
+                new ItemStack(ModItems.VANTA_OIL_BOTTLE))
+                .addPage(new TextPage(Text.translatable("text.resprouted.vanta_oil.desc1"),Text.translatable("text.resprouted.vanta_oil.desc2"))));
+
+        production.addEntry(new Entry(
+                Text.translatable("entry.resprouted.alcohol"),
+                new ItemStack(ModItems.WINE_BOTTLE))
+                .addPage(new TextPage(Text.translatable("text.resprouted.alcohol.desc1"),Text.translatable("text.resprouted.alcohol.desc2"))));
 
         production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.brewing"),
-                new ItemStack(ModBlocks.BREWING_BARREL)
-        ).addPage(new TextPage(Text.translatable("text.resprouted.brewing.desc1"))));
+                new ItemStack(ModBlocks.BREWING_BARREL), Entry.Side.RIGHT)
+                .addPage(new TextPage(Text.translatable("text.resprouted.brewing.desc1"))));
     }
 
     public static abstract class Page {

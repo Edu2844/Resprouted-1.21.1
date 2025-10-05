@@ -8,9 +8,11 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -36,14 +38,14 @@ public abstract class LivingEntityMixin extends Entity {
     private float modifyDamageAmount(float amount, DamageSource source) {
         LivingEntity entity = (LivingEntity) (Object) this;
 
-        //Full Metal
+        //Full Metal Effect
         if (entity.hasStatusEffect(ModEffects.FULL_METAL) &&
                 !source.isOf(DamageTypes.OUT_OF_WORLD) &&
                 !source.isSourceCreativePlayer()) {
             return 0;
         }
 
-        //Full Stomach
+        //Full Stomach Effect
         if (source.isOf(DamageTypes.STARVE) && entity.hasStatusEffect(ModEffects.FULL_STOMACH)) {
             StatusEffectInstance effect = entity.getStatusEffect(ModEffects.FULL_STOMACH);
             if (effect != null) {
@@ -51,7 +53,7 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
 
-        //Magic Resistance
+        //Magic Resistance Effect
         if ((source.isOf(DamageTypes.MAGIC) || source.isOf(DamageTypes.INDIRECT_MAGIC)) &&
                 entity.hasStatusEffect(ModEffects.MAGIC_RESISTANCE)) {
             StatusEffectInstance effect = entity.getStatusEffect(ModEffects.MAGIC_RESISTANCE);
@@ -60,7 +62,7 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
 
-        //Wither Ward
+        //Wither Ward Effect
         if (source.isOf(DamageTypes.WITHER) && entity.hasStatusEffect(ModEffects.WITHER_WARD)) {
             StatusEffectInstance effect = entity.getStatusEffect(ModEffects.WITHER_WARD);
             if (effect != null) {
@@ -81,28 +83,58 @@ public abstract class LivingEntityMixin extends Entity {
 
                 if (currentEffect != null) {
                     LivingEntity target = (LivingEntity) (Object) this;
-                    target.addStatusEffect(new StatusEffectInstance(
-                            currentEffect.getEffectType(),
-                            currentEffect.getDuration(),
-                            currentEffect.getAmplifier()
-                    ), player);
 
-                    int newDuration = currentEffect.getDuration();
-
-                    if (currentEffect.getEffectType().value().isInstant()) {
-                        newDuration--;
-                    } else {
-                        newDuration -= RecipeUtils.getNextVantaHitDuration(currentEffect.getDuration());
+                    if (!target.canTakeDamage() || target.isInvulnerableTo(source)) {
+                        return;
                     }
+
+                    int totalDuration = currentEffect.getDuration();
+                    int amplifier = currentEffect.getAmplifier();
+                    RegistryEntry<StatusEffect> effectType = currentEffect.getEffectType();
+
+                    if (totalDuration < 1 || amplifier < 0) {
+                        weapon.remove(ModDataComponentTypes.VANTA_OIL_EFFECT);
+                        return;
+                    }
+
+                    boolean isInstant = effectType.value().isInstant();
+
+                    int hitDuration = isInstant ? 1 : RecipeUtils.getNextVantaHitDuration(totalDuration);
+                    int effectDuration = hitDuration;
+
+                    StatusEffectInstance activeEffect = target.getStatusEffect(effectType);
+                    if (activeEffect != null) {
+                        int activeDur = activeEffect.getDuration();
+                        if (activeDur <= 0) {
+                            target.removeStatusEffect(effectType);
+                        } else if (activeEffect.getAmplifier() == amplifier) {
+                            effectDuration += activeDur;
+                        } else if (activeEffect.getAmplifier() > amplifier) {
+                            effectDuration = 0;
+                        }
+                    }
+
+                    if (effectDuration > 0) {
+                        target.addStatusEffect(new StatusEffectInstance(
+                                effectType,
+                                effectDuration,
+                                amplifier,
+                                currentEffect.isAmbient(),
+                                currentEffect.shouldShowParticles(),
+                                currentEffect.shouldShowIcon()
+                        ), player);
+                    }
+
+                    int newDuration = totalDuration - hitDuration;
 
                     if (newDuration <= 0) {
                         weapon.remove(ModDataComponentTypes.VANTA_OIL_EFFECT);
                     } else {
                         weapon.set(ModDataComponentTypes.VANTA_OIL_EFFECT,
                                 new StatusEffectInstance(
-                                        currentEffect.getEffectType(),
+                                        effectType,
                                         newDuration,
-                                        currentEffect.getAmplifier(),
+                                        amplifier,
                                         currentEffect.isAmbient(),
                                         currentEffect.shouldShowParticles(),
                                         currentEffect.shouldShowIcon()));

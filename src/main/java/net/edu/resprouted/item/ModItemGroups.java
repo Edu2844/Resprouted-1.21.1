@@ -88,7 +88,6 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.BREWING_BARREL);
 
-
                         ItemStack IronWineBottleWithQuality = new ItemStack(ModItems.IRON_WINE_BOTTLE);
                         BoozeBottleItem.setQuality(IronWineBottleWithQuality, 0.75f);
                         entries.add(IronWineBottleWithQuality);

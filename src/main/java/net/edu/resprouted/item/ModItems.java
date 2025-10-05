@@ -6,9 +6,11 @@ import net.edu.resprouted.effect.BoozeEffects;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
 import net.edu.resprouted.registry.ResproutedBoatTypes;
+import net.edu.resprouted.util.TextUtils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.component.type.PotionContentsComponent;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
@@ -21,6 +23,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
@@ -76,24 +80,57 @@ public class ModItems {
     public static final Item BLUE_BERRIES = registerItem("blue_berries", new AliasedBlockItem(ModBlocks.BLUE_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.BLUE_BERRIES)));
     public static final Item CATALOG = registerItem("catalog", new CatalogItem(new Item.Settings()));
     public static final Item COPPER_NUGGET = registerItem("copper_nugget", new Item(new Item.Settings()));
-    public static final Item CHILI_PEPPER = registerItem("chili_pepper", new FoodItem(new Item.Settings().food(ModFoodComponents.CHILLI_PEPPER)));
     public static final Item CHILI_PEPPER_SEEDS = registerItem("chili_pepper_seeds", new Item(new Item.Settings()));
     public static final Item GOLDEN_DUST = registerItem("golden_dust", new Item(new Item.Settings()));
     public static final Item IRON_DUST = registerItem("iron_dust", new Item(new Item.Settings()));
     public static final Item GRAPE_SEEDS = registerItem("grape_seeds", new AliasedBlockItem(ModBlocks.GRAPE_STEM,new Item.Settings()));
     public static final Item GRAPES = registerItem("grapes", new Item(new Item.Settings().food(ModFoodComponents.GRAPES)));
-    public static final Item IRON_BERRIES = registerItem("iron_berries", new FoodItem(new Item.Settings().food(ModFoodComponents.IRON_BERRIES)));
-    public static final Item OLIVES = registerItem("olives", new FoodItem(new Item.Settings().food(ModFoodComponents.OLIVES)));
     public static final Item TINY_IRON_DUST = registerItem("tiny_iron_dust", new Item(new Item.Settings()));
     public static final Item TINY_GOLDEN_DUST = registerItem("tiny_golden_dust", new Item(new Item.Settings()));
     public static final Item TINY_GLOWSTONE_DUST = registerItem("tiny_glowstone_dust", new Item(new Item.Settings()));
     public static final Item TOMATO = registerItem("tomato", new TomatoItem(new Item.Settings().food(ModFoodComponents.TOMATO).maxCount(64)));
     public static final Item TOMATO_SEEDS = registerItem("tomato_seeds", new Item(new Item.Settings()));
-    public static final Item GHOST_PEPPER = registerItem("ghost_pepper", new FoodItem(new Item.Settings().food(ModFoodComponents.GHOST_PEPPER).rarity(Rarity.RARE)){
+
+    public static final Item IRON_BERRIES = registerItem("iron_berries", new Item(new Item.Settings().food(ModFoodComponents.IRON_BERRIES)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            super.appendTooltip(stack, context, tooltip, type);
+            addFoodEffectTooltip(stack, context, tooltip);
+        }
+    });
+
+    public static final Item OLIVES = registerItem("olives", new Item(new Item.Settings().food(ModFoodComponents.OLIVES)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            super.appendTooltip(stack, context, tooltip, type);
+            addFoodEffectTooltip(stack, context, tooltip);
+        }
+    });
+
+    public static final Item CHILI_PEPPER = registerItem("chili_pepper", new Item(new Item.Settings().food(ModFoodComponents.CHILLI_PEPPER)){
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            super.appendTooltip(stack, context, tooltip, type);
+            addFoodEffectTooltip(stack, context, tooltip);
+        }
+        @Override
+        public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+            if (!world.isClient()) {
+                Random random = world.getRandom();
+                if (random.nextInt(24) == 0) {
+                    user.damage(world.getDamageSources().onFire(), 1.0F);
+                }
+            }
+            return super.finishUsing(stack, world, user);
+        }
+    });
+
+    public static final Item GHOST_PEPPER = registerItem("ghost_pepper", new Item(new Item.Settings().food(ModFoodComponents.GHOST_PEPPER).rarity(Rarity.RARE)){
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.translatable("tooltip.resprouted.ghost_pepper.tooltip"));
             super.appendTooltip(stack, context, tooltip, type);
+            addFoodEffectTooltip(stack, context, tooltip);
         }
     });
 
@@ -233,6 +270,13 @@ public class ModItems {
     static {
         ResproutedBoatTypes.addBoatTypeItems(ResproutedBoatTypes.IRONWOOD, IRONWOOD_BOAT, IRONWOOD_CHEST_BOAT);
         ResproutedBoatTypes.addBoatTypeItems(ResproutedBoatTypes.OLIVE, OLIVE_BOAT, OLIVE_CHEST_BOAT);
+    }
+
+
+    private static void addFoodEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
+        if (Resprouted.CONFIG.isFoodEffectTooltipsEnabled()) {
+            TextUtils.addFoodEffectTooltip(stack, context, tooltip);
+        }
     }
 
     private static Item registerItem(String name, Item item){
