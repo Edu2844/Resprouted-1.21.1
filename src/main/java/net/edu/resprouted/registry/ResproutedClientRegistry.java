@@ -24,7 +24,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRendererRegistrationCallback;
 import net.minecraft.block.Block;
 import net.minecraft.client.color.block.BlockColorProvider;
-import net.minecraft.client.color.item.ItemColorProvider;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
@@ -37,9 +36,11 @@ import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.FoliageColors;
+
+import java.util.Optional;
 
 
 public class ResproutedClientRegistry {
@@ -312,53 +313,36 @@ public class ResproutedClientRegistry {
                 Identifier.of("resprouted:block/fluid/booze/ambrosia_overlay")
         ));
     }
+
     public static void registerBlockColors() {
         ColorProviderRegistry<Block, BlockColorProvider> registry = ColorProviderRegistry.BLOCK;
+        BlockColorProvider foliageColorProvider = (state, world, pos, tintIndex) ->
+                (world == null || pos == null) ? FoliageColors.getDefaultColor() : BiomeColors.getFoliageColor(world, pos);
 
-        registry.register((state, world, pos, tintIndex) -> {
-                    if (world == null || pos == null) {
-                        return 0x79C05A;
-                    }
-                    return BiomeColors.getFoliageColor(world, pos);
-                },
-                ModBlocks.APPLE_LEAVES);
-
-        registry.register((state, world, pos, tintIndex) -> {
-                    if (world == null || pos == null) {
-                        return 0x79C05A;
-                    }
-                    return BiomeColors.getFoliageColor(world, pos);
-                },
-                ModBlocks.GRAPE_LEAVES);
+        registry.register(foliageColorProvider, ModBlocks.APPLE_LEAVES, ModBlocks.GRAPE_LEAVES);
     }
+
     public static void registerItemColors() {
-        ColorProviderRegistry<ItemConvertible, ItemColorProvider> registry = ColorProviderRegistry.ITEM;
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> FoliageColors.getDefaultColor(), ModBlocks.APPLE_LEAVES
+        );
 
-        registry.register((stack, tintIndex) -> 0x48B518, ModBlocks.APPLE_LEAVES.asItem());
-
-        registry.register((stack, tintIndex) -> {
-            if (tintIndex == 0) {
-                PotionContentsComponent potionContents = stack.get(DataComponentTypes.POTION_CONTENTS);
-                if (potionContents != null && potionContents.getColor() != -1) {
-                    return potionContents.getColor();
-                }
-                return 0x385DC6;
-            }
-            return -1;
-        }, ModItems.ELIXIR_BOTTLE);
-
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex != 0 ? -1 :
+                        Optional.ofNullable(stack.get(DataComponentTypes.POTION_CONTENTS))
+                                .filter(potion -> potion.getColor() != -1)
+                                .map(PotionContentsComponent::getColor)
+                                .orElse(0x385DC6), ModItems.ELIXIR_BOTTLE
+        );
     }
     public static void registerEatingAnimationsCompat() {
-        registerDrinkingForEACompat(ModItems.ELIXIR_BOTTLE);
+        registerDrinkingAnimationCompat(ModItems.ELIXIR_BOTTLE);
 
         for (Item item : Registries.ITEM) {
             if (item instanceof BoozeBottleItem) {
-                registerDrinkingForEACompat(item);
+                registerDrinkingAnimationCompat(item);
             }
         }
     }
-
-    private static void registerDrinkingForEACompat(Item item) {
+    private static void registerDrinkingAnimationCompat(Item item) {
         ModelPredicateProviderRegistry.register(item,
                 Identifier.of("drinking"),
                 (itemStack, clientWorld, livingEntity, seed) -> {

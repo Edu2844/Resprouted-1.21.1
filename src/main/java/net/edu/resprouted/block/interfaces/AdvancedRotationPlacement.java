@@ -4,34 +4,33 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.Direction;
-/**
- * Interfaz pars sistema avanzado de rotación al ser colocado el bloque de Diagonal Clay Wall,
- * con lógica especial cuando se coloca desde arriba o abajo (eje Y).
- */
 
 public interface AdvancedRotationPlacement {
     /**
-     * Calcula el estado del bloque con la rotación adecuada basada en cómo el jugador lo coloca.
+     * Calculates the block state with proper rotation based on how the player places it.
      *
-     * @param defaultState El estado por defecto del bloque
-     * @param facingProperty La propiedad de dirección que controla la orientación del bloque
-     * @param context El contexto de colocación que contiene información sobre cómo se está colocando el bloque
-     * @return El estado del bloque con la rotación aplicada
+     * @param defaultState The default block state
+     * @param facingProperty The direction property that controls the block's orientation
+     * @param context The placement context containing information about how the block is being placed
+     * @return The block state with rotation applied
      *
      * @implNote
-     * La lógica especial se aplica cuando:
-     * 1. Se coloca desde arriba/abajo (eje Y): Determina la dirección basada en la posición relativa del click
-     * 2. Se coloca desde los lados: Usa la dirección opuesta a la cara clickeada
+     * Special logic is applied when:
+     * 1. Placed from top/bottom (Y axis): Determines direction based on relative click position
+     * 2. Placed from sides: Uses the opposite direction of the clicked face
      */
     default BlockState getStateForAdvancedRotationPlacement(BlockState defaultState, DirectionProperty facingProperty, ItemPlacementContext context) {
         Direction facing = context.getSide();
         double hitX = context.getHitPos().x - context.getBlockPos().getX();
         double hitZ = context.getHitPos().z - context.getBlockPos().getZ();
+
         if (facing.getAxis() == Direction.Axis.Y) {
             double hitXFromCenter = hitX - 0.5;
             double hitZFromCenter = hitZ - 0.5;
+
             if (Math.max(Math.abs(hitXFromCenter), Math.abs(hitZFromCenter)) == Math.abs(hitXFromCenter)) {
                 return defaultState.with(facingProperty, (hitXFromCenter > 0) ? Direction.EAST : Direction.WEST);
+
             } else {
                 return defaultState.with(facingProperty, (hitZFromCenter > 0) ? Direction.SOUTH : Direction.NORTH);
             }
