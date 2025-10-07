@@ -40,6 +40,11 @@ public class ResproutedResourcePacks {
             if (Resprouted.isModLoaded(Resprouted.AMENDMENTS_MOD_ID)) {
                 registerBuiltinDataPack(modContainer.get(), Resprouted.AMENDMENTS_MOD_ID);
             }
+            ResourceManagerHelper.registerBuiltinResourcePack(
+                    Identifier.of(Resprouted.MOD_ID, "resprouted_classic_slate"),
+                    modContainer.get(),
+                    Text.translatable("pack." + Resprouted.MOD_ID + "." + "resprouted_classic_slate"),
+                    ResourcePackActivationType.NORMAL);
         }
     }
 }

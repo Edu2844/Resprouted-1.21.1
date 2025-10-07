@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "resprouted:weathered_copper_lantern"
         }
       ],
       "rolls": 1.0

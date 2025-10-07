@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "resprouted:advanced_retort"
         }
       ],
       "rolls": 1.0

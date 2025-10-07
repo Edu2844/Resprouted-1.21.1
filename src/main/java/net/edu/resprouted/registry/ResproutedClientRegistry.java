@@ -173,6 +173,8 @@ public class ResproutedClientRegistry {
         //Doors&Trapdoors
         registry.putBlock(ModBlocks.IRONWOOD_DOOR, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.IRONWOOD_TRAPDOOR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OLIVE_DOOR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OLIVE_TRAPDOOR, RenderLayer.getCutout());
         //Fluids
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.HONEY_STILL, ModFluids.HONEY_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.APPLE_JUICE_STILL, ModFluids.APPLE_JUICE_FLOWING);

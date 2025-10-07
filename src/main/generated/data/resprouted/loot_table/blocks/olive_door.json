@@ -13,14 +13,14 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "block": "resprouted:ironwood_door",
+              "block": "resprouted:olive_door",
               "condition": "minecraft:block_state_property",
               "properties": {
                 "half": "lower"
               }
             }
           ],
-          "name": "minecraft:air"
+          "name": "resprouted:olive_door"
         }
       ],
       "rolls": 1.0

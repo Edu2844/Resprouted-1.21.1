@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "resprouted:slate_roof_slab"
         }
       ],
       "rolls": 1.0

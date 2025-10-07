@@ -104,7 +104,6 @@ public class ModModelProvider extends FabricModelProvider {
         OlivePool.fence(ModBlocks.OLIVE_FENCE);
         OlivePool.fenceGate(ModBlocks.OLIVE_FENCE_GATE);
         blockStateModelGenerator.registerDoor(ModBlocks.OLIVE_DOOR);
-        blockStateModelGenerator.registerTrapdoor(ModBlocks.OLIVE_TRAPDOOR);
         blockStateModelGenerator.registerTintableCrossBlockState(ModBlocks.OLIVE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
 
 

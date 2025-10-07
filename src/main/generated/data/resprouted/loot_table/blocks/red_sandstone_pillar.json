@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "resprouted:red_sandstone_pillar"
         }
       ],
       "rolls": 1.0

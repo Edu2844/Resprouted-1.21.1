@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "resprouted:cyan_iron_candle_holder"
         }
       ],
       "rolls": 1.0

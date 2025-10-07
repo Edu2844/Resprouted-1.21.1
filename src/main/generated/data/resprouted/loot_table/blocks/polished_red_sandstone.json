@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "resprouted:polished_red_sandstone"
         }
       ],
       "rolls": 1.0

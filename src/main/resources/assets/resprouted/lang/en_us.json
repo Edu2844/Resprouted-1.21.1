@@ -451,6 +451,7 @@
   "config.resprouted.max_brew_time.tooltip":"The total time, in ticks, required for a brewing process to complete. | Range: 1200 (1 min) - 120000 (100 min). | Default: 12000 (10 min).",
 
   "pack.resprouted.eatinganimationid": "Resprouted + Eating Animations Mod Compat",
+  "pack.resprouted.resprouted_classic_slate": "Classic Slate",
   "datapack.resprouted.amendments": "Resprouted + Amendments Data Pack",
 
   "config.jade.plugin_resprouted.fruiting_leaves_progress": "Fruiting Leaves Progress",

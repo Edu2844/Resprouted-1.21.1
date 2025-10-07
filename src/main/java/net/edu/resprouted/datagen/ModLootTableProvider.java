@@ -31,6 +31,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+
+        System.out.println("=== GENERATING LOOT TABLES ===");
+
         //SLATE
         addDrop(ModBlocks.SLATE);
         addDrop(ModBlocks.POLISHED_SLATE);
@@ -146,7 +149,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.OLIVE_PRESSURE_PLATE);
         addDrop(ModBlocks.OLIVE_FENCE);
         addDrop(ModBlocks.OLIVE_FENCE_GATE);
-        addDrop(ModBlocks.OLIVE_DOOR, doorDrops(ModBlocks.IRONWOOD_DOOR));
+        addDrop(ModBlocks.OLIVE_DOOR, doorDrops(ModBlocks.OLIVE_DOOR));
         addDrop(ModBlocks.OLIVE_TRAPDOOR);
 
         //PAINTED PLANKS
@@ -326,5 +329,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
                                 ).with(ItemEntry.builder(ModItems.BLUE_BERRIES))
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)))
                                 .apply(ApplyBonusLootFunction.uniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE))))));
+
+        System.out.println("=== LOOT TABLES GENERATION COMPLETE ===");
     }
 }
