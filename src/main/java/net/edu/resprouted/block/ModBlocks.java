@@ -31,7 +31,6 @@ public class ModBlocks {
     // =================================================
     public static final Block SLATE = registerBlock("slate",
             new Block(AbstractBlock.Settings.copy(Blocks.STONE)));
-
     public static final Block POLISHED_SLATE = registerBlock("polished_slate",
             new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
     public static final Block POLISHED_SLATE_WALL = registerBlock("polished_slate_wall",
@@ -40,7 +39,6 @@ public class ModBlocks {
             new StairsBlock(ModBlocks.POLISHED_SLATE.getDefaultState(),AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
     public static final Block POLISHED_SLATE_SLAB = registerBlock("polished_slate_slab",
             new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
-
     public static final Block SLATE_BRICKS = registerBlock("slate_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block SLATE_BRICK_WALL = registerBlock("slate_brick_wall",
@@ -49,17 +47,14 @@ public class ModBlocks {
             new StairsBlock(ModBlocks.SLATE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block SLATE_BRICK_SLAB = registerBlock("slate_brick_slab",
             new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-
     public static final Block SLATE_ROOFS = registerBlock("slate_roofs",
             new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block SLATE_ROOF_STAIRS = registerBlock("slate_roof_stairs",
             new StairsBlock(ModBlocks.SLATE_ROOFS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block SLATE_ROOF_SLAB = registerBlock("slate_roof_slab",
             new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-
     public static final Block CHISELED_SLATE = registerBlock("chiseled_slate",
             new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-
     public static final Block SLATE_PILLAR = registerBlock("slate_pillar",
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
 
@@ -68,6 +63,12 @@ public class ModBlocks {
     // =================================================
     public static final Block ANDESITE_BRICKS = registerBlock("andesite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block ANDESITE_BRICK_WALL = registerBlock("andesite_brick_wall",
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block ANDESITE_BRICK_STAIRS = registerBlock("andesite_brick_stairs",
+            new StairsBlock(ModBlocks.ANDESITE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block ANDESITE_BRICK_SLAB = registerBlock("andesite_brick_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block CRACKED_ANDESITE_BRICKS = registerBlock("cracked_andesite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
     public static final Block CHISELED_ANDESITE = registerBlock("chiseled_andesite",
@@ -80,6 +81,12 @@ public class ModBlocks {
     // =================================================
     public static final Block DIORITE_BRICKS = registerBlock("diorite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block DIORITE_BRICK_WALL = registerBlock("diorite_brick_wall",
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block DIORITE_BRICK_STAIRS = registerBlock("diorite_brick_stairs",
+            new StairsBlock(ModBlocks.DIORITE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block DIORITE_BRICK_SLAB = registerBlock("diorite_brick_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block CRACKED_DIORITE_BRICKS = registerBlock("cracked_diorite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
     public static final Block CHISELED_DIORITE = registerBlock("chiseled_diorite",
@@ -92,6 +99,12 @@ public class ModBlocks {
     // =================================================
     public static final Block GRANITE_BRICKS = registerBlock("granite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block GRANITE_BRICK_WALL = registerBlock("granite_brick_wall",
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block GRANITE_BRICK_STAIRS = registerBlock("granite_brick_stairs",
+            new StairsBlock(ModBlocks.GRANITE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block GRANITE_BRICK_SLAB = registerBlock("granite_brick_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block CRACKED_GRANITE_BRICKS = registerBlock("cracked_granite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
     public static final Block CHISELED_GRANITE = registerBlock("chiseled_granite",
@@ -104,6 +117,14 @@ public class ModBlocks {
     // =================================================
     public static final Block POLISHED_STONE = registerBlock("polished_stone",
             new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+
+    public static final Block POLISHED_STONE_WALL = registerBlock("polished_stone_wall",
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block POLISHED_STONE_STAIRS = registerBlock("polished_stone_stairs",
+            new StairsBlock(ModBlocks.POLISHED_STONE.getDefaultState(),AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+    public static final Block POLISHED_STONE_SLAB = registerBlock("polished_stone_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+
     public static final Block STONE_PILLAR = registerBlock("stone_pillar",
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
 
@@ -112,8 +133,24 @@ public class ModBlocks {
     // =================================================
     public static final Block POLISHED_SANDSTONE = registerBlock("polished_sandstone",
             new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+
+    public static final Block POLISHED_SANDSTONE_WALL = registerBlock("polished_sandstone_wall",
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block POLISHED_SANDSTONE_STAIRS = registerBlock("polished_sandstone_stairs",
+            new StairsBlock(ModBlocks.POLISHED_SANDSTONE.getDefaultState(),AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+    public static final Block POLISHED_SANDSTONE_SLAB = registerBlock("polished_sandstone_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+
     public static final Block SANDSTONE_BRICKS = registerBlock("sandstone_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+
+    public static final Block SANDSTONE_BRICK_WALL = registerBlock("sandstone_brick_wall",
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block SANDSTONE_BRICK_STAIRS = registerBlock("sandstone_brick_stairs",
+            new StairsBlock(ModBlocks.SANDSTONE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block SANDSTONE_BRICK_SLAB = registerBlock("sandstone_brick_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+
     public static final Block SANDSTONE_PILLAR = registerBlock("sandstone_pillar",
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
 
@@ -122,8 +159,24 @@ public class ModBlocks {
     // =================================================
     public static final Block POLISHED_RED_SANDSTONE = registerBlock("polished_red_sandstone",
             new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+
+    public static final Block POLISHED_RED_SANDSTONE_WALL = registerBlock("polished_red_sandstone_wall",
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block POLISHED_RED_SANDSTONE_STAIRS = registerBlock("polished_red_sandstone_stairs",
+            new StairsBlock(ModBlocks.POLISHED_RED_SANDSTONE.getDefaultState(),AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+    public static final Block POLISHED_RED_SANDSTONE_SLAB = registerBlock("polished_red_sandstone_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+
     public static final Block RED_SANDSTONE_BRICKS = registerBlock("red_sandstone_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
+
+    public static final Block RED_SANDSTONE_BRICK_WALL = registerBlock("red_sandstone_brick_wall",
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block RED_SANDSTONE_BRICK_STAIRS = registerBlock("red_sandstone_brick_stairs",
+            new StairsBlock(ModBlocks.RED_SANDSTONE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+    public static final Block RED_SANDSTONE_BRICK_SLAB = registerBlock("red_sandstone_brick_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
+
     public static final Block RED_SANDSTONE_PILLAR = registerBlock("red_sandstone_pillar",
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
 
@@ -168,7 +221,7 @@ public class ModBlocks {
     public static final Block IRONWOOD_SLAB = registerBlock("ironwood_slab",
             new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
     public static final Block IRONWOOD_BUTTON = registerBlock("ironwood_button",
-            new ButtonBlock(BlockSetType.ACACIA, 2, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
+            new ButtonBlock(BlockSetType.ACACIA, 30, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
     public static final Block IRONWOOD_PRESSURE_PLATE = registerBlock("ironwood_pressure_plate",
             new PressurePlateBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool()));
     public static final Block IRONWOOD_FENCE = registerBlock("ironwood_fence",
@@ -208,7 +261,7 @@ public class ModBlocks {
     public static final Block OLIVE_SLAB = registerBlock("olive_slab",
             new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
     public static final Block OLIVE_BUTTON = registerBlock("olive_button",
-            new ButtonBlock(BlockSetType.ACACIA, 2, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
+            new ButtonBlock(BlockSetType.ACACIA, 30, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
     public static final Block OLIVE_PRESSURE_PLATE = registerBlock("olive_pressure_plate",
             new PressurePlateBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool()));
     public static final Block OLIVE_FENCE = registerBlock("olive_fence",

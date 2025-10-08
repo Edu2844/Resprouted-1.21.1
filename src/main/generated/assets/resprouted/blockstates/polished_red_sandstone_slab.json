@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "resprouted:block/polished_red_sandstone_slab"
+    },
+    "type=double": {
+      "model": "resprouted:block/polished_red_sandstone"
+    },
+    "type=top": {
+      "model": "resprouted:block/polished_red_sandstone_slab_top"
+    }
+  }
+}

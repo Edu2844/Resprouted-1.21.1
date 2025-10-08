@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "resprouted:block/red_sandstone/polished_red_sandstone"
+  }
+}

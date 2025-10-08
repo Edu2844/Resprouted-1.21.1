@@ -32,8 +32,6 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     public void generate() {
         RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
 
-        System.out.println("=== GENERATING LOOT TABLES ===");
-
         //SLATE
         addDrop(ModBlocks.SLATE);
         addDrop(ModBlocks.POLISHED_SLATE);
@@ -52,34 +50,58 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         //STONE
         addDrop(ModBlocks.POLISHED_STONE);
+        addDrop(ModBlocks.POLISHED_STONE_SLAB);
+        addDrop(ModBlocks.POLISHED_STONE_STAIRS);
+        addDrop(ModBlocks.POLISHED_STONE_WALL);
         addDrop(ModBlocks.STONE_PILLAR);
 
         //ANDESITE
         addDrop(ModBlocks.ANDESITE_BRICKS);
+        addDrop(ModBlocks.ANDESITE_BRICK_SLAB);
+        addDrop(ModBlocks.ANDESITE_BRICK_STAIRS);
+        addDrop(ModBlocks.ANDESITE_BRICK_WALL);
         addDrop(ModBlocks.CHISELED_ANDESITE);
         addDrop(ModBlocks.CRACKED_ANDESITE_BRICKS);
         addDrop(ModBlocks.ANDESITE_PILLAR);
 
         //DIORITE
         addDrop(ModBlocks.DIORITE_BRICKS);
+        addDrop(ModBlocks.DIORITE_BRICK_SLAB);
+        addDrop(ModBlocks.DIORITE_BRICK_STAIRS);
+        addDrop(ModBlocks.DIORITE_BRICK_WALL);
         addDrop(ModBlocks.CHISELED_DIORITE);
         addDrop(ModBlocks.CRACKED_DIORITE_BRICKS);
         addDrop(ModBlocks.DIORITE_PILLAR);
 
         //GRANITE
         addDrop(ModBlocks.GRANITE_BRICKS);
+        addDrop(ModBlocks.GRANITE_BRICK_SLAB);
+        addDrop(ModBlocks.GRANITE_BRICK_STAIRS);
+        addDrop(ModBlocks.GRANITE_BRICK_WALL);
         addDrop(ModBlocks.CHISELED_GRANITE);
         addDrop(ModBlocks.CRACKED_GRANITE_BRICKS);
         addDrop(ModBlocks.GRANITE_PILLAR);
 
         //SANDSTONE
         addDrop(ModBlocks.POLISHED_SANDSTONE);
+        addDrop(ModBlocks.POLISHED_SANDSTONE_SLAB);
+        addDrop(ModBlocks.POLISHED_SANDSTONE_STAIRS);
+        addDrop(ModBlocks.POLISHED_SANDSTONE_WALL);
         addDrop(ModBlocks.SANDSTONE_BRICKS);
+        addDrop(ModBlocks.SANDSTONE_BRICK_SLAB);
+        addDrop(ModBlocks.SANDSTONE_BRICK_STAIRS);
+        addDrop(ModBlocks.SANDSTONE_BRICK_WALL);
         addDrop(ModBlocks.SANDSTONE_PILLAR);
 
         //RED SANDSTONE
         addDrop(ModBlocks.POLISHED_RED_SANDSTONE);
+        addDrop(ModBlocks.POLISHED_RED_SANDSTONE_SLAB);
+        addDrop(ModBlocks.POLISHED_RED_SANDSTONE_STAIRS);
+        addDrop(ModBlocks.POLISHED_RED_SANDSTONE_WALL);
         addDrop(ModBlocks.RED_SANDSTONE_BRICKS);
+        addDrop(ModBlocks.RED_SANDSTONE_BRICK_SLAB);
+        addDrop(ModBlocks.RED_SANDSTONE_BRICK_STAIRS);
+        addDrop(ModBlocks.RED_SANDSTONE_BRICK_WALL);
         addDrop(ModBlocks.RED_SANDSTONE_PILLAR);
 
         //WROUGHT IRON
@@ -330,6 +352,5 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)))
                                 .apply(ApplyBonusLootFunction.uniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE))))));
 
-        System.out.println("=== LOOT TABLES GENERATION COMPLETE ===");
     }
 }

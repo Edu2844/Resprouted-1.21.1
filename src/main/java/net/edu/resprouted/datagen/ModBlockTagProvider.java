@@ -35,34 +35,60 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
                 //ANDESITE
                 .add(ModBlocks.ANDESITE_BRICKS)
+                .add(ModBlocks.ANDESITE_BRICK_STAIRS)
+                .add(ModBlocks.ANDESITE_BRICK_WALL)
+                .add(ModBlocks.ANDESITE_BRICK_SLAB)
                 .add(ModBlocks.CRACKED_ANDESITE_BRICKS)
                 .add(ModBlocks.CHISELED_ANDESITE)
                 .add(ModBlocks.ANDESITE_PILLAR)
 
                 //DIORITE
                 .add(ModBlocks.DIORITE_BRICKS)
+                .add(ModBlocks.DIORITE_BRICK_STAIRS)
+                .add(ModBlocks.DIORITE_BRICK_WALL)
+                .add(ModBlocks.DIORITE_BRICK_SLAB)
                 .add(ModBlocks.CRACKED_DIORITE_BRICKS)
                 .add(ModBlocks.CHISELED_DIORITE)
                 .add(ModBlocks.DIORITE_PILLAR)
 
                 //GRANITE
                 .add(ModBlocks.GRANITE_BRICKS)
+                .add(ModBlocks.GRANITE_BRICK_STAIRS)
+                .add(ModBlocks.GRANITE_BRICK_WALL)
+                .add(ModBlocks.GRANITE_BRICK_SLAB)
                 .add(ModBlocks.CRACKED_GRANITE_BRICKS)
                 .add(ModBlocks.CHISELED_GRANITE)
                 .add(ModBlocks.GRANITE_PILLAR)
 
                 //STONE
                 .add(ModBlocks.POLISHED_STONE)
+                .add(ModBlocks.POLISHED_STONE_STAIRS)
+                .add(ModBlocks.POLISHED_STONE_WALL)
+                .add(ModBlocks.POLISHED_STONE_SLAB)
                 .add(ModBlocks.STONE_PILLAR)
 
                 //SANDSTONE
                 .add(ModBlocks.POLISHED_SANDSTONE)
+                .add(ModBlocks.POLISHED_SANDSTONE_STAIRS)
+                .add(ModBlocks.POLISHED_SANDSTONE_WALL)
+                .add(ModBlocks.POLISHED_SANDSTONE_SLAB)
                 .add(ModBlocks.SANDSTONE_BRICKS)
+                .add(ModBlocks.SANDSTONE_BRICK_STAIRS)
+                .add(ModBlocks.SANDSTONE_BRICK_WALL)
+                .add(ModBlocks.SANDSTONE_BRICK_SLAB)
                 .add(ModBlocks.SANDSTONE_PILLAR)
 
                 //RED SANDSTONE
                 .add(ModBlocks.POLISHED_RED_SANDSTONE)
+                .add(ModBlocks.POLISHED_RED_SANDSTONE_STAIRS)
+                .add(ModBlocks.POLISHED_RED_SANDSTONE_WALL)
+                .add(ModBlocks.POLISHED_RED_SANDSTONE_SLAB)
+
                 .add(ModBlocks.RED_SANDSTONE_BRICKS)
+                .add(ModBlocks.RED_SANDSTONE_BRICK_STAIRS)
+                .add(ModBlocks.RED_SANDSTONE_BRICK_WALL)
+                .add(ModBlocks.RED_SANDSTONE_BRICK_SLAB)
+
                 .add(ModBlocks.RED_SANDSTONE_PILLAR)
 
                 //WROUGHT IRON

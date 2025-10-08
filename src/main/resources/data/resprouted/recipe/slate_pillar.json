@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "#": {
-      "item": "resprouted:slate"
+      "item": "resprouted:polished_slate"
     }
   },
   "pattern": [
@@ -11,7 +11,7 @@
     "#"
   ],
   "result": {
-    "count": 3,
+    "count": 2,
     "id": "resprouted:slate_pillar"
   }
 }

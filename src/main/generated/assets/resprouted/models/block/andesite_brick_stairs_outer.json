@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "resprouted:block/andesite/andesite_bricks",
+    "side": "resprouted:block/andesite/andesite_bricks",
+    "top": "resprouted:block/andesite/andesite_bricks"
+  }
+}

@@ -5,8 +5,8 @@ import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.entity.renderer.CrushingTubBERenderer;
 import net.edu.resprouted.block.entity.renderer.EvaporatingBasinRenderer;
 import net.edu.resprouted.block.entity.renderer.LiquidBarrelRenderer;
+import net.edu.resprouted.effect.render.FullMetalHudOverlay;
 import net.edu.resprouted.effect.render.FullMetalLayer;
-import net.edu.resprouted.effect.render.FullMetalOverlay;
 import net.edu.resprouted.effect.render.IronSkinLayer;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.entity.client.ChairEntityRenderer;
@@ -365,8 +365,7 @@ public class ResproutedClientRegistry {
                 });
     }
     public static void registerHudRenderers() {
-        HudRenderCallback.EVENT.register((drawContext, tickDelta) -> FullMetalOverlay.render(drawContext));
-
+        HudRenderCallback.EVENT.register(new FullMetalHudOverlay());
     }
     public static void registerLivingEntityRenderers() {
         LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, entityRenderer, registrationHelper, renderContext) -> {

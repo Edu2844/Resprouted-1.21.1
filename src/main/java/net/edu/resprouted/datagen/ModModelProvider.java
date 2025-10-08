@@ -43,40 +43,69 @@ public class ModModelProvider extends FabricModelProvider {
         // =================================================
         // ||                 ANDESITE                    ||
         // =================================================
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ANDESITE_BRICKS);
+        BlockStateModelGenerator.BlockTexturePool pandesite = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.ANDESITE_BRICKS);
+        pandesite.stairs(ModBlocks.ANDESITE_BRICK_STAIRS);
+        pandesite.wall(ModBlocks.ANDESITE_BRICK_WALL);
+        pandesite.slab(ModBlocks.ANDESITE_BRICK_SLAB);
+
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CRACKED_ANDESITE_BRICKS);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHISELED_ANDESITE);
 
         // =================================================
         // ||                  DIORITE                    ||
         // =================================================
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DIORITE_BRICKS);
+        BlockStateModelGenerator.BlockTexturePool pdiorite = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.DIORITE_BRICKS);
+        pdiorite.stairs(ModBlocks.DIORITE_BRICK_STAIRS);
+        pdiorite.wall(ModBlocks.DIORITE_BRICK_WALL);
+        pdiorite.slab(ModBlocks.DIORITE_BRICK_SLAB);
+
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CRACKED_DIORITE_BRICKS);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHISELED_DIORITE);
 
         // =================================================
         // ||                  GRANITE                    ||
         // =================================================
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GRANITE_BRICKS);
+        BlockStateModelGenerator.BlockTexturePool pgranite = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.GRANITE_BRICKS);
+        pgranite.stairs(ModBlocks.GRANITE_BRICK_STAIRS);
+        pgranite.wall(ModBlocks.GRANITE_BRICK_WALL);
+        pgranite.slab(ModBlocks.GRANITE_BRICK_SLAB);
+
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CRACKED_GRANITE_BRICKS);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHISELED_GRANITE);
 
         // =================================================
         // ||                   STONE                     ||
         // =================================================
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.POLISHED_STONE);
+        BlockStateModelGenerator.BlockTexturePool pstone = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.POLISHED_STONE);
+        pstone.stairs(ModBlocks.POLISHED_STONE_STAIRS);
+        pstone.wall(ModBlocks.POLISHED_STONE_WALL);
+        pstone.slab(ModBlocks.POLISHED_STONE_SLAB);
 
         // =================================================
         // ||                SANDSTONE                    ||
         // =================================================
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.POLISHED_SANDSTONE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SANDSTONE_BRICKS);
+        BlockStateModelGenerator.BlockTexturePool ppsandstone = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.POLISHED_SANDSTONE);
+        ppsandstone.stairs(ModBlocks.POLISHED_SANDSTONE_STAIRS);
+        ppsandstone.wall(ModBlocks.POLISHED_SANDSTONE_WALL);
+        ppsandstone.slab(ModBlocks.POLISHED_SANDSTONE_SLAB);
+
+        BlockStateModelGenerator.BlockTexturePool psbrick = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.SANDSTONE_BRICKS);
+        psbrick.stairs(ModBlocks.SANDSTONE_BRICK_STAIRS);
+        psbrick.wall(ModBlocks.SANDSTONE_BRICK_WALL);
+        psbrick.slab(ModBlocks.SANDSTONE_BRICK_SLAB);
 
         // =================================================
         // ||                RED SANDSTONE                ||
         // =================================================
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.POLISHED_RED_SANDSTONE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RED_SANDSTONE_BRICKS);
+        BlockStateModelGenerator.BlockTexturePool pprsandstone = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.POLISHED_RED_SANDSTONE);
+        pprsandstone.stairs(ModBlocks.POLISHED_RED_SANDSTONE_STAIRS);
+        pprsandstone.wall(ModBlocks.POLISHED_RED_SANDSTONE_WALL);
+        pprsandstone.slab(ModBlocks.POLISHED_RED_SANDSTONE_SLAB);
+
+        BlockStateModelGenerator.BlockTexturePool prsbrick = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.RED_SANDSTONE_BRICKS);
+        prsbrick.stairs(ModBlocks.RED_SANDSTONE_BRICK_STAIRS);
+        prsbrick.wall(ModBlocks.RED_SANDSTONE_BRICK_WALL);
+        prsbrick.slab(ModBlocks.RED_SANDSTONE_BRICK_SLAB);
 
         // =================================================
         // ||                WROUGHT IRON                 ||

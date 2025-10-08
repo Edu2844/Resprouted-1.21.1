@@ -150,29 +150,53 @@ public class ModItemGroups {
                         entries.add(ModBlocks.SLATE_PILLAR);
 
                         entries.add(ModBlocks.POLISHED_STONE);
+                        entries.add(ModBlocks.POLISHED_STONE_SLAB);
+                        entries.add(ModBlocks.POLISHED_STONE_STAIRS);
+                        entries.add(ModBlocks.POLISHED_STONE_WALL);
                         entries.add(ModBlocks.STONE_PILLAR);
 
                         entries.add(ModBlocks.ANDESITE_BRICKS);
+                        entries.add(ModBlocks.ANDESITE_BRICK_SLAB);
+                        entries.add(ModBlocks.ANDESITE_BRICK_STAIRS);
+                        entries.add(ModBlocks.ANDESITE_BRICK_WALL);
                         entries.add(ModBlocks.CRACKED_ANDESITE_BRICKS);
                         entries.add(ModBlocks.CHISELED_ANDESITE);
                         entries.add(ModBlocks.ANDESITE_PILLAR);
 
                         entries.add(ModBlocks.DIORITE_BRICKS);
+                        entries.add(ModBlocks.DIORITE_BRICK_SLAB);
+                        entries.add(ModBlocks.DIORITE_BRICK_STAIRS);
+                        entries.add(ModBlocks.DIORITE_BRICK_WALL);
                         entries.add(ModBlocks.CRACKED_DIORITE_BRICKS);
                         entries.add(ModBlocks.CHISELED_DIORITE);
                         entries.add(ModBlocks.DIORITE_PILLAR);
 
                         entries.add(ModBlocks.GRANITE_BRICKS);
+                        entries.add(ModBlocks.GRANITE_BRICK_SLAB);
+                        entries.add(ModBlocks.GRANITE_BRICK_STAIRS);
+                        entries.add(ModBlocks.GRANITE_BRICK_WALL);
                         entries.add(ModBlocks.CRACKED_GRANITE_BRICKS);
                         entries.add(ModBlocks.CHISELED_GRANITE);
                         entries.add(ModBlocks.GRANITE_PILLAR);
 
                         entries.add(ModBlocks.POLISHED_SANDSTONE);
+                        entries.add(ModBlocks.POLISHED_SANDSTONE_SLAB);
+                        entries.add(ModBlocks.POLISHED_SANDSTONE_STAIRS);
+                        entries.add(ModBlocks.POLISHED_SANDSTONE_WALL);
                         entries.add(ModBlocks.SANDSTONE_BRICKS);
+                        entries.add(ModBlocks.SANDSTONE_BRICK_SLAB);
+                        entries.add(ModBlocks.SANDSTONE_BRICK_STAIRS);
+                        entries.add(ModBlocks.SANDSTONE_BRICK_WALL);
                         entries.add(ModBlocks.SANDSTONE_PILLAR);
 
                         entries.add(ModBlocks.POLISHED_RED_SANDSTONE);
+                        entries.add(ModBlocks.POLISHED_RED_SANDSTONE_SLAB);
+                        entries.add(ModBlocks.POLISHED_RED_SANDSTONE_STAIRS);
+                        entries.add(ModBlocks.POLISHED_RED_SANDSTONE_WALL);
                         entries.add(ModBlocks.RED_SANDSTONE_BRICKS);
+                        entries.add(ModBlocks.RED_SANDSTONE_BRICK_SLAB);
+                        entries.add(ModBlocks.RED_SANDSTONE_BRICK_STAIRS);
+                        entries.add(ModBlocks.RED_SANDSTONE_BRICK_WALL);
                         entries.add(ModBlocks.RED_SANDSTONE_PILLAR);
 
                         entries.add(ModBlocks.WROUGHT_IRON_BLOCK);
