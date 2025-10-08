@@ -111,7 +111,11 @@ public class ModModelProvider extends FabricModelProvider {
         // ||                WROUGHT IRON                 ||
         // =================================================
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.WROUGHT_IRON_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CUT_WROUGHT_IRON_BLOCK);
+        blockStateModelGenerator.registerCopperBulb(ModBlocks.WROUGHT_IRON_BULB);
+
+        BlockStateModelGenerator.BlockTexturePool pwiron = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.CUT_WROUGHT_IRON_BLOCK);
+        pwiron.stairs(ModBlocks.CUT_WROUGHT_IRON_STAIRS);
+        pwiron.slab(ModBlocks.CUT_WROUGHT_IRON_SLAB);
 
         // =================================================
         // ||                   CLAY WALL                 ||

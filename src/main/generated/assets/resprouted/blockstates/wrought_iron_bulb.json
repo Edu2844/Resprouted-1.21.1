@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "lit=false,powered=false": {
+      "model": "resprouted:block/wrought_iron_bulb"
+    },
+    "lit=false,powered=true": {
+      "model": "resprouted:block/wrought_iron_bulb_powered"
+    },
+    "lit=true,powered=false": {
+      "model": "resprouted:block/wrought_iron_bulb_lit"
+    },
+    "lit=true,powered=true": {
+      "model": "resprouted:block/wrought_iron_bulb_lit_powered"
+    }
+  }
+}

@@ -172,8 +172,11 @@
   "block.resprouted.red_sandstone_brick_wall": "Red Sandstone Brick Wall",
   "block.resprouted.red_sandstone_pillar": "Red Sandstone Pillar",
 
-  "block.resprouted.wrought_iron_block": "Wrought Iron Block",
-  "block.resprouted.cut_wrought_iron_block": "Cut Wrought Iron Block",
+  "block.resprouted.wrought_iron_block": "Block of Wrought Iron",
+  "block.resprouted.cut_wrought_iron_block": "Cut Wrought Iron",
+  "block.resprouted.cut_wrought_iron_stairs": "Cut Wrought Iron Stairs",
+  "block.resprouted.cut_wrought_iron_slab": "Cut Wrought Iron Slab",
+  "block.resprouted.wrought_iron_bulb": "Wrought Iron bulb",
   "block.resprouted.clay_wall": "Clay Wall",
   "block.resprouted.clay_wall_cross": "Clay Wall Cross",
   "block.resprouted.clay_wall_diagonal": "Clay Wall Diagonal",

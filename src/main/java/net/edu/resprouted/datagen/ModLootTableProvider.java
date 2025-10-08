@@ -106,7 +106,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         //WROUGHT IRON
         addDrop(ModBlocks.WROUGHT_IRON_BLOCK);
+        addDrop(ModBlocks.WROUGHT_IRON_BULB);
         addDrop(ModBlocks.CUT_WROUGHT_IRON_BLOCK);
+        addDrop(ModBlocks.CUT_WROUGHT_IRON_STAIRS);
+        addDrop(ModBlocks.CUT_WROUGHT_IRON_SLAB);
 
         //CLAY WALL
         addDrop(ModBlocks.CLAY_WALL);

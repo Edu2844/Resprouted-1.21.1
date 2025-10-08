@@ -201,6 +201,9 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.WROUGHT_IRON_BLOCK);
                         entries.add(ModBlocks.CUT_WROUGHT_IRON_BLOCK);
+                        entries.add(ModBlocks.CUT_WROUGHT_IRON_SLAB);
+                        entries.add(ModBlocks.CUT_WROUGHT_IRON_STAIRS);
+                        entries.add(ModBlocks.WROUGHT_IRON_BULB);
 
                         entries.add(ModBlocks.CLAY_WALL);
                         entries.add(ModBlocks.CLAY_WALL_CROSS);

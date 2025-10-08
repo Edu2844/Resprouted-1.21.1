@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "resprouted:block/cut_wrought_iron_slab"
+    },
+    "type=double": {
+      "model": "resprouted:block/cut_wrought_iron_block"
+    },
+    "type=top": {
+      "model": "resprouted:block/cut_wrought_iron_slab_top"
+    }
+  }
+}

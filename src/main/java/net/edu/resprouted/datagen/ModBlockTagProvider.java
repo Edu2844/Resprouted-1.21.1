@@ -83,17 +83,18 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.POLISHED_RED_SANDSTONE_STAIRS)
                 .add(ModBlocks.POLISHED_RED_SANDSTONE_WALL)
                 .add(ModBlocks.POLISHED_RED_SANDSTONE_SLAB)
-
                 .add(ModBlocks.RED_SANDSTONE_BRICKS)
                 .add(ModBlocks.RED_SANDSTONE_BRICK_STAIRS)
                 .add(ModBlocks.RED_SANDSTONE_BRICK_WALL)
                 .add(ModBlocks.RED_SANDSTONE_BRICK_SLAB)
-
                 .add(ModBlocks.RED_SANDSTONE_PILLAR)
 
                 //WROUGHT IRON
                 .add(ModBlocks.WROUGHT_IRON_BLOCK)
                 .add(ModBlocks.CUT_WROUGHT_IRON_BLOCK)
+                .add(ModBlocks.CUT_WROUGHT_IRON_STAIRS)
+                .add(ModBlocks.CUT_WROUGHT_IRON_SLAB)
+                .add(ModBlocks.WROUGHT_IRON_BULB)
 
                 //CHAINS
                 .add(ModBlocks.GOLDEN_CHAIN)

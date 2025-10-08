@@ -181,15 +181,25 @@ public class ModBlocks {
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
 
     // =================================================
-    // ||                WROUGHT IRON                ||
+    // ||                 WROUGHT IRON                ||
     // =================================================
     public static final Block WROUGHT_IRON_BLOCK = registerBlock("wrought_iron_block",
-            new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
+            new Block(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK)));
+
     public static final Block CUT_WROUGHT_IRON_BLOCK = registerBlock("cut_wrought_iron_block",
-            new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)));
+            new Block(AbstractBlock.Settings.copy(Blocks.CUT_COPPER)));
+
+    public static final Block CUT_WROUGHT_IRON_STAIRS = registerBlock("cut_wrought_iron_stairs",
+            new StairsBlock(ModBlocks.CUT_WROUGHT_IRON_BLOCK.getDefaultState(),AbstractBlock.Settings.copy(Blocks.CUT_COPPER_STAIRS)));
+
+    public static final Block CUT_WROUGHT_IRON_SLAB = registerBlock("cut_wrought_iron_slab",
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.CUT_COPPER_SLAB)));
+
+    public static final Block WROUGHT_IRON_BULB = registerBlock("wrought_iron_bulb",
+            new BulbBlock(AbstractBlock.Settings.copy(Blocks.COPPER_BULB)));
 
     // =================================================
-    // ||                   CLAY WALL                 ||
+    // ||                  CLAY WALL                  ||
     // =================================================
     public static final Block CLAY_WALL = registerBlock("clay_wall",
             new Block(AbstractBlock.Settings.copy(Blocks.CLAY)));
