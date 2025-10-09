@@ -10,6 +10,7 @@ import net.minecraft.util.Identifier;
 
 public class ModTags {
     public static class Blocks {
+        public static final TagKey<Block> PRESERVES_FARMLAND = createTag("preserves_farmland");
         public static final TagKey<Block> FERTILE_SOILS = createTag("fertile_soils");
         public static final TagKey<Block> ALLOWS_GROWTH = createTag("allows_growth");
         public static final TagKey<Block> EVAPORATING_BOOSTERS = createTag("evaporating_boosters");

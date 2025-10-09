@@ -67,7 +67,7 @@ public class CropStakeBlock extends CropBlock {
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockState below = world.getBlockState(pos.down());
-        return below.isIn(ModTags.Blocks.FERTILE_SOILS) || below.getBlock() instanceof CropStakeBlock;
+        return below.isIn(ModTags.Blocks.FERTILE_SOILS) || below.getBlock() instanceof CropStakeBlock || below.isOf(Blocks.FARMLAND);
     }
 
     @Override

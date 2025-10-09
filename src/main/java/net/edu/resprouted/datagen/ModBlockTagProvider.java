@@ -19,6 +19,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 //SLATE
                 .add(ModBlocks.SLATE)
+                .add(ModBlocks.COBBLED_SLATE)
+                .add(ModBlocks.COBBLED_SLATE_SLAB)
+                .add(ModBlocks.COBBLED_SLATE_STAIRS)
+                .add(ModBlocks.COBBLED_SLATE_WALL)
                 .add(ModBlocks.POLISHED_SLATE)
                 .add(ModBlocks.POLISHED_SLATE_SLAB)
                 .add(ModBlocks.POLISHED_SLATE_STAIRS)
@@ -324,11 +328,25 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.OLIVE_FENCE_GATE);
 
         getOrCreateTagBuilder(BlockTags.WALLS)
+                .add(ModBlocks.COBBLED_SLATE_WALL)
                 .add(ModBlocks.POLISHED_SLATE_WALL)
                 .add(ModBlocks.SLATE_BRICK_WALL)
+                .add(ModBlocks.POLISHED_STONE_WALL)
+                .add(ModBlocks.ANDESITE_BRICK_WALL)
+                .add(ModBlocks.DIORITE_BRICK_WALL)
+                .add(ModBlocks.GRANITE_BRICK_WALL)
+                .add(ModBlocks.POLISHED_SANDSTONE_WALL)
+                .add(ModBlocks.SANDSTONE_BRICK_WALL)
+                .add(ModBlocks.POLISHED_RED_SANDSTONE_WALL)
+                .add(ModBlocks.RED_SANDSTONE_BRICK_WALL)
         ;
         getOrCreateTagBuilder(BlockTags.CLIMBABLE)
                 .add(ModBlocks.ROPE)
+        ;
+        getOrCreateTagBuilder(ModTags.Blocks.PRESERVES_FARMLAND)
+                .add(ModBlocks.STAKE)
+                .add(ModBlocks.CHILI_CROP)
+                .add(ModBlocks.TOMATO_CROP)
         ;
         getOrCreateTagBuilder(BlockTags.BAMBOO_PLANTABLE_ON)
                 .add(ModBlocks.FERTILE_SOIL)

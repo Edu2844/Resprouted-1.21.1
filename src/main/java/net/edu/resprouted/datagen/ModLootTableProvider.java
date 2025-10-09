@@ -33,7 +33,11 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
 
         //SLATE
-        addDrop(ModBlocks.SLATE);
+        addDrop(ModBlocks.SLATE, drops(ModBlocks.SLATE, ModBlocks.COBBLED_SLATE));
+        addDrop(ModBlocks.COBBLED_SLATE);
+        addDrop(ModBlocks.COBBLED_SLATE_STAIRS);
+        addDrop(ModBlocks.COBBLED_SLATE_SLAB);
+        addDrop(ModBlocks.COBBLED_SLATE_WALL);
         addDrop(ModBlocks.POLISHED_SLATE);
         addDrop(ModBlocks.POLISHED_SLATE_STAIRS);
         addDrop(ModBlocks.POLISHED_SLATE_SLAB);

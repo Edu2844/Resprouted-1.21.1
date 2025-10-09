@@ -1,6 +1,10 @@
 {
   "values": [
     "resprouted:slate",
+    "resprouted:cobbled_slate",
+    "resprouted:cobbled_slate_slab",
+    "resprouted:cobbled_slate_stairs",
+    "resprouted:cobbled_slate_wall",
     "resprouted:polished_slate",
     "resprouted:polished_slate_slab",
     "resprouted:polished_slate_stairs",

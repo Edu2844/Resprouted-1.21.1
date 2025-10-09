@@ -135,6 +135,10 @@ public class ModItemGroups {
                     .displayName(Text.translatable("itemgroup.resprouted.decoration"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModBlocks.SLATE);
+                        entries.add(ModBlocks.COBBLED_SLATE);
+                        entries.add(ModBlocks.COBBLED_SLATE_SLAB);
+                        entries.add(ModBlocks.COBBLED_SLATE_STAIRS);
+                        entries.add(ModBlocks.COBBLED_SLATE_WALL);
                         entries.add(ModBlocks.POLISHED_SLATE);
                         entries.add(ModBlocks.POLISHED_SLATE_SLAB);
                         entries.add(ModBlocks.POLISHED_SLATE_STAIRS);

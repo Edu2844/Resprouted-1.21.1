@@ -4,6 +4,7 @@ import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.util.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -130,7 +131,7 @@ public class StakeBlock extends Block {
             return ItemActionResult.FAIL;
         }
         //Case 1: Crop
-        if (!state.get(StakeBlock.HAS_ROPE) && world.getBlockState(pos.down()).isIn(ModTags.Blocks.FERTILE_SOILS)) {
+        if (!state.get(StakeBlock.HAS_ROPE) && (world.getBlockState(pos.down()).isIn(ModTags.Blocks.FERTILE_SOILS) || world.getBlockState(pos.down()).isOf(Blocks.FARMLAND))) {
             Optional<BlockState> crop = CropStakeBlock.getCropForSeed(stack.getItem());
             if (crop.isPresent()) {
                 world.setBlockState(pos, crop.get(), Block.NOTIFY_ALL);

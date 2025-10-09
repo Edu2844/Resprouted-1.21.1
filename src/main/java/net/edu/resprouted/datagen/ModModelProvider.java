@@ -25,6 +25,11 @@ public class ModModelProvider extends FabricModelProvider {
         // =================================================
         blockStateModelGenerator.registerMirrorable(ModBlocks.SLATE);
 
+        BlockStateModelGenerator.BlockTexturePool pclate = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.COBBLED_SLATE);
+        pclate.stairs(ModBlocks.COBBLED_SLATE_STAIRS);
+        pclate.slab(ModBlocks.COBBLED_SLATE_SLAB);
+        pclate.wall(ModBlocks.COBBLED_SLATE_WALL);
+
         BlockStateModelGenerator.BlockTexturePool pslate = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.POLISHED_SLATE);
         pslate.stairs(ModBlocks.POLISHED_SLATE_STAIRS);
         pslate.slab(ModBlocks.POLISHED_SLATE_SLAB);
