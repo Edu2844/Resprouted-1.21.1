@@ -3,7 +3,7 @@ package net.edu.resprouted.item.custom;
 import dev.architectury.fluid.FluidStack;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
-import net.edu.resprouted.util.FluidQualityHelper;
+import net.edu.resprouted.util.FluidUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -146,7 +146,7 @@ public class BoozeBottleItem extends Item {
         BoozeBottleItem bottleItem = FLUID_TO_BOTTLE.get(fluid);
 
         if (bottleItem != null) {
-            float quality = FluidQualityHelper.getQuality(fluidStack);
+            float quality = FluidUtils.getQuality(fluidStack);
             ItemStack bottle = new ItemStack(bottleItem);
             setQuality(bottle, quality);
             return bottle;
@@ -157,7 +157,7 @@ public class BoozeBottleItem extends Item {
 
     public FluidStack toFluidStack(ItemStack bottle) {
         float quality = getQuality(bottle);
-        return FluidQualityHelper.withQuality(fluidType, 250, quality);
+        return FluidUtils.withQuality(fluidType, 250, quality);
     }
 
     public static BoozeBottleItem getBottleForFluid(Fluid fluid) {

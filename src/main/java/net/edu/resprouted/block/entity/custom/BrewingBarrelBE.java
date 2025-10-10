@@ -7,7 +7,7 @@ import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.item.custom.BoozeBottleItem;
 import net.edu.resprouted.recipe.custom.BrewingBarrelRecipe;
 import net.edu.resprouted.screen.custom.BrewingBarrelScreenHandler;
-import net.edu.resprouted.util.FluidQualityHelper;
+import net.edu.resprouted.util.FluidUtils;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -494,8 +494,8 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
                     );
                     existingFluid.applyComponents(output.getResource().getComponents());
 
-                    float existingQuality = FluidQualityHelper.getQuality(existingFluid);
-                    FluidQualityHelper.setQuality(newResult, existingQuality);
+                    float existingQuality = FluidUtils.getQuality(existingFluid);
+                    FluidUtils.setQuality(newResult, existingQuality);
                 }
 
                 FluidVariant resultVariant = FluidVariant.of(newResult.getFluid())

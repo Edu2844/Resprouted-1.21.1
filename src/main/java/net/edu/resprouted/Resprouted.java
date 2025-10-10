@@ -58,7 +58,7 @@ public class Resprouted implements ModInitializer {
 		CatalogData.init();
 		ModEffects.registerEffects();
 		ModFluids.registerModFluids();
-		BottleInteractions.registerFluidInteractions();
+		BottleInteractions.registerBottleInteractions();
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
 		ModItems.registerModItems();

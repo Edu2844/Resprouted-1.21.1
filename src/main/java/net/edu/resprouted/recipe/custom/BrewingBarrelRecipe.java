@@ -2,7 +2,7 @@ package net.edu.resprouted.recipe.custom;
 
 import dev.architectury.fluid.FluidStack;
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.util.FluidQualityHelper;
+import net.edu.resprouted.util.FluidUtils;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.math.random.Random;
 
@@ -36,9 +36,9 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
         if (matches(in, aux) && outputFluid != null) {
             FluidStack out = FluidStack.create(outputFluid, in.getAmount());
 
-            if (FluidQualityHelper.hasQuality(aux)) {
+            if (FluidUtils.hasQuality(aux)) {
 
-                float auxQuality = FluidQualityHelper.getQuality(aux);
+                float auxQuality = FluidUtils.getQuality(aux);
                 int minChange = getMinBrewQualityChange();
                 int maxChange = getMaxBrewQualityChange();
                 if (maxChange < minChange) maxChange = minChange;
@@ -47,10 +47,10 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
 
                 float quality = Math.max(Math.min(((brewQualityChange + (int) (100 * auxQuality)) / 100F), 1), 0);
 
-                FluidQualityHelper.setQuality(out, quality);
+                FluidUtils.setQuality(out, quality);
 
             } else {
-                FluidQualityHelper.setQuality(out, getBaseQuality(random));
+                FluidUtils.setQuality(out, getBaseQuality(random));
             }
 
             return out;
@@ -63,7 +63,7 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
 
         if (matches(in, null) && outputFluid != null) {
             FluidStack out = FluidStack.create(outputFluid, in.getAmount());
-            FluidQualityHelper.setQuality(out, getBaseQuality(random));
+            FluidUtils.setQuality(out, getBaseQuality(random));
 
             return out;
         }

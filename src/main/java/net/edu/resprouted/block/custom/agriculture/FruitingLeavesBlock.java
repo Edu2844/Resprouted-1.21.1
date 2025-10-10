@@ -1,6 +1,5 @@
 package net.edu.resprouted.block.custom.agriculture;
 
-import net.edu.resprouted.util.HarvestUtils;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -18,7 +17,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-import java.util.List;
 
 public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
     private static final int GROW_CHANCE = 25;
@@ -88,9 +86,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(FruitingLeavesBlock.AGE) == getMaxAge()) {
-            for (ItemStack drop : getHarvestResult(world.random)) {
-                player.giveItemStack(drop);
-            }
+            player.giveItemStack(new ItemStack(Items.APPLE));
             world.setBlockState(pos, state.with(FruitingLeavesBlock.AGE, 0), Block.NOTIFY_ALL);
 
             world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES,
@@ -101,11 +97,6 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
         return ItemActionResult.FAIL;
     }
 
-    protected List<ItemStack> getHarvestResult(Random random) {
-        return HarvestUtils.create(random)
-                .add(Items.APPLE)
-                .generate();
-    }
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {

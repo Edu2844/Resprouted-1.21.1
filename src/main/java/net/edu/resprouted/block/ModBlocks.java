@@ -13,12 +13,12 @@ import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.registry.ResproutedWoodTypes;
 import net.edu.resprouted.util.CabinetRegistry;
-import net.edu.resprouted.util.HarvestUtils;
 import net.edu.resprouted.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -571,28 +571,19 @@ public class ModBlocks {
     public static final Block GRAPE_STEM = registerBlockWithoutBlockItem("grape_stem", new GrapeStemBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)));
     public static final Block FERTILE_SOIL = registerBlock("fertile_soil", new FertileSoilBlock(AbstractBlock.Settings.copy(Blocks.FARMLAND)));
     public static final Block STAKE = registerBlock("stake", new StakeBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
-    public static final Block TOMATO_CROP = registerBlockWithoutBlockItem("tomato_crop",
-            new CropStakeBlock(AbstractBlock.Settings.copy(Blocks.WHEAT),
-                    () -> ModItems.TOMATO_SEEDS,
+    public static final Block TOMATO_CROP = registerBlockWithoutBlockItem("tomato_crop", new CropStakeBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.TOMATO_SEEDS,
                     2,
                     4,
-                    (random) -> HarvestUtils.create(random)
-                            .add(ModItems.TOMATO)
-                            .generate()
-            )
-    );
-    public static final Block CHILI_CROP = registerBlockWithoutBlockItem("chili_crop",
-            new CropStakeBlock(
-                    AbstractBlock.Settings.copy(Blocks.WHEAT),
-                    () -> ModItems.CHILI_PEPPER_SEEDS,
+                    player -> player.giveItemStack(new ItemStack(ModItems.TOMATO))));
+    public static final Block CHILI_CROP = registerBlockWithoutBlockItem("chili_crop", new CropStakeBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.CHILI_PEPPER_SEEDS,
                     1,
                     4,
-                    (random) -> HarvestUtils.create(random)
-                            .add(ModItems.CHILI_PEPPER)
-                            .add(ModItems.GHOST_PEPPER, 0.03f)
-                            .generate()
-            )
-    );
+                    player -> {
+                        player.giveItemStack(new ItemStack(ModItems.CHILI_PEPPER));
+                        if (player.getWorld().random.nextFloat() < 0.03f) {
+                            player.giveItemStack(new ItemStack(ModItems.GHOST_PEPPER));
+                        }
+                    }));
     public static final Block APPLE_TREE = registerBlockWithoutBlockItem("apple_tree", new AppleTreeBlock(AbstractBlock.Settings.create().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).pistonBehavior(PistonBehavior.DESTROY).mapColor(MapColor.DARK_GREEN)));
     public static final Block APPLE_LEAVES = registerBlock("apple_leaves", new FruitingLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).nonOpaque()));
     public static final Block APPLE_SAPLING = registerBlock("apple_sapling", new SaplingBlock(ModSaplingGenerators.APPLE, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING).nonOpaque().solidBlock(Blocks::never).suffocates(Blocks::never)));

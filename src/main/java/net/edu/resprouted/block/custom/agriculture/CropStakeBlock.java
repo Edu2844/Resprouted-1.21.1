@@ -25,6 +25,7 @@ import net.minecraft.world.WorldView;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class CropStakeBlock extends CropBlock {
@@ -36,17 +37,16 @@ public class CropStakeBlock extends CropBlock {
     private final Supplier<ItemConvertible> seedsItemSupplier;
     private final int maxVerticalGrowth;
     private final int resetAge;
-    private final HarvestProvider harvestProvider;
+    private final Consumer<PlayerEntity> harvestConsumer;
 
-    public CropStakeBlock(Settings settings, Supplier<ItemConvertible> seedsItemSupplier, int maxVerticalGrowth, int resetAge, HarvestProvider harvestProvider) {
+    public CropStakeBlock(Settings settings, Supplier<ItemConvertible> seedsItemSupplier, int maxVerticalGrowth, int resetAge, Consumer<PlayerEntity> harvestConsumer) {
         super(settings);
         this.seedsItemSupplier = seedsItemSupplier;
         this.maxVerticalGrowth = maxVerticalGrowth;
         this.resetAge = resetAge;
-        this.harvestProvider = harvestProvider;
+        this.harvestConsumer = harvestConsumer;
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
-
 
     // ========= PROPIEDADES Y ESTADO =========
     @Override
@@ -71,13 +71,13 @@ public class CropStakeBlock extends CropBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(ModTags.Blocks.FERTILE_SOILS);
+        return floor.isIn(ModTags.Blocks.FERTILE_SOILS)||floor.isOf(Blocks.FARMLAND);
     }
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockState below = world.getBlockState(pos.down());
-        return below.isIn(ModTags.Blocks.FERTILE_SOILS) || below.getBlock() instanceof CropStakeBlock || below.isOf(Blocks.FARMLAND);
+        return below.isIn(ModTags.Blocks.FERTILE_SOILS) || below.getBlock() instanceof CropStakeBlock||below.isOf(Blocks.FARMLAND);
     }
 
     @Override
@@ -109,6 +109,12 @@ public class CropStakeBlock extends CropBlock {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             if (!world.isClient) {
+
+                List<ItemStack> drops = Block.getDroppedStacks(state, (ServerWorld) world, pos, null);
+                for (ItemStack drop : drops) {
+                    Block.dropStack(world, pos, drop);
+                }
+
                 world.setBlockState(pos, ModBlocks.STAKE.getDefaultState(), Block.NOTIFY_ALL);
             }
         }
@@ -169,11 +175,8 @@ public class CropStakeBlock extends CropBlock {
     }
 
     private void harvestBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (harvestProvider != null) {
-            List<ItemStack> drops = harvestProvider.getHarvest(world.getRandom());
-            for (ItemStack drop : drops) {
-                player.giveItemStack(drop);
-            }
+        if (harvestConsumer != null) {
+            harvestConsumer.accept(player);
         }
         world.setBlockState(pos, state.with(getAgeProperty(), getResetAge()), Block.NOTIFY_ALL);
     }
@@ -208,8 +211,4 @@ public class CropStakeBlock extends CropBlock {
         return Optional.empty();
     }
 
-    @FunctionalInterface
-    public interface HarvestProvider {
-        List<ItemStack> getHarvest(Random random);
-    }
 }

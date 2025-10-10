@@ -12,7 +12,7 @@ import java.util.Map;
 public class BottleInteractions {
     public static final Map<Block, FluidBottleData> FLUID_BOTTLE_MAP = new HashMap<>();
 
-    public static void registerFluidInteractions() {
+    public static void registerBottleInteractions() {
         FLUID_BOTTLE_MAP.put(ModBlocks.HONEY_FLUID_BLOCK, new FluidBottleData(Items.HONEY_BOTTLE));
 
         FLUID_BOTTLE_MAP.put(ModBlocks.APPLE_JUICE_FLUID_BLOCK, new FluidBottleData(ModItems.APPLE_JUICE_BOTTLE));

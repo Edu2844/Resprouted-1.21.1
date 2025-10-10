@@ -2,7 +2,6 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.item.ModItems;
-import net.edu.resprouted.util.HarvestUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
@@ -171,13 +170,12 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     }
 
     // ========= INTERACTIONS =========
+
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.isOf(ModBlocks.GRAPE_LEAVES) && state.get(AGE) == MAX_AGE) {
 
-            for (ItemStack drop : getHarvestResult(world.random)) {
-                player.giveItemStack(drop);
-            }
+            player.giveItemStack(new ItemStack(ModItems.GRAPES));
 
             world.setBlockState(pos, state.with(AGE, 0), Block.NOTIFY_ALL);
 
@@ -188,6 +186,7 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     }
 
     // ========= FORM Y TRANSFORMATIONS =========
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if (state.get(DIST) < 1) {
@@ -290,9 +289,4 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
         return 7.0F;
     }
 
-    protected List<ItemStack> getHarvestResult(Random random) {
-        return HarvestUtils.create(random)
-                .add(ModItems.GRAPES)
-                .generate();
-    }
 }
