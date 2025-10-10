@@ -23,9 +23,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class CropStakeBlock extends CropBlock {
     public static final int MAX_AGE = 7;
@@ -33,10 +33,20 @@ public class CropStakeBlock extends CropBlock {
     protected static final VoxelShape CROP_SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
     protected static final VoxelShape STAKE_SHAPE = Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
 
-    public CropStakeBlock(Settings settings) {
+    private final Supplier<ItemConvertible> seedsItemSupplier;
+    private final int maxVerticalGrowth;
+    private final int resetAge;
+    private final HarvestProvider harvestProvider;
+
+    public CropStakeBlock(Settings settings, Supplier<ItemConvertible> seedsItemSupplier, int maxVerticalGrowth, int resetAge, HarvestProvider harvestProvider) {
         super(settings);
+        this.seedsItemSupplier = seedsItemSupplier;
+        this.maxVerticalGrowth = maxVerticalGrowth;
+        this.resetAge = resetAge;
+        this.harvestProvider = harvestProvider;
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
+
 
     // ========= PROPIEDADES Y ESTADO =========
     @Override
@@ -56,7 +66,7 @@ public class CropStakeBlock extends CropBlock {
 
     @Override
     protected ItemConvertible getSeedsItem() {
-        return null;
+        return seedsItemSupplier.get();
     }
 
     @Override
@@ -74,13 +84,14 @@ public class CropStakeBlock extends CropBlock {
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int age = getAge(state);
 
-        //Regular Growth
+        // Regular
         if (age < getMaxAge() && world.getBaseLightLevel(pos, 0) >= 9) {
             if (random.nextInt(5) == 0) {
                 world.setBlockState(pos, state.with(AGE, age + 1));
             }
         }
-        //Vertical Growth
+
+        // Vertical
         if (age >= 4 && pos.getY() < world.getTopY()) {
             BlockPos above = pos.up();
             BlockState aboveState = world.getBlockState(above);
@@ -98,17 +109,10 @@ public class CropStakeBlock extends CropBlock {
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (!state.isOf(newState.getBlock())) {
             if (!world.isClient) {
-                if (getAge(state) >= getMaxAge()) {
-                    dropMatureItem(world, pos, state);
-                }
                 world.setBlockState(pos, ModBlocks.STAKE.getDefaultState(), Block.NOTIFY_ALL);
             }
         }
         super.onStateReplaced(state, world, pos, newState, moved);
-    }
-
-    protected void dropMatureItem(World world, BlockPos pos, BlockState state) {
-        //dropStack(world, pos, new ItemStack((item), (count));
     }
 
     @Override
@@ -117,11 +121,11 @@ public class CropStakeBlock extends CropBlock {
     }
 
     // ========= INTERACCIÓN =========
+
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (getAge(state) >= getMaxAge()) {
             if (!world.isClient) {
-
                 harvestBlock(world, pos, state, player);
                 harvestVertical(world, pos, player, true);
                 harvestVertical(world, pos, player, false);
@@ -134,6 +138,7 @@ public class CropStakeBlock extends CropBlock {
     }
 
     // ========= FORMA Y TRANSFORMACIONES =========
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return CROP_SHAPE;
@@ -145,6 +150,7 @@ public class CropStakeBlock extends CropBlock {
     }
 
     // ========= HELPERS =========
+
     private void harvestVertical(World world, BlockPos origin, PlayerEntity player, boolean upwards) {
         BlockPos.Mutable currentPos = origin.mutableCopy();
         int direction = upwards ? 1 : -1;
@@ -163,8 +169,11 @@ public class CropStakeBlock extends CropBlock {
     }
 
     private void harvestBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        for (ItemStack drop : getHarvestResult(world.getRandom())) {
-            player.giveItemStack(drop);
+        if (harvestProvider != null) {
+            List<ItemStack> drops = harvestProvider.getHarvest(world.getRandom());
+            for (ItemStack drop : drops) {
+                player.giveItemStack(drop);
+            }
         }
         world.setBlockState(pos, state.with(getAgeProperty(), getResetAge()), Block.NOTIFY_ALL);
     }
@@ -180,30 +189,27 @@ public class CropStakeBlock extends CropBlock {
     }
 
     protected int getMaxVerticalGrowth() {
-        return 2; //This + 2 = 3 high
-    }
-
-    protected List<ItemStack> getHarvestResult(Random random) {
-        return Collections.emptyList();
+        return maxVerticalGrowth;
     }
 
     protected int getResetAge() {
-        return 4;
+        return resetAge;
     }
 
     public static Optional<BlockState> getCropForSeed(Item seedItem) {
         for (Block block : Registries.BLOCK) {
-
             if (block instanceof CropStakeBlock stakeCrop) {
                 ItemConvertible seed = stakeCrop.getSeedsItem();
-
                 if (seed != null && seed.asItem() == seedItem) {
                     return Optional.of(block.getDefaultState());
                 }
             }
         }
-
         return Optional.empty();
     }
-}
 
+    @FunctionalInterface
+    public interface HarvestProvider {
+        List<ItemStack> getHarvest(Random random);
+    }
+}
