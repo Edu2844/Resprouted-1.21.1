@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-09T20:24:38.8571999	Resprouted/Block Loot Tables
+// 1.21.1	2025-10-10T13:26:22.5015326	Resprouted/Block Loot Tables
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 327b905f23efd6a06058ec8aace92e8df372febd data\resprouted\loot_table\blocks\condenser.json
 634967a8bb65c47a8b6be880b25af0ffafaf001f data\resprouted\loot_table\blocks\slate_brick_stairs.json
@@ -17,7 +17,6 @@ d2551a67e68b73796a89145dd39f93af287aa228 data\resprouted\loot_table\blocks\lime_
 496e3dde50024532be312def22177918a9c08fcc data\resprouted\loot_table\blocks\andesite_pillar.json
 af64b5b9c21851b986bd1130b0102c2f72ad6a52 data\resprouted\loot_table\blocks\diorite_brick_slab.json
 a98e63b0ab9e2fe7ebdad801a6f55ef2242e1910 data\resprouted\loot_table\blocks\cobbled_slate_wall.json
-2b1c23a875a975c8ba27c5ac02252aca1ae9d3c4 data\resprouted\loot_table\blocks\apple_leaves.json
 25a3b4f85b4a66523a5829464a349c343cb4fd0e data\resprouted\loot_table\blocks\white_painted_planks.json
 d963b9728189716f15ff9f3551cbf013915bf8b5 data\resprouted\loot_table\blocks\olive_planks.json
 51d14563806d4652b826ad7b0cf99b44bc2a7498 data\resprouted\loot_table\blocks\waxed_oxidized_copper_soul_lantern.json

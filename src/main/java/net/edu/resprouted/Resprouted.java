@@ -9,7 +9,7 @@ import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.mixin.helper.BlockEntityTypeAccessor;
 import net.edu.resprouted.networking.ModMessages;
 import net.edu.resprouted.registry.ResproutedResourcePacks;
-import net.edu.resprouted.util.CabinetRegistry;
+import net.edu.resprouted.registry.CabinetRegistry;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.resource.reload.FluidContainerLoader;
 import net.edu.resprouted.event.ModEvents;

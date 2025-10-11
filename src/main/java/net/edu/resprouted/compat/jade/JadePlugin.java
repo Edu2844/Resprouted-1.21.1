@@ -1,6 +1,6 @@
 package net.edu.resprouted.compat.jade;
 
-import net.edu.resprouted.block.custom.agriculture.FruitingLeavesBlock;
+import net.edu.resprouted.block.custom.agriculture.AppleLeavesBlock;
 import net.edu.resprouted.block.custom.agriculture.GrapeLeavesBlock;
 import net.edu.resprouted.compat.jade.component.FruitingLeavesComponentProvider;
 import net.edu.resprouted.compat.jade.component.GrapeLeavesComponentProvider;
@@ -16,7 +16,7 @@ public class JadePlugin implements IWailaPlugin {
     }
     @Override
     public void registerClient(IWailaClientRegistration registration) {
-        registration.registerBlockComponent(FruitingLeavesComponentProvider.INSTANCE, FruitingLeavesBlock.class);
+        registration.registerBlockComponent(FruitingLeavesComponentProvider.INSTANCE, AppleLeavesBlock.class);
         registration.registerBlockComponent(GrapeLeavesComponentProvider.INSTANCE, GrapeLeavesBlock.class);
     }
 }

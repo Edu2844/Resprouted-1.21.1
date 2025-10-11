@@ -18,11 +18,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 
-public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
+public class AppleLeavesBlock extends LeavesBlock implements Fertilizable {
     private static final int GROW_CHANCE = 25;
     public static final IntProperty AGE = IntProperty.of("age", 0, 3);
 
-    public FruitingLeavesBlock(Settings settings) {
+    public AppleLeavesBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(PERSISTENT, false).with(DISTANCE, 1));
     }
@@ -40,7 +40,7 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
 
     @Override
     public boolean hasRandomTicks(BlockState state) {
-        return state.get(AGE) != getMaxAge();
+        return state.get(AGE) != getMaxAge() || state.get(DISTANCE) == 7 && !(Boolean)state.get(PERSISTENT);
     }
 
     public static boolean isExposedToAir(WorldView world, BlockPos pos) {
@@ -85,9 +85,9 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
     // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (state.get(FruitingLeavesBlock.AGE) == getMaxAge()) {
+        if (state.get(AppleLeavesBlock.AGE) == getMaxAge()) {
             player.giveItemStack(new ItemStack(Items.APPLE));
-            world.setBlockState(pos, state.with(FruitingLeavesBlock.AGE, 0), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(AppleLeavesBlock.AGE, 0), Block.NOTIFY_ALL);
 
             world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES,
                     SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -97,20 +97,4 @@ public class FruitingLeavesBlock extends LeavesBlock implements Fertilizable {
         return ItemActionResult.FAIL;
     }
 
-
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.isOf(newState.getBlock())) {
-            if (!world.isClient) {
-                if (state.get(AGE) == getMaxAge()) {
-                    dropMatureItem(world, pos);
-                }
-            }
-        }
-        super.onStateReplaced(state, world, pos, newState, moved);
-    }
-
-    protected void dropMatureItem(World world, BlockPos pos) {
-        dropStack(world, pos, new ItemStack(Items.APPLE, 1));
-    }
 }

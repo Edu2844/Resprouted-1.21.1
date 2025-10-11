@@ -1,7 +1,7 @@
 package net.edu.resprouted.compat.jade.component;
 
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.block.custom.agriculture.FruitingLeavesBlock;
+import net.edu.resprouted.block.custom.agriculture.AppleLeavesBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.text.MutableText;
@@ -21,9 +21,9 @@ public class FruitingLeavesComponentProvider implements IBlockComponentProvider 
         BlockState state = accessor.getBlockState();
         Block block = state.getBlock();
 
-        if (block instanceof FruitingLeavesBlock fruitingLeaves) {
-            if (FruitingLeavesBlock.isExposedToAir(accessor.getLevel(), accessor.getPosition())) {
-                int currentAge = state.get(FruitingLeavesBlock.AGE);
+        if (block instanceof AppleLeavesBlock fruitingLeaves) {
+            if (AppleLeavesBlock.isExposedToAir(accessor.getLevel(), accessor.getPosition())) {
+                int currentAge = state.get(AppleLeavesBlock.AGE);
                 int maxAge = fruitingLeaves.getMaxAge();
                 float growthValue = (float) currentAge / maxAge;
 

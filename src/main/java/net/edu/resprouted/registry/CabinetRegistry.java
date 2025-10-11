@@ -1,4 +1,4 @@
-package net.edu.resprouted.util;
+package net.edu.resprouted.registry;
 
 import net.edu.resprouted.block.custom.decorative.CabinetBlock;
 import net.minecraft.block.Block;

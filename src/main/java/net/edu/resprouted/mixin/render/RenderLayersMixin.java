@@ -1,6 +1,6 @@
 package net.edu.resprouted.mixin.render;
 
-import net.edu.resprouted.block.custom.agriculture.FruitingLeavesBlock;
+import net.edu.resprouted.block.custom.agriculture.AppleLeavesBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.render.RenderLayer;
@@ -17,7 +17,7 @@ public abstract class RenderLayersMixin {
     private static void forceCutoutForFruitingLeaves(BlockState state, CallbackInfoReturnable<RenderLayer> cir) {
         Block block = state.getBlock();
 
-        if (block instanceof FruitingLeavesBlock) {
+        if (block instanceof AppleLeavesBlock) {
             cir.setReturnValue(RenderLayer.getCutout());
         }
     }

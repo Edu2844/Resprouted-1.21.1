@@ -73,14 +73,10 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        super.onStateReplaced(state, world, pos, newState, moved);
         if (!state.isOf(newState.getBlock()) && !world.isClient) {
             Direction.Axis axis = state.get(AXIS);
             int dist = state.get(DIST);
-            int age = state.get(AGE);
-
-            if (age == MAX_AGE) {
-                dropStack(world, pos, new ItemStack(ModItems.GRAPES));
-            }
 
             if (dist == 0) {
                 BlockPos pos1 = axis == Direction.Axis.X ? pos.west() : pos.north();
@@ -97,8 +93,15 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
             world.setBlockState(pos, ModBlocks.ROPE.getDefaultState().with(RopeBlock.AXIS, axis), Block.NOTIFY_ALL);
         }
+    }
 
-        super.onStateReplaced(state, world, pos, newState, moved);
+    @Override
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
+        if (!world.isClient && !player.isCreative()) {
+            Block.dropStacks(state, world, pos, null, player, player.getMainHandStack());
+        }
+        return state;
     }
 
     @Override
@@ -170,7 +173,6 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     }
 
     // ========= INTERACTIONS =========
-
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.isOf(ModBlocks.GRAPE_LEAVES) && state.get(AGE) == MAX_AGE) {
@@ -186,7 +188,6 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     }
 
     // ========= FORM Y TRANSFORMATIONS =========
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if (state.get(DIST) < 1) {
@@ -196,7 +197,6 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     }
 
     // ========= HELPER METHODS =========
-
     private boolean isCenterValid(BlockState state, Direction.Axis axis) {
         return state.isOf(this) && state.get(DIST) == 0 && state.get(AXIS) == axis;
     }

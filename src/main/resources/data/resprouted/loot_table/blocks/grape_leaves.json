@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "resprouted:grape_leaves",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "age": "3"
+              }
+            },
+            {
+              "condition": "minecraft:survives_explosion"
+            }
+          ],
+          "name": "resprouted:grapes"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

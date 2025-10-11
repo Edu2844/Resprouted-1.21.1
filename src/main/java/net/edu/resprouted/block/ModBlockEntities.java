@@ -1,7 +1,7 @@
 package net.edu.resprouted.block;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.entity.custom.*;
-import net.edu.resprouted.util.CabinetRegistry;
+import net.edu.resprouted.registry.CabinetRegistry;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

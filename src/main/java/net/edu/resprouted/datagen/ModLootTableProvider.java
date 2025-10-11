@@ -215,7 +215,6 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.STAKE);
         addDrop(ModBlocks.CRUSHING_TUB);
         addDrop(ModBlocks.EVAPORATING_BASIN);
-        addDrop(ModBlocks.APPLE_LEAVES, leavesDrops(Blocks.OAK_LEAVES, ModBlocks.APPLE_SAPLING, 0.0625f));
 
         //ALCHEMY
         addDrop(ModBlocks.CONDENSER);

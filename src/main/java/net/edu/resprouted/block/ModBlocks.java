@@ -12,7 +12,7 @@ import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.registry.ResproutedWoodTypes;
-import net.edu.resprouted.util.CabinetRegistry;
+import net.edu.resprouted.registry.CabinetRegistry;
 import net.edu.resprouted.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -585,7 +585,7 @@ public class ModBlocks {
                         }
                     }));
     public static final Block APPLE_TREE = registerBlockWithoutBlockItem("apple_tree", new AppleTreeBlock(AbstractBlock.Settings.create().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).pistonBehavior(PistonBehavior.DESTROY).mapColor(MapColor.DARK_GREEN)));
-    public static final Block APPLE_LEAVES = registerBlock("apple_leaves", new FruitingLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).nonOpaque()));
+    public static final Block APPLE_LEAVES = registerBlock("apple_leaves", new AppleLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).nonOpaque()));
     public static final Block APPLE_SAPLING = registerBlock("apple_sapling", new SaplingBlock(ModSaplingGenerators.APPLE, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING).nonOpaque().solidBlock(Blocks::never).suffocates(Blocks::never)));
     public static final Block CRUSHING_TUB = registerBlock("crushing_tub", new CrushingTubBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
     public static final Block EVAPORATING_BASIN = registerBlock("evaporating_basin", new EvaporatingBasinBlock(AbstractBlock.Settings.copy(Blocks.TERRACOTTA).nonOpaque()));

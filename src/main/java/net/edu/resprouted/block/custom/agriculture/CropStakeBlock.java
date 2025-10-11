@@ -23,7 +23,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -107,18 +106,21 @@ public class CropStakeBlock extends CropBlock {
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        super.onStateReplaced(state, world, pos, newState, moved);
         if (!state.isOf(newState.getBlock())) {
             if (!world.isClient) {
-
-                List<ItemStack> drops = Block.getDroppedStacks(state, (ServerWorld) world, pos, null);
-                for (ItemStack drop : drops) {
-                    Block.dropStack(world, pos, drop);
-                }
-
                 world.setBlockState(pos, ModBlocks.STAKE.getDefaultState(), Block.NOTIFY_ALL);
             }
         }
-        super.onStateReplaced(state, world, pos, newState, moved);
+    }
+
+    @Override
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
+        if (!world.isClient && !player.isCreative()) {
+            Block.dropStacks(state, world, pos, null, player, player.getMainHandStack());
+        }
+        return state;
     }
 
     @Override
