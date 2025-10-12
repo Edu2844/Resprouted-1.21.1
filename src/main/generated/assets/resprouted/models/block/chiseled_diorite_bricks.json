@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "resprouted:block/diorite/chiseled_diorite"
+    "all": "resprouted:block/diorite/chiseled_diorite_bricks"
   }
 }

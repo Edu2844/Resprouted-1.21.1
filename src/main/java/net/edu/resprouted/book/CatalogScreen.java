@@ -123,7 +123,7 @@ public class CatalogScreen extends Screen {
 
         List<CatalogData.Page> pages = selectedEntry.getPages();
 
-        // Prev button
+        //Prev btn
         if (currentPageIndex > 0) {
             drawButtonWithTooltip(
                     context,
@@ -138,7 +138,7 @@ public class CatalogScreen extends Screen {
             );
         }
 
-        // Next button
+        //Next btn
         if (currentPageIndex < pages.size() - 1) {
             drawButtonWithTooltip(
                     context,
@@ -153,7 +153,7 @@ public class CatalogScreen extends Screen {
             );
         }
 
-        // Back to category button
+        //Back to category btn
         drawButtonWithTooltip(
                 context,
                 CATEGORY_ICON,
@@ -166,7 +166,7 @@ public class CatalogScreen extends Screen {
                 mouseY
         );
 
-        // Menu button
+        //Menu btn
         drawButtonWithTooltip(
                 context,
                 MENU_ICON,

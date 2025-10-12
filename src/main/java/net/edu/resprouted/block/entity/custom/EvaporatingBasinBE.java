@@ -6,7 +6,6 @@ import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipe;
 import net.edu.resprouted.recipe.Input.EvaporatingBasinRecipeInput;
-import net.edu.resprouted.util.FluidUtils;
 import net.edu.resprouted.util.ModTags;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;

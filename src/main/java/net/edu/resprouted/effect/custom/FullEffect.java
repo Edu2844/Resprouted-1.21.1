@@ -7,9 +7,4 @@ public class FullEffect extends StatusEffect {
     public FullEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
-
-    @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return false;
-    }
 }

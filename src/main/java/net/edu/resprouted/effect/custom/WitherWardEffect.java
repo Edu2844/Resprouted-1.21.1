@@ -7,9 +7,4 @@ public class WitherWardEffect extends StatusEffect {
     public WitherWardEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
-
-    @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return false;
-    }
 }

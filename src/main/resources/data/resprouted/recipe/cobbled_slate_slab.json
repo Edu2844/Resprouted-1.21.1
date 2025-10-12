@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "building",
+	"key": {
+		"#": {
+			"item": "resprouted:cobbled_slate"
+		}
+	},
+	"pattern": [
+		"###"
+	],
+	"result": {
+		"count": 6,
+		"id": "resprouted:cobbled_slate_slab"
+	}
+}

@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 public class FertileSoilBlock extends FarmlandBlock {
-    public static final float GROWTH_BOOST = 0.15f;
+    //public static final float GROWTH_BOOST = 0.15f;
 
     public FertileSoilBlock(Settings settings) {
         super(settings);

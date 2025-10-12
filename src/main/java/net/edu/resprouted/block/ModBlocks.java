@@ -83,7 +83,7 @@ public class ModBlocks {
             new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block CRACKED_ANDESITE_BRICKS = registerBlock("cracked_andesite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
-    public static final Block CHISELED_ANDESITE = registerBlock("chiseled_andesite",
+    public static final Block CHISELED_ANDESITE = registerBlock("chiseled_andesite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
     public static final Block ANDESITE_PILLAR = registerBlock("andesite_pillar",
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
@@ -101,7 +101,7 @@ public class ModBlocks {
             new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block CRACKED_DIORITE_BRICKS = registerBlock("cracked_diorite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
-    public static final Block CHISELED_DIORITE = registerBlock("chiseled_diorite",
+    public static final Block CHISELED_DIORITE = registerBlock("chiseled_diorite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
     public static final Block DIORITE_PILLAR = registerBlock("diorite_pillar",
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
@@ -119,7 +119,7 @@ public class ModBlocks {
             new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
     public static final Block CRACKED_GRANITE_BRICKS = registerBlock("cracked_granite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
-    public static final Block CHISELED_GRANITE = registerBlock("chiseled_granite",
+    public static final Block CHISELED_GRANITE = registerBlock("chiseled_granite_bricks",
             new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
     public static final Block GRANITE_PILLAR = registerBlock("granite_pillar",
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));

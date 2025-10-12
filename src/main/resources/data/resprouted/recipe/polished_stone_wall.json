@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"category": "misc",
+	"key": {
+		"#": {
+			"item": "resprouted:polished_stone"
+		}
+	},
+	"pattern": [
+		"###",
+		"###"
+	],
+	"result": {
+		"count": 6,
+		"id": "resprouted:polished_stone_wall"
+	}
+}

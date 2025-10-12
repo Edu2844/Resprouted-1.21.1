@@ -7,9 +7,4 @@ public class UndyingEffect extends StatusEffect {
     public UndyingEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
-
-    @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return false;
-    }
 }
