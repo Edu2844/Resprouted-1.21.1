@@ -675,10 +675,10 @@ public class ModBlocks {
             new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.COHOSH));
 
     public static final Block CORE_ROOT = registerBlockWithoutBlockItem("core_root",
-            new CustomMushroomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.CORE_ROOT));
+            new CustomMushroomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.CORE_ROOT));
 
     public static final Block DEATHSTALK_MUSHROOM = registerBlockWithoutBlockItem("deathstalk_mushroom",
-            CustomMushroomBlock.NetherMushroom(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.DEATHSTALK_MUSHROOM));
+            CustomMushroomBlock.NetherMushroom(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 8), () -> ModItems.DEATHSTALK_MUSHROOM));
 
     public static final Block GINSENG_BLOCK = registerBlockWithoutBlockItem("ginseng_block",
             new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.GINSENG));
@@ -690,7 +690,7 @@ public class ModBlocks {
             new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.MARSH_MALLOW));
 
     public static final Block MOONCAP_MUSHROOM = registerBlockWithoutBlockItem("mooncap_mushroom",
-            new CustomMushroomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 3), () -> ModItems.MOONCAP_MUSHROOM));
+            new CustomMushroomBlock(AbstractBlock.Settings.copy(Blocks.WHEAT).luminance(state -> 15), () -> ModItems.MOONCAP_MUSHROOM));
 
     public static final Block VANTA_LILY_BLOCK = registerBlockWithoutBlockItem("vanta_lily_block",
             new HerbBlock(AbstractBlock.Settings.copy(Blocks.WHEAT), () -> ModItems.VANTA_LILY));

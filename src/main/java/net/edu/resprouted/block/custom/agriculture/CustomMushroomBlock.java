@@ -1,5 +1,6 @@
 package net.edu.resprouted.block.custom.agriculture;
 
+import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemConvertible;
@@ -36,7 +37,9 @@ public class CustomMushroomBlock extends CropBlock {
                         floor.isIn(ModTags.Blocks.FERTILE_SOILS) ||
                         floor.isOf(Blocks.PODZOL) ||
                         floor.isOf(Blocks.STONE) ||
-                        floor.isOf(Blocks.GRASS_BLOCK));
+                        floor.isOf(Blocks.GRASS_BLOCK) ||
+                        floor.isOf(Blocks.DEEPSLATE) ||
+                        floor.isOf(Blocks.TUFF));
     }
     public static CustomMushroomBlock NetherMushroom(Settings settings, Supplier<ItemConvertible> mushroomSupplier) {
         return new CustomMushroomBlock(settings, mushroomSupplier,

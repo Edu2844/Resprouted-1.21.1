@@ -5,6 +5,7 @@ public class ModWorldGeneration {
 
         ModHerbsGeneration.generateHerbs();
         ModTreeGeneration.generateTrees();
+        ModOreGeneration.generateOres();
 
     }
 }

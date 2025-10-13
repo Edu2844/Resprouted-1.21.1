@@ -2,11 +2,15 @@ package net.edu.resprouted.world;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.block.custom.agriculture.CustomMushroomBlock;
 import net.edu.resprouted.block.custom.agriculture.HerbBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.world.gen.feature.*;
@@ -33,7 +37,10 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> HORSETAIL_KEY = registerKey("horsetail_herb");
     public static final RegistryKey<ConfiguredFeature<?, ?>> MARSHMALLOW_KEY = registerKey("marshmalow_herb");
     public static final RegistryKey<ConfiguredFeature<?, ?>> WIND_THISTLE_KEY = registerKey("wind_thistle_herb");
-
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CORE_ROOT_KEY = registerKey("core_root_herb");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> MOONCAP_KEY = registerKey("mooncap_mushroom");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEATHSTALK_MUSHROOM_KEY = registerKey("deathstalk_mushroom");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SLATE_KEY = registerKey("slate");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
 
@@ -125,6 +132,39 @@ public class ModConfiguredFeatures {
                         new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.WIND_THISTLE_BLOCK
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
+
+        //DeathStalk Mushroom
+        register(context, DEATHSTALK_MUSHROOM_KEY, Feature.RANDOM_PATCH,
+                new RandomPatchFeatureConfig(
+                        96,
+                        7,
+                        3,
+                        PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.DEATHSTALK_MUSHROOM
+                                        .getDefaultState().with(CustomMushroomBlock.AGE, 3))))
+                ));
+
+        //Core Root
+        register(context, CORE_ROOT_KEY, Feature.RANDOM_PATCH,
+                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.CORE_ROOT
+                                .getDefaultState().with(CustomMushroomBlock.AGE, 3))),
+                        List.of(Blocks.STONE, Blocks.TUFF, Blocks.ANDESITE, Blocks.DIORITE, Blocks.CLAY, Blocks.DEEPSLATE)));
+
+        //Mooncap Mushroom
+        register(context, MOONCAP_KEY, Feature.RANDOM_PATCH,
+                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.MOONCAP_MUSHROOM
+                                .getDefaultState().with(CustomMushroomBlock.AGE, 3))),
+                        List.of(Blocks.GRASS_BLOCK, Blocks.STONE, Blocks.DEEPSLATE, Blocks.TUFF)));
+
+        //Slate
+        RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
+        List<OreFeatureConfig.Target> limestoneTargets = List.of(
+                OreFeatureConfig.createTarget(stoneReplaceables, ModBlocks.SLATE.getDefaultState())
+        );
+
+        register(context, SLATE_KEY, Feature.ORE, new OreFeatureConfig(limestoneTargets, 33));
     }
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Resprouted.MOD_ID, name));

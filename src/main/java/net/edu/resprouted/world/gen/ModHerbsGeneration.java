@@ -32,5 +32,22 @@ public class ModHerbsGeneration {
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.MEADOW, BiomeKeys.TAIGA, BiomeKeys. WINDSWEPT_HILLS),
                 GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.WIND_THISTLE_PLACED_KEY);
 
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(
+                        BiomeKeys.NETHER_WASTES,
+                        BiomeKeys.SOUL_SAND_VALLEY,
+                        BiomeKeys.CRIMSON_FOREST,
+                        BiomeKeys.WARPED_FOREST,
+                        BiomeKeys.BASALT_DELTAS),
+                GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.DEATHSTALK_MUSHROOM_PLACED_KEY);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_DECORATION, ModPlacedFeatures.CORE_ROOT_PLACED_KEY);
+
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION,
+                ModPlacedFeatures.MOONCAP_SURFACE_PLACED_KEY);
+
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_DECORATION,
+                ModPlacedFeatures.MOONCAP_CAVE_PLACED_KEY);
+
     }
 }

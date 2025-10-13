@@ -2,16 +2,19 @@ package net.edu.resprouted.world;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
-import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.*;
 
 import java.util.List;
 
@@ -38,52 +41,108 @@ public class ModPlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> WIND_THISTLE_PLACED_KEY = registerKey("wind_thistle_placed");
 
+    public static final RegistryKey<PlacedFeature> CORE_ROOT_PLACED_KEY = registerKey("core_root_placed");
+
+    public static final RegistryKey<PlacedFeature> DEATHSTALK_MUSHROOM_PLACED_KEY = registerKey("deathstalk_mushroom_placed");
+
+    public static final RegistryKey<PlacedFeature> MOONCAP_CAVE_PLACED_KEY = registerKey("mooncap_cave_placed");
+
+    public static final RegistryKey<PlacedFeature> MOONCAP_SURFACE_PLACED_KEY = registerKey("mooncap_surface_placed");
+
+    public static final RegistryKey<PlacedFeature> SLATE_PLACED_KEY = registerKey("slate_placed");
+
+
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
+        //Ironwood
         register(context, IRONWOOD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.IRONWOOD_KEY),
                 VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
                         PlacedFeatures.createCountExtraModifier(0, 0.05f, 1), ModBlocks.IRONWOOD_SAPLING));
 
+        //Olive
         register(context, OLIVE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OLIVE_KEY),
                 VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
                         PlacedFeatures.createCountExtraModifier(0, 0.05f, 1), ModBlocks.OLIVE_SAPLING));
 
+        //Aloe Vera
         register(context, ALOE_VERA_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.ALOE_VERA_KEY),
                 RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
+        //Blood Orchid
         register(context, BLOOD_ORCHID_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.BLOOD_ORCHID_KEY),
-                RarityFilterPlacementModifier.of(8), SquarePlacementModifier.of(),
+                RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
+        //Chamomile
         register(context, CHAMOMILE_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.CHAMOMILE_KEY),
                 RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
+        //Cloudsbluff
         register(context, CLOUDSBLUFF_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.CLOUDSBLUFF_KEY),
                 RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
+        //Cohosh
         register(context, COHOSH_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.COHOSH_KEY),
                 RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
+        //Ginseng
         register(context, GINSENG_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.GINSENG_KEY),
                 RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
+        //Horsetail
         register(context, HORSETAIL_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.HORSETAIL_KEY),
                 RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
+        //Marsh Mallow
         register(context, MARSHMALLOW_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.MARSHMALLOW_KEY),
                 RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
+        //Wind Thistle
         register(context, WIND_THISTLE_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.WIND_THISTLE_KEY),
                 RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+
+        //Death Stalk Mushroom
+        register(context, DEATHSTALK_MUSHROOM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DEATHSTALK_MUSHROOM_KEY),
+                CountPlacementModifier.of(20), // ← Muchos para probar
+                SquarePlacementModifier.of(),
+                HeightRangePlacementModifier.uniform(YOffset.fixed(30), YOffset.fixed(90)),
+                BiomePlacementModifier.of());
+
+        //Core Root
+        register(context, CORE_ROOT_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CORE_ROOT_KEY),
+                CountPlacementModifier.of(8),
+                SquarePlacementModifier.of(),
+                HeightRangePlacementModifier.uniform(YOffset.fixed(-48), YOffset.fixed(52)),
+                EnvironmentScanPlacementModifier.of(Direction.UP, BlockPredicate.solid(), 12),
+                RandomOffsetPlacementModifier.vertically(ConstantIntProvider.create(1)),
+                BiomePlacementModifier.of());
+
+        //Mooncap Caves
+        register(context, MOONCAP_CAVE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures. MOONCAP_KEY),
+                CountPlacementModifier.of(4),
+                SquarePlacementModifier.of(),
+                HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(35)),
+                BiomePlacementModifier.of());
+
+        //Mooncap Plains
+        register(context, MOONCAP_SURFACE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures. MOONCAP_KEY),
+                RarityFilterPlacementModifier.of(10),
+                SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
+                BiomePlacementModifier.of());
+
+        //Slate
+        register(context, SLATE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SLATE_KEY),
+                ModOrePlacement.modifiersWithCount(10, HeightRangePlacementModifier.trapezoid(YOffset.fixed(7), YOffset.fixed(80))));
 
     }
 

@@ -173,5 +173,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.RUM_BOTTLE)
                 .add(ModItems.MEAD_BOTTLE)
         ;
+        getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
+                .add(ModBlocks.COBBLED_SLATE.asItem())
+
+        ;
     }
 }
