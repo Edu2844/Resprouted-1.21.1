@@ -2,8 +2,8 @@
   "feature": "resprouted:deathstalk_mushroom",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 20
+      "type": "minecraft:rarity_filter",
+      "chance": 2
     },
     {
       "type": "minecraft:in_square"
@@ -13,10 +13,10 @@
       "height": {
         "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 90
+          "below_top": 0
         },
         "min_inclusive": {
-          "absolute": 30
+          "above_bottom": 0
         }
       }
     },

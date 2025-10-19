@@ -1,6 +1,5 @@
 package net.edu.resprouted.block.custom.agriculture;
 
-import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemConvertible;
@@ -9,6 +8,7 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.WorldView;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -56,6 +56,11 @@ public class CustomMushroomBlock extends CropBlock {
     @Override
     public IntProperty getAgeProperty() {
         return AGE;
+    }
+    @Override
+    protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        BlockPos blockPos = pos.down();
+        return this.canPlantOnTop(world.getBlockState(blockPos), world, blockPos);
     }
     @Override
     public int getMaxAge() {

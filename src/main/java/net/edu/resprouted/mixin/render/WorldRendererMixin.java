@@ -38,11 +38,11 @@ public abstract class WorldRendererMixin {
         boolean isSolid = state.isFullCube(world, pos);
 
         if (!isSolid) return;
-        renderCustomOutline(matrices, vertexConsumer, cameraX, cameraY, cameraZ, pos);
+        renderOutline(matrices, vertexConsumer, cameraX, cameraY, cameraZ, pos);
     }
 
     @Unique
-    private void renderCustomOutline(MatrixStack matrices, VertexConsumer vertexConsumer, double cameraX, double cameraY, double cameraZ, BlockPos pos) {
+    private void renderOutline(MatrixStack matrices, VertexConsumer vertexConsumer, double cameraX, double cameraY, double cameraZ, BlockPos pos) {
         matrices.push();
         matrices.translate(-cameraX, -cameraY, -cameraZ);
 

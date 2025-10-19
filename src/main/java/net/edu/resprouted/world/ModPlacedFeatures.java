@@ -2,13 +2,11 @@ package net.edu.resprouted.world;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
-import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.world.gen.YOffset;
@@ -111,16 +109,17 @@ public class ModPlacedFeatures {
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
         //Death Stalk Mushroom
-        register(context, DEATHSTALK_MUSHROOM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DEATHSTALK_MUSHROOM_KEY),
-                CountPlacementModifier.of(20), // ← Muchos para probar
-                SquarePlacementModifier.of(),
-                HeightRangePlacementModifier.uniform(YOffset.fixed(30), YOffset.fixed(90)),
-                BiomePlacementModifier.of());
+        register(context,
+                DEATHSTALK_MUSHROOM_PLACED_KEY,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.DEATHSTALK_MUSHROOM_KEY),
+                RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(),
+                PlacedFeatures.BOTTOM_TO_TOP_RANGE,
+                BiomePlacementModifier.of()
+        );
 
         //Core Root
         register(context, CORE_ROOT_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.CORE_ROOT_KEY),
-                CountPlacementModifier.of(8),
-                SquarePlacementModifier.of(),
+                CountPlacementModifier.of(10), SquarePlacementModifier.of(),
                 HeightRangePlacementModifier.uniform(YOffset.fixed(-48), YOffset.fixed(52)),
                 EnvironmentScanPlacementModifier.of(Direction.UP, BlockPredicate.solid(), 12),
                 RandomOffsetPlacementModifier.vertically(ConstantIntProvider.create(1)),
@@ -135,10 +134,8 @@ public class ModPlacedFeatures {
 
         //Mooncap Plains
         register(context, MOONCAP_SURFACE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures. MOONCAP_KEY),
-                RarityFilterPlacementModifier.of(10),
-                SquarePlacementModifier.of(),
-                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
-                BiomePlacementModifier.of());
+                RarityFilterPlacementModifier.of(42), SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
         //Slate
         register(context, SLATE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SLATE_KEY),

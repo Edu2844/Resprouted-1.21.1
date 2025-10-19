@@ -20,32 +20,13 @@
         {
           "type": "minecraft:block_predicate_filter",
           "predicate": {
-            "type": "minecraft:all_of",
-            "predicates": [
-              {
-                "type": "minecraft:matching_blocks",
-                "blocks": "minecraft:air"
-              },
-              {
-                "type": "minecraft:matching_blocks",
-                "blocks": [
-                  "minecraft:grass_block",
-                  "minecraft:stone",
-                  "minecraft:deepslate",
-                  "minecraft:tuff"
-                ],
-                "offset": [
-                  0,
-                  -1,
-                  0
-                ]
-              }
-            ]
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
           }
         }
       ]
     },
-    "tries": 96,
+    "tries": 8,
     "xz_spread": 7,
     "y_spread": 3
   }

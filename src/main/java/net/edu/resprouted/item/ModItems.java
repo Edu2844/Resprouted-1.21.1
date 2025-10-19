@@ -2,6 +2,7 @@ package net.edu.resprouted.item;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.book.CatalogScreen;
 import net.edu.resprouted.effect.BoozeEffects;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.custom.ThrownTomatoEntity;
@@ -9,6 +10,7 @@ import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
 import net.edu.resprouted.registry.ResproutedBoatTypes;
 import net.edu.resprouted.util.TextUtils;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.component.type.PotionContentsComponent;
@@ -84,7 +86,6 @@ public class ModItems {
     // =================================================
     public static final Item APPLE_SEEDS = registerItem("apple_seeds", new AliasedBlockItem(ModBlocks.APPLE_TREE,new Item.Settings()));
     public static final Item BLUE_BERRIES = registerItem("blue_berries", new AliasedBlockItem(ModBlocks.BLUE_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.BLUE_BERRIES)));
-    public static final Item CATALOG = registerItem("catalog", new CatalogItem(new Item.Settings()));
     public static final Item COPPER_NUGGET = registerItem("copper_nugget", new Item(new Item.Settings()));
     public static final Item CHILI_PEPPER_SEEDS = registerItem("chili_pepper_seeds", new Item(new Item.Settings()));
     public static final Item GOLDEN_DUST = registerItem("golden_dust", new Item(new Item.Settings()));
@@ -95,6 +96,17 @@ public class ModItems {
     public static final Item TINY_GOLDEN_DUST = registerItem("tiny_golden_dust", new Item(new Item.Settings()));
     public static final Item TINY_GLOWSTONE_DUST = registerItem("tiny_glowstone_dust", new Item(new Item.Settings()));
     public static final Item TOMATO_SEEDS = registerItem("tomato_seeds", new Item(new Item.Settings()));
+
+    public static final Item CATALOG = registerItem("catalog", new Item(new Item.Settings()){
+        @Override
+        public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+            if (world.isClient) {
+
+                MinecraftClient.getInstance().setScreen(new CatalogScreen());
+            }
+            return TypedActionResult.success(user.getStackInHand(hand));
+        }
+    });
 
     public static final Item TOMATO = registerItem("tomato", new Item(new Item.Settings().food(ModFoodComponents.TOMATO).maxCount(64)){
         @Override

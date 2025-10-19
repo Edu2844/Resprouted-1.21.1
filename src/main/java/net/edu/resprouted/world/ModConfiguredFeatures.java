@@ -135,28 +135,41 @@ public class ModConfiguredFeatures {
 
         //DeathStalk Mushroom
         register(context, DEATHSTALK_MUSHROOM_KEY, Feature.RANDOM_PATCH,
-                new RandomPatchFeatureConfig(
-                        96,
-                        7,
-                        3,
-                        PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
-                                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.DEATHSTALK_MUSHROOM
-                                        .getDefaultState().with(CustomMushroomBlock.AGE, 3))))
-                ));
+                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.DEATHSTALK_MUSHROOM.getDefaultState()
+                                        .with(CustomMushroomBlock.AGE, 3)))));
 
         //Core Root
         register(context, CORE_ROOT_KEY, Feature.RANDOM_PATCH,
-                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.CORE_ROOT
-                                .getDefaultState().with(CustomMushroomBlock.AGE, 3))),
-                        List.of(Blocks.STONE, Blocks.TUFF, Blocks.ANDESITE, Blocks.DIORITE, Blocks.CLAY, Blocks.DEEPSLATE)));
+                new RandomPatchFeatureConfig(
+                        10,
+                        7,
+                        3,
+                        PlacedFeatures.createEntry(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockFeatureConfig(BlockStateProvider.of(
+                                        ModBlocks.CORE_ROOT.getDefaultState()
+                                                .with(CustomMushroomBlock.AGE, 3)
+                                ))
+                        )
+                )
+        );
 
         //Mooncap Mushroom
         register(context, MOONCAP_KEY, Feature.RANDOM_PATCH,
-                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.MOONCAP_MUSHROOM
-                                .getDefaultState().with(CustomMushroomBlock.AGE, 3))),
-                        List.of(Blocks.GRASS_BLOCK, Blocks.STONE, Blocks.DEEPSLATE, Blocks.TUFF)));
+                new RandomPatchFeatureConfig(
+                        8,
+                        7,
+                        3,
+                        PlacedFeatures.createEntry(
+                                Feature.SIMPLE_BLOCK,
+                                new SimpleBlockFeatureConfig(BlockStateProvider.of(
+                                        ModBlocks.MOONCAP_MUSHROOM.getDefaultState()
+                                                .with(CustomMushroomBlock.AGE, 3)
+                                ))
+                        )
+                )
+        );
 
         //Slate
         RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
