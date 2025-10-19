@@ -26,7 +26,7 @@ public class ModEffects {
             new TipsyEffect(StatusEffectCategory.HARMFUL, 0x789C62));
 
     public static final RegistryEntry<StatusEffect> FULL_STOMACH = registerStatusEffect("full_stomach",
-            new FullEffect(StatusEffectCategory.BENEFICIAL, 0xA86A34));
+            new FullStomachEffect(StatusEffectCategory.BENEFICIAL, 0xA86A34));
 
     public static final RegistryEntry<StatusEffect> MAGIC_RESISTANCE = registerStatusEffect("magic_resistance",
             new MagicResistanceEffect(StatusEffectCategory.BENEFICIAL, 0x10511560));

@@ -24,6 +24,7 @@ public class CatalogScreen extends Screen {
     private static final Identifier DECORATION_ICON = Identifier.of(Resprouted.MOD_ID, "textures/gui/catalog/decoration.png");
     private static final Identifier PRODUCTION_ICON = Identifier.of(Resprouted.MOD_ID, "textures/gui/catalog/production.png");
     private static final Identifier MENU_ICON = Identifier.of(Resprouted.MOD_ID, "textures/gui/catalog/menu_icon.png");
+    private static final Identifier MENU_ICON_HOVER = Identifier.of(Resprouted.MOD_ID, "textures/gui/catalog/menu_icon_hover.png");
     private static final Identifier MENU_TITLE = Identifier.of(Resprouted.MOD_ID, "textures/gui/catalog/menu_title.png");
     private static final Identifier INDEX_TITLE = Identifier.of(Resprouted.MOD_ID, "textures/gui/catalog/index_title.png");
     private static final Identifier CATEGORY_ICON = Identifier.of(Resprouted.MOD_ID, "textures/gui/catalog/category_back.png");
@@ -39,7 +40,8 @@ public class CatalogScreen extends Screen {
     private static final int NEXT_BUTTON_X = 268, NEXT_BUTTON_Y = 148;
     private static final int NEXT_BUTTON_WIDTH = 13, NEXT_BUTTON_HEIGHT = 15;
     private static final int MAIN_MENU_X = 93, MAIN_MENU_Y = 165;
-    private static final int MAIN_MENU_WIDTH = 22, MAIN_MENU_HEIGHT = 31;
+    private static final int MAIN_MENU_WIDTH = 22, MAIN_MENU_HEIGHT = 25;
+    private static final int MAIN_MENU_HOVER_WIDTH = 22, MAIN_MENU_HOVER_HEIGHT = 35;
     private static final int BACK_CATEGORY_X = 9, BACK_CATEGORY_Y = 5;
     private static final int BACK_CATEGORY_WIDTH = 13, BACK_CATEGORY_HEIGHT = 15;
     private static final int SEP_WIDTH = 94, SEP_HEIGHT = 3;
@@ -49,7 +51,8 @@ public class CatalogScreen extends Screen {
     private static final int FRAME_WIDTH = 64;
     private static final int FRAME_DURATION = 25;
 
-    private int currentHoveredIcon = -1; // -1 = none, 0 = agriculture, 1 = decoration, 2 = production
+    // -1 = none, 0 = agriculture, 1 = decoration, 2 = production
+    private int currentHoveredIcon = -1;
     private long hoverStartTime = -1;
 
     private enum PageState { MAIN_MENU, CATEGORY_LIST, ENTRY_PAGES }
@@ -559,9 +562,17 @@ public class CatalogScreen extends Screen {
     }
 
     private void drawButtonWithTooltip(DrawContext context, Identifier texture, int x, int y, int width, int height, Text tooltip, int mouseX, int mouseY) {
+        boolean isHovered = isMouseOver(mouseX, mouseY, x, y, width, height);
+
+        if (texture == MENU_ICON && isHovered) {
+            texture = MENU_ICON_HOVER;
+            width = MAIN_MENU_HOVER_WIDTH;
+            height = MAIN_MENU_HOVER_HEIGHT;
+        }
+
         context.drawTexture(texture, x, y, 0, 0, width, height, width, height);
 
-        if (isMouseOver(mouseX, mouseY, x, y, width, height)) {
+        if (isHovered) {
             context.drawTooltip(textRenderer, tooltip, mouseX, mouseY);
         }
     }

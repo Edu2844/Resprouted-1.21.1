@@ -35,6 +35,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> COHOSH_KEY = registerKey("cohosh_herb");
     public static final RegistryKey<ConfiguredFeature<?, ?>> GINSENG_KEY = registerKey("ginseng_herb");
     public static final RegistryKey<ConfiguredFeature<?, ?>> HORSETAIL_KEY = registerKey("horsetail_herb");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VANTA_LILY_KEY = registerKey("vanta_lily_herb");
     public static final RegistryKey<ConfiguredFeature<?, ?>> MARSHMALLOW_KEY = registerKey("marshmalow_herb");
     public static final RegistryKey<ConfiguredFeature<?, ?>> WIND_THISTLE_KEY = registerKey("wind_thistle_herb");
     public static final RegistryKey<ConfiguredFeature<?, ?>> CORE_ROOT_KEY = registerKey("core_root_herb");
@@ -89,6 +90,13 @@ public class ModConfiguredFeatures {
         register(context, CHAMOMILE_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
                         new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.CHAMOMILE_BLOCK
+                                .getDefaultState().with(HerbBlock.AGE, 6))),
+                        List.of(Blocks.GRASS_BLOCK)));
+
+        //Vanta Lily
+        register(context, VANTA_LILY_KEY, Feature.RANDOM_PATCH,
+                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VANTA_LILY_BLOCK
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
 

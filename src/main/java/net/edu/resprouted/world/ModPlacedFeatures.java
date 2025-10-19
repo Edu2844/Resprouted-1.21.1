@@ -35,6 +35,8 @@ public class ModPlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> HORSETAIL_PLACED_KEY = registerKey("horsetail_placed");
 
+    public static final RegistryKey<PlacedFeature> VANTA_LILY_PLACED_KEY = registerKey("vanta_lily_placed");
+
     public static final RegistryKey<PlacedFeature> MARSHMALLOW_PLACED_KEY = registerKey("marshmalow_placed");
 
     public static final RegistryKey<PlacedFeature> WIND_THISTLE_PLACED_KEY = registerKey("wind_thistle_placed");
@@ -75,6 +77,11 @@ public class ModPlacedFeatures {
 
         //Chamomile
         register(context, CHAMOMILE_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.CHAMOMILE_KEY),
+                RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
+                PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+
+        //Vanta Lily
+        register(context, VANTA_LILY_PLACED_KEY , configuredFeatures.getOrThrow(ModConfiguredFeatures.VANTA_LILY_KEY),
                 RarityFilterPlacementModifier.of(5), SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 

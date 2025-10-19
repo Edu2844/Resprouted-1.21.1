@@ -57,23 +57,28 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, OPEN, CABINET_TYPE, HINGE);
     }
+
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
     }
+
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new CabinetBE(pos, state);
     }
+
     @Override
     public boolean hasComparatorOutput(BlockState state) {
         return true;
     }
+
     @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
         Inventory inv = getCombinedInventory(world, state, pos);
         return ScreenHandler.calculateComparatorOutput(inv);
     }
+
     @Nullable
     private Inventory getCombinedInventory(World world, BlockState state, BlockPos pos) {
         CabinetType type = state.get(CABINET_TYPE);
@@ -94,6 +99,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         }
         return self;
     }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         World world = ctx.getWorld();
@@ -117,6 +123,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         }
         return state;
     }
+
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         if (!world.isClient) {
@@ -152,6 +159,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
             }
         }
     }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
@@ -169,6 +177,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
+
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return world.isClient ? null : (w, pos, s, be) -> {
@@ -182,6 +191,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
             }
         };
     }
+
     private static @NotNull NamedScreenHandlerFactory getNamedScreenHandlerFactory(CabinetBE self, CabinetType type, CabinetBE other) {
         CabinetBE lower = type == CabinetType.BOTTOM ? self : other;
         CabinetBE upper = type == CabinetType.BOTTOM ? other : self;
@@ -218,11 +228,15 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) return ActionResult.SUCCESS;
 
-        if (isCabinetBlocked(world, pos, state)) {
+        if (hit.getSide() != state.get(FACING)) {
+            return ActionResult.PASS;
+        }
+
+        if (isBlocked(world, pos, state)) {
             return ActionResult.CONSUME;
         }
-        BlockEntity selfBE = world.getBlockEntity(pos);
-        if (!(selfBE instanceof CabinetBE self)) return ActionResult.PASS;
+
+        if (!(world.getBlockEntity(pos) instanceof CabinetBE sbe)) return ActionResult.PASS;
 
         CabinetType type = state.get(CABINET_TYPE);
         BlockPos otherPos = switch (type) {
@@ -232,23 +246,22 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         };
         CabinetBE other = null;
         if (otherPos != null) {
-            BlockEntity be = world.getBlockEntity(otherPos);
-            if (be instanceof CabinetBE cbe) {
+            if (world.getBlockEntity(otherPos) instanceof CabinetBE cbe) {
                 other = cbe;
             }
         }
         if (type == CabinetType.SINGLE || other == null) {
-            player.openHandledScreen(self);
+            player.openHandledScreen(sbe);
         } else {
-            NamedScreenHandlerFactory factory = getNamedScreenHandlerFactory(self, type, other);
+            NamedScreenHandlerFactory factory = getNamedScreenHandlerFactory(sbe, type, other);
             player.openHandledScreen(factory);
         }
         return ActionResult.CONSUME;
     }
-    private boolean isCabinetBlocked(World world, BlockPos pos, BlockState state) {
-        Direction facing = state.get(FACING);
 
-        BlockPos frontPos = pos.offset(facing);
+    private boolean isBlocked(World world, BlockPos pos, BlockState state) {
+
+        BlockPos frontPos = pos.offset(state.get(FACING));
         BlockState frontState = world.getBlockState(frontPos);
 
         if (frontState.isSolidBlock(world, frontPos)) {
@@ -258,6 +271,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         if (type != CabinetType.SINGLE) {
             BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
             BlockState otherState = world.getBlockState(otherPos);
+
             if (otherState.getBlock() instanceof CabinetBlock) {
                 Direction otherFacing = otherState.get(FACING);
                 BlockPos otherFrontPos = otherPos.offset(otherFacing);
