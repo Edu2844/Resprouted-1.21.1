@@ -67,17 +67,6 @@ public class PageUtils {
         context.drawItem(stack, baseX + x, baseY + y);
     }
 
-    public void drawIconWithTooltip(Identifier texture, int relX, int relY, int width, int height, Text tooltip, int mouseX, int mouseY) {
-        drawIcon(texture, relX, relY, width, height);
-
-        int iconX = baseX + relX;
-        int iconY = baseY + relY;
-
-        if (isMouseOver(mouseX, mouseY, iconX, iconY, width, height)) {
-            context.drawTooltip(textRenderer, tooltip, mouseX, mouseY);
-        }
-    }
-
     public boolean isMouseOverEntry(int mouseX, int mouseY, int relY, int width, int height) {
         int entryX = baseX + 8;
         int entryY = baseY + relY;
