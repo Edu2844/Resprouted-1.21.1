@@ -25,6 +25,8 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+
 import java.util.Optional;
 
 public class StakeBlock extends Block {
@@ -49,7 +51,6 @@ public class StakeBlock extends Block {
                 .with(CONNECT_WEST, false));
     }
 
-    // ========= PROPIEDADES Y ESTADO ========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HAS_ROPE, CONNECT_NORTH, CONNECT_SOUTH, CONNECT_EAST, CONNECT_WEST);
@@ -61,9 +62,18 @@ public class StakeBlock extends Block {
             world.setBlockState(pos, state.with(HAS_ROPE, false), Block.NOTIFY_ALL);
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModBlocks.ROPE));
             world.playSound(null, pos, SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
             return;
         }
         super.onStateReplaced(state, world, pos, newState, moved);
+    }
+
+    @Override
+    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+        if (state.get(HAS_ROPE)) {
+            return new ItemStack(ModBlocks.ROPE);
+        }
+        return super.getPickStack(world, pos, state);
     }
 
     @Override
@@ -85,27 +95,17 @@ public class StakeBlock extends Block {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (direction.getAxis().isHorizontal()) {
-            //Rope connection if axis coincides
+
             boolean connected = neighborState.getBlock() instanceof RopeBlock
                     && neighborState.contains(RopeBlock.AXIS)
                     && neighborState.get(RopeBlock.AXIS) == direction.getAxis();
-            //GrapeLeavesBlock connection
+
             if (neighborState.getBlock() instanceof GrapeLeavesBlock) {
                 connected = true;
             }
             return state.with(getPropertyForDirection(direction), connected);
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-    }
-
-    private BooleanProperty getPropertyForDirection(Direction dir) {
-        return switch (dir) {
-            case NORTH -> CONNECT_NORTH;
-            case SOUTH -> CONNECT_SOUTH;
-            case EAST -> CONNECT_EAST;
-            case WEST -> CONNECT_WEST;
-            default -> throw new IllegalArgumentException("Invalid direction: " + dir);
-        };
     }
 
     @Override
@@ -120,11 +120,6 @@ public class StakeBlock extends Block {
                 .with(CONNECT_WEST, world.getBlockState(pos.west()).getBlock() instanceof RopeBlock);
     }
 
-    public boolean hasRope(BlockState state) {
-        return state.contains(HAS_ROPE) && state.get(HAS_ROPE);
-    }
-
-    // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!state.isOf(ModBlocks.STAKE)) {
@@ -150,12 +145,25 @@ public class StakeBlock extends Block {
         return ItemActionResult.FAIL;
     }
 
-    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         if (state.get(HAS_ROPE)) {
             return SHAPE_WITH_ROPE;
         }
         return SHAPE;
+    }
+
+    private BooleanProperty getPropertyForDirection(Direction dir) {
+        return switch (dir) {
+            case NORTH -> CONNECT_NORTH;
+            case SOUTH -> CONNECT_SOUTH;
+            case EAST -> CONNECT_EAST;
+            case WEST -> CONNECT_WEST;
+            default -> throw new IllegalArgumentException("Invalid direction: " + dir);
+        };
+    }
+
+    public boolean hasRope(BlockState state) {
+        return state.contains(HAS_ROPE) && state.get(HAS_ROPE);
     }
 }

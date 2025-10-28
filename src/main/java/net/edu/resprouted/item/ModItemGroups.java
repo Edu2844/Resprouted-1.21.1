@@ -183,20 +183,12 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CHISELED_GRANITE);
                         entries.add(ModBlocks.GRANITE_PILLAR);
 
-                        entries.add(ModBlocks.POLISHED_SANDSTONE);
-                        entries.add(ModBlocks.POLISHED_SANDSTONE_SLAB);
-                        entries.add(ModBlocks.POLISHED_SANDSTONE_STAIRS);
-                        entries.add(ModBlocks.POLISHED_SANDSTONE_WALL);
                         entries.add(ModBlocks.SANDSTONE_BRICKS);
                         entries.add(ModBlocks.SANDSTONE_BRICK_SLAB);
                         entries.add(ModBlocks.SANDSTONE_BRICK_STAIRS);
                         entries.add(ModBlocks.SANDSTONE_BRICK_WALL);
                         entries.add(ModBlocks.SANDSTONE_PILLAR);
 
-                        entries.add(ModBlocks.POLISHED_RED_SANDSTONE);
-                        entries.add(ModBlocks.POLISHED_RED_SANDSTONE_SLAB);
-                        entries.add(ModBlocks.POLISHED_RED_SANDSTONE_STAIRS);
-                        entries.add(ModBlocks.POLISHED_RED_SANDSTONE_WALL);
                         entries.add(ModBlocks.RED_SANDSTONE_BRICKS);
                         entries.add(ModBlocks.RED_SANDSTONE_BRICK_SLAB);
                         entries.add(ModBlocks.RED_SANDSTONE_BRICK_STAIRS);
@@ -208,6 +200,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.CUT_WROUGHT_IRON_SLAB);
                         entries.add(ModBlocks.CUT_WROUGHT_IRON_STAIRS);
                         entries.add(ModBlocks.WROUGHT_IRON_BULB);
+                        entries.add(ModBlocks.WROUGHT_IRON_BARS);
 
                         entries.add(ModBlocks.CLAY_WALL);
                         entries.add(ModBlocks.CLAY_WALL_CROSS);

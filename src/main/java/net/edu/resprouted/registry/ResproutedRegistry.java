@@ -22,12 +22,14 @@ public class ResproutedRegistry {
         registerFluidStorages();
         registerBrewingBarrelRecipes();
     }
+
     public static void registerStrippables() {
         register(ModBlocks.IRONWOOD_LOG, ModBlocks.STRIPPED_IRONWOOD_LOG);
         register(ModBlocks.IRONWOOD_WOOD, ModBlocks.STRIPPED_IRONWOOD_WOOD);
         register(ModBlocks.OLIVE_LOG, ModBlocks.STRIPPED_OLIVE_LOG);
         register(ModBlocks.OLIVE_WOOD, ModBlocks.STRIPPED_OLIVE_WOOD);
     }
+
     public static void registerFlammables() {
         FlammableBlockRegistry registry = FlammableBlockRegistry.getDefaultInstance();
         registry.add(ModBlocks.IRONWOOD_LOG,5,5);
@@ -51,6 +53,7 @@ public class ResproutedRegistry {
         registry.add(ModBlocks.GRAPE_STEM,5,5);
         registry.add(ModBlocks.GRAPE_LEAVES,30,60);
     }
+
     public static void registerOxidizablesAndWaxables() {
         //Chain
         registerOxidizableBlockPair(ModBlocks.COPPER_CHAIN, ModBlocks.EXPOSED_COPPER_CHAIN);
@@ -91,11 +94,165 @@ public class ResproutedRegistry {
 
         registerWaxableBlockPair(ModBlocks.COPPER_CHANDELIER, ModBlocks.WAXED_COPPER_CHANDELIER);
         registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_CHANDELIER, ModBlocks.WAXED_EXPOSED_COPPER_CHANDELIER);
-        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_CHANDELIER, ModBlocks.WAXED_EXPOSED_COPPER_CHANDELIER);
         registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_CHANDELIER, ModBlocks.WAXED_WEATHERED_COPPER_CHANDELIER);
         registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_CHANDELIER, ModBlocks.WAXED_OXIDIZED_COPPER_CHANDELIER);
 
+        //Candle Holder
+        registerOxidizableBlockPair(ModBlocks.COPPER_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_BLACK_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_BLACK_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_BLACK_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_BLACK_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_BLACK_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_BLACK_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_BLUE_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_BLUE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_BLUE_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_BLUE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_BLUE_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_BLUE_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_BROWN_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_BROWN_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_BROWN_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_BROWN_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_BROWN_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_BROWN_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_CYAN_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_CYAN_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_CYAN_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_CYAN_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_CYAN_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_CYAN_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_GRAY_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_GRAY_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_GRAY_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_GRAY_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_GRAY_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_GRAY_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_GREEN_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_GREEN_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_GREEN_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_GREEN_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_GREEN_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_GREEN_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_LIGHT_BLUE_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_LIGHT_BLUE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_LIGHT_BLUE_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_LIGHT_BLUE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_LIGHT_BLUE_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_LIGHT_BLUE_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_LIGHT_GRAY_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_LIGHT_GRAY_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_LIGHT_GRAY_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_LIGHT_GRAY_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_LIGHT_GRAY_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_LIGHT_GRAY_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_LIME_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_LIME_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_LIME_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_LIME_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_LIME_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_LIME_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_MAGENTA_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_MAGENTA_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_MAGENTA_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_MAGENTA_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_MAGENTA_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_ORANGE_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_ORANGE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_ORANGE_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_ORANGE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_ORANGE_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_ORANGE_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_PINK_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_PINK_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_PINK_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_PINK_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_PINK_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_PINK_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_PURPLE_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_PURPLE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_PURPLE_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_PURPLE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_PURPLE_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_PURPLE_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_RED_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_RED_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_RED_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_RED_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_RED_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_RED_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_WHITE_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_WHITE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_WHITE_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_WHITE_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_WHITE_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_WHITE_CANDLE_HOLDER);
+
+        registerOxidizableBlockPair(ModBlocks.COPPER_YELLOW_CANDLE_HOLDER, ModBlocks.EXPOSED_COPPER_YELLOW_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.EXPOSED_COPPER_YELLOW_CANDLE_HOLDER, ModBlocks.WEATHERED_COPPER_YELLOW_CANDLE_HOLDER);
+        registerOxidizableBlockPair(ModBlocks.WEATHERED_COPPER_YELLOW_CANDLE_HOLDER, ModBlocks.OXIDIZED_COPPER_YELLOW_CANDLE_HOLDER);
+
+        //waxable
+        registerWaxableBlockPair(ModBlocks.COPPER_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_BLACK_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_BLACK_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_BLACK_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_BLACK_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_BLACK_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_BLACK_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_BLACK_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_BLACK_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_BLUE_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_BLUE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_BLUE_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_BLUE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_BLUE_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_BLUE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_BLUE_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_BLUE_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_BROWN_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_BROWN_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_BROWN_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_BROWN_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_BROWN_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_BROWN_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_BROWN_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_BROWN_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_CYAN_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_CYAN_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_CYAN_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_CYAN_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_CYAN_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_CYAN_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_CYAN_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_CYAN_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_GRAY_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_GRAY_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_GRAY_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_GRAY_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_GRAY_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_GRAY_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_GRAY_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_GRAY_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_GREEN_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_GREEN_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_GREEN_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_GREEN_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_GREEN_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_GREEN_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_GREEN_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_GREEN_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_LIGHT_BLUE_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_LIGHT_BLUE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_LIGHT_BLUE_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_LIGHT_BLUE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_LIGHT_BLUE_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_LIGHT_BLUE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_LIGHT_BLUE_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_LIGHT_BLUE_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_LIGHT_GRAY_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_LIGHT_GRAY_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_LIGHT_GRAY_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_LIGHT_GRAY_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_LIGHT_GRAY_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_LIGHT_GRAY_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_LIGHT_GRAY_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_LIGHT_GRAY_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_LIME_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_LIME_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_LIME_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_LIME_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_LIME_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_LIME_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_LIME_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_LIME_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_MAGENTA_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_MAGENTA_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_MAGENTA_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_MAGENTA_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_MAGENTA_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_MAGENTA_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_ORANGE_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_ORANGE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_ORANGE_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_ORANGE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_ORANGE_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_ORANGE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_ORANGE_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_ORANGE_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_PINK_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_PINK_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_PINK_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_PINK_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_PINK_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_PINK_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_PINK_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_PINK_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_PURPLE_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_PURPLE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_PURPLE_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_PURPLE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_PURPLE_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_PURPLE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_PURPLE_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_PURPLE_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_RED_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_RED_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_RED_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_RED_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_RED_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_RED_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_RED_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_RED_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_WHITE_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_WHITE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_WHITE_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_WHITE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_WHITE_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_WHITE_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_WHITE_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_WHITE_CANDLE_HOLDER);
+
+        registerWaxableBlockPair(ModBlocks.COPPER_YELLOW_CANDLE_HOLDER, ModBlocks.WAXED_COPPER_YELLOW_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.EXPOSED_COPPER_YELLOW_CANDLE_HOLDER, ModBlocks.WAXED_EXPOSED_COPPER_YELLOW_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.WEATHERED_COPPER_YELLOW_CANDLE_HOLDER, ModBlocks.WAXED_WEATHERED_COPPER_YELLOW_CANDLE_HOLDER);
+        registerWaxableBlockPair(ModBlocks.OXIDIZED_COPPER_YELLOW_CANDLE_HOLDER, ModBlocks.WAXED_OXIDIZED_COPPER_YELLOW_CANDLE_HOLDER);
     }
+
     public static void registerCompostables() {
         CompostingChanceRegistry registry = CompostingChanceRegistry.INSTANCE;
         registry.add(ModItems.ALOE_VERA, 0.5F);
@@ -118,6 +275,7 @@ public class ResproutedRegistry {
         registry.add(ModItems.GRAPE_SEEDS, 0.5F);
         registry.add(ModItems.OLIVES, 0.5F);
     }
+
     public static void registerFluidStorages() {
         FluidStorage.SIDED.registerForBlockEntity((crushingTubBE, direction2) -> crushingTubBE.getFluidTankProvider(), ModBlockEntities.CRUSHING_TUB_BE);
         FluidStorage.SIDED.registerForBlockEntity((liquidBarrelBE, direction1) -> liquidBarrelBE.getFluidTankProvider(), ModBlockEntities.LIQUID_BARREL_BE);
@@ -126,6 +284,7 @@ public class ResproutedRegistry {
         FluidStorage.SIDED.registerForBlockEntity((advancedCondenserBE, direction) -> advancedCondenserBE.getFluidTankProvider(), ModBlockEntities.ADVANCED_CONDENSER_BE);
 
     }
+
     public static void registerBrewingBarrelRecipes(){
         BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.ALE_STILL, ModFluids.ALE_WORT_STILL));
         BrewingBarrelRecipe.register(new BrewingBarrelRecipe(ModFluids.IRON_WINE_STILL, ModFluids.IRON_BERRY_JUICE_STILL));

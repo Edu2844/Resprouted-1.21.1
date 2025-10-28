@@ -5,8 +5,10 @@ import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.abstracts.AbstractCondenserBlockEntity;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.recipe.Input.AdvancedCondenserRecipeInput;
+import net.edu.resprouted.recipe.Input.CondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.AdvancedCondenserRecipe;
+import net.edu.resprouted.recipe.custom.CondenserRecipe;
 import net.edu.resprouted.screen.custom.AdvancedCondenserScreenHandler;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
@@ -131,7 +133,7 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
 
     @Override
     protected boolean hasRecipe() {
-        AdvancedCondenserRecipeInput input = new AdvancedCondenserRecipeInput(
+        AdvancedCondenserRecipeInput advancedInput = new AdvancedCondenserRecipeInput(
                 inventory.getFirst(),
                 inventory.get(INPUT_SLOT_2),
                 inventory.get(INPUT_SLOT_3),
@@ -141,10 +143,25 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
                 this.pos
         );
         assert world != null;
-        Optional<RecipeEntry<AdvancedCondenserRecipe>> match = world.getRecipeManager()
-                .getFirstMatch(ModRecipes.ADVANCED_CONDENSER_TYPE, input, world);
+        Optional<RecipeEntry<AdvancedCondenserRecipe>> advancedMatch = world.getRecipeManager()
+                .getFirstMatch(ModRecipes.ADVANCED_CONDENSER_TYPE, advancedInput, world);
 
-        return match.isPresent() && canInsertItemIntoOutputSlot(match.get().value().craft(input, world.getRegistryManager()));
+        if (advancedMatch.isPresent()) {
+            return canInsertItemIntoOutputSlot(advancedMatch.get().value().craft(advancedInput, world.getRegistryManager()));
+        }
+
+        CondenserRecipeInput basicInput = new CondenserRecipeInput(
+                inventory.getFirst(),
+                inventory.get(INPUT_SLOT_2),
+                inventory.get(FUEL_SLOT),
+                inventory.get(BOTTLE_SLOT),
+                this.pos
+        );
+
+        Optional<RecipeEntry<CondenserRecipe>> basicMatch = world.getRecipeManager()
+                .getFirstMatch(ModRecipes.CONDENSER_TYPE, basicInput, world);
+
+        return basicMatch.isPresent() && canInsertItemIntoOutputSlot(basicMatch.get().value().craft(basicInput, world.getRegistryManager()));
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack result) {
@@ -157,7 +174,7 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
 
     @Override
     protected void craftItem() {
-        AdvancedCondenserRecipeInput input = new AdvancedCondenserRecipeInput(
+        AdvancedCondenserRecipeInput advancedInput = new AdvancedCondenserRecipeInput(
                 inventory.getFirst(),
                 inventory.get(INPUT_SLOT_2),
                 inventory.get(INPUT_SLOT_3),
@@ -167,34 +184,71 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
                 this.pos
         );
         assert world != null;
-        Optional<RecipeEntry<AdvancedCondenserRecipe>> match = world.getRecipeManager()
-                .getFirstMatch(ModRecipes.ADVANCED_CONDENSER_TYPE, input, world);
 
-        if (match.isEmpty()) return;
+        //advanced
+        Optional<RecipeEntry<AdvancedCondenserRecipe>> advancedMatch = world.getRecipeManager()
+                .getFirstMatch(ModRecipes.ADVANCED_CONDENSER_TYPE, advancedInput, world);
 
-        ItemStack result = match.get().value().craft(input, world.getRegistryManager());
+        if (advancedMatch.isPresent()) {
+            ItemStack result = advancedMatch.get().value().craft(advancedInput, world.getRegistryManager());
+            ItemStack outputStack = this.getStack(OUTPUT_SLOT);
+
+            if (outputStack.isEmpty()) {
+                this.setStack(OUTPUT_SLOT, result.copy());
+            } else if (ItemStack.areItemsAndComponentsEqual(outputStack, result)) {
+                outputStack.increment(result.getCount());
+            }
+
+            for (Ingredient ing : advancedMatch.get().value().ingredients()) {
+                removeOneMatching(ing, INPUT_SLOT_1, INPUT_SLOT_2, INPUT_SLOT_3);
+            }
+            advancedMatch.get().value().modifier().ifPresent(modIng -> this.removeStack(MODIFIER_SLOT, 1));
+            this.removeStack(BOTTLE_SLOT, 1);
+
+            SingleFluidStorage fluidStorage = getFluidStorage();
+            fluidStorage.amount -= RECIPE_FLUID_COST;
+            if (fluidStorage.amount < 0) {
+                fluidStorage.amount = 0;
+            }
+
+            markDirty();
+            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+            world.playSound(null, pos, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            return;
+        }
+
+        CondenserRecipeInput basicInput = new CondenserRecipeInput(
+                inventory.getFirst(),
+                inventory.get(INPUT_SLOT_2),
+                inventory.get(FUEL_SLOT),
+                inventory.get(BOTTLE_SLOT),
+                this.pos
+        );
+
+        //basic
+        Optional<RecipeEntry<CondenserRecipe>> basicMatch = world.getRecipeManager()
+                .getFirstMatch(ModRecipes.CONDENSER_TYPE, basicInput, world);
+
+        if (basicMatch.isEmpty()) return;
+
+        ItemStack result = basicMatch.get().value().craft(basicInput, world.getRegistryManager());
         ItemStack outputStack = this.getStack(OUTPUT_SLOT);
 
         if (outputStack.isEmpty()) {
             this.setStack(OUTPUT_SLOT, result.copy());
-
         } else if (ItemStack.areItemsAndComponentsEqual(outputStack, result)) {
             outputStack.increment(result.getCount());
         }
-        for (Ingredient ing : match.get().value().ingredients()) {
-            removeOneMatching(ing, INPUT_SLOT_1, INPUT_SLOT_2, INPUT_SLOT_3);
-        }
-        match.get().value().modifier().ifPresent(modIng -> this.removeStack(MODIFIER_SLOT, 1));
 
+        this.removeStack(INPUT_SLOT_1, 1);
+        this.removeStack(INPUT_SLOT_2, 1);
         this.removeStack(BOTTLE_SLOT, 1);
 
         SingleFluidStorage fluidStorage = getFluidStorage();
         fluidStorage.amount -= RECIPE_FLUID_COST;
-
         if (fluidStorage.amount < 0) {
             fluidStorage.amount = 0;
         }
-
 
         markDirty();
         world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);

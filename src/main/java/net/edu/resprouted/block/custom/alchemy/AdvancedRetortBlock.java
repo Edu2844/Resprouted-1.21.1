@@ -41,7 +41,6 @@ public class AdvancedRetortBlock extends RetortBlock{
         super(settings);
     }
 
-    // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockPos condenserPos = pos.offset(state.get(FACING).getOpposite());
@@ -52,7 +51,6 @@ public class AdvancedRetortBlock extends RetortBlock{
         return condenserBlock.onUseWithItem(stack, condenserState, world, condenserPos, player, hand, hit);
     }
 
-    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction direction = state.get(FACING);

@@ -28,18 +28,22 @@ public class TableBlock extends Block {
                 .with(SE, true)
                 .with(SW, true));
     }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(NW, NE, SE, SW);
     }
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return getConnections(ctx.getWorld(), ctx.getBlockPos());
     }
+
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
                                                 WorldAccess world, BlockPos pos, BlockPos neighborPos) {

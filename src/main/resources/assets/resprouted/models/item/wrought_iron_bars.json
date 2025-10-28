@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "resprouted:block/wrought_iron_bars"
+  }
+}

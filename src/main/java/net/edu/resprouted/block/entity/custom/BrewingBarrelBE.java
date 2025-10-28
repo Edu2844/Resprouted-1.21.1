@@ -89,6 +89,7 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
             }
         };
     }
+
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
@@ -111,6 +112,7 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
         SingleVariantStorage.writeNbt(auxiliary, FluidVariant.CODEC, auxiliaryFluidNbt, registryLookup);
         nbt.put("brewing.auxiliaryFluid", auxiliaryFluidNbt);
     }
+
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
@@ -130,6 +132,7 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
                     registryLookup
             );
         }
+
         if (nbt.contains("brewing.outputFluid", NbtElement.COMPOUND_TYPE)) {
             SingleVariantStorage.readNbt(
                     output,
@@ -139,6 +142,7 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
                     registryLookup
             );
         }
+
         if (nbt.contains("brewing.auxiliaryFluid", NbtElement.COMPOUND_TYPE)) {
             SingleVariantStorage.readNbt(
                     auxiliary,
@@ -149,6 +153,7 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
             );
         }
     }
+
     @Override
     public Packet<ClientPlayPacketListener> toUpdatePacket() {
         return BlockEntityUpdateS2CPacket.create(this);
@@ -192,6 +197,7 @@ public class BrewingBarrelBE extends BlockEntity implements ExtendedScreenHandle
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new BrewingBarrelScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
+
     private final SingleFluidStorage input = SingleFluidStorage.withFixedCapacity(FluidConstants.BUCKET * 8, this::update);
     private final SingleFluidStorage output = SingleFluidStorage.withFixedCapacity(FluidConstants.BUCKET * 8, this::update);
     private final SingleFluidStorage auxiliary = SingleFluidStorage.withFixedCapacity(FluidConstants.BUCKET, this::update);

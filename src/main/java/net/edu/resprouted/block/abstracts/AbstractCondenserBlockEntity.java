@@ -56,7 +56,8 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
     protected abstract void updateLitState(World world, BlockPos pos, BlockState state, boolean shouldBeLit);
 
 
-    // ========= PROPERTIES & NBT =========
+    // ========= OVERRIDES =========
+
     @Override
     public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return this.pos;
@@ -82,7 +83,18 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
         this.burnTime = nbt.getInt("BurnTime");
     }
 
-    // ========= TICK =========
+    @Override
+    public DefaultedList<ItemStack> getItems() {
+        return inventory;
+    }
+
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    // ========= TICK METHODS =========
+
     public void clientTick(World world, BlockPos pos, BlockState state) {
         boolean shouldEmitSmoke = this.progress > 0;
 
@@ -147,6 +159,7 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
 
 
     // ========= METHODS =========
+
     protected void spawnSmoke(World world, double x, double y, double z) {
         double yVel = 0.06D;
         double randomOffsetY = world.random.nextDouble() * 0.02D;
@@ -192,14 +205,4 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
         }
     }
 
-    // ========= INVENTORY AND FLUID =========
-    @Override
-    public DefaultedList<ItemStack> getItems() {
-        return inventory;
-    }
-
-    @Override
-    public Packet<ClientPlayPacketListener> toUpdatePacket() {
-        return BlockEntityUpdateS2CPacket.create(this);
-    }
 }

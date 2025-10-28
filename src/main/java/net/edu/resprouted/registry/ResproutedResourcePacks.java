@@ -20,6 +20,7 @@ public class ResproutedResourcePacks {
                 ResourcePackActivationType.ALWAYS_ENABLED
         );
     }
+
     private static void registerBuiltinDataPack(ModContainer modContainer, String packId) {
         ResourceManagerHelper.registerBuiltinResourcePack(
                 Identifier.of(Resprouted.MOD_ID, packId + "_dp"),

@@ -44,17 +44,16 @@ public class RetortBlock extends Block {
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
 
-    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
-    // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockPos condenserPos = pos.offset(state.get(FACING).getOpposite());
@@ -66,11 +65,11 @@ public class RetortBlock extends Block {
         return condenserBlock.onUseWithItem(stack, condenserState, world, condenserPos, player, hand, hit);
     }
 
-    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction direction = state.get(FACING);

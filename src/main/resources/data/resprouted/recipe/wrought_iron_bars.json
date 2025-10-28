@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "minecraft:iron_bars"
+  },
+  "result": {
+    "id": "resprouted:wrought_iron_bars"
+  },
+  "experience": 0.1,
+  "cookingtime": 200
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "resprouted:block/sandstone/polished_sandstone",
-    "side": "resprouted:block/sandstone/polished_sandstone",
-    "top": "resprouted:block/sandstone/polished_sandstone"
-  }
-}

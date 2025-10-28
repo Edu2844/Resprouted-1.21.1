@@ -10,6 +10,8 @@ import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 
+import static net.edu.resprouted.block.custom.agriculture.GrapeLeavesBlock.DIST;
+
 public class GrapeLeavesComponentProvider implements IBlockComponentProvider {
     public static final GrapeLeavesComponentProvider INSTANCE = new GrapeLeavesComponentProvider();
 
@@ -18,7 +20,7 @@ public class GrapeLeavesComponentProvider implements IBlockComponentProvider {
         BlockState state = accessor.getBlockState();
         Block block = state.getBlock();
 
-        if (block instanceof GrapeLeavesBlock ) {
+        if (block instanceof GrapeLeavesBlock && (state.get(DIST) > 0) ) {
             int currentAge = state.get(GrapeLeavesBlock.AGE);
             int maxAge = GrapeLeavesBlock.getMaxAge();
             float growthValue = (float) currentAge / maxAge;

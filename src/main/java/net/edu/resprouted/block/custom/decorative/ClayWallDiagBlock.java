@@ -16,18 +16,22 @@ public class ClayWallDiagBlock extends Block implements AdvancedRotationPlacemen
     public ClayWallDiagBlock(Settings settings) {
         super(settings);
     }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return getStateForAdvancedRotationPlacement(this.getDefaultState(), FACING, ctx);
     }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
+
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
+
     @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));

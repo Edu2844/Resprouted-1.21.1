@@ -24,10 +24,12 @@ public class BasicCondenserBlock extends AbstractCondenserBlock {
     public BasicCondenserBlock(Settings settings) {
         super(settings, TOP_SHAPE, CODEC);
     }
+
     @Override
     protected BlockEntity createSpecificBlockEntity(BlockPos pos, BlockState state) {
         return new BasicCondenserBE(pos, state);
     }
+
     @Override
     public boolean hasRequiredRetorts(World world, BlockPos pos, BlockState state) {
         if (state.getBlock() != this) {
@@ -59,6 +61,7 @@ public class BasicCondenserBlock extends AbstractCondenserBlock {
         }
         return true;
     }
+
     @Override
     protected BlockEntityType<?> getBlockEntityType() {
         return ModBlockEntities.CONDENSER_BE;

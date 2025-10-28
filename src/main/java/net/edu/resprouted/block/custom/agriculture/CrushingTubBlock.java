@@ -44,7 +44,6 @@ public class CrushingTubBlock extends BlockWithEntity {
         super(settings);
     }
 
-    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
@@ -73,7 +72,6 @@ public class CrushingTubBlock extends BlockWithEntity {
         super.onStateReplaced(state, world, pos, newState, moved);
     }
 
-    // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -244,7 +242,6 @@ public class CrushingTubBlock extends BlockWithEntity {
         }
     }
 
-    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;

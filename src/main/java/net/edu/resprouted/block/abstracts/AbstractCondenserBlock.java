@@ -49,28 +49,33 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
                 .with(LIT, false));
     }
 
-    // ========= METHODS =========
+    // ========= ABSTRACT METHODS =========
     protected abstract BlockEntity createSpecificBlockEntity(BlockPos pos, BlockState state);
     protected abstract boolean hasRequiredRetorts(World world, BlockPos pos, BlockState state);
     protected abstract BlockEntityType<?> getBlockEntityType();
 
     // ========= PROPERTIES & STATE =========
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, BOTTOM, LIT);
     }
+
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
         return codec;
     }
+
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return state.get(BOTTOM) ? createSpecificBlockEntity(pos, state) : null;
     }
+
     @Override
     protected BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
     }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockPos pos = ctx.getBlockPos();
@@ -83,6 +88,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
                 .with(FACING, ctx.getHorizontalPlayerFacing().getOpposite())
                 .with(BOTTOM, true);
     }
+
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
         if (state.get(BOTTOM)) {
@@ -90,6 +96,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
             world.setBlockState(topPos, state.with(BOTTOM, false), Block.NOTIFY_ALL);
         }
     }
+
     @Override
     protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
@@ -101,6 +108,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
+
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         BlockPos otherPos = state.get(BOTTOM) ? pos.up() : pos.down();
@@ -109,6 +117,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
         }
         return super.onBreak(world, pos, state, player);
     }
+
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         if (state.get(BOTTOM)) {
@@ -119,6 +128,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
     }
 
     // ========= INTERACTION =========
+
     @Override
     public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockPos targetPos = state.get(BOTTOM) ? pos : pos.down();
@@ -148,6 +158,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
             }
             return ItemActionResult.CONSUME;
         }
+
         long amount = FluidConstants.BUCKET;
         try (Transaction transaction = Transaction.openOuter()) {
             // Fill
@@ -179,14 +190,17 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
                 return ItemActionResult.CONSUME;
             }
         }
+
         if (!world.isClient) {
             player.openHandledScreen(condenserBE);
             return ItemActionResult.SUCCESS;
         }
+
         return ItemActionResult.CONSUME;
     }
 
     // ========= FORM =========
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return state.get(BOTTOM) ? VoxelShapes.fullCube() : topShape;

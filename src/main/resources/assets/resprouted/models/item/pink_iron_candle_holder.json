@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "item/pink_candle",
-    "layer1": "resprouted:item/iron_candle_holder_layer"
+    "layer1": "resprouted:item/layer/iron_candle_holder_layer"
   }
 }

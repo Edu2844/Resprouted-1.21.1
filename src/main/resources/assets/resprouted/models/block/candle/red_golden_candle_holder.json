@@ -1,8 +1,7 @@
 {
   "parent": "resprouted:block/candle/template_candle_holder",
 	"textures": {
-		"0": "resprouted:block/golden_candle_holder",
-		"particle": "resprouted:block/golden_candle_holder",
+		"holder": "resprouted:block/golden_candle_holder",
 		"candle":"block/red_candle"
 	}
 }

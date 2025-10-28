@@ -86,10 +86,6 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.GRANITE_PILLAR);
 
         //SANDSTONE
-        addDrop(ModBlocks.POLISHED_SANDSTONE);
-        addDrop(ModBlocks.POLISHED_SANDSTONE_SLAB);
-        addDrop(ModBlocks.POLISHED_SANDSTONE_STAIRS);
-        addDrop(ModBlocks.POLISHED_SANDSTONE_WALL);
         addDrop(ModBlocks.SANDSTONE_BRICKS);
         addDrop(ModBlocks.SANDSTONE_BRICK_SLAB);
         addDrop(ModBlocks.SANDSTONE_BRICK_STAIRS);
@@ -97,10 +93,6 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SANDSTONE_PILLAR);
 
         //RED SANDSTONE
-        addDrop(ModBlocks.POLISHED_RED_SANDSTONE);
-        addDrop(ModBlocks.POLISHED_RED_SANDSTONE_SLAB);
-        addDrop(ModBlocks.POLISHED_RED_SANDSTONE_STAIRS);
-        addDrop(ModBlocks.POLISHED_RED_SANDSTONE_WALL);
         addDrop(ModBlocks.RED_SANDSTONE_BRICKS);
         addDrop(ModBlocks.RED_SANDSTONE_BRICK_SLAB);
         addDrop(ModBlocks.RED_SANDSTONE_BRICK_STAIRS);
@@ -113,6 +105,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.CUT_WROUGHT_IRON_BLOCK);
         addDrop(ModBlocks.CUT_WROUGHT_IRON_STAIRS);
         addDrop(ModBlocks.CUT_WROUGHT_IRON_SLAB);
+        addDrop(ModBlocks.WROUGHT_IRON_BARS);
 
         //CLAY WALL
         addDrop(ModBlocks.CLAY_WALL);

@@ -3,7 +3,9 @@ package net.edu.resprouted.recipe.custom;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.block.custom.alchemy.BasicCondenserBlock;
+import net.edu.resprouted.block.entity.custom.AdvancedCondenserBE;
 import net.edu.resprouted.block.entity.custom.BasicCondenserBE;
 import net.edu.resprouted.recipe.Input.CondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
@@ -33,8 +35,15 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
         if (world.isClient()) return false;
         if (ingredients.size() != 2) return false;
 
+        boolean hasInputA = !input.inputA().isEmpty();
+        boolean hasInputB = !input.inputB().isEmpty();
+
+        if (!hasInputA || !hasInputB) return false;
+
         boolean matchesIngredients = (ingredients.get(0).test(input.inputA()) && ingredients.get(1).test(input.inputB())) ||
                 (ingredients.get(0).test(input.inputB()) && ingredients.get(1).test(input.inputA()));
+
+        if (!matchesIngredients) return false;
 
         boolean hasFuelOrBurning = false;
         boolean hasRetorts = false;
@@ -50,28 +59,45 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
                 hasRetorts = condenserBlock.hasRequiredRetorts(world, input.pos(), blockState);
             }
         }
-        return matchesIngredients && hasFuelOrBurning && hasBottle && hasFluid && hasRetorts;
+
+        else if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBE be) {
+            hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
+            hasFluid = be.hasFluid();
+
+            BlockState blockState = world.getBlockState(input.pos());
+            if (blockState.getBlock() instanceof AdvancedCondenserBlock condenserBlock) {
+                hasRetorts = condenserBlock.hasRequiredRetorts(world, input.pos(), blockState);
+            }
+        }
+
+        return hasFuelOrBurning && hasBottle && hasFluid && hasRetorts;
     }
+
     @Override
     public ItemStack craft(CondenserRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return ElixirUtils.createElixir(effect, duration, amplifier);
     }
+
     @Override
     public boolean fits(int width, int height) {
         return true;
     }
+
     @Override
     public ItemStack getResult(RegistryWrapper.WrapperLookup lookup) {
         return ElixirUtils.createElixir(effect, duration, amplifier);
     }
+
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.CONDENSER_SERIALIZER;
     }
+
     @Override
     public RecipeType<?> getType() {
         return ModRecipes.CONDENSER_TYPE;
     }
+
     public static class Serializer implements RecipeSerializer<CondenserRecipe> {
 
         public static final MapCodec<CondenserRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(

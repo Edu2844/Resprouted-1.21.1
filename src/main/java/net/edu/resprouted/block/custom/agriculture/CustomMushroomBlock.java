@@ -30,6 +30,7 @@ public class CustomMushroomBlock extends CropBlock {
         this.mushroomSupplier = mushroomSupplier;
         this.growthCondition = growthCondition;
     }
+
     public CustomMushroomBlock(Settings settings, Supplier<ItemConvertible> mushroomSupplier) {
         this(settings, mushroomSupplier,
                 floor ->
@@ -41,35 +42,43 @@ public class CustomMushroomBlock extends CropBlock {
                         floor.isOf(Blocks.DEEPSLATE) ||
                         floor.isOf(Blocks.TUFF));
     }
+
     public static CustomMushroomBlock NetherMushroom(Settings settings, Supplier<ItemConvertible> mushroomSupplier) {
         return new CustomMushroomBlock(settings, mushroomSupplier,
                 floor -> floor.isOf(Blocks.NETHERRACK));
     }
+
     @Override
     protected ItemConvertible getSeedsItem() {
         return  mushroomSupplier.get();
     }
+
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return growthCondition.test(floor);
     }
+
     @Override
     public IntProperty getAgeProperty() {
         return AGE;
     }
+
     @Override
     protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos blockPos = pos.down();
         return this.canPlantOnTop(world.getBlockState(blockPos), world, blockPos);
     }
+
     @Override
     public int getMaxAge() {
         return MAX_AGE;
     }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
+
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE_TO_AGE[this.getAge(state)];

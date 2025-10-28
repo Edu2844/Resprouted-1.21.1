@@ -33,7 +33,7 @@ public class GlassBottleItemMixin {
             )
     )
 
-    private BlockHitResult resprouted$redirectRaycast(World world, PlayerEntity user, RaycastContext.FluidHandling fluidHandling) {
+    private BlockHitResult redirectRaycast(World world, PlayerEntity user, RaycastContext.FluidHandling fluidHandling) {
         Vec3d cameraPos = user.getCameraPosVec(1.0F);
         Vec3d rotation = user.getRotationVec(1.0F);
         Vec3d reach = cameraPos.add(rotation.multiply(5.0D));
@@ -53,7 +53,7 @@ public class GlassBottleItemMixin {
 
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
 
-    private void resprouted$injectUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
+    private void injectUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
         ItemStack itemStack = user.getStackInHand(hand);
 
         Vec3d cameraPos = user.getCameraPosVec(0.0F);
@@ -83,8 +83,7 @@ public class GlassBottleItemMixin {
                     user.dropItem(filled, false);
                 }
 
-                world.playSound(null, user.getX(), user.getY(), user.getZ(),
-                        SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 world.setBlockState(pos, Blocks.AIR.getDefaultState());
             }
 

@@ -52,7 +52,6 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
                 .with(HINGE, DoorHinge.LEFT));
     }
 
-    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, OPEN, CABINET_TYPE, HINGE);
@@ -77,27 +76,6 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
         Inventory inv = getCombinedInventory(world, state, pos);
         return ScreenHandler.calculateComparatorOutput(inv);
-    }
-
-    @Nullable
-    private Inventory getCombinedInventory(World world, BlockState state, BlockPos pos) {
-        CabinetType type = state.get(CABINET_TYPE);
-        BlockEntity be = world.getBlockEntity(pos);
-
-        if (!(be instanceof CabinetBE self)) return null;
-
-        if (type == CabinetType.SINGLE) return self;
-
-        BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
-        BlockEntity otherBe = world.getBlockEntity(otherPos);
-
-        if (otherBe instanceof CabinetBE other) {
-            return new DoubleInventory(
-                    type == CabinetType.BOTTOM ? self : other,
-                    type == CabinetType.BOTTOM ? other : self
-            );
-        }
-        return self;
     }
 
     @Override
@@ -192,38 +170,6 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         };
     }
 
-    private static @NotNull NamedScreenHandlerFactory getNamedScreenHandlerFactory(CabinetBE self, CabinetType type, CabinetBE other) {
-        CabinetBE lower = type == CabinetType.BOTTOM ? self : other;
-        CabinetBE upper = type == CabinetType.BOTTOM ? other : self;
-        return new NamedScreenHandlerFactory() {
-            @Override
-            public Text getDisplayName() {
-                return Text.translatable("container.resprouted.cabinet_double");
-            }
-            @Override
-            public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-                return GenericContainerScreenHandler.createGeneric9x6(syncId, inv, new DoubleInventory(lower, upper));
-            }
-        };
-    }
-
-    private DoorHinge getHingeSide(ItemPlacementContext context) {
-        Direction facing = context.getHorizontalPlayerFacing();
-        Vec3d hit = context.getHitPos();
-        BlockPos blockPos = context.getBlockPos();
-        double hitX = hit.x - blockPos.getX();
-        double hitZ = hit.z - blockPos.getZ();
-
-        return switch (facing) {
-            case NORTH -> hitX >= 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
-            case SOUTH -> hitX < 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
-            case WEST  -> hitZ < 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
-            case EAST  -> hitZ >= 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
-            default    -> DoorHinge.LEFT;
-        };
-    }
-
-    // ========= INTERACCIÓN =========
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) return ActionResult.SUCCESS;
@@ -259,6 +205,62 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         return ActionResult.CONSUME;
     }
 
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    private @Nullable Inventory getCombinedInventory(World world, BlockState state, BlockPos pos) {
+        CabinetType type = state.get(CABINET_TYPE);
+        BlockEntity be = world.getBlockEntity(pos);
+
+        if (!(be instanceof CabinetBE self)) return null;
+
+        if (type == CabinetType.SINGLE) return self;
+
+        BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
+        BlockEntity otherBe = world.getBlockEntity(otherPos);
+
+        if (otherBe instanceof CabinetBE other) {
+            return new DoubleInventory(
+                    type == CabinetType.BOTTOM ? self : other,
+                    type == CabinetType.BOTTOM ? other : self
+            );
+        }
+        return self;
+    }
+
+    private static @NotNull NamedScreenHandlerFactory getNamedScreenHandlerFactory(CabinetBE self, CabinetType type, CabinetBE other) {
+        CabinetBE lower = type == CabinetType.BOTTOM ? self : other;
+        CabinetBE upper = type == CabinetType.BOTTOM ? other : self;
+        return new NamedScreenHandlerFactory() {
+            @Override
+            public Text getDisplayName() {
+                return Text.translatable("container.resprouted.cabinet_double");
+            }
+            @Override
+            public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+                return GenericContainerScreenHandler.createGeneric9x6(syncId, inv, new DoubleInventory(lower, upper));
+            }
+        };
+    }
+
+    private DoorHinge getHingeSide(ItemPlacementContext context) {
+        Direction facing = context.getHorizontalPlayerFacing();
+        Vec3d hit = context.getHitPos();
+        BlockPos blockPos = context.getBlockPos();
+        double hitX = hit.x - blockPos.getX();
+        double hitZ = hit.z - blockPos.getZ();
+
+        return switch (facing) {
+            case NORTH -> hitX >= 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
+            case SOUTH -> hitX < 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
+            case WEST  -> hitZ < 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
+            case EAST  -> hitZ >= 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
+            default    -> DoorHinge.LEFT;
+        };
+    }
+
     private boolean isBlocked(World world, BlockPos pos, BlockState state) {
 
         BlockPos frontPos = pos.offset(state.get(FACING));
@@ -281,11 +283,5 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
             }
         }
         return false;
-    }
-
-    // ========= FORMA Y TRANSFORMACIONES =========
-    @Override
-    protected BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
     }
 }

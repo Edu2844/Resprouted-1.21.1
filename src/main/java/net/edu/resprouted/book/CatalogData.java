@@ -216,12 +216,15 @@ public class CatalogData {
         public Category(String name) {
             this.name = name;
         }
+
         public String getName() {
             return name;
         }
+
         public List<Entry> getEntries() {
             return entries;
         }
+
         public void addEntry(Entry entry) {
             entries.add(entry);
         }

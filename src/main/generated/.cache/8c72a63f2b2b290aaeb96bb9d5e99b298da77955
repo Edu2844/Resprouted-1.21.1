@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-19T18:42:37.2472975	Resprouted/
+// 1.21.1	2025-10-25T16:22:06.0936736	Resprouted/
 1ae92fa27190e4d7866b1dcaa2c0abe3c6a407a0 data\resprouted\worldgen\configured_feature\ginseng_herb.json
 deb758ee83f6673b1f730d1471a7553e8a944fc4 data\resprouted\worldgen\placed_feature\mooncap_surface_placed.json
 cec161184fee7dd05acb0768447bd9a399bc41ce data\resprouted\worldgen\configured_feature\deathstalk_mushroom.json
@@ -25,8 +25,8 @@ c38f6d78bdd8b32464d9cf6e558ed632ac623b6e data\resprouted\worldgen\configured_fea
 5673bc02c854de0acff946c1d5ebcf46fc28cda5 data\resprouted\worldgen\configured_feature\horsetail_herb.json
 8086a9bcdd09ec02c6304402d431870766b31c94 data\resprouted\worldgen\placed_feature\marshmalow_placed.json
 cb99df823ea1698c40bbf129052553f219bd34a9 data\resprouted\worldgen\configured_feature\blood_orchid_herb.json
-76d3111a4245a8335afd867cc281645bdf709cae data\resprouted\worldgen\configured_feature\ironwood.json
 6cb77c082d8c59f76c4fcae925fec1eeab322223 data\resprouted\worldgen\placed_feature\deathstalk_mushroom_placed.json
+76d3111a4245a8335afd867cc281645bdf709cae data\resprouted\worldgen\configured_feature\ironwood.json
 4a112a8a8cec2287ccc6e21345bcd584edda01f0 data\resprouted\worldgen\configured_feature\vanta_lily_herb.json
 ba6a6db4f472f3791e74e1030d9fd8a012ed3c28 data\resprouted\worldgen\configured_feature\core_root_herb.json
 1b6074f7a3d8a7f8a4292e46d907033ba706de5e data\resprouted\worldgen\placed_feature\ironwood_placed.json

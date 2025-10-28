@@ -72,10 +72,6 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.STONE_PILLAR)
 
                 //SANDSTONE
-                .add(ModBlocks.POLISHED_SANDSTONE)
-                .add(ModBlocks.POLISHED_SANDSTONE_STAIRS)
-                .add(ModBlocks.POLISHED_SANDSTONE_WALL)
-                .add(ModBlocks.POLISHED_SANDSTONE_SLAB)
                 .add(ModBlocks.SANDSTONE_BRICKS)
                 .add(ModBlocks.SANDSTONE_BRICK_STAIRS)
                 .add(ModBlocks.SANDSTONE_BRICK_WALL)
@@ -83,10 +79,6 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.SANDSTONE_PILLAR)
 
                 //RED SANDSTONE
-                .add(ModBlocks.POLISHED_RED_SANDSTONE)
-                .add(ModBlocks.POLISHED_RED_SANDSTONE_STAIRS)
-                .add(ModBlocks.POLISHED_RED_SANDSTONE_WALL)
-                .add(ModBlocks.POLISHED_RED_SANDSTONE_SLAB)
                 .add(ModBlocks.RED_SANDSTONE_BRICKS)
                 .add(ModBlocks.RED_SANDSTONE_BRICK_STAIRS)
                 .add(ModBlocks.RED_SANDSTONE_BRICK_WALL)
@@ -99,6 +91,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.CUT_WROUGHT_IRON_STAIRS)
                 .add(ModBlocks.CUT_WROUGHT_IRON_SLAB)
                 .add(ModBlocks.WROUGHT_IRON_BULB)
+                .add(ModBlocks.WROUGHT_IRON_BARS)
 
                 //CHAINS
                 .add(ModBlocks.GOLDEN_CHAIN)
@@ -335,9 +328,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.ANDESITE_BRICK_WALL)
                 .add(ModBlocks.DIORITE_BRICK_WALL)
                 .add(ModBlocks.GRANITE_BRICK_WALL)
-                .add(ModBlocks.POLISHED_SANDSTONE_WALL)
                 .add(ModBlocks.SANDSTONE_BRICK_WALL)
-                .add(ModBlocks.POLISHED_RED_SANDSTONE_WALL)
                 .add(ModBlocks.RED_SANDSTONE_BRICK_WALL)
         ;
         getOrCreateTagBuilder(BlockTags.CLIMBABLE)

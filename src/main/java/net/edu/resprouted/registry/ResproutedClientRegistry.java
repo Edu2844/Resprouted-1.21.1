@@ -55,17 +55,20 @@ public class ResproutedClientRegistry {
         registerLivingEntityRenderers();
         registerEatingAnimationsCompat();
     }
+
     public static void registerBlockEntityRenderers() {
         BlockEntityRendererFactories.register(ModBlockEntities.CRUSHING_TUB_BE, CrushingTubBERenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.LIQUID_BARREL_BE, LiquidBarrelRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.EVAPORATING_BASIN_BE, EvaporatingBasinRenderer::new);
 
     }
+
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(ModEntities.CHAIR, ChairEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.STOOL, StoolEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.THROWN_TOMATO, TomatoEntityRenderer::new);
     }
+
     public static void registerBlockRenderers() {
         BlockRenderLayerMap registry = BlockRenderLayerMap.INSTANCE;
         registry.putBlock(ModBlocks.OLIVE_SAPLING, RenderLayer.getCutout());
@@ -175,6 +178,8 @@ public class ResproutedClientRegistry {
         registry.putBlock(ModBlocks.IRONWOOD_TRAPDOOR, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.OLIVE_DOOR, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.OLIVE_TRAPDOOR, RenderLayer.getCutout());
+        //Bar
+        registry.putBlock(ModBlocks.WROUGHT_IRON_BARS, RenderLayer.getCutout());
         //Fluids
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.HONEY_STILL, ModFluids.HONEY_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.APPLE_JUICE_STILL, ModFluids.APPLE_JUICE_FLOWING);
@@ -192,6 +197,7 @@ public class ResproutedClientRegistry {
         TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ResproutedWoodTypes.OLIVE, TexturedRenderLayers.getSignTextureId(ResproutedWoodTypes.OLIVE));
 
     }
+
     public static void registerFluidColors() {
         FluidRenderHandlerRegistry registry = FluidRenderHandlerRegistry.INSTANCE;
         //Honey
@@ -335,6 +341,7 @@ public class ResproutedClientRegistry {
                                 .orElse(0x385DC6), ModItems.ELIXIR_BOTTLE
         );
     }
+
     public static void registerEatingAnimationsCompat() {
         registerDrinkingAnimationCompat(ModItems.ELIXIR_BOTTLE);
 
@@ -344,6 +351,7 @@ public class ResproutedClientRegistry {
             }
         }
     }
+
     private static void registerDrinkingAnimationCompat(Item item) {
         ModelPredicateProviderRegistry.register(item,
                 Identifier.of("drinking"),
@@ -364,9 +372,11 @@ public class ResproutedClientRegistry {
                             (itemStack.getMaxUseTime(livingEntity) - livingEntity.getItemUseTimeLeft()) / 30.0F;
                 });
     }
+
     public static void registerHudRenderers() {
         HudRenderCallback.EVENT.register(new FullMetalHudOverlay());
     }
+
     public static void registerLivingEntityRenderers() {
         LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, entityRenderer, registrationHelper, renderContext) -> {
             if (entityType == EntityType.PLAYER && entityRenderer instanceof FeatureRendererContext<?, ?> genericContext) {

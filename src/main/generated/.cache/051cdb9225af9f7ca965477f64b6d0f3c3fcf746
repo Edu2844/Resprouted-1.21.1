@@ -1,10 +1,10 @@
-// 1.21.1	2025-10-19T18:42:37.2403164	Resprouted/Tags for minecraft:block
+// 1.21.1	2025-10-25T16:22:06.0837003	Resprouted/Tags for minecraft:block
 bae413f2bcbeb5269437af17c363b31c4070989c data\minecraft\tags\block\fences.json
-9942856c665c030254a64965a38aa3756854aac1 data\minecraft\tags\block\mineable\pickaxe.json
+3d4958c0a407324abb83d4493e9472fa080eb099 data\minecraft\tags\block\mineable\pickaxe.json
 7f08e1ec55467be8b6c829f8f63e452d7db4f044 data\minecraft\tags\block\logs_that_burn.json
 6e684c77bc468283a0028bc29cc2660d8ac47d46 data\minecraft\tags\block\fence_gates.json
 8b53b3f34d59a961a8bc5df09257c900bfc205a7 data\minecraft\tags\block\ceiling_hanging_signs.json
-5f571c180bd1d701567947e1d921a452b699a02d data\minecraft\tags\block\walls.json
+a8f678fe50566fb8fd5b0192f68a969da0e75f5c data\minecraft\tags\block\walls.json
 4006d377e843e61a73f007077bb382f2fad3e37e data\minecraft\tags\block\climbable.json
 b1580e5b103dc1bfe8a6ac76e9c84b0eef0b5695 data\resprouted\tags\block\allows_growth.json
 1b87419341fdebe6ca3ce70fd106bf7bd145e074 data\minecraft\tags\block\mineable\shovel.json

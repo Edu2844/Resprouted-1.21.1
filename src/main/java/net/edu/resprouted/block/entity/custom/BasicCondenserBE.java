@@ -157,6 +157,7 @@ public class BasicCondenserBE extends AbstractCondenserBlockEntity {
         } else if (ItemStack.areItemsAndComponentsEqual(outputStack, result)) {
             outputStack.increment(result.getCount());
         }
+
         this.removeStack(INPUT_SLOT_1, 1);
         this.removeStack(INPUT_SLOT_2, 1);
         this.removeStack(BOTTLE_SLOT, 1);

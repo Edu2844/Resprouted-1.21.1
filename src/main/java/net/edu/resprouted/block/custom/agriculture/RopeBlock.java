@@ -52,7 +52,6 @@ public class RopeBlock extends ChainBlock{
                 .with(HAS_KNOT, false));
     }
 
-    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AXIS, WATERLOGGED, HAS_KNOT);
@@ -88,8 +87,8 @@ public class RopeBlock extends ChainBlock{
         Direction.Axis axis = ctx.getSide().getAxis();
 
         boolean knot = axis != Direction.Axis.Y
-                && ctx.getWorld().getBlockState(ctx.getBlockPos().down()).getBlock() instanceof RopeBlock rb
-                && rb.getDefaultState().get(AXIS) == Direction.Axis.Y;
+                && ctx.getWorld().getBlockState(ctx.getBlockPos().down()).getBlock() instanceof RopeBlock rope
+                && rope.getDefaultState().get(AXIS) == Direction.Axis.Y;
 
         return getDefaultState().with(AXIS, axis).with(HAS_KNOT, knot);
     }
@@ -125,9 +124,7 @@ public class RopeBlock extends ChainBlock{
         return super.getStateForNeighborUpdate(state, dir, neighbor, world, pos, neighborPos);
     }
 
-    // ========= INTERACCIÓN =========
-    @Override protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world,
-                                                       BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    @Override protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (stack.getItem() != asItem())
             return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
@@ -161,7 +158,6 @@ public class RopeBlock extends ChainBlock{
         return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    // ========= FORMA =========
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return switch (state.get(AXIS)) {
@@ -171,7 +167,7 @@ public class RopeBlock extends ChainBlock{
         };
     }
 
-    // ========= AUXILIARES =========
+    // ========= HELPER METHODS =========
     private boolean hasSupport(BlockState state, WorldView world, BlockPos pos) {
         return state.get(AXIS) == Direction.Axis.Y ? hasVerticalSupport(world, pos) : hasHorizontalSupport(world, pos, new HashSet<>(), state.get(AXIS));
     }

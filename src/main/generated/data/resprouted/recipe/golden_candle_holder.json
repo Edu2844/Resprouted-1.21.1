@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:candle"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    },
+    "N": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "pattern": [
+    " C ",
+    " N ",
+    " I "
+  ],
+  "result": {
+    "count": 4,
+    "id": "resprouted:golden_candle_holder"
+  }
+}

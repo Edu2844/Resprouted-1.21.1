@@ -20,7 +20,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
     @Override
     public void generate(RecipeExporter exporter) {
-//CHAIRS
+        //CHAIRS
         Map<ItemConvertible, ItemConvertible> Chairs = Map.ofEntries(
                 Map.entry(Blocks.OAK_PLANKS, ModBlocks.OAK_CHAIR),
                 Map.entry(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_CHAIR),
@@ -96,6 +96,68 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input('P', slab)
                         .input('S', Items.STICK)
                         .criterion("has_slab", conditionsFromItem(slab))
+                        .offerTo(exporter));
+
+        //IRON CANDLE HOLDERS
+        Map<ItemConvertible, ItemConvertible> Iron_holder = Map.ofEntries(
+                Map.entry(Blocks.BLACK_CANDLE, ModBlocks.BLACK_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.BLUE_CANDLE, ModBlocks.BLUE_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.BROWN_CANDLE, ModBlocks.BROWN_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.CANDLE, ModBlocks.IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.CYAN_CANDLE, ModBlocks.CYAN_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.GRAY_CANDLE, ModBlocks.GRAY_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.GREEN_CANDLE, ModBlocks.GREEN_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.LIGHT_BLUE_CANDLE, ModBlocks.LIGHT_BLUE_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.LIGHT_GRAY_CANDLE, ModBlocks.LIGHT_GRAY_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.LIME_CANDLE, ModBlocks.LIME_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.MAGENTA_CANDLE, ModBlocks.MAGENTA_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.ORANGE_CANDLE, ModBlocks.ORANGE_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.PINK_CANDLE, ModBlocks.PINK_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.PURPLE_CANDLE, ModBlocks.PURPLE_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.RED_CANDLE, ModBlocks.RED_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.WHITE_CANDLE, ModBlocks.WHITE_IRON_CANDLE_HOLDER),
+                Map.entry(Blocks.YELLOW_CANDLE, ModBlocks.YELLOW_IRON_CANDLE_HOLDER)
+        );
+        Iron_holder.forEach((candle, iron_candle_holder) ->
+                ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, iron_candle_holder, 4)
+                        .pattern(" C ")
+                        .pattern(" N ")
+                        .pattern(" I ")
+                        .input('C', candle)
+                        .input('N', Items.IRON_NUGGET)
+                        .input('I', Items.IRON_INGOT)
+                        .criterion("has_candle", conditionsFromItem(candle))
+                        .offerTo(exporter));
+
+        //GOLDEN CANDLE HOLDERS
+        Map<ItemConvertible, ItemConvertible> Golden_holder = Map.ofEntries(
+                Map.entry(Blocks.BLACK_CANDLE, ModBlocks.BLACK_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.BLUE_CANDLE, ModBlocks.BLUE_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.BROWN_CANDLE, ModBlocks.BROWN_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.CANDLE, ModBlocks.GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.CYAN_CANDLE, ModBlocks.CYAN_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.GRAY_CANDLE, ModBlocks.GRAY_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.GREEN_CANDLE, ModBlocks.GREEN_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.LIGHT_BLUE_CANDLE, ModBlocks.LIGHT_BLUE_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.LIGHT_GRAY_CANDLE, ModBlocks.LIGHT_GRAY_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.LIME_CANDLE, ModBlocks.LIME_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.MAGENTA_CANDLE, ModBlocks.MAGENTA_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.ORANGE_CANDLE, ModBlocks.ORANGE_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.PINK_CANDLE, ModBlocks.PINK_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.PURPLE_CANDLE, ModBlocks.PURPLE_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.RED_CANDLE, ModBlocks.RED_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.WHITE_CANDLE, ModBlocks.WHITE_GOLDEN_CANDLE_HOLDER),
+                Map.entry(Blocks.YELLOW_CANDLE, ModBlocks.YELLOW_GOLDEN_CANDLE_HOLDER)
+        );
+        Golden_holder.forEach((candle1, golden_candle_holder) ->
+                ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, golden_candle_holder, 4)
+                        .pattern(" C ")
+                        .pattern(" N ")
+                        .pattern(" I ")
+                        .input('C', candle1)
+                        .input('N', Items.GOLD_NUGGET)
+                        .input('I', Items.GOLD_INGOT)
+                        .criterion("has_candle", conditionsFromItem(candle1))
                         .offerTo(exporter));
     }
 }

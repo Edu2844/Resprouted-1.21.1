@@ -78,6 +78,35 @@ public class CustomCakeBlock extends Block {
         return tryEat(world, pos, state, player);
     }
 
+    @Override
+    protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    @Override
+    protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+        return world.getBlockState(pos.down()).isSolid();
+    }
+
+    @Override
+    protected int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+        return getComparatorOutput(state.get(BITES));
+    }
+
+    public static int getComparatorOutput(int bites) {
+        return (MAX_BITES + 1 - bites) * 2;
+    }
+
+    @Override
+    protected boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
+        return false;
+    }
+
     protected ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canConsume(false)) {
             return ActionResult.PASS;
@@ -125,34 +154,5 @@ public class CustomCakeBlock extends Block {
         }
 
         return ActionResult.SUCCESS;
-    }
-
-    @Override
-    protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-    }
-
-    @Override
-    protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return world.getBlockState(pos.down()).isSolid();
-    }
-
-    @Override
-    protected int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-        return getComparatorOutput(state.get(BITES));
-    }
-
-    public static int getComparatorOutput(int bites) {
-        return (MAX_BITES + 1 - bites) * 2;
-    }
-
-    @Override
-    protected boolean hasComparatorOutput(BlockState state) {
-        return true;
-    }
-
-    @Override
-    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
-        return false;
     }
 }

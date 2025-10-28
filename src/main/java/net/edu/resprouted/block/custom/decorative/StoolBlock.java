@@ -2,7 +2,6 @@ package net.edu.resprouted.block.custom.decorative;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.entity.ModEntities;
-import net.edu.resprouted.entity.custom.ChairEntity;
 import net.edu.resprouted.entity.custom.StoolEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -53,10 +52,12 @@ public class StoolBlock extends ChairBlock {
         }
         return ActionResult.SUCCESS;
     }
+
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
+
     @Override
     protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
         return CODEC;

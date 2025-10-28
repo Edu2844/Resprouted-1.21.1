@@ -21,7 +21,6 @@ public class FertileSoilBlock extends FarmlandBlock {
         this.setDefaultState(this.stateManager.getDefaultState().with(FarmlandBlock.MOISTURE, 7));
     }
 
-    // ========= PROPIEDADES Y ESTADO ========
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return true;
@@ -53,7 +52,6 @@ public class FertileSoilBlock extends FarmlandBlock {
         }*/
     }
 
-    // ========= INTERACCIÓN =========
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (!world.isClient &&
@@ -64,7 +62,6 @@ public class FertileSoilBlock extends FarmlandBlock {
         }
     }
 
-    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);

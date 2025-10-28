@@ -24,8 +24,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class CropStakeBlock extends CropBlock {
     public static final int MAX_AGE = 7;
@@ -33,21 +31,30 @@ public class CropStakeBlock extends CropBlock {
     protected static final VoxelShape CROP_SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
     protected static final VoxelShape STAKE_SHAPE = Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
 
-    private final Supplier<ItemConvertible> seedsItemSupplier;
     private final int maxVerticalGrowth;
     private final int resetAge;
-    private final Consumer<PlayerEntity> harvestConsumer;
 
-    public CropStakeBlock(Settings settings, Supplier<ItemConvertible> seedsItemSupplier, int maxVerticalGrowth, int resetAge, Consumer<PlayerEntity> harvestConsumer) {
+    public CropStakeBlock(Settings settings, int maxVerticalGrowth, int resetAge) {
         super(settings);
-        this.seedsItemSupplier = seedsItemSupplier;
         this.maxVerticalGrowth = maxVerticalGrowth;
         this.resetAge = resetAge;
-        this.harvestConsumer = harvestConsumer;
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
 
-    // ========= PROPIEDADES Y ESTADO =========
+    protected Item getCrop() {
+        return null;
+    }
+
+    protected Item getSeed() {
+        return null;
+    }
+
+    protected void giveCrops(PlayerEntity player, Random random) {
+        if (getCrop() != null) {
+            player.giveItemStack(new ItemStack(getCrop()));
+        }
+    }
+
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
@@ -65,18 +72,18 @@ public class CropStakeBlock extends CropBlock {
 
     @Override
     protected ItemConvertible getSeedsItem() {
-        return seedsItemSupplier.get();
+        return getSeed();
     }
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(ModTags.Blocks.FERTILE_SOILS)||floor.isOf(Blocks.FARMLAND);
+        return floor.isIn(ModTags.Blocks.FERTILE_SOILS) || floor.isOf(Blocks.FARMLAND);
     }
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockState below = world.getBlockState(pos.down());
-        return below.isIn(ModTags.Blocks.FERTILE_SOILS) || below.getBlock() instanceof CropStakeBlock||below.isOf(Blocks.FARMLAND);
+        return below.isIn(ModTags.Blocks.FERTILE_SOILS) || below.getBlock() instanceof CropStakeBlock || below.isOf(Blocks.FARMLAND);
     }
 
     @Override
@@ -128,8 +135,6 @@ public class CropStakeBlock extends CropBlock {
         return true;
     }
 
-    // ========= INTERACCIÓN =========
-
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (getAge(state) >= getMaxAge()) {
@@ -145,8 +150,6 @@ public class CropStakeBlock extends CropBlock {
         return ItemActionResult.FAIL;
     }
 
-    // ========= FORMA Y TRANSFORMACIONES =========
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return CROP_SHAPE;
@@ -156,8 +159,6 @@ public class CropStakeBlock extends CropBlock {
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return STAKE_SHAPE;
     }
-
-    // ========= HELPERS =========
 
     private void harvestVertical(World world, BlockPos origin, PlayerEntity player, boolean upwards) {
         BlockPos.Mutable currentPos = origin.mutableCopy();
@@ -177,9 +178,7 @@ public class CropStakeBlock extends CropBlock {
     }
 
     private void harvestBlock(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (harvestConsumer != null) {
-            harvestConsumer.accept(player);
-        }
+        giveCrops(player, world.random);
         world.setBlockState(pos, state.with(getAgeProperty(), getResetAge()), Block.NOTIFY_ALL);
     }
 
@@ -204,13 +203,12 @@ public class CropStakeBlock extends CropBlock {
     public static Optional<BlockState> getCropForSeed(Item seedItem) {
         for (Block block : Registries.BLOCK) {
             if (block instanceof CropStakeBlock stakeCrop) {
-                ItemConvertible seed = stakeCrop.getSeedsItem();
-                if (seed != null && seed.asItem() == seedItem) {
+                Item seed = stakeCrop.getSeed();
+                if (seed != null && seed == seedItem) {
                     return Optional.of(block.getDefaultState());
                 }
             }
         }
         return Optional.empty();
     }
-
 }

@@ -34,7 +34,6 @@ public class HerbBlock extends CropBlock {
         this.seedsSupplier = seedsSupplier;
     }
 
-    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
@@ -63,7 +62,6 @@ public class HerbBlock extends CropBlock {
         return MAX_AGE;
     }
 
-    // ========= INTERACCIÓN =========
     @Override
     protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if(this == ModBlocks.WIND_THISTLE_BLOCK) {
@@ -80,7 +78,6 @@ public class HerbBlock extends CropBlock {
         }
     }
 
-    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE_TO_AGE[this.getAge(state)];

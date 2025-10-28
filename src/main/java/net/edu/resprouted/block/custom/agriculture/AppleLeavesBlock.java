@@ -2,6 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
@@ -20,6 +21,7 @@ import net.minecraft.world.WorldView;
 
 public class AppleLeavesBlock extends LeavesBlock implements Fertilizable {
     private static final int GROW_CHANCE = 25;
+    public static final int MAX_AGE = 3;
     public static final IntProperty AGE = IntProperty.of("age", 0, 3);
 
     public AppleLeavesBlock(Settings settings) {
@@ -27,7 +29,6 @@ public class AppleLeavesBlock extends LeavesBlock implements Fertilizable {
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(PERSISTENT, false).with(DISTANCE, 1));
     }
 
-    // ========= PROPIEDADES Y ESTADO ========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
@@ -35,7 +36,7 @@ public class AppleLeavesBlock extends LeavesBlock implements Fertilizable {
     }
 
     public int getMaxAge() {
-        return 3;
+        return MAX_AGE;
     }
 
     @Override
@@ -82,11 +83,10 @@ public class AppleLeavesBlock extends LeavesBlock implements Fertilizable {
         }
     }
 
-    // ========= INTERACCIÓN =========
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(AppleLeavesBlock.AGE) == getMaxAge()) {
-            player.giveItemStack(new ItemStack(Items.APPLE));
+            player.giveItemStack(new ItemStack(getHarvest()));
             world.setBlockState(pos, state.with(AppleLeavesBlock.AGE, 0), Block.NOTIFY_ALL);
 
             world.playSound(null, pos, SoundEvents.BLOCK_CAVE_VINES_PICK_BERRIES,
@@ -97,4 +97,7 @@ public class AppleLeavesBlock extends LeavesBlock implements Fertilizable {
         return ItemActionResult.FAIL;
     }
 
+    public Item getHarvest() {
+        return Items.APPLE;
+    }
 }

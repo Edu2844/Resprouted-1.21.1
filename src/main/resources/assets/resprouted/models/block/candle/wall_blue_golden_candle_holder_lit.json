@@ -1,7 +1,7 @@
 {
   "parent": "resprouted:block/candle/template_wall_candle_holder",
 	"textures": {
-		"candle": "block/blue_candle_lit",
-		"particle": "resprouted:block/golden_candle_holder"
+		"holder": "resprouted:block/golden_candle_holder",
+		"candle": "block/blue_candle_lit"
 	}
 }
