@@ -1,0 +1,42 @@
+{
+  "variants": {
+    "facing=east,lit=false": {
+      "model": "resprouted:block/wall_exposed_copper_purple_candle_holder",
+      "y": 90
+    },
+    "facing=east,lit=true": {
+      "model": "resprouted:block/wall_exposed_copper_purple_candle_holder_lit",
+      "y": 90
+    },
+    "facing=north,lit=false": {
+      "model": "resprouted:block/wall_exposed_copper_purple_candle_holder",
+      "y": 0
+    },
+    "facing=north,lit=true": {
+      "model": "resprouted:block/wall_exposed_copper_purple_candle_holder_lit",
+      "y": 0
+    },
+    "facing=south,lit=false": {
+      "model": "resprouted:block/wall_exposed_copper_purple_candle_holder",
+      "y": 180
+    },
+    "facing=south,lit=true": {
+      "model": "resprouted:block/wall_exposed_copper_purple_candle_holder_lit",
+      "y": 180
+    },
+    "facing=up,lit=false": {
+      "model": "resprouted:block/exposed_copper_purple_candle_holder"
+    },
+    "facing=up,lit=true": {
+      "model": "resprouted:block/exposed_copper_purple_candle_holder_lit"
+    },
+    "facing=west,lit=false": {
+      "model": "resprouted:block/wall_exposed_copper_purple_candle_holder",
+      "y": 270
+    },
+    "facing=west,lit=true": {
+      "model": "resprouted:block/wall_exposed_copper_purple_candle_holder_lit",
+      "y": 270
+    }
+  }
+}

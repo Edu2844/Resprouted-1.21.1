@@ -234,6 +234,11 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.BLUE_BERRY_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED,
                 BlueBerrieBush.AGE, 0, 1, 2, 3);
 
+        // =================================================
+        // ||             COPPER CANDLE HOLDER            ||
+        // =================================================
+        registerCopperCandleHolders(blockStateModelGenerator);
+
     }
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
@@ -289,5 +294,977 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RUM_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ModItems.AMBROSIA_BOTTLE, Models.GENERATED);
         ResproutedBoatTypes.getAllBoatItems().forEach(item -> itemModelGenerator.register(item, Models.GENERATED));
+    }
+
+    private void registerCopperCandleHolders(BlockStateModelGenerator blockStateModelGenerator) {
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_CANDLE_HOLDER,
+                "copper_candle_holder",
+                ""
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                ""
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                ""
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                ""
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_CANDLE_HOLDER,
+                "copper_candle_holder",
+                ""
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                ""
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                ""
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                ""
+        );
+
+
+        // ============ BLACK ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_BLACK_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "black"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_BLACK_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "black"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_BLACK_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "black"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_BLACK_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "black"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_BLACK_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "black"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_BLACK_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "black"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_BLACK_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "black"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_BLACK_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "black"
+        );
+
+        // ============ BLUE ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_BLUE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_BLUE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_BLUE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_BLUE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_BLUE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_BLUE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_BLUE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_BLUE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "blue"
+        );
+
+        // ============ BROWN ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_BROWN_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "brown"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_BROWN_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "brown"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_BROWN_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "brown"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_BROWN_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "brown"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_BROWN_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "brown"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_BROWN_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "brown"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_BROWN_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "brown"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_BROWN_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "brown"
+        );
+
+        // ============ CYAN ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_CYAN_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "cyan"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_CYAN_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "cyan"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_CYAN_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "cyan"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_CYAN_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "cyan"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_CYAN_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "cyan"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_CYAN_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "cyan"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_CYAN_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "cyan"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_CYAN_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "cyan"
+        );
+
+        // ============ GRAY ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_GRAY_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_GRAY_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_GRAY_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_GRAY_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_GRAY_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_GRAY_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_GRAY_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_GRAY_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "gray"
+        );
+
+        // ============ GREEN ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_GREEN_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "green"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_GREEN_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "green"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_GREEN_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "green"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_GREEN_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "green"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_GREEN_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "green"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_GREEN_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "green"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_GREEN_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "green"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_GREEN_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "green"
+        );
+
+        // ============ LIGHT BLUE ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_LIGHT_BLUE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "light_blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_LIGHT_BLUE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "light_blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_LIGHT_BLUE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "light_blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_LIGHT_BLUE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "light_blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_LIGHT_BLUE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "light_blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_LIGHT_BLUE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "light_blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_LIGHT_BLUE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "light_blue"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_LIGHT_BLUE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "light_blue"
+        );
+
+        // ============ LIGHT GRAY ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_LIGHT_GRAY_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "light_gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_LIGHT_GRAY_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "light_gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_LIGHT_GRAY_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "light_gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_LIGHT_GRAY_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "light_gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_LIGHT_GRAY_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "light_gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_LIGHT_GRAY_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "light_gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_LIGHT_GRAY_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "light_gray"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_LIGHT_GRAY_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "light_gray"
+        );
+
+        // ============ LIME ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_LIME_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "lime"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_LIME_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "lime"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_LIME_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "lime"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_LIME_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "lime"
+        );
+
+        // Portavelas encerados lima
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_LIME_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "lime"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_LIME_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "lime"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_LIME_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "lime"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_LIME_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "lime"
+        );
+
+        // ============ MAGENTA ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_MAGENTA_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "magenta"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_MAGENTA_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "magenta"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_MAGENTA_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "magenta"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "magenta"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_MAGENTA_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "magenta"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_MAGENTA_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "magenta"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_MAGENTA_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "magenta"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "magenta"
+        );
+
+        // ============ ORANGE ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_ORANGE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "orange"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_ORANGE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "orange"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_ORANGE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "orange"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_ORANGE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "orange"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_ORANGE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "orange"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_ORANGE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "orange"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_ORANGE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "orange"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_ORANGE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "orange"
+        );
+
+        // ============ PINK ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_PINK_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "pink"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_PINK_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "pink"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_PINK_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "pink"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_PINK_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "pink"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_PINK_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "pink"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_PINK_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "pink"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_PINK_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "pink"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_PINK_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "pink"
+        );
+
+        // ============ PURPLE ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_PURPLE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "purple"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_PURPLE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "purple"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_PURPLE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "purple"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_PURPLE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "purple"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_PURPLE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "purple"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_PURPLE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "purple"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_PURPLE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "purple"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_PURPLE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "purple"
+        );
+
+        // ============ RED ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_RED_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "red"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_RED_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "red"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_RED_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "red"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_RED_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "red"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_RED_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "red"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_RED_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "red"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_RED_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "red"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_RED_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "red"
+        );
+
+        // ============ WHITE ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_WHITE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "white"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_WHITE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "white"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_WHITE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "white"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_WHITE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "white"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_WHITE_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "white"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_WHITE_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "white"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_WHITE_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "white"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_WHITE_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "white"
+        );
+
+        // ============ YELLOW ============
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.COPPER_YELLOW_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "yellow"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.EXPOSED_COPPER_YELLOW_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "yellow"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WEATHERED_COPPER_YELLOW_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "yellow"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.OXIDIZED_COPPER_YELLOW_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "yellow"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_COPPER_YELLOW_CANDLE_HOLDER,
+                "copper_candle_holder",
+                "yellow"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_EXPOSED_COPPER_YELLOW_CANDLE_HOLDER,
+                "exposed_copper_candle_holder",
+                "yellow"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_WEATHERED_COPPER_YELLOW_CANDLE_HOLDER,
+                "weathered_copper_candle_holder",
+                "yellow"
+        );
+
+        ModTemplateModels.registerCopperCandleHolderModels(
+                blockStateModelGenerator,
+                ModBlocks.WAXED_OXIDIZED_COPPER_YELLOW_CANDLE_HOLDER,
+                "oxidized_copper_candle_holder",
+                "yellow"
+        );
     }
 }
