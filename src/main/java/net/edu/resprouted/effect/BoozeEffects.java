@@ -1,10 +1,13 @@
 package net.edu.resprouted.effect;
 
 import net.edu.resprouted.item.custom.BoozeBottleItem;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
 
 public class BoozeEffects {
 
@@ -25,21 +28,29 @@ public class BoozeEffects {
 
     public static void applyIronWineEffects(BoozeBottleItem.BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
+        World world = context.world();
         float quality = context.quality();
+
+        if (world.isClient) return;
 
         if (quality >= 0.5F) {
             player.getHungerManager().add(1, 2F * quality);
 
-            float absorption = 10F * (Math.max((quality - 0.5F) * 2F, 0F));
-            float currentAbsorption = player.getAbsorptionAmount();
-            player.setAbsorptionAmount(Math.min(currentAbsorption + absorption, 20F));
+            float a = 10F * (Math.max((quality - 0.5F) * 2F, 0F));
+            float currentAbs = player.getAbsorptionAmount();
+            float newAbs = Math.min(currentAbs + a, 20F);
+
+            EntityAttributeInstance maxAb = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_ABSORPTION);
+            if (maxAb != null && maxAb.getBaseValue() < newAbs) {
+                maxAb.setBaseValue(newAbs);
+            }
+
+            player.setAbsorptionAmount(newAbs);
 
         } else {
             int duration = (int) (6000 * Math.max(1 - quality, 0.25));
-
             float damage = 10F * (Math.max(Math.abs(quality - 0.5F) + 0.1F, 0.25F));
             player.damage(player.getDamageSources().magic(), damage);
-
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, duration));
         }
     }
@@ -190,7 +201,7 @@ public class BoozeEffects {
 
             int duration;
             if (quality > 0.99F) {
-                duration = Integer.MAX_VALUE;
+                duration = StatusEffectInstance.INFINITE;
                 player.removeStatusEffect(ModEffects.UNDYING);
             } else {
                 duration = (20 * 300) + ((int) (18000 * (Math.max(Math.abs((quality - 0.5F) * 2F), 0.00F))));

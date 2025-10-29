@@ -48,6 +48,7 @@ public class BoozeBottleItem extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        super.finishUsing(stack, world, user);
         if (!world.isClient() && user instanceof PlayerEntity player) {
             float quality = getQuality(stack);
 

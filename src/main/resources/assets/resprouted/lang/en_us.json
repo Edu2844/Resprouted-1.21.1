@@ -722,7 +722,7 @@
   "entry.resprouted.advanced_condenser": "Alchemy II",
   "text.resprouted.advanced_condenser.desc1": "Advanced condensers work much like basic ones, but with a few important differences. They require three advanced retorts, attached to the lower half on the left, right and back sides, relative to the direction the condenser is facing.",
   "text.resprouted.advanced_condenser.desc2": "The retorts must be connected properly, with their tubes facing the condenser. These condensers can brew elixirs with up to three ingredients, plus an optional modifier. Modifiers adjust certain properties of the final elixir and can be placed in the top-middle slot of the GUI, just above the fuel slot.",
-  "text.resprouted.advanced_condenser.desc3": "The interface also includes a third ingredient slot, in addition to the two found in basic condensers. ",
+  "text.resprouted.advanced_condenser.desc3": "The interface also includes a third ingredient slot, in addition to the two found in basic condensers. Advanced condensers can brew any elixir that a basic condenser can.",
 
   "entry.resprouted.elixirs": "Elixirs",
   "text.resprouted.elixirs.desc1": "Elixirs are magical mixtures created through alchemy using condensers. They behave much like potions but can be stacked up to sixteen. Unlike potions, they cannot be combined with arrows or turned into splash or lingering forms.",
@@ -732,8 +732,14 @@
   "text.resprouted.vanta_oil.desc2": "Non-instant effects last around fifteen seconds per hit, and repeated strikes extend the duration. You can recharge an oiled weapon by crafting it again with more vanta oil and more elixirs or potions of the same type.",
 
   "entry.resprouted.alcohol": "Alcohol",
-  "text.resprouted.alcohol.desc1": "a",
-  "text.resprouted.alcohol.desc2": "e",
+  "text.resprouted.alcohol.desc1": "Alcoholic drinks, or booze, are made by brewing certain fluids in a brewing barrel. These drinks can grant powerful effects when used wisely, but may also cause trouble. Every booze has a quality between 0 and 1.",
+  "text.resprouted.alcohol.desc2": "If the quality is at least 0.5, the effect will be positive. If it’s lower, the effect will be negative. The strength and duration of the effect depend on how close the quality is to either extreme. Booze with low quality is best discarded. You can do this easily by placing the bottle in a crafting table to get an empty glass bottle.",
+  "text.resprouted.alcohol.desc3": "No matter the quality, drinking booze may cause inebriation. This is a debuff that cannot be cured with milk. Drinking more while inebriated increases its severity.  Levels I and II have no effect, but level III causes slowness I and blindness I.",
+  "text.resprouted.alcohol.desc4": "Level IV adds slowness II, blindness I and nausea II. \n\nAle: Is a very saturating drink, and it applies the Full Stomach effect, which decreases damage taken from starvation.",
+  "text.resprouted.alcohol.desc5": "Ale wort: Ale is brewed with ale wort, which is made by combining a water bucket, bread, and sugar in a crafting table.\n\nCider: This drink applies magic resistance effect, which reduces damage taken from magical sources.",
+  "text.resprouted.alcohol.desc6": "Iron wine: Grants the drinker absorption hearts with no time limit, up to ten extra hearts.\n\nMead: Applies the wither ward effect, which reduces damage taken from the wither effect.",
+  "text.resprouted.alcohol.desc7": "Sweet Berry Wine: Increases the level of all positive effects, up to level III.\n\nWine: Increases the duration of all positive effects by up to ten minutes.",
+  "text.resprouted.alcohol.desc8": "Ambrosia: Protects the drinker from death, much like a totem of undying, though only for a limited time. The strongest ambrosia, however, lasts until death occurs. Unlike other alcoholic brews, ambrosia rarely has low quality, and higher-quality batches are generally easier to produce.",
 
   "entry.resprouted.brewing": "Brewing",
   "text.resprouted.brewing.desc1": "Description 1 of Brewing"

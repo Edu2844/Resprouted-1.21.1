@@ -89,7 +89,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.BREWING_BARREL);
 
                         ItemStack IronWineBottleWithQuality = new ItemStack(ModItems.IRON_WINE_BOTTLE);
-                        BoozeBottleItem.setQuality(IronWineBottleWithQuality, 0.75f);
+                        BoozeBottleItem.setQuality(IronWineBottleWithQuality, 1.0f);
                         entries.add(IronWineBottleWithQuality);
 
                         ItemStack aleBottleWithQuality = new ItemStack(ModItems.ALE_BOTTLE);
@@ -450,7 +450,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER);
                         entries.add(ModBlocks.OXIDIZED_COPPER_PINK_CANDLE_HOLDER);
 
-                        entries.add(ModBlocks.WAXED_COPPER_CANDLE_HOLDER);
+                        /*entries.add(ModBlocks.WAXED_COPPER_CANDLE_HOLDER);
                         entries.add(ModBlocks.WAXED_COPPER_WHITE_CANDLE_HOLDER);
                         entries.add(ModBlocks.WAXED_COPPER_LIGHT_GRAY_CANDLE_HOLDER);
                         entries.add(ModBlocks.WAXED_COPPER_GRAY_CANDLE_HOLDER);
@@ -520,7 +520,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.WAXED_OXIDIZED_COPPER_BLUE_CANDLE_HOLDER);
                         entries.add(ModBlocks.WAXED_OXIDIZED_COPPER_PURPLE_CANDLE_HOLDER);
                         entries.add(ModBlocks.WAXED_OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER);
-                        entries.add(ModBlocks.WAXED_OXIDIZED_COPPER_PINK_CANDLE_HOLDER);
+                        entries.add(ModBlocks.WAXED_OXIDIZED_COPPER_PINK_CANDLE_HOLDER);*/
 
                     }).build());
     public static  final ItemGroup ALCHEMY_GROUP = Registry.register(Registries.ITEM_GROUP,

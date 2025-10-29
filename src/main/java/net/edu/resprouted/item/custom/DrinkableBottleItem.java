@@ -26,6 +26,7 @@ public class DrinkableBottleItem extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        super.finishUsing(stack, world, user);
         FoodComponent foodComponent = stack.get(DataComponentTypes.FOOD);
 
         if (foodComponent != null) {

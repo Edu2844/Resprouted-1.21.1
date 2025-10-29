@@ -132,6 +132,9 @@ public class CatalogData {
                 Text.translatable("entry.resprouted.alcohol"),
                 new ItemStack(ModItems.WINE_BOTTLE))
                 .addPage(new TextPage(Text.translatable("text.resprouted.alcohol.desc1"),Text.translatable("text.resprouted.alcohol.desc2")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.alcohol.desc3"),Text.translatable("text.resprouted.alcohol.desc4")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.alcohol.desc5"),Text.translatable("text.resprouted.alcohol.desc6")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.alcohol.desc7"),Text.translatable("text.resprouted.alcohol.desc8")))
         );
 
         production.addEntry(new Entry(
