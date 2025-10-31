@@ -25,8 +25,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-import java.util.HashSet;
-import java.util.Set;
 
 public class RopeBlock extends ChainBlock{
     public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
@@ -59,7 +57,16 @@ public class RopeBlock extends ChainBlock{
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return hasSupport(state, world, pos);
+        Direction.Axis axis = state.get(AXIS);
+
+        if (axis == Direction.Axis.Y) {
+            return isSideSupported(world, pos, state, Direction.UP);
+        } else {
+            return isSideSupported(world, pos, state, Direction.WEST) ||
+                    isSideSupported(world, pos, state, Direction.EAST) ||
+                    isSideSupported(world, pos, state, Direction.NORTH) ||
+                    isSideSupported(world, pos, state, Direction.SOUTH);
+        }
     }
 
     @Override
@@ -92,17 +99,31 @@ public class RopeBlock extends ChainBlock{
 
         return getDefaultState().with(AXIS, axis).with(HAS_KNOT, knot);
     }
-
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos fromPos, boolean notify) {
+        Direction dir = null;
+        BlockPos diff = fromPos.subtract(pos);
 
-        Direction dir = Direction.fromVector(fromPos.getX() - pos.getX(), fromPos.getY() - pos.getY(), fromPos.getZ() - pos.getZ());
+        if (diff.getX() != 0) {
+            dir = diff.getX() < 0 ? Direction.WEST : Direction.EAST;
+        } else if (diff.getY() != 0) {
+            dir = diff.getY() < 0 ? Direction.DOWN : Direction.UP;
+        } else if (diff.getZ() != 0) {
+            dir = diff.getZ() < 0 ? Direction.NORTH : Direction.SOUTH;
+        }
 
         if (dir != null && dir.getAxis() == state.get(AXIS)) {
-            if (dir == Direction.UP || !isBlockSupported(world, pos, state)) {
-                world.breakBlock(pos, true);
+            boolean sideSupported = isSideSupported(world, pos, state, dir);
 
-                return;
+            if (!sideSupported) {
+
+                if (dir == Direction.UP) {
+                    world.breakBlock(pos, true);
+                    return;
+                } else if (!isBlockSupported(world, pos, state)) {
+                    world.breakBlock(pos, true);
+                    return;
+                }
             }
         }
 
@@ -111,20 +132,23 @@ public class RopeBlock extends ChainBlock{
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction dir, BlockState neighbor, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (!hasSupport(state, world, pos)) {
-            world.scheduleBlockTick(pos, this, 1);
-        }
         if (state.get(AXIS) != Direction.Axis.Y && dir == Direction.DOWN) {
             boolean knot = neighbor.getBlock() instanceof RopeBlock
                     && neighbor.get(RopeBlock.AXIS) == Direction.Axis.Y;
 
             state = state.with(HAS_KNOT, knot);
+
+            if (knot && !isBlockSupported(world, pos, state)) {
+                if (world instanceof ServerWorld serverWorld) {
+                    serverWorld.scheduleBlockTick(pos, this, 1);
+                }
+            }
         }
 
         return super.getStateForNeighborUpdate(state, dir, neighbor, world, pos, neighborPos);
     }
-
-    @Override protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    @Override
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (stack.getItem() != asItem())
             return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
@@ -167,56 +191,40 @@ public class RopeBlock extends ChainBlock{
         };
     }
 
-    // ========= HELPER METHODS =========
     private boolean hasSupport(BlockState state, WorldView world, BlockPos pos) {
-        return state.get(AXIS) == Direction.Axis.Y ? hasVerticalSupport(world, pos) : hasHorizontalSupport(world, pos, new HashSet<>(), state.get(AXIS));
-    }
-
-    private boolean hasVerticalSupport(WorldView world, BlockPos pos) {
-        BlockState up = world.getBlockState(pos.up());
-        Block upBlock = up.getBlock();
-        return up.isSolidBlock(world, pos.up())
-                || upBlock instanceof RopeBlock
-                || upBlock instanceof StakeBlock
-                || upBlock instanceof GrapeLeavesBlock;
-    }
-
-    private boolean hasHorizontalSupport(WorldView world, BlockPos pos, Set<BlockPos> visited, Direction.Axis axis) {
-        if (!visited.add(pos) || visited.size() > 20)
-            return false;
-
-        for (Direction dir : Direction.Type.HORIZONTAL) {
-
-            if (dir.getAxis() != axis) continue;
-            BlockPos off = pos.offset(dir);
-            BlockState neighbor = world.getBlockState(off);
-
-            if (neighbor.isSideSolidFullSquare(world, off, dir.getOpposite()) || (neighbor.getBlock() instanceof StakeBlock && neighbor.get(StakeBlock.HAS_ROPE)))
-                return true;
-
-            if (neighbor.getBlock() instanceof RopeBlock && neighbor.get(AXIS) == axis && hasHorizontalSupport(world, off, visited, axis))
-                return true;
-        }
-
-        return false;
+        return isBlockSupported(world, pos, state);
     }
 
     private boolean isBlockSupported(WorldView world, BlockPos pos, BlockState state) {
         return switch (state.get(AXIS)) {
-            case X -> isSideSupported(world, pos, state, Direction.WEST) && isSideSupported(world, pos, state, Direction.EAST);
+            case X -> {
+                boolean west = isSideSupported(world, pos, state, Direction.WEST);
+                boolean east = isSideSupported(world, pos, state, Direction.EAST);
+                yield west && east;
+            }
             case Y -> isSideSupported(world, pos, state, Direction.UP);
-            case Z -> isSideSupported(world, pos, state, Direction.NORTH) && isSideSupported(world, pos, state, Direction.SOUTH);
+            case Z -> {
+                boolean north = isSideSupported(world, pos, state, Direction.NORTH);
+                boolean south = isSideSupported(world, pos, state, Direction.SOUTH);
+                yield north && south;
+            }
         };
     }
 
     private boolean isSideSupported(WorldView world, BlockPos pos, BlockState state, Direction facing) {
         if (facing == Direction.DOWN) return false;
-        BlockPos off = pos.offset(facing);
-        BlockState test = world.getBlockState(off);
 
-        return test.isSideSolidFullSquare(world, off, facing.getOpposite())
-                || (test.getBlock() instanceof StakeBlock && test.get(StakeBlock.HAS_ROPE))
-                || (test.getBlock() instanceof RopeBlock &&
-                ((state.get(AXIS) == Direction.Axis.Y && facing.getAxis() == Direction.Axis.Y) || test.get(AXIS) == state.get(AXIS)));
+        BlockPos checkPos = pos.offset(facing);
+        BlockState neighbor = world.getBlockState(checkPos);
+
+        boolean isSame = neighbor.getBlock() instanceof RopeBlock && (neighbor.get(AXIS) == state.get(AXIS)
+                        || (state.get(AXIS) == Direction.Axis.Y && facing.getAxis() == Direction.Axis.Y));
+
+        boolean isSolid = neighbor.isSideSolidFullSquare(world, checkPos, facing.getOpposite());
+        boolean isGrapeLeaves = neighbor.getBlock() instanceof GrapeLeavesBlock;
+        boolean isTiedStake = neighbor.getBlock() instanceof StakeBlock && neighbor.get(StakeBlock.HAS_ROPE);
+
+        return isSame || isSolid || isGrapeLeaves || isTiedStake;
     }
+
 }

@@ -43,7 +43,7 @@ import net.minecraft.world.biome.FoliageColors;
 import java.util.Optional;
 
 
-public class ResproutedClientRegistry {
+public class ResproutedClientRegistries {
     public static void RegisterModClientStuffs(){
         registerBlockEntityRenderers();
         registerEntityRenderers();

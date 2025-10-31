@@ -18,7 +18,7 @@ import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItemGroups;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.registry.ResproutedRegistry;
+import net.edu.resprouted.registry.ResproutedRegistries;
 import net.edu.resprouted.util.RopeDispenser;
 import net.edu.resprouted.world.ModFoliagePlacerTypes;
 import net.edu.resprouted.world.ModTrunkPlacerTypes;
@@ -69,7 +69,7 @@ public class Resprouted implements ModInitializer {
 		ModTrunkPlacerTypes.registerModTrunkPlacers();
 		ModRecipes.registerRecipes();
 		ModEvents.registerModEvents();
-		ResproutedRegistry.RegisterModStuffs();
+		ResproutedRegistries.RegisterModStuffs();
 		CabinetRegistry.getAllCabinetBlocks();
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
