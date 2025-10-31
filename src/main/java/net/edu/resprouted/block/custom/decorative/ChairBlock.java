@@ -31,7 +31,6 @@ public class ChairBlock extends HorizontalFacingBlock {
         super(settings);
     }
 
-    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
@@ -46,7 +45,6 @@ public class ChairBlock extends HorizontalFacingBlock {
         return CODEC;
     }
 
-    // ========= INTERACCIÓN =========
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if(!world.isClient()) {
@@ -64,7 +62,6 @@ public class ChairBlock extends HorizontalFacingBlock {
         return ActionResult.SUCCESS;
     }
 
-    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;

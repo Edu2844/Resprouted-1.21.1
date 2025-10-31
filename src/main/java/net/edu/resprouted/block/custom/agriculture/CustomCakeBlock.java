@@ -124,7 +124,7 @@ public class CustomCakeBlock extends Block {
             ));
         }
         if (world instanceof World serverWorld) {
-            BlockState blockState = world.getBlockState(pos);
+            BlockState h = world.getBlockState(pos);
 
             for (int i = 0; i < 8; i++) {
                 double offsetX = (serverWorld.random.nextDouble() - 0.5) * 0.5;
@@ -132,7 +132,7 @@ public class CustomCakeBlock extends Block {
                 double offsetZ = (serverWorld.random.nextDouble() - 0.5) * 0.5;
 
                 serverWorld.addParticle(
-                        new BlockStateParticleEffect(ParticleTypes.BLOCK, blockState),
+                        new BlockStateParticleEffect(ParticleTypes.BLOCK, h),
                         pos.getX() + 0.5 + offsetX,
                         pos.getY() + 0.5 + offsetY,
                         pos.getZ() + 0.5 + offsetZ,

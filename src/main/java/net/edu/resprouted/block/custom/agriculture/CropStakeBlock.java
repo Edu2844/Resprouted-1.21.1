@@ -88,17 +88,17 @@ public class CropStakeBlock extends CropBlock {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int age = getAge(state);
+        int i = getAge(state);
 
         // Regular
-        if (age < getMaxAge() && world.getBaseLightLevel(pos, 0) >= 9) {
+        if (i < getMaxAge() && world.getBaseLightLevel(pos, 0) >= 9) {
             if (random.nextInt(5) == 0) {
-                world.setBlockState(pos, state.with(AGE, age + 1));
+                world.setBlockState(pos, state.with(AGE, i + 1));
             }
         }
 
         // Vertical
-        if (age >= 4 && pos.getY() < world.getTopY()) {
+        if (i >= 4 && pos.getY() < world.getTopY()) {
             BlockPos above = pos.up();
             BlockState aboveState = world.getBlockState(above);
 
@@ -161,18 +161,18 @@ public class CropStakeBlock extends CropBlock {
     }
 
     private void harvestVertical(World world, BlockPos origin, PlayerEntity player, boolean upwards) {
-        BlockPos.Mutable currentPos = origin.mutableCopy();
+        BlockPos.Mutable j = origin.mutableCopy();
         int direction = upwards ? 1 : -1;
 
         while (true) {
-            currentPos.setY(currentPos.getY() + direction);
-            BlockState currentState = world.getBlockState(currentPos);
+            j.setY(j.getY() + direction);
+            BlockState currentState = world.getBlockState(j);
 
             if (!currentState.isOf(this)) {
                 break;
             }
             if (getAge(currentState) >= getMaxAge()) {
-                harvestBlock(world, currentPos, currentState, player);
+                harvestBlock(world, j, currentState, player);
             }
         }
     }
@@ -184,8 +184,8 @@ public class CropStakeBlock extends CropBlock {
 
     protected int countBelow(World world, BlockPos pos) {
         int count = 0;
-        for (int i = 1; i <= getMaxVerticalGrowth(); i++) {
-            BlockState s = world.getBlockState(pos.down(i));
+        for (int k = 1; k <= getMaxVerticalGrowth(); k++) {
+            BlockState s = world.getBlockState(pos.down(k));
             if (s.getBlock() instanceof CropStakeBlock) count++;
             else break;
         }
@@ -202,8 +202,8 @@ public class CropStakeBlock extends CropBlock {
 
     public static Optional<BlockState> getCropForSeed(Item seedItem) {
         for (Block block : Registries.BLOCK) {
-            if (block instanceof CropStakeBlock stakeCrop) {
-                Item seed = stakeCrop.getSeed();
+            if (block instanceof CropStakeBlock crop) {
+                Item seed = crop.getSeed();
                 if (seed != null && seed == seedItem) {
                     return Optional.of(block.getDefaultState());
                 }

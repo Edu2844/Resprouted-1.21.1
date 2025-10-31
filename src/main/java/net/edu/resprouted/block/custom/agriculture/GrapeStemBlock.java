@@ -67,27 +67,24 @@ public class GrapeStemBlock extends CropBlock{
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (world.getLightLevel(pos.up()) >= 9) {
-            int currentAge = state.get(AGE);
+            int i = state.get(AGE);
 
-            if (currentAge < this.getMaxAge()) {
-                float growthChance = getGrowthChance();
+            if (i < this.getMaxAge()) {
 
-                if (random.nextInt((int)(25.0F / growthChance) + 1) == 0) {
-                    world.setBlockState(pos, state.with(AGE, currentAge + 1), Block.NOTIFY_LISTENERS);
+                if (random.nextInt((int)(25.0F / getGrowthChance()) + 1) == 0) {
+                    world.setBlockState(pos, state.with(AGE, i + 1), Block.NOTIFY_LISTENERS);
                 }
 
             } else {
                 //Check if ropeblock exists
-                BlockState aboveState = world.getBlockState(pos.up());
-                if (aboveState.isOf(ModBlocks.ROPE) && aboveState.get(RopeBlock.AXIS) != Direction.Axis.Y) {
-                    float growthChance = getGrowthChance();
+                BlockState j = world.getBlockState(pos.up());
+                if (j.isOf(ModBlocks.ROPE) && j.get(RopeBlock.AXIS) != Direction.Axis.Y) {
 
-                    if (random.nextInt((int)(25.0F / growthChance) + 1) == 0) {
-                        Direction.Axis axis = aboveState.get(RopeBlock.AXIS);
+                    if (random.nextInt((int)(25.0F / getGrowthChance()) + 1) == 0) {
 
                         world.setBlockState(pos.up(),
                                 ModBlocks.GRAPE_LEAVES.getDefaultState()
-                                        .with(GrapeLeavesBlock.AXIS, axis)
+                                        .with(GrapeLeavesBlock.AXIS, j.get(RopeBlock.AXIS))
                                         .with(GrapeLeavesBlock.DIST, 0),
                                 Block.NOTIFY_ALL);
                     }
@@ -106,25 +103,23 @@ public class GrapeStemBlock extends CropBlock{
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        int currentAge = state.get(AGE);
-        int maxAge = getMaxAge();
+        int k = state.get(AGE);
+        int l = getMaxAge();
 
-        if (currentAge < maxAge) {
-            int newAge = currentAge + getBonemealAgeIncrease();
+        if (k < l) {
+            int m = k + getBonemealAgeIncrease();
 
-            if (newAge > maxAge) {
-                newAge = maxAge;
+            if (m > l) {
+                m = l;
             }
 
-            world.setBlockState(pos, state.with(AGE, newAge), Block.NOTIFY_LISTENERS);
+            world.setBlockState(pos, state.with(AGE, m), Block.NOTIFY_LISTENERS);
 
         } else {
-            BlockState aboveState = world.getBlockState(pos.up());
+            BlockState n = world.getBlockState(pos.up());
 
-            if (aboveState.isOf(ModBlocks.ROPE)) {
-                Direction.Axis axis = aboveState.get(RopeBlock.AXIS);
-                world.setBlockState(pos.up(),
-                        ModBlocks.GRAPE_LEAVES.getDefaultState().with(GrapeLeavesBlock.AXIS, axis), Block.NOTIFY_ALL);
+            if (n.isOf(ModBlocks.ROPE)) {
+                world.setBlockState(pos.up(), ModBlocks.GRAPE_LEAVES.getDefaultState().with(GrapeLeavesBlock.AXIS, n.get(RopeBlock.AXIS)), Block.NOTIFY_ALL);
             }
         }
     }

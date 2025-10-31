@@ -32,6 +32,7 @@ public class ResproutedRegistries {
 
     public static void registerFlammables() {
         FlammableBlockRegistry registry = FlammableBlockRegistry.getDefaultInstance();
+        registry.add(ModBlocks.ROPE, 20, 60);
         registry.add(ModBlocks.IRONWOOD_LOG,5,5);
         registry.add(ModBlocks.IRONWOOD_WOOD,5,5);
         registry.add(ModBlocks.STRIPPED_IRONWOOD_LOG,5,5);

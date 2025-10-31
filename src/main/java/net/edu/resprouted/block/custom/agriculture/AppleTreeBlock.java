@@ -80,12 +80,12 @@ public class AppleTreeBlock extends CropBlock {
     private void performGrowth(ServerWorld world, BlockPos pos, BlockState state) {
         if (state.get(AGE) < MAX_AGE) {
 
-            int growthIncrement = world.random.nextBoolean() ? 1 : 2;
-            int newAge = Math.min(state.get(AGE) + growthIncrement, MAX_AGE);
+            int i = world.random.nextBoolean() ? 1 : 2;
+            int j = Math.min(state.get(AGE) + i, MAX_AGE);
 
-            world.setBlockState(pos, state.with(AGE, newAge), Block.NOTIFY_LISTENERS);
+            world.setBlockState(pos, state.with(AGE, j), Block.NOTIFY_LISTENERS);
 
-            if (newAge == MAX_AGE) {
+            if (j == MAX_AGE) {
                 transformToSapling(world, pos);
             }
         } else {

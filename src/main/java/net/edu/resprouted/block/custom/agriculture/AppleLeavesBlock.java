@@ -61,10 +61,10 @@ public class AppleLeavesBlock extends LeavesBlock implements Fertilizable {
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         if (isExposedToAir(world, pos)) {
-            int currentStage = state.get(AGE);
-            int nextStage = Math.min(currentStage + 1, getMaxAge());
+            int i = state.get(AGE);
+            int j = Math.min(i + 1, getMaxAge());
 
-            world.setBlockState(pos, state.with(AGE, nextStage), Block.NOTIFY_LISTENERS);
+            world.setBlockState(pos, state.with(AGE, j), Block.NOTIFY_LISTENERS);
         }
     }
 
@@ -75,10 +75,10 @@ public class AppleLeavesBlock extends LeavesBlock implements Fertilizable {
             return;
 
         if (world.getBaseLightLevel(pos, 0) >= 9 && isExposedToAir(world, pos)) {
-            int currentStage = state.get(AGE);
+            int k = state.get(AGE);
 
-            if (currentStage < getMaxAge() && random.nextInt(GROW_CHANCE) == 0) {
-                world.setBlockState(pos, state.with(AGE, currentStage + 1), Block.NOTIFY_LISTENERS);
+            if (k < getMaxAge() && random.nextInt(GROW_CHANCE) == 0) {
+                world.setBlockState(pos, state.with(AGE, k + 1), Block.NOTIFY_LISTENERS);
             }
         }
     }

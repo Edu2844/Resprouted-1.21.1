@@ -45,7 +45,6 @@ public class CandleHolderBlock extends Block {
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.UP).with(LIT, false));
     }
 
-    // ========= PROPIEDADES Y ESTADO =========
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING,LIT);
@@ -53,17 +52,17 @@ public class CandleHolderBlock extends Block {
     @Override
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        Direction clickedFace = ctx.getSide();
         BlockPos pos = ctx.getBlockPos();
         World world = ctx.getWorld();
-        if (clickedFace == Direction.UP) {
+
+        if (ctx.getSide() == Direction.UP) {
             BlockState upState = this.getDefaultState().with(FACING, Direction.UP);
             if (upState.canPlaceAt(world, pos)) {
                 return upState;
             }
         }
-        else if (clickedFace != Direction.DOWN) {
-            BlockState wallState = this.getDefaultState().with(FACING, clickedFace);
+        else if (ctx.getSide() != Direction.DOWN) {
+            BlockState wallState = this.getDefaultState().with(FACING, ctx.getSide());
             if (wallState.canPlaceAt(world, pos)) {
                 return wallState;
             }
@@ -99,7 +98,6 @@ public class CandleHolderBlock extends Block {
                 adjacentState.isSideSolid(world, blockPos, direction, SideShapeType.CENTER);
     }
 
-    // ========= INTERACCIÓN =========
     @Override
     public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (stack.isIn(ModTags.Items.IGNITERS) && !state.get(LIT)) {
@@ -164,7 +162,6 @@ public class CandleHolderBlock extends Block {
         return List.of(new Vec3d(x, y, z));
     }
 
-    // ========= FORMA Y TRANSFORMACIONES =========
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction direction = state.get(FACING);

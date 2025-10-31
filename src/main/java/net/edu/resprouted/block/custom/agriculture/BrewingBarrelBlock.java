@@ -57,9 +57,9 @@ public class BrewingBarrelBlock extends BlockWithEntity {
 
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
+        BlockEntity be = world.getBlockEntity(pos);
 
-        if (!(blockEntity instanceof BrewingBarrelBE bb))
+        if (!(be instanceof BrewingBarrelBE bb))
             return ItemActionResult.FAIL;
 
         if (!world.isClient ) {
@@ -82,8 +82,7 @@ public class BrewingBarrelBlock extends BlockWithEntity {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        Direction direction = state.get(FACING);
-        return switch (direction) {
+        return switch (state.get(FACING)) {
             case EAST, WEST -> EAST_SHAPE;
             default -> NORTH_SHAPE;
         };

@@ -31,7 +31,6 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -86,6 +85,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
 
         Direction facing = ctx.getHorizontalPlayerFacing().getOpposite();
         DoorHinge hinge = getHingeSide(ctx);
+
         BlockState state = getDefaultState()
                 .with(FACING, facing)
                 .with(CABINET_TYPE, CabinetType.SINGLE)
@@ -93,12 +93,15 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
                 .with(HINGE, hinge);
 
         BlockState belowState = world.getBlockState(below);
+
         if (belowState.getBlock() instanceof CabinetBlock &&
                 belowState.get(CabinetBlock.FACING) == facing &&
                 belowState.get(CabinetBlock.CABINET_TYPE) == CabinetType.SINGLE &&
                 belowState.get(CabinetBlock.HINGE) == hinge) {
+
             return state.with(CABINET_TYPE, CabinetType.TOP);
         }
+
         return state;
     }
 
@@ -111,8 +114,10 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
 
             if (type == CabinetType.TOP) {
                 otherPos = pos.down();
+
             } else if (type == CabinetType.BOTTOM) {
                 otherPos = pos.up();
+
             } else {
                 BlockPos belowPos = pos.down();
                 BlockState belowState = world.getBlockState(belowPos);
@@ -124,16 +129,18 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
                     world.setBlockState(belowPos, belowState.with(CABINET_TYPE, CabinetType.BOTTOM));
 
                 }
+
                 return;
             }
 
             BlockState otherState = world.getBlockState(otherPos);
+
             if (otherState.getBlock() instanceof CabinetBlock &&
                     otherState.get(CABINET_TYPE) == CabinetType.SINGLE &&
                     otherState.get(FACING) == facing &&
                     otherState.get(HINGE) == state.get(HINGE)) {
-                world.setBlockState(otherPos, otherState.with(CABINET_TYPE,
-                        type == CabinetType.TOP ? CabinetType.BOTTOM : CabinetType.TOP));
+
+                world.setBlockState(otherPos, otherState.with(CABINET_TYPE, type == CabinetType.TOP ? CabinetType.BOTTOM : CabinetType.TOP));
             }
         }
     }
@@ -148,10 +155,12 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
 
             if (otherPos != null) {
                 BlockState otherState = world.getBlockState(otherPos);
+
                 if (otherState.getBlock() instanceof CabinetBlock && otherState.get(CABINET_TYPE) != CabinetType.SINGLE) {
                     world.setBlockState(otherPos, otherState.with(CABINET_TYPE, CabinetType.SINGLE));
                 }
             }
+
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
@@ -190,6 +199,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
             case TOP -> pos.down();
             default -> null;
         };
+
         CabinetBE other = null;
         if (otherPos != null) {
             if (world.getBlockEntity(otherPos) instanceof CabinetBE cbe) {
@@ -198,10 +208,12 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         }
         if (type == CabinetType.SINGLE || other == null) {
             player.openHandledScreen(sbe);
+
         } else {
             NamedScreenHandlerFactory factory = getNamedScreenHandlerFactory(sbe, type, other);
             player.openHandledScreen(factory);
         }
+
         return ActionResult.CONSUME;
     }
 
@@ -247,17 +259,16 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
 
     private DoorHinge getHingeSide(ItemPlacementContext context) {
         Direction facing = context.getHorizontalPlayerFacing();
-        Vec3d hit = context.getHitPos();
-        BlockPos blockPos = context.getBlockPos();
-        double hitX = hit.x - blockPos.getX();
-        double hitZ = hit.z - blockPos.getZ();
+
+        double hitX = context.getHitPos().x - context.getBlockPos().getX();
+        double hitZ = context.getHitPos().z - context.getBlockPos().getZ();
 
         return switch (facing) {
             case NORTH -> hitX >= 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
             case SOUTH -> hitX < 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
-            case WEST  -> hitZ < 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
-            case EAST  -> hitZ >= 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
-            default    -> DoorHinge.LEFT;
+            case WEST -> hitZ < 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
+            case EAST -> hitZ >= 0.5 ? DoorHinge.RIGHT : DoorHinge.LEFT;
+            default -> DoorHinge.LEFT;
         };
     }
 
@@ -269,9 +280,9 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         if (frontState.isSolidBlock(world, frontPos)) {
             return true;
         }
-        CabinetType type = state.get(CABINET_TYPE);
-        if (type != CabinetType.SINGLE) {
-            BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
+
+        if (state.get(CABINET_TYPE) != CabinetType.SINGLE) {
+            BlockPos otherPos = state.get(CABINET_TYPE) == CabinetType.TOP ? pos.down() : pos.up();
             BlockState otherState = world.getBlockState(otherPos);
 
             if (otherState.getBlock() instanceof CabinetBlock) {
@@ -282,6 +293,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
                 return otherFrontState.isSolidBlock(world, otherFrontPos);
             }
         }
+
         return false;
     }
 }

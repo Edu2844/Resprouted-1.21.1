@@ -65,8 +65,8 @@ public class CustomMushroomBlock extends CropBlock {
 
     @Override
     protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        BlockPos blockPos = pos.down();
-        return this.canPlantOnTop(world.getBlockState(blockPos), world, blockPos);
+        BlockPos i = pos.down();
+        return this.canPlantOnTop(world.getBlockState(i), world, i);
     }
 
     @Override

@@ -4,7 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChainBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -17,6 +19,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
@@ -57,9 +60,7 @@ public class RopeBlock extends ChainBlock{
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        Direction.Axis axis = state.get(AXIS);
-
-        if (axis == Direction.Axis.Y) {
+        if (state.get(AXIS) == Direction.Axis.Y) {
             return isSideSupported(world, pos, state, Direction.UP);
         } else {
             return isSideSupported(world, pos, state, Direction.WEST) ||
@@ -76,7 +77,7 @@ public class RopeBlock extends ChainBlock{
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (!hasSupport(state, world, pos)) {
+        if (!isBlockSupported(world, pos, state)) {
             world.breakBlock(pos, true);
 
             for (Direction dir : Direction.values()) {
@@ -91,33 +92,34 @@ public class RopeBlock extends ChainBlock{
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        Direction.Axis axis = ctx.getSide().getAxis();
+        Direction.Axis a = ctx.getSide().getAxis();
 
-        boolean knot = axis != Direction.Axis.Y
+        boolean knot = a != Direction.Axis.Y
                 && ctx.getWorld().getBlockState(ctx.getBlockPos().down()).getBlock() instanceof RopeBlock rope
                 && rope.getDefaultState().get(AXIS) == Direction.Axis.Y;
 
-        return getDefaultState().with(AXIS, axis).with(HAS_KNOT, knot);
+        return getDefaultState().with(AXIS, a).with(HAS_KNOT, knot);
     }
+
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos fromPos, boolean notify) {
-        Direction dir = null;
-        BlockPos diff = fromPos.subtract(pos);
+        Direction b = null;
+        BlockPos c = fromPos.subtract(pos);
 
-        if (diff.getX() != 0) {
-            dir = diff.getX() < 0 ? Direction.WEST : Direction.EAST;
-        } else if (diff.getY() != 0) {
-            dir = diff.getY() < 0 ? Direction.DOWN : Direction.UP;
-        } else if (diff.getZ() != 0) {
-            dir = diff.getZ() < 0 ? Direction.NORTH : Direction.SOUTH;
+        if (c.getX() != 0) {
+            b = c.getX() < 0 ? Direction.WEST : Direction.EAST;
+        } else if (c.getY() != 0) {
+            b = c.getY() < 0 ? Direction.DOWN : Direction.UP;
+        } else if (c.getZ() != 0) {
+            b = c.getZ() < 0 ? Direction.NORTH : Direction.SOUTH;
         }
 
-        if (dir != null && dir.getAxis() == state.get(AXIS)) {
-            boolean sideSupported = isSideSupported(world, pos, state, dir);
+        if (b != null && b.getAxis() == state.get(AXIS)) {
+            boolean sideSupported = isSideSupported(world, pos, state, b);
 
             if (!sideSupported) {
 
-                if (dir == Direction.UP) {
+                if (b == Direction.UP) {
                     world.breakBlock(pos, true);
                     return;
                 } else if (!isBlockSupported(world, pos, state)) {
@@ -133,8 +135,8 @@ public class RopeBlock extends ChainBlock{
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction dir, BlockState neighbor, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(AXIS) != Direction.Axis.Y && dir == Direction.DOWN) {
-            boolean knot = neighbor.getBlock() instanceof RopeBlock
-                    && neighbor.get(RopeBlock.AXIS) == Direction.Axis.Y;
+
+            boolean knot = neighbor.getBlock() instanceof RopeBlock && neighbor.get(RopeBlock.AXIS) == Direction.Axis.Y;
 
             state = state.with(HAS_KNOT, knot);
 
@@ -147,35 +149,45 @@ public class RopeBlock extends ChainBlock{
 
         return super.getStateForNeighborUpdate(state, dir, neighbor, world, pos, neighborPos);
     }
+
+    @Override
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (!world.isClient && entity instanceof ArrowEntity arrow) {
+            if (isArrowInAABB(world, pos, state, arrow)) {
+                world.breakBlock(pos, true);
+            }
+        }
+    }
+
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (stack.getItem() != asItem())
             return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-        Direction side = hit.getSide(); if (side.getAxis() == state.get(AXIS) && side != Direction.UP)
+        Direction d = hit.getSide(); if (d.getAxis() == state.get(AXIS) && d != Direction.UP)
             return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-        BlockPos.Mutable cursor = pos.mutableCopy();
+        BlockPos.Mutable e = pos.mutableCopy();
 
         for (int length = 1; length <= 64; length++) {
-            cursor.move(Direction.DOWN);
-            BlockState target = world.getBlockState(cursor);
+            e.move(Direction.DOWN);
+            BlockState f = world.getBlockState(e);
 
-            if (target.isAir()) {
+            if (f.isAir()) {
                 BlockState newRope = getDefaultState().with(AXIS, Direction.Axis.Y);
 
-                if (world.setBlockState(cursor, newRope, Block.NOTIFY_ALL)) {
+                if (world.setBlockState(e, newRope, Block.NOTIFY_ALL)) {
                     if (!player.getAbilities().creativeMode)
                         stack.decrement(1);
 
-                    world.playSound(null, cursor, getSoundGroup(newRope).getPlaceSound(),
+                    world.playSound(null, e, getSoundGroup(newRope).getPlaceSound(),
                             SoundCategory.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
 
                     return ItemActionResult.SUCCESS; }
                 break;
             }
 
-            if (!(target.getBlock() instanceof RopeBlock) || target.get(AXIS) != Direction.Axis.Y)
+            if (!(f.getBlock() instanceof RopeBlock) || f.get(AXIS) != Direction.Axis.Y)
                 break;
         }
 
@@ -191,40 +203,42 @@ public class RopeBlock extends ChainBlock{
         };
     }
 
-    private boolean hasSupport(BlockState state, WorldView world, BlockPos pos) {
-        return isBlockSupported(world, pos, state);
-    }
-
     private boolean isBlockSupported(WorldView world, BlockPos pos, BlockState state) {
-        return switch (state.get(AXIS)) {
-            case X -> {
-                boolean west = isSideSupported(world, pos, state, Direction.WEST);
-                boolean east = isSideSupported(world, pos, state, Direction.EAST);
-                yield west && east;
-            }
-            case Y -> isSideSupported(world, pos, state, Direction.UP);
-            case Z -> {
-                boolean north = isSideSupported(world, pos, state, Direction.NORTH);
-                boolean south = isSideSupported(world, pos, state, Direction.SOUTH);
-                yield north && south;
-            }
-        };
+        if (state.get(AXIS) == Direction.Axis.X) {
+            return isSideSupported(world, pos, state, Direction.WEST) &&
+                    isSideSupported(world, pos, state, Direction.EAST);
+        } else if (state.get(AXIS) == Direction.Axis.Y) {
+            return isSideSupported(world, pos, state, Direction.UP);
+        } else if (state.get(AXIS) == Direction.Axis.Z) {
+            return isSideSupported(world, pos, state, Direction.NORTH) &&
+                    isSideSupported(world, pos, state, Direction.SOUTH);
+        }
+        return false;
     }
 
     private boolean isSideSupported(WorldView world, BlockPos pos, BlockState state, Direction facing) {
         if (facing == Direction.DOWN) return false;
 
-        BlockPos checkPos = pos.offset(facing);
-        BlockState neighbor = world.getBlockState(checkPos);
+        BlockState g = world.getBlockState(pos.offset(facing)); //neighbor
 
-        boolean isSame = neighbor.getBlock() instanceof RopeBlock && (neighbor.get(AXIS) == state.get(AXIS)
+        boolean isSame = g.getBlock() instanceof RopeBlock && (g.get(AXIS) == state.get(AXIS)
                         || (state.get(AXIS) == Direction.Axis.Y && facing.getAxis() == Direction.Axis.Y));
 
-        boolean isSolid = neighbor.isSideSolidFullSquare(world, checkPos, facing.getOpposite());
-        boolean isGrapeLeaves = neighbor.getBlock() instanceof GrapeLeavesBlock;
-        boolean isTiedStake = neighbor.getBlock() instanceof StakeBlock && neighbor.get(StakeBlock.HAS_ROPE);
+        boolean isSolid = g.isSideSolidFullSquare(world,pos.offset(facing), facing.getOpposite());
+        boolean isGrapeLeaves = g.getBlock() instanceof GrapeLeavesBlock;
+        boolean isTiedStake = g.getBlock() instanceof StakeBlock && g.get(StakeBlock.HAS_ROPE);
 
         return isSame || isSolid || isGrapeLeaves || isTiedStake;
     }
 
+    protected boolean isArrowInAABB(World world, BlockPos pos, BlockState state, ArrowEntity arrow) {
+        double xExp = (state.get(AXIS) == Direction.Axis.X) ? 0 : 0.125;
+        double yExp = (state.get(AXIS) == Direction.Axis.Y) ? 0 : 0.125;
+        double zExp = (state.get(AXIS) == Direction.Axis.Z) ? 0 : 0.125;
+
+        VoxelShape shape = getOutlineShape(state, world, pos, ShapeContext.absent());
+        Box aabb = shape.getBoundingBox().expand(xExp, yExp, zExp).offset(pos);
+
+        return arrow.getBoundingBox().intersects(aabb);
+    }
 }

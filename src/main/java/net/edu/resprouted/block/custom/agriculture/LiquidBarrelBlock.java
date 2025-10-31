@@ -90,19 +90,19 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, tooltip, type);
-        var nbt = stack.get(DataComponentTypes.BLOCK_ENTITY_DATA);
+        var i = stack.get(DataComponentTypes.BLOCK_ENTITY_DATA);
 
-        if (nbt == null) return;
+        if (i == null) return;
 
-        var tag = nbt.copyNbt().getCompound("Fluid");
+        var j = i.copyNbt().getCompound("Fluid");
 
-        if (!tag.contains("variant") || !tag.contains("amount")) return;
+        if (!j.contains("variant") || !j.contains("amount")) return;
         try {
-            var variant = FluidVariant.CODEC.parse(TOOLTIP_OPS, tag.get("variant")).result().orElse(FluidVariant.blank());
+            var k = FluidVariant.CODEC.parse(TOOLTIP_OPS, j.get("variant")).result().orElse(FluidVariant.blank());
 
-            if (!variant.isBlank()) {
-                var name = FluidVariantAttributes.getName(variant);
-                long amount = FluidUtils.convertDropletsToMb(tag.getLong("amount"));
+            if (!k.isBlank()) {
+                var name = FluidVariantAttributes.getName(k);
+                long amount = FluidUtils.convertDropletsToMb(j.getLong("amount"));
 
                 tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.GRAY));
                 tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.GRAY));
@@ -115,21 +115,21 @@ public class LiquidBarrelBlock extends BlockWithEntity {
 
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
+        BlockEntity be = world.getBlockEntity(pos);
 
-        if (!(blockEntity instanceof LiquidBarrelBE barrel)) {
+        if (!(be instanceof LiquidBarrelBE b)) {
             return ItemActionResult.FAIL;
         }
 
-        var s = FluidStorage.SIDED.find(world, pos, hit.getSide());
-        if (s == null) {
+        var l = FluidStorage.SIDED.find(world, pos, hit.getSide());
+        if (l == null) {
             return ItemActionResult.FAIL;
         }
 
-        ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, s, world, pos, true, true);
+        ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, l, world, pos, true, true);
 
         if (result == ItemActionResult.SUCCESS) {
-            barrel.markDirty();
+            b.markDirty();
             world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
 
             return ItemActionResult.SUCCESS;
@@ -147,24 +147,24 @@ public class LiquidBarrelBlock extends BlockWithEntity {
                 boolean isCreative = player != null && player.isCreative();
 
                 if (!isCreative) {
-                    if (world.getBlockEntity(pos) instanceof LiquidBarrelBE barrel) {
+                    if (world.getBlockEntity(pos) instanceof LiquidBarrelBE b) {
 
-                        FluidVariant v = barrel.getFluidStorage().getResource();
-                        long a = barrel.getFluidStorage().getAmount();
+                        FluidVariant m = b.getFluidStorage().getResource();
+                        long amount = b.getFluidStorage().getAmount();
 
-                        Item i = Registries.ITEM.get(Registries.BLOCK.getId(this));
-                        ItemStack stack = new ItemStack(i);
+                        Item o = Registries.ITEM.get(Registries.BLOCK.getId(this));
+                        ItemStack stack = new ItemStack(o);
 
-                        if (!FluidVariant.blank().equals(v) && a > 0) {
+                        if (!FluidVariant.blank().equals(m) && amount > 0) {
                             RegistryWrapper.WrapperLookup registryLookup = serverWorld.getRegistryManager();
                             RegistryOps<NbtElement> ops = RegistryOps.of(NbtOps.INSTANCE, registryLookup);
 
                             NbtCompound fluidNbt = new NbtCompound();
-                            FluidVariant.CODEC.encodeStart(ops, v)
+                            FluidVariant.CODEC.encodeStart(ops, m)
                                     .resultOrPartial(error -> System.err.println("Error al codificar FluidVariant: " + error))
                                     .ifPresent(encoded -> fluidNbt.put("variant", encoded));
 
-                            fluidNbt.putLong("amount", a);
+                            fluidNbt.putLong("amount", amount);
 
                             NbtCompound beTag = new NbtCompound();
                             beTag.put("Fluid", fluidNbt);
@@ -185,9 +185,9 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (world.isClient) return;
 
-        double fluidSurfaceY = pos.getY() + 0.4;
+        double p = pos.getY() + 0.4;
 
-        if (entity.getY() <= fluidSurfaceY) {
+        if (entity.getY() <= p) {
             if (world.getBlockEntity(pos) instanceof LiquidBarrelBE barrel) {
                 FluidVariant fluid = barrel.getFluidStorage().getResource();
                 long amount = barrel.getFluidStorage().getAmount();
@@ -222,13 +222,13 @@ public class LiquidBarrelBlock extends BlockWithEntity {
                 SingleFluidStorage storage = barrel.getFluidStorage();
 
                 if (storage.getResource().isOf(Fluids.WATER) || storage.isResourceBlank()) {
-                    long c = storage.getCapacity();
-                    long a = storage.getAmount();
-                    long b = c - a;
+                    long q = storage.getCapacity();
+                    long r = storage.getAmount();
+                    long s = q - r;
 
-                    if (b > 0) {
+                    if (s > 0) {
 
-                        long amountToAdd = Math.min(FluidConstants.BOTTLE, b);
+                        long amountToAdd = Math.min(FluidConstants.BOTTLE, s);
 
                         try (Transaction t = Transaction.openOuter()) {
                             if (storage.isResourceBlank()) {

@@ -225,19 +225,19 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
                     break;
 
                 case Z:
-                    boolean northRope = world.getBlockState(pos.north()).isOf(ModBlocks.ROPE) &&
-                            world.getBlockState(pos.north()).get(RopeBlock.AXIS) == state.get(AXIS);
+                    boolean l = world.getBlockState(pos.north()).isOf(ModBlocks.ROPE) &&
+                            world.getBlockState(pos.north()).get(RopeBlock.AXIS) == state.get(AXIS); //north
 
-                    boolean southRope = world.getBlockState(pos.south()).isOf(ModBlocks.ROPE) &&
-                            world.getBlockState(pos.south()).get(RopeBlock.AXIS) == state.get(AXIS);
+                    boolean m = world.getBlockState(pos.south()).isOf(ModBlocks.ROPE) &&
+                            world.getBlockState(pos.south()).get(RopeBlock.AXIS) == state.get(AXIS); //south
 
-                    if (northRope && southRope) {
+                    if (l && m) {
                         spreadToValidRope(world, world.random.nextBoolean() ? pos.north() : pos.south());
 
-                    } else if (northRope) {
+                    } else if (l) {
                         spreadToValidRope(world, pos.north());
 
-                    } else if (southRope) {
+                    } else if (m) {
                         spreadToValidRope(world, pos.south());
                     }
                     break;
@@ -246,8 +246,8 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     }
 
     private void spreadToValidRope(World world, BlockPos newPos) {
-        Direction.Axis axis = world.getBlockState(newPos).get(RopeBlock.AXIS);
-        world.setBlockState(newPos, getDefaultState().with(AXIS, axis).with(DIST, 1), Block.NOTIFY_ALL);
+        Direction.Axis n = world.getBlockState(newPos).get(RopeBlock.AXIS);
+        world.setBlockState(newPos, getDefaultState().with(AXIS, n).with(DIST, 1), Block.NOTIFY_ALL);
     }
 
     public static int getMaxAge(){
@@ -261,5 +261,4 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     public Item getHarvest() {
         return ModItems.GRAPES;
     }
-
 }
