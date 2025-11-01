@@ -98,7 +98,8 @@ public class StakeBlock extends Block {
 
             boolean connected = neighborState.getBlock() instanceof RopeBlock
                     && neighborState.contains(RopeBlock.AXIS)
-                    && neighborState.get(RopeBlock.AXIS) == direction.getAxis();
+                    && neighborState.get(RopeBlock.AXIS) == direction.getAxis()
+                    || neighborState.getBlock() instanceof StakeBlock && ((StakeBlock)neighborState.getBlock()).hasRope(neighborState);
 
             if (neighborState.getBlock() instanceof GrapeLeavesBlock) {
                 connected = true;

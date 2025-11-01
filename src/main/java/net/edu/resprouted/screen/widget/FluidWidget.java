@@ -43,9 +43,11 @@ public class FluidWidget implements Drawable, Widget {
         this.height = height;
         this.posSupplier = posSupplier;
     }
+
     public static Builder builder(SingleFluidStorage fluidStorage) {
         return new Builder(fluidStorage);
     }
+
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         long fluidAmount = this.fluidStorage.getAmount();
@@ -81,6 +83,7 @@ public class FluidWidget implements Drawable, Widget {
             drawTooltip(context, mouseX, mouseY);
         }
     }
+
     protected void drawTooltip(DrawContext context, int mouseX, int mouseY) {
         Fluid fluid = this.fluidStorage.variant.getFluid();
         long fluidAmount = this.fluidStorage.getAmount();
@@ -153,37 +156,46 @@ public class FluidWidget implements Drawable, Widget {
             context.drawTooltip(textRenderer, tooltipLines, mouseX, mouseY);
         }
     }
+
     private static long getMb(long amount) {
         return (long) (float) FluidUtils.convertDropletsToMb(amount);
     }
+
     private static boolean isPointWithinBounds(int x, int y, int width, int height, int pointX, int pointY) {
         return pointX >= x && pointX <= x + width &&
                 pointY >= y && pointY <= y + height;
     }
+
     @Override
     public void setX(int x) {
         this.x = x;
     }
+
     @Override
     public void setY(int y) {
         this.y = y;
     }
+
     @Override
     public int getX() {
         return this.x;
     }
+
     @Override
     public int getY() {
         return this.y;
     }
+
     @Override
     public int getWidth() {
         return this.width;
     }
+
     @Override
     public int getHeight() {
         return this.height;
     }
+
     @Override
     public void forEachChild(Consumer<ClickableWidget> consumer) {}
 
@@ -196,6 +208,7 @@ public class FluidWidget implements Drawable, Widget {
         public Builder(SingleFluidStorage fluidStorage) {
             this.fluidStorage = fluidStorage;
         }
+
         public Builder bounds(int x, int y, int width, int height) {
             this.x = x;
             this.y = y;
@@ -203,10 +216,12 @@ public class FluidWidget implements Drawable, Widget {
             this.height = height;
             return this;
         }
+
         public Builder posSupplier(Supplier<BlockPos> posSupplier) {
             this.posSupplier = posSupplier;
             return this;
         }
+
         public FluidWidget build() {
             return new FluidWidget(this.fluidStorage, this.x, this.y, this.width, this.height, this.posSupplier);
         }

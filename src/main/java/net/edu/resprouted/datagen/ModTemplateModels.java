@@ -2,7 +2,6 @@ package net.edu.resprouted.datagen;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.custom.decorative.CandleHolderBlock;
-import net.edu.resprouted.registry.CustomTextureKeys;
 import net.minecraft.block.Block;
 import net.minecraft.data.client.*;
 import net.minecraft.state.property.Properties;
@@ -13,15 +12,17 @@ import java.util.Optional;
 
 @SuppressWarnings("deprecation")
 public class ModTemplateModels {
+    public static final TextureKey HOLDER = TextureKey.of("holder");
+
     public static final Model TEMPLATE_CANDLE_HOLDER = new Model(
             Optional.of(Identifier.of(Resprouted.MOD_ID, "block/candle/template_candle_holder")), Optional.empty(),
-            CustomTextureKeys.HOLDER, TextureKey.CANDLE
+            HOLDER, TextureKey.CANDLE
     );
 
     public static final Model TEMPLATE_WALL_CANDLE_HOLDER = new Model(
             Optional.of(Identifier.of(Resprouted.MOD_ID, "block/candle/template_wall_candle_holder")),
             Optional.empty(),
-            CustomTextureKeys.HOLDER, TextureKey.CANDLE
+            HOLDER, TextureKey.CANDLE
     );
 
     public static void registerCopperCandleHolderModels(BlockStateModelGenerator blockStateModelGenerator, Block candleHolder, String holderTexture, String candleColor) {
@@ -31,19 +32,19 @@ public class ModTemplateModels {
 
         if (candleColor.isEmpty()) {
             litTextures = new TextureMap()
-                    .put(CustomTextureKeys.HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
+                    .put(HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
                     .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/candle_lit"));
 
             unlitTextures = new TextureMap()
-                    .put(CustomTextureKeys.HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
+                    .put(HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
                     .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/candle"));
         } else {
             litTextures = new TextureMap()
-                    .put(CustomTextureKeys.HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
+                    .put(HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
                     .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/" + candleColor + "_candle_lit"));
 
             unlitTextures = new TextureMap()
-                    .put(CustomTextureKeys.HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
+                    .put(HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
                     .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/" + candleColor + "_candle"));
         }
 
@@ -77,11 +78,6 @@ public class ModTemplateModels {
         registerCandleHolderItemModel(blockStateModelGenerator, candleHolder, holderTexture, candleColor);
     }
 
-    private static String getBlockName(Block block) {
-        Identifier blockId = block.getRegistryEntry().registryKey().getValue();
-        return blockId.getPath();
-    }
-
     private static void registerCandleHolderItemModel(BlockStateModelGenerator blockStateModelGenerator, Block candleHolder, String holderTexture, String candleColor) {
 
         Model itemModel = new Model(
@@ -102,5 +98,10 @@ public class ModTemplateModels {
         }
 
         itemModel.upload(ModelIds.getItemModelId(candleHolder.asItem()), itemTextures, blockStateModelGenerator.modelCollector);
+    }
+
+    private static String getBlockName(Block block) {
+        Identifier blockId = block.getRegistryEntry().registryKey().getValue();
+        return blockId.getPath();
     }
 }

@@ -9,9 +9,9 @@ public interface AdvancedRotationPlacement {
     /**
      * Calculates the block state with proper rotation based on how the player places it.
      *
-     * @param defaultState The default block state
-     * @param facingProperty The direction property that controls the block's orientation
-     * @param context The placement context containing information about how the block is being placed
+     * @param state The default block state
+     * @param direction The direction property that controls the block's orientation
+     * @param ctx The placement context containing information about how the block is being placed
      * @return The block state with rotation applied
      *
      * @implNote
@@ -19,22 +19,23 @@ public interface AdvancedRotationPlacement {
      * 1. Placed from top/bottom (Y axis): Determines direction based on relative click position
      * 2. Placed from sides: Uses the opposite direction of the clicked face
      */
-    default BlockState getStateForAdvancedRotationPlacement(BlockState defaultState, DirectionProperty facingProperty, ItemPlacementContext context) {
-        Direction facing = context.getSide();
-        double hitX = context.getHitPos().x - context.getBlockPos().getX();
-        double hitZ = context.getHitPos().z - context.getBlockPos().getZ();
+    default BlockState getStateForAdvancedRotationPlacement(BlockState state, DirectionProperty direction, ItemPlacementContext ctx) {
+        Direction facing = ctx.getSide();
+        double hitX = ctx.getHitPos().x - ctx.getBlockPos().getX();
+        double hitZ = ctx.getHitPos().z - ctx.getBlockPos().getZ();
 
         if (facing.getAxis() == Direction.Axis.Y) {
             double hitXFromCenter = hitX - 0.5;
             double hitZFromCenter = hitZ - 0.5;
 
             if (Math.max(Math.abs(hitXFromCenter), Math.abs(hitZFromCenter)) == Math.abs(hitXFromCenter)) {
-                return defaultState.with(facingProperty, (hitXFromCenter > 0) ? Direction.EAST : Direction.WEST);
+                return state.with(direction, (hitXFromCenter > 0) ? Direction.EAST : Direction.WEST);
 
             } else {
-                return defaultState.with(facingProperty, (hitZFromCenter > 0) ? Direction.SOUTH : Direction.NORTH);
+                return state.with(direction, (hitZFromCenter > 0) ? Direction.SOUTH : Direction.NORTH);
             }
         }
-        return defaultState.with(facingProperty, facing.getOpposite());
+
+        return state.with(direction, facing.getOpposite());
     }
 }

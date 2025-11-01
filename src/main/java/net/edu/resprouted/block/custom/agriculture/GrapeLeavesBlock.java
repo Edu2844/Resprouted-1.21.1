@@ -88,10 +88,14 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
         if (!world.isClient) {
-            if (state.get(DIST) == 1) {
-                boolean center = state.isOf(this) && state.get(DIST) == 0;
-                if (!center) {
-                    world.breakBlock(pos, true);
+            Direction i = getDirectionFromNeighbor(pos, fromPos);
+            if (i != null) {
+                if ((state.get(AXIS) == i.getAxis()) && world.isAir(fromPos)) {
+                    if (i == Direction.DOWN) {
+                        world.breakBlock(pos, true);
+                    } else if (!this.isBlockSupported(world, pos, state)) {
+                        world.breakBlock(pos, true);
+                    }
                 }
             }
         }
@@ -99,13 +103,13 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        int i = state.get(DIST);
-        int j = state.get(AGE);
+        int j = state.get(DIST);
+        int k = state.get(AGE);
 
-        if (i > 0 && j < MAX_AGE && world.isAir(pos.down())) {
-            world.setBlockState(pos, state.with(AGE, Math.min(j + 1, MAX_AGE)), Block.NOTIFY_ALL);
+        if (j > 0 && k < MAX_AGE && world.isAir(pos.down())) {
+            world.setBlockState(pos, state.with(AGE, Math.min(k + 1, MAX_AGE)), Block.NOTIFY_ALL);
 
-        } else if (i < 1) {
+        } else if (j < 1) {
             spread(world, pos, state);
         }
     }
@@ -118,14 +122,14 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
         }
 
         if (world.getLightLevel(pos.up()) >= 9) {
-            int i = state.get(DIST);
-            int j = state.get(AGE);
+            int l = state.get(DIST);
+            int m = state.get(AGE);
 
-            if (i > 0 && j < MAX_AGE && world.isAir(pos.down())) {
+            if (l > 0 && m < MAX_AGE && world.isAir(pos.down())) {
                 if (random.nextInt((int)(35.0F / getGrowthChance()) + 1) == 0) {
-                    world.setBlockState(pos, state.with(AGE, j + 1), Block.NOTIFY_ALL);
+                    world.setBlockState(pos, state.with(AGE, m + 1), Block.NOTIFY_ALL);
                 }
-            } else if (i == 0 && canSpread(world, pos, state)) {
+            } else if (l == 0 && canSpread(world, pos, state)) {
                 if (random.nextInt((int)(30.0F / getGrowthChance()) + 1) == 0) {
                     spread(world, pos, state);
                 }
@@ -166,40 +170,53 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
     private boolean isBlockSupported(World world, BlockPos pos, BlockState state) {
         if (state.get(AXIS) == Direction.Axis.X) {
-            return this.isSideSupported(world, pos, state, Direction.WEST) || this.isSideSupported(world, pos, state, Direction.EAST);
+            return this.isSideSupported(world, pos, state, Direction.WEST) && this.isSideSupported(world, pos, state, Direction.EAST);
 
         } else if (state.get(AXIS) == Direction.Axis.Z) {
-            return this.isSideSupported(world, pos, state, Direction.NORTH) || this.isSideSupported(world, pos, state, Direction.SOUTH);
+            return this.isSideSupported(world, pos, state, Direction.NORTH) && this.isSideSupported(world, pos, state, Direction.SOUTH);
         }
         return true;
     }
 
     private boolean isSideSupported(World world, BlockPos pos, BlockState state, Direction facing) {
-        BlockState k = world.getBlockState(pos.offset(facing));
+        if (facing == Direction.DOWN) {
+            return false;
+        }
+        BlockState n = world.getBlockState(pos.offset(facing));
 
-        boolean isSame = k.isOf(this) && k.get(AXIS) == state.get(AXIS);
-        boolean isRope = k.isOf(ModBlocks.ROPE) && k.get(RopeBlock.AXIS) == state.get(AXIS);
-        boolean isSideSolid = world.getBlockState(pos.offset(facing)).isSideSolidFullSquare(world, pos.offset(facing), facing.getOpposite());
-        boolean isTiedStake = k.getBlock() instanceof StakeBlock && ((StakeBlock)k.getBlock()).hasRope(k);
+        boolean isSame = n.getBlock() instanceof GrapeLeavesBlock && n.get(AXIS) == state.get(AXIS);
+        boolean isRope = n.isOf(ModBlocks.ROPE) && n.get(RopeBlock.AXIS) == state.get(AXIS);
+        boolean isSideSolid = n.isSideSolidFullSquare(world, pos.offset(facing), facing.getOpposite());
+        boolean isTiedStake = n.getBlock() instanceof StakeBlock && ((StakeBlock)n.getBlock()).hasRope(n);
 
         return isSame || isRope || isSideSolid || isTiedStake;
+    }
+
+    private Direction getDirectionFromNeighbor(BlockPos pos, BlockPos fromPos) {
+        if (fromPos.getX() != pos.getX()) {
+            return (fromPos.getX() - pos.getX()) < 0 ? Direction.WEST : Direction.EAST;
+        } else if (fromPos.getY() != pos.getY()) {
+            return (fromPos.getY() - pos.getY()) < 0 ? Direction.DOWN : Direction.UP;
+        } else if (fromPos.getZ() != pos.getZ()) {
+            return (fromPos.getZ() - pos.getZ()) < 0 ? Direction.NORTH : Direction.SOUTH;
+        }
+        return null;
     }
 
     private boolean canSpread(World world, BlockPos pos, BlockState state) {
         if (state.get(DIST) == 0) {
             switch (state.get(AXIS)) {
                 case X:
-                    return (world.getBlockState(pos.west()).isOf(ModBlocks.ROPE) &&
-                            world.getBlockState(pos.west()).get(RopeBlock.AXIS) == state.get(AXIS)) ||
-                            (world.getBlockState(pos.east()).isOf(ModBlocks.ROPE) &&
-                                    world.getBlockState(pos.east()).get(RopeBlock.AXIS) == state.get(AXIS));
+                    return (world.getBlockState(pos.west()).isOf(ModBlocks.ROPE)
+                            && world.getBlockState(pos.west()).get(RopeBlock.AXIS) == state.get(AXIS)) || (world.getBlockState(pos.east()).isOf(ModBlocks.ROPE)
+                            && world.getBlockState(pos.east()).get(RopeBlock.AXIS) == state.get(AXIS));
                 case Z:
-                    return (world.getBlockState(pos.north()).isOf(ModBlocks.ROPE) &&
-                            world.getBlockState(pos.north()).get(RopeBlock.AXIS) == state.get(AXIS)) ||
-                            (world.getBlockState(pos.south()).isOf(ModBlocks.ROPE) &&
-                                    world.getBlockState(pos.south()).get(RopeBlock.AXIS) == state.get(AXIS));
+                    return (world.getBlockState(pos.north()).isOf(ModBlocks.ROPE)
+                            && world.getBlockState(pos.north()).get(RopeBlock.AXIS) == state.get(AXIS)) || (world.getBlockState(pos.south()).isOf(ModBlocks.ROPE)
+                            && world.getBlockState(pos.south()).get(RopeBlock.AXIS) == state.get(AXIS));
             }
         }
+
         return false;
     }
 
@@ -225,19 +242,19 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
                     break;
 
                 case Z:
-                    boolean l = world.getBlockState(pos.north()).isOf(ModBlocks.ROPE) &&
-                            world.getBlockState(pos.north()).get(RopeBlock.AXIS) == state.get(AXIS); //north
+                    boolean north = world.getBlockState(pos.north()).isOf(ModBlocks.ROPE)
+                            && world.getBlockState(pos.north()).get(RopeBlock.AXIS) == state.get(AXIS);
 
-                    boolean m = world.getBlockState(pos.south()).isOf(ModBlocks.ROPE) &&
-                            world.getBlockState(pos.south()).get(RopeBlock.AXIS) == state.get(AXIS); //south
+                    boolean south = world.getBlockState(pos.south()).isOf(ModBlocks.ROPE)
+                            && world.getBlockState(pos.south()).get(RopeBlock.AXIS) == state.get(AXIS);
 
-                    if (l && m) {
+                    if (north && south) {
                         spreadToValidRope(world, world.random.nextBoolean() ? pos.north() : pos.south());
 
-                    } else if (l) {
+                    } else if (north) {
                         spreadToValidRope(world, pos.north());
 
-                    } else if (m) {
+                    } else if (south) {
                         spreadToValidRope(world, pos.south());
                     }
                     break;
@@ -245,9 +262,12 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
         }
     }
 
-    private void spreadToValidRope(World world, BlockPos newPos) {
-        Direction.Axis n = world.getBlockState(newPos).get(RopeBlock.AXIS);
-        world.setBlockState(newPos, getDefaultState().with(AXIS, n).with(DIST, 1), Block.NOTIFY_ALL);
+    private void spreadToValidRope(World world, BlockPos pos) {
+        BlockState o = world.getBlockState(pos);
+        if (o.isOf(ModBlocks.ROPE)) {
+            Direction.Axis axis = o.get(RopeBlock.AXIS);
+            world.setBlockState(pos, getDefaultState().with(AXIS, axis).with(DIST, 1), Block.NOTIFY_ALL);
+        }
     }
 
     public static int getMaxAge(){
