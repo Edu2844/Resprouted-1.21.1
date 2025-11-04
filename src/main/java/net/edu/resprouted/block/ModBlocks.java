@@ -557,7 +557,6 @@ public class ModBlocks {
     public static final Block MAGENTA_GOLDEN_CANDLE_HOLDER = registerBlock("magenta_golden_candle_holder", new CandleHolderBlock());
     public static final Block PINK_GOLDEN_CANDLE_HOLDER = registerBlock("pink_golden_candle_holder", new CandleHolderBlock());
     public static final Block GREEN_GOLDEN_CANDLE_HOLDER = registerBlock("green_golden_candle_holder", new CandleHolderBlock());
-    //COPPER
 
     //Regular
     public static final Block COPPER_CANDLE_HOLDER = registerBlock("copper_candle_holder",

@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-04T00:27:10.5547786	Resprouted/Block Loot Tables
+// 1.21.1	2025-11-04T00:50:16.9179966	Resprouted/Block Loot Tables
 76e926abc3fab33ed52595dcb3f17a33daa2bdc2 data\resprouted\loot_table\blocks\exposed_copper_black_candle_holder.json
 56f00d99fddc295250b8ae29b953d5a4d9fe1c1a data\resprouted\loot_table\blocks\waxed_oxidized_copper_chandelier.json
 327b905f23efd6a06058ec8aace92e8df372febd data\resprouted\loot_table\blocks\condenser.json
@@ -344,8 +344,8 @@ f42d35ccda9619fe3257b754c8facc9adc0b0865 data\resprouted\loot_table\blocks\oxidi
 53fe1b7e53d76047ca214d1a38e298ffcba82ad1 data\resprouted\loot_table\blocks\brown_iron_candle_holder.json
 a31b5d7b68d504eca2b1fcad2cde3beff4151375 data\resprouted\loot_table\blocks\warped_table.json
 2c741ae88884febd65af13993064f50e0f8fc217 data\resprouted\loot_table\blocks\magenta_painted_planks.json
-6f6b3741a110718e7a3fa6ce0105ab0cdbf4be8c data\resprouted\loot_table\blocks\copper_brown_candle_holder.json
 db8e3b628a0184511ab983027750cf521a8d2e60 data\resprouted\loot_table\blocks\ironwood_fence_gate.json
+6f6b3741a110718e7a3fa6ce0105ab0cdbf4be8c data\resprouted\loot_table\blocks\copper_brown_candle_holder.json
 d400af09e62db52562f2589e7537b57a8d8a710d data\resprouted\loot_table\blocks\olive_button.json
 6d8ca3440e63b9af7c8dd0ae6026a5f96ca4a8dd data\resprouted\loot_table\blocks\brown_painted_planks.json
 c6318730a1b66afc1eaf23ff31601a1344c063f6 data\resprouted\loot_table\blocks\waxed_exposed_copper_brown_candle_holder.json
