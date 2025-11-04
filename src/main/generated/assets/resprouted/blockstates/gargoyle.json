@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "resprouted:block/gargoyle",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "resprouted:block/gargoyle"
+    },
+    "facing=south": {
+      "model": "resprouted:block/gargoyle",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "resprouted:block/gargoyle",
+      "y": 270
+    }
+  }
+}

@@ -36,43 +36,43 @@ public class AdvancedCondenserBlock extends AbstractCondenserBlock {
             return false;
         }
         Direction facing = state.get(FACING);
-        BlockPos eastPos = pos.east();
-        BlockPos westPos = pos.west();
-        BlockPos northPos = pos.north();
-        BlockPos southPos = pos.south();
+        BlockPos east = pos.east();
+        BlockPos west = pos.west();
+        BlockPos north = pos.north();
+        BlockPos south = pos.south();
 
         switch (facing) {
             case NORTH:
-                if (!world.getBlockState(eastPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (!world.getBlockState(westPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (!world.getBlockState(southPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (world.getBlockState(eastPos).get(RetortBlock.FACING) != Direction.EAST) return false;
-                if (world.getBlockState(westPos).get(RetortBlock.FACING) != Direction.WEST) return false;
-                if (world.getBlockState(southPos).get(RetortBlock.FACING) != Direction.SOUTH) return false;
+                if (!world.getBlockState(east).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (!world.getBlockState(west).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (!world.getBlockState(south).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (world.getBlockState(east).get(RetortBlock.FACING) != Direction.EAST) return false;
+                if (world.getBlockState(west).get(RetortBlock.FACING) != Direction.WEST) return false;
+                if (world.getBlockState(south).get(RetortBlock.FACING) != Direction.SOUTH) return false;
                 break;
             case SOUTH:
-                if (!world.getBlockState(eastPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (!world.getBlockState(westPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (!world.getBlockState(northPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (world.getBlockState(eastPos).get(RetortBlock.FACING) != Direction.EAST) return false;
-                if (world.getBlockState(westPos).get(RetortBlock.FACING) != Direction.WEST) return false;
-                if (world.getBlockState(northPos).get(RetortBlock.FACING) != Direction.NORTH) return false;
+                if (!world.getBlockState(east).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (!world.getBlockState(west).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (!world.getBlockState(north).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (world.getBlockState(east).get(RetortBlock.FACING) != Direction.EAST) return false;
+                if (world.getBlockState(west).get(RetortBlock.FACING) != Direction.WEST) return false;
+                if (world.getBlockState(north).get(RetortBlock.FACING) != Direction.NORTH) return false;
                 break;
             case WEST:
-                if (!world.getBlockState(northPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (!world.getBlockState(southPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (!world.getBlockState(eastPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (world.getBlockState(northPos).get(RetortBlock.FACING) != Direction.NORTH) return false;
-                if (world.getBlockState(southPos).get(RetortBlock.FACING) != Direction.SOUTH) return false;
-                if (world.getBlockState(eastPos).get(RetortBlock.FACING) != Direction.EAST) return false;
+                if (!world.getBlockState(north).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (!world.getBlockState(south).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (!world.getBlockState(east).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (world.getBlockState(north).get(RetortBlock.FACING) != Direction.NORTH) return false;
+                if (world.getBlockState(south).get(RetortBlock.FACING) != Direction.SOUTH) return false;
+                if (world.getBlockState(east).get(RetortBlock.FACING) != Direction.EAST) return false;
                 break;
             case EAST:
-                if (!world.getBlockState(northPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (!world.getBlockState(southPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (!world.getBlockState(westPos).isOf(ModBlocks.ADVANCED_RETORT)) return false;
-                if (world.getBlockState(northPos).get(RetortBlock.FACING) != Direction.NORTH) return false;
-                if (world.getBlockState(southPos).get(RetortBlock.FACING) != Direction.SOUTH) return false;
-                if (world.getBlockState(westPos).get(RetortBlock.FACING) != Direction.WEST) return false;
+                if (!world.getBlockState(north).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (!world.getBlockState(south).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (!world.getBlockState(west).isOf(ModBlocks.ADVANCED_RETORT)) return false;
+                if (world.getBlockState(north).get(RetortBlock.FACING) != Direction.NORTH) return false;
+                if (world.getBlockState(south).get(RetortBlock.FACING) != Direction.SOUTH) return false;
+                if (world.getBlockState(west).get(RetortBlock.FACING) != Direction.WEST) return false;
                 break;
             default:
                 return false;

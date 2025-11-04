@@ -95,9 +95,9 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
             spawnSmoke(world, pos.getX() - 0.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
             spawnSmoke(world, pos.getX() + 1.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
 
-            BlockPos backPos = pos.offset(facing.getOpposite());
+            BlockPos i = pos.offset(facing.getOpposite());
 
-            spawnSmoke(world, backPos.getX() + 0.5D, pos.getY() + 1.0625D, backPos.getZ() + 0.5D);
+            spawnSmoke(world, i.getX() + 0.5D, pos.getY() + 1.0625D, i.getZ() + 0.5D);
 
         } else if (facing == Direction.EAST || facing == Direction.WEST) {
             spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() - 0.5D);
@@ -123,11 +123,11 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
     @Override
     protected void updateLitState(World world, BlockPos pos, BlockState state, boolean shouldBeLit) {
         world.setBlockState(pos, state.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
-        BlockPos topPos = pos.up();
-        BlockState topState = world.getBlockState(topPos);
+        BlockPos j = pos.up();
+        BlockState k = world.getBlockState(j);
 
-        if (topState.isOf(ModBlocks.ADVANCED_CONDENSER)) {
-            world.setBlockState(topPos, topState.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
+        if (k.isOf(ModBlocks.ADVANCED_CONDENSER)) {
+            world.setBlockState(j, k.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
         }
     }
 
@@ -185,12 +185,12 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
         );
         assert world != null;
 
-        //advanced
-        Optional<RecipeEntry<AdvancedCondenserRecipe>> advancedMatch = world.getRecipeManager()
+        //Advanced Condenser Recipes
+        Optional<RecipeEntry<AdvancedCondenserRecipe>> adv = world.getRecipeManager()
                 .getFirstMatch(ModRecipes.ADVANCED_CONDENSER_TYPE, advancedInput, world);
 
-        if (advancedMatch.isPresent()) {
-            ItemStack result = advancedMatch.get().value().craft(advancedInput, world.getRegistryManager());
+        if (adv.isPresent()) {
+            ItemStack result = adv.get().value().craft(advancedInput, world.getRegistryManager());
             ItemStack outputStack = this.getStack(OUTPUT_SLOT);
 
             if (outputStack.isEmpty()) {
@@ -199,10 +199,10 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
                 outputStack.increment(result.getCount());
             }
 
-            for (Ingredient ing : advancedMatch.get().value().ingredients()) {
+            for (Ingredient ing : adv.get().value().ingredients()) {
                 removeOneMatching(ing, INPUT_SLOT_1, INPUT_SLOT_2, INPUT_SLOT_3);
             }
-            advancedMatch.get().value().modifier().ifPresent(modIng -> this.removeStack(MODIFIER_SLOT, 1));
+            adv.get().value().modifier().ifPresent(modIng -> this.removeStack(MODIFIER_SLOT, 1));
             this.removeStack(BOTTLE_SLOT, 1);
 
             SingleFluidStorage fluidStorage = getFluidStorage();
@@ -225,13 +225,13 @@ public class AdvancedCondenserBE extends AbstractCondenserBlockEntity {
                 this.pos
         );
 
-        //basic
-        Optional<RecipeEntry<CondenserRecipe>> basicMatch = world.getRecipeManager()
+        //Basic Condenser Recipes
+        Optional<RecipeEntry<CondenserRecipe>> basic = world.getRecipeManager()
                 .getFirstMatch(ModRecipes.CONDENSER_TYPE, basicInput, world);
 
-        if (basicMatch.isEmpty()) return;
+        if (basic.isEmpty()) return;
 
-        ItemStack result = basicMatch.get().value().craft(basicInput, world.getRegistryManager());
+        ItemStack result = basic.get().value().craft(basicInput, world.getRegistryManager());
         ItemStack outputStack = this.getStack(OUTPUT_SLOT);
 
         if (outputStack.isEmpty()) {

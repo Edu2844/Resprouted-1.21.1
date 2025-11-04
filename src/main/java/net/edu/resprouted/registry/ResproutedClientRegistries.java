@@ -60,7 +60,6 @@ public class ResproutedClientRegistries {
         BlockEntityRendererFactories.register(ModBlockEntities.CRUSHING_TUB_BE, CrushingTubBERenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.LIQUID_BARREL_BE, LiquidBarrelRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.EVAPORATING_BASIN_BE, EvaporatingBasinRenderer::new);
-
     }
 
     public static void registerEntityRenderers() {
@@ -73,6 +72,8 @@ public class ResproutedClientRegistries {
         BlockRenderLayerMap registry = BlockRenderLayerMap.INSTANCE;
         registry.putBlock(ModBlocks.OLIVE_SAPLING, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.IRONWOOD_SAPLING, RenderLayer.getCutout());
+
+        registry.putBlock(ModBlocks.GARGOYLE, RenderLayer.getCutout());
         //Herbs
         registry.putBlock(ModBlocks.ALOE_VERA_BLOCK, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.HORSETAIL_BLOCK, RenderLayer.getCutout());

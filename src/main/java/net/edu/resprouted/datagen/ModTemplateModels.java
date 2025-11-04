@@ -32,26 +32,43 @@ public class ModTemplateModels {
 
         if (candleColor.isEmpty()) {
             litTextures = new TextureMap()
-                    .put(HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
+                    .put(HOLDER, Identifier.of(Resprouted.MOD_ID, "block/" + holderTexture))
                     .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/candle_lit"));
 
             unlitTextures = new TextureMap()
-                    .put(HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
+                    .put(HOLDER, Identifier.of(Resprouted.MOD_ID, "block/" + holderTexture))
                     .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/candle"));
         } else {
             litTextures = new TextureMap()
-                    .put(HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
+                    .put(HOLDER, Identifier.of(Resprouted.MOD_ID, "block/" + holderTexture))
                     .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/" + candleColor + "_candle_lit"));
 
             unlitTextures = new TextureMap()
-                    .put(HOLDER, Identifier.of("resprouted", "block/" + holderTexture))
+                    .put(HOLDER, Identifier.of(Resprouted.MOD_ID, "block/" + holderTexture))
                     .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/" + candleColor + "_candle"));
         }
 
-        Identifier floorUnlitModel = TEMPLATE_CANDLE_HOLDER.upload(candleHolder, unlitTextures, blockStateModelGenerator.modelCollector);
-        Identifier floorLitModel = TEMPLATE_CANDLE_HOLDER.upload(candleHolder, "_lit", litTextures, blockStateModelGenerator.modelCollector);
-        Identifier wallUnlitModel = TEMPLATE_WALL_CANDLE_HOLDER.upload(Identifier.of(Resprouted.MOD_ID, "block/wall_" + getBlockName(candleHolder)), unlitTextures, blockStateModelGenerator.modelCollector);
-        Identifier wallLitModel = TEMPLATE_WALL_CANDLE_HOLDER.upload(Identifier.of(Resprouted.MOD_ID, "block/wall_" + getBlockName(candleHolder) + "_lit"), litTextures, blockStateModelGenerator.modelCollector);
+        String blockName = getBlockName(candleHolder);
+        Identifier floorUnlitModel = TEMPLATE_CANDLE_HOLDER.upload(
+                Identifier.of(Resprouted.MOD_ID, "block/copper_candle_holder/" + blockName),
+                unlitTextures,
+                blockStateModelGenerator.modelCollector
+        );
+        Identifier floorLitModel = TEMPLATE_CANDLE_HOLDER.upload(
+                Identifier.of(Resprouted.MOD_ID, "block/copper_candle_holder/" + blockName + "_lit"),
+                litTextures,
+                blockStateModelGenerator.modelCollector
+        );
+        Identifier wallUnlitModel = TEMPLATE_WALL_CANDLE_HOLDER.upload(
+                Identifier.of(Resprouted.MOD_ID, "block/copper_candle_holder/wall_" + blockName),
+                unlitTextures,
+                blockStateModelGenerator.modelCollector
+        );
+        Identifier wallLitModel = TEMPLATE_WALL_CANDLE_HOLDER.upload(
+                Identifier.of(Resprouted.MOD_ID, "block/copper_candle_holder/wall_" + blockName + "_lit"),
+                litTextures,
+                blockStateModelGenerator.modelCollector
+        );
 
         blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(candleHolder)
                 .coordinate(BlockStateVariantMap.create(CandleHolderBlock.FACING, Properties.LIT)
@@ -75,10 +92,10 @@ public class ModTemplateModels {
                         }))
         );
 
-        registerCandleHolderItemModel(blockStateModelGenerator, candleHolder, holderTexture, candleColor);
+        registerCopperCandleHolderItemModel(blockStateModelGenerator, candleHolder, holderTexture, candleColor);
     }
 
-    private static void registerCandleHolderItemModel(BlockStateModelGenerator blockStateModelGenerator, Block candleHolder, String holderTexture, String candleColor) {
+    private static void registerCopperCandleHolderItemModel(BlockStateModelGenerator blockStateModelGenerator, Block candleHolder, String holderTexture, String candleColor) {
 
         Model itemModel = new Model(
                 Optional.of(Identifier.of("minecraft", "item/generated")),
@@ -89,12 +106,104 @@ public class ModTemplateModels {
         TextureMap itemTextures;
         if (candleColor.isEmpty()) {
             itemTextures = new TextureMap()
-                    .put(TextureKey.LAYER0, Identifier.of("minecraft", "item/candle"))
-                    .put(TextureKey.LAYER1, Identifier.of("resprouted", "item/layer/" + holderTexture + "_layer"));
+                    .put(TextureKey.LAYER0, Identifier.of(Resprouted.MOD_ID, "item/layer/candle"))
+                    .put(TextureKey.LAYER1, Identifier.of(Resprouted.MOD_ID, "item/layer/" + holderTexture + "_layer"));
         } else {
             itemTextures = new TextureMap()
-                    .put(TextureKey.LAYER0, Identifier.of("minecraft", "item/" + candleColor + "_candle"))
-                    .put(TextureKey.LAYER1, Identifier.of("resprouted", "item/layer/" + holderTexture + "_layer"));
+                    .put(TextureKey.LAYER0, Identifier.of(Resprouted.MOD_ID, "item/layer/" + candleColor + "_candle"))
+                    .put(TextureKey.LAYER1, Identifier.of(Resprouted.MOD_ID, "item/layer/" + holderTexture + "_layer"));
+        }
+
+        itemModel.upload(ModelIds.getItemModelId(candleHolder.asItem()), itemTextures, blockStateModelGenerator.modelCollector);
+    }
+
+    public static void registerGoldenCandleHolderModels(BlockStateModelGenerator blockStateModelGenerator, Block candleHolder, String holderTexture, String candleColor) {
+
+        TextureMap litTextures;
+        TextureMap unlitTextures;
+
+        if (candleColor.isEmpty()) {
+            litTextures = new TextureMap()
+                    .put(HOLDER, Identifier.of(Resprouted.MOD_ID, "block/" + holderTexture))
+                    .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/candle_lit"));
+
+            unlitTextures = new TextureMap()
+                    .put(HOLDER, Identifier.of(Resprouted.MOD_ID, "block/" + holderTexture))
+                    .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/candle"));
+        } else {
+            litTextures = new TextureMap()
+                    .put(HOLDER, Identifier.of(Resprouted.MOD_ID, "block/" + holderTexture))
+                    .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/" + candleColor + "_candle_lit"));
+
+            unlitTextures = new TextureMap()
+                    .put(HOLDER, Identifier.of(Resprouted.MOD_ID, "block/" + holderTexture))
+                    .put(TextureKey.CANDLE, Identifier.of("minecraft", "block/" + candleColor + "_candle"));
+        }
+
+        String blockName = getBlockName(candleHolder);
+        Identifier floorUnlitModel = TEMPLATE_CANDLE_HOLDER.upload(
+                Identifier.of(Resprouted.MOD_ID, "block/golden_candle_holder/" + blockName),
+                unlitTextures,
+                blockStateModelGenerator.modelCollector
+        );
+        Identifier floorLitModel = TEMPLATE_CANDLE_HOLDER.upload(
+                Identifier.of(Resprouted.MOD_ID, "block/golden_candle_holder/" + blockName + "_lit"),
+                litTextures,
+                blockStateModelGenerator.modelCollector
+        );
+        Identifier wallUnlitModel = TEMPLATE_WALL_CANDLE_HOLDER.upload(
+                Identifier.of(Resprouted.MOD_ID, "block/golden_candle_holder/wall_" + blockName),
+                unlitTextures,
+                blockStateModelGenerator.modelCollector
+        );
+        Identifier wallLitModel = TEMPLATE_WALL_CANDLE_HOLDER.upload(
+                Identifier.of(Resprouted.MOD_ID, "block/golden_candle_holder/wall_" + blockName + "_lit"),
+                litTextures,
+                blockStateModelGenerator.modelCollector
+        );
+
+        blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(candleHolder)
+                .coordinate(BlockStateVariantMap.create(CandleHolderBlock.FACING, Properties.LIT)
+                        .register((facing, lit) -> {
+                            BlockStateVariant variant = BlockStateVariant.create();
+
+                            if (facing == Direction.UP) {
+                                variant.put(VariantSettings.MODEL, lit ? floorLitModel : floorUnlitModel);
+                            } else {
+                                variant.put(VariantSettings.MODEL, lit ? wallLitModel : wallUnlitModel);
+
+                                switch (facing) {
+                                    case NORTH -> variant.put(VariantSettings.Y, VariantSettings.Rotation.R0);
+                                    case EAST -> variant.put(VariantSettings.Y, VariantSettings.Rotation.R90);
+                                    case SOUTH -> variant.put(VariantSettings.Y, VariantSettings.Rotation.R180);
+                                    case WEST -> variant.put(VariantSettings.Y, VariantSettings.Rotation.R270);
+                                    default -> {}
+                                }
+                            }
+                            return variant;
+                        }))
+        );
+
+        registerGoldenCandleHolderItemModel(blockStateModelGenerator, candleHolder, holderTexture, candleColor);
+    }
+
+    private static void registerGoldenCandleHolderItemModel(BlockStateModelGenerator blockStateModelGenerator, Block candleHolder, String holderTexture, String candleColor) {
+
+        Model itemModel = new Model(
+                Optional.of(Identifier.of("minecraft", "item/generated")),
+                Optional.empty(),
+                TextureKey.LAYER0, TextureKey.LAYER1
+        );
+
+        TextureMap itemTextures;
+        if (candleColor.isEmpty()) {
+            itemTextures = new TextureMap()
+                    .put(TextureKey.LAYER0, Identifier.of(Resprouted.MOD_ID, "item/layer/candle"))
+                    .put(TextureKey.LAYER1, Identifier.of(Resprouted.MOD_ID, "item/layer/" + holderTexture + "_layer"));
+        } else {
+            itemTextures = new TextureMap()
+                    .put(TextureKey.LAYER0, Identifier.of(Resprouted.MOD_ID, "item/layer/" + candleColor + "_candle"))
+                    .put(TextureKey.LAYER1, Identifier.of(Resprouted.MOD_ID, "item/layer/" + holderTexture + "_layer"));
         }
 
         itemModel.upload(ModelIds.getItemModelId(candleHolder.asItem()), itemTextures, blockStateModelGenerator.modelCollector);
@@ -104,4 +213,5 @@ public class ModTemplateModels {
         Identifier blockId = block.getRegistryEntry().registryKey().getValue();
         return blockId.getPath();
     }
+
 }

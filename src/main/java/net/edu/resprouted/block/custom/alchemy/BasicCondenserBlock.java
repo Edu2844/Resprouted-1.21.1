@@ -36,25 +36,25 @@ public class BasicCondenserBlock extends AbstractCondenserBlock {
             return false;
         }
         Direction facing = state.get(FACING);
-        BlockPos eastPos = pos.east();
-        BlockPos westPos = pos.west();
-        BlockPos northPos = pos.north();
-        BlockPos southPos = pos.south();
+        BlockPos east = pos.east();
+        BlockPos west = pos.west();
+        BlockPos north = pos.north();
+        BlockPos south = pos.south();
 
         switch (facing) {
             case NORTH:
             case SOUTH:
-                if (!world.getBlockState(eastPos).isOf(ModBlocks.RETORT)) return false;
-                if (!world.getBlockState(westPos).isOf(ModBlocks.RETORT)) return false;
-                if (world.getBlockState(eastPos).get(RetortBlock.FACING) != Direction.EAST) return false;
-                if (world.getBlockState(westPos).get(RetortBlock.FACING) != Direction.WEST) return false;
+                if (!world.getBlockState(east).isOf(ModBlocks.RETORT)) return false;
+                if (!world.getBlockState(west).isOf(ModBlocks.RETORT)) return false;
+                if (world.getBlockState(east).get(RetortBlock.FACING) != Direction.EAST) return false;
+                if (world.getBlockState(west).get(RetortBlock.FACING) != Direction.WEST) return false;
                 break;
             case WEST:
             case EAST:
-                if (!world.getBlockState(northPos).isOf(ModBlocks.RETORT)) return false;
-                if (!world.getBlockState(southPos).isOf(ModBlocks.RETORT)) return false;
-                if (world.getBlockState(northPos).get(RetortBlock.FACING) != Direction.NORTH) return false;
-                if (world.getBlockState(southPos).get(RetortBlock.FACING) != Direction.SOUTH) return false;
+                if (!world.getBlockState(north).isOf(ModBlocks.RETORT)) return false;
+                if (!world.getBlockState(south).isOf(ModBlocks.RETORT)) return false;
+                if (world.getBlockState(north).get(RetortBlock.FACING) != Direction.NORTH) return false;
+                if (world.getBlockState(south).get(RetortBlock.FACING) != Direction.SOUTH) return false;
                 break;
             default:
                 return false;

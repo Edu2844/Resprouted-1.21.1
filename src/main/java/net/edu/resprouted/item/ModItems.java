@@ -12,6 +12,7 @@ import net.edu.resprouted.registry.ResproutedBoatTypes;
 import net.edu.resprouted.util.TextUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.CustomModelDataComponent;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.LivingEntity;
@@ -100,12 +101,16 @@ public class ModItems {
     public static final Item CATALOG = registerItem("catalog", new Item(new Item.Settings()){
         @Override
         public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-            if (world.isClient) {
+            ItemStack stack = user.getStackInHand(hand);
 
+            if (world.isClient) {
+                CustomModelDataComponent customModelData = new CustomModelDataComponent(1);
+                stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, customModelData);
                 MinecraftClient.getInstance().setScreen(new CatalogScreen());
             }
             return TypedActionResult.success(user.getStackInHand(hand));
         }
+
     });
 
     public static final Item TOMATO = registerItem("tomato", new Item(new Item.Settings().food(ModFoodComponents.TOMATO).maxCount(64)){

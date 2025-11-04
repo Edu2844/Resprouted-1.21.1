@@ -2,15 +2,21 @@ package net.edu.resprouted.book;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.util.PageUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.sound.PositionedSoundInstance;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
@@ -70,18 +76,31 @@ public class CatalogScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        updateBookPosition();
-    }
-
-    private void updateBookPosition() {
         this.bookX = (this.width - BOOK_WIDTH) / 2;
         this.bookY = (this.height - BOOK_HEIGHT) / 2;
     }
 
     @Override
+    public void close() {
+        super.close();
+
+        ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        if (player != null) {
+            Hand[] hands = {Hand.MAIN_HAND, Hand.OFF_HAND};
+            for (Hand hand : hands) {
+                ItemStack stack = player.getStackInHand(hand);
+                if (stack.isOf(ModItems.CATALOG)) {
+                    stack.remove(DataComponentTypes.CUSTOM_MODEL_DATA);
+                }
+            }
+        }
+    }
+
+    @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
         super.renderInGameBackground(context);
-        renderBookBackground(context);
+        RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
+        context.drawTexture(BACKGROUND, bookX, bookY, 0, 0, BOOK_WIDTH, BOOK_HEIGHT, TEXTURE_SIZE, TEXTURE_SIZE);
 
         PageUtils leftPage = PageUtils.createLeftPage(context, textRenderer, bookX, bookY);
         PageUtils rightPage = PageUtils.createRightPage(context, textRenderer, bookX, bookY);
@@ -93,11 +112,6 @@ public class CatalogScreen extends Screen {
         }
 
         renderNavigationButtons(context, mouseX, mouseY);
-    }
-
-    private void renderBookBackground(DrawContext context) {
-        RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
-        context.drawTexture(BACKGROUND, bookX, bookY, 0, 0, BOOK_WIDTH, BOOK_HEIGHT, TEXTURE_SIZE, TEXTURE_SIZE);
     }
 
     private void renderNavigationButtons(DrawContext context, int mouseX, int mouseY) {
@@ -188,9 +202,15 @@ public class CatalogScreen extends Screen {
         if (button != 0) return false;
 
         switch (currentState) {
-            case MAIN_MENU -> { return handleMainMenuClick(mouseX, mouseY); }
-            case CATEGORY_LIST -> { return handleCategoryListClick(mouseX, mouseY); }
-            case ENTRY_PAGES -> { return handleEntryPagesClick(mouseX, mouseY); }
+            case MAIN_MENU -> {
+                return handleMainMenuClick(mouseX, mouseY);
+            }
+            case CATEGORY_LIST -> {
+                return handleCategoryListClick(mouseX, mouseY);
+            }
+            case ENTRY_PAGES -> {
+                return handleEntryPagesClick(mouseX, mouseY);
+            }
         }
 
         return super.mouseClicked(mouseX, mouseY, button);
@@ -223,17 +243,19 @@ public class CatalogScreen extends Screen {
     }
 
     private boolean handleCategoryListClick(double mouseX, double mouseY) {
-        if (selectedCategory == null) return false;
+        if (selectedCategory == null)
+            return false;
 
         // Entry
-        if (handleEntryClicks(mouseX, mouseY)) return true;
+        if (handleEntryClicks(mouseX, mouseY))
+            return true;
 
         // Menu
-        if (isMouseOver(mouseX, mouseY, bookX + MAIN_MENU_X, bookY + MAIN_MENU_Y,
-                MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT)) {
+        if (isMouseOver(mouseX, mouseY, bookX + MAIN_MENU_X, bookY + MAIN_MENU_Y, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT)) {
             currentState = PageState.MAIN_MENU;
             selectedCategory = null;
             playPageTurnSound();
+
             return true;
         }
 
@@ -272,9 +294,11 @@ public class CatalogScreen extends Screen {
                     currentState = PageState.ENTRY_PAGES;
                     playPageTurnSound();
                 }
+
                 return true;
             }
         }
+
         return false;
     }
 

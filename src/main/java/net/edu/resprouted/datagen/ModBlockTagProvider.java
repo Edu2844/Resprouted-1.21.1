@@ -70,6 +70,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.POLISHED_STONE_WALL)
                 .add(ModBlocks.POLISHED_STONE_SLAB)
                 .add(ModBlocks.STONE_PILLAR)
+                .add(ModBlocks.GARGOYLE)
 
                 //SANDSTONE
                 .add(ModBlocks.SANDSTONE_BRICKS)

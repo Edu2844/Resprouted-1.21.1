@@ -289,6 +289,8 @@ public class ModItemGroups {
                         entries.add(ModItems.OLIVE_BOAT);
                         entries.add(ModItems.OLIVE_CHEST_BOAT);
 
+                        entries.add(ModBlocks.GARGOYLE);
+
                         entries.add(ModBlocks.BLACK_PAINTED_PLANKS);
                         entries.add(ModBlocks.BLUE_PAINTED_PLANKS);
                         entries.add(ModBlocks.BROWN_PAINTED_PLANKS);

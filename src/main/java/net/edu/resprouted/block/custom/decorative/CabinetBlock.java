@@ -119,14 +119,14 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
                 otherPos = pos.up();
 
             } else {
-                BlockPos belowPos = pos.down();
-                BlockState belowState = world.getBlockState(belowPos);
+                BlockPos below = pos.down();
+                BlockState belowState = world.getBlockState(below);
                 if (belowState.getBlock() instanceof CabinetBlock &&
                         belowState.get(CABINET_TYPE) == CabinetType.SINGLE &&
                         belowState.get(FACING) == facing &&
                         belowState.get(HINGE) == state.get(HINGE)) {
                     world.setBlockState(pos, state.with(CABINET_TYPE, CabinetType.TOP));
-                    world.setBlockState(belowPos, belowState.with(CABINET_TYPE, CabinetType.BOTTOM));
+                    world.setBlockState(below, belowState.with(CABINET_TYPE, CabinetType.BOTTOM));
 
                 }
 
@@ -150,14 +150,13 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         if (state.getBlock() != newState.getBlock()) {
             ItemScatterer.spawn(world, pos, (Inventory) world.getBlockEntity(pos));
 
-            CabinetType type = state.get(CABINET_TYPE);
-            BlockPos otherPos = type == CabinetType.TOP ? pos.down() : type == CabinetType.BOTTOM ? pos.up() : null;
+            BlockPos i = state.get(CABINET_TYPE) == CabinetType.TOP ? pos.down() : state.get(CABINET_TYPE) == CabinetType.BOTTOM ? pos.up() : null;
 
-            if (otherPos != null) {
-                BlockState otherState = world.getBlockState(otherPos);
+            if (i != null) {
+                BlockState j = world.getBlockState(i);
 
-                if (otherState.getBlock() instanceof CabinetBlock && otherState.get(CABINET_TYPE) != CabinetType.SINGLE) {
-                    world.setBlockState(otherPos, otherState.with(CABINET_TYPE, CabinetType.SINGLE));
+                if (j.getBlock() instanceof CabinetBlock && j.get(CABINET_TYPE) != CabinetType.SINGLE) {
+                    world.setBlockState(i, j.with(CABINET_TYPE, CabinetType.SINGLE));
                 }
             }
 
@@ -191,7 +190,8 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
             return ActionResult.CONSUME;
         }
 
-        if (!(world.getBlockEntity(pos) instanceof CabinetBE sbe)) return ActionResult.PASS;
+        if (!(world.getBlockEntity(pos) instanceof CabinetBE cabinet))
+            return ActionResult.PASS;
 
         CabinetType type = state.get(CABINET_TYPE);
         BlockPos otherPos = switch (type) {
@@ -207,10 +207,10 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
             }
         }
         if (type == CabinetType.SINGLE || other == null) {
-            player.openHandledScreen(sbe);
+            player.openHandledScreen(cabinet);
 
         } else {
-            NamedScreenHandlerFactory factory = getNamedScreenHandlerFactory(sbe, type, other);
+            NamedScreenHandlerFactory factory = getNamedScreenHandlerFactory(cabinet, type, other);
             player.openHandledScreen(factory);
         }
 
@@ -226,25 +226,26 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         CabinetType type = state.get(CABINET_TYPE);
         BlockEntity be = world.getBlockEntity(pos);
 
-        if (!(be instanceof CabinetBE self)) return null;
+        if (!(be instanceof CabinetBE cabinet)) return null;
 
-        if (type == CabinetType.SINGLE) return self;
+        if (type == CabinetType.SINGLE) return cabinet;
 
         BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
         BlockEntity otherBe = world.getBlockEntity(otherPos);
 
         if (otherBe instanceof CabinetBE other) {
             return new DoubleInventory(
-                    type == CabinetType.BOTTOM ? self : other,
-                    type == CabinetType.BOTTOM ? other : self
+                    type == CabinetType.BOTTOM ? cabinet : other,
+                    type == CabinetType.BOTTOM ? other : cabinet
             );
         }
-        return self;
+        return cabinet;
     }
 
     private static @NotNull NamedScreenHandlerFactory getNamedScreenHandlerFactory(CabinetBE self, CabinetType type, CabinetBE other) {
         CabinetBE lower = type == CabinetType.BOTTOM ? self : other;
         CabinetBE upper = type == CabinetType.BOTTOM ? other : self;
+
         return new NamedScreenHandlerFactory() {
             @Override
             public Text getDisplayName() {

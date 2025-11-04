@@ -189,6 +189,8 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerNorthDefaultHorizontalRotation(ModBlocks.IRONWOOD_CHAIR);
         blockStateModelGenerator.registerNorthDefaultHorizontalRotation(ModBlocks.OLIVE_CHAIR);
 
+        blockStateModelGenerator.registerNorthDefaultHorizontalRotation(ModBlocks.GARGOYLE);
+
         // =================================================
         // ||                  STOOLS                     ||
         // =================================================
@@ -239,6 +241,16 @@ public class ModModelProvider extends FabricModelProvider {
         // =================================================
         registerCopperCandleHolders(blockStateModelGenerator);
 
+
+        // =================================================
+        // ||              IRON CANDLE HOLDER             ||
+        // =================================================
+
+
+        // =================================================
+        // ||             GOLDEN CANDLE HOLDER            ||
+        // =================================================
+        registerGoldenCandleHolders(blockStateModelGenerator);
     }
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
@@ -296,9 +308,113 @@ public class ModModelProvider extends FabricModelProvider {
         ResproutedBoatTypes.getAllBoatItems().forEach(item -> itemModelGenerator.register(item, Models.GENERATED));
     }
 
+    private void registerGoldenCandleHolders(BlockStateModelGenerator blockStateModelGenerator) {
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                ""
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.WHITE_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "white"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.LIGHT_GRAY_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "light_gray"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.GRAY_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "gray"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.BLACK_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "black"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.BROWN_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "brown"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.RED_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "red"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.ORANGE_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "orange"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.YELLOW_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "yellow"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.LIME_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "lime"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.CYAN_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "cyan"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.LIGHT_BLUE_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "light_blue"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.BLUE_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "blue"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.PURPLE_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "purple"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.MAGENTA_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "magenta"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.PINK_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "pink"
+        );
+
+        ModTemplateModels.registerGoldenCandleHolderModels(blockStateModelGenerator,
+                ModBlocks.GREEN_GOLDEN_CANDLE_HOLDER,
+                "golden_candle_holder",
+                "green"
+        );
+    }
+
+
     private void registerCopperCandleHolders(BlockStateModelGenerator blockStateModelGenerator) {
-        ModTemplateModels.registerCopperCandleHolderModels(
-                blockStateModelGenerator,
+        ModTemplateModels.registerCopperCandleHolderModels(blockStateModelGenerator,
                 ModBlocks.COPPER_CANDLE_HOLDER,
                 "copper_candle_holder",
                 ""

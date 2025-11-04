@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/orange_candle",
+    "layer0": "resprouted:item/layer/orange_candle",
     "layer1": "resprouted:item/layer/exposed_copper_candle_holder_layer"
   }
 }

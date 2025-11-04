@@ -56,13 +56,13 @@ public class RetortBlock extends Block {
 
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        BlockPos condenserPos = pos.offset(state.get(FACING).getOpposite());
-        BlockState condenserState = world.getBlockState(condenserPos);
+        BlockPos i = pos.offset(state.get(FACING).getOpposite());
+        BlockState j = world.getBlockState(i);
 
-        if (!(condenserState.getBlock() instanceof BasicCondenserBlock condenserBlock)) {
+        if (!(j.getBlock() instanceof BasicCondenserBlock condenserBlock)) {
             return ItemActionResult.FAIL;
         }
-        return condenserBlock.onUseWithItem(stack, condenserState, world, condenserPos, player, hand, hit);
+        return condenserBlock.onUseWithItem(stack, j, world, i, player, hand, hit);
     }
 
     @Override

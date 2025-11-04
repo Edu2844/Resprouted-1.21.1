@@ -100,9 +100,9 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
     @Override
     protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof AbstractCondenserBlockEntity condenserBE) {
-                ItemScatterer.spawn(world, pos, condenserBE);
+            BlockEntity be = world.getBlockEntity(pos);
+            if (be instanceof AbstractCondenserBlockEntity condenser) {
+                ItemScatterer.spawn(world, pos, condenser);
                 world.updateComparators(pos, this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
@@ -121,8 +121,8 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         if (state.get(BOTTOM)) {
-            return world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP) &&
-                    world.getBlockState(pos.up()).isReplaceable();
+            return world.getBlockState(pos.down()).isSideSolidFullSquare(world, pos.down(), Direction.UP)
+                    && world.getBlockState(pos.up()).isReplaceable();
         }
         return world.getBlockState(pos.down()).isOf(this);
     }
