@@ -1,6 +1,6 @@
 package net.edu.resprouted.screen.custom;
 
-import net.edu.resprouted.block.entity.custom.BrewingBarrelBE;
+import net.edu.resprouted.block.entity.custom.BrewingBarrelBlockEntity;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.screen.slot.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,13 +16,13 @@ import net.minecraft.util.math.BlockPos;
 public class BrewingBarrelScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
-    public final BrewingBarrelBE blockEntity;
+    public final BrewingBarrelBlockEntity blockEntity;
 
     public BrewingBarrelScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId, playerInventory, (BrewingBarrelBE) playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
+        this(syncId, playerInventory, (BrewingBarrelBlockEntity) playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
     }
 
-    public BrewingBarrelScreenHandler(int syncId, PlayerInventory playerInventory, BrewingBarrelBE blockEntity, PropertyDelegate propertyDelegate) {
+    public BrewingBarrelScreenHandler(int syncId, PlayerInventory playerInventory, BrewingBarrelBlockEntity blockEntity, PropertyDelegate propertyDelegate) {
         super(ModScreenHandlers.BREWING_BARREL_SCREEN_HANDLER, syncId);
         this.inventory = blockEntity;
         this.blockEntity = blockEntity;
@@ -96,7 +96,7 @@ public class BrewingBarrelScreenHandler extends ScreenHandler {
         }
     }
 
-    public BrewingBarrelBE getBlockEntity() {
+    public BrewingBarrelBlockEntity getBlockEntity() {
         return this.blockEntity;
     }
 

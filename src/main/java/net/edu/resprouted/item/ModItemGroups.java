@@ -344,6 +344,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.WAXED_EXPOSED_COPPER_CHANDELIER);
                         entries.add(ModBlocks.WAXED_WEATHERED_COPPER_CHANDELIER);
                         entries.add(ModBlocks.WAXED_OXIDIZED_COPPER_CHANDELIER);
+
                         entries.add(ModBlocks.IRON_CANDLE_HOLDER);
                         entries.add(ModBlocks.WHITE_IRON_CANDLE_HOLDER);
                         entries.add(ModBlocks.LIGHT_GRAY_IRON_CANDLE_HOLDER);
@@ -451,6 +452,42 @@ public class ModItemGroups {
                         entries.add(ModBlocks.OXIDIZED_COPPER_PURPLE_CANDLE_HOLDER);
                         entries.add(ModBlocks.OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER);
                         entries.add(ModBlocks.OXIDIZED_COPPER_PINK_CANDLE_HOLDER);
+
+                        entries.add(ModBlocks.DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.WHITE_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIGHT_GRAY_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.GRAY_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BLACK_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BROWN_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.RED_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.ORANGE_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.YELLOW_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.GREEN_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIME_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.CYAN_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIGHT_BLUE_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BLUE_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.PURPLE_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.MAGENTA_DOUBLE_IRON_CANDLE_HOLDER);
+                        entries.add(ModBlocks.PINK_DOUBLE_IRON_CANDLE_HOLDER);
+
+                        entries.add(ModBlocks.DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.WHITE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIGHT_GRAY_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.GRAY_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BLACK_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BROWN_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.RED_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.ORANGE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.YELLOW_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.GREEN_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIME_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.CYAN_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.LIGHT_BLUE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.BLUE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.PURPLE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.MAGENTA_DOUBLE_GOLDEN_CANDLE_HOLDER);
+                        entries.add(ModBlocks.PINK_DOUBLE_GOLDEN_CANDLE_HOLDER);
 
                         /*entries.add(ModBlocks.WAXED_COPPER_CANDLE_HOLDER);
                         entries.add(ModBlocks.WAXED_COPPER_WHITE_CANDLE_HOLDER);

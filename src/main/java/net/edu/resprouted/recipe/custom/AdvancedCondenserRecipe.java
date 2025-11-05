@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
-import net.edu.resprouted.block.entity.custom.AdvancedCondenserBE;
+import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
 import net.edu.resprouted.recipe.Input.AdvancedCondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.util.ElixirUtils;
@@ -49,7 +49,7 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
 
         boolean hasFuelOrBurning = false;
         boolean hasRetorts = false;
-        if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBE be) {
+        if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBlockEntity be) {
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
             BlockState blockState = world.getBlockState(input.pos());
             if (blockState.getBlock() instanceof AdvancedCondenserBlock advcondenser) {
@@ -60,7 +60,7 @@ public record AdvancedCondenserRecipe(List<Ingredient> ingredients, Optional<Ing
 
         boolean hasFluid = false;
 
-        if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBE be) {
+        if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBlockEntity be) {
             hasFluid = be.hasFluid();
         }
 

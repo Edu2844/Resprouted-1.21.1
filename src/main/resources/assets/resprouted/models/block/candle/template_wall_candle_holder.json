@@ -2,7 +2,7 @@
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"holder": "resprouted:block/iron_candle_holder",
+		"holder": "#holder",
 		"particle": "#holder",
 		"candle": "#candle"
 	},

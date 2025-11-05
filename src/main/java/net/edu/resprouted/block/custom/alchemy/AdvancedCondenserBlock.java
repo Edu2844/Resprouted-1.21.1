@@ -4,7 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.abstracts.AbstractCondenserBlock;
-import net.edu.resprouted.block.entity.custom.AdvancedCondenserBE;
+import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -27,7 +27,7 @@ public class AdvancedCondenserBlock extends AbstractCondenserBlock {
 
     @Override
     protected BlockEntity createSpecificBlockEntity(BlockPos pos, BlockState state) {
-        return new AdvancedCondenserBE(pos, state);
+        return new AdvancedCondenserBlockEntity(pos, state);
     }
 
     @Override

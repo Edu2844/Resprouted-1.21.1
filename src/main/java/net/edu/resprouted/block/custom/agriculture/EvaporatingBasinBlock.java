@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.entity.custom.EvaporatingBasinBE;
+import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
 import net.edu.resprouted.fluid.util.FluidInteractionHelper;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.minecraft.block.*;
@@ -46,7 +46,7 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new EvaporatingBasinBE(pos,state);
+        return new EvaporatingBasinBlockEntity(pos,state);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (!(blockEntity instanceof EvaporatingBasinBE basin)) {
+        if (!(blockEntity instanceof EvaporatingBasinBlockEntity basin)) {
             return ItemActionResult.FAIL;
         }
 
@@ -105,7 +105,7 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
 
-            if (blockEntity instanceof EvaporatingBasinBE basin) {
+            if (blockEntity instanceof EvaporatingBasinBlockEntity basin) {
                 ItemStack storedStack = basin.getStack(0);
 
                 if (!storedStack.isEmpty()) {
@@ -124,8 +124,8 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
         if (type != ModBlockEntities.EVAPORATING_BASIN_BE) return null;
 
         return (w, pos, st, be) -> {
-            if (be instanceof EvaporatingBasinBE basin)
-                EvaporatingBasinBE.tick(w, pos, st, basin);
+            if (be instanceof EvaporatingBasinBlockEntity basin)
+                EvaporatingBasinBlockEntity.tick(w, pos, st, basin);
         };
     }
 }

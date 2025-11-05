@@ -1,7 +1,7 @@
 package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
-import net.edu.resprouted.block.entity.custom.CrushingTubBE;
+import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
 import net.edu.resprouted.fluid.data.FluidContainerMapping;
 import net.edu.resprouted.fluid.util.FluidInteractionHelper;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
@@ -51,7 +51,7 @@ public class CrushingTubBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CrushingTubBE(pos, state);
+        return new CrushingTubBlockEntity(pos, state);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class CrushingTubBlock extends BlockWithEntity {
         if (!state.isOf(newState.getBlock())) {
             BlockEntity be = world.getBlockEntity(pos);
 
-            if (be instanceof CrushingTubBE crushingTub) {
+            if (be instanceof CrushingTubBlockEntity crushingTub) {
                 ItemStack i = crushingTub.getStack(0);
 
                 if (!i.isEmpty()) {
@@ -74,7 +74,7 @@ public class CrushingTubBlock extends BlockWithEntity {
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity be = world.getBlockEntity(pos);
-        if (!(be instanceof CrushingTubBE ct)) {
+        if (!(be instanceof CrushingTubBlockEntity ct)) {
             return ItemActionResult.FAIL;
         }
 
@@ -178,7 +178,7 @@ public class CrushingTubBlock extends BlockWithEntity {
         if (!(entity instanceof PlayerEntity)) return;
 
         BlockEntity be = world.getBlockEntity(pos);
-        if (!(be instanceof CrushingTubBE ct)) return;
+        if (!(be instanceof CrushingTubBlockEntity ct)) return;
 
         ItemStack l = ct.getStack(0);
         if (l.isEmpty()) return;

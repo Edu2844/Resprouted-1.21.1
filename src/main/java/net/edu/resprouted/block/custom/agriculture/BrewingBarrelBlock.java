@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.entity.custom.BrewingBarrelBE;
+import net.edu.resprouted.block.entity.custom.BrewingBarrelBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -59,7 +59,7 @@ public class BrewingBarrelBlock extends BlockWithEntity {
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity be = world.getBlockEntity(pos);
 
-        if (!(be instanceof BrewingBarrelBE bb))
+        if (!(be instanceof BrewingBarrelBlockEntity bb))
             return ItemActionResult.FAIL;
 
         if (!world.isClient ) {
@@ -72,7 +72,7 @@ public class BrewingBarrelBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new BrewingBarrelBE(pos, state);
+        return new BrewingBarrelBlockEntity(pos, state);
     }
 
     @Override
@@ -91,6 +91,6 @@ public class BrewingBarrelBlock extends BlockWithEntity {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return validateTicker(type, ModBlockEntities.BREWING_BARREL_BE,
-                (world1, pos, state1, blockEntity) -> BrewingBarrelBE.tick(world1, blockEntity));
+                (world1, pos, state1, blockEntity) -> BrewingBarrelBlockEntity.tick(world1, blockEntity));
     }
 }

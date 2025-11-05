@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.entity.custom.LiquidBarrelBE;
+import net.edu.resprouted.block.entity.custom.LiquidBarrelBlockEntity;
 import net.edu.resprouted.fluid.util.FluidInteractionHelper;
 import net.edu.resprouted.util.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
@@ -84,7 +84,7 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new LiquidBarrelBE(pos, state);
+        return new LiquidBarrelBlockEntity(pos, state);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity be = world.getBlockEntity(pos);
 
-        if (!(be instanceof LiquidBarrelBE b)) {
+        if (!(be instanceof LiquidBarrelBlockEntity b)) {
             return ItemActionResult.FAIL;
         }
 
@@ -147,7 +147,7 @@ public class LiquidBarrelBlock extends BlockWithEntity {
                 boolean isCreative = player != null && player.isCreative();
 
                 if (!isCreative) {
-                    if (world.getBlockEntity(pos) instanceof LiquidBarrelBE b) {
+                    if (world.getBlockEntity(pos) instanceof LiquidBarrelBlockEntity b) {
 
                         FluidVariant m = b.getFluidStorage().getResource();
                         long amount = b.getFluidStorage().getAmount();
@@ -188,7 +188,7 @@ public class LiquidBarrelBlock extends BlockWithEntity {
         double p = pos.getY() + 0.4;
 
         if (entity.getY() <= p) {
-            if (world.getBlockEntity(pos) instanceof LiquidBarrelBE barrel) {
+            if (world.getBlockEntity(pos) instanceof LiquidBarrelBlockEntity barrel) {
                 FluidVariant fluid = barrel.getFluidStorage().getResource();
                 long amount = barrel.getFluidStorage().getAmount();
 
@@ -218,7 +218,7 @@ public class LiquidBarrelBlock extends BlockWithEntity {
         if (!world.isClient && canFillWithPrecipitation(world, precipitation)) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
 
-            if (blockEntity instanceof LiquidBarrelBE barrel) {
+            if (blockEntity instanceof LiquidBarrelBlockEntity barrel) {
                 SingleFluidStorage storage = barrel.getFluidStorage();
 
                 if (storage.getResource().isOf(Fluids.WATER) || storage.isResourceBlank()) {

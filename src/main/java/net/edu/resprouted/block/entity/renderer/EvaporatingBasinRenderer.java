@@ -1,6 +1,6 @@
 package net.edu.resprouted.block.entity.renderer;
 
-import net.edu.resprouted.block.entity.custom.EvaporatingBasinBE;
+import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
 import net.edu.resprouted.util.SmoothFloat;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class EvaporatingBasinRenderer implements BlockEntityRenderer<EvaporatingBasinBE> {
+public class EvaporatingBasinRenderer implements BlockEntityRenderer<EvaporatingBasinBlockEntity> {
 
     private final Map<BlockPos, SmoothFloat> fluidAnimations = new HashMap<>();
 
@@ -35,7 +35,7 @@ public class EvaporatingBasinRenderer implements BlockEntityRenderer<Evaporating
     }
 
     @Override
-    public void render(EvaporatingBasinBE entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    public void render(EvaporatingBasinBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 
         //Item Render
         if (!entity.getStack(0).isEmpty()) {
@@ -153,7 +153,7 @@ public class EvaporatingBasinRenderer implements BlockEntityRenderer<Evaporating
 
         fluidAnimations.keySet().removeIf(pos -> {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            return !(blockEntity instanceof EvaporatingBasinBE);
+            return !(blockEntity instanceof EvaporatingBasinBlockEntity);
         });
     }
 

@@ -1,6 +1,6 @@
 package net.edu.resprouted.block.entity.renderer;
 
-import net.edu.resprouted.block.entity.custom.CrushingTubBE;
+import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
 import net.edu.resprouted.util.SmoothFloat;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Random;
 
 
-public class CrushingTubBERenderer implements BlockEntityRenderer<CrushingTubBE> {
+public class CrushingTubBERenderer implements BlockEntityRenderer<CrushingTubBlockEntity> {
 
     private final Map<BlockPos, SmoothFloat> fluidAnimations = new HashMap<>();
 
@@ -34,7 +34,7 @@ public class CrushingTubBERenderer implements BlockEntityRenderer<CrushingTubBE>
     }
 
     @Override
-    public void render(CrushingTubBE entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    public void render(CrushingTubBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 
         //Item Render
         if (!entity.getStack(0).isEmpty()) {
@@ -146,7 +146,7 @@ public class CrushingTubBERenderer implements BlockEntityRenderer<CrushingTubBE>
 
         fluidAnimations.keySet().removeIf(pos -> {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            return !(blockEntity instanceof CrushingTubBE);
+            return !(blockEntity instanceof CrushingTubBlockEntity);
         });
     }
 

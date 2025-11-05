@@ -3,7 +3,7 @@ package net.edu.resprouted.block.custom.decorative;
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.abstracts.AbstractCabinetBlock;
-import net.edu.resprouted.block.entity.custom.CabinetBE;
+import net.edu.resprouted.block.entity.custom.CabinetBlockEntity;
 import net.edu.resprouted.block.enums.CabinetType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -35,7 +35,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Waterloggable {
+public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> implements Waterloggable {
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final MapCodec<CabinetBlock> CODEC = CabinetBlock.createCodec(CabinetBlock::new);
@@ -63,7 +63,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
 
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CabinetBE(pos, state);
+        return new CabinetBlockEntity(pos, state);
     }
 
     @Override
@@ -167,7 +167,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return world.isClient ? null : (w, pos, s, be) -> {
-            if (be instanceof CabinetBE cabinet) {
+            if (be instanceof CabinetBlockEntity cabinet) {
                 CabinetType cabinetType = s.get(CabinetBlock.CABINET_TYPE);
                 BlockPos bottomPos = cabinetType == CabinetType.TOP ? pos.down() : pos;
 
@@ -190,7 +190,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
             return ActionResult.CONSUME;
         }
 
-        if (!(world.getBlockEntity(pos) instanceof CabinetBE cabinet))
+        if (!(world.getBlockEntity(pos) instanceof CabinetBlockEntity cabinet))
             return ActionResult.PASS;
 
         CabinetType type = state.get(CABINET_TYPE);
@@ -200,9 +200,9 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
             default -> null;
         };
 
-        CabinetBE other = null;
+        CabinetBlockEntity other = null;
         if (otherPos != null) {
-            if (world.getBlockEntity(otherPos) instanceof CabinetBE cbe) {
+            if (world.getBlockEntity(otherPos) instanceof CabinetBlockEntity cbe) {
                 other = cbe;
             }
         }
@@ -226,14 +226,14 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         CabinetType type = state.get(CABINET_TYPE);
         BlockEntity be = world.getBlockEntity(pos);
 
-        if (!(be instanceof CabinetBE cabinet)) return null;
+        if (!(be instanceof CabinetBlockEntity cabinet)) return null;
 
         if (type == CabinetType.SINGLE) return cabinet;
 
         BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
         BlockEntity otherBe = world.getBlockEntity(otherPos);
 
-        if (otherBe instanceof CabinetBE other) {
+        if (otherBe instanceof CabinetBlockEntity other) {
             return new DoubleInventory(
                     type == CabinetType.BOTTOM ? cabinet : other,
                     type == CabinetType.BOTTOM ? other : cabinet
@@ -242,9 +242,9 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBE> implements Wat
         return cabinet;
     }
 
-    private static @NotNull NamedScreenHandlerFactory getNamedScreenHandlerFactory(CabinetBE self, CabinetType type, CabinetBE other) {
-        CabinetBE lower = type == CabinetType.BOTTOM ? self : other;
-        CabinetBE upper = type == CabinetType.BOTTOM ? other : self;
+    private static @NotNull NamedScreenHandlerFactory getNamedScreenHandlerFactory(CabinetBlockEntity self, CabinetType type, CabinetBlockEntity other) {
+        CabinetBlockEntity lower = type == CabinetType.BOTTOM ? self : other;
+        CabinetBlockEntity upper = type == CabinetType.BOTTOM ? other : self;
 
         return new NamedScreenHandlerFactory() {
             @Override

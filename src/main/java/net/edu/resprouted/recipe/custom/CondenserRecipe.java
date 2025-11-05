@@ -5,8 +5,8 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.block.custom.alchemy.BasicCondenserBlock;
-import net.edu.resprouted.block.entity.custom.AdvancedCondenserBE;
-import net.edu.resprouted.block.entity.custom.BasicCondenserBE;
+import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.BasicCondenserBlockEntity;
 import net.edu.resprouted.recipe.Input.CondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.util.ElixirUtils;
@@ -50,7 +50,7 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
         boolean hasFluid = false;
         boolean hasBottle = input.bottle().isOf(Items.GLASS_BOTTLE);
 
-        if (world.getBlockEntity(input.pos()) instanceof BasicCondenserBE be) {
+        if (world.getBlockEntity(input.pos()) instanceof BasicCondenserBlockEntity be) {
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
             hasFluid = be.hasFluid();
 
@@ -60,7 +60,7 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
             }
         }
 
-        else if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBE be) {
+        else if (world.getBlockEntity(input.pos()) instanceof AdvancedCondenserBlockEntity be) {
             hasFuelOrBurning = be.isBurning() || !input.fuel().isEmpty();
             hasFluid = be.hasFluid();
 

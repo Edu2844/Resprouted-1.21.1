@@ -1,6 +1,6 @@
 package net.edu.resprouted.block.entity.renderer;
 
-import net.edu.resprouted.block.entity.custom.LiquidBarrelBE;
+import net.edu.resprouted.block.entity.custom.LiquidBarrelBlockEntity;
 import net.edu.resprouted.util.SmoothFloat;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -19,7 +19,7 @@ import org.joml.Matrix4f;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LiquidBarrelRenderer implements BlockEntityRenderer<LiquidBarrelBE> {
+public class LiquidBarrelRenderer implements BlockEntityRenderer<LiquidBarrelBlockEntity> {
 
     private final Map<BlockPos, SmoothFloat> fluidAnimations = new HashMap<>();
 
@@ -27,7 +27,7 @@ public class LiquidBarrelRenderer implements BlockEntityRenderer<LiquidBarrelBE>
     }
 
     @Override
-    public void render(LiquidBarrelBE entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    public void render(LiquidBarrelBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 
         //Item Render
         light = getLightLevel(entity.getWorld(), entity.getPos());
@@ -86,7 +86,7 @@ public class LiquidBarrelRenderer implements BlockEntityRenderer<LiquidBarrelBE>
 
         fluidAnimations.keySet().removeIf(pos -> {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            return !(blockEntity instanceof LiquidBarrelBE);
+            return !(blockEntity instanceof LiquidBarrelBlockEntity);
         });
     }
 
