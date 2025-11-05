@@ -289,8 +289,6 @@ public class ModItemGroups {
                         entries.add(ModItems.OLIVE_BOAT);
                         entries.add(ModItems.OLIVE_CHEST_BOAT);
 
-                        entries.add(ModBlocks.GARGOYLE);
-
                         entries.add(ModBlocks.BLACK_PAINTED_PLANKS);
                         entries.add(ModBlocks.BLUE_PAINTED_PLANKS);
                         entries.add(ModBlocks.BROWN_PAINTED_PLANKS);
@@ -307,6 +305,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.LIGHT_GRAY_PAINTED_PLANKS);
                         entries.add(ModBlocks.WHITE_PAINTED_PLANKS);
                         entries.add(ModBlocks.YELLOW_PAINTED_PLANKS);
+                        entries.add(ModBlocks.GARGOYLE);
                         entries.add(ModBlocks.GOLDEN_CHAIN);
                         entries.add(ModBlocks.COPPER_CHAIN);
                         entries.add(ModBlocks.EXPOSED_COPPER_CHAIN);

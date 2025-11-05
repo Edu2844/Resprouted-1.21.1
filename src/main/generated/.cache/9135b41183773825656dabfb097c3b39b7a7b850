@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-05T00:13:23.1574563	Resprouted/Tags for minecraft:item
+// 1.21.1	2025-11-05T14:58:31.324763	Resprouted/Tags for minecraft:item
 2859ec709d0c7a50ba1a81d49f441ac86b90a536 data\resprouted\tags\item\ghost_pepper.json
 f470b0889459fb2d48176e69995c70ce18aa66ea data\resprouted\tags\item\fuels.json
 583c61b048f26dc4a732d8db2938a19214c6aa65 data\resprouted\tags\item\chili_pepper_seeds.json
@@ -13,7 +13,6 @@ e2915cf7ef73c5cb6f956d3069615f688880cda6 data\resprouted\tags\item\can_be_oiled.
 4dcc822cba19e4afd7424f792b2b47c8f0f31750 data\resprouted\tags\item\grapes.json
 b3bde38f0076db7328e1d575546c7494e712d3ab data\resprouted\tags\item\dusts.json
 666a5c22bbda65aa5e43dde49b375dbe80ba3a2d data\resprouted\tags\item\iron_berries.json
-47be456ad97366b91300f74739cd8cac544f698d data\resprouted\tags\item\igniters.json
 d8520e58c4b2e7f26c6d8b2033c1d66a7ff11494 data\resprouted\tags\item\modifiers.json
 e16a3c9b67bdbfae8c45a9407fa27644616c427e data\resprouted\tags\item\copper_nugget.json
 517e58996c4f3f353a51b56a55008fce871fe86b data\resprouted\tags\item\booze_bottles.json

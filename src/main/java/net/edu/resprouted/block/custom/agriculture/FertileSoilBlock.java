@@ -2,14 +2,11 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
@@ -54,12 +51,7 @@ public class FertileSoilBlock extends FarmlandBlock {
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        if (!world.isClient &&
-                world.random.nextFloat() < fallDistance - 0.5F &&
-                entity instanceof LivingEntity &&
-                (entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING))) {
-            entity.handleFallDamage(fallDistance, 0.75f, world.getDamageSources().fall());
-        }
+        entity.handleFallDamage(fallDistance, 1.0F, entity.getDamageSources().fall());
     }
 
     @Override

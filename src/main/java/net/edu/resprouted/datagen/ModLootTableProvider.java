@@ -247,7 +247,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_WEATHERED_COPPER_SOUL_LANTERN);
         addDrop(ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN);
 
-        //CANDLE HOLDERS
+        //IRON CANDLE HOLDERS
         addDrop(ModBlocks.IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.WHITE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_GRAY_IRON_CANDLE_HOLDER);
@@ -264,6 +264,23 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.PURPLE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.MAGENTA_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.PINK_IRON_CANDLE_HOLDER);
+
+        addDrop(ModBlocks.DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.WHITE_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.LIGHT_GRAY_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.GRAY_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.BLACK_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.BROWN_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.RED_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.ORANGE_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.YELLOW_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.LIME_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.CYAN_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.LIGHT_BLUE_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.BLUE_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.PURPLE_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.MAGENTA_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.PINK_DOUBLE_IRON_CANDLE_HOLDER);
 
         //GOLDEN CANDLE HOLDERS
         addDrop(ModBlocks.GOLDEN_CANDLE_HOLDER);
@@ -282,6 +299,23 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.PURPLE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.MAGENTA_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.PINK_GOLDEN_CANDLE_HOLDER);
+
+        addDrop(ModBlocks.DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.WHITE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.LIGHT_GRAY_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.GRAY_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.BLACK_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.BROWN_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.RED_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.ORANGE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.YELLOW_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.LIME_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.CYAN_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.LIGHT_BLUE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.BLUE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.PURPLE_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.MAGENTA_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.PINK_DOUBLE_GOLDEN_CANDLE_HOLDER);
 
         //COPPER CANDLE HOLDERS
         addDrop(ModBlocks.COPPER_CANDLE_HOLDER);

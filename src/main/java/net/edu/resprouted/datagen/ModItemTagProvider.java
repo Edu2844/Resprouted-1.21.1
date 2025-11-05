@@ -113,10 +113,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.OLIVE_OIL_BOTTLE)
                 .add(ModItems.SUGAR_CANE_JUICE_BOTTLE)
         ;
-        getOrCreateTagBuilder(ModTags.Items.IGNITERS)
-                .add(Items.FLINT_AND_STEEL)
-                .add(Items.FIRE_CHARGE)
-        ;
         getOrCreateTagBuilder(ModTags.Items.FUELS)
                 .add(Items.CHARCOAL)
         ;

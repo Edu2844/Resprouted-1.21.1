@@ -1,5 +1,4 @@
 {
-	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
 		"holder": "#holder",
@@ -23,20 +22,21 @@
 		{
 			"name": "stick_1",
 			"from": [8, 0, 11],
-			"to": [8, 6, 15],
+			"to": [8, 7, 15],
 			"faces": {
 				"north": {"uv": [0, 0, 0, 6], "texture": "#holder"},
-				"east": {"uv": [0, 4, 4, 10], "texture": "#holder"},
+				"east": {"uv": [0, 3, 4, 10], "texture": "#holder"},
 				"south": {"uv": [0, 0, 0, 6], "texture": "#holder"},
-				"west": {"uv": [4, 4, 0, 10], "texture": "#holder"},
+				"west": {"uv": [4, 3, 0, 10], "texture": "#holder"},
 				"up": {"uv": [0, 0, 0, 4], "texture": "#holder"},
 				"down": {"uv": [0, 0, 0, 4], "texture": "#holder"}
 			}
 		},
 		{
 			"name": "stick_2",
-			"from": [6.5, 4, 12.5],
-			"to": [9.5, 6, 12.5],
+			"from": [6.5, 5, 12.5],
+			"to": [9.5, 7, 12.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 1, 0]},
 			"faces": {
 				"north": {"uv": [1, 4, 4, 6], "texture": "#holder"},
 				"south": {"uv": [1, 4, 4, 6], "texture": "#holder"}
@@ -44,8 +44,9 @@
 		},
 		{
 			"name": "candle_base",
-			"from": [6.5, 6, 11],
-			"to": [9.5, 7, 14],
+			"from": [6.5, 7, 11],
+			"to": [9.5, 8, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 1, 0]},
 			"faces": {
 				"north": {"uv": [8, 3, 11, 4], "texture": "#holder"},
 				"east": {"uv": [8, 3, 11, 4], "texture": "#holder"},
@@ -56,9 +57,9 @@
 			}
 		},
 		{
-			"from": [7, 7, 11.5],
-			"to": [9, 13, 13.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 7, 4.5]},
+			"from": [7, 8, 11.5],
+			"to": [9, 14, 13.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 8, 4.5]},
 			"faces": {
 				"north": {"uv": [0, 8, 2, 14], "texture": "#candle"},
 				"east": {"uv": [0, 8, 2, 14], "texture": "#candle"},
@@ -69,9 +70,9 @@
 			}
 		},
 		{
-			"from": [7.5, 13, 12.5],
-			"to": [8.5, 14, 12.5],
-			"rotation": {"angle": 45, "axis": "y", "origin": [8, 13, 12.5]},
+			"from": [7.5, 14, 12.5],
+			"to": [8.5, 15, 12.5],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 14, 12.5]},
 			"faces": {
 				"north": {"uv": [0, 5, 1, 6], "texture": "#candle"},
 				"east": {"uv": [0, 0, 0, 0], "texture": "#candle"},
@@ -82,9 +83,9 @@
 			}
 		},
 		{
-			"from": [7.5, 13, 12.5],
-			"to": [8.5, 14, 12.5],
-			"rotation": {"angle": -45, "axis": "y", "origin": [8, 13, 12.5]},
+			"from": [7.5, 14, 12.5],
+			"to": [8.5, 15, 12.5],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 14, 12.5]},
 			"faces": {
 				"north": {"uv": [0, 5, 1, 6], "texture": "#candle"},
 				"east": {"uv": [0, 0, 0, 0], "texture": "#candle"},

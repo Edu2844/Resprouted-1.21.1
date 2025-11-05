@@ -16,7 +16,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DoubleCandleHolderBlock extends CandleHolderBlock{
@@ -45,29 +44,26 @@ public class DoubleCandleHolderBlock extends CandleHolderBlock{
     @Override
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        BlockPos pos = ctx.getBlockPos();
+        BlockState blockState = this.getDefaultState();
         World world = ctx.getWorld();
+        BlockPos pos = ctx.getBlockPos();
+        Direction[] directions = ctx.getPlacementDirections();
 
-        if (ctx.getSide() == Direction.UP) {
-            Direction playerFacing = ctx.getHorizontalPlayerFacing();
-            BlockState upState = this.getDefaultState()
-                    .with(FACING, Direction.UP)
-                    .with(AXIS, playerFacing.getAxis());
-            if (upState.canPlaceAt(world, pos)) {
-                return upState;
-            }
-        }
-        else if (ctx.getSide() != Direction.DOWN) {
-            BlockState wallState = this.getDefaultState().with(FACING, ctx.getSide());
-            if (wallState.canPlaceAt(world, pos)) {
-                return wallState;
-            }
-        }
-        for (Direction direction : ctx.getPlacementDirections()) {
+        for (Direction direction : directions) {
             if (direction != Direction.DOWN) {
-                BlockState fallbackState = this.getDefaultState().with(FACING, direction);
-                if (fallbackState.canPlaceAt(world, pos)) {
-                    return fallbackState;
+                Direction facing = (direction == Direction.UP) ? Direction.UP : direction.getOpposite();
+                BlockState testState = blockState.with(FACING, facing);
+
+                if (direction == Direction.UP) {
+                    Direction playerFacing = ctx.getHorizontalPlayerFacing();
+                    testState = testState.with(AXIS, playerFacing.getAxis());
+                } else {
+
+                    testState = testState.with(AXIS, direction.getAxis());
+                }
+
+                if (testState.canPlaceAt(world, pos)) {
+                    return testState;
                 }
             }
         }
@@ -77,42 +73,27 @@ public class DoubleCandleHolderBlock extends CandleHolderBlock{
     @Override
     protected Iterable<Vec3d> getParticleOffsets(BlockState state) {
         Direction direction = state.get(FACING);
-        Direction.Axis axis = state.get(AXIS);
-        List<Vec3d> offsets = new ArrayList<>();
+        boolean isWall = direction.getAxis().isHorizontal();
 
-        double x = 0.5D;
-        double y = 0.7D;
-        double z = 0.5D;
+        double x = 0.5;
+        double y = isWall ? 0.94 : 1.02;
+        double z = 0.5;
+        final double offset = isWall ? 0.22 : 0.16;
 
-        if (direction.getAxis().isHorizontal()) {
-            final double candleOffset = 0.23125;
+        if (isWall) {
             Direction opposite = direction.getOpposite();
-
-            x += 0.2609375D * opposite.getOffsetX();
-            y += 0.25D;
-            z += 0.2609375D * opposite.getOffsetZ();
-
-            if (direction.getAxis() == Direction.Axis.X) {
-                offsets.add(new Vec3d(x, y, z + candleOffset));
-                offsets.add(new Vec3d(x, y, z - candleOffset));
-            } else {
-                offsets.add(new Vec3d(x + candleOffset, y, z));
-                offsets.add(new Vec3d(x - candleOffset, y, z));
-            }
-        } else {
-            final double candleOffset = 0.1875;
-            y += 0.33D;
-
-            if (axis == Direction.Axis.X) {
-                offsets.add(new Vec3d(x, y, z + candleOffset));
-                offsets.add(new Vec3d(x, y, z - candleOffset));
-            } else {
-                offsets.add(new Vec3d(x + candleOffset, y, z));
-                offsets.add(new Vec3d(x - candleOffset, y, z));
-            }
+            x += 0.24 * opposite.getOffsetX();
+            z += 0.24 * opposite.getOffsetZ();
         }
 
-        return offsets;
+        Direction.Axis effectiveAxis = isWall ? direction.getAxis() : state.get(AXIS);
+        double offsetX = effectiveAxis == Direction.Axis.X ? 0 : offset;
+        double offsetZ = effectiveAxis == Direction.Axis.X ? offset : 0;
+
+        return List.of(
+                new Vec3d(x + offsetX, y, z + offsetZ),
+                new Vec3d(x - offsetX, y, z - offsetZ)
+        );
     }
 
     @Override

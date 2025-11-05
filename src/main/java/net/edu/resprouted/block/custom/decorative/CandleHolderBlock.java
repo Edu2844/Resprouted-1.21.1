@@ -1,19 +1,17 @@
 package net.edu.resprouted.block.custom.decorative;
 
 import com.mojang.serialization.MapCodec;
-import net.edu.resprouted.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
@@ -33,10 +31,10 @@ public class CandleHolderBlock extends AbstractCandleBlock implements Waterlogga
     public static final MapCodec<CandleHolderBlock> CODEC = MapCodec.unit(CandleHolderBlock::new);
     public static final DirectionProperty FACING = DirectionProperty.of("facing", direction -> direction != Direction.DOWN);
     protected static final VoxelShape STANDING_SHAPE = Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 15.0, 10.0F);
-    protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(5.6F, 0.0F, 11.2F, 10.4F, 12.8F, 16.0F);
-    protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(5.6F, 0.0F, 0.0F, 10.4F, 12.8F, 4.8F);
-    protected static final VoxelShape WEST_SHAPE = Block.createCuboidShape(11.2F, 0.0F, 5.6F, 16.0F, 12.8F, 10.4F);
-    protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0.0F, 0.0F, 5.6F, 4.8F, 12.8F, 10.4F);
+    protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(6.0, 0.0, 11.0, 10.0, 15.0, 16.0);
+    protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 15.0, 5.0);
+    protected static final VoxelShape WEST_SHAPE = Block.createCuboidShape(11.0, 0.0, 6.0, 16.0, 15.0, 10.0);
+    protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0.0, 0.0, 6.0, 5.0, 15.0, 10.0);
     public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
 
     public CandleHolderBlock() {
@@ -52,30 +50,20 @@ public class CandleHolderBlock extends AbstractCandleBlock implements Waterlogga
     @Override
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
+        BlockState blockState = this.getDefaultState();
+        WorldView world = ctx.getWorld();
         BlockPos pos = ctx.getBlockPos();
-        World world = ctx.getWorld();
+        Direction[] directions = ctx.getPlacementDirections();
 
-        if (ctx.getSide() == Direction.UP) {
-            BlockState upState = this.getDefaultState().with(FACING, Direction.UP);
-            if (upState.canPlaceAt(world, pos)) {
-                return upState;
-            }
-        }
-        else if (ctx.getSide() != Direction.DOWN) {
-            BlockState wallState = this.getDefaultState().with(FACING, ctx.getSide());
-            if (wallState.canPlaceAt(world, pos)) {
-                return wallState;
-            }
-        }
-        for (Direction direction : ctx.getPlacementDirections()) {
+        for (Direction direction : directions) {
             if (direction != Direction.DOWN) {
-                BlockState fallbackState = this.getDefaultState().with(FACING, direction);
-                if (fallbackState.canPlaceAt(world, pos)) {
-                    return fallbackState;
+                Direction facing = (direction == Direction.UP) ? Direction.UP : direction.getOpposite();
+                blockState = blockState.with(FACING, facing);
+                if (blockState.canPlaceAt(world, pos)) {
+                    return blockState;
                 }
             }
         }
-
         return null;
     }
 
@@ -89,29 +77,34 @@ public class CandleHolderBlock extends AbstractCandleBlock implements Waterlogga
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         Direction direction = state.get(FACING);
-        BlockPos blockPos = pos.offset(direction.getOpposite());
-        BlockState adjacentState = world.getBlockState(blockPos);
+        BlockPos attachedPos = pos.offset(direction.getOpposite());
+        BlockState attachedState = world.getBlockState(attachedPos);
 
-        if (adjacentState.getBlock() instanceof ChandelierBlock) {
+        if (attachedState.getBlock() instanceof ChandelierBlock) {
             return true;
         }
-        return direction == Direction.UP ? Block.sideCoversSmallSquare(world, blockPos, Direction.UP)
-                || adjacentState.isSideSolid(world, blockPos, Direction.UP, SideShapeType.CENTER)
-                : adjacentState.isSideSolid(world, blockPos, direction, SideShapeType.CENTER);
+
+        return attachedState.isSideSolidFullSquare(world, attachedPos, direction);
     }
 
     @Override
     public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (stack.isIn(ModTags.Items.IGNITERS) && !state.get(LIT)) {
-            if (!world.isClient) {
-                world.playSound(null, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
+        if ((stack.isOf(Items.FLINT_AND_STEEL) || stack.isOf(Items.FIRE_CHARGE)) && !state.get(LIT)) {
+            if (stack.isOf(Items.FLINT_AND_STEEL)) {
                 world.setBlockState(pos, state.with(LIT, true), Block.NOTIFY_ALL_AND_REDRAW);
+                world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
+                player.getStackInHand(hand).damage(1, player, LivingEntity.getSlotForHand(hand));
+                return ItemActionResult.SUCCESS;
 
-                if (!player.getAbilities().creativeMode) {
-                    stack.damage(1, player, LivingEntity.getSlotForHand(hand));
+            } else if (stack.isOf(Items.FIRE_CHARGE)) {
+                world.setBlockState(pos, state.with(LIT, true), Block.NOTIFY_ALL_AND_REDRAW);
+                world.playSound(null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.0F, (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 1.0F);
+
+                if (!player.isCreative()) {
+                    stack.decrement(1);
                 }
+                return ItemActionResult.SUCCESS;
             }
-            return ItemActionResult.SUCCESS;
         }
 
         if (stack.isEmpty() && player.getAbilities().allowModifyWorld && state.get(LIT)) {
@@ -120,6 +113,7 @@ public class CandleHolderBlock extends AbstractCandleBlock implements Waterlogga
             }
             return ItemActionResult.SUCCESS;
         }
+
         return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
@@ -131,14 +125,14 @@ public class CandleHolderBlock extends AbstractCandleBlock implements Waterlogga
     @Override
     protected Iterable<Vec3d> getParticleOffsets(BlockState state) {
         Direction dir = state.get(FACING);
-        double x = 0.5D;
-        double y = 0.97D;
-        double z = 0.5D;
+        double x = 0.5;
+        double y = 1.0;
+        double z = 0.5;
 
         if (dir.getAxis().isHorizontal()) {
             Direction opp = dir.getOpposite();
-            x += 0.27D * opp.getOffsetX();
-            z += 0.27D * opp.getOffsetZ();
+            x += 0.27 * opp.getOffsetX();
+            z += 0.27 * opp.getOffsetZ();
         }
         return List.of(new Vec3d(x, y, z));
     }
@@ -153,15 +147,5 @@ public class CandleHolderBlock extends AbstractCandleBlock implements Waterlogga
             case NORTH -> NORTH_SHAPE;
             default -> STANDING_SHAPE;
         };
-    }
-
-    @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
     }
 }
