@@ -1,0 +1,7 @@
+{
+  "parent": "resprouted:block/candle/template_double_candle_holder",
+  "textures": {
+    "candle": "minecraft:block/blue_candle_lit",
+    "holder": "resprouted:block/double_copper_candle_holder"
+  }
+}

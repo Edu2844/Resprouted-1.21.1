@@ -521,7 +521,8 @@ public class ModBlocks {
     // =================================================
     // ||                CANDLE HOLDER                ||
     // =================================================
-    //Iron
+
+    //IRON
     public static final Block IRON_CANDLE_HOLDER = registerBlock("iron_candle_holder", new CandleHolderBlock());
     public static final Block WHITE_IRON_CANDLE_HOLDER = registerBlock("white_iron_candle_holder", new CandleHolderBlock());
     public static final Block LIGHT_GRAY_IRON_CANDLE_HOLDER = registerBlock("light_gray_iron_candle_holder", new CandleHolderBlock());
@@ -539,7 +540,8 @@ public class ModBlocks {
     public static final Block MAGENTA_IRON_CANDLE_HOLDER = registerBlock("magenta_iron_candle_holder", new CandleHolderBlock());
     public static final Block PINK_IRON_CANDLE_HOLDER = registerBlock("pink_iron_candle_holder", new CandleHolderBlock());
     public static final Block GREEN_IRON_CANDLE_HOLDER = registerBlock("green_iron_candle_holder", new CandleHolderBlock());
-    //Gold
+
+    //GOLD
     public static final Block GOLDEN_CANDLE_HOLDER = registerBlock("golden_candle_holder", new CandleHolderBlock());
     public static final Block WHITE_GOLDEN_CANDLE_HOLDER = registerBlock("white_golden_candle_holder", new CandleHolderBlock());
     public static final Block LIGHT_GRAY_GOLDEN_CANDLE_HOLDER = registerBlock("light_gray_golden_candle_holder", new CandleHolderBlock());
@@ -558,6 +560,7 @@ public class ModBlocks {
     public static final Block PINK_GOLDEN_CANDLE_HOLDER = registerBlock("pink_golden_candle_holder", new CandleHolderBlock());
     public static final Block GREEN_GOLDEN_CANDLE_HOLDER = registerBlock("green_golden_candle_holder", new CandleHolderBlock());
 
+    //COPPER
     public static final Block COPPER_CANDLE_HOLDER = registerBlock("copper_candle_holder",
             new CopperCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
     public static final Block EXPOSED_COPPER_CANDLE_HOLDER = registerBlock("exposed_copper_candle_holder",
@@ -884,7 +887,7 @@ public class ModBlocks {
     // =================================================
     // ||             DOUBLE CANDLE HOLDER            ||
     // =================================================
-    //Iron
+    //IRON
     public static final Block DOUBLE_IRON_CANDLE_HOLDER = registerBlock("double_iron_candle_holder", new DoubleCandleHolderBlock());
     public static final Block WHITE_DOUBLE_IRON_CANDLE_HOLDER = registerBlock("white_double_iron_candle_holder", new DoubleCandleHolderBlock());
     public static final Block LIGHT_GRAY_DOUBLE_IRON_CANDLE_HOLDER = registerBlock("light_gray_double_iron_candle_holder", new DoubleCandleHolderBlock());
@@ -903,7 +906,7 @@ public class ModBlocks {
     public static final Block PINK_DOUBLE_IRON_CANDLE_HOLDER = registerBlock("pink_double_iron_candle_holder", new DoubleCandleHolderBlock());
     public static final Block GREEN_DOUBLE_IRON_CANDLE_HOLDER = registerBlock("green_double_iron_candle_holder", new DoubleCandleHolderBlock());
 
-    //gold
+    //GOLD
     public static final Block DOUBLE_GOLDEN_CANDLE_HOLDER = registerBlock("double_golden_candle_holder", new DoubleCandleHolderBlock());
     public static final Block WHITE_DOUBLE_GOLDEN_CANDLE_HOLDER = registerBlock("white_double_golden_candle_holder", new DoubleCandleHolderBlock());
     public static final Block LIGHT_GRAY_DOUBLE_GOLDEN_CANDLE_HOLDER = registerBlock("light_gray_double_golden_candle_holder", new DoubleCandleHolderBlock());
@@ -921,6 +924,330 @@ public class ModBlocks {
     public static final Block MAGENTA_DOUBLE_GOLDEN_CANDLE_HOLDER = registerBlock("magenta_double_golden_candle_holder", new DoubleCandleHolderBlock());
     public static final Block PINK_DOUBLE_GOLDEN_CANDLE_HOLDER = registerBlock("pink_double_golden_candle_holder", new DoubleCandleHolderBlock());
     public static final Block GREEN_DOUBLE_GOLDEN_CANDLE_HOLDER = registerBlock("green_double_golden_candle_holder", new DoubleCandleHolderBlock());
+
+    //COPPER
+
+    public static final Block DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //black
+    public static final Block BLACK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("black_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_black_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_black_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_black_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_black_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_black_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_black_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_black_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //blue
+    public static final Block BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("blue_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_blue_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_blue_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_blue_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_blue_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_blue_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_blue_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_blue_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //brown
+    public static final Block BROWN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("brown_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_brown_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_brown_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_brown_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_brown_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_brown_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_brown_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_brown_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //cyan
+    public static final Block CYAN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("cyan_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_cyan_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_cyan_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_cyan_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_cyan_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_cyan_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_cyan_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_cyan_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //gray
+    public static final Block GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("gray_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_gray_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_gray_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_gray_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_gray_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_gray_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_gray_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_gray_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //green
+    public static final Block GREEN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("green_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_green_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_green_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_green_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_green_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_green_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_green_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_green_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //light blue
+    public static final Block LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("light_blue_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_light_blue_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_light_blue_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_light_blue_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_light_blue_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_light_blue_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_light_blue_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_light_blue_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //light gray
+    public static final Block LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("light_gray_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_light_gray_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_light_gray_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_light_gray_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_light_gray_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_light_gray_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_light_gray_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_light_gray_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //lime
+    public static final Block LIME_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("lime_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_LIME_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_lime_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_LIME_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_lime_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_LIME_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_lime_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_LIME_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_lime_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_LIME_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_lime_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_LIME_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_lime_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_LIME_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_lime_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //magenta
+    public static final Block MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("magenta_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_magenta_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_magenta_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_magenta_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_magenta_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_magenta_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_magenta_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_magenta_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //orange
+    public static final Block ORANGE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("orange_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_orange_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_orange_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_orange_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_orange_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_orange_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_orange_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_orange_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //pink
+    public static final Block PINK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("pink_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_PINK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_pink_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_PINK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_pink_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_PINK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_pink_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_PINK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_pink_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_PINK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_pink_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_PINK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_pink_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_PINK_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_pink_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //purple
+    public static final Block PURPLE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("purple_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_purple_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_purple_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_purple_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_purple_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_purple_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_purple_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_purple_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //red
+    public static final Block RED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("red_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_RED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_red_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_RED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_red_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_RED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_red_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_RED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_red_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_RED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_red_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_RED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_red_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_RED_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_red_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //white
+    public static final Block WHITE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("white_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_white_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_white_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_white_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_white_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_white_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_white_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_white_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+
+    //yellow
+    public static final Block YELLOW_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("yellow_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
+    public static final Block EXPOSED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("exposed_yellow_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
+    public static final Block WEATHERED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("weathered_yellow_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));
+    public static final Block OXIDIZED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("oxidized_yellow_double_copper_candle_holder",
+            new CopperDoubleCandleHolderBlock(Oxidizable.OxidationLevel.OXIDIZED));
+
+    public static final Block WAXED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_yellow_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_EXPOSED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_exposed_yellow_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_WEATHERED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_weathered_yellow_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
+    public static final Block WAXED_OXIDIZED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER = registerBlock("waxed_oxidized_yellow_double_copper_candle_holder",
+            new DoubleCandleHolderBlock());
 
     // =================================================
     // ||                AGRICULTURE                  ||

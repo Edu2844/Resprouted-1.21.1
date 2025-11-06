@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "axis=x,facing=east,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 90
+    },
+    "axis=x,facing=east,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 90
+    },
+    "axis=x,facing=north,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 0
+    },
+    "axis=x,facing=north,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 0
+    },
+    "axis=x,facing=south,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 180
+    },
+    "axis=x,facing=south,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 180
+    },
+    "axis=x,facing=up,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/oxidized_magenta_double_copper_candle_holder",
+      "y": 90
+    },
+    "axis=x,facing=up,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 90
+    },
+    "axis=x,facing=west,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 270
+    },
+    "axis=x,facing=west,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 270
+    },
+    "axis=y,facing=east,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 90
+    },
+    "axis=y,facing=east,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 90
+    },
+    "axis=y,facing=north,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 0
+    },
+    "axis=y,facing=north,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 0
+    },
+    "axis=y,facing=south,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 180
+    },
+    "axis=y,facing=south,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 180
+    },
+    "axis=y,facing=up,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/oxidized_magenta_double_copper_candle_holder",
+      "y": 0
+    },
+    "axis=y,facing=up,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 0
+    },
+    "axis=y,facing=west,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 270
+    },
+    "axis=y,facing=west,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 270
+    },
+    "axis=z,facing=east,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 90
+    },
+    "axis=z,facing=east,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 90
+    },
+    "axis=z,facing=north,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 0
+    },
+    "axis=z,facing=north,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 0
+    },
+    "axis=z,facing=south,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 180
+    },
+    "axis=z,facing=south,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 180
+    },
+    "axis=z,facing=up,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/oxidized_magenta_double_copper_candle_holder",
+      "y": 0
+    },
+    "axis=z,facing=up,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 0
+    },
+    "axis=z,facing=west,lit=false": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder",
+      "y": 270
+    },
+    "axis=z,facing=west,lit=true": {
+      "model": "resprouted:block/copper_candle_holder/wall_oxidized_magenta_double_copper_candle_holder_lit",
+      "y": 270
+    }
+  }
+}

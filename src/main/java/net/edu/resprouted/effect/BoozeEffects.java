@@ -3,11 +3,16 @@ package net.edu.resprouted.effect;
 import net.edu.resprouted.item.custom.BoozeBottleItem;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BoozeEffects {
 
@@ -103,14 +108,14 @@ public class BoozeEffects {
 
             for (StatusEffectInstance effect : player.getStatusEffects()) {
                 if (effect.getEffectType().value().getCategory() == StatusEffectCategory.BENEFICIAL &&
-                        effect.getAmplifier() < 2) {
-                    player.addStatusEffect(new StatusEffectInstance(
-                            effect.getEffectType(),
-                            effect.getDuration(),
-                            effect.getAmplifier() + 1,
-                            effect.isAmbient(),
-                            effect.shouldShowParticles(),
-                            effect.shouldShowIcon()
+                        effect.getAmplifier() < 2) {player.addStatusEffect(
+                                new StatusEffectInstance(
+                                        effect.getEffectType(),
+                                        effect.getDuration(),
+                                        effect.getAmplifier() + 1,
+                                        effect.isAmbient(),
+                                        effect.shouldShowParticles(),
+                                        effect.shouldShowIcon()
                     ));
                 }
             }
@@ -192,6 +197,7 @@ public class BoozeEffects {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, nauseaDuration));
         }
     }
+
     public static void applyAmbrosiaEffects(BoozeBottleItem.BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -212,6 +218,7 @@ public class BoozeEffects {
             player.damage(player.getDamageSources().magic(), Float.MAX_VALUE);
         }
     }
+
     public static void applyGlowBerryWineEffects(BoozeBottleItem.BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -273,6 +280,7 @@ public class BoozeEffects {
             }
         }
     }
+
     public static void applyRumEffects(BoozeBottleItem.BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -280,16 +288,33 @@ public class BoozeEffects {
         if (quality >= 0.5F) {
             player.getHungerManager().add(1, 2F * quality);
 
-            int duration = 1200 + ((int) (6000 * (Math.max(Math.abs((quality - 0.5F) * 2F), 0F))));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, duration, 0, false, false));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, duration, 0, false, false));
+            List<RegistryEntry<StatusEffect>> effectsToRemove = new ArrayList<>();
+            for (StatusEffectInstance effect : player.getStatusEffects()) {
+                if (effect.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
+                    effectsToRemove.add(effect.getEffectType());
+                }
+            }
+
+            for (RegistryEntry<StatusEffect> effect : effectsToRemove) {
+                player.removeStatusEffect(effect);
+            }
+
+            if (quality >= 0.8F) {
+                int resistanceDuration = (int) (3600 * (quality - 0.8F) * 5);
+                player.addStatusEffect(new StatusEffectInstance(
+                        StatusEffects.RESISTANCE,
+                        resistanceDuration,
+                        0,
+                        false,
+                        false,
+                        true
+                ));
+            }
 
         } else {
-            int duration = (int) (6000 * Math.max(1 - quality, 0.25));
+            int duration = (int) (6000 * (1 - quality));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, duration));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, duration));
-
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, duration));
         }
     }
 }

@@ -292,7 +292,7 @@ public class ModItems {
 
     public static final Item RUM_BOTTLE = registerItem("rum_bottle",
             new BoozeBottleItem(ModFluids.RUM_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyRumEffects)
-                    .setInebriationChance(0.6f));
+                    .setInebriationChance(0.9f));
 
     public static final Item AMBROSIA_BOTTLE = registerItem("ambrosia_bottle",
             new BoozeBottleItem(ModFluids.AMBROSIA_STILL, new Item.Settings().maxCount(64).rarity(Rarity.EPIC), BoozeEffects::applyAmbrosiaEffects) {

@@ -232,6 +232,7 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.COPPER_PURPLE_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.COPPER_MAGENTA_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.COPPER_PINK_CANDLE_HOLDER, RenderLayer.getCutout());
+
         //Exposed Copper Candle Holder
         registry.putBlock(ModBlocks.EXPOSED_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.EXPOSED_COPPER_WHITE_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -250,6 +251,7 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.EXPOSED_COPPER_PURPLE_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.EXPOSED_COPPER_MAGENTA_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.EXPOSED_COPPER_PINK_CANDLE_HOLDER, RenderLayer.getCutout());
+
         //Weathered Copper Candle Holder
         registry.putBlock(ModBlocks.WEATHERED_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WEATHERED_COPPER_WHITE_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -268,6 +270,7 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.WEATHERED_COPPER_PURPLE_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WEATHERED_COPPER_MAGENTA_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WEATHERED_COPPER_PINK_CANDLE_HOLDER, RenderLayer.getCutout());
+
         //Oxidized Copper Candle Holder
         registry.putBlock(ModBlocks.OXIDIZED_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.OXIDIZED_COPPER_WHITE_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -286,6 +289,7 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.OXIDIZED_COPPER_PURPLE_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.OXIDIZED_COPPER_PINK_CANDLE_HOLDER, RenderLayer.getCutout());
+
         //Waxed Copper Candle Holder
         registry.putBlock(ModBlocks.WAXED_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_COPPER_WHITE_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -304,6 +308,7 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.WAXED_COPPER_PURPLE_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_COPPER_MAGENTA_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_COPPER_PINK_CANDLE_HOLDER, RenderLayer.getCutout());
+
         //Waxed Exposed Copper Candle Holder
         registry.putBlock(ModBlocks.WAXED_EXPOSED_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_EXPOSED_COPPER_WHITE_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -322,6 +327,7 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.WAXED_EXPOSED_COPPER_PURPLE_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_EXPOSED_COPPER_MAGENTA_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_EXPOSED_COPPER_PINK_CANDLE_HOLDER, RenderLayer.getCutout());
+
         //Waxed Weathered Copper Candle Holder
         registry.putBlock(ModBlocks.WAXED_WEATHERED_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_WEATHERED_COPPER_WHITE_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -340,6 +346,7 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.WAXED_WEATHERED_COPPER_PURPLE_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_WEATHERED_COPPER_MAGENTA_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_WEATHERED_COPPER_PINK_CANDLE_HOLDER, RenderLayer.getCutout());
+
         //Waxed Oxidized Copper Candle Holder
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_COPPER_WHITE_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -358,6 +365,157 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_COPPER_PURPLE_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_COPPER_MAGENTA_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_COPPER_PINK_CANDLE_HOLDER, RenderLayer.getCutout());
+
+        //Unaffected
+        registry.putBlock(ModBlocks.DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BLACK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BROWN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.RED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.ORANGE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.YELLOW_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIME_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.GREEN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.CYAN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+
+        //Exposed
+        registry.putBlock(ModBlocks.EXPOSED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_RED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_LIME_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.EXPOSED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+
+        //Weathered
+        registry.putBlock(ModBlocks.WEATHERED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_RED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_LIME_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WEATHERED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+
+        //Oxidized
+        registry.putBlock(ModBlocks.OXIDIZED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_RED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_LIME_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.OXIDIZED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+
+        //Waxables
+        registry.putBlock(ModBlocks.WAXED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_RED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_LIME_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_RED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_LIME_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_EXPOSED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_RED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_LIME_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_WEATHERED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_GRAY_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_BLACK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_BROWN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_RED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_ORANGE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_YELLOW_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_LIME_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_GREEN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_CYAN_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_LIGHT_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_BLUE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WAXED_OXIDIZED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
+
+
         //Doors&Trapdoors
         registry.putBlock(ModBlocks.IRONWOOD_DOOR, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.IRONWOOD_TRAPDOOR, RenderLayer.getCutout());
