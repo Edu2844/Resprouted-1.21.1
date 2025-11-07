@@ -19,7 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class FluidInteractionHelper {
-
     public static ItemActionResult handleFluidUse(PlayerEntity player, ItemStack stack, Storage<FluidVariant> storage, World world, BlockPos pos, boolean allowInsert, boolean allowExtract) {
 
         if (player.getWorld().isClient) return ItemActionResult.FAIL;
@@ -84,15 +83,29 @@ public class FluidInteractionHelper {
     }
 
     private static void playSound(World world, BlockPos pos, FluidVariant fluid, boolean isInsert, boolean isBottle) {
-
         SoundEvent sound;
         boolean isHoney = fluid.getFluid() == ModFluids.HONEY_STILL;
 
         if (isHoney) {
-            sound = isInsert ? SoundEvents.BLOCK_HONEY_BLOCK_PLACE : SoundEvents.BLOCK_HONEY_BLOCK_BREAK;
-
+            if (isInsert) {
+                sound = SoundEvents.BLOCK_HONEY_BLOCK_PLACE;
+            } else {
+                sound = SoundEvents.BLOCK_HONEY_BLOCK_BREAK;
+            }
         } else {
-            sound = isBottle ? (isInsert ? SoundEvents.ITEM_BOTTLE_EMPTY : SoundEvents.ITEM_BOTTLE_FILL) : (isInsert ? SoundEvents.ITEM_BUCKET_EMPTY : SoundEvents.ITEM_BUCKET_FILL);
+            if (isBottle) {
+                if (isInsert) {
+                    sound = SoundEvents.ITEM_BOTTLE_EMPTY;
+                } else {
+                    sound = SoundEvents.ITEM_BOTTLE_FILL;
+                }
+            } else {
+                if (isInsert) {
+                    sound = SoundEvents.ITEM_BUCKET_EMPTY;
+                } else {
+                    sound = SoundEvents.ITEM_BUCKET_FILL;
+                }
+            }
         }
 
         world.playSound(null, pos, sound, SoundCategory.BLOCKS, 1.0f, 1.0f);
