@@ -249,6 +249,28 @@ public class ModModelProvider extends FabricModelProvider {
         registerDoubleIronCandleHolders(blockStateModelGenerator);
 
         // =================================================
+        // ||                COPPER LANTERN               ||
+        // =================================================
+
+        blockStateModelGenerator.registerLantern(ModBlocks.COPPER_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.EXPOSED_COPPER_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WEATHERED_COPPER_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.OXIDIZED_COPPER_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WAXED_COPPER_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WAXED_EXPOSED_COPPER_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WAXED_WEATHERED_COPPER_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WAXED_OXIDIZED_COPPER_LANTERN);
+
+        blockStateModelGenerator.registerLantern(ModBlocks.COPPER_SOUL_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.EXPOSED_COPPER_SOUL_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WEATHERED_COPPER_SOUL_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.OXIDIZED_COPPER_SOUL_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WAXED_COPPER_SOUL_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WAXED_EXPOSED_COPPER_SOUL_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WAXED_WEATHERED_COPPER_SOUL_LANTERN);
+        blockStateModelGenerator.registerLantern(ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN);
+
+        // =================================================
         // ||             GOLDEN CANDLE HOLDER            ||
         // =================================================
         registerGoldenCandleHolders(blockStateModelGenerator);

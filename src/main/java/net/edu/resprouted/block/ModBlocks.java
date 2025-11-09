@@ -492,15 +492,15 @@ public class ModBlocks {
     public static final Block OXIDIZED_COPPER_SOUL_LANTERN = registerBlock("oxidized_copper_soul_lantern",
             new CopperLanternBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
     //WAXED
-    public static final Block WAXED_COPPER_LANTERN = registerBlock("waxed_copper_lantern", new WaxedCopperLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
-    public static final Block WAXED_EXPOSED_COPPER_LANTERN = registerBlock("waxed_exposed_copper_lantern", new WaxedCopperLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
-    public static final Block WAXED_OXIDIZED_COPPER_LANTERN = registerBlock("waxed_oxidized_copper_lantern", new WaxedCopperLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
-    public static final Block WAXED_WEATHERED_COPPER_LANTERN = registerBlock("waxed_weathered_copper_lantern", new WaxedCopperLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_COPPER_LANTERN = registerBlock("waxed_copper_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_EXPOSED_COPPER_LANTERN = registerBlock("waxed_exposed_copper_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_OXIDIZED_COPPER_LANTERN = registerBlock("waxed_oxidized_copper_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_WEATHERED_COPPER_LANTERN = registerBlock("waxed_weathered_copper_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
 
-    public static final Block WAXED_COPPER_SOUL_LANTERN = registerBlock("waxed_copper_soul_lantern", new WaxedCopperLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
-    public static final Block WAXED_EXPOSED_COPPER_SOUL_LANTERN = registerBlock("waxed_exposed_copper_soul_lantern", new WaxedCopperLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
-    public static final Block WAXED_OXIDIZED_COPPER_SOUL_LANTERN = registerBlock("waxed_oxidized_copper_soul_lantern", new WaxedCopperLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
-    public static final Block WAXED_WEATHERED_COPPER_SOUL_LANTERN = registerBlock("waxed_weathered_copper_soul_lantern", new WaxedCopperLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_COPPER_SOUL_LANTERN = registerBlock("waxed_copper_soul_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_EXPOSED_COPPER_SOUL_LANTERN = registerBlock("waxed_exposed_copper_soul_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_OXIDIZED_COPPER_SOUL_LANTERN = registerBlock("waxed_oxidized_copper_soul_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+    public static final Block WAXED_WEATHERED_COPPER_SOUL_LANTERN = registerBlock("waxed_weathered_copper_soul_lantern", new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
 
     // =================================================
     // ||                 CHANDELIER                  ||

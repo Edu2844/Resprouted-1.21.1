@@ -43,10 +43,10 @@ public class TextUtils {
         }
     }
     public static void addVantaOilEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
-        if (!stack.contains(ModDataComponentTypes.VANTA_OIL_EFFECT)) {
+        if (!stack.contains(ModDataComponentTypes.VANTA_OILED)) {
             return;
         }
-        StatusEffectInstance vantaEffect = stack.get(ModDataComponentTypes.VANTA_OIL_EFFECT);
+        StatusEffectInstance vantaEffect = stack.get(ModDataComponentTypes.VANTA_OILED);
         if (vantaEffect == null) {
             return;
         }

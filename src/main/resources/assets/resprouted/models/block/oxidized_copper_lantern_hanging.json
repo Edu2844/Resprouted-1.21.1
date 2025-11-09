@@ -1,7 +1,0 @@
-{
-  "parent": "resprouted:block/copper_lantern_hanging",
-  "textures": {
-    "0": "resprouted:block/oxidized_copper_lantern",
-    "1": "resprouted:block/oxidized_copper_lantern_2"
-  }
-}

@@ -23,14 +23,14 @@ public class RecipeUtils {
     }
 
     public static StatusEffectInstance getVantaOilEffect(ItemStack stack) {
-        if (stack.contains(ModDataComponentTypes.VANTA_OIL_EFFECT)) {
-            return stack.get(ModDataComponentTypes.VANTA_OIL_EFFECT);
+        if (stack.contains(ModDataComponentTypes.VANTA_OILED)) {
+            return stack.get(ModDataComponentTypes.VANTA_OILED);
         }
         return null;
     }
 
     public static void setVantaOilEffect(ItemStack stack, StatusEffectInstance effect) {
-        stack.set(ModDataComponentTypes.VANTA_OIL_EFFECT, effect);
+        stack.set(ModDataComponentTypes.VANTA_OILED, effect);
     }
 
     public static int getRemainingVantaUses(StatusEffectInstance effect) {

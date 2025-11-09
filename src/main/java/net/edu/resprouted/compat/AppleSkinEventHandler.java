@@ -13,7 +13,7 @@ public class AppleSkinEventHandler implements AppleSkinApi {
         FoodValuesEvent.EVENT.register(event -> {
             ItemStack stack = event.itemStack;
 
-            if (stack.get(ModDataComponentTypes.OILED) != null && Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OILED))) {
+            if (stack.get(ModDataComponentTypes.OLIVE_OILED) != null && Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OLIVE_OILED))) {
 
                 FoodComponent currentFood = stack.get(DataComponentTypes.FOOD);
                 if (currentFood != null) {

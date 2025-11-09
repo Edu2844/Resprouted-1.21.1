@@ -104,7 +104,7 @@ public class VantaOilingDisplay extends BasicDisplay {
                             effect.getAmplifier()
                     );
 
-                    oiled.set(ModDataComponentTypes.VANTA_OIL_EFFECT, vantaEffect);
+                    oiled.set(ModDataComponentTypes.VANTA_OILED, vantaEffect);
                     outputs.add(EntryStacks.of(oiled));
                 }
             }
@@ -131,7 +131,7 @@ public class VantaOilingDisplay extends BasicDisplay {
                             effect.getAmplifier()
                     );
 
-                    oiled.set(ModDataComponentTypes.VANTA_OIL_EFFECT, vantaEffect);
+                    oiled.set(ModDataComponentTypes.VANTA_OILED, vantaEffect);
                     outputs.add(EntryStacks.of(oiled));
                 }
             }

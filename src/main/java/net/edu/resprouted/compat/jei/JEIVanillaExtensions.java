@@ -36,7 +36,7 @@ public class JEIVanillaExtensions {
                 List<ItemStack> oiledFoods = validFoods.stream()
                         .map(stack -> {
                             ItemStack oiled = stack.copy();
-                            oiled.set(ModDataComponentTypes.OILED, true);
+                            oiled.set(ModDataComponentTypes.OLIVE_OILED, true);
                             return oiled;
                         })
                         .collect(Collectors.toList());

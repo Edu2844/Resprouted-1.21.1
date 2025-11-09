@@ -79,8 +79,8 @@ public abstract class LivingEntityMixin extends Entity {
         if (!this.getWorld().isClient() && source.getAttacker() instanceof PlayerEntity player) {
             ItemStack weapon = player.getMainHandStack();
 
-            if (weapon.contains(ModDataComponentTypes.VANTA_OIL_EFFECT)) {
-                StatusEffectInstance currentEffect = weapon.get(ModDataComponentTypes.VANTA_OIL_EFFECT);
+            if (weapon.contains(ModDataComponentTypes.VANTA_OILED)) {
+                StatusEffectInstance currentEffect = weapon.get(ModDataComponentTypes.VANTA_OILED);
 
                 if (currentEffect != null) {
                     LivingEntity target = (LivingEntity) (Object) this;
@@ -94,7 +94,7 @@ public abstract class LivingEntityMixin extends Entity {
                     RegistryEntry<StatusEffect> effectType = currentEffect.getEffectType();
 
                     if (totalDuration < 1 || amplifier < 0) {
-                        weapon.remove(ModDataComponentTypes.VANTA_OIL_EFFECT);
+                        weapon.remove(ModDataComponentTypes.VANTA_OILED);
                         return;
                     }
 
@@ -129,9 +129,9 @@ public abstract class LivingEntityMixin extends Entity {
                     int newDuration = totalDuration - hitDuration;
 
                     if (newDuration <= 0) {
-                        weapon.remove(ModDataComponentTypes.VANTA_OIL_EFFECT);
+                        weapon.remove(ModDataComponentTypes.VANTA_OILED);
                     } else {
-                        weapon.set(ModDataComponentTypes.VANTA_OIL_EFFECT,
+                        weapon.set(ModDataComponentTypes.VANTA_OILED,
                                 new StatusEffectInstance(
                                         effectType,
                                         newDuration,

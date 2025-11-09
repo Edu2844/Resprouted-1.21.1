@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "resprouted:block/waxed_weathered_copper_lantern"
+    },
+    "hanging=true": {
+      "model": "resprouted:block/waxed_weathered_copper_lantern_hanging"
+    }
+  }
+}

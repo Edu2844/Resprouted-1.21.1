@@ -55,7 +55,7 @@ public class OliveOilingDisplay  extends BasicDisplay {
         return getValidFoods().stream()
                 .map(item -> {
                     ItemStack oiledStack = new ItemStack(item);
-                    oiledStack.set(ModDataComponentTypes.OILED, true);
+                    oiledStack.set(ModDataComponentTypes.OLIVE_OILED, true);
                     return oiledStack;
                 })
                 .collect(Collectors.toList());

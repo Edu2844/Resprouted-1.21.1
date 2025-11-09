@@ -48,7 +48,7 @@ public class OilingRecipe extends SpecialCraftingRecipe {
             if (stack.isEmpty()) continue;
 
             if (RecipeUtils.isValidFood(stack) && foodStack.isEmpty() ) {
-                if (stack.get(ModDataComponentTypes.OILED) != null && Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OILED))) {
+                if (stack.get(ModDataComponentTypes.OLIVE_OILED) != null && Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OLIVE_OILED))) {
                     return false;
                 }
                 foodStack = stack;
@@ -74,7 +74,7 @@ public class OilingRecipe extends SpecialCraftingRecipe {
             return ItemStack.EMPTY;
         }
         ItemStack result = foodStack.copyWithCount(1);
-        result.set(ModDataComponentTypes.OILED, true);
+        result.set(ModDataComponentTypes.OLIVE_OILED, true);
 
         return result;
     }

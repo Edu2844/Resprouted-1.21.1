@@ -47,7 +47,7 @@ public class ModEvents {
     // ========== TOOLTIP EVENTS ==========
 
     private static void onItemTooltip(ItemStack stack, Item.TooltipContext context, TooltipType type, List<Text> tooltip) {
-        if (stack.get(ModDataComponentTypes.OILED) != null && Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OILED))) {
+        if (stack.get(ModDataComponentTypes.OLIVE_OILED) != null && Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OLIVE_OILED))) {
             Text oiledText = Text.translatable("tooltip.resprouted.olive_oil").formatted(Formatting.DARK_GREEN);
             if (!tooltip.isEmpty()) {
                 tooltip.add(1, oiledText);

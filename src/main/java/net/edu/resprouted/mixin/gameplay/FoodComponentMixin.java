@@ -29,8 +29,8 @@ public interface FoodComponentMixin {
 
             if (self instanceof ItemStack stack) {
 
-                if (stack.get(ModDataComponentTypes.OILED) != null &&
-                        Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OILED))) {
+                if (stack.get(ModDataComponentTypes.OLIVE_OILED) != null &&
+                        Boolean.TRUE.equals(stack.get(ModDataComponentTypes.OLIVE_OILED))) {
 
                     FoodComponent originalFood = (FoodComponent) cir.getReturnValue();
 
