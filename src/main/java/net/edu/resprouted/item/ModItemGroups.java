@@ -82,7 +82,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SUGAR_CANE_JUICE_BUCKET);
                         entries.add(ModItems.ALE_WORT_BUCKET);
 
-                        entries.add(ModItems.LAMB_STEW);
+                        entries.add(ModItems.SPICY_LAMB_STEW);
                         entries.add(ModItems.HONEY_GLAZED_CARROTS);
                         entries.add(ModBlocks.IRON_BERRY_CAKE);
 

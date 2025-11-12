@@ -7,10 +7,11 @@
     {"item": "minecraft:carrot"},
     {"item": "resprouted:tomato"},
     {"item": "minecraft:brown_mushroom"},
+    {"item": "resprouted:chili_pepper"},
     {"item": "minecraft:bowl"}
   ],
   "result": {
     "count": 1,
-    "id": "resprouted:lamb_stew"
+    "id": "resprouted:spicy_lamb_stew"
   }
 }

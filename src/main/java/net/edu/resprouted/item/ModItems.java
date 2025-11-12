@@ -328,7 +328,18 @@ public class ModItems {
     // =================================================
     // ||                    FOOD                     ||
     // =================================================
-    public static final Item LAMB_STEW = registerItem("lamb_stew", new Item(new Item.Settings().food(FoodComponents.RABBIT_STEW)));
+    public static final Item SPICY_LAMB_STEW = registerItem("spicy_lamb_stew", new Item(new Item.Settings().food(FoodComponents.RABBIT_STEW)){
+        @Override
+        public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+            if (!world.isClient()) {
+                Random random = world.getRandom();
+                if (random.nextInt(24) == 0) {
+                    user.damage(world.getDamageSources().onFire(), 1.0F);
+                }
+            }
+            return super.finishUsing(stack, world, user);
+        }
+    });
     public static final Item HONEY_GLAZED_CARROTS = registerItem("honey_glazed_carrots", new Item(new Item.Settings().food(FoodComponents.RABBIT_STEW)));
 
     public static Item IRON_BERRY_CAKE_SLICE;

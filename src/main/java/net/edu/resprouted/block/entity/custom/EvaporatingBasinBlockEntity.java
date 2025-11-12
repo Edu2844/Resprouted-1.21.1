@@ -16,6 +16,8 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +30,7 @@ public class EvaporatingBasinBlockEntity extends AbstractFluidStorageBlockEntity
     private long progress;
 
     public EvaporatingBasinBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.EVAPORATING_BASIN_BE, pos, state, FluidConstants.BUCKET * 6);
+        super(ModBlockEntities.EVAPORATING_BASIN_BE, pos, state, FluidConstants.BUCKET * 3);
     }
 
     @Override
@@ -87,6 +89,7 @@ public class EvaporatingBasinBlockEntity extends AbstractFluidStorageBlockEntity
         if (be.progress >= cost) {
             be.progress -= cost;
             be.spawnOrStore(recipe.output().copy());
+            world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
         }
     }

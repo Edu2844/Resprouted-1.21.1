@@ -83,7 +83,6 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
         }
 
         if (stack.isEmpty()) {
-            //Sacar ítem
             if (!basinStack.isEmpty()) {
                 player.getInventory().offerOrDrop(basinStack.copy());
                 basin.setStack(0, ItemStack.EMPTY);

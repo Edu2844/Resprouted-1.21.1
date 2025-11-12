@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "resprouted:item/lamb_stew"
+    "layer0": "resprouted:item/spicy_lamb_stew"
   }
 }
