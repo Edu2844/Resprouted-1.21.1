@@ -30,7 +30,7 @@ public class TipsyEffect extends StatusEffect {
                             StatusEffects.BLINDNESS, 400, 0, false, false, false
                     ));
                     entity.addStatusEffect(new StatusEffectInstance(
-                            StatusEffects.NAUSEA, 400, 1, false, false, false  // ← Náuseas nivel 2
+                            StatusEffects.NAUSEA, 400, 1, false, false, false
                     ));
                 }
             }

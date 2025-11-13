@@ -284,37 +284,92 @@ public class BoozeEffects {
     public static void applyRumEffects(BoozeBottleItem.BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
+        boolean hasStrongTipsy = false;
 
-        if (quality >= 0.5F) {
-            player.getHungerManager().add(1, 2F * quality);
+        StatusEffectInstance tipsyEffect = player.getStatusEffect(ModEffects.TIPSY);
+        if (tipsyEffect != null && tipsyEffect.getAmplifier() >= 2) {
+            hasStrongTipsy = true;
+        }
 
-            List<RegistryEntry<StatusEffect>> effectsToRemove = new ArrayList<>();
-            for (StatusEffectInstance effect : player.getStatusEffects()) {
-                if (effect.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
-                    effectsToRemove.add(effect.getEffectType());
+        if (quality >= 0.75F) {
+            player.getHungerManager().add(2, 3.0F * quality);
+
+            if (!hasStrongTipsy) {
+                List<RegistryEntry<StatusEffect>> effectsToRemove = new ArrayList<>();
+                for (StatusEffectInstance effect : player.getStatusEffects()) {
+                    if (effect.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
+                        effectsToRemove.add(effect.getEffectType());
+                    }
+                }
+                for (RegistryEntry<StatusEffect> effect : effectsToRemove) {
+                    player.removeStatusEffect(effect);
                 }
             }
 
-            for (RegistryEntry<StatusEffect> effect : effectsToRemove) {
-                player.removeStatusEffect(effect);
+        } else if (quality >= 0.5F) {
+            player.getHungerManager().add(1, 1.5F * quality);
+
+            if (!hasStrongTipsy) {
+                List<RegistryEntry<StatusEffect>> harmfulEffects = new ArrayList<>();
+                for (StatusEffectInstance effect : player.getStatusEffects()) {
+                    if (effect.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
+                        harmfulEffects.add(effect.getEffectType());
+                    }
+                }
+                if (!harmfulEffects.isEmpty()) {
+                    RegistryEntry<StatusEffect> randomEffect = harmfulEffects.get(
+                            player.getRandom().nextInt(harmfulEffects.size())
+                    );
+                    player.removeStatusEffect(randomEffect);
+                }
             }
 
-            if (quality >= 0.8F) {
-                int resistanceDuration = (int) (3600 * (quality - 0.8F) * 5);
-                player.addStatusEffect(new StatusEffectInstance(
-                        StatusEffects.RESISTANCE,
-                        resistanceDuration,
-                        0,
-                        false,
-                        false,
-                        true
-                ));
-            }
+        } else if (quality >= 0.2F) {
+            int duration = (int) (6000 * (1 - quality));
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.WEAKNESS,
+                    duration,
+                    0,
+                    false,
+                    false,
+                    true
+            ));
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.MINING_FATIGUE,
+                    duration / 2,
+                    0,
+                    false,
+                    false,
+                    true
+            ));
 
         } else {
-            int duration = (int) (6000 * (1 - quality));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, duration));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, duration));
+            List<RegistryEntry<StatusEffect>> positiveEffectsToRemove = new ArrayList<>();
+            for (StatusEffectInstance effect : player.getStatusEffects()) {
+                if (effect.getEffectType().value().getCategory() == StatusEffectCategory.BENEFICIAL) {
+                    positiveEffectsToRemove.add(effect.getEffectType());
+                }
+            }
+            for (RegistryEntry<StatusEffect> effect : positiveEffectsToRemove) {
+                player.removeStatusEffect(effect);
+            }
+            int duration = (int) (8000 * (1 - quality));
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.WEAKNESS,
+                    duration,
+                    1,
+                    false,
+                    false,
+                    true
+            ));
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.MINING_FATIGUE,
+                    duration,
+                    1,
+                    false,
+                    false,
+                    true
+            ));
         }
     }
 }
