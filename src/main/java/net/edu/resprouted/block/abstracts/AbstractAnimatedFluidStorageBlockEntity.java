@@ -9,11 +9,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
 
-public abstract class AnimatedFluidStorageBlockEntity extends AbstractFluidStorageBlockEntity {
+public abstract class AbstractAnimatedFluidStorageBlockEntity extends AbstractFluidStorageBlockEntity {
     private final SmoothFloat fluidAnimation = new SmoothFloat();
     private long lastFluidAmount = -1;
+    private boolean initialized = false;
 
-    public AnimatedFluidStorageBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, long capacity) {
+    public AbstractAnimatedFluidStorageBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, long capacity) {
         super(type, pos, state, capacity);
     }
 
@@ -40,15 +41,15 @@ public abstract class AnimatedFluidStorageBlockEntity extends AbstractFluidStora
             long currentAmount = getFluidStorage().getAmount();
             float targetHeight = calculateTargetHeight();
 
-            if (lastFluidAmount == -1) {
-                //First load
+            if (!initialized) {
                 fluidAnimation.set(targetHeight);
+                lastFluidAmount = currentAmount;
+                initialized = true;
             } else if (currentAmount != lastFluidAmount) {
                 //Amount changed
                 fluidAnimation.setTarget(targetHeight);
+                lastFluidAmount = currentAmount;
             }
-
-            lastFluidAmount = currentAmount;
         }
     }
 

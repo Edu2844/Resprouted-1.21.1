@@ -24,21 +24,6 @@ public abstract class AbstractFluidStorageBlockEntity extends BlockEntity {
         this.fluidStorage = SingleFluidStorage.withFixedCapacity(capacity, this::markDirtyAndUpdate);
     }
 
-    private void markDirtyAndUpdate() {
-        markDirty();
-        if (world != null) {
-            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
-        }
-    }
-
-    public final SingleFluidStorage getFluidStorage() {
-        return fluidStorage;
-    }
-
-    public SingleFluidStorage getFluidTankProvider() {
-        return fluidStorage;
-    }
-
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
@@ -65,5 +50,20 @@ public abstract class AbstractFluidStorageBlockEntity extends BlockEntity {
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
+    }
+
+    private void markDirtyAndUpdate() {
+        markDirty();
+        if (world != null) {
+            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
+        }
+    }
+
+    public final SingleFluidStorage getFluidStorage() {
+        return fluidStorage;
+    }
+
+    public SingleFluidStorage getFluidTankProvider() {
+        return fluidStorage;
     }
 }

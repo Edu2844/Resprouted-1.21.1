@@ -3,6 +3,10 @@ package net.edu.resprouted.util;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.texture.Sprite;
 
+//Borrowed and modified from 1.21-Tutorial-Mod by DaRealTurtyWurty
+//Source:
+//https://github.com/DaRealTurtyWurty/1.21-Tutorial-Mod/blob/main/src/client/java/dev/turtywurty/tutorialmod/util/ScreenUtils.java
+
 public class ScreenUtils {
     public static void renderTiledSprite(DrawContext context, Sprite sprite, int x, int y, int width, int height, float red, float green, float blue, float alpha) {
         int spriteWidth = sprite.getContents().getWidth();

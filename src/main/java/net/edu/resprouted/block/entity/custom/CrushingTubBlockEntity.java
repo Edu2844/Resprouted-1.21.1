@@ -1,7 +1,7 @@
 package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.abstracts.AnimatedFluidStorageBlockEntity;
+import net.edu.resprouted.block.abstracts.AbstractAnimatedFluidStorageBlockEntity;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class CrushingTubBlockEntity extends AnimatedFluidStorageBlockEntity implements ImplementedInventory {
+public class CrushingTubBlockEntity extends AbstractAnimatedFluidStorageBlockEntity implements ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
 
     public CrushingTubBlockEntity(BlockPos pos, BlockState state) {

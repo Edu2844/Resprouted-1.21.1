@@ -17,10 +17,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//Borrowed and modified from fabric-boat-example by nyuppo
+//Source:
+//https://github.com/nyuppo/fabric-boat-example/blob/main/src/main/java/com/examplemod/mixin/BoatTypeMixin.java
+
 @Mixin(BoatEntity.Type.class)
 public class BoatTypeMixin {
-
-    // Credit: nyuppo - https://github.com/nyuppo/fabric-boat-example
 
     @SuppressWarnings("ShadowTarget")
     @Final

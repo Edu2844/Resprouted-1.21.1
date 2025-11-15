@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-// Credit: Team Hibiscus - https://github.com/Team-Hibiscus/NaturesSpirit
+//Borrowed and modified from NaturesSpirit by Team Hibiscus
+//Source:
+//https://github.com/Team-Hibiscus/NaturesSpirit/blob/dev/src/main/java/net/hibiscus/naturespirit/registration/NSBoatTypes.java
 
 public class ResproutedBoatTypes {
     private static final Map<BoatEntity.Type, Pair<Item, Item>> BOAT_TYPES_TO_ITEMS = new Object2ObjectLinkedOpenHashMap<>();

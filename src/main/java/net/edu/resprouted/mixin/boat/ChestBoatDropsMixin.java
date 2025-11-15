@@ -9,11 +9,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+//Borrowed and modified from fabric-boat-example by nyuppo
+//Source:
+//https://github.com/nyuppo/fabric-boat-example/blob/main/src/main/java/com/examplemod/mixin/BoatDropsMixin.java
+
 @Mixin(ChestBoatEntity.class)
 public class ChestBoatDropsMixin {
-
-    // Credit: nyuppo - https://github.com/nyuppo/fabric-boat-example
-
     @Inject(method = "asItem", at = @At("RETURN"), cancellable = true)
     public void getResproutedBoats(CallbackInfoReturnable<Item> info) {
         ResproutedBoatTypes.getChestBoatItem(BoatEntity.class.cast(this).getVariant()).ifPresent(info::setReturnValue);

@@ -2,6 +2,7 @@ package net.edu.resprouted.book;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.item.ModItems;
+import net.edu.resprouted.book.CatalogData.*;
 import net.edu.resprouted.util.PageUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -31,8 +32,8 @@ public class CatalogScreen extends Screen {
     public enum PageState { MAIN_MENU, CATEGORY_LIST, ENTRY_PAGES }
 
     private PageState currentState = PageState.MAIN_MENU;
-    private CatalogData.Category selectedCategory;
-    private CatalogData.Entry selectedEntry;
+    private Category selectedCategory;
+    private Entry selectedEntry;
     private int currentPageIndex = 0;
     private int bookX, bookY;
 
@@ -159,7 +160,7 @@ public class CatalogScreen extends Screen {
     }
 
     private boolean navigateCategories(boolean reverse) {
-        List<CatalogData.Category> categories = CatalogData.CATEGORIES;
+        List<Category> categories = CatalogData.CATEGORIES;
         if (categories.isEmpty()) return false;
 
         if (selectedCategory == null) {
@@ -207,19 +208,19 @@ public class CatalogScreen extends Screen {
         this.currentState = state;
     }
 
-    public CatalogData.Category getSelectedCategory() {
+    public Category getSelectedCategory() {
         return selectedCategory;
     }
 
-    public void setSelectedCategory(CatalogData.Category category) {
+    public void setSelectedCategory(Category category) {
         this.selectedCategory = category;
     }
 
-    public CatalogData.Entry getSelectedEntry() {
+    public Entry getSelectedEntry() {
         return selectedEntry;
     }
 
-    public void setSelectedEntry(CatalogData.Entry entry) {
+    public void setSelectedEntry(Entry entry) {
         this.selectedEntry = entry;
     }
 

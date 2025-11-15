@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.List;
 
+@SuppressWarnings("all")
 @Environment(EnvType.CLIENT)
 public class CategoryListPage {
     private static final Identifier SEPARATOR = Identifier.of(Resprouted.MOD_ID, "textures/gui/catalog/separator.png");

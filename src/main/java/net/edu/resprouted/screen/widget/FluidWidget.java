@@ -28,6 +28,10 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+//Borrowed and modified from 1.21-Tutorial-Mod by DaRealTurtyWurty
+//Source:
+//https://github.com/DaRealTurtyWurty/1.21-Tutorial-Mod/blob/main/src/client/java/dev/turtywurty/tutorialmod/screen/widget/FluidWidget.java
+
 public class FluidWidget implements Drawable, Widget {
     private final SingleFluidStorage fluidStorage;
     private final Supplier<BlockPos> posSupplier;
@@ -82,6 +86,76 @@ public class FluidWidget implements Drawable, Widget {
         if(isPointWithinBounds(this.x, this.y, this.width, this.height, mouseX, mouseY)) {
             drawTooltip(context, mouseX, mouseY);
         }
+    }
+
+    @Override
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    @Override
+    public int getX() {
+        return this.x;
+    }
+
+    @Override
+    public int getY() {
+        return this.y;
+    }
+
+    @Override
+    public int getWidth() {
+        return this.width;
+    }
+
+    @Override
+    public int getHeight() {
+        return this.height;
+    }
+
+    @Override
+    public void forEachChild(Consumer<ClickableWidget> consumer) {}
+
+    public static class Builder {
+        private final SingleFluidStorage fluidStorage;
+        private Supplier<BlockPos> posSupplier = () -> null;
+        private int x, y;
+        private int width, height;
+
+        public Builder(SingleFluidStorage fluidStorage) {
+            this.fluidStorage = fluidStorage;
+        }
+
+        public Builder bounds(int x, int y, int width, int height) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            return this;
+        }
+
+        public Builder posSupplier(Supplier<BlockPos> posSupplier) {
+            this.posSupplier = posSupplier;
+            return this;
+        }
+
+        public FluidWidget build() {
+            return new FluidWidget(this.fluidStorage, this.x, this.y, this.width, this.height, this.posSupplier);
+        }
+    }
+
+    private static long getMb(long amount) {
+        return (long) (float) FluidUtils.convertDropletsToMb(amount);
+    }
+
+    private static boolean isPointWithinBounds(int x, int y, int width, int height, int pointX, int pointY) {
+        return pointX >= x && pointX <= x + width &&
+                pointY >= y && pointY <= y + height;
     }
 
     protected void drawTooltip(DrawContext context, int mouseX, int mouseY) {
@@ -154,76 +228,6 @@ public class FluidWidget implements Drawable, Widget {
             tooltipLines.add(Text.literal("%s/%s mB".formatted(getMb(fluidAmount), getMb(fluidCapacity))).formatted(Formatting.GRAY));
 
             context.drawTooltip(textRenderer, tooltipLines, mouseX, mouseY);
-        }
-    }
-
-    private static long getMb(long amount) {
-        return (long) (float) FluidUtils.convertDropletsToMb(amount);
-    }
-
-    private static boolean isPointWithinBounds(int x, int y, int width, int height, int pointX, int pointY) {
-        return pointX >= x && pointX <= x + width &&
-                pointY >= y && pointY <= y + height;
-    }
-
-    @Override
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    @Override
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    @Override
-    public int getX() {
-        return this.x;
-    }
-
-    @Override
-    public int getY() {
-        return this.y;
-    }
-
-    @Override
-    public int getWidth() {
-        return this.width;
-    }
-
-    @Override
-    public int getHeight() {
-        return this.height;
-    }
-
-    @Override
-    public void forEachChild(Consumer<ClickableWidget> consumer) {}
-
-    public static class Builder {
-        private final SingleFluidStorage fluidStorage;
-        private Supplier<BlockPos> posSupplier = () -> null;
-        private int x, y;
-        private int width, height;
-
-        public Builder(SingleFluidStorage fluidStorage) {
-            this.fluidStorage = fluidStorage;
-        }
-
-        public Builder bounds(int x, int y, int width, int height) {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-            return this;
-        }
-
-        public Builder posSupplier(Supplier<BlockPos> posSupplier) {
-            this.posSupplier = posSupplier;
-            return this;
-        }
-
-        public FluidWidget build() {
-            return new FluidWidget(this.fluidStorage, this.x, this.y, this.width, this.height, this.posSupplier);
         }
     }
 }
