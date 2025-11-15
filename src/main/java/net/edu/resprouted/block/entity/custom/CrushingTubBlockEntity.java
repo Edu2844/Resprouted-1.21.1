@@ -1,7 +1,7 @@
 package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.abstracts.AbstractFluidStorageBlockEntity;
+import net.edu.resprouted.block.abstracts.AnimatedFluidStorageBlockEntity;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.CrushingTubRecipe;
@@ -15,9 +15,11 @@ import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
 import java.util.Optional;
 
-public class CrushingTubBlockEntity extends AbstractFluidStorageBlockEntity implements ImplementedInventory {
+public class CrushingTubBlockEntity extends AnimatedFluidStorageBlockEntity implements ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
 
     public CrushingTubBlockEntity(BlockPos pos, BlockState state) {
@@ -40,6 +42,11 @@ public class CrushingTubBlockEntity extends AbstractFluidStorageBlockEntity impl
         super.readNbt(nbt, registryLookup);
         inventory.clear();
         Inventories.readNbt(nbt, inventory, registryLookup);
+    }
+
+    @SuppressWarnings("unused")
+    public static void tick(World world, BlockPos pos, BlockState state, CrushingTubBlockEntity entity) {
+        entity.tickFluidAnimation();
     }
 
     public Optional<CrushingTubRecipe> findMatchingRecipe() {

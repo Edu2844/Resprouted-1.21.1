@@ -1,6 +1,7 @@
 package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
+import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.entity.custom.CrushingTubBlockEntity;
 import net.edu.resprouted.fluid.data.FluidContainerMapping;
 import net.edu.resprouted.fluid.util.FluidInteractionHelper;
@@ -13,6 +14,8 @@ import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -72,6 +75,11 @@ public class CrushingTubBlock extends BlockWithEntity {
     }
 
     @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return world.isClient ? validateTicker(type, ModBlockEntities.CRUSHING_TUB_BE, CrushingTubBlockEntity::tick) : null;
+    }
+
+    @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity be = world.getBlockEntity(pos);
         if (!(be instanceof CrushingTubBlockEntity ct)) {
@@ -94,7 +102,7 @@ public class CrushingTubBlock extends BlockWithEntity {
 
             ItemActionResult result;
             if (hasFluid) {
-                result = FluidInteractionHelper.handleFluidUse(player, stack, j, world, pos, false, true);
+                result = FluidInteractionHelper.fluidStorageUse(player, stack, j, world, pos, false, true);
 
                 if (result == ItemActionResult.SUCCESS) {
 
@@ -158,17 +166,6 @@ public class CrushingTubBlock extends BlockWithEntity {
         }
 
         return ItemActionResult.FAIL;
-    }
-
-    private boolean isFluidContainer(ItemStack stack) {
-        for (FluidContainerMapping mapping : FluidContainerLoader.getEntries()) {
-
-            if (ItemStack.areItemsEqual(stack, mapping.fullItem()) || stack.isOf(mapping.emptyItem().getItem())) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     @Override
@@ -250,6 +247,17 @@ public class CrushingTubBlock extends BlockWithEntity {
     @Override
     protected BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    private boolean isFluidContainer(ItemStack stack) {
+        for (FluidContainerMapping mapping : FluidContainerLoader.getEntries()) {
+
+            if (ItemStack.areItemsEqual(stack, mapping.fullItem()) || stack.isOf(mapping.emptyItem().getItem())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

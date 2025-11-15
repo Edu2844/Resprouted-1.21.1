@@ -73,7 +73,7 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
             return ItemActionResult.FAIL;
         }
 
-        ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, storage, world, pos, true, true);
+        ItemActionResult result = FluidInteractionHelper.fluidStorageUse(player, stack, storage, world, pos, true, true);
 
         if (result == ItemActionResult.SUCCESS) {
             basin.markDirty();
@@ -118,13 +118,15 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        if (world.isClient) return null;
-
         if (type != ModBlockEntities.EVAPORATING_BASIN_BE) return null;
 
-        return (w, pos, st, be) -> {
-            if (be instanceof EvaporatingBasinBlockEntity basin)
-                EvaporatingBasinBlockEntity.tick(w, pos, st, basin);
-        };
+        if (!world.isClient) {
+            return (w, pos, st, be) -> {
+                if (be instanceof EvaporatingBasinBlockEntity basin)
+                    EvaporatingBasinBlockEntity.serverTick(w, pos, st, basin);
+            };
+        }
+
+        return validateTicker(type, ModBlockEntities.EVAPORATING_BASIN_BE, EvaporatingBasinBlockEntity::clientTick);
     }
 }

@@ -67,25 +67,13 @@ public class PageUtils {
         context.drawItem(stack, baseX + x, baseY + y);
     }
 
-    public boolean isMouseOverEntry(int mouseX, int mouseY, int relY, int width, int height) {
-        int entryX = baseX + 8;
-        int entryY = baseY + relY;
-        return isMouseOver(mouseX, mouseY, entryX, entryY, width, height);
+    public boolean isMouseOverEntry(double mouseX, double mouseY, int entryY, int width, int height) {
+        int entryX = 8;
+        return mouseX >= baseX + entryX && mouseX <= baseX + entryX + width &&
+                mouseY >= baseY + entryY && mouseY <= baseY + entryY + height;
     }
 
-    private boolean isMouseOver(int mouseX, int mouseY, int x, int y, int width, int height) {
-        return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
-    }
-
-    public DrawContext getContext() {
-        return context;
-    }
-
-    public int getBaseX() {
-        return baseX;
-    }
-
-    public int getBaseY() {
-        return baseY;
-    }
+    public DrawContext getContext() { return context; }
+    public int getBaseX() { return baseX; }
+    public int getBaseY() { return baseY; }
 }

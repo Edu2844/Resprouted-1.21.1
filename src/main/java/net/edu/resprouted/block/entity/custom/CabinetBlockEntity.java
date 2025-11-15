@@ -113,13 +113,6 @@ public class CabinetBlockEntity extends LootableContainerBlockEntity implements 
         return stack;
     }
 
-    private void markDirtyAndUpdate() {
-        this.markDirty();
-        if (this.world != null && this.isMainPart()) {
-            this.world.updateComparators(this.pos, this.getCachedState().getBlock());
-        }
-    }
-
     public final ViewerCountManager stateManager = new ViewerCountManager() {
         @Override
         protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
@@ -170,4 +163,11 @@ public class CabinetBlockEntity extends LootableContainerBlockEntity implements 
         }
 
     };
+
+    private void markDirtyAndUpdate() {
+        this.markDirty();
+        if (this.world != null && this.isMainPart()) {
+            this.world.updateComparators(this.pos, this.getCachedState().getBlock());
+        }
+    }
 }

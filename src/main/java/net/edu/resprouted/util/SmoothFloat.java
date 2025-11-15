@@ -3,16 +3,18 @@ package net.edu.resprouted.util;
 import net.minecraft.util.math.MathHelper;
 
 public class SmoothFloat {
+    private static final float speed = 0.2f;
     private float previous = 0f;
     private float current = 0f;
-    private long lastUpdateTime = System.currentTimeMillis();
+    private float target = 0f;
 
-    public void update(float target, float speed) {
-        long currentTime = System.currentTimeMillis();
-        float delta = (currentTime - lastUpdateTime) / 1000f;
+    public void setTarget(float newTarget) {
+        this.target = newTarget;
+    }
+
+    public void tick() {
         previous = current;
-        current = MathHelper.lerp(speed * delta * 20f, current, target);
-        lastUpdateTime = currentTime;
+        current = MathHelper.lerp(speed, current, target);
     }
 
     public float get(float partialTicks) {
@@ -22,6 +24,6 @@ public class SmoothFloat {
     public void set(float value) {
         previous = value;
         current = value;
-        lastUpdateTime = System.currentTimeMillis();
+        target = value;
     }
 }

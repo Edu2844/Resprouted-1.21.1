@@ -164,14 +164,6 @@ public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
         return basicMatch.isPresent() && canInsertItemIntoOutputSlot(basicMatch.get().value().craft(basicInput, world.getRegistryManager()));
     }
 
-    private boolean canInsertItemIntoOutputSlot(ItemStack result) {
-        ItemStack outputStack = this.getStack(OUTPUT_SLOT);
-        if (outputStack.isEmpty()) return true;
-
-        return ItemStack.areItemsAndComponentsEqual(outputStack, result)
-                && outputStack.getCount() + result.getCount() <= outputStack.getMaxCount();
-    }
-
     @Override
     protected void craftItem() {
         AdvancedCondenserRecipeInput advancedInput = new AdvancedCondenserRecipeInput(
@@ -253,6 +245,14 @@ public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
         markDirty();
         world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
         world.playSound(null, pos, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
+    }
+
+    private boolean canInsertItemIntoOutputSlot(ItemStack result) {
+        ItemStack outputStack = this.getStack(OUTPUT_SLOT);
+        if (outputStack.isEmpty()) return true;
+
+        return ItemStack.areItemsAndComponentsEqual(outputStack, result)
+                && outputStack.getCount() + result.getCount() <= outputStack.getMaxCount();
     }
 
     private void removeOneMatching(Ingredient ingredient, int... slots) {

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogData {
-
     public static final List<Category> CATEGORIES = new ArrayList<>();
 
     public static void init() {

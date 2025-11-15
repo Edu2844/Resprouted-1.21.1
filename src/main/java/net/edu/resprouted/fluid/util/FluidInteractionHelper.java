@@ -19,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class FluidInteractionHelper {
-    public static ItemActionResult handleFluidUse(PlayerEntity player, ItemStack stack, Storage<FluidVariant> storage, World world, BlockPos pos, boolean allowInsert, boolean allowExtract) {
+    public static ItemActionResult fluidStorageUse(PlayerEntity player, ItemStack stack, Storage<FluidVariant> storage, World world, BlockPos pos, boolean allowInsert, boolean allowExtract) {
 
         if (player.getWorld().isClient) return ItemActionResult.FAIL;
 

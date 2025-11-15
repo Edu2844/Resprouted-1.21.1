@@ -13,6 +13,8 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.Entity;
@@ -50,7 +52,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class LiquidBarrelBlock extends BlockWithEntity {
-    private static final RegistryOps<NbtElement> TOOLTIP_OPS = RegistryOps.of(NbtOps.INSTANCE, BuiltinRegistries.createWrapperLookup());
+    private static final RegistryOps<NbtElement> TOOLTIP = RegistryOps.of(NbtOps.INSTANCE, BuiltinRegistries.createWrapperLookup());
     private static final float FILL_WITH_RAIN_CHANCE = 0.05F;
     private static final float FILL_WITH_SNOW_CHANCE = 0.1F;
     private static final VoxelShape SHAPE = VoxelShapes.union(
@@ -92,13 +94,16 @@ public class LiquidBarrelBlock extends BlockWithEntity {
         super.appendTooltip(stack, context, tooltip, type);
         var i = stack.get(DataComponentTypes.BLOCK_ENTITY_DATA);
 
-        if (i == null) return;
+        if (i == null)
+            return;
 
         var j = i.copyNbt().getCompound("Fluid");
 
-        if (!j.contains("variant") || !j.contains("amount")) return;
+        if (!j.contains("variant") || !j.contains("amount"))
+            return;
+
         try {
-            var k = FluidVariant.CODEC.parse(TOOLTIP_OPS, j.get("variant")).result().orElse(FluidVariant.blank());
+            var k = FluidVariant.CODEC.parse(TOOLTIP, j.get("variant")).result().orElse(FluidVariant.blank());
 
             if (!k.isBlank()) {
                 var name = FluidVariantAttributes.getName(k);
@@ -117,25 +122,30 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity be = world.getBlockEntity(pos);
 
-        if (!(be instanceof LiquidBarrelBlockEntity b)) {
+        if (!(be instanceof LiquidBarrelBlockEntity lb)) {
             return ItemActionResult.FAIL;
         }
 
-        var l = FluidStorage.SIDED.find(world, pos, hit.getSide());
-        if (l == null) {
+        var stor = FluidStorage.SIDED.find(world, pos, hit.getSide());
+        if (stor == null) {
             return ItemActionResult.FAIL;
         }
 
-        ItemActionResult result = FluidInteractionHelper.handleFluidUse(player, stack, l, world, pos, true, true);
+        ItemActionResult result = FluidInteractionHelper.fluidStorageUse(player, stack, stor, world, pos, true, true);
 
         if (result == ItemActionResult.SUCCESS) {
-            b.markDirty();
+            lb.markDirty();
             world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
 
             return ItemActionResult.SUCCESS;
         }
 
         return ItemActionResult.CONSUME;
+    }
+
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return world.isClient ? validateTicker(type, ModBlockEntities.LIQUID_BARREL_BE, LiquidBarrelBlockEntity::tick) : null;
     }
 
     @Override

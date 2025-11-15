@@ -43,7 +43,7 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
         this.propertyDelegate = createPropertyDelegate();
     }
 
-    // ========= ABSTRACT METHODS =========
+    // ========= ABSTRACT METHODS ========= //
 
     protected abstract PropertyDelegate createPropertyDelegate();
     protected abstract boolean hasRecipe();
@@ -56,7 +56,7 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
     protected abstract void updateLitState(World world, BlockPos pos, BlockState state, boolean shouldBeLit);
 
 
-    // ========= OVERRIDES =========
+    // ========= OVERRIDES ========= //
 
     @Override
     public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
@@ -93,7 +93,7 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
         return BlockEntityUpdateS2CPacket.create(this);
     }
 
-    // ========= TICK METHODS =========
+    // ========= TICK METHODS ========= //
 
     public void clientTick(World world, BlockPos pos, BlockState state) {
         boolean shouldEmitSmoke = this.progress > 0;
@@ -158,7 +158,7 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
     }
 
 
-    // ========= METHODS =========
+    // ========= METHODS ========= //
 
     protected void spawnSmoke(World world, double x, double y, double z) {
         double yVel = 0.06D;

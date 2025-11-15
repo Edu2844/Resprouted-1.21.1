@@ -1,14 +1,12 @@
 package net.edu.resprouted.block.entity.renderer;
 
 import net.edu.resprouted.block.entity.custom.EvaporatingBasinBlockEntity;
-import net.edu.resprouted.util.SmoothFloat;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory.*;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
@@ -17,21 +15,17 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import org.joml.Matrix4f;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class EvaporatingBasinRenderer implements BlockEntityRenderer<EvaporatingBasinBlockEntity> {
 
-    private final Map<BlockPos, SmoothFloat> fluidAnimations = new HashMap<>();
-
-    public EvaporatingBasinRenderer(BlockEntityRendererFactory.Context context) {
+    public EvaporatingBasinRenderer(Context context) {
     }
 
     @Override
@@ -55,22 +49,22 @@ public class EvaporatingBasinRenderer implements BlockEntityRenderer<Evaporating
             for (int i = 0; i < renderPasses; i++) {
                 matrices.push();
                 matrices.translate(0, yOffset, 0);
+
                 if (i > 0) {
-                    matrices.translate(
-                            (random.nextFloat() - 0.5f) * 0.1f,
-                            0,
-                            (random.nextFloat() - 0.5f) * 0.1f
-                    );
+                    matrices.translate((random.nextFloat() - 0.5f) * 0.1f, 0, (random.nextFloat() - 0.5f) * 0.1f);
                     matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(random.nextFloat() * 360));
                 }
+
                 if (stack.getItem() instanceof BlockItem) {
                     matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
                 } else {
                     matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
                     matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(45));
                 }
+
                 BakedModel model = itemRenderer.getModel(stack, entity.getWorld(), null, 0);
                 VertexConsumer cutoutBuffer = vertexConsumers.getBuffer(RenderLayer.getCutout());
+
                 itemRenderer.renderItem(
                         stack,
                         ModelTransformationMode.GUI,
@@ -81,37 +75,24 @@ public class EvaporatingBasinRenderer implements BlockEntityRenderer<Evaporating
                         OverlayTexture.DEFAULT_UV,
                         model
                 );
+
                 matrices.pop();
                 yOffset += 0.05f;
             }
+
             matrices.pop();
         }
 
         //Fluid Render
         FluidVariant fluid = entity.getFluidStorage().getResource();
-        long amount = entity.getFluidStorage().getAmount();
-        long capacity = entity.getFluidStorage().getCapacity();
 
-        if (fluid.isBlank() || amount <= 0) {
-
-            BlockPos pos = entity.getPos();
-            if (fluidAnimations.containsKey(pos)) {
-                SmoothFloat animation = fluidAnimations.get(pos);
-                animation.update(0f, 0.5f);
-                if (animation.get(tickDelta) < 0.01f) {
-                    fluidAnimations.remove(pos);
-                }
-            }
+        if (fluid.isBlank() || entity.getFluidStorage().getAmount() <= 0) {
             return;
         }
 
-        BlockPos pos = entity.getPos();
-        SmoothFloat animation = fluidAnimations.computeIfAbsent(pos, k -> new SmoothFloat());
+        light = getLightLevel(entity.getWorld(), entity.getPos());
 
-        float targetFill = MathHelper.clamp((float) amount / capacity, 0, 1);
-        animation.update(targetFill, 0.15f);
-
-        float fillPercentage = animation.get(tickDelta);
+        float fillPercentage = entity.getFluidHeight(tickDelta);
         float baseY = 1f / 16f;
         float maxHeight = 5f / 16f;
         float y = baseY + fillPercentage * maxHeight;
@@ -144,17 +125,6 @@ public class EvaporatingBasinRenderer implements BlockEntityRenderer<Evaporating
         buf.vertex(mat, MAX, 0, MIN).color(r, g, b, a).texture(u2, v1).light(light).normal(0, 1, 0);
 
         matrices.pop();
-
-        cleanupAnimations(entity.getWorld());
-    }
-
-    private void cleanupAnimations(World world) {
-        if (world == null) return;
-
-        fluidAnimations.keySet().removeIf(pos -> {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            return !(blockEntity instanceof EvaporatingBasinBlockEntity);
-        });
     }
 
     private int getLightLevel(World world, BlockPos pos) {

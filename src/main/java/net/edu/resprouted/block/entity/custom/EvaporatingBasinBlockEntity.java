@@ -1,7 +1,7 @@
 package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.abstracts.AbstractFluidStorageBlockEntity;
+import net.edu.resprouted.block.abstracts.AnimatedFluidStorageBlockEntity;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.EvaporatingBasinRecipe;
@@ -23,7 +23,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EvaporatingBasinBlockEntity extends AbstractFluidStorageBlockEntity implements ImplementedInventory {
+public class EvaporatingBasinBlockEntity extends AnimatedFluidStorageBlockEntity implements ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
     private static final long MB_PER_TICK = 81;
     private static final long EV_BOOSTER = 2;
@@ -51,8 +51,12 @@ public class EvaporatingBasinBlockEntity extends AbstractFluidStorageBlockEntity
         Inventories.readNbt(nbt, inventory, registryLookup);
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, EvaporatingBasinBlockEntity be) {
-        if (world.isClient) return;
+    @SuppressWarnings("unused")
+    public static void clientTick(World world, BlockPos pos, BlockState state, EvaporatingBasinBlockEntity entity) {
+        entity.tickFluidAnimation();
+    }
+
+    public static void serverTick(World world, BlockPos pos, BlockState state, EvaporatingBasinBlockEntity be) {
         FluidVariant fluid = be.getFluidStorage().getResource();
         long amt = be.getFluidStorage().getAmount();
 
@@ -89,7 +93,7 @@ public class EvaporatingBasinBlockEntity extends AbstractFluidStorageBlockEntity
         if (be.progress >= cost) {
             be.progress -= cost;
             be.spawnOrStore(recipe.output().copy());
-            world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.playSound(null, pos, SoundEvents.BLOCK_WET_SPONGE_DRIES, SoundCategory.BLOCKS, 1.0F, 1.0F);
             world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
         }
     }
