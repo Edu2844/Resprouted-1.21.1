@@ -32,8 +32,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryOps;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -109,8 +107,8 @@ public class LiquidBarrelBlock extends BlockWithEntity {
                 var name = FluidVariantAttributes.getName(k);
                 long amount = FluidUtils.convertDropletsToMb(j.getLong("amount"));
 
-                tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.GRAY));
-                tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.GRAY));
+                tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.GOLD));
+                tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.GOLD));
             }
         }
         catch (Exception e) {
@@ -206,17 +204,6 @@ public class LiquidBarrelBlock extends BlockWithEntity {
                     if (entity instanceof LivingEntity livingEntity && livingEntity.isOnFire()) {
                         livingEntity.extinguish();
                         world.syncWorldEvent(1009, pos, 0);
-                    }
-                    if (entity.getVelocity().y < -0.1) {
-
-                        world.playSound(
-                                null,
-                                pos,
-                                SoundEvents.ENTITY_GENERIC_SPLASH,
-                                SoundCategory.BLOCKS,
-                                0.1F,
-                                1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.4F
-                        );
                     }
                 }
             }
