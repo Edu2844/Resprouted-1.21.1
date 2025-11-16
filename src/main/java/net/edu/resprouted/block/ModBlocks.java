@@ -1443,7 +1443,6 @@ public class ModBlocks {
     // =================================================
     // ||                 DECORATIVE                  ||
     // =================================================
-
     public static final Block GARGOYLE = registerBlock("gargoyle",
             new GargoyleBlock(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque()));
 

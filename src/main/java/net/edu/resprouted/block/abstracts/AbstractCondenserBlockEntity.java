@@ -93,7 +93,7 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
         return BlockEntityUpdateS2CPacket.create(this);
     }
 
-    // ========= TICK METHODS ========= //
+    // ========= TICK ========= //
 
     public void clientTick(World world, BlockPos pos, BlockState state) {
         boolean shouldEmitSmoke = this.progress > 0;

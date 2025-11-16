@@ -1,6 +1,10 @@
 package net.edu.resprouted.book;
 
 import net.edu.resprouted.Resprouted;
+import net.edu.resprouted.book.abstracts.BaseCatalogPage;
+import net.edu.resprouted.book.pages.CategoryListPage;
+import net.edu.resprouted.book.pages.EntryPagesPage;
+import net.edu.resprouted.book.pages.MainMenuPage;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.book.CatalogData.*;
 import net.edu.resprouted.util.PageUtils;
@@ -9,6 +13,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.sound.PositionedSoundInstance;
@@ -32,6 +37,7 @@ public class CatalogScreen extends Screen {
     public enum PageState { MAIN_MENU, CATEGORY_LIST, ENTRY_PAGES }
 
     private PageState currentState = PageState.MAIN_MENU;
+    private PageState previousState = null;
     private Category selectedCategory;
     private Entry selectedEntry;
     private int currentPageIndex = 0;
@@ -50,10 +56,11 @@ public class CatalogScreen extends Screen {
         super.init();
         this.bookX = (this.width - BOOK_WIDTH) / 2;
         this.bookY = (this.height - BOOK_HEIGHT) / 2;
-
         this.mainMenuPage = new MainMenuPage(this);
         this.categoryListPage = new CategoryListPage(this);
         this.entryPagesPage = new EntryPagesPage(this);
+
+        updatePageWidgets();
     }
 
     @Override
@@ -73,37 +80,34 @@ public class CatalogScreen extends Screen {
     }
 
     @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context, mouseX, mouseY, delta);
+        super.render(context, mouseX, mouseY, delta);
+    }
+
+    @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
         super.renderInGameBackground(context);
         context.drawTexture(BACKGROUND, bookX, bookY, 0, 0, BOOK_WIDTH, BOOK_HEIGHT, TEXTURE_SIZE, TEXTURE_SIZE);
 
-        PageUtils leftPage = PageUtils.createLeftPage(context, textRenderer, bookX, bookY);
-        PageUtils rightPage = PageUtils.createRightPage(context, textRenderer, bookX, bookY);
+        PageUtils leftPage = PageUtils.createLeftPage(context, getTextRenderer(), bookX, bookY);
+        PageUtils rightPage = PageUtils.createRightPage(context, getTextRenderer(), bookX, bookY);
 
-        switch (currentState) {
-            case MAIN_MENU -> mainMenuPage.render(leftPage, rightPage, mouseX, mouseY);
-            case CATEGORY_LIST -> categoryListPage.render(leftPage, rightPage, mouseX, mouseY);
-            case ENTRY_PAGES -> entryPagesPage.render(leftPage, rightPage, mouseX, mouseY);
-        }
+        getCurrentPage().render(leftPage, rightPage, mouseX, mouseY);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (button != 0) return false;
 
-        switch (currentState) {
-            case MAIN_MENU -> {
-                return mainMenuPage.handleClick(mouseX, mouseY);
-            }
-            case CATEGORY_LIST -> {
-                return categoryListPage.handleClick(mouseX, mouseY);
-            }
-            case ENTRY_PAGES -> {
-                return entryPagesPage.handleClick(mouseX, mouseY);
+        for (Element child : this.children()) {
+            if (child.mouseClicked(mouseX, mouseY, button)) {
+                return true;
             }
         }
 
-        return super.mouseClicked(mouseX, mouseY, button);
+        return getCurrentPage().handleClick(mouseX, mouseY) ||
+                super.mouseClicked(mouseX, mouseY, button);
     }
 
     @Override
@@ -133,6 +137,7 @@ public class CatalogScreen extends Screen {
                     currentState = PageState.CATEGORY_LIST;
                     selectedEntry = null;
                     playPageTurnSound();
+                    updatePageWidgets();
                     return true;
                 }
             }
@@ -142,6 +147,7 @@ public class CatalogScreen extends Screen {
                     selectedEntry = null;
                     selectedCategory = null;
                     playPageTurnSound();
+                    updatePageWidgets();
                     return true;
                 }
             }
@@ -168,17 +174,14 @@ public class CatalogScreen extends Screen {
             currentState = PageState.CATEGORY_LIST;
             selectedEntry = null;
             playPageTurnSound();
+            updatePageWidgets();
             return true;
         }
 
         int currentIndex = categories.indexOf(selectedCategory);
-
-        int newIndex;
-        if (reverse) {
-            newIndex = currentIndex <= 0 ? categories.size() - 1 : currentIndex - 1;
-        } else {
-            newIndex = currentIndex >= categories.size() - 1 ? 0 : currentIndex + 1;
-        }
+        int newIndex = reverse
+                ? (currentIndex <= 0 ? categories.size() - 1 : currentIndex - 1)
+                : (currentIndex >= categories.size() - 1 ? 0 : currentIndex + 1);
 
         selectedCategory = categories.get(newIndex);
         selectedEntry = null;
@@ -186,9 +189,36 @@ public class CatalogScreen extends Screen {
         return true;
     }
 
+    /**
+     * Update widgets when page state changes
+     */
+    private void updatePageWidgets() {
+        //Only update if state actually changed
+        if (currentState == previousState) return;
+
+        //Remove all current page widgets
+        this.clearChildren();
+
+        //Initialize and add new page widgets
+        BaseCatalogPage page = getCurrentPage();
+        page.init();
+        page.getWidgets().forEach(this::addDrawableChild);
+
+        previousState = currentState;
+    }
+
+    private BaseCatalogPage getCurrentPage() {
+        return switch (currentState) {
+            case MAIN_MENU -> mainMenuPage;
+            case CATEGORY_LIST -> categoryListPage;
+            case ENTRY_PAGES -> entryPagesPage;
+        };
+    }
+
     public void playPageTurnSound() {
         if (this.client != null && this.client.getSoundManager() != null) {
-            this.client.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.ITEM_BOOK_PAGE_TURN, 1.0F));
+            this.client.getSoundManager().play(
+                    PositionedSoundInstance.master(SoundEvents.ITEM_BOOK_PAGE_TURN, 1.0F));
         }
     }
 
@@ -196,47 +226,22 @@ public class CatalogScreen extends Screen {
         return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 
-    public TextRenderer getTextRenderer() {
-        return this.textRenderer;
-    }
-
-    public PageState getCurrentState() {
-        return currentState;
-    }
+    public TextRenderer getTextRenderer() { return this.textRenderer; }
+    public PageState getCurrentState() { return currentState; }
 
     public void setCurrentState(PageState state) {
-        this.currentState = state;
+        if (this.currentState != state) {
+            this.currentState = state;
+            updatePageWidgets();
+        }
     }
 
-    public Category getSelectedCategory() {
-        return selectedCategory;
-    }
-
-    public void setSelectedCategory(Category category) {
-        this.selectedCategory = category;
-    }
-
-    public Entry getSelectedEntry() {
-        return selectedEntry;
-    }
-
-    public void setSelectedEntry(Entry entry) {
-        this.selectedEntry = entry;
-    }
-
-    public int getCurrentPageIndex() {
-        return currentPageIndex;
-    }
-
-    public void setCurrentPageIndex(int index) {
-        this.currentPageIndex = index;
-    }
-
-    public int getBookX() {
-        return bookX;
-    }
-
-    public int getBookY() {
-        return bookY;
-    }
+    public Category getSelectedCategory() { return selectedCategory; }
+    public void setSelectedCategory(Category category) { this.selectedCategory = category; }
+    public Entry getSelectedEntry() { return selectedEntry; }
+    public void setSelectedEntry(Entry entry) { this.selectedEntry = entry; }
+    public int getCurrentPageIndex() { return currentPageIndex; }
+    public void setCurrentPageIndex(int index) { this.currentPageIndex = index; }
+    public int getBookX() { return bookX; }
+    public int getBookY() { return bookY; }
 }

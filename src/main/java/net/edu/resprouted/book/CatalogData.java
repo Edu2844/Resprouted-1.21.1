@@ -24,7 +24,9 @@ public class CatalogData {
         CATEGORIES.add(production);
 
 
-        //Agriculture
+        // =================================================
+        // ||                 AGRICULTURE                 ||
+        // =================================================
         agriculture.addEntry(new Entry(
                 Text.translatable("block.resprouted.fertile_soil"), new ItemStack(ModBlocks.FERTILE_SOIL),
                 Entry.Side.LEFT)
@@ -70,7 +72,9 @@ public class CatalogData {
         );
 
 
-        //Decoration
+        // =================================================
+        // ||                 DECORATION                  ||
+        // =================================================
         decoration.addEntry(new Entry(Text.translatable("entry.resprouted.cabinets"), new ItemStack(ModBlocks.OAK_CABINET_BLOCK))
                 .addPage(new TextPage(Text.translatable("page.resprouted.cabinets.desc"))));
 
@@ -87,7 +91,9 @@ public class CatalogData {
                 .addPage(new TextPage(Text.translatable("page.resprouted.chair.desc"))));
 
 
-        //Production
+        // =================================================
+        // ||                 PRODUCTION                  ||
+        // =================================================
         production.addEntry(new Entry(
                 Text.translatable("entry.resprouted.crushing"),
                 new ItemStack(ModBlocks.CRUSHING_TUB))
@@ -143,6 +149,9 @@ public class CatalogData {
         );
     }
 
+    // =================================================
+    // ||               STATIC CLASSES                ||
+    // =================================================
     public static abstract class Page {
 
     }
