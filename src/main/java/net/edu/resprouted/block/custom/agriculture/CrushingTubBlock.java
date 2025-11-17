@@ -102,7 +102,7 @@ public class CrushingTubBlock extends BlockWithEntity {
 
             ItemActionResult result;
             if (hasFluid) {
-                result = FluidInteractionHelper.fluidStorageUse(player, stack, j, world, pos, false, true);
+                result = FluidInteractionHelper.onFluidStorageUse(player, stack, j, world, pos, false, true);
 
                 if (result == ItemActionResult.SUCCESS) {
 

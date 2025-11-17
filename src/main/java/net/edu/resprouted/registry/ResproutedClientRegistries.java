@@ -422,7 +422,6 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.WEATHERED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WEATHERED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WEATHERED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
-
         //Oxidized
         registry.putBlock(ModBlocks.OXIDIZED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.OXIDIZED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -441,7 +440,6 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.OXIDIZED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.OXIDIZED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.OXIDIZED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
-
         //Waxables
         registry.putBlock(ModBlocks.WAXED_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
@@ -514,8 +512,6 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_PURPLE_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.WAXED_OXIDIZED_PINK_DOUBLE_COPPER_CANDLE_HOLDER, RenderLayer.getCutout());
-
-
         //Doors&Trapdoors
         registry.putBlock(ModBlocks.IRONWOOD_DOOR, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.IRONWOOD_TRAPDOOR, RenderLayer.getCutout());
@@ -524,18 +520,28 @@ public class ResproutedClientRegistries {
         //Bar
         registry.putBlock(ModBlocks.WROUGHT_IRON_BARS, RenderLayer.getCutout());
         //Fluids
-        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.HONEY_STILL, ModFluids.HONEY_FLOWING);
-        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.APPLE_JUICE_STILL, ModFluids.APPLE_JUICE_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.GOLDEN_APPLE_JUICE_STILL, ModFluids.GOLDEN_APPLE_JUICE_FLOWING);
-        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.GRAPE_JUICE_STILL, ModFluids.GRAPE_JUICE_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.SWEET_BERRY_JUICE_STILL, ModFluids.SWEET_BERRY_JUICE_FLOWING);
-        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.OLIVE_OIL_STILL, ModFluids.OLIVE_OIL_FLOWING);
-        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.VANTA_OIL_STILL, ModFluids.VANTA_OIL_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.SUGAR_CANE_JUICE_STILL, ModFluids.SUGAR_CANE_JUICE_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.GLOW_BERRY_JUICE_STILL, ModFluids.GLOW_BERRY_JUICE_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.IRON_BERRY_JUICE_STILL, ModFluids.IRON_BERRY_JUICE_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.APPLE_JUICE_STILL, ModFluids.APPLE_JUICE_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.GRAPE_JUICE_STILL, ModFluids.GRAPE_JUICE_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.VANTA_OIL_STILL, ModFluids.VANTA_OIL_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.OLIVE_OIL_STILL, ModFluids.OLIVE_OIL_FLOWING);
         registry.putFluids(RenderLayer.getTranslucent(), ModFluids.ALE_WORT_STILL, ModFluids.ALE_WORT_FLOWING);
-        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.SUGAR_CANE_JUICE_STILL, ModFluids.SUGAR_CANE_JUICE_FLOWING);
-
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.HONEY_STILL, ModFluids.HONEY_FLOWING);
+        //Fluid Booze
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.SWEET_BERRY_WINE_STILL, ModFluids.SWEET_BERRY_WINE_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.GLOW_BERRY_WINE_STILL, ModFluids.GLOW_BERRY_WINE_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.IRON_WINE_STILL, ModFluids.IRON_WINE_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.AMBROSIA_STILL, ModFluids.AMBROSIA_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.CIDER_STILL, ModFluids.CIDER_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.WINE_STILL, ModFluids.WINE_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.MEAD_STILL, ModFluids.MEAD_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.ALE_STILL, ModFluids.ALE_FLOWING);
+        registry.putFluids(RenderLayer.getTranslucent(), ModFluids.RUM_STILL, ModFluids.RUM_FLOWING);
+        //Sign
         TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ResproutedWoodTypes.IRONWOOD, TexturedRenderLayers.getSignTextureId(ResproutedWoodTypes.IRONWOOD));
         TexturedRenderLayers.SIGN_TYPE_TEXTURES.put(ResproutedWoodTypes.OLIVE, TexturedRenderLayers.getSignTextureId(ResproutedWoodTypes.OLIVE));
 

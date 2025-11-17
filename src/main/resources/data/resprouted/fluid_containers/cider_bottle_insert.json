@@ -1,0 +1,16 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:cider_still"
+  },
+  "item": {
+    "id": "resprouted:cider_bottle"
+  },
+  "empty_item": {
+    "id": "minecraft:glass_bottle"
+  },
+  "amount": 250,
+  "direction": "insert",
+  "preserved_components": [
+    "resprouted:fluid_quality"
+  ]
+}

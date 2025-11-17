@@ -249,8 +249,7 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                     FluidVariant variant = FluidVariant.of(fluid);
                     long amount = FluidConstants.BUCKET;
 
-                    if ((this.input.isResourceBlank() || this.input.getResource().isOf(fluid)) &&
-                            this.input.insert(variant, amount, transaction) == amount) {
+                    if ((this.input.isResourceBlank() || this.input.getResource().isOf(fluid)) && this.input.insert(variant, amount, transaction) == amount) {
 
                         i.decrement(1);
                         if (i.isEmpty()) {
@@ -318,6 +317,7 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
 
         return Fluids.EMPTY;
     }
+
     public void handleBottleInteractions() {
         ItemStack k = getStack(AUX_IN_SLOT);
 

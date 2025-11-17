@@ -799,7 +799,7 @@
   "tooltip.resprouted.quality.mediocre": "Mediocre",
   "tooltip.resprouted.quality.poor": "Poor",
   "tooltip.resprouted.quality.awful": "Awful",
-  "tooltip.resprouted.quality.sewage": "Sewage",
+  "tooltip.resprouted.quality.sewage": "Uninstall the game",
 
   "effect.resprouted.full_metal":"Full Metal",
   "effect.resprouted.fire_power":"Fire Power",
@@ -929,7 +929,7 @@
   "text.resprouted.crushing.desc2": "If the inserted items match a valid recipe, jumping on the tub will crush them into fluid, one at a time. Crushing won’t work if the tub is too full. You can empty the fluid by interacting with an empty bucket or a glass bottle. Some recipes also produce item byproducts.",
 
   "entry.resprouted.drying": "Drying",
-  "text.resprouted.drying.desc1": "A drying basin extracts items from fluids through evaporation. It can hold up to one stack of items and six buckets of liquid. To use it, place the basin and insert fluid by interacting with it while holding a filled bucket.",
+  "text.resprouted.drying.desc1": "A drying basin extracts items from fluids through evaporation. It can hold up to one stack of items and three buckets of liquid. To use it, place the basin and insert fluid by interacting with it while holding a filled bucket.",
   "text.resprouted.drying.desc2": "You can remove fluid with an empty bucket or a glass bottle. Evaporation happens automatically over time, at a rate of one fiftieth of a bucket per second. When enough fluid has evaporated to match a recipe, the result will appear in the basin if there is space.",
   "text.resprouted.drying.desc3": "Items can be collected by interacting with the basin with an empty hand.",
 

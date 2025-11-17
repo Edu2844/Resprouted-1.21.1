@@ -1,6 +1,6 @@
 package net.edu.resprouted.effect;
 
-import net.edu.resprouted.item.custom.BoozeBottleItem;
+import net.edu.resprouted.item.custom.BoozeBottleItem.*;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class BoozeEffects {
 
-    public static void applyAleEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+    public static void applyAleEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
 
@@ -31,7 +31,7 @@ public class BoozeEffects {
         }
     }
 
-    public static void applyIronWineEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+    public static void applyIronWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         World world = context.world();
         float quality = context.quality();
@@ -60,7 +60,7 @@ public class BoozeEffects {
         }
     }
 
-    public static void applyCiderEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+    public static void applyCiderEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
 
@@ -79,7 +79,7 @@ public class BoozeEffects {
         }
     }
 
-    public static void applyMeadEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+    public static void applyMeadEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
 
@@ -98,7 +98,7 @@ public class BoozeEffects {
         }
     }
 
-    public static void applySweetBerryWineEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+    public static void applySweetBerryWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
 
@@ -145,7 +145,7 @@ public class BoozeEffects {
         }
     }
 
-    public static void applyWineEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+    public static void applyWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
 
@@ -198,7 +198,7 @@ public class BoozeEffects {
         }
     }
 
-    public static void applyAmbrosiaEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+    public static void applyAmbrosiaEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
 
@@ -219,7 +219,7 @@ public class BoozeEffects {
         }
     }
 
-    public static void applyGlowBerryWineEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+    public static void applyGlowBerryWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
 
@@ -281,7 +281,7 @@ public class BoozeEffects {
         }
     }
 
-    public static void applyRumEffects(BoozeBottleItem.BoozeConsumptionContext context) {
+    public static void applyRumEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
         boolean hasStrongTipsy = false;

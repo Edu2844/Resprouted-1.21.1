@@ -129,7 +129,7 @@ public class LiquidBarrelBlock extends BlockWithEntity {
             return ItemActionResult.FAIL;
         }
 
-        ItemActionResult result = FluidInteractionHelper.fluidStorageUse(player, stack, stor, world, pos, true, true);
+        ItemActionResult result = FluidInteractionHelper.onFluidStorageUse(player, stack, stor, world, pos, true, true);
 
         if (result == ItemActionResult.SUCCESS) {
             lb.markDirty();

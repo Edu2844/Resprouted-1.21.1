@@ -4,7 +4,7 @@
 		"2": "block/barrel_bottom",
 		"3": "block/barrel_top",
 		"4": "block/barrel_side",
-		"particle": "resprouted:block/crushing_tub"
+		"particle": "block/barrel_side"
 	},
 	"elements": [
 		{

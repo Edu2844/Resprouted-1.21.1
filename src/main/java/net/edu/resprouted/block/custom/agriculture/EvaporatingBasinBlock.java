@@ -73,7 +73,7 @@ public class EvaporatingBasinBlock extends BlockWithEntity {
             return ItemActionResult.FAIL;
         }
 
-        ItemActionResult result = FluidInteractionHelper.fluidStorageUse(player, stack, storage, world, pos, true, true);
+        ItemActionResult result = FluidInteractionHelper.onFluidStorageUse(player, stack, storage, world, pos, true, true);
 
         if (result == ItemActionResult.SUCCESS) {
             basin.markDirty();
