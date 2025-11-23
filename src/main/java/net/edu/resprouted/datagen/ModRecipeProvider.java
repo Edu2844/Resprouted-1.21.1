@@ -1,6 +1,7 @@
 package net.edu.resprouted.datagen;
 
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
@@ -158,6 +159,38 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input('N', Items.GOLD_NUGGET)
                         .input('I', Items.GOLD_INGOT)
                         .criterion("has_candle", conditionsFromItem(candle1))
+                        .offerTo(exporter));
+
+
+        //GOLDEN CANDLE HOLDERS
+        Map<ItemConvertible, ItemConvertible> Copper_holder = Map.ofEntries(
+                Map.entry(Blocks.BLACK_CANDLE, ModBlocks.BLACK_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.BLUE_CANDLE, ModBlocks.BLUE_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.BROWN_CANDLE, ModBlocks.BROWN_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.CANDLE, ModBlocks.COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.CYAN_CANDLE, ModBlocks.CYAN_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.GRAY_CANDLE, ModBlocks.GRAY_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.GREEN_CANDLE, ModBlocks.GREEN_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.LIGHT_BLUE_CANDLE, ModBlocks.LIGHT_BLUE_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.LIGHT_GRAY_CANDLE, ModBlocks.LIGHT_GRAY_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.LIME_CANDLE, ModBlocks.LIME_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.MAGENTA_CANDLE, ModBlocks.MAGENTA_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.ORANGE_CANDLE, ModBlocks.ORANGE_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.PINK_CANDLE, ModBlocks.PINK_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.PURPLE_CANDLE, ModBlocks.PURPLE_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.RED_CANDLE, ModBlocks.RED_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.WHITE_CANDLE, ModBlocks.WHITE_COPPER_CANDLE_HOLDER),
+                Map.entry(Blocks.YELLOW_CANDLE, ModBlocks.YELLOW_COPPER_CANDLE_HOLDER)
+        );
+        Copper_holder.forEach((candle2, copper_candle_holder) ->
+                ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, copper_candle_holder, 4)
+                        .pattern(" C ")
+                        .pattern(" N ")
+                        .pattern(" I ")
+                        .input('C', candle2)
+                        .input('N', ModItems.COPPER_NUGGET)
+                        .input('I', Items.COPPER_INGOT)
+                        .criterion("has_candle", conditionsFromItem(candle2))
                         .offerTo(exporter));
     }
 }

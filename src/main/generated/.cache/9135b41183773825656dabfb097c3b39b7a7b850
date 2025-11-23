@@ -1,7 +1,7 @@
-// 1.21.1	2025-11-22T21:53:51.341595	Resprouted/Tags for minecraft:item
+// 1.21.1	2025-11-23T13:51:57.379766	Resprouted/Tags for minecraft:item
 2859ec709d0c7a50ba1a81d49f441ac86b90a536 data\resprouted\tags\item\ghost_pepper.json
-f470b0889459fb2d48176e69995c70ce18aa66ea data\resprouted\tags\item\fuels.json
 583c61b048f26dc4a732d8db2938a19214c6aa65 data\resprouted\tags\item\chili_pepper_seeds.json
+f470b0889459fb2d48176e69995c70ce18aa66ea data\resprouted\tags\item\fuels.json
 30c51a013a5277ef5a8220c4fe87727586fde07b data\resprouted\tags\item\golden_dust.json
 381b9ea68fcafa891b045ed5dd8b56fe3e866bac data\resprouted\tags\item\glass_bottles.json
 89c91f765f6e4d4d5b89db1cb36c811accd1b7f0 data\resprouted\tags\item\tomato_seeds.json
@@ -21,5 +21,5 @@ eeea9c75dbba6beccb4c9cd7f5594ce768727495 data\minecraft\tags\item\logs_that_burn
 84447924df854006f3ebfc166de6785531cf85df data\minecraft\tags\item\planks.json
 38c8795066e0b0693d5827e5c1f5c1fe56d4f032 data\resprouted\tags\item\olives.json
 74b0188cad8e6d47a1af8a4fa4c1e6d9221ff4d3 data\minecraft\tags\item\chicken_food.json
-c23efc2d2b8508cbfe6722c84e52f1a5caa016de data\minecraft\tags\item\stone_tool_materials.json
 f71d0e56449b47475ab0886ebc03e332684b3092 data\resprouted\tags\item\iron_dust.json
+c23efc2d2b8508cbfe6722c84e52f1a5caa016de data\minecraft\tags\item\stone_tool_materials.json
