@@ -47,7 +47,7 @@ public class ModItemGroups {
                         entries.add(ModItems.APPLE_SEEDS);
                         entries.add(ModItems.OLIVES);
                         entries.add(ModItems.IRON_BERRIES);
-                        entries.add(ModItems.BLUE_BERRIES);
+                        //entries.add(ModItems.TEST_BERRIES);
                         entries.add(ModItems.GRAPES);
                         entries.add(ModItems.TOMATO);
                         entries.add(ModItems.CHILI_PEPPER);

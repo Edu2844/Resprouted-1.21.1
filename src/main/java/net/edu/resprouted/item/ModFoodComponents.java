@@ -14,7 +14,7 @@ public class ModFoodComponents {
     public static final FoodComponent TOMATO = new FoodComponent.Builder().nutrition(4).saturationModifier(0.4f).build();
     public static final FoodComponent GRAPES = new FoodComponent.Builder().nutrition(3).saturationModifier(0.3f).build();
     public static final FoodComponent IRON_BERRIES = new FoodComponent.Builder().nutrition(2).saturationModifier(0.4f).statusEffect(new StatusEffectInstance(ModEffects.FULL_METAL,280,0,true, false, false),1f).build();
-    public static final FoodComponent BLUE_BERRIES = new FoodComponent.Builder().nutrition(2).saturationModifier(0.4f).build();
+    public static final FoodComponent TEST_BERRIES = new FoodComponent.Builder().nutrition(2).saturationModifier(0.4f).build();
     public static final FoodComponent ROOT = new FoodComponent.Builder().nutrition(1).saturationModifier(0.4f).build();
     public static final FoodComponent CLOUDSBLUFF = new FoodComponent.Builder().nutrition(1).saturationModifier(0.4f).statusEffect(new StatusEffectInstance(StatusEffects.LEVITATION,100,0),0.95f).build();
 

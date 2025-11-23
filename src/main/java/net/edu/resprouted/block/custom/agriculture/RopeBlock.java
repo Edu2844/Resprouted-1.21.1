@@ -1,23 +1,17 @@
 package net.edu.resprouted.block.custom.agriculture;
 
+import net.edu.resprouted.block.custom.decorative.CustomChainBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ChainBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
@@ -29,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-public class RopeBlock extends ChainBlock{
+public class RopeBlock extends CustomChainBlock {
     public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
     public static final BooleanProperty HAS_KNOT = BooleanProperty.of("has_knot");
     protected static final VoxelShape Y_SHAPE = Block.createCuboidShape(7.0, 0.0, 7.0, 9.0, 16.0, 9.0);
@@ -160,41 +154,6 @@ public class RopeBlock extends ChainBlock{
     }
 
     @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (stack.getItem() != asItem())
-            return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-
-        Direction d = hit.getSide(); if (d.getAxis() == state.get(AXIS) && d != Direction.UP)
-            return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-
-        BlockPos.Mutable e = pos.mutableCopy();
-
-        for (int length = 1; length <= 64; length++) {
-            e.move(Direction.DOWN);
-            BlockState f = world.getBlockState(e);
-
-            if (f.isAir()) {
-                BlockState newRope = getDefaultState().with(AXIS, Direction.Axis.Y);
-
-                if (world.setBlockState(e, newRope, Block.NOTIFY_ALL)) {
-                    if (!player.getAbilities().creativeMode)
-                        stack.decrement(1);
-
-                    world.playSound(null, e, getSoundGroup(newRope).getPlaceSound(),
-                            SoundCategory.BLOCKS, 1.0F, 0.8F + world.getRandom().nextFloat() * 0.4F);
-
-                    return ItemActionResult.SUCCESS; }
-                break;
-            }
-
-            if (!(f.getBlock() instanceof RopeBlock) || f.get(AXIS) != Direction.Axis.Y)
-                break;
-        }
-
-        return ItemActionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-    }
-
-    @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return switch (state.get(AXIS)) {
             case X -> state.get(HAS_KNOT) ? X_SHAPE_KNOT : X_SHAPE;
@@ -203,6 +162,7 @@ public class RopeBlock extends ChainBlock{
         };
     }
 
+    @SuppressWarnings("all")
     private boolean isBlockSupported(WorldView world, BlockPos pos, BlockState state) {
         if (state.get(AXIS) == Direction.Axis.X) {
             return isSideSupported(world, pos, state, Direction.WEST) &&

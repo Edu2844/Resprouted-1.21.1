@@ -1,9 +1,8 @@
 {
-	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "block/oak_log_top",
-		"3": "resprouted:block/crops/stake",
+		"stake_top": "block/oak_log_top",
+		"stake": "resprouted:block/crops/stake",
 		"particle": "#crop",
 		"crop": "#crop"
 	},
@@ -13,12 +12,12 @@
 			"from": [6, 0, 6],
 			"to": [10, 16, 10],
 			"faces": {
-				"north": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
-				"east": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
-				"south": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
-				"west": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
-				"up": {"uv": [6, 6, 10, 10], "texture": "#2"},
-				"down": {"uv": [6, 6, 10, 10], "texture": "#2"}
+				"north": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#stake"},
+				"east": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#stake"},
+				"south": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#stake"},
+				"west": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#stake"},
+				"up": {"uv": [6, 6, 10, 10], "texture": "#stake_top"},
+				"down": {"uv": [6, 6, 10, 10], "texture": "#stake_top"}
 			}
 		},
 		{

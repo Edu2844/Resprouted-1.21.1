@@ -2,9 +2,9 @@
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "resprouted:block/crops/rope_knot",
-		"2": "block/oak_log_top",
-		"3": "resprouted:block/crops/stake",
+		"knot": "resprouted:block/crops/rope_knot",
+		"top": "block/oak_log_top",
+		"stake": "resprouted:block/crops/stake",
 		"particle": "block/oak_planks"
 	},
 	"elements": [
@@ -13,12 +13,12 @@
 			"from": [6, 0, 6],
 			"to": [10, 16, 10],
 			"faces": {
-				"north": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
-				"east": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
-				"south": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
-				"west": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#3"},
-				"up": {"uv": [6, 6, 10, 10], "texture": "#2"},
-				"down": {"uv": [6, 6, 10, 10], "texture": "#2"}
+				"north": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#stake"},
+				"east": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#stake"},
+				"south": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#stake"},
+				"west": {"uv": [6, 16, 10, 0], "rotation": 180, "texture": "#stake"},
+				"up": {"uv": [6, 6, 10, 10], "texture": "#top"},
+				"down": {"uv": [6, 6, 10, 10], "texture": "#top"}
 			}
 		},
 		{
@@ -26,12 +26,12 @@
 			"from": [5, 4, 5],
 			"to": [11, 12, 11],
 			"faces": {
-				"north": {"uv": [0, 6, 6, 14], "texture": "#1"},
-				"east": {"uv": [0, 6, 6, 14], "texture": "#1"},
-				"south": {"uv": [0, 6, 6, 14], "texture": "#1"},
-				"west": {"uv": [0, 6, 6, 14], "texture": "#1"},
-				"up": {"uv": [0, 0, 6, 6], "texture": "#1"},
-				"down": {"uv": [0, 0, 6, 6], "texture": "#1"}
+				"north": {"uv": [0, 6, 6, 14], "texture": "#knot"},
+				"east": {"uv": [0, 6, 6, 14], "texture": "#knot"},
+				"south": {"uv": [0, 6, 6, 14], "texture": "#knot"},
+				"west": {"uv": [0, 6, 6, 14], "texture": "#knot"},
+				"up": {"uv": [0, 0, 6, 6], "texture": "#knot"},
+				"down": {"uv": [0, 0, 6, 6], "texture": "#knot"}
 			}
 		}
 	]

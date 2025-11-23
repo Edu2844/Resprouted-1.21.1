@@ -26,12 +26,12 @@ import org.jetbrains.annotations.Nullable;
 public class BrewingBarrelBlock extends BlockWithEntity {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     private static final VoxelShape NORTH_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(2, 4, 1, 14, 16, 15),
-            Block.createCuboidShape(2, 0, 2, 14, 4, 14)
+            Block.createCuboidShape(1.0, 2.0, 1.0, 15.0, 16.0, 15.0),
+            Block.createCuboidShape(1.0, 0.0, 3.0, 15.0, 2.0, 13.0)
     );
     private static final VoxelShape EAST_SHAPE = VoxelShapes.union(
-            Block.createCuboidShape(1, 4, 2, 15, 16, 14),
-            Block.createCuboidShape(2, 0, 2, 14, 4, 14)
+            Block.createCuboidShape(1.0, 2.0, 1.0, 15.0, 16.0, 15.0),
+            Block.createCuboidShape(3.0, 0.0, 1.0, 13.0, 2.0, 15.0)
     );
     public static final MapCodec<BrewingBarrelBlock> CODEC = BrewingBarrelBlock.createCodec(BrewingBarrelBlock::new);
 

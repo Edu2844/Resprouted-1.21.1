@@ -10,6 +10,7 @@ import net.edu.resprouted.resource.reload.FluidContainerLoader;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.*;
@@ -17,6 +18,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -86,157 +88,65 @@ public class CrushingTubBlock extends BlockWithEntity {
             return ItemActionResult.FAIL;
         }
 
-        //FLUID LOGIC//
-        var j = FluidStorage.SIDED.find(world, pos, hit.getSide());
-        boolean hasFluid = false;
+        Storage<FluidVariant> fluidStorage = FluidStorage.SIDED.find(world, pos, hit.getSide());
+        boolean hasFluid = hasFluidInStorage(fluidStorage);
 
-        if (j != null) {
-            for (StorageView<FluidVariant> view : j) {
+        if (hasFluid) {
+            ItemActionResult fluidResult = FluidInteractionHelper.onFluidStorageUse(player, stack, fluidStorage, world, pos, false, true
+            );
 
-                if (!view.isResourceBlank() && view.getAmount() > 0) {
-                    hasFluid = true;
-
-                    break;
-                }
-            }
-
-            ItemActionResult result;
-            if (hasFluid) {
-                result = FluidInteractionHelper.onFluidStorageUse(player, stack, j, world, pos, false, true);
-
-                if (result == ItemActionResult.SUCCESS) {
-
-                    ct.markDirty();
-                    world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
-
-                    return ItemActionResult.CONSUME;
-                }
+            if (fluidResult == ItemActionResult.SUCCESS) {
+                updateBlock(ct, world, pos, state);
+                return ItemActionResult.CONSUME;
             }
         }
 
-        //INVENTORY LOGIC//
-        ItemStack k = ct.getStack(0);
+        ItemStack stored = ct.getStack(0);
+        boolean isHoldingFluidContainer = isFluidContainer(stack);
+
+        if (hasFluid && isHoldingFluidContainer) {
+            return ItemActionResult.FAIL;
+        }
 
         if (stack.isEmpty()) {
-            //Extract ítem
-            if (!k.isEmpty()) {
-                player.getInventory().offerOrDrop(k.copy());
-                ct.setStack(0, ItemStack.EMPTY);
-
-                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1.5f);
-
-                ct.markDirty();
-                world.updateListeners(pos, state, state, 0);
-
-                return ItemActionResult.SUCCESS;
-            }
+            return handleItemExtraction(ct, world, pos, state, player, stored);
         } else {
-            //Insert ítem
-            boolean isFluidContainer = isFluidContainer(stack);
-
-            if (!(hasFluid && isFluidContainer)) {
-
-                if (k.isEmpty()) {
-                    ct.setStack(0, stack.copy());
-                    player.setStackInHand(hand, ItemStack.EMPTY);
-
-                    world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
-
-                    ct.markDirty();
-                    world.updateListeners(pos, state, state, 0);
-
-                    return ItemActionResult.SUCCESS;
-
-                } else if (ItemStack.areItemsAndComponentsEqual(k, stack)) {
-                    int maxTransfer = Math.min(stack.getCount(), k.getMaxCount() - k.getCount());
-
-                    if (maxTransfer > 0) {
-                        k.increment(maxTransfer);
-                        stack.decrement(maxTransfer);
-
-                        world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
-
-                        ct.markDirty();
-                        world.updateListeners(pos, state, state, 0);
-
-                        return ItemActionResult.SUCCESS;
-                    }
-                }
-            }
+            return handleItemInsertion(ct, world, pos, state, player, hand, stack, stored);
         }
-
-        return ItemActionResult.FAIL;
     }
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         entity.handleFallDamage(fallDistance, 1.0F, entity.getDamageSources().fall());
-        if (!(entity instanceof PlayerEntity)) return;
+        if (!(entity instanceof PlayerEntity) || world.isClient) return;
 
         BlockEntity be = world.getBlockEntity(pos);
         if (!(be instanceof CrushingTubBlockEntity ct)) return;
 
-        ItemStack l = ct.getStack(0);
-        if (l.isEmpty()) return;
+        ItemStack input = ct.getStack(0);
+        if (input.isEmpty()) return;
 
         Optional<CrushingTubRecipe> m = ct.findMatchingRecipe();
         if (m.isEmpty()) return;
 
         CrushingTubRecipe recipe = m.get();
-        FluidVariant recipeFluid  = recipe.fluidOutput();
+        FluidVariant recipeFluid = recipe.fluidOutput();
         FluidVariant currentFluid = ct.getFluidStorage().getResource();
         long currentAmount = ct.getFluidStorage().getAmount();
 
         boolean canInsertFluid = recipeFluid.isBlank() || currentFluid.isBlank() || currentFluid.equals(recipeFluid);
         boolean overCapacity = !recipeFluid.isBlank() && (currentAmount + recipe.fluidAmount() > FluidConstants.BUCKET * 8);
-
         if (!canInsertFluid || overCapacity) return;
 
-        ItemStack n = l.copyWithCount(1);
-
-        //Crushing
-        try (Transaction tx = Transaction.openOuter()) {
-            boolean shouldCommit = true;
-
-            if (!recipeFluid.isBlank() && recipe.fluidAmount() > 0) {
-                long inserted = ct.getFluidStorage().insert(recipeFluid, recipe.fluidAmount(), tx);
-
-                if (inserted != recipe.fluidAmount()) shouldCommit = false;
-            }
-            if (shouldCommit) {
-                ct.removeStack(0, 1);
-                tx.commit();
-
-            } else return;
-        }
+        if (!processCrushing(ct, recipe)) return;
 
         ct.markDirty();
         world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
-
-        if (world instanceof ServerWorld server && !world.isClient) {
+        if (world instanceof ServerWorld server) {
             server.getChunkManager().markForUpdate(pos);
         }
 
-        SoundEvent crushSound = (l.getItem() == Items.GRAVEL) ? SoundEvents.BLOCK_GRAVEL_BREAK : SoundEvents.BLOCK_SLIME_BLOCK_FALL;
-        world.playSound(null, pos, crushSound, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
-        if (world instanceof ServerWorld serverWorld && !n.isEmpty()) {
-            serverWorld.spawnParticles(new ItemStackParticleEffect
-                    (ParticleTypes.ITEM, n), pos.getX() + 0.5, pos.getY() + 0.6,
-                    pos.getZ() + 0.5, 5, 0.2, 0.1, 0.2, 0.05);
-        }
-
-        if (!world.isClient && recipe.outputItem() != null && !recipe.outputItem().isEmpty()) {
-
-            if (world.random.nextInt(100) < recipe.outputChance()) {
-
-                ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, recipe.outputItem().copy());
-
-                item.setVelocity(world.random.nextTriangular(0.0, 0.1), 0.2, world.random.nextTriangular(0.0, 0.1));
-
-                world.spawnEntity(item);
-            }
-        }
+        playEffects(world, pos, input, recipe);
     }
 
     @Override
@@ -258,6 +168,111 @@ public class CrushingTubBlock extends BlockWithEntity {
         }
 
         return false;
+    }
+
+    private boolean hasFluidInStorage(Storage<FluidVariant> storage) {
+        if (storage == null) return false;
+
+        for (StorageView<FluidVariant> view : storage) {
+            if (!view.isResourceBlank() && view.getAmount() > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private ItemActionResult handleItemExtraction(CrushingTubBlockEntity ct, World world, BlockPos pos, BlockState state, PlayerEntity player, ItemStack stored) {
+        if (stored.isEmpty()) return ItemActionResult.FAIL;
+
+        player.getInventory().offerOrDrop(stored.copy());
+        ct.setStack(0, ItemStack.EMPTY);
+
+        world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1.5f);
+        updateBlock(ct, world, pos, state);
+
+        return ItemActionResult.SUCCESS;
+    }
+
+    private ItemActionResult handleItemInsertion(CrushingTubBlockEntity ct, World world, BlockPos pos, BlockState state, PlayerEntity player, Hand hand, ItemStack stack, ItemStack stored) {
+        if (stored.isEmpty()) {
+
+            //Insert items
+            ct.setStack(0, stack.copy());
+            player.setStackInHand(hand, ItemStack.EMPTY);
+
+            world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
+            updateBlock(ct, world, pos, state);
+
+            return ItemActionResult.SUCCESS;
+
+        } else if (ItemStack.areItemsAndComponentsEqual(stored, stack)) {
+
+            //Stack items
+            int maxTransfer = Math.min(stack.getCount(), stored.getMaxCount() - stored.getCount());
+
+            if (maxTransfer > 0) {
+                stored.increment(maxTransfer);
+                stack.decrement(maxTransfer);
+
+                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8f, 1f);
+                updateBlock(ct, world, pos, state);
+
+                return ItemActionResult.SUCCESS;
+            }
+        }
+
+        return ItemActionResult.FAIL;
+    }
+
+    private void updateBlock(CrushingTubBlockEntity ct, World world, BlockPos pos, BlockState state) {
+        ct.markDirty();
+        world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
+    }
+
+    private boolean processCrushing(CrushingTubBlockEntity ct, CrushingTubRecipe recipe) {
+        try (Transaction tx = Transaction.openOuter()) {
+            FluidVariant recipeFluid = recipe.fluidOutput();
+
+            if (!recipeFluid.isBlank() && recipe.fluidAmount() > 0) {
+                long inserted = ct.getFluidStorage().insert(recipeFluid, recipe.fluidAmount(), tx);
+                if (inserted != recipe.fluidAmount()) return false;
+            }
+
+            ct.removeStack(0, 1);
+            tx.commit();
+            return true;
+        }
+    }
+
+    private void playEffects(World world, BlockPos pos, ItemStack input, CrushingTubRecipe recipe) {
+        SoundEvent crushSound = (input.getItem() == Items.GRAVEL) ? SoundEvents.BLOCK_GRAVEL_BREAK : SoundEvents.BLOCK_SLIME_BLOCK_FALL;
+        world.playSound(null, pos, crushSound, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+        if (!(world instanceof ServerWorld serverWorld)) return;
+
+        ItemStack particleStack = input.copyWithCount(1);
+        serverWorld.spawnParticles(new ItemStackParticleEffect(ParticleTypes.ITEM, particleStack), pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5,
+                5, 0.2, 0.1, 0.2, 0.05
+        );
+
+        spawnOutputItem(serverWorld, pos, recipe);
+    }
+
+    private void spawnOutputItem(ServerWorld world, BlockPos pos, CrushingTubRecipe recipe) {
+        if (recipe.outputItem() == null || recipe.outputItem().isEmpty()) return;
+        if (world.random.nextInt(100) >= recipe.outputChance()) return;
+
+        float midHeight = EntityType.ITEM.getHeight() / 2.0F;
+        double x = pos.getX() + 0.5 + world.random.nextDouble() * 0.5 - 0.25;
+        double y = pos.getY() + 0.5 + world.random.nextDouble() * 0.5 - 0.25 - midHeight;
+        double z = pos.getZ() + 0.5 + world.random.nextDouble() * 0.5 - 0.25;
+
+        ItemEntity item = new ItemEntity(world, x, y, z, recipe.outputItem().copy());
+        item.setVelocity(world.random.nextTriangular(0.0, 0.1), 0.2 + world.random.nextDouble() * 0.1,
+                world.random.nextTriangular(0.0, 0.1)
+        );
+        item.setPickupDelay(10);
+        world.spawnEntity(item);
     }
 }
 

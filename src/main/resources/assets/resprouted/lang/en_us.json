@@ -13,7 +13,7 @@
   "item.resprouted.chili_pepper_seeds": "Chili Pepper Seeds",
   "item.resprouted.ghost_pepper": "Ghost Pepper",
   "item.resprouted.iron_berries": "Iron Berries",
-  "item.resprouted.blue_berries": "Blueberries",
+  "item.resprouted.test_berries": "Test Berries [WIP]",
   "item.resprouted.copper_nugget": "Copper Nugget",
   "item.resprouted.grapes": "Grapes",
   "item.resprouted.grape_seeds": "Grape Seeds",
@@ -730,7 +730,7 @@
   "block.resprouted.advanced_condenser": "Advanced Condenser",
   "block.resprouted.advanced_retort": "Advanced Retort",
   "block.resprouted.iron_berry_cake": "Iron Berry Cake",
-  "block.resprouted.blue_berry_bush": "Blue Berry Bush",
+  "block.resprouted.test_berry_bush": "Test Berry Bush",
 
   "container.resprouted.cabinet_double": "Large Cabinet",
   "container.resprouted.cabinet": "Cabinet",
@@ -904,23 +904,53 @@
   "text.resprouted.herbs.desc4": "Horsetail: spawns in jungle, swamp, plains and forest biomes. \n\nMarsh mallow: spawns in jungle and swamp biomes. It is edible. \n\nMooncap mushroom: spawns in jungle biomes and caves. \n\nWind thistle: spawns in mountain and plains biomes.",
   "text.resprouted.herbs.desc5": "Vanta lily: spawns in plains and forest biomes. It can be crushed into vanta oil.",
 
-
   "text.category.resprouted.decoration": "Decoration",
 
+  "entry.resprouted.liquid_barrel": "Liquid Barrel",
+  "text.resprouted.liquid_barrel.desc": "Liquid barrels can store up to 16 buckets of liquid and keep their contents even when broken. They only accept liquids that are not gaseous and remain below a certain temperature. If left in the rain, they will gradually fill with water.",
+
   "entry.resprouted.cabinets": "Cabinets",
-  "page.resprouted.cabinets.desc": "Description 1 of Cabinets",
+  "text.resprouted.cabinets.desc1": "Cabinets are a decorative storage alternative to chests. They can be oriented or mirrored for flexible placement. If you place one cabinet on top of another with the same orientation, they will combine into a double cabinet.",
+  "text.resprouted.cabinets.desc2": "A double cabinet has the same storage capacity as a large chest. Cabinets can only be opened from their front side.",
 
   "entry.resprouted.rope": "Rope",
-  "page.resprouted.rope.desc": "Description 1 of Rope",
+  "text.resprouted.rope.desc1": "Rope serves as a ladder replacement, decoration, and grapevine support. It attaches horizontally to solid blocks or hangs vertically from solid blocks or other ropes.",
+  "text.resprouted.rope.desc2": "To extend a rope vertically, use a rope on an existing rope block to place a new segment below it. Dispensers with rope can automate this extension when aimed at a rope block. Ropes can also be tied to crop stakes, which then function as anchor points. Shooting a rope with an arrow breaks it.",
 
-  "entry.resprouted.golden_chain": "Golden Chain",
-  "page.resprouted.golden_chain.desc": "Description 1 of Golden Chain",
+  "entry.resprouted.chains": "Chains",
+  "text.resprouted.chains.desc": "Chains are a scalable alternative to the vanilla ones. They can be extended vertically by using a chain on an existing one to place another below it. They are available in gold and copper variants.",
 
-  "entry.resprouted.table": "Table",
-  "page.resprouted.table.desc": "Description 1 of Table",
+  "entry.resprouted.candle_holder": "Candle Holders",
+  "text.resprouted.candle_holder.desc1": "Candle Holders are decorative light sources that can be placed on any side of solid blocks, similar to torches. They are crafted with a candle, a nugget, and an ingot of either iron, gold, or copper.",
+  "text.resprouted.candle_holder.desc2": "The copper variant possesses all the properties of a vanilla copper block, including oxidation. They look especially nice when placed on the sides of a chandelier ring.",
 
-  "entry.resprouted.chair": "Chair",
-  "page.resprouted.chair.desc": "Description 1 of Chair",
+  "entry.resprouted.chandeliers": "Chandeliers",
+  "text.resprouted.chandeliers.desc1": "Chandeliers are decorative blocks that can hold torches and candles on their sides. They must be suspended from a rope, chain, or solid block above them to avoid falling.",
+  "text.resprouted.chandeliers.desc2": "A falling chandelier deals massive damage to any entity beneath it. They are available in copper, iron, and gold variants.",
+
+  "entry.resprouted.table": "Tables",
+  "text.resprouted.table.desc": "Tables are decorative blocks. The type of planks used in their crafting determines their appearance. When placed next to each other, tables connect seamlessly, with legs only appearing at the corners of the combined structure.",
+
+  "entry.resprouted.chair": "Chairs",
+  "text.resprouted.chair.desc": "Chairs are decorative blocks whose appearance is determined by the planks used to craft them. Right-click on a chair to sit in it, and sneak to get up.",
+
+  "entry.resprouted.stool": "Stools",
+  "text.resprouted.stool.desc": "Stools are decorative blocks whose appearance is determined by the planks used to craft them. Right-click on a stool to sit in it, and sneak to get up.",
+
+  "entry.resprouted.gargoyle": "Gargoyle",
+  "text.resprouted.gargoyle.desc": "Gargoyles are decorative statues of monstrous creatures that can be oriented to face any of the four cardinal directions.",
+
+  "entry.resprouted.slate": "Slate",
+  "text.resprouted.slate.desc": "Slate is a stone type found throughout the world. It can be crafted into various decorative blocks but is primarily used as a roofing material.",
+
+  "entry.resprouted.pillar": "Pillars",
+  "text.resprouted.pillar.desc": "Stone Pillars are decorative blocks that can be crafted from various stone types and oriented along any of the three axes.",
+
+  "entry.resprouted.clay_walls": "Clay Walls",
+  "text.resprouted.clay_walls.desc": "Clay Walls are an attractive building material available in three variants, each featuring a different support beam pattern.",
+
+  "entry.resprouted.painted_planks": "Painted Planks",
+  "text.resprouted.painted_planks.desc": "Painted Planks come in sixteen different colors to add more visual variety to your builds. They are crafted by surrounding a dye with any type of wood planks, yielding the painted planks in the dye's color.",
 
   "text.category.resprouted.production": "Production",
 
@@ -961,6 +991,9 @@
   "text.resprouted.alcohol.desc8": "Ambrosia: Protects the drinker from death, much like a totem of undying, though only for a limited time. The strongest ambrosia, however, lasts until death occurs. Unlike other alcoholic brews, ambrosia rarely has low quality, and higher-quality batches are generally easier to produce.",
 
   "entry.resprouted.brewing": "Brewing",
-  "text.resprouted.brewing.desc1": "Description 1 of Brewing"
+  "text.resprouted.brewing.desc1": "Brewing is the process of fermenting fluids into alcohol using a Brewing Barrel. The system uses three fluid tanks: one for the input fluid, one for the output, and an optional one for a starter culture. The starter culture must match the type of the output fluid.",
+  "text.resprouted.brewing.desc2": "Containers like buckets or bottles can be placed in the slots above each tank to fill or empty them automatically. The brewing process lasts half a day (10 minutes) and begins automatically when the input tank contains fluid and the starter culture (if used) is valid.",
+  "text.resprouted.brewing.desc3": "Brewing without a starter culture produces alcohol with a random quality between 0.05 and 0.75. To improve quality, use your best batch as a starter culture for the next brew.",
+  "text.resprouted.brewing.desc4": "Repeat this process, replacing the starter culture with higher-quality output each time, until you achieve the desired quality. The starter culture fluid is not consumed during brewing."
 
 }

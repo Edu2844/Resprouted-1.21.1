@@ -3,7 +3,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "resprouted:block/evaporating_basin",
-		"particle": "resprouted:block/evaporating_basin"
+		"particle": "block/terracotta"
 	},
 	"elements": [
 		{

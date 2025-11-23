@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -15,13 +16,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 
-public class BlueBerrieBush extends SweetBerryBushBlock {
-    public BlueBerrieBush(Settings settings) {
+public class CustomBushBlock extends SweetBerryBushBlock {
+    public CustomBushBlock(Settings settings) {
         super(settings);
     }
     @Override
     public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
-        return new ItemStack(ModItems.BLUE_BERRIES);
+        return new ItemStack(getHarvest());
     }
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
@@ -29,9 +30,8 @@ public class BlueBerrieBush extends SweetBerryBushBlock {
         boolean bl = i == 3;
         if (i > 1) {
             int j = 1 + world.random.nextInt(2);
-            dropStack(world, pos, new ItemStack(ModItems.BLUE_BERRIES, j + (bl ? 1 : 0)));
-            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES,
-                    SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+            dropStack(world, pos, new ItemStack(getHarvest(), j + (bl ? 1 : 0)));
+            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
             BlockState blockState = state.with(AGE, 1);
             world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
             world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, blockState));
@@ -39,5 +39,8 @@ public class BlueBerrieBush extends SweetBerryBushBlock {
         } else {
             return super.onUse(state, world, pos, player, hit);
         }
+    }
+    public Item getHarvest() {
+        return ModItems.TEST_BERRIES;
     }
 }

@@ -98,7 +98,7 @@ public class ResproutedClientRegistries {
         registry.putBlock(ModBlocks.APPLE_TREE, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.APPLE_SAPLING, RenderLayer.getCutout());
         //Bushes
-        registry.putBlock(ModBlocks.BLUE_BERRY_BUSH, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.TEST_BERRY_BUSH, RenderLayer.getCutout());
         //Chains
         registry.putBlock(ModBlocks.GOLDEN_CHAIN, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.COPPER_CHAIN, RenderLayer.getCutout());

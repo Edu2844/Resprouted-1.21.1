@@ -1,13 +1,12 @@
 package net.edu.resprouted.block.custom.decorative;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ChainBlock;
 import net.minecraft.block.Oxidizable;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 
-public class CopperChainBlock extends ChainBlock implements Oxidizable {
+public class CopperChainBlock extends CustomChainBlock implements Oxidizable {
     private final OxidationLevel oxidationLevel;
 
     public CopperChainBlock(OxidationLevel oxidationLevel, Settings settings) {

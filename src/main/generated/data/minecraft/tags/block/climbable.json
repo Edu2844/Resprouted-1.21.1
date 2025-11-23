@@ -1,5 +1,14 @@
 {
   "values": [
-    "resprouted:rope"
+    "resprouted:rope",
+    "resprouted:golden_chain",
+    "resprouted:copper_chain",
+    "resprouted:exposed_copper_chain",
+    "resprouted:weathered_copper_chain",
+    "resprouted:oxidized_copper_chain",
+    "resprouted:waxed_copper_chain",
+    "resprouted:waxed_exposed_copper_chain",
+    "resprouted:waxed_weathered_copper_chain",
+    "resprouted:waxed_oxidized_copper_chain"
   ]
 }

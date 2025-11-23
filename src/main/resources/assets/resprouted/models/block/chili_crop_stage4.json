@@ -1,7 +1,6 @@
 {
   "parent": "resprouted:block/crop_stake",
   "textures": {
-    "crop": "resprouted:block/crops/chili_crop_4",
-    "particle": "resprouted:block/crops/chili_crop_0"
+    "crop": "resprouted:block/crops/chili_crop_4"
   }
 }

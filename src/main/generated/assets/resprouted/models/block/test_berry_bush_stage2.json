@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "resprouted:block/bush/blue_berry_bush_stage0"
+    "cross": "resprouted:block/bush/test_berry_bush_stage2"
   }
 }

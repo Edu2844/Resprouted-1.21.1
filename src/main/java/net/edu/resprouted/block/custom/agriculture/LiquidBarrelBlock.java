@@ -90,28 +90,28 @@ public class LiquidBarrelBlock extends BlockWithEntity {
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, tooltip, type);
-        var i = stack.get(DataComponentTypes.BLOCK_ENTITY_DATA);
 
-        if (i == null)
-            return;
+        var data = stack.get(DataComponentTypes.BLOCK_ENTITY_DATA);
+        if (data == null) return;
 
-        var j = i.copyNbt().getCompound("Fluid");
-
-        if (!j.contains("variant") || !j.contains("amount"))
-            return;
+        var nbt = data.copyNbt().getCompound("Fluid");
+        if (!nbt.contains("variant") || !nbt.contains("amount")) return;
 
         try {
-            var k = FluidVariant.CODEC.parse(TOOLTIP, j.get("variant")).result().orElse(FluidVariant.blank());
+            FluidVariant fluidVariant = FluidVariant.CODEC
+                    .parse(TOOLTIP, nbt.get("variant"))
+                    .result()
+                    .orElse(FluidVariant.blank());
 
-            if (!k.isBlank()) {
-                var name = FluidVariantAttributes.getName(k);
-                long amount = FluidUtils.convertDropletsToMb(j.getLong("amount"));
+            if (fluidVariant.isBlank()) return;
 
-                tooltip.add(Text.translatable("tooltip.resprouted.fluid", name).formatted(Formatting.GOLD));
-                tooltip.add(Text.translatable("tooltip.resprouted.amount", amount).formatted(Formatting.GOLD));
-            }
-        }
-        catch (Exception e) {
+            Text fluidName = FluidVariantAttributes.getName(fluidVariant);
+            long amountMb = FluidUtils.convertDropletsToMb(nbt.getLong("amount"));
+
+            tooltip.add(Text.translatable("tooltip.resprouted.fluid", fluidName).formatted(Formatting.GOLD));
+            tooltip.add(Text.translatable("tooltip.resprouted.amount", amountMb).formatted(Formatting.GOLD));
+
+        } catch (Exception e) {
             tooltip.add(Text.translatable("tooltip.resprouted.fluid_error").formatted(Formatting.RED));
         }
     }
@@ -148,45 +148,25 @@ public class LiquidBarrelBlock extends BlockWithEntity {
 
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.isOf(newState.getBlock())) {
-            if (!world.isClient && world instanceof ServerWorld serverWorld) {
-                PlayerEntity player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 5.0, false);
-
-                boolean isCreative = player != null && player.isCreative();
-
-                if (!isCreative) {
-                    if (world.getBlockEntity(pos) instanceof LiquidBarrelBlockEntity b) {
-
-                        FluidVariant m = b.getFluidStorage().getResource();
-                        long amount = b.getFluidStorage().getAmount();
-
-                        Item o = Registries.ITEM.get(Registries.BLOCK.getId(this));
-                        ItemStack stack = new ItemStack(o);
-
-                        if (!FluidVariant.blank().equals(m) && amount > 0) {
-                            RegistryWrapper.WrapperLookup registryLookup = serverWorld.getRegistryManager();
-                            RegistryOps<NbtElement> ops = RegistryOps.of(NbtOps.INSTANCE, registryLookup);
-
-                            NbtCompound fluidNbt = new NbtCompound();
-                            FluidVariant.CODEC.encodeStart(ops, m)
-                                    .resultOrPartial(error -> System.err.println("Error al codificar FluidVariant: " + error))
-                                    .ifPresent(encoded -> fluidNbt.put("variant", encoded));
-
-                            fluidNbt.putLong("amount", amount);
-
-                            NbtCompound beTag = new NbtCompound();
-                            beTag.put("Fluid", fluidNbt);
-                            beTag.putString("id", Objects.requireNonNull(Registries.BLOCK_ENTITY_TYPE.getId(ModBlockEntities.LIQUID_BARREL_BE)).toString());
-
-                            stack.set(DataComponentTypes.BLOCK_ENTITY_DATA, NbtComponent.of(beTag));
-                        }
-
-                        ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), stack);
-                    }
-                }
-            }
+        if (state.isOf(newState.getBlock())) {
             super.onStateReplaced(state, world, pos, newState, moved);
+            return;
         }
+
+        if (world.isClient || !(world instanceof ServerWorld serverWorld)) {
+            super.onStateReplaced(state, world, pos, newState, moved);
+            return;
+        }
+
+        PlayerEntity player = world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 5.0, false);
+        boolean isCreative = player != null && player.isCreative();
+
+        if (!isCreative && world.getBlockEntity(pos) instanceof LiquidBarrelBlockEntity barrel) {
+            ItemStack barrelItem = createLiquidBarrelItem(serverWorld, barrel);
+            ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), barrelItem);
+        }
+
+        super.onStateReplaced(state, world, pos, newState, moved);
     }
 
     @Override
@@ -252,5 +232,40 @@ public class LiquidBarrelBlock extends BlockWithEntity {
         } else {
             return precipitation == Biome.Precipitation.SNOW && world.getRandom().nextFloat() < FILL_WITH_SNOW_CHANCE;
         }
+    }
+
+    private ItemStack createLiquidBarrelItem(ServerWorld world, LiquidBarrelBlockEntity barrel) {
+        FluidVariant fluid = barrel.getFluidStorage().getResource();
+        long amount = barrel.getFluidStorage().getAmount();
+
+        Item barrelItem = Registries.ITEM.get(Registries.BLOCK.getId(this));
+        ItemStack stack = new ItemStack(barrelItem);
+
+        if (fluid.isBlank() || amount <= 0) {
+            return stack;
+        }
+
+        NbtCompound blockEntityNbt = createFluidNbt(world, fluid, amount);
+        stack.set(DataComponentTypes.BLOCK_ENTITY_DATA, NbtComponent.of(blockEntityNbt));
+
+        return stack;
+    }
+
+    private NbtCompound createFluidNbt(ServerWorld world, FluidVariant fluid, long amount) {
+        RegistryWrapper.WrapperLookup registryLookup = world.getRegistryManager();
+        RegistryOps<NbtElement> ops = RegistryOps.of(NbtOps.INSTANCE, registryLookup);
+
+        NbtCompound fluidNbt = new NbtCompound();
+        FluidVariant.CODEC.encodeStart(ops, fluid)
+                .resultOrPartial(error -> System.err.println("Error encoding FluidVariant: " + error))
+                .ifPresent(encoded -> fluidNbt.put("variant", encoded));
+
+        fluidNbt.putLong("amount", amount);
+
+        NbtCompound blockEntityNbt = new NbtCompound();
+        blockEntityNbt.put("Fluid", fluidNbt);
+        blockEntityNbt.putString("id", Objects.requireNonNull(Registries.BLOCK_ENTITY_TYPE.getId(ModBlockEntities.LIQUID_BARREL_BE)).toString());
+
+        return blockEntityNbt;
     }
 }

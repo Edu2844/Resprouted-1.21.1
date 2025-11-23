@@ -25,7 +25,7 @@ import java.util.Random;
 @SuppressWarnings("unused")
 public class EvaporatingBasinRenderer implements BlockEntityRenderer<EvaporatingBasinBlockEntity> {
 
-    public EvaporatingBasinRenderer(Context context) {
+    public EvaporatingBasinRenderer(Context ctx) {
     }
 
     @Override

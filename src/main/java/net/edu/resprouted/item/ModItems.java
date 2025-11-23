@@ -86,7 +86,7 @@ public class ModItems {
     // ||                AGRICULTURE                  ||
     // =================================================
     public static final Item APPLE_SEEDS = registerItem("apple_seeds", new AliasedBlockItem(ModBlocks.APPLE_TREE,new Item.Settings()));
-    public static final Item BLUE_BERRIES = registerItem("blue_berries", new AliasedBlockItem(ModBlocks.BLUE_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.BLUE_BERRIES)));
+    public static final Item TEST_BERRIES = registerItem("test_berries", new AliasedBlockItem(ModBlocks.TEST_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.TEST_BERRIES)));
     public static final Item COPPER_NUGGET = registerItem("copper_nugget", new Item(new Item.Settings()));
     public static final Item CHILI_PEPPER_SEEDS = registerItem("chili_pepper_seeds", new Item(new Item.Settings()));
     public static final Item GOLDEN_DUST = registerItem("golden_dust", new Item(new Item.Settings()));

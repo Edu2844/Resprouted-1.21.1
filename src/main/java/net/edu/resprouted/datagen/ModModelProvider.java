@@ -1,7 +1,7 @@
 package net.edu.resprouted.datagen;
 
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.block.custom.agriculture.BlueBerrieBush;
+import net.edu.resprouted.block.custom.agriculture.CustomBushBlock;
 import net.edu.resprouted.block.custom.agriculture.CustomMushroomBlock;
 import net.edu.resprouted.block.custom.agriculture.HerbBlock;
 import net.edu.resprouted.item.ModItems;
@@ -233,8 +233,8 @@ public class ModModelProvider extends FabricModelProvider {
         // =================================================
         // ||                   BUSHES                    ||
         // =================================================
-        blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.BLUE_BERRY_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED,
-                BlueBerrieBush.AGE, 0, 1, 2, 3);
+        blockStateModelGenerator.registerTintableCrossBlockStateWithStages(ModBlocks.TEST_BERRY_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED,
+                CustomBushBlock.AGE, 0, 1, 2, 3);
 
         // =================================================
         // ||             COPPER CANDLE HOLDER            ||

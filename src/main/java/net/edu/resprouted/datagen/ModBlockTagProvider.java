@@ -615,6 +615,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.STAKE)
                 .add(ModBlocks.CRUSHING_TUB)
                 .add(ModBlocks.LIQUID_BARREL)
+                .add(ModBlocks.BREWING_BARREL)
 
         ;
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
@@ -669,6 +670,15 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         ;
         getOrCreateTagBuilder(BlockTags.CLIMBABLE)
                 .add(ModBlocks.ROPE)
+                .add(ModBlocks.GOLDEN_CHAIN)
+                .add(ModBlocks.COPPER_CHAIN)
+                .add(ModBlocks.EXPOSED_COPPER_CHAIN)
+                .add(ModBlocks.WEATHERED_COPPER_CHAIN)
+                .add(ModBlocks.OXIDIZED_COPPER_CHAIN)
+                .add(ModBlocks.WAXED_COPPER_CHAIN)
+                .add(ModBlocks.WAXED_EXPOSED_COPPER_CHAIN)
+                .add(ModBlocks.WAXED_WEATHERED_COPPER_CHAIN)
+                .add(ModBlocks.WAXED_OXIDIZED_COPPER_CHAIN)
         ;
         getOrCreateTagBuilder(ModTags.Blocks.PRESERVES_FARMLAND)
                 .add(ModBlocks.STAKE)

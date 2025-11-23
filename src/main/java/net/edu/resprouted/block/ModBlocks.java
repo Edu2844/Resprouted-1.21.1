@@ -450,7 +450,7 @@ public class ModBlocks {
     // ||                  CHAINS                     ||
     // =================================================
     public static final Block GOLDEN_CHAIN = registerBlock("golden_chain",
-            new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+            new CustomChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
     public static final Block COPPER_CHAIN = registerBlock("copper_chain",
             new CopperChainBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.CHAIN)));
     public static final Block EXPOSED_COPPER_CHAIN = registerBlock("exposed_copper_chain",
@@ -460,10 +460,10 @@ public class ModBlocks {
     public static final Block OXIDIZED_COPPER_CHAIN = registerBlock("oxidized_copper_chain",
             new CopperChainBlock(Oxidizable.OxidationLevel.OXIDIZED, AbstractBlock.Settings.copy(Blocks.CHAIN)));
     //WAXED
-    public static final Block WAXED_COPPER_CHAIN = registerBlock("waxed_copper_chain", new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
-    public static final Block WAXED_EXPOSED_COPPER_CHAIN = registerBlock("waxed_exposed_copper_chain", new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
-    public static final Block WAXED_OXIDIZED_COPPER_CHAIN = registerBlock("waxed_oxidized_copper_chain", new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
-    public static final Block WAXED_WEATHERED_COPPER_CHAIN = registerBlock("waxed_weathered_copper_chain", new ChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block WAXED_COPPER_CHAIN = registerBlock("waxed_copper_chain", new CustomChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block WAXED_EXPOSED_COPPER_CHAIN = registerBlock("waxed_exposed_copper_chain", new CustomChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block WAXED_OXIDIZED_COPPER_CHAIN = registerBlock("waxed_oxidized_copper_chain", new CustomChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block WAXED_WEATHERED_COPPER_CHAIN = registerBlock("waxed_weathered_copper_chain", new CustomChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
 
     // =================================================
     // ||                   LANTERNS                  ||
@@ -1422,8 +1422,8 @@ public class ModBlocks {
     // =================================================
     // ||                   BUSHES                    ||
     // =================================================
-    public static final Block BLUE_BERRY_BUSH = registerBlockWithoutBlockItem("blue_berry_bush",
-            new BlueBerrieBush(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)));
+    public static final Block TEST_BERRY_BUSH = registerBlockWithoutBlockItem("test_berry_bush",
+            new CustomBushBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH)));
 
     // =================================================
     // ||                  ALCHEMY                    ||

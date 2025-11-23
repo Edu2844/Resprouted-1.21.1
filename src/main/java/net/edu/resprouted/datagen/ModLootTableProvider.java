@@ -1,7 +1,7 @@
 package net.edu.resprouted.datagen;
 
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.block.custom.agriculture.BlueBerrieBush;
+import net.edu.resprouted.block.custom.agriculture.CustomBushBlock;
 import net.edu.resprouted.block.custom.agriculture.CustomMushroomBlock;
 import net.edu.resprouted.block.custom.agriculture.HerbBlock;
 import net.edu.resprouted.item.ModItems;
@@ -208,6 +208,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.STAKE);
         addDrop(ModBlocks.CRUSHING_TUB);
         addDrop(ModBlocks.EVAPORATING_BASIN);
+        addDrop(ModBlocks.BREWING_BARREL);
 
         //ALCHEMY
         addDrop(ModBlocks.CONDENSER);
@@ -672,17 +673,17 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         this.addDrop(ModBlocks.CORE_ROOT, this.cropDrops(ModBlocks.CORE_ROOT, ModItems.CORE_ROOT, ModItems.CORE_ROOT, builder14));
 
         //BUSH
-        this.addDrop(ModBlocks.BLUE_BERRY_BUSH,
+        this.addDrop(ModBlocks.TEST_BERRY_BUSH,
                 block -> this.applyExplosionDecay(
                         block, LootTable.builder().pool(LootPool.builder().conditionally(
-                                                BlockStatePropertyLootCondition.builder(ModBlocks.BLUE_BERRY_BUSH).properties(StatePredicate.Builder.create().exactMatch(BlueBerrieBush.AGE, 3))
+                                                BlockStatePropertyLootCondition.builder(ModBlocks.TEST_BERRY_BUSH).properties(StatePredicate.Builder.create().exactMatch(CustomBushBlock.AGE, 3))
                                         )
-                                        .with(ItemEntry.builder(ModItems.BLUE_BERRIES))
+                                        .with(ItemEntry.builder(ModItems.TEST_BERRIES))
                                         .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 3.0F)))
                                         .apply(ApplyBonusLootFunction.uniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE)))
                         ).pool(LootPool.builder().conditionally(
-                                        BlockStatePropertyLootCondition.builder(ModBlocks.BLUE_BERRY_BUSH).properties(StatePredicate.Builder.create().exactMatch(BlueBerrieBush.AGE, 2))
-                                ).with(ItemEntry.builder(ModItems.BLUE_BERRIES))
+                                        BlockStatePropertyLootCondition.builder(ModBlocks.TEST_BERRY_BUSH).properties(StatePredicate.Builder.create().exactMatch(CustomBushBlock.AGE, 2))
+                                ).with(ItemEntry.builder(ModItems.TEST_BERRIES))
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)))
                                 .apply(ApplyBonusLootFunction.uniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE))))));
 

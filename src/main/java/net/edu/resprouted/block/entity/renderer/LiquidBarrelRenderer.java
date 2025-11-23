@@ -16,7 +16,7 @@ import org.joml.Matrix4f;
 @SuppressWarnings("unused")
 public class LiquidBarrelRenderer implements BlockEntityRenderer<LiquidBarrelBlockEntity> {
 
-    public LiquidBarrelRenderer(Context context) {
+    public LiquidBarrelRenderer(Context ctx) {
     }
 
     @Override
@@ -30,7 +30,7 @@ public class LiquidBarrelRenderer implements BlockEntityRenderer<LiquidBarrelBlo
         light = getLightLevel(entity.getWorld(), entity.getPos());
 
         float fillPercentage = entity.getFluidHeight(tickDelta);
-        float heightMultiplier = 0.937f;
+        float heightMultiplier = 0.877f; //0.937 full
         float minHeight = 0.0625f;
         float fluidHeight = minHeight + fillPercentage * heightMultiplier;
 

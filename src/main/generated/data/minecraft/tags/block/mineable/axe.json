@@ -82,6 +82,7 @@
     "resprouted:yellow_painted_planks",
     "resprouted:stake",
     "resprouted:crushing_tub",
-    "resprouted:liquid_barrel"
+    "resprouted:liquid_barrel",
+    "resprouted:brewing_barrel"
   ]
 }

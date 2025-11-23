@@ -92,4 +92,4 @@ public class GlassBottleItemMixin {
         }
     }
 }
-//No se que diablos hice, pero evita que aparezcan botellas de agua con las botellas custom
+//No se que diablos hice, pero evita que aparezcan botellas de agua al intentar llenar botellas de vidrio con fluidos custom, si alguien conoce una mejor manera, comunicarse conmigo.

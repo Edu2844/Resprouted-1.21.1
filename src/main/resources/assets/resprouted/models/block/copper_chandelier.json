@@ -1,8 +1,7 @@
 {
     "parent": "resprouted:block/chandelier",
     "textures": {
-		"1": "resprouted:block/copper_chain",
-		"particle": "resprouted:block/copper_chandelier",
+		"chain": "resprouted:block/copper_chain",
 		"chandelier": "resprouted:block/copper_chandelier"
     }
 }
