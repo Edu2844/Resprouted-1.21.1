@@ -1,0 +1,28 @@
+{
+  "parent": "resprouted:main/craft_brewing_barrel",
+  "display": {
+    "icon": {
+      "id": "resprouted:ambrosia_bottle"
+    },
+    "title": {
+      "translate": "advancement.resprouted.the_good_stuff"
+    },
+    "description": {
+      "translate": "advancement.resprouted.the_good_stuff.desc"
+    },
+    "frame": "challenge",
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "high_quality_booze": {
+      "trigger": "fluid_quality_inventory",
+      "conditions": {
+        "quality": {
+          "min": 0.899
+        },
+        "items": "#resprouted:booze_bottles"
+      }
+    }
+  },
+  "sends_telemetry_event": true
+}

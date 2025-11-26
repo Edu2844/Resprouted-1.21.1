@@ -16,6 +16,7 @@ import java.util.List;
 
 public class BoozeEffects {
 
+    //Ale
     public static void applyAleEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -31,6 +32,7 @@ public class BoozeEffects {
         }
     }
 
+    //Iron Wine
     public static void applyIronWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         World world = context.world();
@@ -60,6 +62,7 @@ public class BoozeEffects {
         }
     }
 
+    //Cider
     public static void applyCiderEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -79,6 +82,7 @@ public class BoozeEffects {
         }
     }
 
+    //Mead
     public static void applyMeadEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -98,6 +102,7 @@ public class BoozeEffects {
         }
     }
 
+    //Sweet Berry Wine
     public static void applySweetBerryWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -145,6 +150,7 @@ public class BoozeEffects {
         }
     }
 
+    //Wine
     public static void applyWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -198,6 +204,7 @@ public class BoozeEffects {
         }
     }
 
+    //Ambrosia
     public static void applyAmbrosiaEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -219,6 +226,7 @@ public class BoozeEffects {
         }
     }
 
+    //Glow Berry Wine
     public static void applyGlowBerryWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -281,6 +289,7 @@ public class BoozeEffects {
         }
     }
 
+    //Rum
     public static void applyRumEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();

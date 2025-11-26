@@ -1,5 +1,6 @@
 package net.edu.resprouted;
 
+import net.edu.resprouted.advancement.criterion.ModCriteria;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.book.CatalogData;
@@ -50,7 +51,6 @@ public class Resprouted implements ModInitializer {
 		return FabricLoader.getInstance().isModLoaded(modId);
 	}
 
-
 	@Override
 	public void onInitialize() {
 		Resprouted.CONFIG = ResproutedConfiguration.load();
@@ -75,6 +75,7 @@ public class Resprouted implements ModInitializer {
 		ModMessages.registerC2SPackets();
 		ModScreenHandlers.registerScreenHandlers();
 		ModDataComponentTypes.registerDataComponentTypes();
+		ModCriteria.registerModCriteria();
 		DispenserBlock.registerBehavior((ModBlocks.ROPE.asItem()), new RopeDispenser());
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new FluidContainerLoader());
 

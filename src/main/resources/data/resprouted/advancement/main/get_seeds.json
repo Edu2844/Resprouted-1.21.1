@@ -1,0 +1,55 @@
+{
+  "parent": "resprouted:main/get_catalog",
+  "criteria": {
+    "tomato_seeds": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:tomato_seeds"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "chili_pepper_seeds": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:chili_pepper_seeds"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "grape_seeds": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:grape_seeds"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.resprouted.get_seeds.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "resprouted:chili_pepper_seeds"
+    },
+    "title": {
+      "translate": "advancement.resprouted.get_seeds"
+    }
+  },
+  "requirements": [
+    [
+      "tomato_seeds",
+      "chili_pepper_seeds",
+      "grape_seeds"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

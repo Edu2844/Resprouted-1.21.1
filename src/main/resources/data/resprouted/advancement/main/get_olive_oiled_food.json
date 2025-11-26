@@ -1,0 +1,32 @@
+{
+  "parent": "resprouted:main/get_seeds",
+  "display": {
+    "icon": {
+      "id": "resprouted:olive_oil_bottle"
+    },
+    "title": {
+      "translate": "advancement.resprouted.get_olive_oiled_food"
+    },
+    "description": {
+      "translate": "advancement.resprouted.get_olive_oiled_food.desc"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "olive_oiled": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "#resprouted:can_be_oiled",
+            "nbt": "{\"components\":{\"resprouted:olive_oiled\":1}}"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["olive_oiled"]
+  ],
+  "sends_telemetry_event": true
+}

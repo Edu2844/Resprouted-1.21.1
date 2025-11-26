@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "consume_item": {
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "resprouted:textures/block/ironwood/ironwood_planks.png",
+    "description": {
+      "translate": "advancement.resprouted.root.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "resprouted:iron_berries"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "Resprouted"
+    }
+  },
+  "requirements": [
+    [
+      "consume_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

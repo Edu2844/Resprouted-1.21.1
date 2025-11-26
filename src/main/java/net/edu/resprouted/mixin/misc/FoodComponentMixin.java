@@ -1,4 +1,4 @@
-package net.edu.resprouted.mixin.gameplay;
+package net.edu.resprouted.mixin.misc;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.component.ModDataComponentTypes;

@@ -1,0 +1,33 @@
+{
+  "parent": "resprouted:main/get_fertile_soil",
+  "criteria": {
+    "eat_ghost_pepper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:ghost_pepper"
+          }
+        ]
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.resprouted.eat_ghost_pepper.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "resprouted:ghost_pepper"
+    },
+    "title": {
+      "translate": "advancement.resprouted.eat_ghost_pepper"
+    }
+  },
+  "requirements": [
+    [
+      "eat_ghost_pepper"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

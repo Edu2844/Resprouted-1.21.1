@@ -1,0 +1,33 @@
+{
+  "parent": "resprouted:main/craft_basic_condenser",
+  "criteria": {
+    "craft_advanced_condenser": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:advanced_condenser"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.resprouted.advanced_condenser.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "resprouted:advanced_condenser"
+    },
+    "title": {
+      "translate": "advancement.resprouted.advanced_condenser"
+    }
+  },
+  "requirements": [
+    [
+      "craft_advanced_condenser"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

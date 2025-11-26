@@ -1,0 +1,33 @@
+{
+  "parent": "resprouted:main/get_catalog",
+  "criteria": {
+    "craft_condenser": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:condenser"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.resprouted.condenser.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "resprouted:condenser"
+    },
+    "title": {
+      "translate": "advancement.resprouted.condenser"
+    }
+  },
+  "requirements": [
+    [
+      "craft_condenser"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

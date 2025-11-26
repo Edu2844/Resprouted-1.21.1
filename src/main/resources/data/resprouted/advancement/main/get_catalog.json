@@ -1,0 +1,33 @@
+{
+  "parent": "resprouted:main/root",
+  "criteria": {
+    "catalog": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:catalog"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.resprouted.get_catalog.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "resprouted:catalog"
+    },
+    "title": {
+      "translate": "advancement.resprouted.get_catalog"
+    }
+  },
+  "requirements": [
+    [
+      "catalog"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

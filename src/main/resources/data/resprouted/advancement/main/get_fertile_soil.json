@@ -1,0 +1,33 @@
+{
+  "parent": "resprouted:main/get_seeds",
+  "criteria": {
+    "get_fertile_soil": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:fertile_soil"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.resprouted.get_fertile_soil.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "resprouted:fertile_soil"
+    },
+    "title": {
+      "translate": "advancement.resprouted.get_fertile_soil"
+    }
+  },
+  "requirements": [
+    [
+      "get_fertile_soil"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

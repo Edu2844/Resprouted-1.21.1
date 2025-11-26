@@ -1,0 +1,34 @@
+{
+  "parent": "resprouted:main/get_fertile_soil",
+  "criteria": {
+    "apple_tree": {
+      "conditions": {
+        "location": [
+          {
+            "block": "resprouted:apple_tree",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.resprouted.place_apple_tree.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:apple"
+    },
+    "title": {
+      "translate": "advancement.resprouted.place_apple_tree"
+    }
+  },
+  "requirements": [
+    [
+      "apple_tree"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

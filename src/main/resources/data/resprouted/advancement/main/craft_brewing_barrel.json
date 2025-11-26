@@ -1,0 +1,33 @@
+{
+  "parent": "resprouted:main/get_catalog",
+  "criteria": {
+    "craft_brewing_barrel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:brewing_barrel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.resprouted.brewing_barrel.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "resprouted:brewing_barrel"
+    },
+    "title": {
+      "translate": "advancement.resprouted.brewing_barrel"
+    }
+  },
+  "requirements": [
+    [
+      "craft_brewing_barrel"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

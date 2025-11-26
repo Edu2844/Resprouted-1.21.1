@@ -41,6 +41,7 @@
   "item.resprouted.spicy_lamb_stew": "Spicy Lamb Stew",
   "item.resprouted.iron_berry_cake_slice": "Iron Berry Cake Slice",
   "item.resprouted.honey_glazed_carrots": "Honey Glazed Carrots",
+
   "item.resprouted.honey_bucket": "Honey Bucket",
   "item.resprouted.apple_juice_bucket": "Apple Juice Bucket",
   "item.resprouted.apple_juice_bottle": "Apple Juice Bottle",
@@ -62,6 +63,7 @@
   "item.resprouted.iron_berry_juice_bottle": "Iron Berry Juice Bottle",
   "item.resprouted.ale_wort_bucket": "Ale Wort Bucket",
   "item.resprouted.ale_wort_bottle": "Ale Wort Bottle",
+
   "item.resprouted.ale_bottle": "Ale Bottle",
   "item.resprouted.iron_wine_bottle": "Iron Wine Bottle",
   "item.resprouted.wine_bottle": "Wine Bottle",
@@ -811,8 +813,45 @@
   "effect.resprouted.undying":"Undying",
   "effect.resprouted.tipsy":"Inebriated",
 
-  "key.resprouted.firepower": "Throw a fire ball",
+  "advancement.resprouted.root.desc": "How quaint",
 
+  "advancement.resprouted.get_catalog": "Book Learnin'",
+  "advancement.resprouted.get_catalog.desc": "Obtain an almanac",
+
+  "advancement.resprouted.get_seeds": "A Seedy Situation",
+  "advancement.resprouted.get_seeds.desc": "Obtain new seeds",
+
+  "advancement.resprouted.get_fertile_soil": "Never Gonna Dry You Up",
+  "advancement.resprouted.get_fertile_soil.desc": "Obtain fertile soil",
+
+  "advancement.resprouted.eat_ghost_pepper": "Ghost Rider",
+  "advancement.resprouted.eat_ghost_pepper.desc": "Eat a Ghost Pepper",
+
+  "advancement.resprouted.place_apple_tree": "How Do You Like Them Apples?",
+  "advancement.resprouted.place_apple_tree.desc": "Plant an apple tree",
+
+  "advancement.resprouted.get_olive_oiled_food": "Extra Virgin",
+  "advancement.resprouted.get_olive_oiled_food.desc": "Oil food with a olive oil bottle",
+
+  "advancement.resprouted.condenser": "Breaking Bad Habits",
+  "advancement.resprouted.condenser.desc": "Craft a Basic Condenser",
+
+  "advancement.resprouted.advanced_condenser": "We Need to Cook",
+  "advancement.resprouted.advanced_condenser.desc": "Craft an Advanced Condenser",
+
+  "advancement.resprouted.get_all_herbs": "Herb Your Enthusiasm",
+  "advancement.resprouted.get_all_herbs.desc": "Obtain all new herbs",
+
+  "advancement.resprouted.brewing_barrel": "Barrel of Laughs",
+  "advancement.resprouted.brewing_barrel.desc": "Craft a Brewing Barrel",
+
+  "advancement.resprouted.max_drunk": "No Ragrets",
+  "advancement.resprouted.max_drunk.desc": "Reach dangerous levels of inebriation",
+
+  "advancement.resprouted.the_good_stuff": "The Good Stuff",
+  "advancement.resprouted.the_good_stuff.desc": "Brew a beverage with a quality of at least 90%",
+
+  "key.resprouted.firepower": "Throw a fire ball",
   "text.resprouted.press_to_launch": "Press %s to launch fireball",
   "category.resprouted.keys": "Rustic Resprout",
 

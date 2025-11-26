@@ -1,0 +1,164 @@
+{
+  "parent": "resprouted:main/craft_basic_condenser",
+  "display": {
+    "frame": "goal",
+    "icon": {
+      "id": "resprouted:cohosh",
+      "count": 1
+    },
+    "title": {
+      "translate": "advancement.resprouted.get_all_herbs"
+    },
+    "description": {
+      "translate": "advancement.resprouted.get_all_herbs.desc"
+    }
+  },
+  "criteria": {
+    "aloe_vera": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:aloe_vera"
+          }
+        ]
+      }
+    },
+    "blood_orchid": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:blood_orchid"
+          }
+        ]
+      }
+    },
+    "chamomile": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:chamomile"
+          }
+        ]
+      }
+    },
+    "cloudsbluff": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:cloudsbluff"
+          }
+        ]
+      }
+    },
+    "cohosh": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:cohosh"
+          }
+        ]
+      }
+    },
+    "core_root": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:core_root"
+          }
+        ]
+      }
+    },
+    "deathstalk_mushroom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:deathstalk_mushroom"
+          }
+        ]
+      }
+    },
+    "ginseng": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:ginseng"
+          }
+        ]
+      }
+    },
+    "horsetail": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:horsetail"
+          }
+        ]
+      }
+    },
+    "marsh_mallow": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:marsh_mallow"
+          }
+        ]
+      }
+    },
+    "mooncap_mushroom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:mooncap_mushroom"
+          }
+        ]
+      }
+    },
+    "vanta_lily": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:vanta_lily"
+          }
+        ]
+      }
+    },
+    "wind_thistle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "resprouted:wind_thistle"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["aloe_vera"],
+    ["blood_orchid"],
+    ["chamomile"],
+    ["cloudsbluff"],
+    ["cohosh"],
+    ["core_root"],
+    ["deathstalk_mushroom"],
+    ["ginseng"],
+    ["horsetail"],
+    ["marsh_mallow"],
+    ["mooncap_mushroom"],
+    ["vanta_lily"],
+    ["wind_thistle"]
+  ],
+  "sends_telemetry_event": true
+}
