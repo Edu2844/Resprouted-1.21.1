@@ -1,6 +1,7 @@
 package net.edu.resprouted.effect;
 
 import net.edu.resprouted.item.custom.BoozeBottleItem.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
@@ -9,14 +10,20 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BoozeEffects {
 
-    //Ale
+    // ==========================================
+    // ||                 ALE                  ||
+    // ==========================================
     public static void applyAleEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -32,7 +39,9 @@ public class BoozeEffects {
         }
     }
 
-    //Iron Wine
+    // ==========================================
+    // ||              IRON WINE               ||
+    // ==========================================
     public static void applyIronWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         World world = context.world();
@@ -62,7 +71,9 @@ public class BoozeEffects {
         }
     }
 
-    //Cider
+    // ==========================================
+    // ||                CIDER                 ||
+    // ==========================================
     public static void applyCiderEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -82,7 +93,9 @@ public class BoozeEffects {
         }
     }
 
-    //Mead
+    // ==========================================
+    // ||                 MEAD                 ||
+    // ==========================================
     public static void applyMeadEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -102,7 +115,9 @@ public class BoozeEffects {
         }
     }
 
-    //Sweet Berry Wine
+    // ==========================================
+    // ||           SWEET BERRY WINE           ||
+    // ==========================================
     public static void applySweetBerryWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -150,7 +165,9 @@ public class BoozeEffects {
         }
     }
 
-    //Wine
+    // ==========================================
+    // ||                WINE                  ||
+    // ==========================================
     public static void applyWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -204,7 +221,9 @@ public class BoozeEffects {
         }
     }
 
-    //Ambrosia
+    // ==========================================
+    // ||               AMBROSIA               ||
+    // ==========================================
     public static void applyAmbrosiaEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -226,9 +245,12 @@ public class BoozeEffects {
         }
     }
 
-    //Glow Berry Wine
+    // ==========================================
+    // ||           GLOW BERRY WINE            ||
+    // ==========================================
     public static void applyGlowBerryWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
+        World world = player.getWorld();
         float quality = context.quality();
 
         if (quality >= 0.5F) {
@@ -237,31 +259,28 @@ public class BoozeEffects {
             int baseDuration = 1200;
             int bonusDuration = (int) (4800 * quality);
 
-            player.addStatusEffect(new StatusEffectInstance(
-                    StatusEffects.NIGHT_VISION,
-                    baseDuration + bonusDuration,
-                    0, false, false, true
-            ));
+            if (!world.isClient) {
+                BlockPos playerPos = player.getBlockPos();
+                double radius = 30.0;
+                Box box = new Box(playerPos).expand(radius);
 
-            player.addStatusEffect(new StatusEffectInstance(
-                    StatusEffects.GLOWING,
-                    baseDuration + bonusDuration,
-                    0, false, false, true
-            ));
+                List<LivingEntity> nearbyEntities = world.getNonSpectatingEntities(LivingEntity.class, box);
 
-            if (quality >= 0.8F) {
+                for (LivingEntity entity : nearbyEntities) {
+                    if (entity.isAlive()
+                            && !entity.isRemoved()
+                            && playerPos.isWithinDistance(entity.getPos(), radius)
+                            && entity != player) {
 
-                int resistanceDuration = (int) (3600 * (quality - 0.8F) * 5);
-                player.addStatusEffect(new StatusEffectInstance(
-                        ModEffects.WITHER_WARD,
-                        resistanceDuration,
-                        0, false, false, true
-                ));
+                        entity.addStatusEffect(new StatusEffectInstance(
+                                StatusEffects.GLOWING,
+                                baseDuration + bonusDuration,
+                                0, false, false, true
+                        ));
+                    }
+                }
             }
-
-        }
-
-        else {
+        } else {
             player.getHungerManager().add(1, 0.5F * quality);
 
             int negativeDuration = (int) (6000 * (1 - quality));
@@ -279,7 +298,6 @@ public class BoozeEffects {
             ));
 
             if (quality <= 0.2F) {
-
                 player.addStatusEffect(new StatusEffectInstance(
                         StatusEffects.DARKNESS,
                         negativeDuration / 2,
@@ -289,48 +307,73 @@ public class BoozeEffects {
         }
     }
 
-    //Rum
+    // ==========================================
+    // ||                  RUM                 ||
+    // ==========================================
     public static void applyRumEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
-        boolean hasStrongTipsy = false;
 
-        StatusEffectInstance tipsyEffect = player.getStatusEffect(ModEffects.TIPSY);
-        if (tipsyEffect != null && tipsyEffect.getAmplifier() >= 2) {
-            hasStrongTipsy = true;
-        }
+        boolean hasTipsy = player.hasStatusEffect(ModEffects.TIPSY);
 
         if (quality >= 0.75F) {
             player.getHungerManager().add(2, 3.0F * quality);
 
-            if (!hasStrongTipsy) {
-                List<RegistryEntry<StatusEffect>> effectsToRemove = new ArrayList<>();
-                for (StatusEffectInstance effect : player.getStatusEffects()) {
-                    if (effect.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
-                        effectsToRemove.add(effect.getEffectType());
-                    }
+            Map<RegistryEntry<StatusEffect>, StatusEffectInstance> savedEffects = new HashMap<>();
+            if (hasTipsy) {
+                StatusEffectInstance tipsyEffect = player.getStatusEffect(ModEffects.TIPSY);
+                if (tipsyEffect != null) {
+                    savedEffects.put(tipsyEffect.getEffectType(), new StatusEffectInstance(tipsyEffect));
                 }
-                for (RegistryEntry<StatusEffect> effect : effectsToRemove) {
-                    player.removeStatusEffect(effect);
+
+                StatusEffectInstance nausea = player.getStatusEffect(StatusEffects.NAUSEA);
+                if (nausea != null) {
+                    savedEffects.put(nausea.getEffectType(), new StatusEffectInstance(nausea));
                 }
+
+                StatusEffectInstance slowness = player.getStatusEffect(StatusEffects.SLOWNESS);
+                if (slowness != null) {
+                    savedEffects.put(slowness.getEffectType(), new StatusEffectInstance(slowness));
+                }
+
+                StatusEffectInstance blindness = player.getStatusEffect(StatusEffects.BLINDNESS);
+                if (blindness != null) {
+                    savedEffects.put(blindness.getEffectType(), new StatusEffectInstance(blindness));
+                }
+            }
+
+            List<RegistryEntry<StatusEffect>> effectsToRemove = new ArrayList<>();
+            for (StatusEffectInstance effect : player.getStatusEffects()) {
+                if (effect.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
+                    effectsToRemove.add(effect.getEffectType());
+                }
+            }
+            for (RegistryEntry<StatusEffect> effect : effectsToRemove) {
+                player.removeStatusEffect(effect);
+            }
+
+            for (StatusEffectInstance effect : savedEffects.values()) {
+                player.addStatusEffect(effect);
             }
 
         } else if (quality >= 0.5F) {
             player.getHungerManager().add(1, 1.5F * quality);
 
-            if (!hasStrongTipsy) {
-                List<RegistryEntry<StatusEffect>> harmfulEffects = new ArrayList<>();
-                for (StatusEffectInstance effect : player.getStatusEffects()) {
-                    if (effect.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
-                        harmfulEffects.add(effect.getEffectType());
+            List<RegistryEntry<StatusEffect>> harmfulEffects = new ArrayList<>();
+            for (StatusEffectInstance effect : player.getStatusEffects()) {
+                if (effect.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
+                    if (hasTipsy && isTipsyRelatedEffect(effect.getEffectType())) {
+                        continue;
                     }
+                    harmfulEffects.add(effect.getEffectType());
                 }
-                if (!harmfulEffects.isEmpty()) {
-                    RegistryEntry<StatusEffect> randomEffect = harmfulEffects.get(
-                            player.getRandom().nextInt(harmfulEffects.size())
-                    );
-                    player.removeStatusEffect(randomEffect);
-                }
+            }
+
+            if (!harmfulEffects.isEmpty()) {
+                RegistryEntry<StatusEffect> randomEffect = harmfulEffects.get(
+                        player.getRandom().nextInt(harmfulEffects.size())
+                );
+                player.removeStatusEffect(randomEffect);
             }
 
         } else if (quality >= 0.2F) {
@@ -380,6 +423,14 @@ public class BoozeEffects {
                     true
             ));
         }
+    }
+
+    private static boolean isTipsyRelatedEffect(RegistryEntry<StatusEffect> effect) {
+        StatusEffect statusEffect = effect.value();
+        return statusEffect == ModEffects.TIPSY ||
+                statusEffect == StatusEffects.NAUSEA ||
+                statusEffect == StatusEffects.SLOWNESS ||
+                statusEffect == StatusEffects.BLINDNESS;
     }
 }
 

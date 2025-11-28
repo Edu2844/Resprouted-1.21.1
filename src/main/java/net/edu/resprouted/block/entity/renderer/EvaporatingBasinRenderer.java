@@ -6,7 +6,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory.*;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class EvaporatingBasinRenderer extends BaseFluidRenderer<EvaporatingBasinBlockEntity> {
+public class EvaporatingBasinRenderer extends BaseFluidStorageRenderer<EvaporatingBasinBlockEntity> {
     private static final float MIN = 4f / 16f;
     private static final float MAX = 12f / 16f;
     private static final float BASE_Y = 1f / 16f;

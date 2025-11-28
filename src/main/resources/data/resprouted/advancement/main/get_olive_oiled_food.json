@@ -19,7 +19,9 @@
         "items": [
           {
             "items": "#resprouted:can_be_oiled",
-            "nbt": "{\"components\":{\"resprouted:olive_oiled\":1}}"
+            "components": {
+              "resprouted:olive_oiled": true
+            }
           }
         ]
       }

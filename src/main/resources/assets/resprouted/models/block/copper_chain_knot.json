@@ -1,0 +1,6 @@
+{
+  "parent": "resprouted:block/golden_chain_knot",
+  "textures": {
+    "chain": "resprouted:block/copper_chain"
+  }
+}

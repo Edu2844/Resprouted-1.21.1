@@ -858,7 +858,6 @@
   "config.resprouted.title": "Resprouted Configuration",
   "config.resprouted.category.general": "General",
   "config.resprouted.category.worldgen": "World",
-  "config.resprouted.enable_fire_power_effect_icon": "Enable Fire Power Effect Icon",
   "config.resprouted.oiled_saturation_modifier": "Oiled Saturation Modifier",
   "config.resprouted.oiled_saturation_modifier.tooltip": "Multiplier for saturation when eating oiled foods",
   "config.resprouted.oiled_hunger_bonus": "Oiled Hunger Bonus",
@@ -886,13 +885,13 @@
 
   "pack.resprouted.eatinganimationid": "Resprouted + Eating Animations Mod Compat",
   "pack.resprouted.resprouted_classic_slate": "Classic Slate",
+  "pack.resprouted.resprouted_alt_rope": "Alternative Rope Color",
   "datapack.resprouted.amendments": "Resprouted + Amendments Data Pack",
 
   "config.jade.plugin_resprouted.fruiting_leaves_progress": "Fruiting Leaves Progress",
   "config.jade.plugin_resprouted.grape_leaves_mature": "Grapes Leaves Mature",
   "tooltip.jade.leaves.growth": "Growth: %s",
   "tooltip.jade.crop_mature": "Mature",
-  "tooltip.jade.resprouted.grape_leaves": "§aHas Grapes",
 
   "rei.resprouted.olive_oiling": "Olive Oiling",
   "rei.resprouted.vanta_oiling": "Vanta Oiling",
@@ -1028,6 +1027,7 @@
   "text.resprouted.alcohol.desc6": "Iron wine: Grants the drinker absorption hearts with no time limit, up to ten extra hearts.\n\nMead: Applies the wither ward effect, which reduces damage taken from the wither effect.",
   "text.resprouted.alcohol.desc7": "Sweet Berry Wine: Increases the level of all positive effects, up to level III.\n\nWine: Increases the duration of all positive effects by up to ten minutes.",
   "text.resprouted.alcohol.desc8": "Ambrosia: Protects the drinker from death, much like a totem of undying, though only for a limited time. The strongest ambrosia, however, lasts until death occurs. Unlike other alcoholic brews, ambrosia rarely has low quality, and higher-quality batches are generally easier to produce.",
+  "text.resprouted.alcohol.desc9": "Glow Berry Wine: Applies the Glowing effect to every entity in a 30 block range.\n\nRum: Clear all the negative effects, except if player has inebriated.",
 
   "entry.resprouted.brewing": "Brewing",
   "text.resprouted.brewing.desc1": "Brewing is the process of fermenting fluids into alcohol using a Brewing Barrel. The system uses three fluid tanks: one for the input fluid, one for the output, and an optional one for a starter culture. The starter culture must match the type of the output fluid.",

@@ -22,9 +22,9 @@ import net.minecraft.util.math.*;
 import java.util.Random;
 
 @SuppressWarnings("all")
-public abstract class BaseFluidRenderer<T extends BlockEntity> implements BlockEntityRenderer<T> {
+public abstract class BaseFluidStorageRenderer<T extends BlockEntity> implements BlockEntityRenderer<T> {
 
-    protected BaseFluidRenderer(Context ctx) {
+    protected BaseFluidStorageRenderer(Context ctx) {
     }
 
     protected void renderFluidSprite(FluidVariant fluid, World world, BlockPos pos,

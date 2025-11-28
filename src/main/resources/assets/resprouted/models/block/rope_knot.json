@@ -1,10 +1,9 @@
 {
-	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "resprouted:block/crops/rope_knot",
-		"1": "resprouted:block/crops/rope",
-		"particle": "resprouted:block/crops/rope_knot"
+		"knot": "resprouted:block/crops/rope_knot",
+		"rope": "resprouted:block/crops/rope",
+		"particle": "#rope"
 	},
 	"elements": [
 		{
@@ -12,12 +11,12 @@
 			"from": [6.5, 6.5, 6.5],
 			"to": [9.5, 9.5, 9.5],
 			"faces": {
-				"north": {"uv": [6, 0, 9, 3], "texture": "#0"},
-				"east": {"uv": [6, 0, 9, 3], "texture": "#0"},
-				"south": {"uv": [6, 0, 9, 3], "texture": "#0"},
-				"west": {"uv": [6, 0, 9, 3], "texture": "#0"},
-				"up": {"uv": [6, 0, 9, 3], "texture": "#0"},
-				"down": {"uv": [6, 0, 9, 3], "texture": "#0"}
+				"north": {"uv": [6, 0, 9, 3], "texture": "#knot"},
+				"east": {"uv": [6, 0, 9, 3], "texture": "#knot"},
+				"south": {"uv": [6, 0, 9, 3], "texture": "#knot"},
+				"west": {"uv": [6, 0, 9, 3], "texture": "#knot"},
+				"up": {"uv": [6, 0, 9, 3], "texture": "#knot"},
+				"down": {"uv": [6, 0, 9, 3], "texture": "#knot"}
 			}
 		},
 		{
@@ -25,10 +24,10 @@
 			"to": [9, 7, 9],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 7]},
 			"faces": {
-				"north": {"uv": [7, 1, 9, 8], "texture": "#1"},
-				"east": {"uv": [7, 1, 9, 8], "texture": "#1"},
-				"south": {"uv": [7, 1, 9, 8], "texture": "#1"},
-				"west": {"uv": [7, 1, 9, 8], "texture": "#1"},
+				"north": {"uv": [7, 1, 9, 8], "texture": "#rope"},
+				"east": {"uv": [7, 1, 9, 8], "texture": "#rope"},
+				"south": {"uv": [7, 1, 9, 8], "texture": "#rope"},
+				"west": {"uv": [7, 1, 9, 8], "texture": "#rope"},
 				"up": {"uv": [0, 0, 2, 0], "texture": "#missing"},
 				"down": {"uv": [0, 0, 2, 0], "texture": "#missing"}
 			}

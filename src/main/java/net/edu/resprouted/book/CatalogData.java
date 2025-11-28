@@ -154,6 +154,7 @@ public class CatalogData {
                 .addPage(new TextPage(Text.translatable("text.resprouted.alcohol.desc3"),Text.translatable("text.resprouted.alcohol.desc4")))
                 .addPage(new TextPage(Text.translatable("text.resprouted.alcohol.desc5"),Text.translatable("text.resprouted.alcohol.desc6")))
                 .addPage(new TextPage(Text.translatable("text.resprouted.alcohol.desc7"),Text.translatable("text.resprouted.alcohol.desc8")))
+                .addPage(new TextPage(Text.translatable("text.resprouted.alcohol.desc9")))
         );
 
         production.addEntry(new Entry(Text.translatable("entry.resprouted.brewing"), new ItemStack(ModBlocks.BREWING_BARREL), Entry.Side.RIGHT)

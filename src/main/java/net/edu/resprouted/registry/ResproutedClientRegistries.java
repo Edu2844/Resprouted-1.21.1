@@ -2,7 +2,7 @@ package net.edu.resprouted.registry;
 
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.block.entity.renderer.CrushingTubBERenderer;
+import net.edu.resprouted.block.entity.renderer.CrushingTubRenderer;
 import net.edu.resprouted.block.entity.renderer.EvaporatingBasinRenderer;
 import net.edu.resprouted.block.entity.renderer.LiquidBarrelRenderer;
 import net.edu.resprouted.effect.render.FullMetalHudOverlay;
@@ -57,7 +57,7 @@ public class ResproutedClientRegistries {
     }
 
     public static void registerBlockEntityRenderers() {
-        BlockEntityRendererFactories.register(ModBlockEntities.CRUSHING_TUB_BE, CrushingTubBERenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CRUSHING_TUB_BE, CrushingTubRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.LIQUID_BARREL_BE, LiquidBarrelRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.EVAPORATING_BASIN_BE, EvaporatingBasinRenderer::new);
     }

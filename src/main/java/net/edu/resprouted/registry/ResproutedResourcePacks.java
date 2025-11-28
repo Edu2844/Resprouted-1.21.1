@@ -46,6 +46,12 @@ public class ResproutedResourcePacks {
                     modContainer.get(),
                     Text.translatable("pack." + Resprouted.MOD_ID + "." + "resprouted_classic_slate"),
                     ResourcePackActivationType.NORMAL);
+
+            ResourceManagerHelper.registerBuiltinResourcePack(
+                    Identifier.of(Resprouted.MOD_ID, "resprouted_alt_rope"),
+                    modContainer.get(),
+                    Text.translatable("pack." + Resprouted.MOD_ID + "." + "resprouted_alt_rope"),
+                    ResourcePackActivationType.NORMAL);
         }
     }
 }

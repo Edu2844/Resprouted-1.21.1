@@ -6,14 +6,14 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory.*;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class CrushingTubBERenderer extends BaseFluidRenderer<CrushingTubBlockEntity> {
+public class CrushingTubRenderer extends BaseFluidStorageRenderer<CrushingTubBlockEntity> {
     private static final float MIN = 0.03125f;
     private static final float MAX = 0.96875f;
     private static final float HEIGHT_MULTIPLIER = 0.5f;
     private static final float MIN_HEIGHT = 0.0625f;
     private static final float Y_OFFSET = -0.0005f;
 
-    public CrushingTubBERenderer(Context ctx) {
+    public CrushingTubRenderer(Context ctx) {
         super(ctx);
     }
 

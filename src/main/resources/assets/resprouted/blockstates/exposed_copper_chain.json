@@ -1,16 +1,15 @@
 {
-  "variants": {
-    "axis=x": {
-      "model": "resprouted:block/exposed_copper_chain",
-      "x": 90,
-      "y": 90
-    },
-    "axis=y": {
-      "model": "resprouted:block/exposed_copper_chain"
-    },
-    "axis=z": {
-      "model": "resprouted:block/exposed_copper_chain",
-      "x": 90
-    }
-  }
+  "multipart": [
+    {"when": {"axis": "y"},
+      "apply": {"model": "resprouted:block/exposed_copper_chain"}},
+
+    {"when": { "axis": "x"},
+      "apply": {"model": "resprouted:block/exposed_copper_chain","x": 90,"y": 90}},
+
+    {"when": {"axis": "z"},
+      "apply": {"model": "resprouted:block/exposed_copper_chain","x": 90}},
+
+    {"when": {"has_knot": "true"},
+      "apply": {"model": "resprouted:block/exposed_copper_chain_knot"}}
+  ]
 }

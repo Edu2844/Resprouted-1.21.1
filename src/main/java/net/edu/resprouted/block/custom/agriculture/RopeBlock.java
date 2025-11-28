@@ -8,10 +8,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
@@ -24,32 +20,21 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 public class RopeBlock extends CustomChainBlock {
-    public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
-    public static final BooleanProperty HAS_KNOT = BooleanProperty.of("has_knot");
     protected static final VoxelShape Y_SHAPE = Block.createCuboidShape(7.0, 0.0, 7.0, 9.0, 16.0, 9.0);
     protected static final VoxelShape Z_SHAPE = Block.createCuboidShape(7.0, 7.0, 0.0, 9.0, 9.0, 16.0);
     protected static final VoxelShape X_SHAPE = Block.createCuboidShape(0.0, 7.0, 7.0, 16.0, 9.0, 9.0);
+
     private static final VoxelShape X_SHAPE_KNOT = VoxelShapes.union(
             Block.createCuboidShape(0, 7.0, 7.0, 16, 9.0, 9.0),
             Block.createCuboidShape(7.0, 0, 7.0, 9.0, 7.0, 9.0)
-
     );
     private static final VoxelShape Z_SHAPE_KNOT = VoxelShapes.union(
             Block.createCuboidShape(7.0, 7.0, 0, 9.0, 9.0, 16),
             Block.createCuboidShape(7.0, 0, 7.0, 9.0, 7.0, 9.0)
-
     );
+
     public RopeBlock(Settings settings) {
         super(settings);
-        setDefaultState(getStateManager().getDefaultState()
-                .with(AXIS, Direction.Axis.Y)
-                .with(WATERLOGGED, false)
-                .with(HAS_KNOT, false));
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(AXIS, WATERLOGGED, HAS_KNOT);
     }
 
     @Override
@@ -76,23 +61,13 @@ public class RopeBlock extends CustomChainBlock {
 
             for (Direction dir : Direction.values()) {
                 BlockPos adj = pos.offset(dir);
+                BlockState adjState = world.getBlockState(adj);
 
-                if (world.getBlockState(adj).getBlock() instanceof RopeBlock) {
+                if (adjState.getBlock().getClass() == this.getClass()) {
                     world.scheduleBlockTick(adj, this, 1);
                 }
             }
         }
-    }
-
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        Direction.Axis a = ctx.getSide().getAxis();
-
-        boolean knot = a != Direction.Axis.Y
-                && ctx.getWorld().getBlockState(ctx.getBlockPos().down()).getBlock() instanceof RopeBlock rope
-                && rope.getDefaultState().get(AXIS) == Direction.Axis.Y;
-
-        return getDefaultState().with(AXIS, a).with(HAS_KNOT, knot);
     }
 
     @Override
@@ -112,7 +87,6 @@ public class RopeBlock extends CustomChainBlock {
             boolean sideSupported = isSideSupported(world, pos, state, b);
 
             if (!sideSupported) {
-
                 if (b == Direction.UP) {
                     world.breakBlock(pos, true);
                     return;
@@ -128,11 +102,11 @@ public class RopeBlock extends CustomChainBlock {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction dir, BlockState neighbor, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        state = super.getStateForNeighborUpdate(state, dir, neighbor, world, pos, neighborPos);
+
         if (state.get(AXIS) != Direction.Axis.Y && dir == Direction.DOWN) {
-
-            boolean knot = neighbor.getBlock() instanceof RopeBlock && neighbor.get(RopeBlock.AXIS) == Direction.Axis.Y;
-
-            state = state.with(HAS_KNOT, knot);
+            boolean knot = neighbor.getBlock().getClass() == this.getClass()
+                    && neighbor.get(AXIS) == Direction.Axis.Y;
 
             if (knot && !isBlockSupported(world, pos, state)) {
                 if (world instanceof ServerWorld serverWorld) {
@@ -141,7 +115,7 @@ public class RopeBlock extends CustomChainBlock {
             }
         }
 
-        return super.getStateForNeighborUpdate(state, dir, neighbor, world, pos, neighborPos);
+        return state;
     }
 
     @Override
@@ -155,9 +129,16 @@ public class RopeBlock extends CustomChainBlock {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(HAS_KNOT)) {
+            return switch (state.get(AXIS)) {
+                case X -> X_SHAPE_KNOT;
+                case Z -> Z_SHAPE_KNOT;
+                default -> Y_SHAPE;
+            };
+        }
         return switch (state.get(AXIS)) {
-            case X -> state.get(HAS_KNOT) ? X_SHAPE_KNOT : X_SHAPE;
-            case Z -> state.get(HAS_KNOT) ? Z_SHAPE_KNOT : Z_SHAPE;
+            case X -> X_SHAPE;
+            case Z -> Z_SHAPE;
             default -> Y_SHAPE;
         };
     }
@@ -179,14 +160,14 @@ public class RopeBlock extends CustomChainBlock {
     private boolean isSideSupported(WorldView world, BlockPos pos, BlockState state, Direction facing) {
         if (facing == Direction.DOWN) return false;
 
-        BlockState g = world.getBlockState(pos.offset(facing)); //neighbor
+        BlockState neighbor = world.getBlockState(pos.offset(facing));
 
-        boolean isSame = g.getBlock() instanceof RopeBlock && (g.get(AXIS) == state.get(AXIS)
-                        || (state.get(AXIS) == Direction.Axis.Y && facing.getAxis() == Direction.Axis.Y));
+        boolean isSame = neighbor.getBlock().getClass() == this.getClass() && (neighbor.get(AXIS) == state.get(AXIS)
+                || (state.get(AXIS) == Direction.Axis.Y && facing.getAxis() == Direction.Axis.Y));
 
-        boolean isSolid = g.isSideSolidFullSquare(world,pos.offset(facing), facing.getOpposite());
-        boolean isGrapeLeaves = g.getBlock() instanceof GrapeLeavesBlock;
-        boolean isTiedStake = g.getBlock() instanceof StakeBlock && g.get(StakeBlock.HAS_ROPE);
+        boolean isSolid = neighbor.isSideSolidFullSquare(world, pos.offset(facing), facing.getOpposite());
+        boolean isGrapeLeaves = neighbor.getBlock() instanceof GrapeLeavesBlock;
+        boolean isTiedStake = neighbor.getBlock() instanceof StakeBlock && neighbor.get(StakeBlock.HAS_ROPE);
 
         return isSame || isSolid || isGrapeLeaves || isTiedStake;
     }
