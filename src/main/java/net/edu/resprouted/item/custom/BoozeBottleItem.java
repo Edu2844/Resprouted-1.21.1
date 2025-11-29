@@ -4,6 +4,7 @@ import dev.architectury.fluid.FluidStack;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.util.FluidUtils;
+import net.edu.resprouted.util.TextUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,7 +19,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -88,49 +88,7 @@ public class BoozeBottleItem extends Item {
         super.appendTooltip(stack, context, tooltip, type);
 
         float quality = getQuality(stack);
-        int qualityPercent = (int) (quality * 100);
-
-        String qualityName;
-        Formatting nameColor;
-
-        if (quality >= 0.9f) {
-            qualityName = "divine";
-            nameColor = Formatting.GOLD;
-        } else if (quality >= 0.8f) {
-            qualityName = "exquisite";
-            nameColor = Formatting.YELLOW;
-        } else if (quality >= 0.7f) {
-            qualityName = "flavorful";
-            nameColor = Formatting.GREEN;
-        } else if (quality >= 0.6f) {
-            qualityName = "fine";
-            nameColor = Formatting.DARK_PURPLE;
-        } else if (quality >= 0.5f) {
-            qualityName = "decent";
-            nameColor = Formatting.AQUA;
-        } else if (quality >= 0.4f) {
-            qualityName = "average";
-            nameColor = Formatting.BLUE;
-        } else if (quality >= 0.3f) {
-            qualityName = "mediocre";
-            nameColor = Formatting.YELLOW;
-        } else if (quality >= 0.2f) {
-            qualityName = "poor";
-            nameColor = Formatting.RED;
-        } else if (quality >= 0.1f) {
-            qualityName = "awful";
-            nameColor = Formatting.DARK_RED;
-        } else {
-            qualityName = "sewage";
-            nameColor = Formatting.DARK_GRAY;
-        }
-
-        Text qualityText = Text.empty()
-                .append(Text.literal("Quality: ").formatted(Formatting.GRAY))
-                .append(Text.translatable("tooltip.resprouted.quality." + qualityName).formatted(nameColor))
-                .append(Text.literal(" [" + qualityPercent + "%]").formatted(Formatting.DARK_GRAY));
-
-        tooltip.add(qualityText);
+        tooltip.add(TextUtils.addQualityText(quality));
     }
 
     public static float getQuality(ItemStack stack) {

@@ -22,7 +22,7 @@
   "item.resprouted.apple_seeds": "Semillas de manzana",
   "item.resprouted.catalog": "Almanaque",
 
-  "item.resprouted.aloe_vera": "Aloe Vera",
+  "item.resprouted.aloe_vera": "Sávila",
   "item.resprouted.blood_orchid": "Orquídea de sangre",
   "item.resprouted.chamomile": "Manzanilla",
   "item.resprouted.cloudsbluff": "Farol nuboso",
@@ -717,7 +717,7 @@
   "block.resprouted.olive_hanging_sign": "Cartel colgante de olivo",
   "block.resprouted.fertile_soil": "Suelo fértil",
 
-  "block.resprouted.aloe_vera_block": "Hierba de aloe vera",
+  "block.resprouted.aloe_vera_block": "Hierba de sávila",
   "block.resprouted.horsetail_block": "Hierba de cola de caballo",
   "block.resprouted.cohosh_block": "Hierba de cohosh",
   "block.resprouted.chamomile_block": "Hierba de manzanilla",
@@ -769,7 +769,7 @@
 
   "tooltip.resprouted.quality_format": "Calidad: %s [%d%%]",
 
-  "tooltip.resprouted.quality.divine": "Divino",
+  "tooltip.resprouted.quality.divine": "Es un elixir",
   "tooltip.resprouted.quality.exquisite": "Exquisito",
   "tooltip.resprouted.quality.flavorful": "Sabroso",
   "tooltip.resprouted.quality.fine": "Fino",
@@ -778,7 +778,7 @@
   "tooltip.resprouted.quality.mediocre": "Mediocre",
   "tooltip.resprouted.quality.poor": "Pobre",
   "tooltip.resprouted.quality.awful": "Asqueroso",
-  "tooltip.resprouted.quality.sewage": "Cierra el juego, tío",
+  "tooltip.resprouted.quality.sewage": "Cierra el juego, loco",
 
   "effect.resprouted.full_metal":"Férreo",
   "effect.resprouted.fire_power":"Fuego infernal",
@@ -801,7 +801,7 @@
   "advancement.resprouted.get_fertile_soil": "Siempre Húmeda",
   "advancement.resprouted.get_fertile_soil.desc": "Obtén tierra fértil",
 
-  "advancement.resprouted.eat_ghost_pepper": "El Motorista Fantasma",
+  "advancement.resprouted.eat_ghost_pepper": "El Vengador Fantasma",
   "advancement.resprouted.eat_ghost_pepper.desc": "Come un Jalapeño Fantasma",
 
   "advancement.resprouted.place_apple_tree": "¿Qué Tal Estas Manzanas?",
@@ -830,6 +830,7 @@
 
   "key.resprouted.firepower": "Lanza una bola de fuego",
   "text.resprouted.press_to_launch": "Presiona %s para lanzar bolas de fuego",
+  "category.resprouted.keys": "Resprouted",
 
   "config.resprouted.oiled_saturation_modifier": "Modificador de Saturación Aceitosa",
   "config.resprouted.oiled_saturation_modifier.tooltip": "Multiplicador de la saturación al comer alimentos aceitados",

@@ -853,7 +853,7 @@
 
   "key.resprouted.firepower": "Throw a fire ball",
   "text.resprouted.press_to_launch": "Press %s to launch fireball",
-  "category.resprouted.keys": "Rustic Resprout",
+  "category.resprouted.keys": "Resprouted",
 
   "config.resprouted.title": "Resprouted Configuration",
   "config.resprouted.category.general": "General",
@@ -902,7 +902,7 @@
   "text.resprouted.back_category": "Back to Category",
   "text.resprouted.back_menu": "Back to Index",
 
-  "text.resprouted.main": "Here you will find everything related to the mod. This almanac contains guides, and useful information about all the added features.",
+  "text.resprouted.main": "Welcome, traveler. This tome holds the knowledge you'll need to master a world enriched with new life, from the soil you till and the potions you brew, to the very home you build. Your journey begins here.",
 
   "text.category.resprouted.agriculture": "Agriculture",
   "text.resprouted.fertile_soil": "Fertile soil works like regular farmland but it doesn’t need water to stay hydrated, can’t be trampled and lets sugar cane grow without a nearby water block",
@@ -1027,7 +1027,8 @@
   "text.resprouted.alcohol.desc6": "Iron wine: Grants the drinker absorption hearts with no time limit, up to ten extra hearts.\n\nMead: Applies the wither ward effect, which reduces damage taken from the wither effect.",
   "text.resprouted.alcohol.desc7": "Sweet Berry Wine: Increases the level of all positive effects, up to level III.\n\nWine: Increases the duration of all positive effects by up to ten minutes.",
   "text.resprouted.alcohol.desc8": "Ambrosia: Protects the drinker from death, much like a totem of undying, though only for a limited time. The strongest ambrosia, however, lasts until death occurs. Unlike other alcoholic brews, ambrosia rarely has low quality, and higher-quality batches are generally easier to produce.",
-  "text.resprouted.alcohol.desc9": "Glow Berry Wine: Applies the Glowing effect to every entity in a 30 block range.\n\nRum: Clear all the negative effects, except if player has inebriated.",
+  "text.resprouted.alcohol.desc9": "Glow Berry Wine: Applies the Glowing effect to every entity in a 30 block range.\n\nRum: At 50% quality, removes 1 random harmful effect. At 70% quality or higher, removes all negative effects except inebriation and its related effects.",
+  "text.resprouted.alcohol.desc10": "Not at all important note: You can reduce your inebriation level by drinking water bottles.",
 
   "entry.resprouted.brewing": "Brewing",
   "text.resprouted.brewing.desc1": "Brewing is the process of fermenting fluids into alcohol using a Brewing Barrel. The system uses three fluid tanks: one for the input fluid, one for the output, and an optional one for a starter culture. The starter culture must match the type of the output fluid.",

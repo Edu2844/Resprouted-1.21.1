@@ -47,11 +47,8 @@ public class ModItems {
     public static final Item OLIVE_SIGN = registerItem("olive_sign", new SignItem(new Item.Settings().maxCount(16), ModBlocks.OLIVE_SIGN, ModBlocks.OLIVE_WALL_SIGN));
     public static final Item OLIVE_HANGING_SIGN = registerItem("olive_hanging_sign", new HangingSignItem(ModBlocks.OLIVE_HANGING_SIGN , ModBlocks.OLIVE_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
-    public static final Item OLIVE_BOAT = registerItem("olive_boat",
-            new BoatItem(false, ResproutedBoatTypes.OLIVE, new Item.Settings().maxCount(1)));
-
-    public static final Item OLIVE_CHEST_BOAT = registerItem("olive_chest_boat",
-            new BoatItem(true, ResproutedBoatTypes.OLIVE, new Item.Settings().maxCount(1)));
+    public static final Item OLIVE_BOAT = registerItem("olive_boat", new BoatItem(false, ResproutedBoatTypes.OLIVE, new Item.Settings().maxCount(1)));
+    public static final Item OLIVE_CHEST_BOAT = registerItem("olive_chest_boat", new BoatItem(true, ResproutedBoatTypes.OLIVE, new Item.Settings().maxCount(1)));
 
     // =================================================
     // ||                  IRONWOOD                   ||
@@ -59,11 +56,8 @@ public class ModItems {
     public static final Item IRONWOOD_SIGN = registerItem("ironwood_sign", new SignItem(new Item.Settings().maxCount(16), ModBlocks.IRONWOOD_SIGN, ModBlocks.IRONWOOD_WALL_SIGN));
     public static final Item IRONWOOD_HANGING_SIGN = registerItem("ironwood_hanging_sign", new HangingSignItem(ModBlocks.IRONWOOD_HANGING_SIGN , ModBlocks.IRONWOOD_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
-    public static final Item IRONWOOD_BOAT = registerItem("ironwood_boat",
-            new BoatItem(false, ResproutedBoatTypes.IRONWOOD, new Item.Settings().maxCount(1)));
-
-    public static final Item IRONWOOD_CHEST_BOAT = registerItem("ironwood_chest_boat",
-            new BoatItem(true, ResproutedBoatTypes.IRONWOOD, new Item.Settings().maxCount(1)));
+    public static final Item IRONWOOD_BOAT = registerItem("ironwood_boat", new BoatItem(false, ResproutedBoatTypes.IRONWOOD, new Item.Settings().maxCount(1)));
+    public static final Item IRONWOOD_CHEST_BOAT = registerItem("ironwood_chest_boat", new BoatItem(true, ResproutedBoatTypes.IRONWOOD, new Item.Settings().maxCount(1)));
 
     // =================================================
     // ||                   HERBS                     ||
@@ -195,104 +189,55 @@ public class ModItems {
         }
     });
 
-    public static final Item APPLE_JUICE_BUCKET = registerItem("apple_juice_bucket", new BucketItem(ModFluids.APPLE_JUICE_STILL,new Item
-            .Settings()
-            .maxCount(1)));
-    public static final Item GOLDEN_APPLE_JUICE_BUCKET = registerItem("golden_apple_juice_bucket", new BucketItem(ModFluids.GOLDEN_APPLE_JUICE_STILL,new Item
-            .Settings()
-            .maxCount(1)));
-    public static final Item GRAPE_JUICE_BUCKET = registerItem("grape_juice_bucket", new BucketItem(ModFluids.GRAPE_JUICE_STILL,new Item
-            .Settings()
-            .maxCount(1)));
-    public static final Item SWEET_BERRY_JUICE_BUCKET = registerItem("sweet_berry_juice_bucket", new BucketItem(ModFluids.SWEET_BERRY_JUICE_STILL,new Item
-            .Settings()
-            .maxCount(1)));
-    public static final Item OLIVE_OIL_BUCKET = registerItem("olive_oil_bucket", new BucketItem(ModFluids.OLIVE_OIL_STILL,new Item
-            .Settings()
-            .maxCount(1)));
-    public static final Item VANTA_OIL_BUCKET = registerItem("vanta_oil_bucket", new BucketItem(ModFluids.VANTA_OIL_STILL,new Item
-            .Settings()
-            .maxCount(1)));
-    public static final Item GLOW_BERRY_JUICE_BUCKET = registerItem("glow_berry_juice_bucket", new BucketItem(ModFluids.GLOW_BERRY_JUICE_STILL,new Item
-            .Settings()
-            .maxCount(1)));
-    public static final Item IRON_BERRY_JUICE_BUCKET = registerItem("iron_berry_juice_bucket", new BucketItem(ModFluids.IRON_BERRY_JUICE_STILL,new Item
-            .Settings()
-            .maxCount(1)));
-
-    public static final Item SUGAR_CANE_JUICE_BUCKET = registerItem("sugar_cane_juice_bucket", new BucketItem(ModFluids.SUGAR_CANE_JUICE_STILL,new Item
-            .Settings()
-            .maxCount(1)));
-
-    public static final Item ALE_WORT_BUCKET = registerItem("ale_wort_bucket", new BucketItem(ModFluids.ALE_WORT_STILL,new Item
-            .Settings()
-            .maxCount(1)));
+    public static final Item APPLE_JUICE_BUCKET = registerItem("apple_juice_bucket", new BucketItem(ModFluids.APPLE_JUICE_STILL,new Item.Settings().maxCount(1)));
+    public static final Item GOLDEN_APPLE_JUICE_BUCKET = registerItem("golden_apple_juice_bucket", new BucketItem(ModFluids.GOLDEN_APPLE_JUICE_STILL,new Item.Settings().maxCount(1)));
+    public static final Item GRAPE_JUICE_BUCKET = registerItem("grape_juice_bucket", new BucketItem(ModFluids.GRAPE_JUICE_STILL,new Item.Settings().maxCount(1)));
+    public static final Item SWEET_BERRY_JUICE_BUCKET = registerItem("sweet_berry_juice_bucket", new BucketItem(ModFluids.SWEET_BERRY_JUICE_STILL,new Item.Settings().maxCount(1)));
+    public static final Item OLIVE_OIL_BUCKET = registerItem("olive_oil_bucket", new BucketItem(ModFluids.OLIVE_OIL_STILL,new Item.Settings().maxCount(1)));
+    public static final Item VANTA_OIL_BUCKET = registerItem("vanta_oil_bucket", new BucketItem(ModFluids.VANTA_OIL_STILL,new Item.Settings().maxCount(1)));
+    public static final Item GLOW_BERRY_JUICE_BUCKET = registerItem("glow_berry_juice_bucket", new BucketItem(ModFluids.GLOW_BERRY_JUICE_STILL,new Item.Settings().maxCount(1)));
+    public static final Item IRON_BERRY_JUICE_BUCKET = registerItem("iron_berry_juice_bucket", new BucketItem(ModFluids.IRON_BERRY_JUICE_STILL,new Item.Settings().maxCount(1)));
+    public static final Item SUGAR_CANE_JUICE_BUCKET = registerItem("sugar_cane_juice_bucket", new BucketItem(ModFluids.SUGAR_CANE_JUICE_STILL,new Item.Settings().maxCount(1)));
+    public static final Item ALE_WORT_BUCKET = registerItem("ale_wort_bucket", new BucketItem(ModFluids.ALE_WORT_STILL,new Item.Settings().maxCount(1)));
 
     // =================================================
     // ||                   BOTTLES                   ||
     // =================================================
-    public static final Item APPLE_JUICE_BOTTLE = registerItem("apple_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.APPLE_JUICE).maxCount(16)));
-
-    public static final Item GOLDEN_APPLE_JUICE_BOTTLE = registerItem("golden_apple_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(FoodComponents.GOLDEN_APPLE).maxCount(16).rarity(Rarity.EPIC)));
-
-    public static final Item GRAPE_JUICE_BOTTLE = registerItem("grape_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GRAPE_JUICE).maxCount(16)));
-
-    public static final Item SWEET_BERRY_JUICE_BOTTLE = registerItem("sweet_berry_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.SWEET_BERRY_JUICE).maxCount(16)));
-
-    public static final Item OLIVE_OIL_BOTTLE = registerItem("olive_oil_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.OLIVE_OIL).maxCount(16)));
-
-    public static final Item VANTA_OIL_BOTTLE = registerItem("vanta_oil_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.VANTA_OIL).maxCount(16)));
-
-    public static final Item GLOW_BERRY_JUICE_BOTTLE = registerItem("glow_berry_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GLOW_BERRY_JUICE).maxCount(16)));
-
-    public static final Item IRON_BERRY_JUICE_BOTTLE = registerItem("iron_berry_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.IRON_BERRY_JUICE).maxCount(16)));
-
-    public static final Item SUGAR_CANE_JUICE_BOTTLE = registerItem("sugar_cane_juice_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.REGULAR_JUICE).maxCount(16)));
-
-    public static final Item ALE_WORT_BOTTLE = registerItem("ale_wort_bottle",
-            new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.ALE_WORT).maxCount(16)));
+    public static final Item APPLE_JUICE_BOTTLE = registerItem("apple_juice_bottle", new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.APPLE_JUICE).maxCount(16)));
+    public static final Item GOLDEN_APPLE_JUICE_BOTTLE = registerItem("golden_apple_juice_bottle", new DrinkableBottleItem(new Item.Settings().food(FoodComponents.GOLDEN_APPLE).maxCount(16).rarity(Rarity.RARE)));
+    public static final Item GRAPE_JUICE_BOTTLE = registerItem("grape_juice_bottle", new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GRAPE_JUICE).maxCount(16)));
+    public static final Item SWEET_BERRY_JUICE_BOTTLE = registerItem("sweet_berry_juice_bottle", new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.SWEET_BERRY_JUICE).maxCount(16)));
+    public static final Item OLIVE_OIL_BOTTLE = registerItem("olive_oil_bottle", new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.OLIVE_OIL).maxCount(16)));
+    public static final Item VANTA_OIL_BOTTLE = registerItem("vanta_oil_bottle", new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.VANTA_OIL).maxCount(16)));
+    public static final Item GLOW_BERRY_JUICE_BOTTLE = registerItem("glow_berry_juice_bottle", new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.GLOW_BERRY_JUICE).maxCount(16)));
+    public static final Item IRON_BERRY_JUICE_BOTTLE = registerItem("iron_berry_juice_bottle", new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.IRON_BERRY_JUICE).maxCount(16)));
+    public static final Item SUGAR_CANE_JUICE_BOTTLE = registerItem("sugar_cane_juice_bottle", new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.REGULAR_JUICE).maxCount(16)));
+    public static final Item ALE_WORT_BOTTLE = registerItem("ale_wort_bottle", new DrinkableBottleItem(new Item.Settings().food(ModFoodComponents.ALE_WORT).maxCount(16)));
 
     //Booze bottles
     public static final Item ALE_BOTTLE = registerItem("ale_bottle",
-            new BoozeBottleItem(ModFluids.ALE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyAleEffects)
-                    .setInebriationChance(0.5f));
+            new BoozeBottleItem(ModFluids.ALE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyAleEffects).setInebriationChance(0.5f));
 
     public static final Item IRON_WINE_BOTTLE = registerItem("iron_wine_bottle",
-            new BoozeBottleItem(ModFluids.IRON_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyIronWineEffects)
-                    .setInebriationChance(0.5f));
+            new BoozeBottleItem(ModFluids.IRON_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyIronWineEffects).setInebriationChance(0.5f));
 
     public static final Item CIDER_BOTTLE = registerItem("cider_bottle",
-            new BoozeBottleItem(ModFluids.CIDER_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyCiderEffects)
-                    .setInebriationChance(0.5f));
+            new BoozeBottleItem(ModFluids.CIDER_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyCiderEffects).setInebriationChance(0.5f));
 
     public static final Item MEAD_BOTTLE = registerItem("mead_bottle",
-            new BoozeBottleItem(ModFluids.MEAD_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyMeadEffects)
-                    .setInebriationChance(0.5f));
+            new BoozeBottleItem(ModFluids.MEAD_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyMeadEffects).setInebriationChance(0.5f));
 
     public static final Item SWEET_BERRY_WINE_BOTTLE = registerItem("sweet_berry_wine_bottle",
-            new BoozeBottleItem(ModFluids.SWEET_BERRY_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applySweetBerryWineEffects)
-                    .setInebriationChance(0.85f));
+            new BoozeBottleItem(ModFluids.SWEET_BERRY_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applySweetBerryWineEffects).setInebriationChance(0.85f));
 
     public static final Item GLOW_BERRY_WINE_BOTTLE = registerItem("glow_berry_wine_bottle",
-            new BoozeBottleItem(ModFluids.GLOW_BERRY_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyGlowBerryWineEffects)
-                    .setInebriationChance(0.5f));
+            new BoozeBottleItem(ModFluids.GLOW_BERRY_WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyGlowBerryWineEffects).setInebriationChance(0.5f));
 
     public static final Item WINE_BOTTLE = registerItem("wine_bottle",
-            new BoozeBottleItem(ModFluids.WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyWineEffects)
-                    .setInebriationChance(0.5f));
+            new BoozeBottleItem(ModFluids.WINE_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyWineEffects).setInebriationChance(0.5f));
 
     public static final Item RUM_BOTTLE = registerItem("rum_bottle",
-            new BoozeBottleItem(ModFluids.RUM_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyRumEffects)
-                    .setInebriationChance(0.9f));
+            new BoozeBottleItem(ModFluids.RUM_STILL, new Item.Settings().maxCount(64), BoozeEffects::applyRumEffects).setInebriationChance(0.9f));
 
     public static final Item AMBROSIA_BOTTLE = registerItem("ambrosia_bottle",
             new BoozeBottleItem(ModFluids.AMBROSIA_STILL, new Item.Settings().maxCount(64).rarity(Rarity.EPIC), BoozeEffects::applyAmbrosiaEffects) {
@@ -348,10 +293,7 @@ public class ModItems {
     // ||                   ALCHEMY                   ||
     // =================================================
     public static final Item ELIXIR_BOTTLE = registerItem("elixir_bottle",
-            new ElixirBottle(new Item.Settings()
-                    .maxCount(16)
-                    .component(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Potions.WATER))
-            ));
+            new ElixirBottle(new Item.Settings().maxCount(16).component(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Potions.WATER))));
     public static final Item ELIXIR_ICON = registerItem("elixir_icon", new Item(new Item.Settings()));
 
 
@@ -360,7 +302,6 @@ public class ModItems {
         ResproutedBoatTypes.addBoatTypeItems(ResproutedBoatTypes.IRONWOOD, IRONWOOD_BOAT, IRONWOOD_CHEST_BOAT);
         ResproutedBoatTypes.addBoatTypeItems(ResproutedBoatTypes.OLIVE, OLIVE_BOAT, OLIVE_CHEST_BOAT);
     }
-
 
     private static void addFoodEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
         if (Resprouted.CONFIG.isFoodEffectTooltipsEnabled()) {

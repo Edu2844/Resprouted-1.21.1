@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.util.FluidUtils;
 import net.edu.resprouted.util.ScreenUtils;
+import net.edu.resprouted.util.TextUtils;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
@@ -171,57 +172,13 @@ public class FluidWidget implements Drawable, Widget {
 
             ComponentChanges components = this.fluidStorage.variant.getComponents();
             if (components != null) {
-
                 try {
                     Optional<?> qualityOpt = components.get(ModDataComponentTypes.FLUID_QUALITY);
 
                     if (qualityOpt != null && qualityOpt.isPresent() && qualityOpt.get() instanceof Float quality) {
-                        int qualityPercent = (int) (quality * 100);
-
-                        String qualityName;
-                        Formatting nameColor;
-
-                        if (quality >= 0.9f) {
-                            qualityName = "divine";
-                            nameColor = Formatting.GOLD;
-                        } else if (quality >= 0.8f) {
-                            qualityName = "exquisite";
-                            nameColor = Formatting.YELLOW;
-                        } else if (quality >= 0.7f) {
-                            qualityName = "flavorful";
-                            nameColor = Formatting.GREEN;
-                        } else if (quality >= 0.6f) {
-                            qualityName = "fine";
-                            nameColor = Formatting.DARK_PURPLE;
-                        } else if (quality >= 0.5f) {
-                            qualityName = "decent";
-                            nameColor = Formatting.AQUA;
-                        } else if (quality >= 0.4f) {
-                            qualityName = "average";
-                            nameColor = Formatting.BLUE;
-                        } else if (quality >= 0.3f) {
-                            qualityName = "mediocre";
-                            nameColor = Formatting.YELLOW;
-                        } else if (quality >= 0.2f) {
-                            qualityName = "poor";
-                            nameColor = Formatting.RED;
-                        } else if (quality >= 0.1f) {
-                            qualityName = "awful";
-                            nameColor = Formatting.DARK_RED;
-                        } else {
-                            qualityName = "sewage";
-                            nameColor = Formatting.DARK_GRAY;
-                        }
-
-                        Text qualityText = Text.empty()
-                                .append(Text.literal("Quality: ").formatted(Formatting.GRAY))
-                                .append(Text.translatable("tooltip.resprouted.quality." + qualityName).formatted(nameColor))
-                                .append(Text.literal(" [" + qualityPercent + "%]").formatted(Formatting.DARK_GRAY));
-
-                        tooltipLines.add(qualityText);
+                        tooltipLines.add(TextUtils.addQualityText(quality));
                     }
                 } catch (Exception ignored) {
-
                 }
             }
 
