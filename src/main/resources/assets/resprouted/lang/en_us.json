@@ -785,6 +785,7 @@
   "tooltip.resprouted.ghost_pepper.tooltip": "§ePossesed by Spirit of Hellfire",
   "tooltip.resprouted.fluid": "Fluid: %s",
   "tooltip.resprouted.amount": "Amount: %s mB",
+  "tooltip.resprouted.fluid_error": "Error reading fluid variant",
   "tooltip.resprouted.olive_oil": "Olive Oiled",
   "tooltip.resprouted.vanta_oiled": "Vanta Oiled:",
   "tooltip.resprouted.vanta_oil_use": "1 restant use",

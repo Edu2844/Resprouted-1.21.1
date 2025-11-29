@@ -762,6 +762,7 @@
   "tooltip.resprouted.ghost_pepper.tooltip": "§ePoseido por el espíritu del fuego infernal",
   "tooltip.resprouted.fluid": "Fluido: %s",
   "tooltip.resprouted.amount": "Cantidad: %s mB",
+  "tooltip.resprouted.fluid_error": "Error al leer el fluido",
   "tooltip.resprouted.olive_oil": "Aceitado",
   "tooltip.resprouted.vanta_oiled": "Aceitado con Vanta:",
   "tooltip.resprouted.vanta_oil_use": "1 uso restante",

@@ -1,0 +1,12 @@
+{
+  "fluid_variant": {
+    "fluid": "minecraft:water"
+  },
+  "item": {
+    "id": "minecraft:water_bucket"
+  },
+  "empty_item": {
+    "id": "minecraft:bucket"
+  },
+  "amount": 1000
+}

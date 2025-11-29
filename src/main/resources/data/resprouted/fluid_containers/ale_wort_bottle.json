@@ -1,0 +1,12 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:ale_wort_still"
+  },
+  "item": {
+    "id": "resprouted:ale_wort_bottle"
+  },
+  "empty_item": {
+    "id": "minecraft:glass_bottle"
+  },
+  "amount": 250
+}

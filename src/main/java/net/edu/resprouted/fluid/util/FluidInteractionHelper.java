@@ -30,7 +30,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class FluidInteractionHelper {
-
     private static final Map<Identifier, ComponentType<?>> COMPONENT_TYPE_CACHE = new ConcurrentHashMap<>();
 
     public static ItemActionResult onFluidStorageUse(PlayerEntity player, ItemStack stack, Storage<FluidVariant> storage, World world, BlockPos pos, boolean allowInsert, boolean allowExtract) {
@@ -52,10 +51,6 @@ public class FluidInteractionHelper {
     private static boolean tryInsertFluid(PlayerEntity player, ItemStack stack, Storage<FluidVariant> storage, World world, BlockPos pos) {
         try (Transaction tx = Transaction.openOuter()) {
             for (FluidContainerMapping mapping : FluidContainerLoader.getEntries()) {
-                if (!mapping.direction().allowsInsert()) {
-                    continue;
-                }
-
                 if (!ItemStack.areItemsEqual(stack, mapping.fullItem())) {
                     continue;
                 }
@@ -80,14 +75,10 @@ public class FluidInteractionHelper {
         return false;
     }
 
-    private static boolean tryExtractFluid(PlayerEntity player, ItemStack stack, Storage<FluidVariant> storage, World world, BlockPos pos) {
 
+    private static boolean tryExtractFluid(PlayerEntity player, ItemStack stack, Storage<FluidVariant> storage, World world, BlockPos pos) {
         try (Transaction tx = Transaction.openOuter()) {
             for (FluidContainerMapping mapping : FluidContainerLoader.getEntries()) {
-                if (!mapping.direction().allowsExtract()) {
-                    continue;
-                }
-
                 if (!stack.isOf(mapping.emptyItem().getItem())) {
                     continue;
                 }

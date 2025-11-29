@@ -1,0 +1,15 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:glow_berry_wine_still"
+  },
+  "item": {
+    "id": "resprouted:glow_berry_wine_bottle"
+  },
+  "empty_item": {
+    "id": "minecraft:glass_bottle"
+  },
+  "amount": 250
+  "preserved_components": [
+    "resprouted:fluid_quality"
+  ]
+}
