@@ -8,7 +8,7 @@
   "empty_item": {
     "id": "minecraft:glass_bottle"
   },
-  "amount": 250
+  "amount": 250,
   "preserved_components": [
     "resprouted:fluid_quality"
   ]
