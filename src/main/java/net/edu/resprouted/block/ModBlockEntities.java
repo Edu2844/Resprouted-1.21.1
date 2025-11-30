@@ -8,6 +8,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlockEntities {
+
     public static final BlockEntityType<CrushingTubBlockEntity> CRUSHING_TUB_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "crushing_tub_be"),
                     BlockEntityType.Builder.create(CrushingTubBlockEntity::new, ModBlocks.CRUSHING_TUB).build(null));

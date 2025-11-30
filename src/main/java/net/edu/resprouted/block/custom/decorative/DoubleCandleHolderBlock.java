@@ -20,11 +20,11 @@ import java.util.List;
 
 public class DoubleCandleHolderBlock extends CandleHolderBlock{
     public static final MapCodec<DoubleCandleHolderBlock> CODEC = MapCodec.unit(DoubleCandleHolderBlock::new);
-    protected static final VoxelShape STANDING_SHAPE = Block.createCuboidShape(4, 0, 4, 12, 15, 12);
-    protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(3, 0, 10, 13, 14, 16);
-    protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(3, 0, 0, 13, 14, 6);
-    protected static final VoxelShape WEST_SHAPE = Block.createCuboidShape(10, 0, 3, 16, 14, 13);
-    protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0, 0, 3, 6, 14, 13);
+    protected static final VoxelShape STANDING_SHAPE = Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 15.0, 12.0);
+    protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(3.0, 0.0, 10.0, 13.0, 14.0, 16.0);
+    protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(3.0, 0.0, 0.0, 13.0, 14.0, 6.0);
+    protected static final VoxelShape WEST_SHAPE = Block.createCuboidShape(10.0, 0.0, 3.0, 16.0, 14.0, 13.0);
+    protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0.0, 0.0, 3.0, 6.0, 14.0, 13.0);
 
     public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
 

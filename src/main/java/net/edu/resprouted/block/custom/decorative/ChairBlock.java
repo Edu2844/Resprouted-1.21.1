@@ -25,7 +25,7 @@ import java.util.List;
 
 public class ChairBlock extends HorizontalFacingBlock {
     public static final MapCodec<ChairBlock> CODEC = createCodec(ChairBlock::new);
-    private static final VoxelShape SHAPE = Block.createCuboidShape(2.0F, 5.0F, 2.0F, 14.0F, 7.0F, 14.0F);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 5.0, 2.0, 14.0, 7.0, 14.0);
 
     public ChairBlock(Settings settings) {
         super(settings);

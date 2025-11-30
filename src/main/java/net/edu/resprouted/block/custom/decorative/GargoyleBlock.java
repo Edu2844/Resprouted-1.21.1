@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class GargoyleBlock extends HorizontalFacingBlock {
     public static final MapCodec<GargoyleBlock> CODEC = createCodec(GargoyleBlock::new);
-    private static final VoxelShape SHAPE = Block.createCuboidShape(3, 0, 3, 13, 16, 13);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 16.0, 13.0);
 
 
     public GargoyleBlock(Settings settings) {

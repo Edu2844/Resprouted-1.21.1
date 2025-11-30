@@ -80,10 +80,6 @@ public class CandleHolderBlock extends AbstractCandleBlock implements Waterlogga
         BlockPos attachedPos = pos.offset(direction.getOpposite());
         BlockState attachedState = world.getBlockState(attachedPos);
 
-        if (attachedState.getBlock() instanceof ChandelierBlock) {
-            return true;
-        }
-
         return attachedState.isSideSolidFullSquare(world, attachedPos, direction);
     }
 

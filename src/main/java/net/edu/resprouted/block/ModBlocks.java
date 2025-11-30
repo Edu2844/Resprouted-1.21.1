@@ -236,10 +236,10 @@ public class ModBlocks {
     public static final Block IRONWOOD_TRAPDOOR = registerBlock("ironwood_trapdoor",
             new TrapdoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
 
-    public static final Block IRONWOOD_SIGN = registerBlockWithoutBlockItem("ironwood_sign", new ModStandingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
-    public static final Block IRONWOOD_WALL_SIGN = registerBlockWithoutBlockItem("ironwood_wall_sign", new ModWallSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_SIGN)));
-    public static final Block IRONWOOD_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_hanging_sign", new ModHangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
-    public static final Block IRONWOOD_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_wall_hanging_sign", new ModWallHangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_HANGING_SIGN)));
+    public static final Block IRONWOOD_SIGN = registerBlockWithoutBlockItem("ironwood_sign", new SignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
+    public static final Block IRONWOOD_WALL_SIGN = registerBlockWithoutBlockItem("ironwood_wall_sign", new WallSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_SIGN)));
+    public static final Block IRONWOOD_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_hanging_sign", new HangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
+    public static final Block IRONWOOD_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_wall_hanging_sign", new WallHangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_HANGING_SIGN)));
 
     // =================================================
     // ||                    OLIVE                    ||
@@ -276,10 +276,10 @@ public class ModBlocks {
     public static final Block OLIVE_TRAPDOOR = registerBlock("olive_trapdoor",
             new TrapdoorBlock(BlockSetType.ACACIA, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
 
-    public static final Block OLIVE_SIGN = registerBlockWithoutBlockItem("olive_sign", new ModStandingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
-    public static final Block OLIVE_WALL_SIGN = registerBlockWithoutBlockItem("olive_wall_sign", new ModWallSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_SIGN)));
-    public static final Block OLIVE_HANGING_SIGN = registerBlockWithoutBlockItem("olive_hanging_sign", new ModHangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
-    public static final Block OLIVE_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("olive_wall_hanging_sign", new ModWallHangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_HANGING_SIGN)));
+    public static final Block OLIVE_SIGN = registerBlockWithoutBlockItem("olive_sign", new SignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
+    public static final Block OLIVE_WALL_SIGN = registerBlockWithoutBlockItem("olive_wall_sign", new WallSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_SIGN)));
+    public static final Block OLIVE_HANGING_SIGN = registerBlockWithoutBlockItem("olive_hanging_sign", new HangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
+    public static final Block OLIVE_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("olive_wall_hanging_sign", new WallHangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_HANGING_SIGN)));
 
     // =================================================
     // ||               PAINTED PLANKS                ||
@@ -522,7 +522,7 @@ public class ModBlocks {
     // ||                CANDLE HOLDER                ||
     // =================================================
 
-    //IRON
+    //IRON CANDLE HOLDER
     public static final Block IRON_CANDLE_HOLDER = registerBlock("iron_candle_holder", new CandleHolderBlock());
     public static final Block WHITE_IRON_CANDLE_HOLDER = registerBlock("white_iron_candle_holder", new CandleHolderBlock());
     public static final Block LIGHT_GRAY_IRON_CANDLE_HOLDER = registerBlock("light_gray_iron_candle_holder", new CandleHolderBlock());
@@ -541,7 +541,7 @@ public class ModBlocks {
     public static final Block PINK_IRON_CANDLE_HOLDER = registerBlock("pink_iron_candle_holder", new CandleHolderBlock());
     public static final Block GREEN_IRON_CANDLE_HOLDER = registerBlock("green_iron_candle_holder", new CandleHolderBlock());
 
-    //GOLD
+    //GOLD CANDLE HOLDER
     public static final Block GOLDEN_CANDLE_HOLDER = registerBlock("golden_candle_holder", new CandleHolderBlock());
     public static final Block WHITE_GOLDEN_CANDLE_HOLDER = registerBlock("white_golden_candle_holder", new CandleHolderBlock());
     public static final Block LIGHT_GRAY_GOLDEN_CANDLE_HOLDER = registerBlock("light_gray_golden_candle_holder", new CandleHolderBlock());
@@ -560,7 +560,7 @@ public class ModBlocks {
     public static final Block PINK_GOLDEN_CANDLE_HOLDER = registerBlock("pink_golden_candle_holder", new CandleHolderBlock());
     public static final Block GREEN_GOLDEN_CANDLE_HOLDER = registerBlock("green_golden_candle_holder", new CandleHolderBlock());
 
-    //COPPER
+    //COPPER CANDLE HOLDER
     public static final Block COPPER_CANDLE_HOLDER = registerBlock("copper_candle_holder", new CopperCandleHolderBlock(Oxidizable.OxidationLevel.UNAFFECTED));
     public static final Block EXPOSED_COPPER_CANDLE_HOLDER = registerBlock("exposed_copper_candle_holder", new CopperCandleHolderBlock(Oxidizable.OxidationLevel.EXPOSED));
     public static final Block WEATHERED_COPPER_CANDLE_HOLDER = registerBlock("weathered_copper_candle_holder", new CopperCandleHolderBlock(Oxidizable.OxidationLevel.WEATHERED));

@@ -1,0 +1,12 @@
+{
+  "parent": "amendments:block/double_cake/full_template",
+  "credit": "Made with Blockbench",
+  "textures": {
+    "side_up": "amendments:block/resprouted/double_iron_berry_cake_side",
+    "top_up": "amendments:block/resprouted/double_iron_berry_cake_top",
+    "bottom": "resprouted:block/iron_berry_cake_bottom",
+    "top": "resprouted:block/iron_berry_cake_top",
+    "particle": "resprouted:block/iron_berry_cake_side",
+    "side": "resprouted:block/iron_berry_cake_side"
+  }
+}
