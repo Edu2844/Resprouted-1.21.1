@@ -6,8 +6,6 @@ import net.edu.resprouted.block.entity.renderer.CrushingTubRenderer;
 import net.edu.resprouted.block.entity.renderer.EvaporatingBasinRenderer;
 import net.edu.resprouted.block.entity.renderer.LiquidBarrelRenderer;
 import net.edu.resprouted.effect.render.FullMetalHudOverlay;
-import net.edu.resprouted.effect.render.FullMetalLayer;
-import net.edu.resprouted.effect.render.IronSkinLayer;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.entity.client.ChairEntityRenderer;
 import net.edu.resprouted.entity.client.StoolEntityRenderer;
@@ -21,7 +19,6 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRendererRegistrationCallback;
 import net.minecraft.block.Block;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.color.world.BiomeColors;
@@ -29,12 +26,8 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.PotionContentsComponent;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
@@ -43,7 +36,7 @@ import net.minecraft.world.biome.FoliageColors;
 import java.util.Optional;
 
 
-public class ResproutedClientRegistries {
+public class ResproutedClientStuffs {
     public static void RegisterModClientStuffs(){
         registerBlockEntityRenderers();
         registerEntityRenderers();
@@ -52,7 +45,6 @@ public class ResproutedClientRegistries {
         registerBlockColors();
         registerItemColors();
         registerHudRenderers();
-        registerLivingEntityRenderers();
         registerEatingAnimationsCompat();
     }
 
@@ -724,20 +716,5 @@ public class ResproutedClientRegistries {
 
     public static void registerHudRenderers() {
         HudRenderCallback.EVENT.register(new FullMetalHudOverlay());
-    }
-
-    public static void registerLivingEntityRenderers() {
-        LivingEntityFeatureRendererRegistrationCallback.EVENT.register((entityType, entityRenderer, registrationHelper, renderContext) -> {
-            if (entityType == EntityType.PLAYER && entityRenderer instanceof FeatureRendererContext<?, ?> genericContext) {
-                try {
-                    @SuppressWarnings("unchecked")
-                    FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>> typedContext = (FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>>) genericContext;
-                    registrationHelper.register(new IronSkinLayer(typedContext));
-                    registrationHelper.register(new FullMetalLayer(typedContext));
-                } catch (ClassCastException e) {
-                    System.err.println("Could not register player layer: " + e.getMessage());
-                }
-            }
-        });
     }
 }

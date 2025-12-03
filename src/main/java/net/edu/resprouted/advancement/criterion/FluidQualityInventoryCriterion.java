@@ -28,11 +28,7 @@ public class FluidQualityInventoryCriterion extends AbstractCriterion<FluidQuali
         this.trigger(player, conditions -> conditions.matches(inventory, stack));
     }
 
-    public record Conditions(
-            Optional<LootContextPredicate> player,
-            NumberRange.DoubleRange quality,
-            Optional<RegistryEntryList<Item>> items
-    ) implements AbstractCriterion.Conditions {
+    public record Conditions(Optional<LootContextPredicate> player, NumberRange.DoubleRange quality, Optional<RegistryEntryList<Item>> items) implements AbstractCriterion.Conditions {
 
         public static final Codec<Conditions> CODEC = RecordCodecBuilder.create(instance ->
                 instance.group(

@@ -32,27 +32,31 @@ public class FullMetalEffect extends StatusEffect {
                 EntityAttributes.GENERIC_JUMP_STRENGTH,
                 Identifier.of(JUMP_STRENGTH_MODIFIER_ID.toString()), -1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
     }
+
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-     if (!(entity instanceof PlayerEntity player))
-         return false;
-        if (player.isFallFlying()) {
-            player.stopFallFlying();
-            player.setVelocity(entity.getVelocity().add(0, -10, 0));
+        if (entity instanceof PlayerEntity player) {
+            if (player.isFallFlying()) {
+                player.stopFallFlying();
+                player.setVelocity(entity.getVelocity().add(0, -10, 0));
+            }
+            if (player.isTouchingWaterOrRain() || player.isInLava()) {
+                Vec3d vel = player.getVelocity();
+                player.setVelocity(new Vec3d(vel.x * 0, -10, vel.z * 0));
+                player.setSwimming(false);
+            }
+            player.setJumping(false);
+            player.setSprinting(false);
         }
-        if (player.isTouchingWaterOrRain() || player.isInLava()) {
-        Vec3d vel = player.getVelocity();
-        player.setVelocity(new Vec3d(vel.x * 0, -10, vel.z * 0));
-        player.setSwimming(false);
-        }
-        player.setJumping(false);
-        player.setSprinting(false);
+
         return true;
     }
+
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
     }
+
     @Override
     public void playApplySound(LivingEntity entity, int amplifier) {
         entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.PLAYERS, 1.0f, 1.0f);

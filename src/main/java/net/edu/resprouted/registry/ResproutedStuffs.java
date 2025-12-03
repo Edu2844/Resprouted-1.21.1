@@ -13,7 +13,7 @@ import static net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry.register
 import static net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry.registerWaxableBlockPair;
 import static net.fabricmc.fabric.api.registry.StrippableBlockRegistry.register;
 
-public class ResproutedRegistries {
+public class ResproutedStuffs {
     public static void RegisterModStuffs(){
         registerStrippables();
         registerFlammables();

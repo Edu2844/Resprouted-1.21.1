@@ -1,7 +1,9 @@
 package net.edu.resprouted;
 
+import net.edu.resprouted.entity.client.ModEntityRenderers;
 import net.edu.resprouted.event.ModKeyInputHandler;
-import net.edu.resprouted.registry.ResproutedClientRegistries;
+import net.edu.resprouted.networking.ModMessages;
+import net.edu.resprouted.registry.ResproutedClientStuffs;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.screen.custom.AdvancedCondenserScreen;
 import net.edu.resprouted.screen.custom.BrewingBarrelScreen;
@@ -13,7 +15,9 @@ public class ResproutedClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModKeyInputHandler.registerKeybinds();
-        ResproutedClientRegistries.RegisterModClientStuffs();
+        ResproutedClientStuffs.RegisterModClientStuffs();
+        ModMessages.registerS2CPackets();
+        ModEntityRenderers.registerLivingEntityRenderers();
         HandledScreens.register(ModScreenHandlers.CONDENSER_SCREEN_HANDLER, BasicCondenserScreen::new);
         HandledScreens.register(ModScreenHandlers.ADVANCED_CONDENSER_SCREEN_HANDLER, AdvancedCondenserScreen::new);
         HandledScreens.register(ModScreenHandlers.BREWING_BARREL_SCREEN_HANDLER, BrewingBarrelScreen::new);

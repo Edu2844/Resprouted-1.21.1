@@ -11,10 +11,12 @@ public class BlazingTrailEffect extends StatusEffect {
     public BlazingTrailEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
+
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return (duration % 10) == 0;
     }
+
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (!entity.getWorld().isClient() && entity.isOnGround()) {

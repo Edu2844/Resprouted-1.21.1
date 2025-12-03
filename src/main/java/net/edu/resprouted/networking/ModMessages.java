@@ -2,9 +2,13 @@ package net.edu.resprouted.networking;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.effect.ModEffects;
+import net.edu.resprouted.networking.payload.EntityEffectSyncPayload;
 import net.edu.resprouted.networking.payload.FirePowerAttackPayload;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.Items;
 import net.minecraft.server.MinecraftServer;
@@ -12,8 +16,12 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 
+import java.util.Objects;
+
 public class ModMessages {
     public static final Identifier FIRE_POWER_ATTACK = Identifier.of(Resprouted.MOD_ID, "fire_power_attack");
+    public static final Identifier ENTITY_EFFECT_SYNC = Identifier.of(Resprouted.MOD_ID, "entity_effect_sync");
+
 
     public static void registerC2SPackets(){
 
@@ -40,8 +48,21 @@ public class ModMessages {
         });
     }
 
+    public static void registerS2CPackets() {
+        ClientPlayNetworking.registerGlobalReceiver(EntityEffectSyncPayload.ID, (payload, context) -> {
+            context.client().execute(() -> {
+                Entity entity = Objects.requireNonNull(context.client().world).getEntityById(payload.entityId());
+                if (entity instanceof LivingEntity living) {
+                    living.getStatusEffects().clear();
+                    payload.effects().forEach(effect -> living.setStatusEffect(effect, null));
+                }
+            });
+        });
+    }
+
     public static void registerPayloads(){
         PayloadTypeRegistry.playC2S().register(FirePowerAttackPayload.ID, FirePowerAttackPayload.CODEC);
+        PayloadTypeRegistry.playS2C().register(EntityEffectSyncPayload.ID, EntityEffectSyncPayload.CODEC);
 
     }
 }

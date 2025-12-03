@@ -10,10 +10,12 @@ public class TipsyEffect extends StatusEffect {
     public TipsyEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
+
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return (amplifier >= 1) && ((duration % 100) == 0);
     }
+
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (!entity.getWorld().isClient() && amplifier >= 1) {
