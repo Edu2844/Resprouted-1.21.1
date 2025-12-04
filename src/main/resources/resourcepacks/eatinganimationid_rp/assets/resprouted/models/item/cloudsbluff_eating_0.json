@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "resprouted:item/herbs/cloudsbluff_eating_0"
+  }
+}

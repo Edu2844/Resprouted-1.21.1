@@ -24,7 +24,6 @@ public class ModMessages {
 
 
     public static void registerC2SPackets(){
-
         ServerPlayNetworking.registerGlobalReceiver(FirePowerAttackPayload.ID, (payload, context) -> {
             ServerPlayerEntity player = context.player();
             MinecraftServer server = player.getServer();

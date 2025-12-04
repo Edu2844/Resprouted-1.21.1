@@ -37,6 +37,7 @@ public class ModTags {
         public static final TagKey<Item> CROPS = createTag("crops");
         public static final TagKey<Item> GLASS_BOTTLES = createTag("glass_bottles");
         public static final TagKey<Item> FUELS = createTag("fuels");
+        public static final TagKey<Item> TALLOW = createTag("tallow");
         public static final TagKey<Item> CAN_BE_OILED = createTag("can_be_oiled");
         public static final TagKey<Item> MODIFIERS = createTag("modifiers");
         public static final TagKey<Item> BOOZE_BOTTLES = createTag("booze_bottles");

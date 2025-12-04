@@ -87,6 +87,7 @@ public class ModItems {
     public static final Item IRON_DUST = registerItem("iron_dust", new Item(new Item.Settings()));
     public static final Item GRAPE_SEEDS = registerItem("grape_seeds", new AliasedBlockItem(ModBlocks.GRAPE_STEM,new Item.Settings()));
     public static final Item GRAPES = registerItem("grapes", new Item(new Item.Settings().food(ModFoodComponents.GRAPES)));
+    public static final Item TALLOW = registerItem("tallow", new Item(new Item.Settings()));
     public static final Item TINY_IRON_DUST = registerItem("tiny_iron_dust", new Item(new Item.Settings()));
     public static final Item TINY_GOLDEN_DUST = registerItem("tiny_golden_dust", new Item(new Item.Settings()));
     public static final Item TINY_GLOWSTONE_DUST = registerItem("tiny_glowstone_dust", new Item(new Item.Settings()));

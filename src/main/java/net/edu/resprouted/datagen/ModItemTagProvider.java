@@ -55,6 +55,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTags.Items.IRON_BERRIES)
                 .add(ModItems.IRON_BERRIES);
 
+        getOrCreateTagBuilder(ModTags.Items.TALLOW)
+                .add(ModItems.TALLOW);
+
         getOrCreateTagBuilder(ModTags.Items.GRAPES)
                 .add(ModItems.GRAPES);
 

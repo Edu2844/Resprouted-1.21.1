@@ -282,6 +282,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.COPPER_NUGGET, Models.GENERATED);
         itemModelGenerator.register(ModItems.TINY_GOLDEN_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.IRON_DUST, Models.GENERATED);
+        itemModelGenerator.register(ModItems.TALLOW, Models.GENERATED);
         itemModelGenerator.register(ModItems.TINY_IRON_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.TINY_GLOWSTONE_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.OLIVES, Models.GENERATED);

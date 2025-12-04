@@ -3,11 +3,9 @@
   "criteria": {
     "eat_ghost_pepper": {
       "conditions": {
-        "items": [
-          {
-            "items": "resprouted:ghost_pepper"
-          }
-        ]
+        "item": {
+          "items": "resprouted:ghost_pepper"
+        }
       },
       "trigger": "minecraft:consume_item"
     }

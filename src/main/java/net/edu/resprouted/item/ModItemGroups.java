@@ -39,12 +39,12 @@ public class ModItemGroups {
                         entries.add(ModBlocks.EVAPORATING_BASIN);
                         entries.add(ModBlocks.STAKE);
                         entries.add(ModBlocks.ROPE);
-
-
+                        //Seeds
                         entries.add(ModItems.CHILI_PEPPER_SEEDS);
                         entries.add(ModItems.TOMATO_SEEDS);
                         entries.add(ModItems.GRAPE_SEEDS);
                         entries.add(ModItems.APPLE_SEEDS);
+                        //Crops
                         entries.add(ModItems.OLIVES);
                         entries.add(ModItems.IRON_BERRIES);
                         //entries.add(ModItems.TEST_BERRIES);
@@ -52,42 +52,44 @@ public class ModItemGroups {
                         entries.add(ModItems.TOMATO);
                         entries.add(ModItems.CHILI_PEPPER);
                         entries.add(ModItems.GHOST_PEPPER);
+                        //Ingredients
+                        entries.add(ModItems.TALLOW);
                         entries.add(ModItems.GOLDEN_DUST);
                         entries.add(ModItems.TINY_GOLDEN_DUST);
                         entries.add(ModItems.IRON_DUST);
                         entries.add(ModItems.TINY_IRON_DUST);
                         entries.add(ModItems.TINY_GLOWSTONE_DUST);
                         entries.add(ModItems.COPPER_NUGGET);
-
-                        entries.add(ModItems.APPLE_JUICE_BOTTLE);
-                        entries.add(ModItems.GOLDEN_APPLE_JUICE_BOTTLE);
-                        entries.add(ModItems.GRAPE_JUICE_BOTTLE);
-                        entries.add(ModItems.SWEET_BERRY_JUICE_BOTTLE);
-                        entries.add(ModItems.OLIVE_OIL_BOTTLE);
-                        entries.add(ModItems.VANTA_OIL_BOTTLE);
-                        entries.add(ModItems.GLOW_BERRY_JUICE_BOTTLE);
+                        //Bottles
                         entries.add(ModItems.IRON_BERRY_JUICE_BOTTLE);
-                        entries.add(ModItems.SUGAR_CANE_JUICE_BOTTLE);
+                        entries.add(ModItems.VANTA_OIL_BOTTLE);
                         entries.add(ModItems.ALE_WORT_BOTTLE);
-
-                        entries.add(ModItems.HONEY_BUCKET);
-                        entries.add(ModItems.APPLE_JUICE_BUCKET);
-                        entries.add(ModItems.GOLDEN_APPLE_JUICE_BUCKET);
-                        entries.add(ModItems.GRAPE_JUICE_BUCKET);
-                        entries.add(ModItems.SWEET_BERRY_JUICE_BUCKET);
-                        entries.add(ModItems.OLIVE_OIL_BUCKET);
-                        entries.add(ModItems.VANTA_OIL_BUCKET);
-                        entries.add(ModItems.GLOW_BERRY_JUICE_BUCKET);
+                        entries.add(ModItems.OLIVE_OIL_BOTTLE);
+                        entries.add(ModItems.SUGAR_CANE_JUICE_BOTTLE);
+                        entries.add(ModItems.GOLDEN_APPLE_JUICE_BOTTLE);
+                        entries.add(ModItems.APPLE_JUICE_BOTTLE);
+                        entries.add(ModItems.GLOW_BERRY_JUICE_BOTTLE);
+                        entries.add(ModItems.SWEET_BERRY_JUICE_BOTTLE);
+                        entries.add(ModItems.GRAPE_JUICE_BOTTLE);
+                        //Buckets
                         entries.add(ModItems.IRON_BERRY_JUICE_BUCKET);
-                        entries.add(ModItems.SUGAR_CANE_JUICE_BUCKET);
+                        entries.add(ModItems.VANTA_OIL_BUCKET);
                         entries.add(ModItems.ALE_WORT_BUCKET);
-
+                        entries.add(ModItems.OLIVE_OIL_BUCKET);
+                        entries.add(ModItems.SUGAR_CANE_JUICE_BUCKET);
+                        entries.add(ModItems.GOLDEN_APPLE_JUICE_BUCKET);
+                        entries.add(ModItems.HONEY_BUCKET);
+                        entries.add(ModItems.GLOW_BERRY_JUICE_BUCKET);
+                        entries.add(ModItems.APPLE_JUICE_BUCKET);
+                        entries.add(ModItems.SWEET_BERRY_JUICE_BUCKET);
+                        entries.add(ModItems.GRAPE_JUICE_BUCKET);
+                        //Food
                         entries.add(ModItems.SPICY_LAMB_STEW);
                         entries.add(ModItems.HONEY_GLAZED_CARROTS);
                         entries.add(ModBlocks.IRON_BERRY_CAKE);
 
                         entries.add(ModBlocks.BREWING_BARREL);
-
+                        //Booze
                         ItemStack IronWineBottleWithQuality = new ItemStack(ModItems.IRON_WINE_BOTTLE);
                         BoozeBottleItem.setQuality(IronWineBottleWithQuality, 0.75f);
                         entries.add(IronWineBottleWithQuality);
@@ -123,10 +125,6 @@ public class ModItemGroups {
                         ItemStack WineBottleWithQuality = new ItemStack(ModItems.WINE_BOTTLE);
                         BoozeBottleItem.setQuality(WineBottleWithQuality, 0.75f);
                         entries.add(WineBottleWithQuality);
-
-
-
-
 
                     }).build());
     public static  final ItemGroup DECORATION_GROUP = Registry.register(Registries.ITEM_GROUP,
