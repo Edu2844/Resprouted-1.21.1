@@ -1,0 +1,30 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "resprouted:item/herbs/marsh_mallow"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "eating": 1,
+        "eat": 0.35
+      },
+      "model": "resprouted:item/marsh_mallow_eating_0"
+    },
+    {
+      "predicate": {
+        "eating": 1,
+        "eat": 0.70
+      },
+      "model": "resprouted:item/marsh_mallow_eating_1"
+    },
+    {
+      "predicate": {
+
+        "eating": 1,
+        "eat": 0.90
+      },
+      "model": "resprouted:item/marsh_mallow_eating_2"
+    }
+  ]
+}

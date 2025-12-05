@@ -1,0 +1,30 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "resprouted:item/herbs/core_root"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "eating": 1,
+        "eat": 0.35
+      },
+      "model": "resprouted:item/core_root_eating_0"
+    },
+    {
+      "predicate": {
+        "eating": 1,
+        "eat": 0.70
+      },
+      "model": "resprouted:item/core_root_eating_1"
+    },
+    {
+      "predicate": {
+
+        "eating": 1,
+        "eat": 0.90
+      },
+      "model": "resprouted:item/core_root_eating_2"
+    }
+  ]
+}
