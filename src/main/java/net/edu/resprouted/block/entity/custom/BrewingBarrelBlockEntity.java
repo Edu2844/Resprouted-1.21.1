@@ -249,7 +249,8 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                     FluidVariant variant = FluidVariant.of(fluid);
                     long amount = FluidConstants.BUCKET;
 
-                    if ((this.input.isResourceBlank() || this.input.getResource().isOf(fluid)) && this.input.insert(variant, amount, transaction) == amount) {
+                    if ((this.input.isResourceBlank() ||
+                            this.input.getResource().isOf(fluid)) && this.input.insert(variant, amount, transaction) == amount) {
 
                         i.decrement(1);
                         if (i.isEmpty()) {
@@ -326,8 +327,7 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
 
                 FluidStack fluidFromBottle = boozeBottle.toFluidStack(k);
 
-                FluidVariant variant = FluidVariant.of(fluidFromBottle.getFluid())
-                        .withComponentChanges(fluidFromBottle.getComponents().getChanges());
+                FluidVariant variant = FluidVariant.of(fluidFromBottle.getFluid()).withComponentChanges(fluidFromBottle.getComponents().getChanges());
 
                 long amount = FluidConstants.BUCKET;
 
@@ -472,8 +472,7 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     private boolean canCraft() {
-        return input.getAmount() > 0 &&
-                output.getAmount() < output.getCapacity();
+        return input.getAmount() > 0 && output.getAmount() < output.getCapacity();
     }
 
     private void craft(BrewingBarrelRecipe recipe, FluidStack inputFluid, FluidStack auxiliaryFluid) {
@@ -504,8 +503,7 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                     FluidUtils.setQuality(newResult, existingQuality);
                 }
 
-                FluidVariant resultVariant = FluidVariant.of(newResult.getFluid())
-                        .withComponentChanges(newResult.getComponents().getChanges());
+                FluidVariant resultVariant = FluidVariant.of(newResult.getFluid()).withComponentChanges(newResult.getComponents().getChanges());
 
                 output.insert(resultVariant, newResult.getAmount(), t);
             }

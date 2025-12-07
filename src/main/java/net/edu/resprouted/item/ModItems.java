@@ -253,9 +253,8 @@ public class ModItems {
                     if (world.random.nextFloat() < this.inebriationChance) {
                         if (tipsyEffect == null) {
                             int amp = (quality > 0.99F) ? 1 : 0;
-                            player.addStatusEffect(new StatusEffectInstance(
-                                    ModEffects.TIPSY, duration, amp, false, false
-                            ));
+                            player.addStatusEffect(new StatusEffectInstance(ModEffects.TIPSY, duration, amp, false, false));
+
                         } else if (tipsyEffect.getAmplifier() < 3) {
                             int newAmp = Math.min(tipsyEffect.getAmplifier() + ((quality >0.99F) ? 2 :1), 3);
                             player.addStatusEffect(new StatusEffectInstance(
@@ -288,7 +287,6 @@ public class ModItems {
     });
     public static final Item HONEY_GLAZED_CARROTS = registerItem("honey_glazed_carrots", new Item(new Item.Settings().food(FoodComponents.RABBIT_STEW)));
 
-    public static Item IRON_BERRY_CAKE_SLICE;
 
     // =================================================
     // ||                   ALCHEMY                   ||
@@ -298,18 +296,29 @@ public class ModItems {
     public static final Item ELIXIR_ICON = registerItem("elixir_icon", new Item(new Item.Settings()));
 
 
+    // =================================================
+    // ||                COMPAT ITEMS                 ||
+    // =================================================
+    public static Item IRON_BERRY_CAKE_SLICE;
+
 
     static {
         ResproutedBoatTypes.addBoatTypeItems(ResproutedBoatTypes.IRONWOOD, IRONWOOD_BOAT, IRONWOOD_CHEST_BOAT);
         ResproutedBoatTypes.addBoatTypeItems(ResproutedBoatTypes.OLIVE, OLIVE_BOAT, OLIVE_CHEST_BOAT);
     }
 
+    // =================================================
+    // ||                HELPER METHODS               ||
+    // =================================================
     private static void addFoodEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
         if (Resprouted.CONFIG.isFoodEffectTooltipsEnabled()) {
             TextUtils.addFoodEffectTooltip(stack, context, tooltip);
         }
     }
 
+    // =================================================
+    // ||               REGISTER METHODS              ||
+    // =================================================
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name), item);
     }
@@ -317,7 +326,6 @@ public class ModItems {
     public static void registerCompatItem() {
         if (Resprouted.isModLoaded(Resprouted.FARMERS_DELIGHT_MOD_ID)) {
             IRON_BERRY_CAKE_SLICE = registerItem("iron_berry_cake_slice", new Item(new Item.Settings().food(ModFoodComponents.IRON_BERRIES)));
-
         }
     }
 

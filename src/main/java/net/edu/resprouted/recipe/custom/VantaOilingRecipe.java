@@ -36,14 +36,17 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
         super(category);
         this.category = category;
     }
+
     public CraftingRecipeCategory getCategory() {
         return category;
     }
+
     @Override
     public boolean matches(CraftingRecipeInput input, World world) {
         if (!Resprouted.CONFIG.isVantaOilingEnabled()) {
             return false;
         }
+
         if (world.isClient())
             return false;
 
@@ -63,6 +66,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
                 vantaoilStack = tempStack;
                 continue;
             }
+
             StatusEffectInstance tempEffect = getIngredientEffect(tempStack);
             if (tempEffect != null) {
                 if (Effect != null) {
@@ -76,6 +80,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
                 }
                 continue;
             }
+
             if (RecipeUtils.isVantaOilableWeapon(tempStack)) {
                 if (!weaponStack.isEmpty()) return false;
                 weaponStack = tempStack;
@@ -89,6 +94,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
         }
         return (!weaponStack.isEmpty() && !vantaoilStack.isEmpty() && (Effect != null));
     }
+
     @Override
     public ItemStack craft(CraftingRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         ItemStack weaponStack = ItemStack.EMPTY;
@@ -127,6 +133,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
                 }
                 continue;
             }
+
             String itemId = Registries.ITEM.getId(tempStack.getItem()).toString();
             if (RecipeUtils.isVantaOilableWeapon(tempStack) && !Resprouted.CONFIG.getVantaOilBlackList().contains(itemId)) {
                 if (!weaponStack.isEmpty()) return ItemStack.EMPTY;
@@ -141,6 +148,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
             }
             return ItemStack.EMPTY;
         }
+
         if (weaponStack.isEmpty() || vantaoilStack.isEmpty() || (ingEffect == null)) return ItemStack.EMPTY;
 
         if (weaponEffect != null) {
@@ -149,15 +157,18 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
                 amplifier = weaponEffect.getAmplifier();
             }
         }
+
         ItemStack returnStack = weaponStack.copy();
         returnStack.setCount(1);
         RecipeUtils.setVantaOilEffect(returnStack, new StatusEffectInstance(ingEffect, duration, amplifier));
 
         return returnStack;
     }
+
     private boolean isInstantEffect(RegistryEntry<StatusEffect> effect) {
         return effect.value().isInstant();
     }
+
     public static StatusEffectInstance getIngredientEffect(ItemStack stack) {
         final Item item = stack.getItem();
 
@@ -184,6 +195,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
         }
         return null;
     }
+
     @Override
     public DefaultedList<ItemStack> getRemainder(CraftingRecipeInput input) {
         DefaultedList<ItemStack> remainder = DefaultedList.ofSize(input.getSize(), ItemStack.EMPTY);
@@ -197,10 +209,12 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
         }
         return remainder;
     }
+
     @Override
     public boolean fits(int width, int height) {
         return width * height >= 3;
     }
+
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.VANTA_OIL_SERIALIZER;
@@ -222,6 +236,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
         public MapCodec<VantaOilingRecipe> codec() {
             return CODEC;
         }
+
         @Override
         public PacketCodec<RegistryByteBuf, VantaOilingRecipe> packetCodec() {
             return PACKET_CODEC;

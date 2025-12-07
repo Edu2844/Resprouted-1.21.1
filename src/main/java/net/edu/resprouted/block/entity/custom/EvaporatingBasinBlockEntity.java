@@ -30,7 +30,7 @@ public class EvaporatingBasinBlockEntity extends AbstractAnimatedFluidStorageBlo
     private long progress;
 
     public EvaporatingBasinBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.EVAPORATING_BASIN_BE, pos, state, FluidConstants.BUCKET * 3);
+        super(ModBlockEntities.EVAPORATING_BASIN_BE, pos, state, FluidConstants.BUCKET * 2);
     }
 
     @Override

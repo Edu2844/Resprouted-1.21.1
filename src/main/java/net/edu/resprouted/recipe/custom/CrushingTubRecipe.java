@@ -24,26 +24,32 @@ public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack output
         if (world.isClient()) return false;
         return inputItem.test(input.getStackInSlot(0));
     }
+
     @Override
     public ItemStack craft(CrushingTubRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         return outputItem == null ? ItemStack.EMPTY : outputItem.copy();
     }
+
     @Override
     public boolean fits(int width, int height) {
         return true;
     }
+
     @Override
     public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
         return outputItem == null ? ItemStack.EMPTY : outputItem;
     }
+
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.CRUSHING_TUB_SERIALIZER;
     }
+
     @Override
     public RecipeType<?> getType() {
         return ModRecipes.CRUSHING_TUB_TYPE;
     }
+
     public static class CrushingTubRecipeSerializer implements RecipeSerializer<CrushingTubRecipe> {
 
         public static final MapCodec<CrushingTubRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
@@ -55,6 +61,7 @@ public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack output
                 Codec.LONG.optionalFieldOf("amount", 0L).xmap(FluidUtils::convertMbToDroplets, droplets -> droplets).forGetter(CrushingTubRecipe::fluidAmount))
                 .apply(inst, (input, output, chance, fluid, amount) ->
                 new CrushingTubRecipe(input, output.isEmpty() ? null : output, chance, fluid, amount)));
+
         public static final PacketCodec<RegistryByteBuf, CrushingTubRecipe> STREAM_CODEC = PacketCodec.ofStatic(
                 (buf, recipe) -> {
                     Ingredient.PACKET_CODEC.encode(buf, recipe.inputItem());
@@ -77,10 +84,12 @@ public record CrushingTubRecipe(Ingredient inputItem, @Nullable ItemStack output
                     return new CrushingTubRecipe(in, out, chance, fluid, amt);
                 }
         );
+
         @Override
         public MapCodec<CrushingTubRecipe> codec() {
             return CODEC;
         }
+
         @Override
         public PacketCodec<RegistryByteBuf, CrushingTubRecipe> packetCodec() {
             return STREAM_CODEC;

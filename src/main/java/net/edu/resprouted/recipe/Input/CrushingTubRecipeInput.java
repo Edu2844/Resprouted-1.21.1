@@ -8,6 +8,7 @@ public record CrushingTubRecipeInput(ItemStack input) implements RecipeInput {
     public ItemStack getStackInSlot(int slot) {
         return input;
     }
+
     @Override
     public int getSize() {
         return 1;

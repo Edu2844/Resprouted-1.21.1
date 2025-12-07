@@ -15,6 +15,7 @@ public record CondenserRecipeInput(ItemStack inputA, ItemStack inputB, ItemStack
             default -> ItemStack.EMPTY;
         };
     }
+
     @Override
     public int getSize() {
         return 4;

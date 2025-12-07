@@ -117,6 +117,7 @@ public record CondenserRecipe(List<Ingredient> ingredients, RegistryEntry<Status
         @Override public MapCodec<CondenserRecipe> codec() {
             return CODEC;
         }
+
         @Override public PacketCodec<RegistryByteBuf, CondenserRecipe> packetCodec() {
             return STREAM_CODEC;
         }

@@ -55,7 +55,6 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
     protected abstract BlockEntityType<?> getBlockEntityType();
 
     // ========= PROPERTIES & STATE =========
-
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, BOTTOM, LIT);
@@ -128,7 +127,6 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
     }
 
     // ========= INTERACTION =========
-
     @Override
     public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockPos targetPos = state.get(BOTTOM) ? pos : pos.down();
@@ -200,7 +198,6 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity {
     }
 
     // ========= FORM =========
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return state.get(BOTTOM) ? VoxelShapes.fullCube() : topShape;

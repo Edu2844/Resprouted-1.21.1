@@ -23,21 +23,27 @@ public record EvaporatingBasinRecipe(FluidVariant fluidInput, long fluidCost, It
         boolean sameFluid = fluidInput.getFluid() == in.fluid().getFluid();
         return !world.isClient && sameFluid;
     }
+
     @Override public ItemStack craft(EvaporatingBasinRecipeInput in, RegistryWrapper.WrapperLookup l) {
         return output.copy();
     }
+
     @Override public boolean fits(int w, int h) {
         return true;
     }
+
     @Override public ItemStack getResult(RegistryWrapper.WrapperLookup l) {
         return output;
     }
+
     @Override public RecipeSerializer<?> getSerializer() {
         return ModRecipes.EV_BASIN_SERIALIZER;
     }
+
     @Override public RecipeType<?> getType() {
         return ModRecipes.EV_BASIN_TYPE;
     }
+
     public static class Serializer implements RecipeSerializer<EvaporatingBasinRecipe> {
 
         public static final MapCodec<EvaporatingBasinRecipe> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
@@ -54,9 +60,11 @@ public record EvaporatingBasinRecipe(FluidVariant fluidInput, long fluidCost, It
                         buf.readVarLong(),
                         ItemStack.PACKET_CODEC.decode(buf))
         );
+
         @Override public MapCodec<EvaporatingBasinRecipe> codec() {
             return CODEC;
         }
+
         @Override public PacketCodec<RegistryByteBuf, EvaporatingBasinRecipe> packetCodec() {
             return STREAM;
         }

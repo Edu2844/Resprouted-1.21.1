@@ -26,9 +26,11 @@ public class OilingRecipe extends SpecialCraftingRecipe {
         super(category);
         this.category = category;
     }
+
     public CraftingRecipeCategory getCategory() {
         return category;
     }
+
     @Override
     public boolean matches(CraftingRecipeInput input, World world) {
         if (!Resprouted.CONFIG.isOliveOilingEnabled()) {
@@ -60,6 +62,7 @@ public class OilingRecipe extends SpecialCraftingRecipe {
         }
         return !foodStack.isEmpty() && !oilStack.isEmpty();
     }
+
     @Override
     public ItemStack craft(CraftingRecipeInput input, RegistryWrapper.WrapperLookup lookup) {
         ItemStack foodStack = ItemStack.EMPTY;
@@ -78,6 +81,7 @@ public class OilingRecipe extends SpecialCraftingRecipe {
 
         return result;
     }
+
     @Override
     public DefaultedList<ItemStack> getRemainder(CraftingRecipeInput input) {
         DefaultedList<ItemStack> remainder = DefaultedList.ofSize(input.getSize(), ItemStack.EMPTY);
@@ -91,10 +95,12 @@ public class OilingRecipe extends SpecialCraftingRecipe {
         }
         return remainder;
     }
+
     @Override
     public boolean fits(int width, int height) {
         return width * height >= 2;
     }
+
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.OLIVE_OIL_SERIALIZER;
@@ -113,6 +119,7 @@ public class OilingRecipe extends SpecialCraftingRecipe {
         public MapCodec<OilingRecipe> codec() {
             return CODEC;
         }
+
         @Override
         public PacketCodec<RegistryByteBuf, OilingRecipe> packetCodec() {
             return PACKET_CODEC;

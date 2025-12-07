@@ -5,6 +5,7 @@ import net.minecraft.recipe.input.RecipeInput;
 import net.minecraft.util.math.BlockPos;
 
 public record AdvancedCondenserRecipeInput(ItemStack inputA, ItemStack inputB, ItemStack inputC, ItemStack modifier, ItemStack fuel, ItemStack bottle, BlockPos pos) implements RecipeInput {
+
     @Override
     public ItemStack getStackInSlot(int slot) {
         return switch (slot) {
@@ -17,6 +18,7 @@ public record AdvancedCondenserRecipeInput(ItemStack inputA, ItemStack inputB, I
             default -> ItemStack.EMPTY;
         };
     }
+
     @Override
     public int getSize() {
         return 6;
