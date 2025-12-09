@@ -71,13 +71,15 @@ public class ModMessages {
     }
 
     public static void registerS2CPackets() {
-        ClientPlayNetworking.registerGlobalReceiver(EntityEffectSyncPayload.ID, (payload, context) -> context.client().execute(() -> {
-            Entity entity = Objects.requireNonNull(context.client().world).getEntityById(payload.entityId());
-            if (entity instanceof LivingEntity living) {
-                living.getStatusEffects().clear();
-                payload.effects().forEach(effect -> living.setStatusEffect(effect, null));
-            }
-        }));
+        ClientPlayNetworking.registerGlobalReceiver(EntityEffectSyncPayload.ID, (payload, context) ->
+                context.client().execute(() -> {
+                    Entity entity = Objects.requireNonNull(context.client().world).getEntityById(payload.entityId());
+                    if (entity instanceof LivingEntity living) {
+                        living.getStatusEffects().removeIf(effect -> EffectSyncHandler.VISUAL_EFFECTS.contains(effect.getEffectType()));
+                        payload.effects().forEach(effect -> living.setStatusEffect(effect, null));
+                    }
+                })
+        );
     }
 
     public static void registerPayloads(){

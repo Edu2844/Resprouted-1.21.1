@@ -17,10 +17,12 @@ public class CopperDoubleCandleHolderBlock extends DoubleCandleHolderBlock imple
     public OxidationLevel getDegradationLevel() {
         return this.oxidationLevel;
     }
+
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         this.tickDegradation(state, world, pos, random);
     }
+
     @Override
     public boolean hasRandomTicks(BlockState state) {
         return Oxidizable.getIncreasedOxidationBlock(state.getBlock()).isPresent();

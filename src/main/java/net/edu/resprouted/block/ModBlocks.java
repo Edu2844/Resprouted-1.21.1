@@ -470,9 +470,9 @@ public class ModBlocks {
     // =================================================
     //GOLDEN
     public static final Block GOLDEN_LANTERN = registerBlock("golden_lantern",
-            new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+            new GoldenLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
     public static final Block GOLDEN_SOUL_LANTERN = registerBlock("golden_soul_lantern",
-            new LanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
+            new GoldenLanternBlock(AbstractBlock.Settings.copy(Blocks.LANTERN)));
     //COPPER
     public static final Block COPPER_LANTERN = registerBlock("copper_lantern",
             new CopperLanternBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.LANTERN)));
