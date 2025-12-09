@@ -109,6 +109,7 @@ public class AdvancedCondenserScreenHandler extends ScreenHandler {
     public AdvancedCondenserBlockEntity getBlockEntity() {
         return this.blockEntity;
     }
+
     public boolean isCrafting() {
         return propertyDelegate.get(0) > 0;
     }

@@ -697,8 +697,8 @@
   "block.resprouted.ironwood_fence_gate": "Puerta de valla de árbol férrico",
   "block.resprouted.ironwood_door": "Puerta de árbol férrico",
   "block.resprouted.ironwood_trapdoor": "Trampilla de árbol férrico",
-  "block.resprouted.ironwood_sign": "Cartel de árbol férrico",
-  "block.resprouted.ironwood_hanging_sign": "Cartel colgante de árbol férrico",
+  "block.resprouted.ironwood_sign": "Letrero de árbol férrico",
+  "block.resprouted.ironwood_hanging_sign": "Letrero colgante de árbol férrico",
   "block.resprouted.olive_leaves": "Hojas de olivo",
   "block.resprouted.olive_log": "Tronco de olivo",
   "block.resprouted.olive_wood": "Leño de olivo",
@@ -714,8 +714,8 @@
   "block.resprouted.olive_fence_gate": "Puerta de valla de olivo",
   "block.resprouted.olive_door": "Puerta de olivo",
   "block.resprouted.olive_trapdoor": "Trampilla de olivo",
-  "block.resprouted.olive_sign": "Cartel de olivo",
-  "block.resprouted.olive_hanging_sign": "Cartel colgante de olivo",
+  "block.resprouted.olive_sign": "Letrero de olivo",
+  "block.resprouted.olive_hanging_sign": "Letrero colgante de olivo",
   "block.resprouted.fertile_soil": "Suelo fértil",
 
   "block.resprouted.aloe_vera_block": "Hierba de sávila",
@@ -768,9 +768,7 @@
   "tooltip.resprouted.vanta_oiled": "Aceitado con Vanta:",
   "tooltip.resprouted.vanta_oil_use": "1 uso restante",
   "tooltip.resprouted.vanta_oil_uses": "%s usos restantes",
-
   "tooltip.resprouted.quality_format": "Calidad: %s [%d%%]",
-
   "tooltip.resprouted.quality.divine": "Es un elixir",
   "tooltip.resprouted.quality.exquisite": "Exquisito",
   "tooltip.resprouted.quality.flavorful": "Sabroso",
@@ -793,40 +791,28 @@
   "effect.resprouted.tipsy":"Embriaguez",
 
   "advancement.resprouted.root.desc": "Qué pintoresco",
-
   "advancement.resprouted.get_catalog": "Leyendo Entre Líneas",
   "advancement.resprouted.get_catalog.desc": "Obtén un almanaque",
-
   "advancement.resprouted.get_seeds": "¿Y Estas Semillas?",
   "advancement.resprouted.get_seeds.desc": "Obtén nuevas semillas",
-
   "advancement.resprouted.get_fertile_soil": "Siempre Húmeda",
   "advancement.resprouted.get_fertile_soil.desc": "Obtén tierra fértil",
-
   "advancement.resprouted.eat_ghost_pepper": "El Vengador Fantasma",
   "advancement.resprouted.eat_ghost_pepper.desc": "Come un Jalapeño Fantasma",
-
   "advancement.resprouted.place_apple_tree": "¿Qué Tal Estas Manzanas?",
   "advancement.resprouted.place_apple_tree.desc": "Planta un manzano",
-
   "advancement.resprouted.get_olive_oiled_food": "Extra Virgen",
   "advancement.resprouted.get_olive_oiled_food.desc": "Engrasa comida con una botella de aceite de olivo",
-
   "advancement.resprouted.condenser": "Breaking Bad Habits",
   "advancement.resprouted.condenser.desc": "Fabrica un Condensador Básico",
-
   "advancement.resprouted.advanced_condenser": "Tenemos que cocinar",
   "advancement.resprouted.advanced_condenser.desc": "Fabrica un Condensador Avanzado",
-
   "advancement.resprouted.get_all_herbs": "Hierbas, No Malezas",
   "advancement.resprouted.get_all_herbs.desc": "Obtén todas las hierbas nuevas",
-
   "advancement.resprouted.brewing_barrel": "Barril de Risas",
   "advancement.resprouted.brewing_barrel.desc": "Fabrica un Barril de Fermentación",
-
   "advancement.resprouted.max_drunk": "Sin Arrepientimientos",
   "advancement.resprouted.max_drunk.desc": "Alcanza niveles peligrosos de embriaguez",
-
   "advancement.resprouted.the_good_stuff": "Bebida de los Dioses",
   "advancement.resprouted.the_good_stuff.desc": "Prepara una bebida con una calidad de al menos 90%",
 
@@ -855,6 +841,10 @@
   "config.resprouted.bottle_effect_tooltip.tooltip": "Cuando está activado, las botellas personalizadas mostrarán la información de sus efectos en la descripción emergente.",
   "config.resprouted.food_effect_tooltip": "Información de Efectos en Comida",
   "config.resprouted.food_effect_tooltip.tooltip": "Cuando está activado, la comida personalizada mostrará la información de sus efectos en la descripción emergente.",
+  "config.resprouted.min_brew_quality_change": "Cambio Mínimo en Calidad de la Fermentación",
+  "config.resprouted.min_brew_quality_change.tooltip": "Mejora mínima que el cultivo de levadura aportará al nuevo lote. | Rango: -50 - 50. | Valor por defecto: -1.",
+  "config.resprouted.max_brew_quality_change": "Cambio Máximo en Calidad de la Fermentación",
+  "config.resprouted.max_brew_quality_change.tooltip": "Mejora máxima que el cultivo de levadura aportará al nuevo lote. | Rango: -50 - 50. | Valor por defecto: 4.",
   "config.resprouted.max_brew_time": "Tiempo de Destilación",
   "config.resprouted.max_brew_time.tooltip":"Tiempo total, en ticks, requerido para que un proceso de destilación se complete. | Rango: 1200 (1 min) - 120000 (100 min). | Por defecto: 12000 (10 min).",
 
@@ -862,6 +852,8 @@
   "tooltip.jade.crop_mature": "Madura",
 
   "rei.resprouted.brewing_barrel_tooltip": "The starter culture fluid is optional",
+
+  "text.resprouted.description": "Un sucesor espiritual del famoso mod Rustic!",
 
   "text.resprouted.previous_page": "Página anterior",
   "text.resprouted.next_page": "Siguiente página",

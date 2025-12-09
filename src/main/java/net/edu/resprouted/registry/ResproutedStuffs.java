@@ -32,27 +32,114 @@ public class ResproutedStuffs {
 
     public static void registerFlammables() {
         FlammableBlockRegistry registry = FlammableBlockRegistry.getDefaultInstance();
-        registry.add(ModBlocks.ROPE, 20, 60);
+
+        //Leaves
+        registry.add(ModBlocks.IRONWOOD_LEAVES,30,60);
+        registry.add(ModBlocks.OLIVE_LEAVES,30,60);
+        registry.add(ModBlocks.APPLE_LEAVES,30,60);
+        registry.add(ModBlocks.GRAPE_LEAVES,30,60);
+
+        //Wood
         registry.add(ModBlocks.IRONWOOD_LOG,5,5);
         registry.add(ModBlocks.IRONWOOD_WOOD,5,5);
         registry.add(ModBlocks.STRIPPED_IRONWOOD_LOG,5,5);
         registry.add(ModBlocks.STRIPPED_IRONWOOD_WOOD,5,5);
-        registry.add(ModBlocks.IRONWOOD_PLANKS,5,20);
-        registry.add(ModBlocks.IRONWOOD_LEAVES,30,60);
         registry.add(ModBlocks.OLIVE_LOG,5,5);
         registry.add(ModBlocks.OLIVE_WOOD,5,5);
         registry.add(ModBlocks.STRIPPED_OLIVE_LOG,5,5);
         registry.add(ModBlocks.STRIPPED_OLIVE_WOOD,5,5);
+
+        //Planks
+        registry.add(ModBlocks.IRONWOOD_PLANKS,5,20);
+        registry.add(ModBlocks.IRONWOOD_STAIRS,5,20);
+        registry.add(ModBlocks.IRONWOOD_SLAB,5,20);
+        registry.add(ModBlocks.IRONWOOD_DOOR,5,20);
+        registry.add(ModBlocks.IRONWOOD_TRAPDOOR,5,20);
+        registry.add(ModBlocks.IRONWOOD_BUTTON,5,20);
+        registry.add(ModBlocks.IRONWOOD_PRESSURE_PLATE,5,20);
+        registry.add(ModBlocks.IRONWOOD_FENCE,5,20);
+        registry.add(ModBlocks.IRONWOOD_FENCE_GATE,5,20);
+
         registry.add(ModBlocks.OLIVE_PLANKS,5,20);
-        registry.add(ModBlocks.OLIVE_LEAVES,30,60);
-        registry.add(ModBlocks.APPLE_LEAVES,30,60);
+        registry.add(ModBlocks.OLIVE_STAIRS,5,20);
+        registry.add(ModBlocks.OLIVE_SLAB,5,20);
+        registry.add(ModBlocks.OLIVE_DOOR,5,20);
+        registry.add(ModBlocks.OLIVE_TRAPDOOR,5,20);
+        registry.add(ModBlocks.OLIVE_BUTTON,5,20);
+        registry.add(ModBlocks.OLIVE_PRESSURE_PLATE,5,20);
+        registry.add(ModBlocks.OLIVE_FENCE,5,20);
+        registry.add(ModBlocks.OLIVE_FENCE_GATE,5,20);
+
+        registry.add(ModBlocks.BLACK_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.BLUE_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.BROWN_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.CYAN_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.GRAY_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.GREEN_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.LIGHT_BLUE_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.LIME_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.MAGENTA_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.ORANGE_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.PINK_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.PURPLE_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.RED_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.LIGHT_GRAY_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.WHITE_PAINTED_PLANKS,5,20);
+        registry.add(ModBlocks.YELLOW_PAINTED_PLANKS,5,20);
+
+        //Table
+        registry.add(ModBlocks.OAK_TABLE,5,20);
+        registry.add(ModBlocks.DARK_OAK_TABLE,5,20);
+        registry.add(ModBlocks.MANGROVE_TABLE,5,20);
+        registry.add(ModBlocks.BIRCH_TABLE,5,20);
+        registry.add(ModBlocks.SPRUCE_TABLE,5,20);
+        registry.add(ModBlocks.ACACIA_TABLE,5,20);
+        registry.add(ModBlocks.JUNGLE_TABLE,5,20);
+        registry.add(ModBlocks.BAMBOO_TABLE,5,20);
+        registry.add(ModBlocks.CRIMSON_TABLE,5,20);
+        registry.add(ModBlocks.WARPED_TABLE,5,20);
+        registry.add(ModBlocks.IRONWOOD_TABLE,5,20);
+        registry.add(ModBlocks.OLIVE_TABLE,5,20);
+
+        //Chair
+        registry.add(ModBlocks.OAK_CHAIR,5,20);
+        registry.add(ModBlocks.DARK_OAK_CHAIR,5,20);
+        registry.add(ModBlocks.MANGROVE_CHAIR,5,20);
+        registry.add(ModBlocks.BIRCH_CHAIR,5,20);
+        registry.add(ModBlocks.SPRUCE_CHAIR,5,20);
+        registry.add(ModBlocks.ACACIA_CHAIR,5,20);
+        registry.add(ModBlocks.JUNGLE_CHAIR,5,20);
+        registry.add(ModBlocks.BAMBOO_CHAIR,5,20);
+        registry.add(ModBlocks.CRIMSON_CHAIR,5,20);
+        registry.add(ModBlocks.WARPED_CHAIR,5,20);
+        registry.add(ModBlocks.IRONWOOD_CHAIR,5,20);
+        registry.add(ModBlocks.OLIVE_CHAIR,5,20);
+
+        //Stool
+        registry.add(ModBlocks.OAK_STOOL,5,20);
+        registry.add(ModBlocks.DARK_OAK_STOOL,5,20);
+        registry.add(ModBlocks.MANGROVE_STOOL,5,20);
+        registry.add(ModBlocks.BIRCH_STOOL,5,20);
+        registry.add(ModBlocks.SPRUCE_STOOL,5,20);
+        registry.add(ModBlocks.ACACIA_STOOL,5,20);
+        registry.add(ModBlocks.JUNGLE_STOOL,5,20);
+        registry.add(ModBlocks.BAMBOO_STOOL,5,20);
+        registry.add(ModBlocks.CRIMSON_STOOL,5,20);
+        registry.add(ModBlocks.WARPED_STOOL,5,20);
+        registry.add(ModBlocks.IRONWOOD_STOOL,5,20);
+        registry.add(ModBlocks.OLIVE_STOOL,5,20);
+
+        //Crops
         registry.add(ModBlocks.TOMATO_CROP,30,60);
         registry.add(ModBlocks.CHILI_CROP,30,60);
+        registry.add(ModBlocks.GRAPE_STEM,5,5);
+
+        //Other
+        registry.add(ModBlocks.ROPE, 20, 60);
         registry.add(ModBlocks.CRUSHING_TUB,5,20);
         registry.add(ModBlocks.LIQUID_BARREL,5,20);
         registry.add(ModBlocks.STAKE,5,20);
-        registry.add(ModBlocks.GRAPE_STEM,5,5);
-        registry.add(ModBlocks.GRAPE_LEAVES,30,60);
+
     }
 
     public static void registerOxidizablesAndWaxables() {

@@ -791,9 +791,7 @@
   "tooltip.resprouted.vanta_oiled": "Vanta Oiled:",
   "tooltip.resprouted.vanta_oil_use": "1 restant use",
   "tooltip.resprouted.vanta_oil_uses": "%s restant uses",
-
   "tooltip.resprouted.quality_format": "Quality: %s [%d%%]",
-
   "tooltip.resprouted.quality.divine": "Divine",
   "tooltip.resprouted.quality.exquisite": "Exquisite",
   "tooltip.resprouted.quality.flavorful": "Flavorful",
@@ -816,40 +814,28 @@
   "effect.resprouted.tipsy":"Inebriated",
 
   "advancement.resprouted.root.desc": "How quaint",
-
   "advancement.resprouted.get_catalog": "Book Learnin'",
   "advancement.resprouted.get_catalog.desc": "Obtain an almanac",
-
   "advancement.resprouted.get_seeds": "A Seedy Situation",
   "advancement.resprouted.get_seeds.desc": "Obtain new seeds",
-
   "advancement.resprouted.get_fertile_soil": "Never Gonna Dry You Up",
   "advancement.resprouted.get_fertile_soil.desc": "Obtain fertile soil",
-
   "advancement.resprouted.eat_ghost_pepper": "Ghost Rider",
   "advancement.resprouted.eat_ghost_pepper.desc": "Eat a Ghost Pepper",
-
   "advancement.resprouted.place_apple_tree": "How Do You Like Them Apples?",
   "advancement.resprouted.place_apple_tree.desc": "Plant an apple tree",
-
   "advancement.resprouted.get_olive_oiled_food": "Extra Virgin",
   "advancement.resprouted.get_olive_oiled_food.desc": "Oil food with a olive oil bottle",
-
   "advancement.resprouted.condenser": "Breaking Bad Habits",
   "advancement.resprouted.condenser.desc": "Craft a Basic Condenser",
-
   "advancement.resprouted.advanced_condenser": "We Need to Cook",
   "advancement.resprouted.advanced_condenser.desc": "Craft an Advanced Condenser",
-
   "advancement.resprouted.get_all_herbs": "Herb Your Enthusiasm",
   "advancement.resprouted.get_all_herbs.desc": "Obtain all new herbs",
-
   "advancement.resprouted.brewing_barrel": "Barrel of Laughs",
   "advancement.resprouted.brewing_barrel.desc": "Craft a Brewing Barrel",
-
   "advancement.resprouted.max_drunk": "No Ragrets",
   "advancement.resprouted.max_drunk.desc": "Reach dangerous levels of inebriation",
-
   "advancement.resprouted.the_good_stuff": "The Good Stuff",
   "advancement.resprouted.the_good_stuff.desc": "Brew a beverage with a quality of at least 90%",
 
@@ -882,6 +868,10 @@
   "config.resprouted.bottle_effect_tooltip.tooltip": "When enabled, custom bottles will show their effect information in the tooltip.",
   "config.resprouted.food_effect_tooltip": "Effect Tooltips on Food",
   "config.resprouted.food_effect_tooltip.tooltip": "When enabled, custom food will show their effect information in the tooltip.",
+  "config.resprouted.min_brew_quality_change": "Minimum Change To Brew Quality",
+  "config.resprouted.min_brew_quality_change.tooltip": "The minimum amount of increase that booze culture will provide to the new brew. | Range: -50 - 50. | Default: -1.",
+  "config.resprouted.max_brew_quality_change": "Maximum Change To Brew Quality",
+  "config.resprouted.max_brew_quality_change.tooltip": "The maximum amount of increase that booze culture will provide to the new brew. | Range: -50 - 50. | Default: 4.",
   "config.resprouted.max_brew_time": "Brewing Time",
   "config.resprouted.max_brew_time.tooltip":"The total time, in ticks, required for a brewing process to complete. | Range: 1200 (1 min) - 120000 (100 min). | Default: 12000 (10 min).",
 
@@ -898,6 +888,8 @@
   "rei.resprouted.olive_oiling": "Olive Oiling",
   "rei.resprouted.vanta_oiling": "Vanta Oiling",
   "rei.resprouted.brewing_barrel_tooltip": "The starter culture fluid is optional",
+
+  "text.resprouted.description": "A spiritual successor of the famous rustic mod!",
 
   "text.resprouted.previous_page": "Previous Page",
   "text.resprouted.next_page": "Next Page",

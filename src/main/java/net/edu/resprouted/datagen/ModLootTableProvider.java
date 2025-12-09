@@ -192,6 +192,20 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WHITE_PAINTED_PLANKS);
         addDrop(ModBlocks.YELLOW_PAINTED_PLANKS);
 
+        //CABINET
+        addDrop(ModBlocks.OAK_CABINET_BLOCK);
+        addDrop(ModBlocks.SPRUCE_CABINET_BLOCK);
+        addDrop(ModBlocks.BIRCH_CABINET_BLOCK);
+        addDrop(ModBlocks.JUNGLE_CABINET_BLOCK);
+        addDrop(ModBlocks.ACACIA_CABINET_BLOCK);
+        addDrop(ModBlocks.DARK_OAK_CABINET_BLOCK);
+        addDrop(ModBlocks.MANGROVE_CABINET_BLOCK);
+        addDrop(ModBlocks.CHERRY_CABINET_BLOCK);
+        addDrop(ModBlocks.CRIMSON_CABINET_BLOCK);
+        addDrop(ModBlocks.WARPED_CABINET_BLOCK);
+        addDrop(ModBlocks.IRONWOOD_CABINET_BLOCK);
+        addDrop(ModBlocks.OLIVE_CABINET_BLOCK);
+
         //CHAIN
         addDrop(ModBlocks.GOLDEN_CHAIN);
         addDrop(ModBlocks.COPPER_CHAIN);

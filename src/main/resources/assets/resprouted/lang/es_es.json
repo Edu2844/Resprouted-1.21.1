@@ -855,6 +855,10 @@
   "config.resprouted.bottle_effect_tooltip.tooltip": "Cuando está activado, las botellas personalizadas mostrarán la información de sus efectos en la descripción emergente.",
   "config.resprouted.food_effect_tooltip": "Información de Efectos en Comida",
   "config.resprouted.food_effect_tooltip.tooltip": "Cuando está activado, la comida personalizada mostrará la información de sus efectos en la descripción emergente.",
+  "config.resprouted.min_brew_quality_change": "Cambio Mínimo en Calidad de la Fermentación",
+  "config.resprouted.min_brew_quality_change.tooltip": "Mejora mínima que el cultivo de levadura aportará al nuevo lote. | Rango: -50 - 50. | Valor por defecto: -1.",
+  "config.resprouted.max_brew_quality_change": "Cambio Máximo en Calidad de la Fermentación",
+  "config.resprouted.max_brew_quality_change.tooltip": "Mejora máxima que el cultivo de levadura aportará al nuevo lote. | Rango: -50 - 50. | Valor por defecto: 4.",
   "config.resprouted.max_brew_time": "Tiempo de Destilación",
   "config.resprouted.max_brew_time.tooltip":"Tiempo total, en ticks, requerido para que un proceso de destilación se complete. | Rango: 1200 (1 min) - 120000 (100 min). | Por defecto: 12000 (10 min).",
 
@@ -862,6 +866,8 @@
   "tooltip.jade.crop_mature": "Madura",
 
   "rei.resprouted.brewing_barrel_tooltip": "The starter culture fluid is optional",
+
+  "text.resprouted.description": "Un sucesor espiritual del famoso mod Rustic!",
 
   "text.resprouted.previous_page": "Página anterior",
   "text.resprouted.next_page": "Siguiente página",

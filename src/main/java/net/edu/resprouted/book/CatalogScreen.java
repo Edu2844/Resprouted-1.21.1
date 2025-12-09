@@ -5,23 +5,19 @@ import net.edu.resprouted.book.abstracts.BaseCatalogPage;
 import net.edu.resprouted.book.pages.CategoryListPage;
 import net.edu.resprouted.book.pages.EntryPagesPage;
 import net.edu.resprouted.book.pages.MainMenuPage;
-import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.book.CatalogData.*;
+import net.edu.resprouted.networking.payload.RemoveCatalogModelPayload;
 import net.edu.resprouted.util.PageUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
@@ -66,17 +62,7 @@ public class CatalogScreen extends Screen {
     @Override
     public void close() {
         super.close();
-
-        ClientPlayerEntity player = MinecraftClient.getInstance().player;
-        if (player != null) {
-            Hand[] hands = {Hand.MAIN_HAND, Hand.OFF_HAND};
-            for (Hand hand : hands) {
-                ItemStack stack = player.getStackInHand(hand);
-                if (stack.isOf(ModItems.CATALOG)) {
-                    stack.remove(DataComponentTypes.CUSTOM_MODEL_DATA);
-                }
-            }
-        }
+        ClientPlayNetworking.send(new RemoveCatalogModelPayload());
     }
 
     @Override

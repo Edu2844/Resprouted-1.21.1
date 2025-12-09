@@ -72,14 +72,13 @@ public class BrewingBarrelScreen extends HandledScreen<BrewingBarrelScreenHandle
     private void renderProgress(DrawContext context, int x, int y) {
         int m = this.handler.getBrewingTime();
         if (m > 0) {
-            int n = (int)(28.0F * (1.0F - m / 400.0F));
-            if (n > 0) {
-                context.drawTexture(ARROW_TEXTURE,
-                        x + 85, y + 35, 0, 0, handler.getScaledArrowProgress(), 16, 24, 16);
-                context.drawTexture(ARROW_TEXTURE_1,
-                        x + 45, y + 37, 0, 0, handler.getScaledAuxArrowProgress(), 10, 13, 10);
-            }
-            n = BUBBLE_PROGRESS[m / 3 % 7];
+            context.drawTexture(ARROW_TEXTURE,
+                    x + 85, y + 35, 0, 0, handler.getScaledArrowProgress(), 16, 24, 16);
+
+            context.drawTexture(ARROW_TEXTURE_1,
+                    x + 45, y + 37, 0, 0, handler.getScaledAuxArrowProgress(), 10, 13, 10);
+
+            int n = BUBBLE_PROGRESS[m / 3 % 7];
             if (n > 0) {
                 context.drawGuiTexture(BUBBLES_TEXTURE, 12, 29, 0, 29 - n, x + 138, y + 28 + (29 - n), 12, n);
             }

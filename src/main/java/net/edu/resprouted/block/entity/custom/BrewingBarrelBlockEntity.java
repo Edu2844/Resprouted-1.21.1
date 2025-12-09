@@ -76,10 +76,10 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0: BrewingBarrelBlockEntity.this.progress = value;
-                    case 1: BrewingBarrelBlockEntity.this.maxProgress = value;
-                    case 2: BrewingBarrelBlockEntity.this.inputQuality = value;
-                    case 3: BrewingBarrelBlockEntity.this.outputQuality = value;
+                    case 0: BrewingBarrelBlockEntity.this.progress = value; break;
+                    case 1: BrewingBarrelBlockEntity.this.maxProgress = value; break;
+                    case 2: BrewingBarrelBlockEntity.this.inputQuality = value; break;
+                    case 3: BrewingBarrelBlockEntity.this.outputQuality = value; break;
                 }
             }
 
@@ -261,9 +261,11 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
 
                         if (currentOutput.isEmpty()) {
                             setStack(INPUT_OUT_SLOT, new ItemStack(Items.BUCKET));
+
                         } else if (currentOutput.isOf(Items.BUCKET) && currentOutput.getCount() < currentOutput.getMaxCount()) {
                             currentOutput.increment(1);
                             setStack(INPUT_OUT_SLOT, currentOutput);
+
                         } else {
                             return;
                         }
@@ -335,6 +337,7 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                         auxiliary.insert(variant, amount, t) == amount) {
 
                     k.decrement(1);
+
                     if (k.isEmpty()) {
                         setStack(AUX_IN_SLOT, ItemStack.EMPTY);
                     }
@@ -342,10 +345,12 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                     ItemStack l = getStack(AUX_OUT_SLOT);
                     if (l.isEmpty()) {
                         setStack(AUX_OUT_SLOT, new ItemStack(Items.GLASS_BOTTLE));
+
                     } else if (l.isOf(Items.GLASS_BOTTLE) &&
                             l.getCount() < l.getMaxCount()) {
                         l.increment(1);
                         setStack(AUX_OUT_SLOT, l);
+
                     } else {
                         return;
                     }
@@ -378,11 +383,13 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                         ItemStack currentAuxOutput = getStack(AUX_OUT_SLOT);
                         if (currentAuxOutput.isEmpty()) {
                             setStack(AUX_OUT_SLOT, filledBottle);
+
                         } else if (currentAuxOutput.getItem() == filledBottle.getItem() &&
                                 BoozeBottleItem.getQuality(currentAuxOutput) == BoozeBottleItem.getQuality(filledBottle) &&
                                 currentAuxOutput.getCount() < currentAuxOutput.getMaxCount()) {
                             currentAuxOutput.increment(1);
                             setStack(AUX_OUT_SLOT, currentAuxOutput);
+
                         } else {
                             return;
                         }

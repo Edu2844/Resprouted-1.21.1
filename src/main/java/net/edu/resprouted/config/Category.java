@@ -70,6 +70,18 @@ public enum Category {
                     () -> Resprouted.CONFIG.isBottleEffectTooltipsEnabled(),
                     newValue -> Resprouted.CONFIG.setBottleEffectTooltips(newValue), true, "config.resprouted.bottle_effect_tooltip.tooltip"),
 
+            Entry.integerEntry("config.resprouted.min_brew_quality_change",
+                    () -> Resprouted.CONFIG.getMinBrewQualityChange(),
+                    newValue -> Resprouted.CONFIG.setMinBrewQualityChange(newValue),
+                    -1, -50, 50,
+                    "config.resprouted.min_brew_quality_change.tooltip"),
+
+            Entry.integerEntry("config.resprouted.max_brew_quality_change",
+                    () -> Resprouted.CONFIG.getMaxBrewQualityChange(),
+                    newValue -> Resprouted.CONFIG.setMaxBrewQualityChange(newValue),
+                    4, -50, 50,
+                    "config.resprouted.max_brew_quality_change.tooltip"),
+
             Entry.integerEntry("config.resprouted.max_brew_time",
                     () -> Resprouted.CONFIG.getMaxBrewTime(),
                     newValue -> Resprouted.CONFIG.setMaxBrewTime(newValue),
@@ -77,6 +89,7 @@ public enum Category {
                     "config.resprouted.max_brew_time.tooltip")
 
     ),
+
     WORLDGEN("config.resprouted.category.worldgen", false);
     private final String text;
     private final Entry<?>[] entries;
@@ -89,21 +102,26 @@ public enum Category {
         this.children = new Category[0];
         this.isChild = isChild;
     }
+
     Category(String text, boolean isChild, Category[] children, Entry<?>... entries) {
         this.text = text;
         this.entries = entries;
         this.children = children;
         this.isChild = isChild;
     }
+
     public String text() {
         return text;
     }
+
     public Entry<?>[] entries() {
         return entries;
     }
+
     public Category[] children() {
         return children;
     }
+
     public boolean isChild() {
         return isChild;
     }

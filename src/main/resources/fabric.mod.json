@@ -3,7 +3,7 @@
 	"id": "resprouted",
 	"version": "${version}- Fabric 1.21.1",
 	"name": "Resprouted",
-	"description": "A revival of the famous rustic mod!",
+	"description": "text.resprouted.description",
 	"authors": [
 		"Edu2844!"
 	],

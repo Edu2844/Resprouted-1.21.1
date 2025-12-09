@@ -611,6 +611,20 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.WHITE_PAINTED_PLANKS)
                 .add(ModBlocks.YELLOW_PAINTED_PLANKS)
 
+                //CABINETS
+                .add(ModBlocks.OAK_CABINET_BLOCK)
+                .add(ModBlocks.SPRUCE_CABINET_BLOCK)
+                .add(ModBlocks.BIRCH_CABINET_BLOCK)
+                .add(ModBlocks.JUNGLE_CABINET_BLOCK)
+                .add(ModBlocks.ACACIA_CABINET_BLOCK)
+                .add(ModBlocks.DARK_OAK_CABINET_BLOCK)
+                .add(ModBlocks.MANGROVE_CABINET_BLOCK)
+                .add(ModBlocks.CHERRY_CABINET_BLOCK)
+                .add(ModBlocks.CRIMSON_CABINET_BLOCK)
+                .add(ModBlocks.WARPED_CABINET_BLOCK)
+                .add(ModBlocks.IRONWOOD_CABINET_BLOCK)
+                .add(ModBlocks.OLIVE_CABINET_BLOCK)
+
                 //AGRICULTURE
                 .add(ModBlocks.STAKE)
                 .add(ModBlocks.CRUSHING_TUB)

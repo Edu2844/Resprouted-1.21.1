@@ -1,6 +1,5 @@
 package net.edu.resprouted.networking.payload;
 
-
 import net.edu.resprouted.networking.ModMessages;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;

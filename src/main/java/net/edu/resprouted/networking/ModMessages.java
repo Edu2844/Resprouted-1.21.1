@@ -2,17 +2,22 @@ package net.edu.resprouted.networking;
 
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.effect.ModEffects;
+import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.networking.payload.EntityEffectSyncPayload;
 import net.edu.resprouted.networking.payload.FirePowerAttackPayload;
+import net.edu.resprouted.networking.payload.RemoveCatalogModelPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.FireballEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 
@@ -21,9 +26,11 @@ import java.util.Objects;
 public class ModMessages {
     public static final Identifier FIRE_POWER_ATTACK = Identifier.of(Resprouted.MOD_ID, "fire_power_attack");
     public static final Identifier ENTITY_EFFECT_SYNC = Identifier.of(Resprouted.MOD_ID, "entity_effect_sync");
-
+    public static final Identifier REMOVE_CATALOG_MODEL = Identifier.of(Resprouted.MOD_ID, "remove_catalog_model");
 
     public static void registerC2SPackets(){
+
+        //Fire Power Attack
         ServerPlayNetworking.registerGlobalReceiver(FirePowerAttackPayload.ID, (payload, context) -> {
             ServerPlayerEntity player = context.player();
             MinecraftServer server = player.getServer();
@@ -45,6 +52,22 @@ public class ModMessages {
                 }
             });
         });
+
+        //Remove Catalog Custom Model Data
+        ServerPlayNetworking.registerGlobalReceiver(RemoveCatalogModelPayload.ID, (payload, context) -> {
+            ServerPlayerEntity player = context.player();
+            MinecraftServer server = player.getServer();
+            assert server != null;
+
+            server.execute(() -> {
+                for (Hand hand : Hand.values()) {
+                    ItemStack stack = player.getStackInHand(hand);
+                    if (stack.isOf(ModItems.CATALOG)) {
+                        stack.remove(DataComponentTypes.CUSTOM_MODEL_DATA);
+                    }
+                }
+            });
+        });
     }
 
     public static void registerS2CPackets() {
@@ -60,6 +83,7 @@ public class ModMessages {
     public static void registerPayloads(){
         PayloadTypeRegistry.playC2S().register(FirePowerAttackPayload.ID, FirePowerAttackPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(EntityEffectSyncPayload.ID, EntityEffectSyncPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(RemoveCatalogModelPayload.ID, RemoveCatalogModelPayload.CODEC);
 
     }
 }

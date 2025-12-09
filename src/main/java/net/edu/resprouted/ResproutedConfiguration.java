@@ -64,7 +64,7 @@ public class ResproutedConfiguration {
             (new GsonBuilder().setPrettyPrinting().create()).toJson(config, writer);
             Resprouted.LOGGER.info("Config saved successfully for " + Resprouted.MOD_ID);
         } catch (IOException e) {
-            Resprouted.LOGGER.error("Error saving Resprouted config: " + e.getMessage());
+            Resprouted.LOGGER.error("Error saving Resprouted config: {}", e.getMessage());
         }
     }
 
@@ -182,6 +182,7 @@ public class ResproutedConfiguration {
     private static float limit(float min, float max, float value) {
         return Math.max(min, Math.min(max, value));
     }
+
     private static int limit(int min, int max, int value) {
         return Math.max(min, Math.min(max, value));
     }
