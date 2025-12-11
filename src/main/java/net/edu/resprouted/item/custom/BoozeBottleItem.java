@@ -23,6 +23,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,18 +50,30 @@ public class BoozeBottleItem extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         super.finishUsing(stack, world, user);
-        if (!world.isClient() && user instanceof PlayerEntity player) {
+        PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
+
+        if (!world.isClient() && playerEntity != null) {
             float quality = getQuality(stack);
 
-            effectConsumer.accept(new BoozeConsumptionContext(world, player, quality));
+            effectConsumer.accept(new BoozeConsumptionContext(world, playerEntity, quality));
+            inebriate(world, playerEntity, quality);
 
-            inebriate(world, player, quality);
+            if (!playerEntity.isInCreativeMode()) {
+                stack.decrement(1);
 
+                ItemStack glassBottle = new ItemStack(Items.GLASS_BOTTLE);
 
-            stack.decrement(1);
-            if (stack.isEmpty()) return new ItemStack(Items.GLASS_BOTTLE);
-            player.getInventory().insertStack(new ItemStack(Items.GLASS_BOTTLE));
+                if (stack.isEmpty()) {
+                    return glassBottle;
+                }
+
+                if (!playerEntity.getInventory().insertStack(glassBottle)) {
+                    playerEntity.dropItem(glassBottle, false);
+                }
+            }
         }
+
+        user.emitGameEvent(GameEvent.DRINK);
         return stack;
     }
 

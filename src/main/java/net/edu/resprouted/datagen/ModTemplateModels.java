@@ -40,14 +40,10 @@ public class ModTemplateModels {
 
 
     // =================================================
-    // ||               CANDLE_HOLDER                 ||
+    // ||               CANDLE HOLDER                 ||
     // =================================================
 
-    public static void registerCandleHolderModels(BlockStateModelGenerator blockStateModelGenerator,
-                                                  Block candleHolder,
-                                                  String holderTexture,
-                                                  String candleColor,
-                                                  String folderName) {
+    public static void registerCandleHolderModels(BlockStateModelGenerator blockStateModelGenerator, Block candleHolder, String holderTexture, String candleColor, String folderName) {
 
         TextureMap litTextures = createTextures(holderTexture, candleColor, true);
         TextureMap unlitTextures = createTextures(holderTexture, candleColor, false);
@@ -94,12 +90,7 @@ public class ModTemplateModels {
         }
     }
 
-    private static void createBlockState(BlockStateModelGenerator blockStateModelGenerator,
-                                         Block candleHolder,
-                                         Identifier floorUnlitModel,
-                                         Identifier floorLitModel,
-                                         Identifier wallUnlitModel,
-                                         Identifier wallLitModel) {
+    private static void createBlockState(BlockStateModelGenerator blockStateModelGenerator, Block candleHolder, Identifier floorUnlitModel, Identifier floorLitModel, Identifier wallUnlitModel, Identifier wallLitModel) {
 
         blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(candleHolder)
                 .coordinate(BlockStateVariantMap.create(CandleHolderBlock.FACING, Properties.LIT)
@@ -124,10 +115,7 @@ public class ModTemplateModels {
         );
     }
 
-    private static void registerCandleHolderItemModel(BlockStateModelGenerator blockStateModelGenerator,
-                                                      Block candleHolder,
-                                                      String holderTexture,
-                                                      String candleColor) {
+    private static void registerCandleHolderItemModel(BlockStateModelGenerator blockStateModelGenerator, Block candleHolder, String holderTexture, String candleColor) {
 
         Model itemModel = new Model(
                 Optional.of(Identifier.of("minecraft", "item/generated")),
@@ -151,13 +139,9 @@ public class ModTemplateModels {
 
 
     // =================================================
-    // ||             DOUBLE_CANDLE_HOLDERS           ||
+    // ||             DOUBLE CANDLE HOLDERS           ||
     // =================================================
-    public static void registerDoubleCandleHolderModels(BlockStateModelGenerator blockStateModelGenerator,
-                                                        Block doubleCandleHolder,
-                                                        String holderTexture,
-                                                        String candleColor,
-                                                        String folderName) {
+    public static void registerDoubleCandleHolderModels(BlockStateModelGenerator blockStateModelGenerator, Block doubleCandleHolder, String holderTexture, String candleColor, String folderName) {
 
         TextureMap litTextures = createTextures(holderTexture, candleColor, true);
         TextureMap unlitTextures = createTextures(holderTexture, candleColor, false);
@@ -190,12 +174,7 @@ public class ModTemplateModels {
         registerDoubleCandleHolderItemModel(blockStateModelGenerator, doubleCandleHolder, holderTexture, candleColor);
     }
 
-    private static void createDoubleBlockState(BlockStateModelGenerator blockStateModelGenerator,
-                                               Block doubleCandleHolder,
-                                               Identifier floorUnlitModel,
-                                               Identifier floorLitModel,
-                                               Identifier wallUnlitModel,
-                                               Identifier wallLitModel) {
+    private static void createDoubleBlockState(BlockStateModelGenerator blockStateModelGenerator, Block doubleCandleHolder, Identifier floorUnlitModel, Identifier floorLitModel, Identifier wallUnlitModel, Identifier wallLitModel) {
 
         blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(doubleCandleHolder)
                 .coordinate(BlockStateVariantMap.create(CandleHolderBlock.FACING, Properties.LIT, Properties.AXIS)
@@ -223,10 +202,7 @@ public class ModTemplateModels {
                         }))
         );
     }
-    private static void registerDoubleCandleHolderItemModel(BlockStateModelGenerator blockStateModelGenerator,
-                                                            Block doubleCandleHolder,
-                                                            String holderTexture,
-                                                            String candleColor) {
+    private static void registerDoubleCandleHolderItemModel(BlockStateModelGenerator blockStateModelGenerator, Block doubleCandleHolder, String holderTexture, String candleColor) {
 
         Model itemModel = new Model(
                 Optional.of(Identifier.of("minecraft", "item/generated")),
@@ -294,7 +270,6 @@ public class ModTemplateModels {
                                                             String candleColor) {
         registerDoubleCandleHolderModels(blockStateModelGenerator, doubleCandleHolder, holderTexture, candleColor, "iron_candle_holder");
     }
-
 
     private static String getBlockName(Block block) {
         Identifier blockId = block.getRegistryEntry().registryKey().getValue();

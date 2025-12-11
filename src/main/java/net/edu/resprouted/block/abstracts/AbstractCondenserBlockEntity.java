@@ -44,7 +44,6 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
     }
 
     // ========= ABSTRACT METHODS ========= //
-
     protected abstract PropertyDelegate createPropertyDelegate();
     protected abstract boolean hasRecipe();
     protected abstract void craftItem();
@@ -57,7 +56,6 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
 
 
     // ========= OVERRIDES ========= //
-
     @Override
     public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
         return this.pos;
@@ -94,7 +92,6 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
     }
 
     // ========= TICK ========= //
-
     public void clientTick(World world, BlockPos pos, BlockState state) {
         boolean shouldEmitSmoke = this.progress > 0;
 
@@ -159,7 +156,6 @@ public abstract class AbstractCondenserBlockEntity extends AbstractFluidStorageB
 
 
     // ========= METHODS ========= //
-
     protected void spawnSmoke(World world, double x, double y, double z) {
         double yVel = 0.06D;
         double randomOffsetY = world.random.nextDouble() * 0.02D;

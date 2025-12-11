@@ -10,10 +10,12 @@ public class StoolEntityRenderer extends EntityRenderer<StoolEntity> {
     public StoolEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
     }
+
     @Override
     public Identifier getTexture(StoolEntity entity) {
         return null;
     }
+
     @Override
     public boolean shouldRender(StoolEntity entity, Frustum frustum, double x, double y, double z) {
         return true;

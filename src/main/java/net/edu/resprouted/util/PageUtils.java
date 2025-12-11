@@ -73,7 +73,15 @@ public class PageUtils {
                 mouseY >= baseY + entryY && mouseY <= baseY + entryY + height;
     }
 
-    public DrawContext getContext() { return context; }
-    public int getBaseX() { return baseX; }
-    public int getBaseY() { return baseY; }
+    public DrawContext getContext() {
+        return context;
+    }
+
+    public int getBaseX() {
+        return baseX;
+    }
+
+    public int getBaseY() {
+        return baseY;
+    }
 }

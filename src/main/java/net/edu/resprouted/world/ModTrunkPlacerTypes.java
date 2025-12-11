@@ -9,7 +9,6 @@ import net.minecraft.world.gen.trunk.TrunkPlacerType;
 
 public class ModTrunkPlacerTypes {
 
-
     private static <P extends TrunkPlacer> TrunkPlacerType<P> register(String name, TrunkPlacerType<P> type) {
         return Registry.register(Registries.TRUNK_PLACER_TYPE,
                 Identifier.of(Resprouted.MOD_ID, name), type);

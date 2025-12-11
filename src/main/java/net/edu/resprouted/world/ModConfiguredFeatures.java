@@ -187,9 +187,11 @@ public class ModConfiguredFeatures {
 
         register(context, SLATE_KEY, Feature.ORE, new OreFeatureConfig(limestoneTargets, 33));
     }
+
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(Resprouted.MOD_ID, name));
     }
+
     private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<ConfiguredFeature<?, ?>> context, RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
     }

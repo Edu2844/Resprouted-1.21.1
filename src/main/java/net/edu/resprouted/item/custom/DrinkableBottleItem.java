@@ -15,6 +15,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 import java.util.List;
 
@@ -27,25 +28,35 @@ public class DrinkableBottleItem extends Item {
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         super.finishUsing(stack, world, user);
+        PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
         FoodComponent foodComponent = stack.get(DataComponentTypes.FOOD);
 
         if (foodComponent != null) {
             ItemStack result = user.eatFood(world, stack, foodComponent);
 
-            if (user instanceof PlayerEntity player && !player.getAbilities().creativeMode) {
-                ItemStack emptyBottle = new ItemStack(Items.GLASS_BOTTLE);
-                if (!player.getInventory().insertStack(emptyBottle)) {
-                    player.dropItem(emptyBottle, false);
+            if (playerEntity != null && !playerEntity.isInCreativeMode()) {
+                ItemStack glassBottle = new ItemStack(Items.GLASS_BOTTLE);
+
+                if (stack.isEmpty()) {
+                    return glassBottle;
+                }
+
+                if (!playerEntity.getInventory().insertStack(glassBottle)) {
+                    playerEntity.dropItem(glassBottle, false);
                 }
             }
             return result;
         }
+
+        user.emitGameEvent(GameEvent.DRINK);
         return stack;
     }
+
     @Override
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {
         return 32;
     }
+
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
     }

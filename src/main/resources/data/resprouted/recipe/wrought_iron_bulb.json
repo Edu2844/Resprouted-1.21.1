@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "I": {
+      "item": "resprouted:wrought_iron_block"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IBI",
+    " R "
+  ],
+  "result": {
+    "count": 4,
+    "id": "resprouted:wrought_iron_bulb"
+  }
+}

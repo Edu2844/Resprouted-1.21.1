@@ -21,6 +21,7 @@ public class TomatoEntityRenderer extends EntityRenderer<ThrownTomatoEntity> {
         this.itemRenderer = ctx.getItemRenderer();
         this.scale = 1.0f;
     }
+
     @Override
     public void render(ThrownTomatoEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
         matrices.push();
@@ -38,6 +39,7 @@ public class TomatoEntityRenderer extends EntityRenderer<ThrownTomatoEntity> {
         );
         matrices.pop();
     }
+
     @Override
     public Identifier getTexture(ThrownTomatoEntity entity) {
         return TEXTURE;

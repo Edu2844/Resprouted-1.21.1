@@ -76,7 +76,7 @@ public class GrapeStemBlock extends CropBlock{
                 }
 
             } else {
-                //Check if ropeblock exists
+                //Check if rope exists
                 BlockState j = world.getBlockState(pos.up());
                 if (j.isOf(ModBlocks.ROPE) && j.get(RopeBlock.AXIS) != Direction.Axis.Y) {
 

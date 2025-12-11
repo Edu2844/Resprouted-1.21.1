@@ -21,25 +21,28 @@ public class ThrownTomatoEntity extends ThrownItemEntity {
     public ThrownTomatoEntity(EntityType<? extends ThrownTomatoEntity> entityType, World world) {
         super(entityType, world);
     }
+
     public ThrownTomatoEntity(World world, LivingEntity owner) {
         super(ModEntities.THROWN_TOMATO, owner, world);
     }
+
     @Override
     protected Item getDefaultItem() {
         return ModItems.TOMATO;
     }
+
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
+
         entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 0.5F);
     }
     @Override
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
-        if (!this.getWorld().isClient) {this.getWorld()
-                .playSound(null, this.getX(), this.getY(), this.getZ(),
-                        SoundEvents.ENTITY_SLIME_HURT, SoundCategory.NEUTRAL, 0.7F, 0.4F);
+        if (!this.getWorld().isClient) {
+            this.getWorld().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_SLIME_HURT, SoundCategory.NEUTRAL, 0.7F, 0.4F);
             ((ServerWorld)this.getWorld()).spawnParticles(
                     new ItemStackParticleEffect(ParticleTypes.ITEM, new ItemStack(ModItems.TOMATO)),
                     this.getX(), this.getY(), this.getZ(), 12, 0.3, 0.3, 0.3, 0.05);

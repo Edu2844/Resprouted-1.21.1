@@ -11,6 +11,7 @@ public enum CabinetType implements StringIdentifiable {
     CabinetType(String name) {
         this.name = name;
     }
+
     @Override
     public String asString() {
         return name;

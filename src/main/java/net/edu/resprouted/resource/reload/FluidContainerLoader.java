@@ -25,10 +25,12 @@ public class FluidContainerLoader implements SimpleSynchronousResourceReloadList
     public static List<FluidContainerMapping> getEntries() {
         return ENTRIES;
     }
+
     @Override
     public Identifier getFabricId() {
         return ID;
     }
+
     @Override
     public void reload(ResourceManager manager) {
         ENTRIES.clear();
