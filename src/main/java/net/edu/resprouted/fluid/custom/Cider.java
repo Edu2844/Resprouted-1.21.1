@@ -31,10 +31,6 @@ public abstract class Cider extends BaseFluid {
             builder.add(LEVEL);
         }
 
-        @Override
-        public int getLevel(FluidState fluidState) {
-            return fluidState.get(LEVEL);
-        }
     }
 
     public static class Still extends Cider {

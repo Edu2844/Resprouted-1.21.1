@@ -123,24 +123,4 @@ public class DryingBasinBlockEntity extends AbstractAnimatedSingleFluidStorageBl
         }
         markDirty();
     }
-
-    public int getProgress() {
-        return progress;
-    }
-
-    public int getMaxProgress(World world) {
-        if (world == null) return 0;
-
-        FluidVariant fluid = getFluidStorage().getResource();
-        long amt = getFluidStorage().getAmount();
-        ItemStack storedItem = inventory.getFirst();
-
-        if (fluid.isBlank() || amt == 0) return 0;
-
-        var in = new DryingBasinRecipeInput(fluid, amt, storedItem);
-        var opt = world.getRecipeManager().listAllOfType(ModRecipes.DRYING_TYPE)
-                .stream().filter(e -> e.value().matches(in, world)).findFirst();
-
-        return opt.map(recipeEntry -> recipeEntry.value().craftTime()).orElse(0);
-    }
 }
