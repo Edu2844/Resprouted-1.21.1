@@ -3,7 +3,7 @@ package net.edu.resprouted.screen.widget;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.util.FluidUtils;
-import net.edu.resprouted.util.ScreenUtils;
+import net.edu.resprouted.util.RenderUtils;
 import net.edu.resprouted.util.TextUtils;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -82,7 +82,7 @@ public class FluidWidget implements Drawable, Widget {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
-        ScreenUtils.renderTiledSprite(context, sprite, this.x, this.y + this.height - fluidHeight, this.width, fluidHeight, red, green, blue, 1.0f);
+        RenderUtils.renderTiledSprite(context, sprite, this.x, this.y + this.height - fluidHeight, this.width, fluidHeight, red, green, blue, 1.0f);
 
         if(isPointWithinBounds(this.x, this.y, this.width, this.height, mouseX, mouseY)) {
             drawTooltip(context, mouseX, mouseY);
@@ -179,11 +179,11 @@ public class FluidWidget implements Drawable, Widget {
                         tooltipLines.add(TextUtils.addQualityText(quality));
                     }
                 } catch (Exception ignored) {
+
                 }
             }
 
             tooltipLines.add(Text.literal("%s/%s mB".formatted(getMb(fluidAmount), getMb(fluidCapacity))).formatted(Formatting.GRAY));
-
             context.drawTooltip(textRenderer, tooltipLines, mouseX, mouseY);
         }
     }

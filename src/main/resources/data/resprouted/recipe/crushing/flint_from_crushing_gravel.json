@@ -1,11 +1,23 @@
 {
-  "type": "resprouted:crushing_tub",
+  "type": "resprouted:crushing",
   "input_item": {
     "item": "minecraft:gravel"
   },
-  "output_item": {
-    "id": "minecraft:flint",
-    "count": 1
-  },
-  "output_chance": 10
+  "output_item": [
+    {
+      "id": "minecraft:gravel",
+      "count": 1
+    },
+    {
+      "id": "minecraft:flint",
+      "count": 1,
+      "chance": 0.1
+    },
+    {
+      "id": "minecraft:iron_nugget",
+      "count": 1,
+      "chance": 0.01
+    }
+  ],
+  "crush_sound": "minecraft:block.gravel.break"
 }

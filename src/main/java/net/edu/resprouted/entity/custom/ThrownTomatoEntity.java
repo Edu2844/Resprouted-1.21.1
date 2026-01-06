@@ -36,8 +36,9 @@ public class ThrownTomatoEntity extends ThrownItemEntity {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
 
-        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 0.5F);
+        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 0.2F);
     }
+
     @Override
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);

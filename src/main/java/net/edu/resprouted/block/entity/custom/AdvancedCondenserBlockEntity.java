@@ -2,17 +2,15 @@ package net.edu.resprouted.block.entity.custom;
 
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.block.abstracts.AbstractCondenserBlockEntity;
+import net.edu.resprouted.block.abstracts.entity.AbstractCondenserBlockEntity;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.recipe.Input.AdvancedCondenserRecipeInput;
-import net.edu.resprouted.recipe.Input.CondenserRecipeInput;
+import net.edu.resprouted.recipe.Input.BasicCondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.custom.AdvancedCondenserRecipe;
-import net.edu.resprouted.recipe.custom.CondenserRecipe;
+import net.edu.resprouted.recipe.custom.BasicCondenserRecipe;
 import net.edu.resprouted.screen.custom.AdvancedCondenserScreenHandler;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
-import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,13 +20,13 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
@@ -42,7 +40,6 @@ public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
 
     public AdvancedCondenserBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ADVANCED_CONDENSER_BE, pos, state, 7, FluidConstants.BUCKET * 8);
-
     }
 
     @Override
@@ -95,16 +92,14 @@ public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
             spawnSmoke(world, pos.getX() - 0.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
             spawnSmoke(world, pos.getX() + 1.5D, pos.getY() + 1.0625D, pos.getZ() + 0.5D);
 
-            BlockPos i = pos.offset(facing.getOpposite());
-
-            spawnSmoke(world, i.getX() + 0.5D, pos.getY() + 1.0625D, i.getZ() + 0.5D);
+            BlockPos backPos = pos.offset(facing.getOpposite());
+            spawnSmoke(world, backPos.getX() + 0.5D, pos.getY() + 1.0625D, backPos.getZ() + 0.5D);
 
         } else if (facing == Direction.EAST || facing == Direction.WEST) {
             spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() - 0.5D);
             spawnSmoke(world, pos.getX() + 0.5D, pos.getY() + 1.0625D, pos.getZ() + 1.5D);
 
             BlockPos backPos = pos.offset(facing.getOpposite());
-
             spawnSmoke(world, backPos.getX() + 0.5D, pos.getY() + 1.0625D, backPos.getZ() + 0.5D);
         }
     }
@@ -115,20 +110,19 @@ public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
     }
 
     @Override
-    protected boolean hasFuelAvailable() {
-        return !this.inventory.get(FUEL_SLOT).isEmpty() &&
-                FuelRegistry.INSTANCE.get(this.inventory.get(FUEL_SLOT).getItem()) > 0;
+    protected void updateLitState(World world, BlockPos pos, BlockState state, boolean shouldBeLit) {
+        world.setBlockState(pos, state.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
+        BlockPos upperPos = pos.up();
+        BlockState upperState = world.getBlockState(upperPos);
+
+        if (upperState.isOf(ModBlocks.ADVANCED_CONDENSER)) {
+            world.setBlockState(upperPos, upperState.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
+        }
     }
 
     @Override
-    protected void updateLitState(World world, BlockPos pos, BlockState state, boolean shouldBeLit) {
-        world.setBlockState(pos, state.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
-        BlockPos j = pos.up();
-        BlockState k = world.getBlockState(j);
-
-        if (k.isOf(ModBlocks.ADVANCED_CONDENSER)) {
-            world.setBlockState(j, k.with(AdvancedCondenserBlock.LIT, shouldBeLit), Block.NOTIFY_ALL);
-        }
+    protected int getOutputSlot() {
+        return OUTPUT_SLOT;
     }
 
     @Override
@@ -150,15 +144,24 @@ public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
             return canInsertItemIntoOutputSlot(advancedMatch.get().value().craft(advancedInput, world.getRegistryManager()));
         }
 
-        CondenserRecipeInput basicInput = new CondenserRecipeInput(
-                inventory.getFirst(),
-                inventory.get(INPUT_SLOT_2),
+
+        List<ItemStack> nonEmptyInputs = new ArrayList<>();
+        if (!inventory.getFirst().isEmpty()) nonEmptyInputs.add(inventory.getFirst());
+        if (!inventory.get(INPUT_SLOT_2).isEmpty()) nonEmptyInputs.add(inventory.get(INPUT_SLOT_2));
+        if (!inventory.get(INPUT_SLOT_3).isEmpty()) nonEmptyInputs.add(inventory.get(INPUT_SLOT_3));
+
+        ItemStack inputA = !nonEmptyInputs.isEmpty() ? nonEmptyInputs.get(0) : ItemStack.EMPTY;
+        ItemStack inputB = nonEmptyInputs.size() > 1 ? nonEmptyInputs.get(1) : ItemStack.EMPTY;
+
+        BasicCondenserRecipeInput basicInput = new BasicCondenserRecipeInput(
+                inputA,
+                inputB,
                 inventory.get(FUEL_SLOT),
                 inventory.get(BOTTLE_SLOT),
                 this.pos
         );
 
-        Optional<RecipeEntry<CondenserRecipe>> basicMatch = world.getRecipeManager()
+        Optional<RecipeEntry<BasicCondenserRecipe>> basicMatch = world.getRecipeManager()
                 .getFirstMatch(ModRecipes.CONDENSER_TYPE, basicInput, world);
 
         return basicMatch.isPresent() && canInsertItemIntoOutputSlot(basicMatch.get().value().craft(basicInput, world.getRegistryManager()));
@@ -177,7 +180,7 @@ public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
         );
         assert world != null;
 
-        //Advanced Condenser Recipes
+        // Advanced Condenser Recipes
         Optional<RecipeEntry<AdvancedCondenserRecipe>> adv = world.getRecipeManager()
                 .getFirstMatch(ModRecipes.ADVANCED_CONDENSER_TYPE, advancedInput, world);
 
@@ -197,28 +200,28 @@ public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
             adv.get().value().modifier().ifPresent(modIng -> this.removeStack(MODIFIER_SLOT, 1));
             this.removeStack(BOTTLE_SLOT, 1);
 
-            SingleFluidStorage fluidStorage = getFluidStorage();
-            fluidStorage.amount -= RECIPE_FLUID_COST;
-            if (fluidStorage.amount < 0) {
-                fluidStorage.amount = 0;
-            }
-
-            markDirty();
-            world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
-            world.playSound(null, pos, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            consumeFluidAndFinishCrafting();
             return;
         }
 
-        CondenserRecipeInput basicInput = new CondenserRecipeInput(
-                inventory.getFirst(),
-                inventory.get(INPUT_SLOT_2),
+        List<ItemStack> nonEmptyInputs = new ArrayList<>();
+        if (!inventory.getFirst().isEmpty()) nonEmptyInputs.add(inventory.getFirst());
+        if (!inventory.get(INPUT_SLOT_2).isEmpty()) nonEmptyInputs.add(inventory.get(INPUT_SLOT_2));
+        if (!inventory.get(INPUT_SLOT_3).isEmpty()) nonEmptyInputs.add(inventory.get(INPUT_SLOT_3));
+
+        ItemStack inputA = !nonEmptyInputs.isEmpty() ? nonEmptyInputs.get(0) : ItemStack.EMPTY;
+        ItemStack inputB = nonEmptyInputs.size() > 1 ? nonEmptyInputs.get(1) : ItemStack.EMPTY;
+
+        BasicCondenserRecipeInput basicInput = new BasicCondenserRecipeInput(
+                inputA,
+                inputB,
                 inventory.get(FUEL_SLOT),
                 inventory.get(BOTTLE_SLOT),
                 this.pos
         );
 
-        //Basic Condenser Recipes
-        Optional<RecipeEntry<CondenserRecipe>> basic = world.getRecipeManager()
+        // Basic Condenser Recipes
+        Optional<RecipeEntry<BasicCondenserRecipe>> basic = world.getRecipeManager()
                 .getFirstMatch(ModRecipes.CONDENSER_TYPE, basicInput, world);
 
         if (basic.isEmpty()) return;
@@ -232,27 +235,12 @@ public class AdvancedCondenserBlockEntity extends AbstractCondenserBlockEntity {
             outputStack.increment(result.getCount());
         }
 
-        this.removeStack(INPUT_SLOT_1, 1);
-        this.removeStack(INPUT_SLOT_2, 1);
+        for (Ingredient ing : basic.get().value().ingredients()) {
+            removeOneMatching(ing, INPUT_SLOT_1, INPUT_SLOT_2, INPUT_SLOT_3);
+        }
         this.removeStack(BOTTLE_SLOT, 1);
 
-        SingleFluidStorage fluidStorage = getFluidStorage();
-        fluidStorage.amount -= RECIPE_FLUID_COST;
-        if (fluidStorage.amount < 0) {
-            fluidStorage.amount = 0;
-        }
-
-        markDirty();
-        world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
-        world.playSound(null, pos, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
-    }
-
-    private boolean canInsertItemIntoOutputSlot(ItemStack result) {
-        ItemStack outputStack = this.getStack(OUTPUT_SLOT);
-        if (outputStack.isEmpty()) return true;
-
-        return ItemStack.areItemsAndComponentsEqual(outputStack, result)
-                && outputStack.getCount() + result.getCount() <= outputStack.getMaxCount();
+        consumeFluidAndFinishCrafting();
     }
 
     private void removeOneMatching(Ingredient ingredient, int... slots) {

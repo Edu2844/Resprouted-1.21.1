@@ -10,7 +10,6 @@ public class CabinetRegistry {
     private static final List<Block> REGISTERED_CABINETS = new ArrayList<>();
 
     public static void registerCabinet(Block cabinetBlock) {
-
         if (cabinetBlock instanceof CabinetBlock) {
             REGISTERED_CABINETS.add(cabinetBlock);
         } else {

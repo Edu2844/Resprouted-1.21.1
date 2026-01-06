@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "level=0": {"model": "resprouted:block/glow_berry_juice"},
+    "level=1": { "model": "resprouted:block/glow_berry_juice" },
+    "level=2": { "model": "resprouted:block/glow_berry_juice" },
+    "level=3": { "model": "resprouted:block/glow_berry_juice" },
+    "level=4": { "model": "resprouted:block/glow_berry_juice" },
+    "level=5": { "model": "resprouted:block/glow_berry_juice" },
+    "level=6": { "model": "resprouted:block/glow_berry_juice" },
+    "level=7": { "model": "resprouted:block/glow_berry_juice" },
+    "level=8": { "model": "resprouted:block/glow_berry_juice" },
+    "level=9": { "model": "resprouted:block/glow_berry_juice" },
+    "level=10": { "model": "resprouted:block/glow_berry_juice" },
+    "level=11": { "model": "resprouted:block/glow_berry_juice" },
+    "level=12": { "model": "resprouted:block/glow_berry_juice" },
+    "level=13": { "model": "resprouted:block/glow_berry_juice" },
+    "level=14": { "model": "resprouted:block/glow_berry_juice" },
+    "level=15": { "model": "resprouted:block/glow_berry_juice" }
+  }
+}

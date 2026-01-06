@@ -10,9 +10,11 @@ public class OutputSlot extends Slot {
     public OutputSlot(Inventory inventory, int index, int x, int y) {
         super(inventory, index, x, y);
     }
+
     public boolean canInsert(ItemStack stack) {
         return false;
     }
+
     public ItemStack takeStack(int amount) {
         if (this.hasStack()) {
             this.amount += Math.min(amount, this.getStack().getCount());
@@ -22,6 +24,7 @@ public class OutputSlot extends Slot {
     public int getAmount() {
         return amount;
     }
+
     public void setAmount(int amount) {
         this.amount = amount;
     }

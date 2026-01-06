@@ -10,7 +10,6 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class PageUtils {
-
     public static final int PAGE_WIDTH = 112;
     public static final int PAGE_HEIGHT = 150;
     public static final int LEFT_PAGE_X = 18;
@@ -69,8 +68,7 @@ public class PageUtils {
 
     public boolean isMouseOverEntry(double mouseX, double mouseY, int entryY, int width, int height) {
         int entryX = 8;
-        return mouseX >= baseX + entryX && mouseX <= baseX + entryX + width &&
-                mouseY >= baseY + entryY && mouseY <= baseY + entryY + height;
+        return mouseX >= baseX + entryX && mouseX <= baseX + entryX + width && mouseY >= baseY + entryY && mouseY <= baseY + entryY + height;
     }
 
     public DrawContext getContext() {

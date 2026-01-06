@@ -1,0 +1,14 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:glow_berry_juice"
+  },
+  "item": {
+    "id": "resprouted:glow_berry_juice_bottle"
+  },
+  "empty_item": {
+    "id": "minecraft:glass_bottle"
+  },
+  "amount": 250,
+  "direction": "extract",
+  "sound": "minecraft:item.bottle.empty"
+}

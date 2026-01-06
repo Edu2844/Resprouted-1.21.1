@@ -1,0 +1,12 @@
+{
+  "type": "resprouted:drying",
+  "fluid_variant": {
+    "fluid": "resprouted:sugar_cane_juice"
+  },
+  "amount": 250,
+  "output_item": {
+    "id": "minecraft:sugar",
+    "count": 1
+  },
+  "evaporatingtime": 100
+}

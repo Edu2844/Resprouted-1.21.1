@@ -31,7 +31,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     public void generate() {
         RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
 
-        //SLATE
+        // Slate
         addDrop(ModBlocks.SLATE, drops(ModBlocks.SLATE, ModBlocks.COBBLED_SLATE));
         addDrop(ModBlocks.COBBLED_SLATE);
         addDrop(ModBlocks.COBBLED_SLATE_STAIRS);
@@ -51,7 +51,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.SLATE_ROOF_STAIRS);
         addDrop(ModBlocks.SLATE_PILLAR);
 
-        //STONE
+        // Stone
         addDrop(ModBlocks.POLISHED_STONE);
         addDrop(ModBlocks.POLISHED_STONE_SLAB);
         addDrop(ModBlocks.POLISHED_STONE_STAIRS);
@@ -59,7 +59,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.STONE_PILLAR);
         addDrop(ModBlocks.GARGOYLE);
 
-        //ANDESITE
+        // Andesite
         addDrop(ModBlocks.ANDESITE_BRICKS);
         addDrop(ModBlocks.ANDESITE_BRICK_SLAB);
         addDrop(ModBlocks.ANDESITE_BRICK_STAIRS);
@@ -68,7 +68,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.CRACKED_ANDESITE_BRICKS);
         addDrop(ModBlocks.ANDESITE_PILLAR);
 
-        //DIORITE
+        // Diorite
         addDrop(ModBlocks.DIORITE_BRICKS);
         addDrop(ModBlocks.DIORITE_BRICK_SLAB);
         addDrop(ModBlocks.DIORITE_BRICK_STAIRS);
@@ -77,7 +77,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.CRACKED_DIORITE_BRICKS);
         addDrop(ModBlocks.DIORITE_PILLAR);
 
-        //GRANITE
+        // Granite
         addDrop(ModBlocks.GRANITE_BRICKS);
         addDrop(ModBlocks.GRANITE_BRICK_SLAB);
         addDrop(ModBlocks.GRANITE_BRICK_STAIRS);
@@ -86,21 +86,21 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.CRACKED_GRANITE_BRICKS);
         addDrop(ModBlocks.GRANITE_PILLAR);
 
-        //SANDSTONE
+        // Sandstone
         addDrop(ModBlocks.SANDSTONE_BRICKS);
         addDrop(ModBlocks.SANDSTONE_BRICK_SLAB);
         addDrop(ModBlocks.SANDSTONE_BRICK_STAIRS);
         addDrop(ModBlocks.SANDSTONE_BRICK_WALL);
         addDrop(ModBlocks.SANDSTONE_PILLAR);
 
-        //RED SANDSTONE
+        // Red Sandstone
         addDrop(ModBlocks.RED_SANDSTONE_BRICKS);
         addDrop(ModBlocks.RED_SANDSTONE_BRICK_SLAB);
         addDrop(ModBlocks.RED_SANDSTONE_BRICK_STAIRS);
         addDrop(ModBlocks.RED_SANDSTONE_BRICK_WALL);
         addDrop(ModBlocks.RED_SANDSTONE_PILLAR);
 
-        //WROUGHT IRON
+        // Wrought Iron
         addDrop(ModBlocks.WROUGHT_IRON_BLOCK);
         addDrop(ModBlocks.WROUGHT_IRON_BULB);
         addDrop(ModBlocks.CUT_WROUGHT_IRON_BLOCK);
@@ -108,15 +108,12 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.CUT_WROUGHT_IRON_SLAB);
         addDrop(ModBlocks.WROUGHT_IRON_BARS);
 
-        //CLAY WALL
+        // Clay Walls
         addDrop(ModBlocks.CLAY_WALL);
         addDrop(ModBlocks.CLAY_WALL_CROSS);
         addDrop(ModBlocks.CLAY_WALL_DIAGONAL);
 
-        //AGRICULTURE
-        addDrop(ModBlocks.FERTILE_SOIL);
-
-        //CHAIRS
+        // Chairs
         addDrop(ModBlocks.OAK_CHAIR);
         addDrop(ModBlocks.DARK_OAK_CHAIR);
         addDrop(ModBlocks.BIRCH_CHAIR);
@@ -129,10 +126,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.IRONWOOD_CHAIR);
         addDrop(ModBlocks.OLIVE_CHAIR);
 
-        //STOOLS
+        // Stools
         addDrop(ModBlocks.OAK_STOOL);
 
-        //TABLE
+        // Tables
         addDrop(ModBlocks.OAK_TABLE);
         addDrop(ModBlocks.DARK_OAK_TABLE);
         addDrop(ModBlocks.MANGROVE_TABLE);
@@ -146,7 +143,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.IRONWOOD_TABLE);
         addDrop(ModBlocks.OLIVE_TABLE);
 
-        //IRONWOOD
+        // Ironwood
         addDrop(ModBlocks.IRONWOOD_LOG);
         addDrop(ModBlocks.STRIPPED_IRONWOOD_LOG);
         addDrop(ModBlocks.IRONWOOD_PLANKS);
@@ -160,7 +157,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.IRONWOOD_DOOR, doorDrops(ModBlocks.IRONWOOD_DOOR));
         addDrop(ModBlocks.IRONWOOD_TRAPDOOR);
 
-        //OLIVE
+        // Olive
         addDrop(ModBlocks.OLIVE_LOG);
         addDrop(ModBlocks.STRIPPED_OLIVE_LOG);
         addDrop(ModBlocks.OLIVE_PLANKS);
@@ -174,7 +171,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.OLIVE_DOOR, doorDrops(ModBlocks.OLIVE_DOOR));
         addDrop(ModBlocks.OLIVE_TRAPDOOR);
 
-        //PAINTED PLANKS
+        // Painted Planks
         addDrop(ModBlocks.BLACK_PAINTED_PLANKS);
         addDrop(ModBlocks.BLUE_PAINTED_PLANKS);
         addDrop(ModBlocks.BROWN_PAINTED_PLANKS);
@@ -192,21 +189,21 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WHITE_PAINTED_PLANKS);
         addDrop(ModBlocks.YELLOW_PAINTED_PLANKS);
 
-        //CABINET
-        addDrop(ModBlocks.OAK_CABINET_BLOCK);
-        addDrop(ModBlocks.SPRUCE_CABINET_BLOCK);
-        addDrop(ModBlocks.BIRCH_CABINET_BLOCK);
-        addDrop(ModBlocks.JUNGLE_CABINET_BLOCK);
-        addDrop(ModBlocks.ACACIA_CABINET_BLOCK);
-        addDrop(ModBlocks.DARK_OAK_CABINET_BLOCK);
-        addDrop(ModBlocks.MANGROVE_CABINET_BLOCK);
-        addDrop(ModBlocks.CHERRY_CABINET_BLOCK);
-        addDrop(ModBlocks.CRIMSON_CABINET_BLOCK);
-        addDrop(ModBlocks.WARPED_CABINET_BLOCK);
-        addDrop(ModBlocks.IRONWOOD_CABINET_BLOCK);
-        addDrop(ModBlocks.OLIVE_CABINET_BLOCK);
+        // Cabinets
+        addDrop(ModBlocks.OAK_CABINET);
+        addDrop(ModBlocks.SPRUCE_CABINET);
+        addDrop(ModBlocks.BIRCH_CABINET);
+        addDrop(ModBlocks.JUNGLE_CABINET);
+        addDrop(ModBlocks.ACACIA_CABINET);
+        addDrop(ModBlocks.DARK_OAK_CABINET);
+        addDrop(ModBlocks.MANGROVE_CABINET);
+        addDrop(ModBlocks.CHERRY_CABINET);
+        addDrop(ModBlocks.CRIMSON_CABINET);
+        addDrop(ModBlocks.WARPED_CABINET);
+        addDrop(ModBlocks.IRONWOOD_CABINET);
+        addDrop(ModBlocks.OLIVE_CABINET);
 
-        //CHAIN
+        // Chains
         addDrop(ModBlocks.GOLDEN_CHAIN);
         addDrop(ModBlocks.COPPER_CHAIN);
         addDrop(ModBlocks.EXPOSED_COPPER_CHAIN);
@@ -217,20 +214,21 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_WEATHERED_COPPER_CHAIN);
         addDrop(ModBlocks.WAXED_OXIDIZED_COPPER_CHAIN);
 
-        //AGRICULTURE
+        // Agriculture
         addDrop(ModBlocks.ROPE);
         addDrop(ModBlocks.STAKE);
         addDrop(ModBlocks.CRUSHING_TUB);
-        addDrop(ModBlocks.EVAPORATING_BASIN);
+        addDrop(ModBlocks.DRYING_BASIN);
         addDrop(ModBlocks.BREWING_BARREL);
+        addDrop(ModBlocks.FERTILE_SOIL);
 
-        //ALCHEMY
-        addDrop(ModBlocks.CONDENSER);
+        // Alchemy
+        addDrop(ModBlocks.BASIC_CONDENSER);
         addDrop(ModBlocks.ADVANCED_CONDENSER);
-        addDrop(ModBlocks.RETORT);
+        addDrop(ModBlocks.BASIC_RETORT);
         addDrop(ModBlocks.ADVANCED_RETORT);
 
-        //CHANDELIER
+        // Chanderiers
         addDrop(ModBlocks.CHANDELIER);
         addDrop(ModBlocks.GOLDEN_CHANDELIER);
 
@@ -243,26 +241,28 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_WEATHERED_COPPER_CHANDELIER);
         addDrop(ModBlocks.WAXED_OXIDIZED_COPPER_CHANDELIER);
 
-        //LANTERNS
-        addDrop(ModBlocks.GOLDEN_LANTERN);
-        addDrop(ModBlocks.GOLDEN_SOUL_LANTERN);
-        addDrop(ModBlocks.COPPER_LANTERN);
-        addDrop(ModBlocks.EXPOSED_COPPER_LANTERN);
-        addDrop(ModBlocks.WEATHERED_COPPER_LANTERN);
-        addDrop(ModBlocks.OXIDIZED_COPPER_LANTERN);
-        addDrop(ModBlocks.WAXED_COPPER_LANTERN);
-        addDrop(ModBlocks.WAXED_EXPOSED_COPPER_LANTERN);
-        addDrop(ModBlocks.WAXED_WEATHERED_COPPER_LANTERN);
-        addDrop(ModBlocks.WAXED_OXIDIZED_COPPER_LANTERN);
-        addDrop(ModBlocks.EXPOSED_COPPER_SOUL_LANTERN);
-        addDrop(ModBlocks.WEATHERED_COPPER_SOUL_LANTERN);
-        addDrop(ModBlocks.OXIDIZED_COPPER_SOUL_LANTERN);
-        addDrop(ModBlocks.WAXED_COPPER_SOUL_LANTERN);
-        addDrop(ModBlocks.WAXED_EXPOSED_COPPER_SOUL_LANTERN);
-        addDrop(ModBlocks.WAXED_WEATHERED_COPPER_SOUL_LANTERN);
-        addDrop(ModBlocks.WAXED_OXIDIZED_COPPER_SOUL_LANTERN);
+        // Lanterns
+        addDrop(ModBlocks.ORNATE_LANTERN);
+        addDrop(ModBlocks.ORNATE_SOUL_LANTERN);
+        addDrop(ModBlocks.ORNATE_GOLD_LANTERN);
+        addDrop(ModBlocks.ORNATE_GOLD_SOUL_LANTERN);
+        addDrop(ModBlocks.ORNATE_COPPER_LANTERN);
+        addDrop(ModBlocks.EXPOSED_ORNATE_COPPER_LANTERN);
+        addDrop(ModBlocks.WEATHERED_ORNATE_COPPER_LANTERN);
+        addDrop(ModBlocks.OXIDIZED_ORNATE_COPPER_LANTERN);
+        addDrop(ModBlocks.WAXED_ORNATE_COPPER_LANTERN);
+        addDrop(ModBlocks.WAXED_EXPOSED_ORNATE_COPPER_LANTERN);
+        addDrop(ModBlocks.WAXED_WEATHERED_ORNATE_COPPER_LANTERN);
+        addDrop(ModBlocks.WAXED_OXIDIZED_ORNATE_COPPER_LANTERN);
+        addDrop(ModBlocks.EXPOSED_ORNATE_COPPER_SOUL_LANTERN);
+        addDrop(ModBlocks.WEATHERED_ORNATE_COPPER_SOUL_LANTERN);
+        addDrop(ModBlocks.OXIDIZED_ORNATE_COPPER_SOUL_LANTERN);
+        addDrop(ModBlocks.WAXED_ORNATE_COPPER_SOUL_LANTERN);
+        addDrop(ModBlocks.WAXED_EXPOSED_ORNATE_COPPER_SOUL_LANTERN);
+        addDrop(ModBlocks.WAXED_WEATHERED_ORNATE_COPPER_SOUL_LANTERN);
+        addDrop(ModBlocks.WAXED_OXIDIZED_ORNATE_COPPER_SOUL_LANTERN);
 
-        //IRON CANDLE HOLDERS
+        // Iron Candle Holders
         addDrop(ModBlocks.IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.WHITE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_GRAY_IRON_CANDLE_HOLDER);
@@ -280,6 +280,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MAGENTA_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.PINK_IRON_CANDLE_HOLDER);
 
+        // Double Iron Candle Holders
         addDrop(ModBlocks.DOUBLE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.WHITE_DOUBLE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_GRAY_DOUBLE_IRON_CANDLE_HOLDER);
@@ -297,7 +298,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MAGENTA_DOUBLE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.PINK_DOUBLE_IRON_CANDLE_HOLDER);
 
-        //GOLDEN CANDLE HOLDERS
+        // Golden Candle Holders
         addDrop(ModBlocks.GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.WHITE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_GRAY_GOLDEN_CANDLE_HOLDER);
@@ -315,6 +316,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MAGENTA_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.PINK_GOLDEN_CANDLE_HOLDER);
 
+        // Double Golden Candle Holders
         addDrop(ModBlocks.DOUBLE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.WHITE_DOUBLE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_GRAY_DOUBLE_GOLDEN_CANDLE_HOLDER);
@@ -332,7 +334,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MAGENTA_DOUBLE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.PINK_DOUBLE_GOLDEN_CANDLE_HOLDER);
 
-        //COPPER CANDLE HOLDERS
+        // Copper Candle Holders
         addDrop(ModBlocks.COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WHITE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_GRAY_COPPER_CANDLE_HOLDER);
@@ -351,7 +353,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MAGENTA_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.PINK_COPPER_CANDLE_HOLDER);
 
-        //EXPOSED COPPER CANDLE HOLDERS
+        // Exposed Copper Candle Holders
         addDrop(ModBlocks.EXPOSED_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.EXPOSED_WHITE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.EXPOSED_LIGHT_GRAY_COPPER_CANDLE_HOLDER);
@@ -370,7 +372,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.EXPOSED_MAGENTA_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.EXPOSED_PINK_COPPER_CANDLE_HOLDER);
 
-        //WEATHERED COPPER CANDLE HOLDERS
+        // Weathered Copper Candle Holders
         addDrop(ModBlocks.WEATHERED_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WEATHERED_WHITE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WEATHERED_LIGHT_GRAY_COPPER_CANDLE_HOLDER);
@@ -389,7 +391,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WEATHERED_MAGENTA_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WEATHERED_PINK_COPPER_CANDLE_HOLDER);
 
-        //OXIDIZED COPPER CANDLE HOLDERS
+        // Oxidized Copper Candle Holders
         addDrop(ModBlocks.OXIDIZED_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.OXIDIZED_WHITE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.OXIDIZED_LIGHT_GRAY_COPPER_CANDLE_HOLDER);
@@ -408,7 +410,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.OXIDIZED_MAGENTA_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.OXIDIZED_PINK_COPPER_CANDLE_HOLDER);
 
-        //WAXED COPPER CANDLE HOLDERS
+        // Waxed Copper Candle Holders
         addDrop(ModBlocks.WAXED_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_WHITE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_LIGHT_GRAY_COPPER_CANDLE_HOLDER);
@@ -427,7 +429,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_MAGENTA_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_PINK_COPPER_CANDLE_HOLDER);
 
-        //WAXED EXPOSED COPPER CANDLE HOLDERS
+        // Waxed Exposed Copper Candle Holders
         addDrop(ModBlocks.WAXED_EXPOSED_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_EXPOSED_WHITE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_EXPOSED_LIGHT_GRAY_COPPER_CANDLE_HOLDER);
@@ -446,7 +448,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_EXPOSED_MAGENTA_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_EXPOSED_PINK_COPPER_CANDLE_HOLDER);
 
-        //WAXED WEATHERED COPPER CANDLE HOLDERS
+        // Waxed Weathered Copper Candle Holders
         addDrop(ModBlocks.WAXED_WEATHERED_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_WEATHERED_WHITE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_WEATHERED_LIGHT_GRAY_COPPER_CANDLE_HOLDER);
@@ -465,7 +467,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_WEATHERED_MAGENTA_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_WEATHERED_PINK_COPPER_CANDLE_HOLDER);
 
-        //WAXED OXIDIZED COPPER CANDLE HOLDERS
+        // Waxed Oxidized Copper Candle Holders
         addDrop(ModBlocks.WAXED_OXIDIZED_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_OXIDIZED_WHITE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_OXIDIZED_LIGHT_GRAY_COPPER_CANDLE_HOLDER);
@@ -484,7 +486,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_OXIDIZED_MAGENTA_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_OXIDIZED_PINK_COPPER_CANDLE_HOLDER);
 
-        //Unaffected
+        // Double Copper Candle Holders
         addDrop(ModBlocks.DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WHITE_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER);
@@ -503,7 +505,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.PINK_DOUBLE_COPPER_CANDLE_HOLDER);
 
-        //Exposed
+        // Exposed Double Copper Candle Holders
         addDrop(ModBlocks.EXPOSED_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.EXPOSED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.EXPOSED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER);
@@ -522,7 +524,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.EXPOSED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.EXPOSED_PINK_DOUBLE_COPPER_CANDLE_HOLDER);
 
-        //Weathered
+        // Weathered Double Copper Candle Holders
         addDrop(ModBlocks.WEATHERED_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WEATHERED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WEATHERED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER);
@@ -541,7 +543,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WEATHERED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WEATHERED_PINK_DOUBLE_COPPER_CANDLE_HOLDER);
 
-        //Oxidized
+        // Oxidized Double Copper Candle Holders
         addDrop(ModBlocks.OXIDIZED_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.OXIDIZED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.OXIDIZED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER);
@@ -560,7 +562,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.OXIDIZED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.OXIDIZED_PINK_DOUBLE_COPPER_CANDLE_HOLDER);
 
-        //Waxables
+        // Waxed Double Copper Candle Holders
         addDrop(ModBlocks.WAXED_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_WHITE_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_LIGHT_GRAY_DOUBLE_COPPER_CANDLE_HOLDER);
@@ -633,46 +635,46 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.WAXED_OXIDIZED_MAGENTA_DOUBLE_COPPER_CANDLE_HOLDER);
         addDrop(ModBlocks.WAXED_OXIDIZED_PINK_DOUBLE_COPPER_CANDLE_HOLDER);
 
-        //HERBS
-        BlockStatePropertyLootCondition.Builder builder2 = BlockStatePropertyLootCondition.builder(ModBlocks.ALOE_VERA_BLOCK)
+        // Herbs
+        BlockStatePropertyLootCondition.Builder builder2 = BlockStatePropertyLootCondition.builder(ModBlocks.ALOE_VERA)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.ALOE_VERA_BLOCK, this.cropDrops(ModBlocks.ALOE_VERA_BLOCK, ModItems.ALOE_VERA, ModItems.ALOE_VERA, builder2));
+        this.addDrop(ModBlocks.ALOE_VERA, this.cropDrops(ModBlocks.ALOE_VERA, ModItems.ALOE_VERA, ModItems.ALOE_VERA, builder2));
 
-        BlockStatePropertyLootCondition.Builder builder3 = BlockStatePropertyLootCondition.builder(ModBlocks.HORSETAIL_BLOCK)
+        BlockStatePropertyLootCondition.Builder builder3 = BlockStatePropertyLootCondition.builder(ModBlocks.HORSETAIL)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.HORSETAIL_BLOCK, this.cropDrops(ModBlocks.HORSETAIL_BLOCK, ModItems.HORSETAIL, ModItems.HORSETAIL, builder3));
+        this.addDrop(ModBlocks.HORSETAIL, this.cropDrops(ModBlocks.HORSETAIL, ModItems.HORSETAIL, ModItems.HORSETAIL, builder3));
 
-        BlockStatePropertyLootCondition.Builder builder4 = BlockStatePropertyLootCondition.builder(ModBlocks.COHOSH_BLOCK)
+        BlockStatePropertyLootCondition.Builder builder4 = BlockStatePropertyLootCondition.builder(ModBlocks.COHOSH)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.COHOSH_BLOCK, this.cropDrops(ModBlocks.COHOSH_BLOCK, ModItems.COHOSH, ModItems.COHOSH, builder4));
+        this.addDrop(ModBlocks.COHOSH, this.cropDrops(ModBlocks.COHOSH, ModItems.COHOSH, ModItems.COHOSH, builder4));
 
-        BlockStatePropertyLootCondition.Builder builder5 = BlockStatePropertyLootCondition.builder(ModBlocks.CHAMOMILE_BLOCK)
+        BlockStatePropertyLootCondition.Builder builder5 = BlockStatePropertyLootCondition.builder(ModBlocks.CHAMOMILE)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.CHAMOMILE_BLOCK, this.cropDrops(ModBlocks.CHAMOMILE_BLOCK, ModItems.CHAMOMILE, ModItems.CHAMOMILE, builder5));
+        this.addDrop(ModBlocks.CHAMOMILE, this.cropDrops(ModBlocks.CHAMOMILE, ModItems.CHAMOMILE, ModItems.CHAMOMILE, builder5));
 
-        BlockStatePropertyLootCondition.Builder builder6 = BlockStatePropertyLootCondition.builder(ModBlocks.CLOUDSBLUFF_BLOCK)
+        BlockStatePropertyLootCondition.Builder builder6 = BlockStatePropertyLootCondition.builder(ModBlocks.CLOUDSBLUFF)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.CLOUDSBLUFF_BLOCK, this.cropDrops(ModBlocks.CLOUDSBLUFF_BLOCK, ModItems.CLOUDSBLUFF, ModItems.CLOUDSBLUFF, builder6));
+        this.addDrop(ModBlocks.CLOUDSBLUFF, this.cropDrops(ModBlocks.CLOUDSBLUFF, ModItems.CLOUDSBLUFF, ModItems.CLOUDSBLUFF, builder6));
 
-        BlockStatePropertyLootCondition.Builder builder7 = BlockStatePropertyLootCondition.builder(ModBlocks.BLOOD_ORCHID_BLOCK)
+        BlockStatePropertyLootCondition.Builder builder7 = BlockStatePropertyLootCondition.builder(ModBlocks.BLOOD_ORCHID)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.BLOOD_ORCHID_BLOCK, this.cropDrops(ModBlocks.BLOOD_ORCHID_BLOCK, ModItems.BLOOD_ORCHID, ModItems.BLOOD_ORCHID, builder7));
+        this.addDrop(ModBlocks.BLOOD_ORCHID, this.cropDrops(ModBlocks.BLOOD_ORCHID, ModItems.BLOOD_ORCHID, ModItems.BLOOD_ORCHID, builder7));
 
-        BlockStatePropertyLootCondition.Builder builder8 = BlockStatePropertyLootCondition.builder(ModBlocks.GINSENG_BLOCK)
+        BlockStatePropertyLootCondition.Builder builder8 = BlockStatePropertyLootCondition.builder(ModBlocks.GINSENG)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.GINSENG_BLOCK, this.cropDrops(ModBlocks.GINSENG_BLOCK, ModItems.GINSENG, ModItems.GINSENG, builder8));
+        this.addDrop(ModBlocks.GINSENG, this.cropDrops(ModBlocks.GINSENG, ModItems.GINSENG, ModItems.GINSENG, builder8));
 
-        BlockStatePropertyLootCondition.Builder builder9 = BlockStatePropertyLootCondition.builder(ModBlocks.MARSHMALLOW_BLOCK)
+        BlockStatePropertyLootCondition.Builder builder9 = BlockStatePropertyLootCondition.builder(ModBlocks.MARSHMALLOW)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.MARSHMALLOW_BLOCK, this.cropDrops(ModBlocks.MARSHMALLOW_BLOCK, ModItems.MARSH_MALLOW, ModItems.MARSH_MALLOW, builder9));
+        this.addDrop(ModBlocks.MARSHMALLOW, this.cropDrops(ModBlocks.MARSHMALLOW, ModItems.MARSH_MALLOW, ModItems.MARSH_MALLOW, builder9));
 
-        BlockStatePropertyLootCondition.Builder builder10 = BlockStatePropertyLootCondition.builder(ModBlocks.VANTA_LILY_BLOCK)
+        BlockStatePropertyLootCondition.Builder builder10 = BlockStatePropertyLootCondition.builder(ModBlocks.VANTA_LILY)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.VANTA_LILY_BLOCK, this.cropDrops(ModBlocks.VANTA_LILY_BLOCK, ModItems.VANTA_LILY, ModItems.VANTA_LILY, builder10));
+        this.addDrop(ModBlocks.VANTA_LILY, this.cropDrops(ModBlocks.VANTA_LILY, ModItems.VANTA_LILY, ModItems.VANTA_LILY, builder10));
 
-        BlockStatePropertyLootCondition.Builder builder11 = BlockStatePropertyLootCondition.builder(ModBlocks.VANTA_LILY_BLOCK)
+        BlockStatePropertyLootCondition.Builder builder11 = BlockStatePropertyLootCondition.builder(ModBlocks.VANTA_LILY)
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
-        this.addDrop(ModBlocks.WIND_THISTLE_BLOCK, this.cropDrops(ModBlocks.WIND_THISTLE_BLOCK, ModItems.WIND_THISTLE, ModItems.WIND_THISTLE, builder11));
+        this.addDrop(ModBlocks.WIND_THISTLE, this.cropDrops(ModBlocks.WIND_THISTLE, ModItems.WIND_THISTLE, ModItems.WIND_THISTLE, builder11));
 
         BlockStatePropertyLootCondition.Builder builder12 = BlockStatePropertyLootCondition.builder(ModBlocks.MOONCAP_MUSHROOM)
                 .properties(StatePredicate.Builder.create().exactMatch(CustomMushroomBlock.AGE, CustomMushroomBlock.MAX_AGE));
@@ -686,7 +688,24 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
                 .properties(StatePredicate.Builder.create().exactMatch(HerbBlock.AGE, HerbBlock.MAX_AGE));
         this.addDrop(ModBlocks.CORE_ROOT, this.cropDrops(ModBlocks.CORE_ROOT, ModItems.CORE_ROOT, ModItems.CORE_ROOT, builder14));
 
-        //BUSH
+        // Potted
+        this.addPottedPlantDrops(ModBlocks.POTTED_OLIVE_SAPLING);
+        this.addPottedPlantDrops(ModBlocks.POTTED_IRONWOOD_SAPLING);
+        this.addPottedPlantDrops(ModBlocks.POTTED_ALOE_VERA);
+        this.addPottedPlantDrops(ModBlocks.POTTED_BLOOD_ORCHID);
+        this.addPottedPlantDrops(ModBlocks.POTTED_CHAMOMILE);
+        this.addPottedPlantDrops(ModBlocks.POTTED_CLOUDSBLUFF);
+        this.addPottedPlantDrops(ModBlocks.POTTED_COHOSH);
+        this.addPottedPlantDrops(ModBlocks.POTTED_CORE_ROOT);
+        this.addPottedPlantDrops(ModBlocks.POTTED_DEATHSTALK_MUSHROOM);
+        this.addPottedPlantDrops(ModBlocks.POTTED_GINSENG);
+        this.addPottedPlantDrops(ModBlocks.POTTED_HORSETAIL);
+        this.addPottedPlantDrops(ModBlocks.POTTED_MARSHMALLOW);
+        this.addPottedPlantDrops(ModBlocks.POTTED_MOONCAP_MUSHROOM);
+        this.addPottedPlantDrops(ModBlocks.POTTED_VANTA_LILY);
+        this.addPottedPlantDrops(ModBlocks.POTTED_WIND_THISTLE);
+
+        // Bushes
         this.addDrop(ModBlocks.TEST_BERRY_BUSH,
                 block -> this.applyExplosionDecay(
                         block, LootTable.builder().pool(LootPool.builder().conditionally(

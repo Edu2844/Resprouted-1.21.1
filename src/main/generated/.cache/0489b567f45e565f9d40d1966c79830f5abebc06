@@ -1,9 +1,21 @@
-// 1.21.1	2025-12-08T13:17:46.0451478	Resprouted/Tags for minecraft:fluid
-b22e1d1f6a3583fdf523b458fb3d90e54ebf29c1 data\resprouted\tags\fluid\sweet_berry_juice.json
-6c71de5a6747a981301a82d7d14e3d41e2ca26aa data\resprouted\tags\fluid\glow_berry_juice.json
-d7ad7da56acf60a9b51570f86b9fec1dd9ce3941 data\resprouted\tags\fluid\olive_oil.json
-fce7adf7d71105277d662d44c3cd7dd1f30b6edd data\resprouted\tags\fluid\apple_juice.json
-707ce0464879bafc385e973d1153c149b57f4916 data\resprouted\tags\fluid\grape_juice.json
-ff3542e5f19e44c8eda0a343011e64c1fec28522 data\resprouted\tags\fluid\iron_berry_juice.json
-71bd28b3cdb04d8eba73e78c32b801d6366e509d data\resprouted\tags\fluid\golden_apple_juice.json
-00cf2fd6e4f186cb6f7c1ce9ed91d82cb0d12a70 data\resprouted\tags\fluid\honey.json
+// 1.21.1	2026-01-05T16:30:19.3732275	Resprouted/Tags for minecraft:fluid
+60a29f8ee73720cc0a286da6ec91f92634d620eb data\resprouted\tags\fluid\sweet_berry_wine.json
+9d51214b4f4cac437c901896fb3f7639f7a51915 data\resprouted\tags\fluid\mead.json
+cda0572a6a519320bfde95f51db016b249671597 data\resprouted\tags\fluid\olive_oil.json
+c71cb727839902d3b7e8ffd9211aa6b727835cbc data\resprouted\tags\fluid\cider.json
+ae26b658eb9eadde692b17456293a0dbbcfa93a4 data\resprouted\tags\fluid\wine.json
+32f58d3c2662bca74449c4e285f35cef52ebf927 data\resprouted\tags\fluid\ale.json
+a4d6942f199473d80783cc5c914cd6bd7d46cca9 data\resprouted\tags\fluid\ale_wort.json
+2129519d7e72939c1920327fd434b3c7aea0722c data\resprouted\tags\fluid\golden_apple_juice.json
+2bc26fdb0e781cb42dcf75f0e7a01f3ec052e8ce data\resprouted\tags\fluid\sweet_berry_juice.json
+5397008159a5f88dfa7cecb2151c0430e42b613e data\resprouted\tags\fluid\sugar_cane_juice.json
+414bf283cbf874b55508c405090f5007fbcdc2ca data\resprouted\tags\fluid\rum.json
+ace7b8638e0becfc9ec228a18bdc68a2308142bb data\resprouted\tags\fluid\glow_berry_wine.json
+18bf3b4eaf396cfd711b6f3adc211c34f4cfe8d5 data\resprouted\tags\fluid\glow_berry_juice.json
+048231aa3b88c5fa1cd7d51a765f98d349dc77b6 data\resprouted\tags\fluid\ambrosia.json
+7c7748544d45b61fef4c4ac559828944a7eb5fcb data\resprouted\tags\fluid\apple_juice.json
+ea89e9015647e4f00b942a7324c5517188390f37 data\resprouted\tags\fluid\grape_juice.json
+baf3df72fab7e57a10a6f090be9187ba2ca43853 data\resprouted\tags\fluid\iron_berry_juice.json
+360a1c6e1d2284bd2e7d3128cf5a09c9b9f7491e data\resprouted\tags\fluid\iron_wine.json
+1e172c6c371117f4f192f0c44481c3162cbe27d8 data\resprouted\tags\fluid\vanta_oil.json
+48d7335af1ea623bc86f8ff6654c201a601ea3e4 data\resprouted\tags\fluid\honey.json

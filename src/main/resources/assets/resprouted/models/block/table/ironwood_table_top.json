@@ -1,7 +1,0 @@
-{
-	"parent": "resprouted:block/table/oak_table_top",
-	"textures": {
-		"0": "resprouted:block/ironwood/ironwood_planks",
-		"particle": "resprouted:block/ironwood/ironwood_planks"
-	}
-}

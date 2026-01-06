@@ -16,18 +16,21 @@ import net.minecraft.util.Formatting;
 import java.util.List;
 
 public class TextUtils {
+    private static final StatusEffectInstance HONEY_BOTTLE_EFFECT = new StatusEffectInstance(
+            StatusEffects.REGENERATION, 80, 0, false, false, true
+    );
 
-    // =================================================
-    // ||          CUSTOM FOOD TOOLTIP EFFECT         ||
-    // =================================================
+    // Custom Food Tooltip
     public static void addFoodEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
         FoodComponent foodComponent = stack.get(DataComponentTypes.FOOD);
         if (foodComponent == null) {
             return;
         }
+
         if (foodComponent.effects().isEmpty()) {
             return;
         }
+
         for (FoodComponent.StatusEffectEntry entry : foodComponent.effects()) {
             StatusEffectInstance effect = entry.effect();
 
@@ -36,6 +39,7 @@ public class TextUtils {
             if (effect.getAmplifier() > 0) {
                 text = Text.translatable("potion.withAmplifier", text, Text.translatable("potion.potency." + effect.getAmplifier()));
             }
+
             if (!effect.isDurationBelow(20)) {
                 text = Text.translatable("potion.withDuration", text, StatusEffectUtil.getDurationText(effect, 1.0F, context.getUpdateTickRate()));
             }
@@ -44,13 +48,12 @@ public class TextUtils {
         }
     }
 
-    // =================================================
-    // ||           VANTA OILED WEAPON TOOLTIP        ||
-    // =================================================
+    // Vanta Oiled Weapon Tooltip
     public static void addVantaOilEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
         if (!stack.contains(ModDataComponentTypes.VANTA_OILED)) {
             return;
         }
+
         StatusEffectInstance vantaEffect = stack.get(ModDataComponentTypes.VANTA_OILED);
         if (vantaEffect == null) {
             return;
@@ -63,6 +66,7 @@ public class TextUtils {
         if (vantaEffect.getAmplifier() > 0) {
             effectName = Text.translatable("potion.withAmplifier", effectName, Text.translatable("potion.potency." + vantaEffect.getAmplifier()));
         }
+
         if (!vantaEffect.getEffectType().value().isInstant()) {
             int duration = RecipeUtils.getNextVantaHitDuration(vantaEffect.getDuration());
             effectName = Text.translatable("potion.withDuration", effectName,
@@ -77,28 +81,28 @@ public class TextUtils {
         tooltip.add(usesText);
     }
 
-    // =================================================
-    // ||             HONEY BOTTLE TOOLTIP            ||
-    // =================================================
+    // Honey Bottle Tooltip
     public static void addHoneyEffectTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip) {
         if (stack.getItem() != Items.HONEY_BOTTLE) {
             return;
         }
-        StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.REGENERATION, 80, 0, false, false, true
-        );
-        MutableText text = Text.translatable(effect.getTranslationKey());
 
-        if (!effect.isDurationBelow(20)) {
-            text = Text.translatable("potion.withDuration", text, StatusEffectUtil.getDurationText(effect, 1.0F, context.getUpdateTickRate()));
+        MutableText text = Text.translatable(HONEY_BOTTLE_EFFECT.getTranslationKey());
+
+        if (!HONEY_BOTTLE_EFFECT.isDurationBelow(20)) {
+            text = Text.translatable("potion.withDuration", text,
+                    StatusEffectUtil.getDurationText(HONEY_BOTTLE_EFFECT, 1.0F, context.getUpdateTickRate()));
         }
-        text.formatted(effect.getEffectType().value().getCategory().getFormatting());
 
-        tooltip.add(1,text);
+        text.formatted(HONEY_BOTTLE_EFFECT.getEffectType().value().getCategory().getFormatting());
+        tooltip.add(1, text);
     }
 
-    // =================================================
-    // ||              BOOZE QUALITY TEXT             ||
-    // =================================================
+    public static StatusEffectInstance getHoneyBottleEffect() {
+        return HONEY_BOTTLE_EFFECT;
+    }
+
+    // Booze Quality Text
     public static Text addQualityText(float quality) {
         int qualityPercent = (int) (quality * 100);
 
@@ -138,9 +142,7 @@ public class TextUtils {
         }
 
         Text qualityNameText = Text.translatable("tooltip.resprouted.quality." + qualityName).formatted(nameColor);
-
-        return Text.translatable("tooltip.resprouted.quality_format", qualityNameText, qualityPercent)
-                .formatted(Formatting.GRAY);
+        return Text.translatable("tooltip.resprouted.quality_format", qualityNameText, qualityPercent).formatted(Formatting.GRAY);
     }
 }
 

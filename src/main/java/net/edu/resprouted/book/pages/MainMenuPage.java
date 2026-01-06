@@ -38,7 +38,7 @@ public class MainMenuPage extends BaseCatalogPage {
         int rightPageX = screen.getBookX() + PageUtils.RIGHT_PAGE_X;
         int rightPageY = screen.getBookY() + PageUtils.RIGHT_PAGE_Y;
 
-        //Create animated icon widgets for each category
+        // Create animated icon widgets for each category
         for (int i = 0; i < categories.size(); i++) {
             CatalogData.Category category = categories.get(i);
             Identifier iconTexture = getCategoryIcon(category.getName());
@@ -74,8 +74,7 @@ public class MainMenuPage extends BaseCatalogPage {
         List<CatalogData.Category> categories = CatalogData.CATEGORIES;
         if (index >= 0 && index < categories.size()) {
             CatalogData.Category category = categories.get(index);
-            if (screen.getSelectedCategory() != category ||
-                    screen.getCurrentState() != CatalogScreen.PageState.CATEGORY_LIST) {
+            if (screen.getSelectedCategory() != category || screen.getCurrentState() != CatalogScreen.PageState.CATEGORY_LIST) {
                 screen.setSelectedCategory(category);
                 screen.setCurrentState(CatalogScreen.PageState.CATEGORY_LIST);
                 screen.playPageTurnSound();

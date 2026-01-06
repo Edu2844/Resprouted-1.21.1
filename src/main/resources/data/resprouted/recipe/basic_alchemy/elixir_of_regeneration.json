@@ -1,0 +1,13 @@
+{
+  "type": "resprouted:basic_alchemy",
+  "ingredients": [
+    {
+      "item": "minecraft:honeycomb"
+    },
+    {
+      "item": "resprouted:cohosh"
+    }
+  ],
+  "effect": "minecraft:regeneration",
+  "duration": 900
+}

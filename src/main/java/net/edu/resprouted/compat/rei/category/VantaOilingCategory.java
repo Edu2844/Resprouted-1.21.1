@@ -28,7 +28,7 @@ public class VantaOilingCategory implements DisplayCategory<VantaOilingDisplay> 
 
     @Override
     public Text getTitle() {
-        return Text.translatable("rei.resprouted.vanta_oiling");
+        return Text.translatable("recipe.resprouted.vanta_oiling");
     }
 
     @Override
@@ -46,19 +46,17 @@ public class VantaOilingCategory implements DisplayCategory<VantaOilingDisplay> 
         List<EntryIngredient> inputEntries = display.getInputEntries();
         int numPotions = display.getNumPotions();
 
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 1))
-                .entries(inputEntries.get(0)).markInput());
-        widgets.add(Widgets.createSlot(new Point(startPoint.x + 19, startPoint.y + 1))
-                .entries(inputEntries.get(1)).markInput());
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 1, startPoint.y + 1)).entries(inputEntries.get(0)).markInput());
+        widgets.add(Widgets.createSlot(new Point(startPoint.x + 19, startPoint.y + 1)).entries(inputEntries.get(1)).markInput());
 
         Point[] potionSlots = {
-                new Point(startPoint.x + 37, startPoint.y + 1),   // Slot 2
-                new Point(startPoint.x + 1, startPoint.y + 19),   // Slot 3
-                new Point(startPoint.x + 19, startPoint.y + 19),  // Slot 4
-                new Point(startPoint.x + 37, startPoint.y + 19),  // Slot 5
-                new Point(startPoint.x + 1, startPoint.y + 37),   // Slot 6
-                new Point(startPoint.x + 19, startPoint.y + 37),  // Slot 7
-                new Point(startPoint.x + 37, startPoint.y + 37)   // Slot 8
+                new Point(startPoint.x + 37, startPoint.y + 1),   //Slot 2
+                new Point(startPoint.x + 1, startPoint.y + 19),   //Slot 3
+                new Point(startPoint.x + 19, startPoint.y + 19),  //Slot 4
+                new Point(startPoint.x + 37, startPoint.y + 19),  //Slot 5
+                new Point(startPoint.x + 1, startPoint.y + 37),   //Slot 6
+                new Point(startPoint.x + 19, startPoint.y + 37),  //Slot 7
+                new Point(startPoint.x + 37, startPoint.y + 37)   //Slot 8
         };
 
         for (int i = 0; i < potionSlots.length; i++) {
@@ -79,7 +77,6 @@ public class VantaOilingCategory implements DisplayCategory<VantaOilingDisplay> 
                     .disableBackground().markOutput());
             widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 19)));
         }
-
         return widgets;
     }
 }

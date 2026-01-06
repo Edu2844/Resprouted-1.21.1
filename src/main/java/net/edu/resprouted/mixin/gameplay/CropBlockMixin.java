@@ -13,14 +13,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CropBlock.class)
 public abstract class CropBlockMixin {
-
     @Inject(method = "canPlantOnTop", at = @At("HEAD"), cancellable = true)
-
     private void canPlantOnTop(BlockState floor, BlockView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-
         if (floor.isOf(Blocks.FARMLAND) || floor.isOf(ModBlocks.FERTILE_SOIL)) {
             cir.setReturnValue(true);
         }
     }
-
 }

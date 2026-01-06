@@ -12,7 +12,7 @@
   "flowing_texture": "resprouted:block/fluid/booze/glow_berry_wine_flow",
   "still_texture": "resprouted:block/fluid/booze/glow_berry_wine_still",
   "translation_key": "item.resprouted.glow_berry_wine_bottle",
-  "luminosity": 9,
+  "luminosity": 10,
   "preserved_components_from_item": [
     "resprouted:fluid_quality"
   ]

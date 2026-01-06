@@ -1,10 +1,11 @@
 {
-  "type": "resprouted:crushing_tub",
+  "type": "resprouted:crushing",
   "input_item": {
     "item": "minecraft:honeycomb"
   },
   "fluid_variant": {
-    "fluid": "resprouted:honey_still"
+    "fluid": "resprouted:honey"
   },
-  "amount": 250
+  "amount": 250,
+  "crush_sound": "minecraft:block.honey_block.break"
 }

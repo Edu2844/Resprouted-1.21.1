@@ -1,10 +1,10 @@
 {
-  "type": "resprouted:crushing_tub",
+  "type": "resprouted:crushing",
   "input_item": {
     "item": "minecraft:sugar_cane"
   },
   "fluid_variant": {
-    "fluid": "resprouted:sugar_cane_juice_still"
+    "fluid": "resprouted:sugar_cane_juice"
   },
   "amount": 250
 }

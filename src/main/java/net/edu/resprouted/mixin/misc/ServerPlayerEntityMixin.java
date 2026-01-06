@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayerEntity.class)
 public class ServerPlayerEntityMixin {
-
     @Inject(method = "onScreenHandlerOpened", at = @At("TAIL"))
     private void onScreenHandlerOpened(ScreenHandler screenHandler, CallbackInfo ci) {
         ServerPlayerEntity player = (ServerPlayerEntity)(Object)this;

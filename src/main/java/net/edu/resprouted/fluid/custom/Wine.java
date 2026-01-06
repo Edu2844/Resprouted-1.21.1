@@ -6,14 +6,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 
-import java.util.Optional;
-
 public abstract class Wine extends BaseFluid {
-
     @Override
     public Fluid getFlowing() {
         return ModFluids.WINE_FLOWING;
@@ -21,20 +16,12 @@ public abstract class Wine extends BaseFluid {
 
     @Override
     public Fluid getStill() {
-        return ModFluids.WINE_STILL;
+        return ModFluids.WINE;
     }
 
     @Override
-    public Optional<SoundEvent> getBucketFillSound() {
-        return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
-    }
-
     public BlockState toBlockState(FluidState state) {
-        return ModBlocks.WINE_FLUID_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
-    }
-
-    public boolean matchesType(Fluid fluid) {
-        return fluid == ModFluids.WINE_STILL || fluid == ModFluids.WINE_FLOWING;
+        return ModBlocks.WINE.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
     }
 
     public static class Flowing extends Wine {
@@ -42,18 +29,15 @@ public abstract class Wine extends BaseFluid {
             super.appendProperties(builder);
             builder.add(LEVEL);
         }
-
-        @Override
-        public int getLevel(FluidState fluidState) {
-            return fluidState.get(LEVEL);
-        }
     }
 
     public static class Still extends Wine {
+        @Override
         public int getLevel(FluidState state) {
             return 8;
         }
 
+        @Override
         public boolean isStill(FluidState state) {
             return true;
         }

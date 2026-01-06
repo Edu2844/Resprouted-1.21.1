@@ -1,7 +1,0 @@
-{
-	"parent": "resprouted:block/table/oak_table_top",
-	"textures": {
-		"0": "block/warped_planks",
-		"particle": "block/warped_planks"
-	}
-}

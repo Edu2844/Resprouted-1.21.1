@@ -28,6 +28,7 @@ public class GrapeLeavesComponentProvider implements IBlockComponentProvider {
             FruitingLeavesComponentProvider.addMaturityTooltip(tooltip, growthValue);
         }
     }
+
     @Override
     public Identifier getUid() {
         return Identifier.of(Resprouted.MOD_ID, "grape_leaves_mature");

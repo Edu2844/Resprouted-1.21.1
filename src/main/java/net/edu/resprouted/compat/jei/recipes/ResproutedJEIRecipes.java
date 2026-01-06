@@ -5,66 +5,54 @@ import net.edu.resprouted.recipe.custom.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeManager;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResproutedJEIRecipes {
 
-    public static List<CrushingTubRecipe> getCrushingTubRecipes() {
+    public static List<CrushingTubRecipe> getCrushingRecipes() {
         if (MinecraftClient.getInstance().world == null) {
             return List.of();
         }
 
         RecipeManager recipeManager = MinecraftClient.getInstance().world.getRecipeManager();
-        List<RecipeEntry<CrushingTubRecipe>> crushingRecipeEntries =
-                recipeManager.listAllOfType(ModRecipes.CRUSHING_TUB_TYPE);
+        List<RecipeEntry<CrushingTubRecipe>> crushingRecipeEntries = recipeManager.listAllOfType(ModRecipes.CRUSHING_TYPE);
 
-        return crushingRecipeEntries.stream()
-                .map(RecipeEntry::value)
-                .toList();
+        return crushingRecipeEntries.stream().map(RecipeEntry::value).toList();
     }
 
-    public static List<EvaporatingBasinRecipe> getEvaporatingBasinRecipes() {
+    public static List<DryingBasinRecipe> getDryingRecipes() {
         if (MinecraftClient.getInstance().world == null) {
             return List.of();
         }
 
         RecipeManager recipeManager = MinecraftClient.getInstance().world.getRecipeManager();
-        List<RecipeEntry<EvaporatingBasinRecipe>> evaporatingRecipeEntries =
-                recipeManager.listAllOfType(ModRecipes.EV_BASIN_TYPE);
+        List<RecipeEntry<DryingBasinRecipe>> DryingRecipeEntries = recipeManager.listAllOfType(ModRecipes.DRYING_TYPE);
 
-        return evaporatingRecipeEntries.stream()
-                .map(RecipeEntry::value)
-                .toList();
+        return DryingRecipeEntries.stream().map(RecipeEntry::value).toList();
     }
 
-
-    public static List<CondenserRecipe> getCondenserRecipes() {
+    public static List<BasicCondenserRecipe> getBasicAlchemyRecipes() {
         if (MinecraftClient.getInstance().world == null) {
             return List.of();
         }
         RecipeManager recipeManager = MinecraftClient.getInstance().world.getRecipeManager();
-        List<RecipeEntry<CondenserRecipe>> condenserRecipeEntries =
-                recipeManager.listAllOfType(ModRecipes.CONDENSER_TYPE);
-        return condenserRecipeEntries.stream()
-                .map(RecipeEntry::value)
-                .toList();
+        List<RecipeEntry<BasicCondenserRecipe>> condenserRecipeEntries = recipeManager.listAllOfType(ModRecipes.CONDENSER_TYPE);
+
+        return condenserRecipeEntries.stream().map(RecipeEntry::value).toList();
     }
 
-    public static List<AdvancedCondenserRecipe> getAdvancedCondenserRecipes() {
+    public static List<AdvancedCondenserRecipe> getAdvancedAlchemyRecipes() {
         if (MinecraftClient.getInstance().world == null) {
             return List.of();
         }
         RecipeManager recipeManager = MinecraftClient.getInstance().world.getRecipeManager();
-        List<RecipeEntry<AdvancedCondenserRecipe>> advancedCondenserRecipeEntries =
-                recipeManager.listAllOfType(ModRecipes.ADVANCED_CONDENSER_TYPE);
-        return advancedCondenserRecipeEntries.stream()
-                .map(RecipeEntry::value)
-                .toList();
+        List<RecipeEntry<AdvancedCondenserRecipe>> advancedCondenserRecipeEntries = recipeManager.listAllOfType(ModRecipes.ADVANCED_CONDENSER_TYPE);
+
+        return advancedCondenserRecipeEntries.stream().map(RecipeEntry::value).toList();
     }
 
-    public static List<BrewingBarrelRecipe> getBrewingBarrelRecipes() {
+    public static List<BrewingBarrelRecipe> getBrewingRecipes() {
         return new ArrayList<>(BrewingBarrelRecipe.RECIPES);
     }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "resprouted:advanced_alchemy",
+  "ingredients": [
+    {
+      "item": "resprouted:deathstalk_mushroom"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:horsetail"
+  },
+  "effect": "minecraft:wither",
+  "duration": 1800
+}

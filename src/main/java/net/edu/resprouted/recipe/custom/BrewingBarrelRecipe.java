@@ -13,18 +13,16 @@ import java.util.Optional;
 public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
     public static final List<BrewingBarrelRecipe> RECIPES = new ArrayList<>();
 
-    public boolean matches(FluidStack in, FluidStack aux) {
-        if (inputFluid != null && in != null && in.getFluid() != null) {
-            boolean inputMatches = in.getFluid() == inputFluid;
+    public boolean matches(FluidStack input, FluidStack aux) {
+        if (inputFluid != null && input != null && input.getFluid() != null) {
+            boolean inputMatches = input.getFluid() == inputFluid;
 
             if (aux != null && aux.getFluid() != null) {
                 boolean auxMatches = (aux.getFluid() == outputFluid);
                 return inputMatches && auxMatches;
             }
-
             return inputMatches;
         }
-
         return false;
     }
 
@@ -44,7 +42,6 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
                 if (maxChange < minChange) maxChange = minChange;
 
                 int brewQualityChange = random.nextInt((maxChange - minChange) + 1) + minChange;
-
                 float quality = Math.max(Math.min(((brewQualityChange + (int) (100 * auxQuality)) / 100F), 1), 0);
 
                 FluidUtils.setQuality(out, quality);
@@ -52,10 +49,8 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
             } else {
                 FluidUtils.setQuality(out, getBaseQuality(random));
             }
-
             return out;
         }
-
         return null;
     }
 
@@ -67,7 +62,6 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
 
             return out;
         }
-
         return null;
     }
 
@@ -80,11 +74,11 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
     }
 
     public static int getMinBrewQualityChange() {
-        return Resprouted.CONFIG.getMinBrewQualityChange();
+        return Resprouted.COMMON_CONFIG.brewing.getMinBrewQualityChange();
     }
 
     public static int getMaxBrewQualityChange() {
-        return Resprouted.CONFIG.getMaxBrewQualityChange();
+        return Resprouted.COMMON_CONFIG.brewing.getMaxBrewQualityChange();
     }
 
     public static Optional<BrewingBarrelRecipe> findMatchingRecipe(FluidStack input, FluidStack auxiliary) {
@@ -96,5 +90,4 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
     public static List<BrewingBarrelRecipe> getRecipes() {
         return new ArrayList<>(RECIPES);
     }
-
 }

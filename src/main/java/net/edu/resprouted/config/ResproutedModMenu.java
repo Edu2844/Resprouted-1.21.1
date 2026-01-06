@@ -8,7 +8,7 @@ import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.gui.entries.SubCategoryListEntry;
 import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.ResproutedConfiguration;
+import net.edu.resprouted.ResproutedCommonConfiguration;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
@@ -22,10 +22,11 @@ public class ResproutedModMenu implements ModMenuApi {
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return this::buildConfigScreen;
     }
+
     private Screen buildConfigScreen(Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setSavingRunnable(() -> ResproutedConfiguration.save(Resprouted.CONFIG))
+                .setSavingRunnable(() -> ResproutedCommonConfiguration.save(Resprouted.COMMON_CONFIG))
                 .setTitle(Text.translatable("config.resprouted.title"));
 
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
@@ -49,8 +50,7 @@ public class ResproutedModMenu implements ModMenuApi {
                                 entryBuilder, child)));
     }
 
-    private SubCategoryListEntry buildSubCategory(SubCategoryBuilder subCategoryBuilder,
-                                                  ConfigEntryBuilder entryBuilder, Category category) {
+    private SubCategoryListEntry buildSubCategory(SubCategoryBuilder subCategoryBuilder, ConfigEntryBuilder entryBuilder, Category category) {
         Arrays.stream(category.entries())
                 .forEach(entry -> subCategoryBuilder.add(entry.build(entryBuilder)));
 

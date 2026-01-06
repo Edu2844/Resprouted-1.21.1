@@ -1,0 +1,6 @@
+{
+    "parent": "resprouted:block/oak_stool",
+    "textures": {
+		"particle": "block/jungle_planks"
+    }
+}

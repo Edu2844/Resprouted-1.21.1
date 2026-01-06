@@ -1,0 +1,7 @@
+{
+  "parent": "resprouted:block/template_cabinet_bottom",
+  "textures": {
+    "cabinet": "resprouted:block/ironwood_double_cabinet",
+    "particle": "resprouted:block/ironwood_cabinet_side"
+  }
+}

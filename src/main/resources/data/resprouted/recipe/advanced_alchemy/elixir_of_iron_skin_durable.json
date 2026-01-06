@@ -1,0 +1,20 @@
+{
+  "type": "resprouted:advanced_alchemy",
+  "ingredients": [
+    {
+      "item": "minecraft:clay_ball"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "resprouted:iron_berries"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:horsetail"
+  },
+  "effect": "resprouted:iron_skin",
+  "duration": 9600
+}

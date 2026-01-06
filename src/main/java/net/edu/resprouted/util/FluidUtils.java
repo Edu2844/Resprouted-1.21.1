@@ -15,7 +15,7 @@ public class FluidUtils {
         return mb * 81;
     }
 
-    //Booze
+    // Booze Fluids
     public static float getQuality(FluidStack stack) {
         if (stack == null || stack.isEmpty()) return DEFAULT_QUALITY;
         Float quality = stack.get(ModDataComponentTypes.FLUID_QUALITY);

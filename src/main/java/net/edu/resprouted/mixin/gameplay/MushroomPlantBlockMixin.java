@@ -12,11 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MushroomPlantBlock.class)
 public abstract class MushroomPlantBlockMixin {
-
     @Inject(method = "canPlaceAt", at = @At("HEAD"), cancellable = true)
-
     private void onCanPlaceAt(BlockState state, WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-
         if (world.getBlockState(pos.down()).getBlock() instanceof FertileSoilBlock) {
             cir.setReturnValue(true);
         }

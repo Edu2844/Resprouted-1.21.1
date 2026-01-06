@@ -1,5 +1,5 @@
 {
-  "type": "resprouted:crushing_tub",
+  "type": "resprouted:crushing",
   "input_item": {
     "item": "resprouted:tomato"
   },

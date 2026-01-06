@@ -1,0 +1,13 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:sweet_berry_juice"
+  },
+  "item": {
+    "id": "resprouted:sweet_berry_juice_bucket"
+  },
+  "empty_item": {
+    "id": "minecraft:bucket"
+  },
+  "amount": 1000,
+  "direction": "extract"
+}

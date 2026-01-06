@@ -76,9 +76,7 @@ public abstract class BaseCatalogPage {
     /**
      * Create navigation button (prev/next)
      */
-    protected CatalogButtonWidget createNavigationButton(
-            Identifier texture, int x, int y, int width, int height,
-            Text tooltip, ButtonWidget.PressAction action) {
+    protected CatalogButtonWidget createNavigationButton(Identifier texture, int x, int y, int width, int height, Text tooltip, ButtonWidget.PressAction action) {
         return CatalogButtonWidget
                 .builder(texture, action)
                 .position(x, y)

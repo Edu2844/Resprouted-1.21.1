@@ -24,7 +24,7 @@ public class ModKeyInputHandler {
                 Text keyName = firepowerattack.getBoundKeyLocalizedText();
 
                 client.player.sendMessage(
-                        Text.translatable("text.resprouted.press_to_launch",
+                        Text.translatable("message.resprouted.press_to_launch",
                                 keyName.copy().formatted(Formatting.WHITE)
                         ).formatted(Formatting.WHITE),
                         true

@@ -4,6 +4,7 @@ import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.item.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -36,7 +37,10 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
     public GrapeLeavesBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(DIST, 0).with(AXIS, Direction.Axis.X));
+        this.setDefaultState(this.stateManager.getDefaultState()
+                .with(AGE, 0)
+                .with(DIST, 0)
+                .with(AXIS, Direction.Axis.X));
     }
 
     @Override
@@ -47,9 +51,13 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
     @Override
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         if (state.get(DIST) > 0) {
-            return state.get(AGE) < MAX_AGE && world.isAir(pos.down());
+            return !isMature(state) && world.isAir(pos.down());
         }
         return canSpread((World) world, pos, state);
+    }
+
+    protected boolean isMature(BlockState state) {
+        return state.get(AGE) == MAX_AGE;
     }
 
     @Override
@@ -108,7 +116,6 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
         if (j > 0 && k < MAX_AGE && world.isAir(pos.down())) {
             world.setBlockState(pos, state.with(AGE, Math.min(k + 1, MAX_AGE)), Block.NOTIFY_ALL);
-
         } else if (j < 1) {
             spread(world, pos, state);
         }
@@ -137,27 +144,46 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
         }
     }
 
+    protected float getGrowthChance() {
+        return 7.0F;
+    }
+
+    public static int getMaxAge() {
+        return MAX_AGE;
+    }
+
     @Override
     public boolean hasRandomTicks(BlockState state) {
         if (state.get(DIST) > 0) {
-            return state.get(AGE) < MAX_AGE;
-        } else {
-            return true;
+            return !isMature(state);
         }
+        return true;
     }
 
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (state.isOf(ModBlocks.GRAPE_LEAVES) && state.get(AGE) == MAX_AGE) {
-
+        if (isMature(state)) {
             player.giveItemStack(new ItemStack(getHarvest()));
-
             world.setBlockState(pos, state.with(AGE, 0), Block.NOTIFY_ALL);
-
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F);
             return ItemActionResult.SUCCESS;
         }
         return ItemActionResult.FAIL;
+    }
+
+    @Override
+    protected void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
+        super.onProjectileHit(world, state, hit, projectile);
+        if (!world.isClient && isMature(state)) {
+            BlockPos pos = hit.getBlockPos();
+            Block.dropStack(world, pos, new ItemStack(getHarvest()));
+            world.setBlockState(pos, state.with(AGE, 0), Block.NOTIFY_ALL);
+            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        }
+    }
+
+    protected Item getHarvest() {
+        return ModItems.GRAPES;
     }
 
     @Override
@@ -170,10 +196,11 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
     private boolean isBlockSupported(World world, BlockPos pos, BlockState state) {
         if (state.get(AXIS) == Direction.Axis.X) {
-            return this.isSideSupported(world, pos, state, Direction.WEST) && this.isSideSupported(world, pos, state, Direction.EAST);
-
+            return this.isSideSupported(world, pos, state, Direction.WEST)
+                    && this.isSideSupported(world, pos, state, Direction.EAST);
         } else if (state.get(AXIS) == Direction.Axis.Z) {
-            return this.isSideSupported(world, pos, state, Direction.NORTH) && this.isSideSupported(world, pos, state, Direction.SOUTH);
+            return this.isSideSupported(world, pos, state, Direction.NORTH)
+                    && this.isSideSupported(world, pos, state, Direction.SOUTH);
         }
         return true;
     }
@@ -208,15 +235,16 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
             switch (state.get(AXIS)) {
                 case X:
                     return (world.getBlockState(pos.west()).isOf(ModBlocks.ROPE)
-                            && world.getBlockState(pos.west()).get(RopeBlock.AXIS) == state.get(AXIS)) || (world.getBlockState(pos.east()).isOf(ModBlocks.ROPE)
+                            && world.getBlockState(pos.west()).get(RopeBlock.AXIS) == state.get(AXIS))
+                            || (world.getBlockState(pos.east()).isOf(ModBlocks.ROPE)
                             && world.getBlockState(pos.east()).get(RopeBlock.AXIS) == state.get(AXIS));
                 case Z:
                     return (world.getBlockState(pos.north()).isOf(ModBlocks.ROPE)
-                            && world.getBlockState(pos.north()).get(RopeBlock.AXIS) == state.get(AXIS)) || (world.getBlockState(pos.south()).isOf(ModBlocks.ROPE)
+                            && world.getBlockState(pos.north()).get(RopeBlock.AXIS) == state.get(AXIS))
+                            || (world.getBlockState(pos.south()).isOf(ModBlocks.ROPE)
                             && world.getBlockState(pos.south()).get(RopeBlock.AXIS) == state.get(AXIS));
             }
         }
-
         return false;
     }
 
@@ -232,10 +260,8 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
                     if (westRope && eastRope) {
                         spreadToValidRope(world, world.random.nextBoolean() ? pos.west() : pos.east());
-
                     } else if (westRope) {
                         spreadToValidRope(world, pos.west());
-
                     } else if (eastRope) {
                         spreadToValidRope(world, pos.east());
                     }
@@ -250,10 +276,8 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
 
                     if (north && south) {
                         spreadToValidRope(world, world.random.nextBoolean() ? pos.north() : pos.south());
-
                     } else if (north) {
                         spreadToValidRope(world, pos.north());
-
                     } else if (south) {
                         spreadToValidRope(world, pos.south());
                     }
@@ -268,17 +292,5 @@ public class GrapeLeavesBlock extends Block implements Fertilizable {
             Direction.Axis axis = o.get(RopeBlock.AXIS);
             world.setBlockState(pos, getDefaultState().with(AXIS, axis).with(DIST, 1), Block.NOTIFY_ALL);
         }
-    }
-
-    public static int getMaxAge(){
-        return MAX_AGE;
-    }
-
-    protected float getGrowthChance() {
-        return 7.0F;
-    }
-
-    public Item getHarvest() {
-        return ModItems.GRAPES;
     }
 }

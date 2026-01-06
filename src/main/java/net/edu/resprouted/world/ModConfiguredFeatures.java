@@ -45,7 +45,7 @@ public class ModConfiguredFeatures {
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
 
-        //Iron Wood Tree
+        // Iron Wood Tree
         register(context, IRONWOOD_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.IRONWOOD_LOG),
                 new StraightTrunkPlacer(10, 2, 0),
@@ -54,7 +54,7 @@ public class ModConfiguredFeatures {
                 new TwoLayersFeatureSize(3, 1, 2)
         ).build());
 
-        //Olive Tree
+        // Olive Tree
         register(context, OLIVE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.OLIVE_LOG),
                 new LargeOakTrunkPlacer(4, 2, 2),
@@ -63,7 +63,7 @@ public class ModConfiguredFeatures {
                 new TwoLayersFeatureSize(3, 0, 2)
         ).build());
 
-        //Apple Tree
+        // Apple Tree
         register(context, APPLE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(Blocks.OAK_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
@@ -72,119 +72,104 @@ public class ModConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 0, 1)
         ).build());
 
-        //Aloe Vera
+        // Aloe Vera
         register(context, ALOE_VERA_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALOE_VERA_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.ALOE_VERA
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND)));
 
-        //Blood Orchid
+        // Blood Orchid
         register(context, BLOOD_ORCHID_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.BLOOD_ORCHID_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.BLOOD_ORCHID
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
 
-        //Chamomile
+        // Chamomile
         register(context, CHAMOMILE_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.CHAMOMILE_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.CHAMOMILE
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
 
-        //Vanta Lily
+        // Vanta Lily
         register(context, VANTA_LILY_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VANTA_LILY_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.VANTA_LILY
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
 
-        //Cloudsbluff
+        // Cloudsbluff
         register(context, CLOUDSBLUFF_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.CLOUDSBLUFF_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.CLOUDSBLUFF
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
-        //Cohosh
+        // Cohosh
         register(context, COHOSH_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.COHOSH_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.COHOSH
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
 
-        //Ginseng
+        // Ginseng
         register(context, GINSENG_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.GINSENG_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.GINSENG
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
 
-        //Horsetail
+        // Horsetail
         register(context, HORSETAIL_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.HORSETAIL_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.HORSETAIL
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
 
-        //Marsh Mallow
+        // Marsh Mallow
         register(context, MARSHMALLOW_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.MARSHMALLOW_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.MARSHMALLOW
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
 
-        //Wind Thistle
+        // Wind Thistle
         register(context, WIND_THISTLE_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.WIND_THISTLE_BLOCK
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.WIND_THISTLE
                                 .getDefaultState().with(HerbBlock.AGE, 6))),
                         List.of(Blocks.GRASS_BLOCK)));
 
-        //DeathStalk Mushroom
+        // DeathStalk Mushroom
         register(context, DEATHSTALK_MUSHROOM_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
                         new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.DEATHSTALK_MUSHROOM.getDefaultState()
                                         .with(CustomMushroomBlock.AGE, 3)))));
 
-        //Core Root
+        // Core Root
         register(context, CORE_ROOT_KEY, Feature.RANDOM_PATCH,
-                new RandomPatchFeatureConfig(
-                        10,
-                        7,
-                        3,
-                        PlacedFeatures.createEntry(
-                                Feature.SIMPLE_BLOCK,
-                                new SimpleBlockFeatureConfig(BlockStateProvider.of(
-                                        ModBlocks.CORE_ROOT.getDefaultState()
-                                                .with(CustomMushroomBlock.AGE, 3)
-                                ))
-                        )
-                )
+                new RandomPatchFeatureConfig(10, 7, 3, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(
+                                ModBlocks.CORE_ROOT.getDefaultState().with(CustomMushroomBlock.AGE, 3)
+                        ))
+                ))
         );
 
-        //Mooncap Mushroom
+        // Mooncap Mushroom
         register(context, MOONCAP_KEY, Feature.RANDOM_PATCH,
-                new RandomPatchFeatureConfig(
-                        8,
-                        7,
-                        3,
-                        PlacedFeatures.createEntry(
-                                Feature.SIMPLE_BLOCK,
-                                new SimpleBlockFeatureConfig(BlockStateProvider.of(
-                                        ModBlocks.MOONCAP_MUSHROOM.getDefaultState()
-                                                .with(CustomMushroomBlock.AGE, 3)
-                                ))
-                        )
-                )
+                new RandomPatchFeatureConfig(8, 7, 3, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockFeatureConfig(BlockStateProvider.of(
+                                ModBlocks.MOONCAP_MUSHROOM.getDefaultState().with(CustomMushroomBlock.AGE, 3)
+                        ))
+                ))
         );
 
-        //Slate
+        // Slate
         RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
         List<OreFeatureConfig.Target> limestoneTargets = List.of(
                 OreFeatureConfig.createTarget(stoneReplaceables, ModBlocks.SLATE.getDefaultState())
         );
-
         register(context, SLATE_KEY, Feature.ORE, new OreFeatureConfig(limestoneTargets, 33));
     }
 

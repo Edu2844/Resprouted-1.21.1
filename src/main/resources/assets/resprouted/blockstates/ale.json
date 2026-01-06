@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "level=0": {"model": "resprouted:block/ale"},
+    "level=1": { "model": "resprouted:block/ale" },
+    "level=2": { "model": "resprouted:block/ale" },
+    "level=3": { "model": "resprouted:block/ale" },
+    "level=4": { "model": "resprouted:block/ale" },
+    "level=5": { "model": "resprouted:block/ale" },
+    "level=6": { "model": "resprouted:block/ale" },
+    "level=7": { "model": "resprouted:block/ale" },
+    "level=8": { "model": "resprouted:block/ale" },
+    "level=9": { "model": "resprouted:block/ale" },
+    "level=10": { "model": "resprouted:block/ale" },
+    "level=11": { "model": "resprouted:block/ale" },
+    "level=12": { "model": "resprouted:block/ale" },
+    "level=13": { "model": "resprouted:block/ale" },
+    "level=14": { "model": "resprouted:block/ale" },
+    "level=15": { "model": "resprouted:block/ale" }
+  }
+}

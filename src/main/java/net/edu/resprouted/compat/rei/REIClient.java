@@ -18,9 +18,11 @@ import net.edu.resprouted.screen.custom.AdvancedCondenserScreen;
 import net.edu.resprouted.screen.custom.BasicCondenserScreen;
 import net.edu.resprouted.screen.custom.BrewingBarrelScreen;
 import net.edu.resprouted.util.ElixirUtils;
+import net.edu.resprouted.util.RecipeUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
@@ -36,30 +38,28 @@ public class REIClient implements REIClientPlugin {
     @Override
     public void registerCategories(CategoryRegistry registry) {
         registry.add(new CrushingTubCategory());
-        registry.add(new EvaporatingBasinCategory());
-        registry.add(new CondenserCategory());
+        registry.add(new DryingBasinCategory());
+        registry.add(new BasicCondenserCategory());
         registry.add(new AdvancedCondenserCategory());
         registry.add(new BrewingBarrelCategory());
         registry.add(new OliveOilingCategory());
         registry.add(new VantaOilingCategory());
 
-        registry.addWorkstations(CondenserCategory.ID, EntryStacks.of(ModBlocks.CONDENSER));
+        registry.addWorkstations(BasicCondenserCategory.ID, EntryStacks.of(ModBlocks.BASIC_CONDENSER));
         registry.addWorkstations(AdvancedCondenserCategory.ID, EntryStacks.of(ModBlocks.ADVANCED_CONDENSER));
         registry.addWorkstations(BrewingBarrelCategory.ID, EntryStacks.of(ModBlocks.BREWING_BARREL));
         registry.addWorkstations(OliveOilingCategory.ID, EntryStacks.of(Items.CRAFTING_TABLE));
         registry.addWorkstations(VantaOilingCategory.ID, EntryStacks.of(Items.CRAFTING_TABLE));
-
     }
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
-        registry.registerRecipeFiller(CrushingTubRecipe.class, ModRecipes.CRUSHING_TUB_TYPE, CrushingTubDisplay::new);
-        registry.registerRecipeFiller(EvaporatingBasinRecipe.class, ModRecipes.EV_BASIN_TYPE, EvaporatingBasinDisplay::new);
-        registry.registerRecipeFiller(CondenserRecipe.class, ModRecipes.CONDENSER_TYPE, CondenserDisplay::new);
+        registry.registerRecipeFiller(CrushingTubRecipe.class, ModRecipes.CRUSHING_TYPE, CrushingTubDisplay::new);
+        registry.registerRecipeFiller(DryingBasinRecipe.class, ModRecipes.DRYING_TYPE, DryingBasinDisplay::new);
+        registry.registerRecipeFiller(BasicCondenserRecipe.class, ModRecipes.CONDENSER_TYPE, BasicCondenserDisplay::new);
         registry.registerRecipeFiller(AdvancedCondenserRecipe.class, ModRecipes.ADVANCED_CONDENSER_TYPE, AdvancedCondenserDisplay::new);
-        registerOilingRecipes(registry);
+        registerOliveOilingRecipes(registry);
         registerVantaOilingRecipes(registry);
-
         BrewingBarrelRecipe.RECIPES.forEach(recipe -> registry.add(new BrewingBarrelDisplay(recipe)));
     }
 
@@ -68,7 +68,7 @@ public class REIClient implements REIClientPlugin {
         registry.registerContainerClickArea(
                 new Rectangle(60, 38, 30, 8),
                 BasicCondenserScreen.class,
-                CondenserCategory.ID
+                BasicCondenserCategory.ID
         );
 
         registry.registerContainerClickArea(
@@ -99,16 +99,26 @@ public class REIClient implements REIClientPlugin {
         registry.registerComponents(ModItems.ELIXIR_BOTTLE);
     }
 
-    private void registerOilingRecipes(DisplayRegistry registry) {
+    private void registerOliveOilingRecipes(DisplayRegistry registry) {
         ClientWorld world = MinecraftClient.getInstance().world;
         if (world == null) return;
 
         RecipeManager recipeManager = world.getRecipeManager();
 
+        boolean hasOliveOilingRecipe = false;
         for (RecipeEntry<?> entry : recipeManager.values()) {
-            if (entry.value() instanceof OilingRecipe) {
-                registry.add(new OliveOilingDisplay());
+            if (entry.value() instanceof OliveOilingRecipe) {
+                hasOliveOilingRecipe = true;
+                break;
             }
+        }
+
+        if (!hasOliveOilingRecipe) return;
+
+        List<Item> validFoods = Registries.ITEM.stream().filter(item -> RecipeUtils.isValidFood(new ItemStack(item))).toList();
+
+        for (Item food : validFoods) {
+            registry.add(new OliveOilingDisplay(food));
         }
     }
 

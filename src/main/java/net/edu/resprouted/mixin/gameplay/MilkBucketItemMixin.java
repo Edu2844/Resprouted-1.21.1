@@ -19,10 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-
 @Mixin(MilkBucketItem.class)
 public abstract class MilkBucketItemMixin {
-
     @Unique
     private final Map<LivingEntity, Map<RegistryEntry<StatusEffect>, StatusEffectInstance>> savedEffects = new WeakHashMap<>();
 

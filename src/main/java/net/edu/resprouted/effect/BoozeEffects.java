@@ -21,9 +21,7 @@ import java.util.Map;
 
 public class BoozeEffects {
 
-    // ==========================================
-    // ||                 ALE                  ||
-    // ==========================================
+    // Ale
     public static void applyAleEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -39,9 +37,7 @@ public class BoozeEffects {
         }
     }
 
-    // ==========================================
-    // ||              IRON WINE               ||
-    // ==========================================
+    // Iron Wine
     public static void applyIronWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         World world = context.world();
@@ -71,9 +67,7 @@ public class BoozeEffects {
         }
     }
 
-    // ==========================================
-    // ||                CIDER                 ||
-    // ==========================================
+    // Cider
     public static void applyCiderEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -93,9 +87,7 @@ public class BoozeEffects {
         }
     }
 
-    // ==========================================
-    // ||                 MEAD                 ||
-    // ==========================================
+    // Mead
     public static void applyMeadEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -115,9 +107,7 @@ public class BoozeEffects {
         }
     }
 
-    // ==========================================
-    // ||           SWEET BERRY WINE           ||
-    // ==========================================
+    // Sweet Berry Wine
     public static void applySweetBerryWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -165,23 +155,17 @@ public class BoozeEffects {
         }
     }
 
-    // ==========================================
-    // ||                WINE                  ||
-    // ==========================================
+    // Wine
     public static void applyWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
 
         if (quality >= 0.5F) {
-
             player.getHungerManager().add(1, 2F * quality);
-
             int durationIncrease = 600 + ((int) (2400 * ((quality - 0.5F) * 2F)));
 
             for (StatusEffectInstance effect : player.getStatusEffects()) {
-                if (effect.getEffectType().value().getCategory() == StatusEffectCategory.BENEFICIAL &&
-                        effect.getDuration() < 12000) {
-
+                if (effect.getEffectType().value().getCategory() == StatusEffectCategory.BENEFICIAL && effect.getDuration() < 12000) {
                     int newDuration = Math.min(effect.getDuration() + durationIncrease, 12000);
                     player.addStatusEffect(new StatusEffectInstance(
                             effect.getEffectType(),
@@ -221,9 +205,7 @@ public class BoozeEffects {
         }
     }
 
-    // ==========================================
-    // ||               AMBROSIA               ||
-    // ==========================================
+    // Ambrosia
     public static void applyAmbrosiaEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();
@@ -245,9 +227,7 @@ public class BoozeEffects {
         }
     }
 
-    // ==========================================
-    // ||           GLOW BERRY WINE            ||
-    // ==========================================
+    // Glow Berry Wine
     public static void applyGlowBerryWineEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         World world = player.getWorld();
@@ -267,11 +247,7 @@ public class BoozeEffects {
                 List<LivingEntity> nearbyEntities = world.getNonSpectatingEntities(LivingEntity.class, box);
 
                 for (LivingEntity entity : nearbyEntities) {
-                    if (entity.isAlive()
-                            && !entity.isRemoved()
-                            && playerPos.isWithinDistance(entity.getPos(), radius)
-                            && entity != player) {
-
+                    if (entity.isAlive() && !entity.isRemoved() && playerPos.isWithinDistance(entity.getPos(), radius) && entity != player) {
                         entity.addStatusEffect(new StatusEffectInstance(
                                 StatusEffects.GLOWING,
                                 baseDuration + bonusDuration,
@@ -282,34 +258,18 @@ public class BoozeEffects {
             }
         } else {
             player.getHungerManager().add(1, 0.5F * quality);
-
             int negativeDuration = (int) (6000 * (1 - quality));
 
-            player.addStatusEffect(new StatusEffectInstance(
-                    StatusEffects.BLINDNESS,
-                    negativeDuration,
-                    0, false, true, true
-            ));
-
-            player.addStatusEffect(new StatusEffectInstance(
-                    StatusEffects.NAUSEA,
-                    negativeDuration / 2,
-                    0, false, true, true
-            ));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, negativeDuration, 0, false, true, true));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, negativeDuration / 2, 0, false, true, true));
 
             if (quality <= 0.2F) {
-                player.addStatusEffect(new StatusEffectInstance(
-                        StatusEffects.DARKNESS,
-                        negativeDuration / 2,
-                        0, false, true, true
-                ));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, negativeDuration / 2, 0, false, true, true));
             }
         }
     }
 
-    // ==========================================
-    // ||                  RUM                 ||
-    // ==========================================
+    // Rum
     public static void applyRumEffects(BoozeConsumptionContext context) {
         PlayerEntity player = context.player();
         float quality = context.quality();

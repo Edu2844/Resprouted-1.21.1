@@ -16,4 +16,12 @@ public enum CabinetType implements StringIdentifiable {
     public String asString() {
         return name;
     }
+
+    public CabinetType getOpposite() {
+        return switch (this) {
+            case SINGLE -> SINGLE;
+            case TOP -> BOTTOM;
+            case BOTTOM -> TOP;
+        };
+    }
 }

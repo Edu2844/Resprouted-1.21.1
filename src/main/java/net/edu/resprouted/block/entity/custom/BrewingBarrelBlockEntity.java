@@ -55,7 +55,7 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
 
     protected final PropertyDelegate propertyDelegate;
     protected int progress = 0;
-    protected int maxProgress = Resprouted.CONFIG.getMaxBrewTime();
+    protected int maxProgress = Resprouted.COMMON_CONFIG.brewing.getMaxBrewTime();
     private int inputQuality = 0;
     private int outputQuality = 0;
 
@@ -224,7 +224,7 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
     public static void tick(World world, BrewingBarrelBlockEntity blockEntity) {
         if (world.isClient()) return;
 
-        blockEntity.maxProgress = Resprouted.CONFIG.getMaxBrewTime();
+        blockEntity.maxProgress = Resprouted.COMMON_CONFIG.brewing.getMaxBrewTime();
         blockEntity.handleBucketInteractions();
         blockEntity.handleBottleInteractions();
         blockEntity.handleOutputBottleInteractions();
@@ -455,7 +455,6 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                     auxiliary.getResource().getFluid(),
                     (int) auxiliary.getAmount()
             );
-
             auxFluid.applyComponents(auxiliary.getResource().getComponents());
         }
 

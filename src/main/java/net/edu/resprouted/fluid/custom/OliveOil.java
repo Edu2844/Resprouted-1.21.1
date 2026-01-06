@@ -8,13 +8,8 @@ import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.world.WorldView;
-
-import java.util.Optional;
-
 
 public abstract class OliveOil extends BaseFluid {
 
@@ -22,41 +17,41 @@ public abstract class OliveOil extends BaseFluid {
     public Fluid getFlowing() {
         return ModFluids.OLIVE_OIL_FLOWING;
     }
+
     @Override
     public Fluid getStill() {
-        return ModFluids.OLIVE_OIL_STILL;
+        return ModFluids.OLIVE_OIL;
     }
+
     @Override
     public Item getBucketItem() {
         return ModItems.OLIVE_OIL_BUCKET;
     }
+
     @Override
-    public Optional<SoundEvent> getBucketFillSound() {
-        return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
-    }
     public BlockState toBlockState(FluidState state) {
-        return ModBlocks.OLIVE_OIL_FLUID_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
+        return ModBlocks.OLIVE_OIL.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
     }
-    public boolean matchesType(Fluid fluid) {
-        return fluid == ModFluids.OLIVE_OIL_STILL || fluid == ModFluids.OLIVE_OIL_FLOWING;
+
+    @Override
+    public int getTickRate(WorldView world) {
+        return 15;
     }
-    public int getLevelDecreasePerBlock(WorldView world) {
-        return 2;
-    }
+
     public static class Flowing extends OliveOil {
         protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
             super.appendProperties(builder);
             builder.add(LEVEL);
         }
-        @Override
-        public int getLevel(FluidState fluidState) {
-            return fluidState.get(LEVEL);
-        }
     }
+
     public static class Still extends OliveOil {
+        @Override
         public int getLevel(FluidState state) {
             return 8;
         }
+
+        @Override
         public boolean isStill(FluidState state) {
             return true;
         }

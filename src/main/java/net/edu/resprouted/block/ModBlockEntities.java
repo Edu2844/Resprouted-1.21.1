@@ -17,9 +17,9 @@ public class ModBlockEntities {
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "liquid_barrel_be"),
                     BlockEntityType.Builder.create(LiquidBarrelBlockEntity::new, ModBlocks.LIQUID_BARREL).build(null));
 
-    public static final BlockEntityType<EvaporatingBasinBlockEntity> EVAPORATING_BASIN_BE =
-            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "evaporating_basin_be"),
-                    BlockEntityType.Builder.create(EvaporatingBasinBlockEntity::new, ModBlocks.EVAPORATING_BASIN).build(null));
+    public static final BlockEntityType<DryingBasinBlockEntity> DRYING_BASIN_BE =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "drying_basin_be"),
+                    BlockEntityType.Builder.create(DryingBasinBlockEntity::new, ModBlocks.DRYING_BASIN).build(null));
 
     public static final BlockEntityType<CabinetBlockEntity> CABINET_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "cabinet_be"),
@@ -27,7 +27,7 @@ public class ModBlockEntities {
 
     public static final BlockEntityType<BasicCondenserBlockEntity> CONDENSER_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "condenser_be"),
-                    BlockEntityType.Builder.create(BasicCondenserBlockEntity::new, ModBlocks.CONDENSER).build(null));
+                    BlockEntityType.Builder.create(BasicCondenserBlockEntity::new, ModBlocks.BASIC_CONDENSER).build(null));
 
     public static final BlockEntityType<AdvancedCondenserBlockEntity> ADVANCED_CONDENSER_BE =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(Resprouted.MOD_ID, "advanced_condenser_be"),

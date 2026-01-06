@@ -1,0 +1,18 @@
+{
+  "type": "resprouted:advanced_alchemy",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "resprouted:wind_thistle"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:marsh_mallow"
+  },
+  "effect": "minecraft:speed",
+  "duration": 1800,
+  "amplifier": 1
+}

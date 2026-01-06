@@ -1,0 +1,16 @@
+{
+  "type": "resprouted:advanced_alchemy",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:bone"
+    },
+    {
+      "item": "resprouted:ginseng"
+    }
+  ],
+  "effect": "minecraft:strength",
+  "duration": 3600
+}

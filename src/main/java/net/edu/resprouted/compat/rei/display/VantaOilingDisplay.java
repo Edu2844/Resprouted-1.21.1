@@ -28,7 +28,8 @@ public class VantaOilingDisplay extends BasicDisplay {
     private final int numPotions;
 
     public VantaOilingDisplay(int numPotions, RegistryEntry<Potion> potionEntry) {
-        super(getInputsForPotion(numPotions, potionEntry), getOutputsForPotion(numPotions, potionEntry));
+        super(getInputsForPotion(numPotions, potionEntry), getOutputsForPotion(numPotions, potionEntry)
+        );
         this.numPotions = numPotions;
     }
 

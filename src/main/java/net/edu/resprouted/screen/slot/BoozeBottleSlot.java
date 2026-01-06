@@ -11,9 +11,11 @@ public class BoozeBottleSlot extends Slot {
     public BoozeBottleSlot(Inventory inventory, int index, int x, int y) {
         super(inventory, index, x, y);
     }
+
     public boolean canInsert(ItemStack stack) {
         return matches(stack);
     }
+
     public static boolean matches(ItemStack stack) {
         Item item = stack.getItem();
         return (item instanceof BoozeBottleItem) || stack.isOf(Items.GLASS_BOTTLE);

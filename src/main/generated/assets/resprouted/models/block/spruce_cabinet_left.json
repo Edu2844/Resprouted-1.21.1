@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "resprouted:block/spruce_cabinet_front_left",
+    "side": "resprouted:block/spruce_cabinet_side",
+    "top": "resprouted:block/spruce_cabinet_side"
+  }
+}

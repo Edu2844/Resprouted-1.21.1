@@ -1,0 +1,14 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:grape_juice"
+  },
+  "item": {
+    "id": "resprouted:grape_juice_bottle"
+  },
+  "empty_item": {
+    "id": "minecraft:glass_bottle"
+  },
+  "amount": 250,
+  "direction": "insert",
+  "sound": "minecraft:item.bottle.fill"
+}

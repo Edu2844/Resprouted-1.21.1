@@ -20,33 +20,21 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("removal")
 public class JEIPlugin implements IModPlugin {
-
     private static final Identifier ID = Identifier.of(Resprouted.MOD_ID, "jei_plugin");
 
-    public static final RecipeType<CrushingTubRecipe> CRUSHING_TUB =
-            RecipeType.create(Resprouted.MOD_ID, "crushing_tub", CrushingTubRecipe.class);
-
-    public static final RecipeType<EvaporatingBasinRecipe> EVAPORATING_BASIN =
-            RecipeType.create(Resprouted.MOD_ID, "evaporating_basin", EvaporatingBasinRecipe.class);
-
-    public static final RecipeType<CondenserRecipe> CONDENSER =
-            RecipeType.create(Resprouted.MOD_ID, "condenser", CondenserRecipe.class);
-
-    public static final RecipeType<AdvancedCondenserRecipe> ADVANCED_CONDENSER =
-            RecipeType.create(Resprouted.MOD_ID, "advanced_condenser", AdvancedCondenserRecipe.class);
-
-    public static final RecipeType<BrewingBarrelRecipe> BREWING_BARREL =
-            RecipeType.create(Resprouted.MOD_ID, "brewing_barrel", BrewingBarrelRecipe.class);
-
+    public static final RecipeType<CrushingTubRecipe> CRUSHING_TUB = RecipeType.create(Resprouted.MOD_ID, "crushing", CrushingTubRecipe.class);
+    public static final RecipeType<DryingBasinRecipe> DRYING_BASIN = RecipeType.create(Resprouted.MOD_ID, "drying", DryingBasinRecipe.class);
+    public static final RecipeType<BasicCondenserRecipe> CONDENSER = RecipeType.create(Resprouted.MOD_ID, "basic_alchemy", BasicCondenserRecipe.class);
+    public static final RecipeType<AdvancedCondenserRecipe> ADVANCED_CONDENSER = RecipeType.create(Resprouted.MOD_ID, "advanced_alchemy", AdvancedCondenserRecipe.class);
+    public static final RecipeType<BrewingBarrelRecipe> BREWING_BARREL = RecipeType.create(Resprouted.MOD_ID, "brewing", BrewingBarrelRecipe.class);
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        registration.addRecipes(CRUSHING_TUB, ResproutedJEIRecipes.getCrushingTubRecipes());
-        registration.addRecipes(EVAPORATING_BASIN, ResproutedJEIRecipes.getEvaporatingBasinRecipes());
-        registration.addRecipes(CONDENSER, ResproutedJEIRecipes.getCondenserRecipes());
-        registration.addRecipes(ADVANCED_CONDENSER, ResproutedJEIRecipes.getAdvancedCondenserRecipes());
-        registration.addRecipes(BREWING_BARREL, ResproutedJEIRecipes.getBrewingBarrelRecipes());
-
+        registration.addRecipes(CRUSHING_TUB, ResproutedJEIRecipes.getCrushingRecipes());
+        registration.addRecipes(DRYING_BASIN, ResproutedJEIRecipes.getDryingRecipes());
+        registration.addRecipes(CONDENSER, ResproutedJEIRecipes.getBasicAlchemyRecipes());
+        registration.addRecipes(ADVANCED_CONDENSER, ResproutedJEIRecipes.getAdvancedAlchemyRecipes());
+        registration.addRecipes(BREWING_BARREL, ResproutedJEIRecipes.getBrewingRecipes());
     }
 
     @Override
@@ -54,8 +42,8 @@ public class JEIPlugin implements IModPlugin {
         IGuiHelper helper = registry.getJeiHelpers().getGuiHelper();
 
         registry.addRecipeCategories(new CrushingTubRecipeCategory(helper));
-        registry.addRecipeCategories(new EvaporatingBasinRecipeCategory(helper));
-        registry.addRecipeCategories(new CondenserRecipeCategory(helper));
+        registry.addRecipeCategories(new DryingBasinRecipeCategory(helper));
+        registry.addRecipeCategories(new BasicCondenserRecipeCategory(helper));
         registry.addRecipeCategories(new AdvancedCondenserRecipeCategory(helper));
         registry.addRecipeCategories(new BrewingBarrelRecipeCategory(helper));
     }
@@ -70,16 +58,15 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.CRUSHING_TUB), CRUSHING_TUB);
-        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.EVAPORATING_BASIN), EVAPORATING_BASIN);
-        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.CONDENSER), CONDENSER);
+        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.DRYING_BASIN), DRYING_BASIN);
+        registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.BASIC_CONDENSER), CONDENSER);
         registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.ADVANCED_CONDENSER), ADVANCED_CONDENSER);
         registration.addRecipeCatalyst(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.BREWING_BARREL), BREWING_BARREL);
     }
 
     @Override
     public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
-        registration.getCraftingCategory().addExtension(OilingRecipe.class, JEIVanillaExtensions.createOilingExtension());
-
+        registration.getCraftingCategory().addExtension(OliveOilingRecipe.class, JEIVanillaExtensions.createOilingExtension());
     }
 
     @Override

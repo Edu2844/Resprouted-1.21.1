@@ -1,0 +1,6 @@
+{
+  "parent": "resprouted:block/template_ornate_lantern",
+  "textures": {
+    "lantern": "resprouted:block/ornate_soul_lantern"
+  }
+}

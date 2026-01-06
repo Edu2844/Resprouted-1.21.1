@@ -1,0 +1,10 @@
+{
+  "type": "resprouted:crushing",
+  "input_item": {
+    "item": "resprouted:grapes"
+  },
+  "fluid_variant": {
+    "fluid": "resprouted:grape_juice"
+  },
+  "amount": 250
+}

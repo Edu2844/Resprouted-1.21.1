@@ -1,0 +1,7 @@
+{
+  "parent": "resprouted:block/template_cabinet_top",
+  "textures": {
+    "cabinet": "resprouted:block/mangrove_double_cabinet",
+    "particle": "resprouted:block/mangrove_cabinet_side"
+  }
+}

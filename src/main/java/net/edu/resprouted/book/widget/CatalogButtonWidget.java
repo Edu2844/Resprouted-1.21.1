@@ -49,7 +49,7 @@ public class CatalogButtonWidget extends ButtonWidget {
 
         context.drawTexture(texture, this.getX(), this.getY(), 0, 0, width, height, width, height);
 
-        //Render tooltip
+        // Render tooltip
         if (this.isHovered() && tooltipText != null && !tooltipText.equals(ScreenTexts.EMPTY)) {
             context.drawTooltip(MinecraftClient.getInstance().textRenderer, tooltipText, mouseX, mouseY);
         }

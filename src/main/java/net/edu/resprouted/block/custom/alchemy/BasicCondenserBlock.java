@@ -44,15 +44,15 @@ public class BasicCondenserBlock extends AbstractCondenserBlock {
         switch (facing) {
             case NORTH:
             case SOUTH:
-                if (!world.getBlockState(east).isOf(ModBlocks.RETORT)) return false;
-                if (!world.getBlockState(west).isOf(ModBlocks.RETORT)) return false;
+                if (!world.getBlockState(east).isOf(ModBlocks.BASIC_RETORT)) return false;
+                if (!world.getBlockState(west).isOf(ModBlocks.BASIC_RETORT)) return false;
                 if (world.getBlockState(east).get(RetortBlock.FACING) != Direction.EAST) return false;
                 if (world.getBlockState(west).get(RetortBlock.FACING) != Direction.WEST) return false;
                 break;
             case WEST:
             case EAST:
-                if (!world.getBlockState(north).isOf(ModBlocks.RETORT)) return false;
-                if (!world.getBlockState(south).isOf(ModBlocks.RETORT)) return false;
+                if (!world.getBlockState(north).isOf(ModBlocks.BASIC_RETORT)) return false;
+                if (!world.getBlockState(south).isOf(ModBlocks.BASIC_RETORT)) return false;
                 if (world.getBlockState(north).get(RetortBlock.FACING) != Direction.NORTH) return false;
                 if (world.getBlockState(south).get(RetortBlock.FACING) != Direction.SOUTH) return false;
                 break;

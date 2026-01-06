@@ -1,9 +1,0 @@
-{
-  "type": "resprouted:condenser",
-  "ingredients": [
-    { "item": "minecraft:soul_sand" },
-    { "item": "resprouted:deathstalk_mushroom" }
-  ],
-  "effect": "minecraft:wither",
-  "duration": 900
-}

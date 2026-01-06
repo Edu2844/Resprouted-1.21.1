@@ -9,10 +9,12 @@ public class ModifierSlot extends Slot {
     public ModifierSlot(Inventory inventory, int index, int x, int y) {
         super(inventory, index, x, y);
     }
+
     public boolean canInsert(ItemStack stack) {
         return matches(stack);
     }
+
     public static boolean matches(ItemStack stack) {
-        return stack.isIn(ModTags.Items.MODIFIERS);
+        return stack.isIn(ModTags.Items.ALCHEMY_MODIFIERS);
     }
 }

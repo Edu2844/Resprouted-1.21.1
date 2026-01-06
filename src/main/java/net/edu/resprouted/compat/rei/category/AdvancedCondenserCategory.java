@@ -26,7 +26,7 @@ public class AdvancedCondenserCategory implements DisplayCategory<AdvancedConden
 
     public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/recipe/advanced_condenser_recipe.png");
     public static final Identifier ARROW = Identifier.of(Resprouted.MOD_ID, "textures/gui/sprites/advanced_condenser_progress.png");
-    public static final CategoryIdentifier<AdvancedCondenserDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "plugin/advanced_condenser");
+    public static final CategoryIdentifier<AdvancedCondenserDisplay> ID = CategoryIdentifier.of(Resprouted.MOD_ID, "plugin/advanced_alchemy");
 
     @Override
     public CategoryIdentifier<? extends AdvancedCondenserDisplay> getCategoryIdentifier() {
@@ -35,7 +35,7 @@ public class AdvancedCondenserCategory implements DisplayCategory<AdvancedConden
 
     @Override
     public Text getTitle() {
-        return Text.translatable("block.resprouted.advanced_condenser");
+        return Text.translatable("recipe.resprouted.advanced_alchemy");
     }
 
     @Override
@@ -68,12 +68,10 @@ public class AdvancedCondenserCategory implements DisplayCategory<AdvancedConden
         fire.animationDurationTicks(400);
         widgets.add(fire);
 
-        widgets.add(Widgets.createTooltip(
-                new Rectangle(startPoint.x + 110, startPoint.y + 24, 16, 32),
+        widgets.add(Widgets.createTooltip(new Rectangle(startPoint.x + 110, startPoint.y + 24, 16, 32),
                 Text.translatable("block.minecraft.water"),
                 Text.literal("125/8000 mB").formatted(Formatting.GRAY)
         ));
-
 
         List<EntryIngredient> inputs = display.getInputEntries();
         int ingredientCount = inputs.size();
@@ -88,12 +86,14 @@ public class AdvancedCondenserCategory implements DisplayCategory<AdvancedConden
                     .disableBackground()
                     .markInput());
         }
+
         if (ingredientCount >= 2) {
             widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 32))
                     .entries(inputs.get(1))
                     .disableBackground()
                     .markInput());
         }
+
         if (ingredientCount >= 3) {
             widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 56))
                     .entries(inputs.get(2))
@@ -121,7 +121,6 @@ public class AdvancedCondenserCategory implements DisplayCategory<AdvancedConden
                     .disableBackground()
                     .markOutput());
         }
-
         return widgets;
     }
 }

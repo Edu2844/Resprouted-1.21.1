@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "resprouted:block/stool/birch_stool",
+      "model": "resprouted:block/birch_stool",
       "y": 90
     },
     "facing=north": {
-      "model": "resprouted:block/stool/birch_stool"
+      "model": "resprouted:block/birch_stool"
     },
     "facing=south": {
-      "model": "resprouted:block/stool/birch_stool",
+      "model": "resprouted:block/birch_stool",
       "y": 180
     },
     "facing=west": {
-      "model": "resprouted:block/stool/birch_stool",
+      "model": "resprouted:block/birch_stool",
       "y": 270
     }
   }

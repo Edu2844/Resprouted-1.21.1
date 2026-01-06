@@ -1,0 +1,14 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:vanta_oil"
+  },
+  "item": {
+    "id": "resprouted:vanta_oil_bottle"
+  },
+  "empty_item": {
+    "id": "minecraft:glass_bottle"
+  },
+  "amount": 250,
+  "direction": "extract",
+  "sound": "minecraft:item.bottle.empty"
+}

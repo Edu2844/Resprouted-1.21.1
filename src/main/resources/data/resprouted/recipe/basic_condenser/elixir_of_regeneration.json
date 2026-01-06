@@ -1,9 +1,0 @@
-{
-  "type": "resprouted:condenser",
-  "ingredients": [
-    {"item": "minecraft:honeycomb"},
-    {"item": "resprouted:cohosh"}
-  ],
-  "effect": "minecraft:regeneration",
-  "duration": 900
-}

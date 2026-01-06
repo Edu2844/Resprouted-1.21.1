@@ -1,0 +1,21 @@
+{
+  "type": "resprouted:advanced_alchemy",
+  "ingredients": [
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "resprouted:blood_orchid"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:marsh_mallow"
+  },
+  "effect": "minecraft:health_boost",
+  "duration": 1800,
+  "amplifier": 1
+}

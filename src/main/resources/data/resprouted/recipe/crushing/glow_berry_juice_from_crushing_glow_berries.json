@@ -1,10 +1,10 @@
 {
-  "type": "resprouted:crushing_tub",
+  "type": "resprouted:crushing",
   "input_item": {
     "item": "minecraft:glow_berries"
   },
   "fluid_variant": {
-    "fluid": "resprouted:glow_berry_juice_still"
+    "fluid": "resprouted:glow_berry_juice"
   },
   "amount": 250
 }

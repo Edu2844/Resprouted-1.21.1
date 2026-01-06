@@ -1,0 +1,12 @@
+{
+  "type": "resprouted:drying",
+  "fluid_variant": {
+    "fluid": "resprouted:glow_berry_juice"
+  },
+  "amount": 250,
+  "output_item": {
+    "id": "resprouted:tiny_glowstone_dust",
+    "count": 1
+  },
+  "evaporatingtime": 100
+}

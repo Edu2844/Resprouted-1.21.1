@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "resprouted:item/layer/oxidized_double_copper_candle_holder_layer",
-    "layer1": "resprouted:item/layer/light_blue_double_candle"
+    "layer0": "resprouted:item/candle_holder/oxidized_double_copper_candle_holder_layer",
+    "layer1": "resprouted:item/candle_holder/light_blue_double_candle"
   }
 }

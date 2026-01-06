@@ -41,7 +41,6 @@ public class RopeDispenser implements DispenserBehavior {
                 return result;
             }
         }
-
         return defaultBehavior.dispense(pointer, stack);
     }
 
@@ -54,11 +53,9 @@ public class RopeDispenser implements DispenserBehavior {
                 return false;
             }
         }
-
         BlockPos targetPos = pos.down(yOffset);
 
-        if (world.getBlockState(targetPos).isAir() &&
-                ((RopeBlock) ModBlocks.ROPE).canPlaceAt(ModBlocks.ROPE.getDefaultState(), world, targetPos)) {
+        if (world.getBlockState(targetPos).isAir() && ((RopeBlock) ModBlocks.ROPE).canPlaceAt(ModBlocks.ROPE.getDefaultState(), world, targetPos)) {
 
             BlockState newRopeState = ModBlocks.ROPE.getDefaultState()
                     .with(RopeBlock.AXIS, Direction.Axis.Y)
@@ -73,7 +70,6 @@ public class RopeDispenser implements DispenserBehavior {
                 return true;
             }
         }
-
         return false;
     }
 }

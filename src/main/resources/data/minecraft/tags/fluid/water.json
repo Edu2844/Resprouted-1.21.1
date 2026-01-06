@@ -1,34 +1,34 @@
 {
   "replace": false,
   "values": [
-    "resprouted:honey_still",
+    "resprouted:honey",
     "resprouted:honey_flowing",
 
-    "resprouted:apple_juice_still",
+    "resprouted:apple_juice",
     "resprouted:apple_juice_flowing",
 
-    "resprouted:golden_apple_juice_still",
+    "resprouted:golden_apple_juice",
     "resprouted:golden_apple_juice_flowing",
 
-    "resprouted:grape_juice_still",
+    "resprouted:grape_juice",
     "resprouted:grape_juice_flowing",
 
-    "resprouted:sweet_berry_juice_still",
+    "resprouted:sweet_berry_juice",
     "resprouted:sweet_berry_juice_flowing",
 
-    "resprouted:glow_berry_juice_still",
+    "resprouted:glow_berry_juice",
     "resprouted:glow_berry_juice_flowing",
 
-    "resprouted:iron_berry_juice_still",
+    "resprouted:iron_berry_juice",
     "resprouted:iron_berry_juice_flowing",
 
-    "resprouted:olive_oil_still",
+    "resprouted:olive_oil",
     "resprouted:olive_oil_flowing",
 
-    "resprouted:vanta_oil_still",
+    "resprouted:vanta_oil",
     "resprouted:vanta_oil_flowing",
 
-    "resprouted:ale_wort_still",
+    "resprouted:ale_wort",
     "resprouted:ale_wort_flowing"
   ]
 }

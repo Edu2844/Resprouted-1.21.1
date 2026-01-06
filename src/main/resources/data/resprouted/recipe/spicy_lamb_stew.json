@@ -5,9 +5,9 @@
     {"item": "minecraft:cooked_mutton"},
     {"item": "minecraft:baked_potato"},
     {"item": "minecraft:carrot"},
-    {"item": "resprouted:tomato"},
+    {"tag": "resprouted:tomato"},
     {"item": "minecraft:brown_mushroom"},
-    {"item": "resprouted:chili_pepper"},
+    {"tag": "resprouted:chili_pepper"},
     {"item": "minecraft:bowl"}
   ],
   "result": {

@@ -1,0 +1,14 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:golden_apple_juice"
+  },
+  "item": {
+    "id": "resprouted:golden_apple_juice_bottle"
+  },
+  "empty_item": {
+    "id": "minecraft:glass_bottle"
+  },
+  "amount": 1000,
+  "direction": "extract",
+  "sound": "minecraft:item.bottle.empty"
+}

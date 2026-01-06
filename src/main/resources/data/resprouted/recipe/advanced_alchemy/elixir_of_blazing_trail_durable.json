@@ -1,0 +1,20 @@
+{
+  "type": "resprouted:advanced_alchemy",
+  "ingredients": [
+    {
+      "item": "minecraft:netherrack"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "resprouted:chili_pepper"
+    }
+  ],
+  "modifier":
+  {
+    "item": "resprouted:horsetail"
+  },
+  "effect": "resprouted:blazing_trail",
+  "duration": 9600
+}

@@ -1,5 +1,5 @@
 {
-  "type": "resprouted:crushing_tub",
+  "type": "resprouted:crushing",
   "input_item": {
     "item": "minecraft:apple"
   },
@@ -8,7 +8,7 @@
     "count": 1
   },
   "fluid_variant": {
-    "fluid": "resprouted:apple_juice_still"
+    "fluid": "resprouted:apple_juice"
   },
   "amount": 250
 }

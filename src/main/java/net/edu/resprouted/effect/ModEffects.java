@@ -37,10 +37,10 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> UNDYING = registerStatusEffect("undying",
             new UndyingEffect(StatusEffectCategory.BENEFICIAL, 0xEADB84));
 
-
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(Resprouted.MOD_ID, name), statusEffect);
     }
+
     public static void registerEffects() {
         Resprouted.LOGGER.info("Registering Effects for " + Resprouted.MOD_ID);
     }

@@ -27,14 +27,13 @@ public class OliveOilingCategory implements DisplayCategory<OliveOilingDisplay> 
 
     @Override
     public Text getTitle() {
-        return Text.translatable("rei.resprouted.olive_oiling");
+        return Text.translatable("recipe.resprouted.olive_oiling");
     }
 
     @Override
     public Renderer getIcon() {
         return EntryStacks.of(ModItems.OLIVE_OIL_BOTTLE);
     }
-
 
     @Override
     public List<Widget> setupDisplay(OliveOilingDisplay display, Rectangle bounds) {
@@ -70,10 +69,10 @@ public class OliveOilingCategory implements DisplayCategory<OliveOilingDisplay> 
                     .disableBackground()
                     .markOutput());
         }
+
         if (!display.getOutputEntries().isEmpty()) {
             widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 19)));
         }
-
         return widgets;
     }
 }

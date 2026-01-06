@@ -11,7 +11,6 @@ public class RecipeUtils {
     public static final int VANTA_OIL_EFFECT_DURATION = 15 * 20;
     public static final int VANTA_OIL_EFFECT_MAX_DURATION = VANTA_OIL_EFFECT_DURATION + (5 * 20);
 
-
     public static boolean isVantaOilBottle(ItemStack stack) {
         return stack.isOf(ModItems.VANTA_OIL_BOTTLE);
     }
@@ -19,7 +18,7 @@ public class RecipeUtils {
     public static boolean isVantaOilableWeapon(ItemStack stack) {
         String itemId = Registries.ITEM.getId(stack.getItem()).toString();
         Item item = stack.getItem();
-        return (item instanceof AxeItem || item instanceof SwordItem || Resprouted.CONFIG.getVantaOilWhiteList().contains(itemId));
+        return (item instanceof AxeItem || item instanceof SwordItem || Resprouted.COMMON_CONFIG.general.getVantaOilWhiteList().contains(itemId));
     }
 
     public static StatusEffectInstance getVantaOilEffect(ItemStack stack) {
@@ -58,13 +57,13 @@ public class RecipeUtils {
     public static boolean isValidFood(ItemStack stack) {
         String itemId = Registries.ITEM.getId(stack.getItem()).toString();
 
-        if (Resprouted.CONFIG.getOliveOilFoodBlackList().contains(itemId)) {
+        if (Resprouted.COMMON_CONFIG.food.getOilableFoodBlackList().contains(itemId)) {
             return false;
         }
         if (stack.isIn(ModTags.Items.CAN_BE_OILED)) {
             return true;
         }
-        for (String configItemId : Resprouted.CONFIG.getOliveOilFoodWhiteList()) {
+        for (String configItemId : Resprouted.COMMON_CONFIG.food.getOilableFoodWhiteList()) {
             if (itemId.equals(configItemId)) {
                 return true;
             }

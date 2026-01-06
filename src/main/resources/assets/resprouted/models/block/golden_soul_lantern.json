@@ -1,6 +1,0 @@
-{
-  "parent": "resprouted:block/golden_lantern",
-  "textures": {
-    "lantern": "resprouted:block/golden_soul_lantern"
-  }
-}

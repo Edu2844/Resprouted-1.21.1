@@ -73,6 +73,7 @@ public class AppleTreeBlock extends CropBlock {
         return true;
     }
 
+    @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         performGrowth(world, pos, state);
     }

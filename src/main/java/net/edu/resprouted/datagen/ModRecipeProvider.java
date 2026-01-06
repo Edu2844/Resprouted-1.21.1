@@ -21,7 +21,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
     @Override
     public void generate(RecipeExporter exporter) {
-        //CHAIRS
+        // Chairs
         Map<ItemConvertible, ItemConvertible> Chairs = Map.ofEntries(
                 Map.entry(Blocks.OAK_PLANKS, ModBlocks.OAK_CHAIR),
                 Map.entry(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_CHAIR),
@@ -47,7 +47,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion("has_planks", conditionsFromItem(planks))
                         .offerTo(exporter));
 
-        //TABLES
+        // Tables
         Map<ItemConvertible, ItemConvertible> Tables = Map.ofEntries(
                 Map.entry(Blocks.OAK_PLANKS, ModBlocks.OAK_TABLE),
                 Map.entry(Blocks.DARK_OAK_PLANKS, ModBlocks.DARK_OAK_TABLE),
@@ -73,7 +73,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion("has_planks", conditionsFromItem(planks))
                         .offerTo(exporter));
 
-        //STOOLS
+        // Stools
         Map<ItemConvertible, ItemConvertible> Stools = Map.ofEntries(
                 Map.entry(Blocks.OAK_SLAB, ModBlocks.OAK_STOOL),
                 Map.entry(Blocks.DARK_OAK_SLAB, ModBlocks.DARK_OAK_STOOL),
@@ -99,7 +99,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion("has_slab", conditionsFromItem(slab))
                         .offerTo(exporter));
 
-        //IRON CANDLE HOLDERS
+        // Iron Candle Holders
         Map<ItemConvertible, ItemConvertible> Iron_holder = Map.ofEntries(
                 Map.entry(Blocks.BLACK_CANDLE, ModBlocks.BLACK_IRON_CANDLE_HOLDER),
                 Map.entry(Blocks.BLUE_CANDLE, ModBlocks.BLUE_IRON_CANDLE_HOLDER),
@@ -130,7 +130,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion("has_candle", conditionsFromItem(candle))
                         .offerTo(exporter));
 
-        //GOLDEN CANDLE HOLDERS
+        // Golden Candle Holders
         Map<ItemConvertible, ItemConvertible> Golden_holder = Map.ofEntries(
                 Map.entry(Blocks.BLACK_CANDLE, ModBlocks.BLACK_GOLDEN_CANDLE_HOLDER),
                 Map.entry(Blocks.BLUE_CANDLE, ModBlocks.BLUE_GOLDEN_CANDLE_HOLDER),
@@ -162,7 +162,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .offerTo(exporter));
 
 
-        //GOLDEN CANDLE HOLDERS
+        // Copper Candle Holders
         Map<ItemConvertible, ItemConvertible> Copper_holder = Map.ofEntries(
                 Map.entry(Blocks.BLACK_CANDLE, ModBlocks.BLACK_COPPER_CANDLE_HOLDER),
                 Map.entry(Blocks.BLUE_CANDLE, ModBlocks.BLUE_COPPER_CANDLE_HOLDER),

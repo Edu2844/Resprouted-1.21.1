@@ -1,0 +1,7 @@
+{
+  "parent": "resprouted:block/template_cabinet_bottom_open",
+  "textures": {
+    "cabinet": "resprouted:block/olive_double_cabinet",
+    "particle": "resprouted:block/olive_cabinet_side"
+  }
+}

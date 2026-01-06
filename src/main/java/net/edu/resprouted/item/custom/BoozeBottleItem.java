@@ -43,6 +43,7 @@ public class BoozeBottleItem extends Item {
         FLUID_TO_BOTTLE.put(fluidType, this);
     }
 
+    @SuppressWarnings("unused")
     public BoozeBottleItem(Fluid fluidType, Settings settings) {
         this(fluidType, settings, context -> {});
     }
@@ -60,7 +61,6 @@ public class BoozeBottleItem extends Item {
 
             if (!playerEntity.isInCreativeMode()) {
                 stack.decrement(1);
-
                 ItemStack glassBottle = new ItemStack(Items.GLASS_BOTTLE);
 
                 if (stack.isEmpty()) {
@@ -72,7 +72,6 @@ public class BoozeBottleItem extends Item {
                 }
             }
         }
-
         user.emitGameEvent(GameEvent.DRINK);
         return stack;
     }
@@ -125,7 +124,6 @@ public class BoozeBottleItem extends Item {
             setQuality(bottle, quality);
             return bottle;
         }
-
         return ItemStack.EMPTY;
     }
 
@@ -147,7 +145,6 @@ public class BoozeBottleItem extends Item {
                 return fluid;
             }
         }
-
         return Fluids.EMPTY;
     }
 

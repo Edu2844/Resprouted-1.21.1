@@ -1,0 +1,16 @@
+{
+  "type": "resprouted:advanced_alchemy",
+  "ingredients": [
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "resprouted:blood_orchid"
+    }
+  ],
+  "effect": "minecraft:health_boost",
+  "duration": 3600
+}

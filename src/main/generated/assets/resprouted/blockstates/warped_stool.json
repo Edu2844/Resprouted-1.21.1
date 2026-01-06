@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "resprouted:block/stool/warped_stool",
+      "model": "resprouted:block/warped_stool",
       "y": 90
     },
     "facing=north": {
-      "model": "resprouted:block/stool/warped_stool"
+      "model": "resprouted:block/warped_stool"
     },
     "facing=south": {
-      "model": "resprouted:block/stool/warped_stool",
+      "model": "resprouted:block/warped_stool",
       "y": 180
     },
     "facing=west": {
-      "model": "resprouted:block/stool/warped_stool",
+      "model": "resprouted:block/warped_stool",
       "y": 270
     }
   }

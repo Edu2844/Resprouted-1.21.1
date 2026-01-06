@@ -1,52 +1,65 @@
 package net.edu.resprouted.effect.custom;
 
+import net.edu.resprouted.Resprouted;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
-import java.util.UUID;
 
 public class FullMetalEffect extends StatusEffect {
-    private static final UUID MOVEMENT_SPEED_MODIFIER_ID = UUID.fromString("0CA3AAC1-2CD1-4552-AC7E-DD4984B8D7A3");
-    private static final UUID ATTACK_SPEED_MODIFIER_ID = UUID.fromString("1809F109-92FE-410A-B78C-3BB9D0C4CC9E");
-    private static final UUID KNOCKBACK_RESISTANCE_MODIFIER_ID = UUID.fromString("639E0E9E-0B0D-474C-86FA-626901789BAC");
-    private static final UUID JUMP_STRENGTH_MODIFIER_ID = UUID.fromString("A5B4C3D2-1E0F-4A9B-8C7D-6E5F40392817");
+    private static final Identifier MOVEMENT_SPEED_MODIFIER_ID = Identifier.of(Resprouted.MOD_ID, "full_metal_movement_speed");
+    private static final Identifier ATTACK_SPEED_MODIFIER_ID = Identifier.of(Resprouted.MOD_ID, "full_metal_attack_speed");
+    private static final Identifier KNOCKBACK_RESISTANCE_MODIFIER_ID = Identifier.of(Resprouted.MOD_ID, "full_metal_knockback_resistance");
+    private static final Identifier JUMP_STRENGTH_MODIFIER_ID = Identifier.of(Resprouted.MOD_ID, "full_metal_jump_strength");
+    private static final Identifier GRAVITY_MODIFIER_ID = Identifier.of(Resprouted.MOD_ID, "full_metal_gravity");
+    private static final Identifier STEP_HEIGHT_MODIFIER_ID = Identifier.of(Resprouted.MOD_ID, "full_metal_step_height");
+    private static final Identifier WATER_MOVEMENT_MODIFIER_ID = Identifier.of(Resprouted.MOD_ID, "full_metal_water_movement");
 
     public FullMetalEffect(StatusEffectCategory category, int color) {
         super(category, color);
+        this.addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED,
+                MOVEMENT_SPEED_MODIFIER_ID, -1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+        );
+        this.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED,
+                ATTACK_SPEED_MODIFIER_ID, -0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+        );
+        this.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,
+                KNOCKBACK_RESISTANCE_MODIFIER_ID, 1.0, EntityAttributeModifier.Operation.ADD_VALUE
+        );
+        this.addAttributeModifier(EntityAttributes.GENERIC_JUMP_STRENGTH,
+                JUMP_STRENGTH_MODIFIER_ID, -1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+        );
         this.addAttributeModifier(
-                EntityAttributes.GENERIC_MOVEMENT_SPEED,
-                Identifier.of(MOVEMENT_SPEED_MODIFIER_ID.toString()), -1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+                EntityAttributes.GENERIC_GRAVITY,
+                GRAVITY_MODIFIER_ID, 1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+        );
         this.addAttributeModifier(
-                EntityAttributes.GENERIC_ATTACK_SPEED,
-                Identifier.of(ATTACK_SPEED_MODIFIER_ID.toString()), -0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-        this.addAttributeModifier(
-                EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE,
-                Identifier.of(KNOCKBACK_RESISTANCE_MODIFIER_ID.toString()), 9001.0, EntityAttributeModifier.Operation.ADD_VALUE);
-        this.addAttributeModifier(
-                EntityAttributes.GENERIC_JUMP_STRENGTH,
-                Identifier.of(JUMP_STRENGTH_MODIFIER_ID.toString()), -1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+                EntityAttributes.GENERIC_STEP_HEIGHT,
+                STEP_HEIGHT_MODIFIER_ID, -1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+        );
+        this.addAttributeModifier(EntityAttributes.GENERIC_WATER_MOVEMENT_EFFICIENCY,
+                WATER_MOVEMENT_MODIFIER_ID, -1.0, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+        );
     }
 
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (entity instanceof PlayerEntity player) {
-            if (player.isFallFlying()) {
-                player.stopFallFlying();
-                player.setVelocity(entity.getVelocity().add(0, -10, 0));
-            }
-            if (player.isTouchingWaterOrRain() || player.isInLava()) {
-                Vec3d vel = player.getVelocity();
-                player.setVelocity(new Vec3d(vel.x * 0, -10, vel.z * 0));
-                player.setSwimming(false);
-            }
-            player.setJumping(false);
-            player.setSprinting(false);
+        if (!(entity instanceof PlayerEntity player)) {
+            return true;
+        }
+
+        if (player.isFallFlying()) {
+            player.stopFallFlying();
+            player.setVelocity(player.getVelocity().multiply(1.0, 0.0, 1.0).add(0, -0.5, 0));
+        }
+
+        if (player.isTouchingWaterOrRain() || player.isInLava()) {
+            Vec3d vel = player.getVelocity();
+            player.setVelocity(vel.multiply(0.0, 1.0, 0.0).add(0, -0.3, 0));
+            player.setSwimming(false);
         }
 
         return true;
@@ -55,11 +68,6 @@ public class FullMetalEffect extends StatusEffect {
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
-    }
-
-    @Override
-    public void playApplySound(LivingEntity entity, int amplifier) {
-        entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.PLAYERS, 1.0f, 1.0f);
     }
 }
 

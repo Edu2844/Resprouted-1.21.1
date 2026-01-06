@@ -10,6 +10,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.Optional;
 
+@SuppressWarnings("all")
 public class ResproutedResourcePacks {
 
     private static void registerBuiltinResourcePack(ModContainer modContainer, String forModID) {

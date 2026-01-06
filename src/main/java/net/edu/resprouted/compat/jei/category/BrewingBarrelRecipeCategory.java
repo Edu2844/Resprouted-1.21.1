@@ -37,14 +37,16 @@ public class BrewingBarrelRecipeCategory implements IRecipeCategory<BrewingBarre
                 .buildAnimated(500, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
+    @NotNull
     @Override
-    public @NotNull RecipeType<BrewingBarrelRecipe> getRecipeType() {
+    public  RecipeType<BrewingBarrelRecipe> getRecipeType() {
         return JEIPlugin.BREWING_BARREL;
     }
 
+    @NotNull
     @Override
-    public @NotNull Text getTitle() {
-        return Text.translatable("block.resprouted.brewing_barrel");
+    public Text getTitle() {
+        return Text.translatable("recipe.resprouted.brewing");
     }
 
     @Override

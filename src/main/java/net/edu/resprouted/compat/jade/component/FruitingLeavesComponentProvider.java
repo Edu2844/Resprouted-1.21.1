@@ -1,7 +1,7 @@
 package net.edu.resprouted.compat.jade.component;
 
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.block.custom.agriculture.AppleLeavesBlock;
+import net.edu.resprouted.block.custom.agriculture.FruitLeavesBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.text.MutableText;
@@ -21,9 +21,9 @@ public class FruitingLeavesComponentProvider implements IBlockComponentProvider 
         BlockState state = accessor.getBlockState();
         Block block = state.getBlock();
 
-        if (block instanceof AppleLeavesBlock fruitingLeaves) {
-            if (AppleLeavesBlock.isExposedToAir(accessor.getLevel(), accessor.getPosition())) {
-                int currentAge = state.get(AppleLeavesBlock.AGE);
+        if (block instanceof FruitLeavesBlock fruitingLeaves) {
+            if (FruitLeavesBlock.isExposedToAir(accessor.getLevel(), accessor.getPosition())) {
+                int currentAge = state.get(FruitLeavesBlock.AGE);
                 int maxAge = fruitingLeaves.getMaxAge();
                 float growthValue = (float) currentAge / maxAge;
 
@@ -31,16 +31,19 @@ public class FruitingLeavesComponentProvider implements IBlockComponentProvider 
             }
         }
     }
+
     public static void addMaturityTooltip(ITooltip tooltip, float growthValue) {
         MutableText component;
 
         if (growthValue < 1.0F) {
             component = IThemeHelper.get().info(String.format("%.0f%%", growthValue * 100.0F));
+
         } else {
             component = IThemeHelper.get().success(Text.translatable("tooltip.jade.crop_mature"));
         }
         tooltip.add(Text.translatable("tooltip.jade.leaves.growth", component));
     }
+
     @Override
     public Identifier getUid() {
         return Identifier.of(Resprouted.MOD_ID, "fruiting_leaves_progress");

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/flower_pot_cross",
+  "textures": {
+    "plant": "resprouted:block/herbs/potted/potted_mooncap_mushroom"
+  }
+}

@@ -31,7 +31,9 @@ public class GrapeStemBlock extends CropBlock{
     };
     public GrapeStemBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(AXIS, Direction.Axis.Y));
+        this.setDefaultState(this.stateManager.getDefaultState()
+                .with(AGE, 0)
+                .with(AXIS, Direction.Axis.Y));
     }
 
     @Override
@@ -76,7 +78,7 @@ public class GrapeStemBlock extends CropBlock{
                 }
 
             } else {
-                //Check if rope exists
+                // Check if rope exists
                 BlockState j = world.getBlockState(pos.up());
                 if (j.isOf(ModBlocks.ROPE) && j.get(RopeBlock.AXIS) != Direction.Axis.Y) {
 
@@ -112,7 +114,6 @@ public class GrapeStemBlock extends CropBlock{
             if (m > l) {
                 m = l;
             }
-
             world.setBlockState(pos, state.with(AGE, m), Block.NOTIFY_LISTENERS);
 
         } else {
@@ -122,6 +123,14 @@ public class GrapeStemBlock extends CropBlock{
                 world.setBlockState(pos.up(), ModBlocks.GRAPE_LEAVES.getDefaultState().with(GrapeLeavesBlock.AXIS, n.get(RopeBlock.AXIS)), Block.NOTIFY_ALL);
             }
         }
+    }
+
+    protected int getBonemealAgeIncrease() {
+        return Random.create().nextBetween(2, 5);
+    }
+
+    protected static float getGrowthChance() {
+        return 7.0F;
     }
 
     @Override
@@ -140,13 +149,5 @@ public class GrapeStemBlock extends CropBlock{
             return BlockSoundGroup.WOOD;
         }
         return super.getSoundGroup(state);
-    }
-
-    protected int getBonemealAgeIncrease() {
-        return Random.create().nextBetween(2, 5);
-    }
-
-    protected static float getGrowthChance() {
-        return 7.0F;
     }
 }

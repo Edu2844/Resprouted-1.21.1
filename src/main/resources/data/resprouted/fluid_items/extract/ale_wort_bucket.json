@@ -1,0 +1,13 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:ale_wort"
+  },
+  "item": {
+    "id": "resprouted:ale_wort_bucket"
+  },
+  "empty_item": {
+    "id": "minecraft:bucket"
+  },
+  "amount": 1000,
+  "direction": "extract"
+}

@@ -40,14 +40,16 @@ public class AdvancedCondenserRecipeCategory implements IRecipeCategory<Advanced
         fire = helper.drawableBuilder(texture, 130, 0, 14, 14).buildAnimated(400, IDrawableAnimated.StartDirection.TOP, true);
     }
 
+    @NotNull
     @Override
-    public @NotNull RecipeType<AdvancedCondenserRecipe> getRecipeType() {
+    public RecipeType<AdvancedCondenserRecipe> getRecipeType() {
         return JEIPlugin.ADVANCED_CONDENSER;
     }
 
+    @NotNull
     @Override
-    public @NotNull Text getTitle() {
-        return Text.translatable("block.resprouted.advanced_condenser");
+    public Text getTitle() {
+        return Text.translatable("recipe.resprouted.advanced_alchemy");
     }
 
     @Override

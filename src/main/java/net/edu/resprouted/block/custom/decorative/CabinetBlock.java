@@ -7,19 +7,22 @@ import net.edu.resprouted.block.entity.custom.CabinetBlockEntity;
 import net.edu.resprouted.block.enums.CabinetType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.DoorHinge;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.DoubleInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -30,17 +33,78 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> implements Waterloggable {
+import java.util.List;
+import java.util.Optional;
+import java.util.function.BiPredicate;
+
+public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> implements Waterloggable, InventoryProvider {
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final MapCodec<CabinetBlock> CODEC = CabinetBlock.createCodec(CabinetBlock::new);
+    public static final MapCodec<CabinetBlock> CODEC = createCodec(CabinetBlock::new);
     public static final EnumProperty<DoorHinge> HINGE = Properties.DOOR_HINGE;
     public static final EnumProperty<CabinetType> CABINET_TYPE = EnumProperty.of("cabinet_type", CabinetType.class);
+    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+
+    private static final DoubleBlockProperties.PropertyRetriever<CabinetBlockEntity, Optional<Inventory>> INVENTORY_RETRIEVER = new DoubleBlockProperties.PropertyRetriever<>() {
+        public Optional<Inventory> getFromBoth(CabinetBlockEntity first, CabinetBlockEntity second) {
+            return Optional.of(new DoubleInventory(second, first));
+        }
+
+        public Optional<Inventory> getFrom(CabinetBlockEntity single) {
+            return Optional.of(single);
+        }
+
+        public Optional<Inventory> getFallback() {
+            return Optional.empty();
+        }
+    };
+    private static final DoubleBlockProperties.PropertyRetriever<CabinetBlockEntity, Optional<NamedScreenHandlerFactory>> NAME_RETRIEVER = new DoubleBlockProperties.PropertyRetriever<>() {
+        public Optional<NamedScreenHandlerFactory> getFromBoth(CabinetBlockEntity first, CabinetBlockEntity second) {
+            final Inventory inventory = new DoubleInventory(second, first);
+            return Optional.of(new NamedScreenHandlerFactory() {
+                @Nullable
+                @Override
+                public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+                    if (first.checkUnlocked(player) && second.checkUnlocked(player)){
+                        first.generateLoot(player);
+                        second.generateLoot(player);
+                        return GenericContainerScreenHandler.createGeneric9x6(syncId, inv, inventory);
+                    }else {
+                        return null;
+                    }
+                }
+
+                @Override
+                public Text getDisplayName() {
+                    if (first.hasCustomName()) {
+                        return first.getDisplayName();
+                    } else {
+                        return second.hasCustomName() ? second.getDisplayName() : Text.translatable("container.resprouted.cabinet_double");
+                    }
+                }
+            });
+        }
+
+        public Optional<NamedScreenHandlerFactory> getFrom(CabinetBlockEntity single) {
+            return Optional.of(single);
+        }
+
+        public Optional<NamedScreenHandlerFactory> getFallback() {
+            return Optional.empty();
+        }
+    };
+
+    @Override
+    protected MapCodec<? extends AbstractCabinetBlock<CabinetBlockEntity>> getCodec() {
+        return CODEC;
+    }
 
     public CabinetBlock(Settings settings) {
         super(settings, () -> ModBlockEntities.CABINET_BE);
@@ -48,17 +112,46 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
                 .with(OPEN, false)
                 .with(FACING, Direction.NORTH)
                 .with(CABINET_TYPE, CabinetType.SINGLE)
-                .with(HINGE, DoorHinge.LEFT));
+                .with(HINGE, DoorHinge.LEFT)
+                .with(WATERLOGGED, false));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, OPEN, CABINET_TYPE, HINGE);
+        builder.add(FACING, OPEN, CABINET_TYPE, HINGE, WATERLOGGED);
+    }
+
+    public static DoubleBlockProperties.Type getDoubleBlockType(BlockState state) {
+        CabinetType type = state.get(CABINET_TYPE);
+        if (type == CabinetType.SINGLE) {
+            return DoubleBlockProperties.Type.SINGLE;
+        } else {
+            return type == CabinetType.BOTTOM ? DoubleBlockProperties.Type.FIRST : DoubleBlockProperties.Type.SECOND;
+        }
     }
 
     @Override
-    protected MapCodec<? extends BlockWithEntity> getCodec() {
-        return CODEC;
+    protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        if (state.get(WATERLOGGED)) {
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        }
+
+        CabinetType type = state.get(CABINET_TYPE);
+
+        if (type != CabinetType.SINGLE) {
+            Direction expectedDir = type == CabinetType.TOP ? Direction.DOWN : Direction.UP;
+
+            if (direction == expectedDir) {
+                if (!(neighborState.getBlock() instanceof CabinetBlock) ||
+                        neighborState.get(CABINET_TYPE) != type.getOpposite() ||
+                        neighborState.get(FACING) != state.get(FACING) ||
+                        neighborState.get(HINGE) != state.get(HINGE)) {
+                    return state.with(CABINET_TYPE, CabinetType.SINGLE);
+                }
+            }
+        }
+
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
@@ -73,8 +166,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
 
     @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-        Inventory inv = getCombinedInventory(world, state, pos);
-        return ScreenHandler.calculateComparatorOutput(inv);
+        return ScreenHandler.calculateComparatorOutput(getInventory(this, state, world, pos, false));
     }
 
     @Override
@@ -82,185 +174,35 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
         World world = ctx.getWorld();
         BlockPos pos = ctx.getBlockPos();
         BlockPos below = pos.down();
-
         Direction facing = ctx.getHorizontalPlayerFacing().getOpposite();
         DoorHinge hinge = getHingeSide(ctx);
-
-        BlockState state = getDefaultState()
-                .with(FACING, facing)
-                .with(CABINET_TYPE, CabinetType.SINGLE)
-                .with(OPEN, false)
-                .with(HINGE, hinge);
+        FluidState fluidState = world.getFluidState(pos);
 
         BlockState belowState = world.getBlockState(below);
 
         if (belowState.getBlock() instanceof CabinetBlock &&
-                belowState.get(CabinetBlock.FACING) == facing &&
-                belowState.get(CabinetBlock.CABINET_TYPE) == CabinetType.SINGLE &&
-                belowState.get(CabinetBlock.HINGE) == hinge) {
+                belowState.get(FACING) == facing &&
+                belowState.get(CABINET_TYPE) == CabinetType.SINGLE &&
+                belowState.get(HINGE) == hinge) {
 
-            return state.with(CABINET_TYPE, CabinetType.TOP);
+            return getDefaultState()
+                    .with(FACING, facing)
+                    .with(CABINET_TYPE, CabinetType.TOP)
+                    .with(OPEN, false)
+                    .with(HINGE, hinge)
+                    .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
         }
 
-        return state;
-    }
-
-    @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        if (!world.isClient) {
-            CabinetType type = state.get(CABINET_TYPE);
-            Direction facing = state.get(FACING);
-            BlockPos otherPos;
-
-            if (type == CabinetType.TOP) {
-                otherPos = pos.down();
-
-            } else if (type == CabinetType.BOTTOM) {
-                otherPos = pos.up();
-
-            } else {
-                BlockPos below = pos.down();
-                BlockState belowState = world.getBlockState(below);
-                if (belowState.getBlock() instanceof CabinetBlock &&
-                        belowState.get(CABINET_TYPE) == CabinetType.SINGLE &&
-                        belowState.get(FACING) == facing &&
-                        belowState.get(HINGE) == state.get(HINGE)) {
-                    world.setBlockState(pos, state.with(CABINET_TYPE, CabinetType.TOP));
-                    world.setBlockState(below, belowState.with(CABINET_TYPE, CabinetType.BOTTOM));
-
-                }
-
-                return;
-            }
-
-            BlockState otherState = world.getBlockState(otherPos);
-
-            if (otherState.getBlock() instanceof CabinetBlock &&
-                    otherState.get(CABINET_TYPE) == CabinetType.SINGLE &&
-                    otherState.get(FACING) == facing &&
-                    otherState.get(HINGE) == state.get(HINGE)) {
-
-                world.setBlockState(otherPos, otherState.with(CABINET_TYPE, type == CabinetType.TOP ? CabinetType.BOTTOM : CabinetType.TOP));
-            }
-        }
-    }
-
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.getBlock() != newState.getBlock()) {
-            ItemScatterer.spawn(world, pos, (Inventory) world.getBlockEntity(pos));
-
-            BlockPos i = state.get(CABINET_TYPE) == CabinetType.TOP ? pos.down() : state.get(CABINET_TYPE) == CabinetType.BOTTOM ? pos.up() : null;
-
-            if (i != null) {
-                BlockState j = world.getBlockState(i);
-
-                if (j.getBlock() instanceof CabinetBlock && j.get(CABINET_TYPE) != CabinetType.SINGLE) {
-                    world.setBlockState(i, j.with(CABINET_TYPE, CabinetType.SINGLE));
-                }
-            }
-
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
-    }
-
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : (w, pos, s, be) -> {
-            if (be instanceof CabinetBlockEntity cabinet) {
-                CabinetType cabinetType = s.get(CabinetBlock.CABINET_TYPE);
-                BlockPos bottomPos = cabinetType == CabinetType.TOP ? pos.down() : pos;
-
-                if (cabinetType != CabinetType.TOP) {
-                    cabinet.stateManager.updateViewerCount(w, bottomPos, w.getBlockState(bottomPos));
-                }
-            }
-        };
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (world.isClient) return ActionResult.SUCCESS;
-
-        if (hit.getSide() != state.get(FACING)) {
-            return ActionResult.PASS;
-        }
-
-        if (isBlocked(world, pos, state)) {
-            return ActionResult.CONSUME;
-        }
-
-        if (!(world.getBlockEntity(pos) instanceof CabinetBlockEntity cabinet))
-            return ActionResult.PASS;
-
-        CabinetType type = state.get(CABINET_TYPE);
-        BlockPos otherPos = switch (type) {
-            case BOTTOM -> pos.up();
-            case TOP -> pos.down();
-            default -> null;
-        };
-
-        CabinetBlockEntity other = null;
-        if (otherPos != null) {
-            if (world.getBlockEntity(otherPos) instanceof CabinetBlockEntity cbe) {
-                other = cbe;
-            }
-        }
-        if (type == CabinetType.SINGLE || other == null) {
-            player.openHandledScreen(cabinet);
-
-        } else {
-            NamedScreenHandlerFactory factory = getNamedScreenHandlerFactory(cabinet, type, other);
-            player.openHandledScreen(factory);
-        }
-
-        return ActionResult.CONSUME;
-    }
-
-    @Override
-    protected BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
-    private @Nullable Inventory getCombinedInventory(World world, BlockState state, BlockPos pos) {
-        CabinetType type = state.get(CABINET_TYPE);
-        BlockEntity be = world.getBlockEntity(pos);
-
-        if (!(be instanceof CabinetBlockEntity cabinet)) return null;
-
-        if (type == CabinetType.SINGLE) return cabinet;
-
-        BlockPos otherPos = type == CabinetType.TOP ? pos.down() : pos.up();
-        BlockEntity otherBe = world.getBlockEntity(otherPos);
-
-        if (otherBe instanceof CabinetBlockEntity other) {
-            return new DoubleInventory(
-                    type == CabinetType.BOTTOM ? cabinet : other,
-                    type == CabinetType.BOTTOM ? other : cabinet
-            );
-        }
-        return cabinet;
-    }
-
-    private static @NotNull NamedScreenHandlerFactory getNamedScreenHandlerFactory(CabinetBlockEntity self, CabinetType type, CabinetBlockEntity other) {
-        CabinetBlockEntity lower = type == CabinetType.BOTTOM ? self : other;
-        CabinetBlockEntity upper = type == CabinetType.BOTTOM ? other : self;
-
-        return new NamedScreenHandlerFactory() {
-            @Override
-            public Text getDisplayName() {
-                return Text.translatable("container.resprouted.cabinet_double");
-            }
-            @Override
-            public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-                return GenericContainerScreenHandler.createGeneric9x6(syncId, inv, new DoubleInventory(lower, upper));
-            }
-        };
+        return getDefaultState()
+                .with(FACING, facing)
+                .with(CABINET_TYPE, CabinetType.SINGLE)
+                .with(OPEN, false)
+                .with(HINGE, hinge)
+                .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
     }
 
     private DoorHinge getHingeSide(ItemPlacementContext context) {
         Direction facing = context.getHorizontalPlayerFacing();
-
         double hitX = context.getHitPos().x - context.getBlockPos().getX();
         double hitZ = context.getHitPos().z - context.getBlockPos().getZ();
 
@@ -273,28 +215,218 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
         };
     }
 
-    private boolean isBlocked(World world, BlockPos pos, BlockState state) {
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+        if (!world.isClient) {
+            CabinetType type = state.get(CABINET_TYPE);
 
-        BlockPos frontPos = pos.offset(state.get(FACING));
-        BlockState frontState = world.getBlockState(frontPos);
+            if (type != CabinetType.SINGLE) {
+                Direction dirToOther = type == CabinetType.TOP ? Direction.DOWN : Direction.UP;
+                BlockPos otherPos = pos.offset(dirToOther);
+                BlockState otherState = world.getBlockState(otherPos);
 
-        if (frontState.isSolidBlock(world, frontPos)) {
-            return true;
+                if (otherState.getBlock() instanceof CabinetBlock &&
+                        otherState.get(CABINET_TYPE) == CabinetType.SINGLE) {
+                    world.setBlockState(otherPos, otherState.with(CABINET_TYPE, type.getOpposite()), 3);
+                }
+            }
+        }
+        super.onPlaced(world, pos, state, placer, itemStack);
+    }
+
+    @Override
+    protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        ItemScatterer.onStateReplaced(state, newState, world, pos);
+        super.onStateReplaced(state, world, pos, newState, moved);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (world.isClient)
+            return ActionResult.SUCCESS;
+
+        if (hit.getSide() != state.get(FACING)) {
+            return ActionResult.PASS;
         }
 
-        if (state.get(CABINET_TYPE) != CabinetType.SINGLE) {
-            BlockPos otherPos = state.get(CABINET_TYPE) == CabinetType.TOP ? pos.down() : pos.up();
-            BlockState otherState = world.getBlockState(otherPos);
+        if (isBlocked(world, pos)) {
+            return ActionResult.CONSUME;
+        }
 
-            if (otherState.getBlock() instanceof CabinetBlock) {
-                Direction otherFacing = otherState.get(FACING);
-                BlockPos otherFrontPos = otherPos.offset(otherFacing);
-                BlockState otherFrontState = world.getBlockState(otherFrontPos);
+        NamedScreenHandlerFactory factory = createScreenHandlerFactory(state, world, pos);
+        if (factory != null) {
+            player.openHandledScreen(factory);
+        }
 
-                return otherFrontState.isSolidBlock(world, otherFrontPos);
+        return ActionResult.CONSUME;
+    }
+
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Override
+    protected FluidState getFluidState(BlockState state) {
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+    }
+
+    @Override
+    public DoubleBlockProperties.PropertySource<? extends CabinetBlockEntity> getBlockEntitySource(BlockState state, World world, BlockPos pos, boolean ignoreBlocked) {
+        BiPredicate<WorldAccess, BlockPos> blockPredicate;
+        if (ignoreBlocked) {
+            blockPredicate = (w, p) -> false;
+        } else {
+            blockPredicate = this::isBlocked;
+        }
+
+        return DoubleBlockProperties.toPropertySource(
+                this.entityTypeRetriever.get(),
+                CabinetBlock::getDoubleBlockType,
+                CabinetBlock::getDirectionTowardsOtherHalf,
+                FACING,
+                state,
+                world,
+                pos,
+                blockPredicate
+        );
+    }
+
+    private static Direction getDirectionTowardsOtherHalf(BlockState state) {
+        CabinetType type = state.get(CABINET_TYPE);
+        return type == CabinetType.BOTTOM ? Direction.UP : Direction.DOWN;
+    }
+
+    @Nullable
+    @Override
+    protected NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
+        return getBlockEntitySource(state, world, pos, false).apply(NAME_RETRIEVER).orElse(null);
+    }
+
+    @Nullable
+    public static Inventory getInventory(CabinetBlock block, BlockState state, World world, BlockPos pos, boolean ignoreBlocked) {
+        return block.getBlockEntitySource(state, world, pos, ignoreBlocked).apply(INVENTORY_RETRIEVER).orElse(null);
+    }
+
+    @Override
+    protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof CabinetBlockEntity) {
+            ((CabinetBlockEntity)blockEntity).onScheduledTick();
+        }
+    }
+
+    private boolean isBlocked(WorldAccess world, BlockPos pos) {
+        BlockState state = world.getBlockState(pos);
+        return hasBlockInFront(world, pos, world.getBlockState(pos)) || hasCatInFront(world, pos, state);
+    }
+
+    private boolean hasBlockInFront(WorldAccess world, BlockPos pos, BlockState state) {
+        BlockPos frontPos = pos.offset(state.get(FACING));
+        BlockState frontState = world.getBlockState(frontPos);
+        return frontState.isSolidBlock(world, frontPos);
+    }
+
+    private static boolean hasCatInFront(WorldAccess world, BlockPos pos, BlockState state) {
+        Direction facing = state.get(FACING);
+        BlockPos frontPos = pos.offset(facing);
+
+        List<CatEntity> list = world.getNonSpectatingEntities(
+                CatEntity.class,
+                new Box(
+                        frontPos.getX(),
+                        frontPos.getY(),
+                        frontPos.getZ(),
+                        frontPos.getX() + 1,
+                        frontPos.getY() + 1,
+                        frontPos.getZ() + 1
+                )
+        );
+
+        if (!list.isEmpty()) {
+            for (CatEntity catEntity : list) {
+                if (catEntity.isInSittingPose()) {
+                    return true;
+                }
             }
         }
 
         return false;
+    }
+
+    @Nullable
+    @Override
+    public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
+        Inventory inventory = getInventory(this, state, (World) world, pos, false);
+
+        if (inventory == null) {
+            return null;
+        }
+
+        return new SidedInventory() {
+            @Override
+            public int[] getAvailableSlots(Direction side) {
+                int[] slots = new int[inventory.size()];
+                for (int i = 0; i < slots.length; i++) {
+                    slots[i] = i;
+                }
+                return slots;
+            }
+
+            @Override
+            public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+                return true;
+            }
+
+            @Override
+            public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+                return true;
+            }
+
+            @Override
+            public int size() {
+                return inventory.size();
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return inventory.isEmpty();
+            }
+
+            @Override
+            public ItemStack getStack(int slot) {
+                return inventory.getStack(slot);
+            }
+
+            @Override
+            public ItemStack removeStack(int slot, int amount) {
+                return inventory.removeStack(slot, amount);
+            }
+
+            @Override
+            public ItemStack removeStack(int slot) {
+                return inventory.removeStack(slot);
+            }
+
+            @Override
+            public void setStack(int slot, ItemStack stack) {
+                inventory.setStack(slot, stack);
+            }
+
+            @Override
+            public void markDirty() {
+                inventory.markDirty();
+            }
+
+            @Override
+            public boolean canPlayerUse(PlayerEntity player) {
+                return inventory.canPlayerUse(player);
+            }
+
+            @Override
+            public void clear() {
+                inventory.clear();
+            }
+        };
     }
 }

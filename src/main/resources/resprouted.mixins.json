@@ -3,21 +3,25 @@
   "package": "net.edu.resprouted.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "boat.BoatDropsMixin",
-    "boat.BoatTypeMixin",
-    "boat.ChestBoatDropsMixin",
     "gameplay.CropBlockMixin",
+    "gameplay.EntityMixin",
     "gameplay.FarmlandBlockMixin",
-    "misc.FoodComponentMixin",
-    "gameplay.GlassBottleItemMixin",
+    "gameplay.ComponentHolderMixin",
     "gameplay.HoneyBottleMixin",
+    "gameplay.LivingEntityDataTrackerMixin",
     "gameplay.LivingEntityMixin",
     "gameplay.MilkBucketItemMixin",
     "gameplay.MushroomPlantBlockMixin",
+    "gameplay.PointedDripstoneBlockMixin",
+    "gameplay.SugarCaneBlockMixin",
+    "misc.BoatDropsMixin",
+    "misc.BoatTypeMixin",
+    "misc.ChestBoatDropsMixin",
+    "misc.PlayerEntityMixin",
     "misc.PlayerInventoryMixin",
     "misc.ServerPlayerEntityMixin",
-    "gameplay.SugarCaneBlockMixin",
-    "helper.BlockEntityTypeAccessor"
+    "util.AbstractCauldronBlockAccessor",
+    "util.BlockEntityTypeAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -26,6 +30,7 @@
     "requireAnnotations": true
   },
   "client": [
+    "gameplay.KeyboardInputMixin",
     "render.BackgroundRendererMixin",
     "render.RenderLayersMixin",
     "render.WorldRendererMixin"

@@ -1,0 +1,12 @@
+{
+  "type": "resprouted:drying",
+  "fluid_variant": {
+    "fluid": "resprouted:golden_apple_juice"
+  },
+  "amount": 200,
+  "output_item": {
+    "id": "resprouted:golden_dust",
+    "count": 1
+  },
+  "evaporatingtime": 200
+}

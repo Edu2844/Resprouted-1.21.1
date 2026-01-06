@@ -11,7 +11,7 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.compat.rei.display.BrewingBarrelDisplay;
-import net.edu.resprouted.util.ScreenUtils;
+import net.edu.resprouted.util.RenderUtils;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.texture.Sprite;
@@ -21,7 +21,6 @@ import net.minecraft.util.Identifier;
 
 import java.util.LinkedList;
 import java.util.List;
-
 
 public class BrewingBarrelCategory implements DisplayCategory<BrewingBarrelDisplay> {
     public static final Identifier TEXTURE = Identifier.of(Resprouted.MOD_ID, "textures/gui/recipe/brewing_barrel_recipe.png");
@@ -34,7 +33,7 @@ public class BrewingBarrelCategory implements DisplayCategory<BrewingBarrelDispl
 
     @Override
     public Text getTitle() {
-        return Text.translatable("block.resprouted.brewing_barrel");
+        return Text.translatable("recipe.resprouted.brewing");
     }
 
     @Override
@@ -55,25 +54,26 @@ public class BrewingBarrelCategory implements DisplayCategory<BrewingBarrelDispl
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createTexturedWidget(TEXTURE, startPoint.x, startPoint.y, 0, 0, 114, 40));
 
-        //Input tank
+        // Input tank
         widgets.add(createFluidSlot(display.getInputFluid(), startPoint.x + 40, startPoint.y + 4,16,32));
 
-        //Aux tank
+        // Aux tank
         widgets.add(createFluidSlot(display.getOutputFluid(), startPoint.x + 4, startPoint.y + 12,16,16));
 
-        //Arrow
+        // Arrow
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 63, startPoint.y + 11)).animationDurationTicks(500));
 
-        //Output tank
+        // Output tank
         widgets.add(createFluidSlot(display.getOutputFluid(), startPoint.x + 94, startPoint.y + 4,16,32));
 
         widgets.add(Widgets.createTooltip(
                 new Rectangle(startPoint.x + 8, startPoint.y + 31, 7, 7),
-                List.of(Text.translatable("rei.resprouted.brewing_barrel_tooltip"))
+                List.of(Text.translatable("recipe.resprouted.brewing_barrel_tooltip"))
         ));
-
         return widgets;
     }
+
+    @SuppressWarnings("all")
     private Widget createFluidSlot(Fluid fluid, int x, int y, int width, int height) {
         FluidVariant variant = FluidVariant.of(fluid);
 
@@ -86,15 +86,13 @@ public class BrewingBarrelCategory implements DisplayCategory<BrewingBarrelDispl
                 float blue = (color & 0xFF) / 255f;
                 float alpha = ((color >> 24) & 0xFF) / 255f;
 
-                ScreenUtils.renderTiledSprite(graphics, sprite, x, y, width, height, red, green, blue, alpha);
+                RenderUtils.renderTiledSprite(graphics, sprite, x, y, width, height, red, green, blue, alpha);
             }
         });
-
         Widget tooltipWidget = Widgets.createTooltip(
                 new Rectangle(x, y, width, height),
                 FluidVariantRendering.getTooltip(variant)
         );
-
         return Widgets.concat(List.of(fluidWidget, tooltipWidget));
     }
 }

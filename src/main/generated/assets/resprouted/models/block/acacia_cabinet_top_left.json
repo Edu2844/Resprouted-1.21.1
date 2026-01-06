@@ -1,0 +1,7 @@
+{
+  "parent": "resprouted:block/template_cabinet_top_left",
+  "textures": {
+    "cabinet": "resprouted:block/acacia_double_cabinet",
+    "particle": "resprouted:block/acacia_cabinet_side"
+  }
+}

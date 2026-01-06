@@ -1,0 +1,17 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:mead"
+  },
+  "item": {
+    "id": "resprouted:mead_bottle"
+  },
+  "empty_item": {
+    "id": "minecraft:glass_bottle"
+  },
+  "amount": 250,
+  "preserved_components": [
+    "resprouted:fluid_quality"
+  ],
+  "direction": "extract",
+  "sound": "minecraft:item.bottle.empty"
+}

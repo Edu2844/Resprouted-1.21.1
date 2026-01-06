@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "level=0": {"model": "resprouted:block/olive_oil"},
+    "level=1": { "model": "resprouted:block/olive_oil" },
+    "level=2": { "model": "resprouted:block/olive_oil" },
+    "level=3": { "model": "resprouted:block/olive_oil" },
+    "level=4": { "model": "resprouted:block/olive_oil" },
+    "level=5": { "model": "resprouted:block/olive_oil" },
+    "level=6": { "model": "resprouted:block/olive_oil" },
+    "level=7": { "model": "resprouted:block/olive_oil" },
+    "level=8": { "model": "resprouted:block/olive_oil" },
+    "level=9": { "model": "resprouted:block/olive_oil" },
+    "level=10": { "model": "resprouted:block/olive_oil" },
+    "level=11": { "model": "resprouted:block/olive_oil" },
+    "level=12": { "model": "resprouted:block/olive_oil" },
+    "level=13": { "model": "resprouted:block/olive_oil" },
+    "level=14": { "model": "resprouted:block/olive_oil" },
+    "level=15": { "model": "resprouted:block/olive_oil" }
+  }
+}

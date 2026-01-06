@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "resprouted:block/cabinets/birch_cabinet_front_open",
-    "side": "resprouted:block/cabinets/birch_cabinet_side",
-    "top": "resprouted:block/cabinets/birch_cabinet_side"
-  }
-}

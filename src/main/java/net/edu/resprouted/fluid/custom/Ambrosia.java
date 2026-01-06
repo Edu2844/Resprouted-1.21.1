@@ -6,11 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-
-import java.util.Optional;
 
 public abstract class Ambrosia extends BaseFluid{
 
@@ -21,20 +17,12 @@ public abstract class Ambrosia extends BaseFluid{
 
     @Override
     public Fluid getStill() {
-        return ModFluids.AMBROSIA_STILL;
+        return ModFluids.AMBROSIA;
     }
 
     @Override
-    public Optional<SoundEvent> getBucketFillSound() {
-        return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
-    }
-
     public BlockState toBlockState(FluidState state) {
-        return ModBlocks.AMBROSIA_FLUID_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
-    }
-
-    public boolean matchesType(Fluid fluid) {
-        return fluid == ModFluids.AMBROSIA_STILL || fluid == ModFluids.AMBROSIA_FLOWING;
+        return ModBlocks.AMBROSIA.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
     }
 
     public static class Flowing extends Ambrosia {
@@ -43,10 +31,6 @@ public abstract class Ambrosia extends BaseFluid{
             builder.add(LEVEL);
         }
 
-        @Override
-        public int getLevel(FluidState fluidState) {
-            return fluidState.get(LEVEL);
-        }
     }
 
     public static class Still extends Ambrosia {

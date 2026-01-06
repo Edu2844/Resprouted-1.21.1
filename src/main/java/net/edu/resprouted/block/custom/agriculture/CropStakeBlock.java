@@ -1,13 +1,13 @@
 package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.block.ModBlocks;
+import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.util.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -22,8 +22,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-
-import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
 public class CropStakeBlock extends CropBlock {
     private final int maxVerticalGrowth;
@@ -38,20 +37,6 @@ public class CropStakeBlock extends CropBlock {
         this.maxVerticalGrowth = maxVerticalGrowth;
         this.resetAge = resetAge;
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
-    }
-
-    protected Item getCrop() {
-        return null;
-    }
-
-    protected Item getSeed() {
-        return null;
-    }
-
-    protected void giveCrops(PlayerEntity player, Random random) {
-        if (getCrop() != null) {
-            player.giveItemStack(new ItemStack(getCrop()));
-        }
     }
 
     @Override
@@ -110,6 +95,20 @@ public class CropStakeBlock extends CropBlock {
         }
     }
 
+    protected int countBelow(World world, BlockPos pos) {
+        int count = 0;
+        for (int k = 1; k <= getMaxVerticalGrowth(); k++) {
+            BlockState s = world.getBlockState(pos.down(k));
+            if (s.getBlock() instanceof CropStakeBlock) count++;
+            else break;
+        }
+        return count;
+    }
+
+    protected int getMaxVerticalGrowth() {
+        return maxVerticalGrowth;
+    }
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         super.onStateReplaced(state, world, pos, newState, moved);
@@ -149,16 +148,6 @@ public class CropStakeBlock extends CropBlock {
         return ItemActionResult.FAIL;
     }
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return CROP_SHAPE;
-    }
-
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return STAKE_SHAPE;
-    }
-
     private void harvestVertical(World world, BlockPos origin, PlayerEntity player, boolean upwards) {
         BlockPos.Mutable j = origin.mutableCopy();
         int direction = upwards ? 1 : -1;
@@ -181,33 +170,32 @@ public class CropStakeBlock extends CropBlock {
         world.setBlockState(pos, state.with(getAgeProperty(), getResetAge()), Block.NOTIFY_ALL);
     }
 
-    protected int countBelow(World world, BlockPos pos) {
-        int count = 0;
-        for (int k = 1; k <= getMaxVerticalGrowth(); k++) {
-            BlockState s = world.getBlockState(pos.down(k));
-            if (s.getBlock() instanceof CropStakeBlock) count++;
-            else break;
-        }
-        return count;
-    }
-
-    protected int getMaxVerticalGrowth() {
-        return maxVerticalGrowth;
+    protected void giveCrops(PlayerEntity player, Random random) {
+        getCrop();
+        player.giveItemStack(new ItemStack(getCrop()));
     }
 
     protected int getResetAge() {
         return resetAge;
     }
 
-    public static Optional<BlockState> getCropForSeed(Item seedItem) {
-        for (Block block : Registries.BLOCK) {
-            if (block instanceof CropStakeBlock crop) {
-                Item seed = crop.getSeed();
-                if (seed != null && seed == seedItem) {
-                    return Optional.of(block.getDefaultState());
-                }
-            }
-        }
-        return Optional.empty();
+    @NotNull
+    protected Item getCrop() {
+        return ModItems.TOMATO;
+    }
+
+    @NotNull
+    protected Item getSeed() {
+        return ModItems.TOMATO_SEEDS;
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return CROP_SHAPE;
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return STAKE_SHAPE;
     }
 }

@@ -1,0 +1,12 @@
+{
+  "type": "resprouted:basic_alchemy",
+  "ingredients": [
+    {
+      "item": "minecraft:beef"
+    },
+    {
+      "item": "resprouted:chamomile"
+    }
+  ],
+  "effect": "minecraft:instant_health"
+}

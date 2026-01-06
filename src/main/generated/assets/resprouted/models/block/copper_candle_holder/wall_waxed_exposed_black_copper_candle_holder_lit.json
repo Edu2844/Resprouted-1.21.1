@@ -1,5 +1,5 @@
 {
-  "parent": "resprouted:block/candle/template_wall_candle_holder",
+  "parent": "resprouted:block/template_wall_candle_holder",
   "textures": {
     "candle": "minecraft:block/black_candle_lit",
     "holder": "resprouted:block/exposed_copper_candle_holder"

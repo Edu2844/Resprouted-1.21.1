@@ -9,72 +9,70 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModRecipes {
-
-    //Crushing Tub
-    public static final RecipeSerializer<CrushingTubRecipe> CRUSHING_TUB_SERIALIZER = Registry.register(
-            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "crushing_tub"),
+    // Crushing Tub
+    public static final RecipeSerializer<CrushingTubRecipe> CRUSHING_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "crushing"),
             new CrushingTubRecipe.CrushingTubRecipeSerializer());
 
-    public static final RecipeType<CrushingTubRecipe> CRUSHING_TUB_TYPE = Registry.register(
-            Registries.RECIPE_TYPE, Identifier.of(Resprouted.MOD_ID, "crushing_tub"),
+    public static final RecipeType<CrushingTubRecipe> CRUSHING_TYPE = Registry.register(
+            Registries.RECIPE_TYPE, Identifier.of(Resprouted.MOD_ID, "crushing"),
             new RecipeType<CrushingTubRecipe>() {
                 @Override
                 public String toString() {
-                    return "crushing_tub";
+                    return "crushing";
                 }
             });
 
-    //Evaporating Basin
-    public static final RecipeSerializer<EvaporatingBasinRecipe> EV_BASIN_SERIALIZER = Registry.register(
-            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"evaporating_basin"),
-            new EvaporatingBasinRecipe.Serializer());
+    // Drying Basin
+    public static final RecipeSerializer<DryingBasinRecipe> DRYING_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"drying"),
+            new DryingBasinRecipe.Serializer());
 
-    public static final RecipeType<EvaporatingBasinRecipe> EV_BASIN_TYPE = Registry.register(
-            Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"evaporating_basin"),
-            new RecipeType<EvaporatingBasinRecipe>() {
+    public static final RecipeType<DryingBasinRecipe> DRYING_TYPE = Registry.register(
+            Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"drying"),
+            new RecipeType<DryingBasinRecipe>() {
                 @Override
                 public String toString() {
-                    return "evaporating_basin";
+                    return "drying";
                 }
             });
 
-    //Condenser
-    public static final RecipeSerializer<CondenserRecipe> CONDENSER_SERIALIZER = Registry.register(
-            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"condenser"),
-            new CondenserRecipe.Serializer());
+    // Condenser
+    public static final RecipeSerializer<BasicCondenserRecipe> CONDENSER_SERIALIZER = Registry.register(
+            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"basic_alchemy"),
+            new BasicCondenserRecipe.Serializer());
 
-    public static final RecipeType<CondenserRecipe> CONDENSER_TYPE = Registry.register(
-            Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"condenser"),
-            new RecipeType<CondenserRecipe>() {
+    public static final RecipeType<BasicCondenserRecipe> CONDENSER_TYPE = Registry.register(
+            Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"basic_alchemy"),
+            new RecipeType<BasicCondenserRecipe>() {
                 @Override
                 public String toString() {
-                    return "condenser";
+                    return "basic_alchemy";
                 }
             });
 
-    //Advanced Condenser
+    // Advanced Condenser
     public static final RecipeSerializer<AdvancedCondenserRecipe> ADVANCED_CONDENSER_SERIALIZER = Registry.register(
-            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"advanced_condenser"),
+            Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID,"advanced_alchemy"),
             new AdvancedCondenserRecipe.Serializer());
 
     public static final RecipeType<AdvancedCondenserRecipe> ADVANCED_CONDENSER_TYPE = Registry.register(
-            Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"advanced_condenser"),
+            Registries.RECIPE_TYPE,Identifier.of(Resprouted.MOD_ID,"advanced_alchemy"),
             new RecipeType<AdvancedCondenserRecipe>() {
                 @Override
                 public String toString() {
-                    return "advanced_condenser";
+                    return "advanced_alchemy";
                 }
             });
 
-    //Oiling
-    public static final RecipeSerializer<OilingRecipe> OLIVE_OIL_SERIALIZER =
-            Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "olive_oil_crafting"),
-                    new OilingRecipe.OilingRecipeSerializer());
+    // Oiling
+    public static final RecipeSerializer<OliveOilingRecipe> OLIVE_OIL_SERIALIZER =
+            Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "olive_oiling"),
+                    new OliveOilingRecipe.OilingRecipeSerializer());
 
-
-    //Vanta Oiling
+    // Vanta Oiling
     public static final RecipeSerializer<VantaOilingRecipe> VANTA_OIL_SERIALIZER =
-            Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "vanta_oil_crafting"),
+            Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "vanta_oiling"),
                     new VantaOilingRecipe.VantaOilRecipeSerializer());
 
     public static void registerRecipes() {

@@ -64,7 +64,7 @@ public class AnimatedIconWidget extends ButtonWidget {
                 frameWidth, frameHeight * frameCount
         );
 
-        //Render tooltip
+        // Render tooltip
         if (this.isHovered() && tooltipText != null && !tooltipText.equals(ScreenTexts.EMPTY)) {
             context.drawTooltip(MinecraftClient.getInstance().textRenderer, tooltipText, mouseX, mouseY);
         }

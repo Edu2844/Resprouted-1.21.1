@@ -1,0 +1,9 @@
+{
+  "type": "resprouted:basic_alchemy",
+  "ingredients": [
+    { "item": "minecraft:sugar" },
+    { "item": "resprouted:wind_thistle" }
+  ],
+  "effect": "minecraft:speed",
+  "duration": 3600
+}

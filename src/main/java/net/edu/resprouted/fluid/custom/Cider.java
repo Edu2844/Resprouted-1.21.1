@@ -6,11 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-
-import java.util.Optional;
 
 public abstract class Cider extends BaseFluid {
 
@@ -21,20 +17,12 @@ public abstract class Cider extends BaseFluid {
 
     @Override
     public Fluid getStill() {
-        return ModFluids.CIDER_STILL;
+        return ModFluids.CIDER;
     }
 
     @Override
-    public Optional<SoundEvent> getBucketFillSound() {
-        return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
-    }
-
     public BlockState toBlockState(FluidState state) {
-        return ModBlocks.CIDER_FLUID_BLOCK.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
-    }
-
-    public boolean matchesType(Fluid fluid) {
-        return fluid == ModFluids.CIDER_STILL || fluid == ModFluids.CIDER_FLOWING;
+        return ModBlocks.CIDER.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
     }
 
     public static class Flowing extends Cider {

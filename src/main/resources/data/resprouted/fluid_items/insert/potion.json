@@ -1,0 +1,17 @@
+{
+  "fluid_variant": {
+    "fluid": "resprouted:potion"
+  },
+  "item": {
+    "id": "minecraft:potion"
+  },
+  "empty_item": {
+    "id": "minecraft:glass_bottle"
+  },
+  "amount": 250,
+  "preserved_components": [
+    "minecraft:potion_contents"
+  ],
+  "direction": "insert",
+  "sound": "minecraft:item.bottle.fill"
+}

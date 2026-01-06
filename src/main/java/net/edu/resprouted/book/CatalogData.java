@@ -14,7 +14,7 @@ public class CatalogData {
 
     public static void init() {
 
-        //Categoríes
+        // Categoríes
         Category agriculture = new Category("agriculture");
         Category decoration = new Category("decoration");
         Category production = new Category("production");
@@ -71,7 +71,6 @@ public class CatalogData {
                 .addPage(new TextPage(Text.translatable("text.resprouted.herbs.desc5")))
         );
 
-
         // =================================================
         // ||                 DECORATION                  ||
         // =================================================
@@ -79,7 +78,7 @@ public class CatalogData {
         decoration.addEntry(new Entry(Text.translatable("entry.resprouted.liquid_barrel"), new ItemStack(ModBlocks.LIQUID_BARREL))
                 .addPage(new TextPage(Text.translatable("text.resprouted.liquid_barrel.desc"))));
 
-        decoration.addEntry(new Entry(Text.translatable("entry.resprouted.cabinets"), new ItemStack(ModBlocks.OAK_CABINET_BLOCK))
+        decoration.addEntry(new Entry(Text.translatable("entry.resprouted.cabinets"), new ItemStack(ModBlocks.OAK_CABINET))
                 .addPage(new TextPage(Text.translatable("text.resprouted.cabinets.desc1"),Text.translatable("text.resprouted.cabinets.desc2"))));
 
         decoration.addEntry(new Entry(Text.translatable("entry.resprouted.rope"), new ItemStack(ModBlocks.ROPE))
@@ -126,12 +125,12 @@ public class CatalogData {
                 .addPage(new TextPage(Text.translatable("text.resprouted.crushing.desc1"),Text.translatable("text.resprouted.crushing.desc2")))
         );
 
-        production.addEntry(new Entry(Text.translatable("entry.resprouted.drying"), new ItemStack(ModBlocks.EVAPORATING_BASIN))
+        production.addEntry(new Entry(Text.translatable("entry.resprouted.drying"), new ItemStack(ModBlocks.DRYING_BASIN))
                 .addPage(new TextPage(Text.translatable("text.resprouted.drying.desc1"),Text.translatable("text.resprouted.drying.desc2")))
                 .addPage(new TextPage(Text.translatable("text.resprouted.drying.desc3")))
         );
 
-        production.addEntry(new Entry(Text.translatable("entry.resprouted.condenser"), new ItemStack(ModBlocks.CONDENSER))
+        production.addEntry(new Entry(Text.translatable("entry.resprouted.condenser"), new ItemStack(ModBlocks.BASIC_CONDENSER))
                 .addPage(new TextPage(Text.translatable("text.resprouted.condenser.desc1"),Text.translatable("text.resprouted.condenser.desc2")))
                 .addPage(new TextPage(Text.translatable("text.resprouted.condenser.desc3")))
         );
@@ -163,14 +162,7 @@ public class CatalogData {
         );
     }
 
-    // =================================================
-    // ||               STATIC CLASSES                ||
-    // =================================================
-    public static abstract class Page {
-
-    }
-
-    public static class TextPage extends Page {
+    public static class TextPage {
         private final Text leftText;
         private final Text rightText;
 
@@ -195,7 +187,7 @@ public class CatalogData {
     public static class Entry {
         private final Text name;
         private final ItemStack icon;
-        private final List<Page> pages = new ArrayList<>();
+        private final List<TextPage> pages = new ArrayList<>();
         private final Side side;
 
         public Entry(Text name, ItemStack icon) {
@@ -216,7 +208,7 @@ public class CatalogData {
             return icon;
         }
 
-        public List<Page> getPages() {
+        public List<TextPage> getPages() {
             return pages;
         }
 
@@ -224,7 +216,7 @@ public class CatalogData {
             return side;
         }
 
-        public Entry addPage(Page page) {
+        public Entry addPage(TextPage page) {
             pages.add(page);
             return this;
         }

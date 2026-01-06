@@ -1,0 +1,7 @@
+{
+	"parent": "resprouted:block/oak_table_inventory",
+	"textures": {
+		"0": "block/spruce_planks",
+		"particle": "block/spruce_planks"
+	}
+}

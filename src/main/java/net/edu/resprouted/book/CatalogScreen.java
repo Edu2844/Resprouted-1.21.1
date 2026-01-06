@@ -179,13 +179,13 @@ public class CatalogScreen extends Screen {
      * Update widgets when page state changes
      */
     private void updatePageWidgets() {
-        //Only update if state actually changed
+        // Only update if state actually changed
         if (currentState == previousState) return;
 
-        //Remove all current page widgets
+        // Remove all current page widgets
         this.clearChildren();
 
-        //Initialize and add new page widgets
+        // Initialize and add new page widgets
         BaseCatalogPage page = getCurrentPage();
         page.init();
         page.getWidgets().forEach(this::addDrawableChild);
@@ -212,8 +212,13 @@ public class CatalogScreen extends Screen {
         return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 
-    public TextRenderer getTextRenderer() { return this.textRenderer; }
-    public PageState getCurrentState() { return currentState; }
+    public TextRenderer getTextRenderer() {
+        return this.textRenderer;
+    }
+
+    public PageState getCurrentState() {
+        return currentState;
+    }
 
     public void setCurrentState(PageState state) {
         if (this.currentState != state) {
@@ -222,12 +227,35 @@ public class CatalogScreen extends Screen {
         }
     }
 
-    public Category getSelectedCategory() { return selectedCategory; }
-    public void setSelectedCategory(Category category) { this.selectedCategory = category; }
-    public Entry getSelectedEntry() { return selectedEntry; }
-    public void setSelectedEntry(Entry entry) { this.selectedEntry = entry; }
-    public int getCurrentPageIndex() { return currentPageIndex; }
-    public void setCurrentPageIndex(int index) { this.currentPageIndex = index; }
-    public int getBookX() { return bookX; }
-    public int getBookY() { return bookY; }
+    public Category getSelectedCategory() {
+        return selectedCategory;
+    }
+
+    public void setSelectedCategory(Category category) {
+        this.selectedCategory = category;
+    }
+
+    public Entry getSelectedEntry() {
+        return selectedEntry;
+    }
+
+    public void setSelectedEntry(Entry entry) {
+        this.selectedEntry = entry;
+    }
+
+    public int getCurrentPageIndex() {
+        return currentPageIndex;
+    }
+
+    public void setCurrentPageIndex(int index) {
+        this.currentPageIndex = index;
+    }
+
+    public int getBookX() {
+        return bookX;
+    }
+
+    public int getBookY() {
+        return bookY;
+    }
 }

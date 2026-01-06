@@ -1,0 +1,12 @@
+{
+  "type": "resprouted:drying",
+  "fluid_variant": {
+    "fluid": "resprouted:iron_berry_juice"
+  },
+  "amount": 200,
+  "output_item": {
+    "id": "resprouted:tiny_iron_dust",
+    "count": 1
+  },
+  "evaporatingtime": 200
+}

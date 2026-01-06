@@ -20,10 +20,12 @@ public class CustomBushBlock extends SweetBerryBushBlock {
     public CustomBushBlock(Settings settings) {
         super(settings);
     }
+
     @Override
     public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
         return new ItemStack(getHarvest());
     }
+
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         int i = state.get(AGE);
@@ -35,11 +37,14 @@ public class CustomBushBlock extends SweetBerryBushBlock {
             BlockState blockState = state.with(AGE, 1);
             world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
             world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, blockState));
+
             return ActionResult.success(world.isClient);
+
         } else {
             return super.onUse(state, world, pos, player, hit);
         }
     }
+
     public Item getHarvest() {
         return ModItems.TEST_BERRIES;
     }

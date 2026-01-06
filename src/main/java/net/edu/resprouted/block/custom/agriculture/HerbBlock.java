@@ -51,10 +51,10 @@ public class HerbBlock extends CropBlock {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        if(this == ModBlocks.ALOE_VERA_BLOCK) {
-            return floor.isIn(ModTags.Blocks.FERTILE_SOILS)||floor.isIn(ModTags.Blocks.ALLOWS_GROWTH) ||floor.isOf(Blocks.SAND);
+        if(this == ModBlocks.ALOE_VERA) {
+            return floor.isIn(ModTags.Blocks.FERTILE_SOILS)||floor.isIn(ModTags.Blocks.ALLOWS_HERBS_GROWTH) || floor.isOf(Blocks.SAND);
         }
-        return floor.isIn(ModTags.Blocks.FERTILE_SOILS)||floor.isIn(ModTags.Blocks.ALLOWS_GROWTH);
+        return floor.isIn(ModTags.Blocks.FERTILE_SOILS)||floor.isIn(ModTags.Blocks.ALLOWS_HERBS_GROWTH);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class HerbBlock extends CropBlock {
 
     @Override
     protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if(this == ModBlocks.WIND_THISTLE_BLOCK) {
+        if(this == ModBlocks.WIND_THISTLE) {
             if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
                 entity.slowMovement(state, new Vec3d(0.8F, 0.75F, 0.8F));
                 if (!world.isClient && state.get(AGE) > 0 && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {

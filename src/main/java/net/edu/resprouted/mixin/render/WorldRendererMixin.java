@@ -19,19 +19,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WorldRenderer.class)
-
 public abstract class WorldRendererMixin {
-
     @Inject(method = "drawBlockOutline", at = @At("HEAD"))
-
     private void onDrawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos pos, BlockState state, CallbackInfo ci) {
-
         if (!(entity instanceof PlayerEntity player)) return;
 
         ItemStack stack = player.getMainHandStack();
 
         if (!(stack.getItem() instanceof BlockItem blockItem)) return;
-
         if (!(blockItem.getBlock() instanceof AdvancedRotationPlacement)) return;
 
         World world = player.getWorld();
@@ -52,7 +47,6 @@ public abstract class WorldRendererMixin {
         double maxX = pos.getX() + 1;
         double maxY = pos.getY() + 1;
         double maxZ = pos.getZ() + 1;
-
         float r = 0.0f;
         float g = 0.0f;
         float b = 0.0f;
@@ -60,10 +54,8 @@ public abstract class WorldRendererMixin {
 
         drawLine(matrices, vertexConsumer, minX, maxY, minZ, maxX, maxY, maxZ, r, g, b, a);
         drawLine(matrices, vertexConsumer, minX, maxY, maxZ, maxX, maxY, minZ, r, g, b, a);
-
         drawLine(matrices, vertexConsumer, minX, minY, minZ, maxX, minY, maxZ, r, g, b, a);
         drawLine(matrices, vertexConsumer, minX, minY, maxZ, maxX, minY, minZ, r, g, b, a);
-
         matrices.pop();
     }
 
@@ -71,6 +63,7 @@ public abstract class WorldRendererMixin {
     private void drawLine(MatrixStack matrices, VertexConsumer vertexConsumer, double x1, double y1, double z1, double x2, double y2, double z2, float r, float g, float b, float a) {
         MatrixStack.Entry entry = matrices.peek();
         Matrix4f matrix = entry.getPositionMatrix();
+
         float nx = 0f;
         float ny = 1f;
         float nz = 0f;

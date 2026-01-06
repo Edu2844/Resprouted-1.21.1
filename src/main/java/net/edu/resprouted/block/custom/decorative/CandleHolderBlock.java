@@ -38,8 +38,12 @@ public class CandleHolderBlock extends AbstractCandleBlock implements Waterlogga
     public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
 
     public CandleHolderBlock() {
-        super(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).luminance(state -> state.get(LIT) ? 15 : 0).strength(1.0f));
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.UP).with(LIT, false));
+        super(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK)
+                .luminance(state -> state.get(LIT) ? 15 : 0)
+                .strength(1.0f));
+        this.setDefaultState(this.stateManager.getDefaultState()
+                .with(FACING, Direction.UP)
+                .with(LIT, false));
     }
 
     @Override

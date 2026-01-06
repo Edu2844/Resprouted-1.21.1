@@ -45,6 +45,5 @@ public class ModHerbsGeneration {
 
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_DECORATION,
                 ModPlacedFeatures.MOONCAP_CAVE_PLACED_KEY);
-
     }
 }

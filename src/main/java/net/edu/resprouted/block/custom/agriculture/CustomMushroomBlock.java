@@ -24,23 +24,19 @@ public class CustomMushroomBlock extends CropBlock {
             Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 9.0, 13.0),
             Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0),
     };
-
     public CustomMushroomBlock(Settings settings, Supplier<ItemConvertible> mushroomSupplier, Predicate<BlockState> growthCondition) {
         super(settings);
         this.mushroomSupplier = mushroomSupplier;
         this.growthCondition = growthCondition;
     }
-
     public CustomMushroomBlock(Settings settings, Supplier<ItemConvertible> mushroomSupplier) {
-        this(settings, mushroomSupplier,
-                floor ->
-                        floor.isOf(Blocks.FARMLAND) ||
-                        floor.isIn(ModTags.Blocks.FERTILE_SOILS) ||
-                        floor.isOf(Blocks.PODZOL) ||
-                        floor.isOf(Blocks.STONE) ||
-                        floor.isOf(Blocks.GRASS_BLOCK) ||
-                        floor.isOf(Blocks.DEEPSLATE) ||
-                        floor.isOf(Blocks.TUFF));
+        this(settings, mushroomSupplier, floor -> floor.isOf(Blocks.FARMLAND)
+                || floor.isIn(ModTags.Blocks.FERTILE_SOILS)
+                || floor.isOf(Blocks.PODZOL)
+                || floor.isOf(Blocks.STONE)
+                || floor.isOf(Blocks.GRASS_BLOCK)
+                || floor.isOf(Blocks.DEEPSLATE)
+                || floor.isOf(Blocks.TUFF));
     }
 
     public static CustomMushroomBlock NetherMushroom(Settings settings, Supplier<ItemConvertible> mushroomSupplier) {

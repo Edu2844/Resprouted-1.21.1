@@ -43,7 +43,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
 
     @Override
     public boolean matches(CraftingRecipeInput input, World world) {
-        if (!Resprouted.CONFIG.isVantaOilingEnabled()) {
+        if (!Resprouted.COMMON_CONFIG.general.isEnableVantaOiling()) {
             return false;
         }
 
@@ -135,7 +135,7 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
             }
 
             String itemId = Registries.ITEM.getId(tempStack.getItem()).toString();
-            if (RecipeUtils.isVantaOilableWeapon(tempStack) && !Resprouted.CONFIG.getVantaOilBlackList().contains(itemId)) {
+            if (RecipeUtils.isVantaOilableWeapon(tempStack) && !Resprouted.COMMON_CONFIG.general.getVantaOilBlackList().contains(itemId)) {
                 if (!weaponStack.isEmpty()) return ItemStack.EMPTY;
                 weaponStack = tempStack;
                 weaponEffect = RecipeUtils.getVantaOilEffect(weaponStack);
