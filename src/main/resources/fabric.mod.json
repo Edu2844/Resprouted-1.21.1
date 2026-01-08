@@ -3,12 +3,12 @@
 	"id": "resprouted",
 	"version": "${version}",
 	"name": "Resprouted",
-	"description": "A spiritual successor of the famous rustic mod!",
+	"description": "An adaptation of the classic and famous Rustic mod!",
 	"authors": [
 		"Edu2844!"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
+		"homepage": "https://github.com/Edu2844/Resprouted-1.21.1",
 		"sources": "https://github.com/Edu2844/Resprouted-1.21.1"
 	},
 	"license": "MIT License",

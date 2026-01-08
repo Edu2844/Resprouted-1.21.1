@@ -1,6 +1,5 @@
 package net.edu.resprouted.block.entity.custom;
 
-import dev.architectury.fluid.FluidStack;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
@@ -326,18 +325,13 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
 
         if (k.getItem() instanceof BoozeBottleItem boozeBottle) {
             try (Transaction t = Transaction.openOuter()) {
-
-                FluidStack fluidFromBottle = boozeBottle.toFluidStack(k);
-
-                FluidVariant variant = FluidVariant.of(fluidFromBottle.getFluid()).withComponentChanges(fluidFromBottle.getComponents().getChanges());
-
+                FluidVariant fluidFromBottle = boozeBottle.toFluidVariant(k);
                 long amount = FluidConstants.BUCKET;
 
-                if ((auxiliary.isResourceBlank() || auxiliary.getResource().equals(variant)) &&
-                        auxiliary.insert(variant, amount, t) == amount) {
+                if ((auxiliary.isResourceBlank() || auxiliary.getResource().equals(fluidFromBottle)) &&
+                        auxiliary.insert(fluidFromBottle, amount, t) == amount) {
 
                     k.decrement(1);
-
                     if (k.isEmpty()) {
                         setStack(AUX_IN_SLOT, ItemStack.EMPTY);
                     }
@@ -345,12 +339,9 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                     ItemStack l = getStack(AUX_OUT_SLOT);
                     if (l.isEmpty()) {
                         setStack(AUX_OUT_SLOT, new ItemStack(Items.GLASS_BOTTLE));
-
-                    } else if (l.isOf(Items.GLASS_BOTTLE) &&
-                            l.getCount() < l.getMaxCount()) {
+                    } else if (l.isOf(Items.GLASS_BOTTLE) && l.getCount() < l.getMaxCount()) {
                         l.increment(1);
                         setStack(AUX_OUT_SLOT, l);
-
                     } else {
                         return;
                     }
@@ -360,19 +351,13 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                 }
             }
         }
-
         else if (k.isOf(Items.GLASS_BOTTLE) && !auxiliary.isResourceBlank()) {
             try (Transaction t = Transaction.openOuter()) {
-
                 FluidVariant currentFluid = auxiliary.getResource();
                 long amount = FluidConstants.BUCKET;
 
                 if (auxiliary.extract(currentFluid, amount, t) == amount) {
-
-                    FluidStack extractedFluid = FluidStack.create(currentFluid.getFluid(), amount);
-                    extractedFluid.applyComponents(currentFluid.getComponents());
-
-                    ItemStack filledBottle = BoozeBottleItem.fromFluidStack(extractedFluid);
+                    ItemStack filledBottle = BoozeBottleItem.fromFluidVariant(currentFluid);
 
                     if (!filledBottle.isEmpty()) {
                         k.decrement(1);
@@ -383,13 +368,11 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
                         ItemStack currentAuxOutput = getStack(AUX_OUT_SLOT);
                         if (currentAuxOutput.isEmpty()) {
                             setStack(AUX_OUT_SLOT, filledBottle);
-
                         } else if (currentAuxOutput.getItem() == filledBottle.getItem() &&
                                 BoozeBottleItem.getQuality(currentAuxOutput) == BoozeBottleItem.getQuality(filledBottle) &&
                                 currentAuxOutput.getCount() < currentAuxOutput.getMaxCount()) {
                             currentAuxOutput.increment(1);
                             setStack(AUX_OUT_SLOT, currentAuxOutput);
-
                         } else {
                             return;
                         }
@@ -401,6 +384,7 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
             }
         }
     }
+
     public void handleOutputBottleInteractions() {
         ItemStack m = getStack(OUTPUT_IN_SLOT);
         ItemStack n = getStack(OUTPUT_OUT_SLOT);
@@ -414,10 +398,8 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
             long amount = FluidConstants.BUCKET;
 
             if (output.extract(variant, amount, t) == amount) {
-                FluidStack fluid = FluidStack.create(variant.getFluid(), amount);
-                fluid.applyComponents(variant.getComponents());
+                ItemStack bottle = BoozeBottleItem.fromFluidVariant(variant);
 
-                ItemStack bottle = BoozeBottleItem.fromFluidStack(fluid);
                 if (bottle.isEmpty()) return;
 
                 if (!n.isEmpty() && (n.getItem() != bottle.getItem() ||
@@ -439,33 +421,26 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
             }
         }
     }
+
     public void tryCraft() {
         if (world == null) return;
 
-        FluidStack inputFluid = FluidStack.create(
-                input.getResource().getFluid(),
-                (int) input.getAmount()
+        FluidVariant inputVariant = input.getResource();
+        long inputAmount = input.getAmount();
+
+        FluidVariant auxVariant = auxiliary.getResource();
+        long auxAmount = auxiliary.getAmount();
+
+        Optional<BrewingBarrelRecipe> recipeOpt = BrewingBarrelRecipe.findMatchingRecipe(
+                inputVariant, inputAmount,
+                auxVariant, auxAmount
         );
-
-        inputFluid.applyComponents(input.getResource().getComponents());
-
-        FluidStack auxFluid = null;
-        if (!auxiliary.isResourceBlank()) {
-            auxFluid = FluidStack.create(
-                    auxiliary.getResource().getFluid(),
-                    (int) auxiliary.getAmount()
-            );
-            auxFluid.applyComponents(auxiliary.getResource().getComponents());
-        }
-
-        Optional<BrewingBarrelRecipe> recipeOpt = BrewingBarrelRecipe.findMatchingRecipe(inputFluid, auxFluid);
-
 
         if (recipeOpt.isPresent() && canCraft()) {
             progress++;
 
             if (progress >= maxProgress) {
-                craft(recipeOpt.get(), inputFluid, auxFluid);
+                craft(recipeOpt.get(), inputVariant, inputAmount, auxVariant, auxAmount);
                 progress = 0;
             }
             markDirty();
@@ -481,37 +456,26 @@ public class BrewingBarrelBlockEntity extends BlockEntity implements ExtendedScr
         return input.getAmount() > 0 && output.getAmount() < output.getCapacity();
     }
 
-    private void craft(BrewingBarrelRecipe recipe, FluidStack inputFluid, FluidStack auxiliaryFluid) {
+    private void craft(BrewingBarrelRecipe recipe, FluidVariant inputVariant, long inputAmount,
+                       FluidVariant auxVariant, long auxAmount) {
         try (Transaction t = Transaction.openOuter()) {
-
             long availableSpace = output.getCapacity() - output.getAmount();
-            long amountToConvert = Math.min(availableSpace, input.getAmount());
+            long amountToConvert = Math.min(availableSpace, inputAmount);
 
             if (amountToConvert <= 0) return;
 
-            input.extract(input.getResource(), amountToConvert, t);
+            input.extract(inputVariant, amountToConvert, t);
 
             assert world != null;
-            FluidStack newResult = recipe.getResult(inputFluid, auxiliaryFluid, world.random);
+            FluidVariant newResult = recipe.getResult(inputVariant, inputAmount, auxVariant, auxAmount, world.random);
 
-            if (newResult != null) {
-                newResult.setAmount(amountToConvert);
-
+            if (newResult != null && !newResult.isBlank()) {
                 if (!output.isResourceBlank() && output.getResource().isOf(newResult.getFluid())) {
-
-                    FluidStack existingFluid = FluidStack.create(
-                            output.getResource().getFluid(),
-                            (int) output.getAmount()
-                    );
-                    existingFluid.applyComponents(output.getResource().getComponents());
-
-                    float existingQuality = FluidUtils.getQuality(existingFluid);
-                    FluidUtils.setQuality(newResult, existingQuality);
+                    float existingQuality = FluidUtils.getQuality(output.getResource());
+                    newResult = FluidUtils.withQuality(newResult, existingQuality);
                 }
 
-                FluidVariant resultVariant = FluidVariant.of(newResult.getFluid()).withComponentChanges(newResult.getComponents().getChanges());
-
-                output.insert(resultVariant, newResult.getAmount(), t);
+                output.insert(newResult, amountToConvert, t);
             }
 
             t.commit();

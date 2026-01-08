@@ -1,8 +1,11 @@
 package net.edu.resprouted.util;
 
-import dev.architectury.fluid.FluidStack;
 import net.edu.resprouted.component.ModDataComponentTypes;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.minecraft.component.ComponentChanges;
 import net.minecraft.fluid.Fluid;
+
+import java.util.Optional;
 
 public class FluidUtils {
     private static final float DEFAULT_QUALITY = 0f;
@@ -16,27 +19,36 @@ public class FluidUtils {
     }
 
     // Booze Fluids
-    public static float getQuality(FluidStack stack) {
-        if (stack == null || stack.isEmpty()) return DEFAULT_QUALITY;
-        Float quality = stack.get(ModDataComponentTypes.FLUID_QUALITY);
-        return quality != null ? quality : DEFAULT_QUALITY;
-    }
+    public static float getQuality(FluidVariant variant) {
+        if (variant == null || variant.isBlank()) return DEFAULT_QUALITY;
 
-    public static void setQuality(FluidStack stack, float quality) {
-        if (stack != null && !stack.isEmpty()) {
-            stack.set(ModDataComponentTypes.FLUID_QUALITY,
-                    Math.max(0f, Math.min(1f, quality)));
+        Optional<? extends Float> qualityOpt = variant.getComponents().get(ModDataComponentTypes.FLUID_QUALITY);
+
+        if (qualityOpt != null && qualityOpt.isPresent()) {
+            return qualityOpt.get();
         }
+
+        return DEFAULT_QUALITY;
     }
 
-    public static FluidStack withQuality(Fluid fluid, long amount, float quality) {
-        FluidStack stack = FluidStack.create(fluid, amount);
-        setQuality(stack, quality);
-        return stack;
+    public static FluidVariant withQuality(Fluid fluid, float quality) {
+        ComponentChanges.Builder builder = ComponentChanges.builder();
+        builder.add(ModDataComponentTypes.FLUID_QUALITY,
+                Math.max(0f, Math.min(1f, quality)));
+        return FluidVariant.of(fluid, builder.build());
     }
 
-    public static boolean hasQuality(FluidStack stack) {
-        return stack != null && !stack.isEmpty() &&
-                stack.get(ModDataComponentTypes.FLUID_QUALITY) != null;
+    public static FluidVariant withQuality(FluidVariant variant, float quality) {
+        ComponentChanges.Builder builder = ComponentChanges.builder();
+        builder.add(ModDataComponentTypes.FLUID_QUALITY,
+                Math.max(0f, Math.min(1f, quality)));
+        return variant.withComponentChanges(builder.build());
+    }
+
+    public static boolean hasQuality(FluidVariant variant) {
+        if (variant == null || variant.isBlank()) return false;
+
+        Optional<? extends Float> qualityOpt = variant.getComponents().get(ModDataComponentTypes.FLUID_QUALITY);
+        return qualityOpt != null && qualityOpt.isPresent();
     }
 }

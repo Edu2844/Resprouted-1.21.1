@@ -1,10 +1,10 @@
 package net.edu.resprouted.item.custom;
 
-import dev.architectury.fluid.FluidStack;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.util.FluidUtils;
 import net.edu.resprouted.util.TextUtils;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -76,7 +76,6 @@ public class BoozeBottleItem extends Item {
         return stack;
     }
 
-
     @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.DRINK;
@@ -114,12 +113,12 @@ public class BoozeBottleItem extends Item {
         stack.set(ModDataComponentTypes.FLUID_QUALITY, Math.max(0f, Math.min(1f, quality)));
     }
 
-    public static ItemStack fromFluidStack(FluidStack fluidStack) {
-        Fluid fluid = fluidStack.getFluid();
+    public static ItemStack fromFluidVariant(FluidVariant variant) {
+        Fluid fluid = variant.getFluid();
         BoozeBottleItem bottleItem = FLUID_TO_BOTTLE.get(fluid);
 
         if (bottleItem != null) {
-            float quality = FluidUtils.getQuality(fluidStack);
+            float quality = FluidUtils.getQuality(variant);
             ItemStack bottle = new ItemStack(bottleItem);
             setQuality(bottle, quality);
             return bottle;
@@ -127,9 +126,9 @@ public class BoozeBottleItem extends Item {
         return ItemStack.EMPTY;
     }
 
-    public FluidStack toFluidStack(ItemStack bottle) {
+    public FluidVariant toFluidVariant(ItemStack bottle) {
         float quality = getQuality(bottle);
-        return FluidUtils.withQuality(fluidType, 250, quality);
+        return FluidUtils.withQuality(fluidType, quality);
     }
 
     public static BoozeBottleItem getBottleForFluid(Fluid fluid) {

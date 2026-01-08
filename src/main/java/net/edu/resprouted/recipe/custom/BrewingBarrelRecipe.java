@@ -1,8 +1,8 @@
 package net.edu.resprouted.recipe.custom;
 
-import dev.architectury.fluid.FluidStack;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.util.FluidUtils;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.math.random.Random;
 
@@ -13,29 +13,28 @@ import java.util.Optional;
 public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
     public static final List<BrewingBarrelRecipe> RECIPES = new ArrayList<>();
 
-    public boolean matches(FluidStack input, FluidStack aux) {
-        if (inputFluid != null && input != null && input.getFluid() != null) {
-            boolean inputMatches = input.getFluid() == inputFluid;
-
-            if (aux != null && aux.getFluid() != null) {
-                boolean auxMatches = (aux.getFluid() == outputFluid);
-                return inputMatches && auxMatches;
-            }
-            return inputMatches;
+    public boolean matches(FluidVariant input, long inputAmount, FluidVariant aux, long auxAmount) {
+        if (inputFluid == null || input == null || input.isBlank() || inputAmount <= 0) {
+            return false;
         }
-        return false;
+
+        boolean inputMatches = input.getFluid() == inputFluid;
+
+        if (aux != null && !aux.isBlank() && auxAmount > 0) {
+            boolean auxMatches = (aux.getFluid() == outputFluid);
+            return inputMatches && auxMatches;
+        }
+
+        return inputMatches;
     }
 
-    public FluidStack getResult(FluidStack in, FluidStack aux, Random random) {
-        if (aux == null || aux.getFluid() == null || !matches(in, aux)) {
-            return getResult(in, random);
+    public FluidVariant getResult(FluidVariant input, long inputAmount, FluidVariant aux, long auxAmount, Random random) {
+        if (aux == null || aux.isBlank() || auxAmount <= 0 || !matches(input, inputAmount, aux, auxAmount)) {
+            return getResult(input, inputAmount, random);
         }
 
-        if (matches(in, aux) && outputFluid != null) {
-            FluidStack out = FluidStack.create(outputFluid, in.getAmount());
-
+        if (matches(input, inputAmount, aux, auxAmount) && outputFluid != null) {
             if (FluidUtils.hasQuality(aux)) {
-
                 float auxQuality = FluidUtils.getQuality(aux);
                 int minChange = getMinBrewQualityChange();
                 int maxChange = getMaxBrewQualityChange();
@@ -44,23 +43,17 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
                 int brewQualityChange = random.nextInt((maxChange - minChange) + 1) + minChange;
                 float quality = Math.max(Math.min(((brewQualityChange + (int) (100 * auxQuality)) / 100F), 1), 0);
 
-                FluidUtils.setQuality(out, quality);
-
+                return FluidUtils.withQuality(outputFluid, quality);
             } else {
-                FluidUtils.setQuality(out, getBaseQuality(random));
+                return FluidUtils.withQuality(outputFluid, getBaseQuality(random));
             }
-            return out;
         }
         return null;
     }
 
-    public FluidStack getResult(FluidStack in, Random random) {
-
-        if (matches(in, null) && outputFluid != null) {
-            FluidStack out = FluidStack.create(outputFluid, in.getAmount());
-            FluidUtils.setQuality(out, getBaseQuality(random));
-
-            return out;
+    public FluidVariant getResult(FluidVariant input, long inputAmount, Random random) {
+        if (matches(input, inputAmount, null, 0) && outputFluid != null) {
+            return FluidUtils.withQuality(outputFluid, getBaseQuality(random));
         }
         return null;
     }
@@ -81,9 +74,9 @@ public record BrewingBarrelRecipe(Fluid outputFluid, Fluid inputFluid) {
         return Resprouted.COMMON_CONFIG.brewing.getMaxBrewQualityChange();
     }
 
-    public static Optional<BrewingBarrelRecipe> findMatchingRecipe(FluidStack input, FluidStack auxiliary) {
+    public static Optional<BrewingBarrelRecipe> findMatchingRecipe(FluidVariant input, long inputAmount, FluidVariant auxiliary, long auxAmount) {
         return RECIPES.stream()
-                .filter(recipe -> recipe.matches(input, auxiliary))
+                .filter(recipe -> recipe.matches(input, inputAmount, auxiliary, auxAmount))
                 .findFirst();
     }
 
