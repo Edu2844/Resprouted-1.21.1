@@ -11,6 +11,8 @@ import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
 import net.edu.resprouted.registry.ResproutedBoatTypes;
 import net.edu.resprouted.util.TextUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.CustomModelDataComponent;
@@ -101,10 +103,15 @@ public class ModItems {
             }
 
             if (world.isClient) {
-                MinecraftClient.getInstance().setScreen(new CatalogScreen());
+                this.openCatalogScreen();
             }
 
             return TypedActionResult.success(stack);
+        }
+
+        @Environment(EnvType.CLIENT)
+        private void openCatalogScreen() {
+            MinecraftClient.getInstance().setScreen(new CatalogScreen());
         }
     });
 
