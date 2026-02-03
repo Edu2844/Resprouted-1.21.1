@@ -66,12 +66,6 @@ public class CatalogScreen extends Screen {
     }
 
     @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context, mouseX, mouseY, delta);
-        super.render(context, mouseX, mouseY, delta);
-    }
-
-    @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
         super.renderInGameBackground(context);
         context.drawTexture(BACKGROUND, bookX, bookY, 0, 0, BOOK_WIDTH, BOOK_HEIGHT, TEXTURE_SIZE, TEXTURE_SIZE);
