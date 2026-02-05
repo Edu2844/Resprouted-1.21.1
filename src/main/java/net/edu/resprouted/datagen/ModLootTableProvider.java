@@ -1,6 +1,5 @@
 package net.edu.resprouted.datagen;
 
-import dev.architectury.platform.Mod;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.custom.agriculture.CustomBushBlock;
 import net.edu.resprouted.block.custom.agriculture.CustomMushroomBlock;
