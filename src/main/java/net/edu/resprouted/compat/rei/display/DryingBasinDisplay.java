@@ -18,9 +18,7 @@ public class DryingBasinDisplay extends BasicDisplay {
     private final int craftTime;
 
     public DryingBasinDisplay(RecipeEntry<DryingBasinRecipe> entry) {
-        super(List.of(EntryIngredients.of(entry.value().fluidInput().getFluid(), entry.value().fluidCost())),
-                List.of(EntryIngredient.of(EntryStacks.of(entry.value().output())))
-        );
+        super(List.of(EntryIngredients.of(entry.value().fluidInput().getFluid(), entry.value().fluidCost())), List.of(EntryIngredient.of(EntryStacks.of(entry.value().output()))));
         this.fluid = entry.value().fluidInput();
         this.amount = entry.value().fluidCost();
         this.craftTime = entry.value().craftTime();

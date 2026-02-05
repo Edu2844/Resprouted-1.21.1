@@ -16,9 +16,7 @@ public class BrewingBarrelDisplay extends BasicDisplay {
     private final Fluid outputFluid;
 
     public BrewingBarrelDisplay(BrewingBarrelRecipe recipe) {
-        super(List.of(EntryIngredients.of(recipe.inputFluid(), 81000), EntryIngredients.of(recipe.outputFluid(), 1000)),
-                List.of(EntryIngredient.of(EntryStacks.of(recipe.outputFluid(), 81000)))
-        );
+        super(List.of(EntryIngredients.of(recipe.inputFluid(), 81000), EntryIngredients.of(recipe.outputFluid(), 1000)), List.of(EntryIngredient.of(EntryStacks.of(recipe.outputFluid(), 81000))));
         this.inputFluid = recipe.inputFluid();
         this.outputFluid = recipe.outputFluid();
     }

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "resprouted:unfired_drying_basin"
+  },
+  "result": {
+    "id": "resprouted:drying_basin"
+  },
+  "experience": 0,
+  "cookingtime": 400
+}

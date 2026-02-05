@@ -5,8 +5,8 @@ import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.item.custom.StakeCropSeedItem;
-import net.edu.resprouted.registry.GrassSeedRegistry;
-import net.edu.resprouted.util.RecipeUtils;
+import net.edu.resprouted.util.misc.GrassSeedsRegistry;
+import net.edu.resprouted.util.recipe.RecipeUtils;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -44,7 +44,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ModCommonEvents {
     public static void registerEvents() {
-        Resprouted.LOGGER.info("Registering Events for " + Resprouted.MOD_ID);
+        Resprouted.LOGGER.info("Registering Common Events for " + Resprouted.MOD_ID);
         ServerLivingEntityEvents.ALLOW_DEATH.register(ModCommonEvents::onAllowDeath);
         UseItemCallback.EVENT.register(ModCommonEvents::onWaterBottleUse);
         AttackEntityCallback.EVENT.register(ModCommonEvents::onAttackEntity);
@@ -64,7 +64,7 @@ public class ModCommonEvents {
         if (state.isOf(Blocks.SHORT_GRASS) || state.isOf(Blocks.TALL_GRASS)) {
             float seedChance = Resprouted.COMMON_CONFIG.world.getSeedsDropRate() / 100.0f;
 
-            for (StakeCropSeedItem seed : GrassSeedRegistry.getRegisteredSeeds()) {
+            for (StakeCropSeedItem seed : GrassSeedsRegistry.getRegisteredSeeds()) {
                 if (world.getRandom().nextFloat() < seedChance) {
                     dropItem(world, pos, new ItemStack(seed));
                 }
@@ -98,13 +98,7 @@ public class ModCommonEvents {
     }
 
     private static void dropItem(World world, BlockPos pos, ItemStack stack) {
-        ItemEntity itemEntity = new ItemEntity(
-                world,
-                pos.getX() + 0.5,
-                pos.getY() + 0.5,
-                pos.getZ() + 0.5,
-                stack
-        );
+        ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
         itemEntity.setToDefaultPickupDelay();
         world.spawnEntity(itemEntity);
     }
@@ -114,6 +108,7 @@ public class ModCommonEvents {
         if (player.hasStatusEffect(ModEffects.FULL_METAL)) {
             return PlayerEntity.SleepFailureReason.OTHER_PROBLEM;
         }
+
         return null;
     }
 
@@ -204,6 +199,7 @@ public class ModCommonEvents {
                 }
             }
         }
+
         return ActionResult.PASS;
     }
 
@@ -229,13 +225,7 @@ public class ModCommonEvents {
                     player.removeStatusEffect(ModEffects.TIPSY);
 
                     if (amplifier >= 0 && duration > 0) {
-                        player.addStatusEffect(new StatusEffectInstance(
-                                ModEffects.TIPSY,
-                                duration,
-                                amplifier,
-                                false,
-                                false
-                        ));
+                        player.addStatusEffect(new StatusEffectInstance(ModEffects.TIPSY, duration, amplifier, false, false));
                     }
                 }
             }
@@ -269,6 +259,7 @@ public class ModCommonEvents {
                     effect.shouldShowIcon()
             ));
         }
+
         return false;
     }
 }

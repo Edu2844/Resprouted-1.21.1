@@ -1,0 +1,9 @@
+{
+	"parent": "resprouted:block/drying_basin",
+	"textures": {
+		"side": "resprouted:block/unfired_drying_basin_side",
+		"bottom": "resprouted:block/unfired_drying_basin_bottom",
+		"top": "resprouted:block/unfired_drying_basin_top",
+		"particle": "#side"
+	}
+}

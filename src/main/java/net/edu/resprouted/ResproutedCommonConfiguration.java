@@ -13,21 +13,20 @@ import java.nio.file.Files;
 
 public class ResproutedCommonConfiguration {
     private static final File CONFIG_FILE = new File(FabricLoader.getInstance().getConfigDir().toFile(), "resprouted-common.json");
-
-    // General Settings
     public GeneralSettings general = new GeneralSettings();
-
-    // World Settings
     public WorldSettings world = new WorldSettings();
-
-    // Food Settings
     public FoodSettings food = new FoodSettings();
-
-    // Brewing Settings
     public BrewingSettings brewing = new BrewingSettings();
 
     public static class GeneralSettings {
         private boolean enableHoneyBottleRegenerationEffect = true;
+        private boolean enableDyeByRightClick = false;
+        private boolean enablePaintedPlanks = true;
+        private boolean enableTables = true;
+        private boolean enableChairs = true;
+        private boolean enableStools = true;
+        private boolean enableClayWalls = true;
+        private boolean enableVanillaBlockVariations = true;
         private boolean enableVantaOiling = true;
         private List<String> vantaOilWhiteList = new ArrayList<>();
         private List<String> vantaOilBlackList = new ArrayList<>();
@@ -38,6 +37,61 @@ public class ResproutedCommonConfiguration {
             vantaOilWhiteList.add("farmersdelight:diamond_knife");
         }
 
+        //Painted Planks
+        public boolean isEnablePaintedPlanks() {
+            return enablePaintedPlanks;
+        }
+
+        public void setEnablePaintedPlanks(boolean enablePaintedPlanks) {
+            this.enablePaintedPlanks = enablePaintedPlanks;
+        }
+
+        //Tables
+        public boolean isEnableTables() {
+            return enableTables;
+        }
+
+        public void setEnableTables(boolean enableTables) {
+            this.enableTables = enableTables;
+        }
+
+        //Chairs
+        public boolean isEnableChairs() {
+            return enableChairs;
+        }
+
+        public void setEnableChairs(boolean enableChairs) {
+            this.enableChairs = enableChairs;
+        }
+
+        //Stools
+        public boolean isEnableStools() {
+            return enableStools;
+        }
+
+        public void setEnableStools(boolean enableStools) {
+            this.enableStools = enableStools;
+        }
+
+        //Clay Walls
+        public boolean isEnableClayWalls() {
+            return enableClayWalls;
+        }
+
+        public void setEnableClayWalls(boolean enableClayWallBlocks) {
+            this.enableClayWalls = enableClayWallBlocks;
+        }
+
+        //Vanilla stones
+        public boolean isEnableVanillaBlockVariations() {
+            return enableVanillaBlockVariations;
+        }
+
+        public void setEnableVanillaBlockVariations(boolean enableVanillaBlockVariations) {
+            this.enableVanillaBlockVariations = enableVanillaBlockVariations;
+        }
+
+        //Honey Bottle
         public boolean isEnableHoneyBottleRegenerationEffect() {
             return enableHoneyBottleRegenerationEffect;
         }
@@ -46,6 +100,16 @@ public class ResproutedCommonConfiguration {
             this.enableHoneyBottleRegenerationEffect = enableHoneyBottleRegenerationEffect;
         }
 
+        //Dyeable Jars & Urns
+        public boolean isEnableDyeByRightClick() {
+            return enableDyeByRightClick;
+        }
+
+        public void setEnableDyeByRightClick(boolean enableDyeByRightClick) {
+            this.enableDyeByRightClick = enableDyeByRightClick;
+        }
+
+        //Vanta Oiling
         public boolean isEnableVantaOiling() {
             return enableVantaOiling;
         }

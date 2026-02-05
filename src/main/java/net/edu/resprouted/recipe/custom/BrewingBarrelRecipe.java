@@ -1,7 +1,7 @@
 package net.edu.resprouted.recipe.custom;
 
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.util.FluidUtils;
+import net.edu.resprouted.util.fluid.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.util.math.random.Random;

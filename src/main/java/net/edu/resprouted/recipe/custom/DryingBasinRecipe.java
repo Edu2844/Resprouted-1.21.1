@@ -5,7 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.recipe.Input.DryingBasinRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.util.FluidUtils;
+import net.edu.resprouted.util.fluid.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
@@ -26,9 +26,8 @@ public record DryingBasinRecipe(FluidVariant fluidInput, long fluidCost, ItemSta
 
         // Check if output slot is empty or can stack with the result
         ItemStack storedStack = in.itemStack();
-        return sameFluid && enoughFluid &&
-                (storedStack.isEmpty() || (ItemStack.areItemsAndComponentsEqual(storedStack, output)
-                        && storedStack.getCount() + output.getCount() <= storedStack.getMaxCount()));
+        return sameFluid && enoughFluid && (storedStack.isEmpty() || (ItemStack.areItemsAndComponentsEqual(storedStack, output)
+                && storedStack.getCount() + output.getCount() <= storedStack.getMaxCount()));
     }
 
     @Override

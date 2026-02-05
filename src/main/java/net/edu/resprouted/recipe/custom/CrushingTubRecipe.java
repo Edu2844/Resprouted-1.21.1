@@ -7,7 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.recipe.Input.CrushingTubRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.recipe.helper.RecipeOutput;
-import net.edu.resprouted.util.FluidUtils;
+import net.edu.resprouted.util.fluid.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;

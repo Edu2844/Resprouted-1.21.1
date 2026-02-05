@@ -14,7 +14,7 @@ import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.registry.ResproutedBlockSetTypes;
 import net.edu.resprouted.registry.ResproutedWoodTypes;
-import net.edu.resprouted.registry.CabinetRegistry;
+import net.edu.resprouted.util.misc.CabinetRegistry;
 import net.edu.resprouted.world.tree.ModSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
@@ -27,12 +27,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import static net.edu.resprouted.block.custom.alchemy.BasicCondenserBlock.LIT;
 
@@ -80,336 +84,232 @@ public class ModBlocks {
     // =================================================
     // ||                 ANDESITE                    ||
     // =================================================
-    public static final Block ANDESITE_BRICKS = registerBlock("andesite_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block ANDESITE_BRICK_WALL = registerBlock("andesite_brick_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block ANDESITE_BRICK_STAIRS = registerBlock("andesite_brick_stairs",
-            new StairsBlock(ModBlocks.ANDESITE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block ANDESITE_BRICK_SLAB = registerBlock("andesite_brick_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block CRACKED_ANDESITE_BRICKS = registerBlock("cracked_andesite_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
-    public static final Block CHISELED_ANDESITE = registerBlock("chiseled_andesite_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
-    public static final Block ANDESITE_PILLAR = registerBlock("andesite_pillar",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block ANDESITE_BRICKS = registerVanillaVariationBlock("andesite_bricks",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block ANDESITE_BRICK_WALL = registerVanillaVariationWall("andesite_brick_wall",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block ANDESITE_BRICK_STAIRS = registerVanillaVariationStairs("andesite_brick_stairs",
+            ANDESITE_BRICKS, Blocks.STONE_BRICKS);
+    public static final Block ANDESITE_BRICK_SLAB = registerVanillaVariationSlab("andesite_brick_slab",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block CRACKED_ANDESITE_BRICKS = registerVanillaVariationBlock("cracked_andesite_bricks",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
+    public static final Block CHISELED_ANDESITE = registerVanillaVariationBlock("chiseled_andesite_bricks",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
+    public static final Block ANDESITE_PILLAR = registerVanillaVariationPillar("andesite_pillar",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
 
     // =================================================
     // ||                  DIORITE                    ||
     // =================================================
-    public static final Block DIORITE_BRICKS = registerBlock("diorite_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block DIORITE_BRICK_WALL = registerBlock("diorite_brick_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block DIORITE_BRICK_STAIRS = registerBlock("diorite_brick_stairs",
-            new StairsBlock(ModBlocks.DIORITE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block DIORITE_BRICK_SLAB = registerBlock("diorite_brick_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block CRACKED_DIORITE_BRICKS = registerBlock("cracked_diorite_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
-    public static final Block CHISELED_DIORITE = registerBlock("chiseled_diorite_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
-    public static final Block DIORITE_PILLAR = registerBlock("diorite_pillar",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block DIORITE_BRICKS = registerVanillaVariationBlock("diorite_bricks",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block DIORITE_BRICK_WALL = registerVanillaVariationWall("diorite_brick_wall",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block DIORITE_BRICK_STAIRS = registerVanillaVariationStairs("diorite_brick_stairs",
+            DIORITE_BRICKS, Blocks.STONE_BRICKS);
+    public static final Block DIORITE_BRICK_SLAB = registerVanillaVariationSlab("diorite_brick_slab",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block CRACKED_DIORITE_BRICKS = registerVanillaVariationBlock("cracked_diorite_bricks",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
+    public static final Block CHISELED_DIORITE = registerVanillaVariationBlock("chiseled_diorite_bricks",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
+    public static final Block DIORITE_PILLAR = registerVanillaVariationPillar("diorite_pillar",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
 
     // =================================================
     // ||                  GRANITE                    ||
     // =================================================
-    public static final Block GRANITE_BRICKS = registerBlock("granite_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block GRANITE_BRICK_WALL = registerBlock("granite_brick_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block GRANITE_BRICK_STAIRS = registerBlock("granite_brick_stairs",
-            new StairsBlock(ModBlocks.GRANITE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block GRANITE_BRICK_SLAB = registerBlock("granite_brick_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block CRACKED_GRANITE_BRICKS = registerBlock("cracked_granite_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
-    public static final Block CHISELED_GRANITE = registerBlock("chiseled_granite_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
-    public static final Block GRANITE_PILLAR = registerBlock("granite_pillar",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block GRANITE_BRICKS = registerVanillaVariationBlock("granite_bricks",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block GRANITE_BRICK_WALL = registerVanillaVariationWall("granite_brick_wall",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block GRANITE_BRICK_STAIRS = registerVanillaVariationStairs("granite_brick_stairs",
+            GRANITE_BRICKS, Blocks.STONE_BRICKS);
+    public static final Block GRANITE_BRICK_SLAB = registerVanillaVariationSlab("granite_brick_slab",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block CRACKED_GRANITE_BRICKS = registerVanillaVariationBlock("cracked_granite_bricks",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
+    public static final Block CHISELED_GRANITE = registerVanillaVariationBlock("chiseled_granite_bricks",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
+    public static final Block GRANITE_PILLAR = registerVanillaVariationPillar("granite_pillar",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
 
     // =================================================
     // ||                   STONE                     ||
     // =================================================
-    public static final Block POLISHED_STONE = registerBlock("polished_stone",
-            new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
-    public static final Block POLISHED_STONE_WALL = registerBlock("polished_stone_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block POLISHED_STONE_STAIRS = registerBlock("polished_stone_stairs",
-            new StairsBlock(ModBlocks.POLISHED_STONE.getDefaultState(),AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
-    public static final Block POLISHED_STONE_SLAB = registerBlock("polished_stone_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block STONE_PILLAR = registerBlock("stone_pillar",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block POLISHED_STONE = registerVanillaVariationBlock("polished_stone",
+            AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE));
+    public static final Block POLISHED_STONE_WALL = registerVanillaVariationWall("polished_stone_wall",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block POLISHED_STONE_STAIRS = registerVanillaVariationStairs("polished_stone_stairs",
+            POLISHED_STONE, Blocks.POLISHED_ANDESITE);
+    public static final Block POLISHED_STONE_SLAB = registerVanillaVariationSlab("polished_stone_slab",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block STONE_PILLAR = registerVanillaVariationPillar("stone_pillar",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
 
     // =================================================
     // ||                SANDSTONE                    ||
     // =================================================
-    public static final Block SANDSTONE_BRICKS = registerBlock("sandstone_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block SANDSTONE_BRICK_WALL = registerBlock("sandstone_brick_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block SANDSTONE_BRICK_STAIRS = registerBlock("sandstone_brick_stairs",
-            new StairsBlock(ModBlocks.SANDSTONE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block SANDSTONE_BRICK_SLAB = registerBlock("sandstone_brick_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block SANDSTONE_PILLAR = registerBlock("sandstone_pillar",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block SANDSTONE_BRICKS = registerVanillaVariationBlock("sandstone_bricks",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block SANDSTONE_BRICK_WALL = registerVanillaVariationWall("sandstone_brick_wall",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block SANDSTONE_BRICK_STAIRS = registerVanillaVariationStairs("sandstone_brick_stairs",
+            SANDSTONE_BRICKS, Blocks.STONE_BRICKS);
+    public static final Block SANDSTONE_BRICK_SLAB = registerVanillaVariationSlab("sandstone_brick_slab",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block SANDSTONE_PILLAR = registerVanillaVariationPillar("sandstone_pillar",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
 
     // =================================================
     // ||                RED SANDSTONE                ||
     // =================================================
-
-    public static final Block RED_SANDSTONE_BRICKS = registerBlock("red_sandstone_bricks",
-            new Block(AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE)));
-    public static final Block RED_SANDSTONE_BRICK_WALL = registerBlock("red_sandstone_brick_wall",
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block RED_SANDSTONE_BRICK_STAIRS = registerBlock("red_sandstone_brick_stairs",
-            new StairsBlock(ModBlocks.RED_SANDSTONE_BRICKS.getDefaultState(),AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block RED_SANDSTONE_BRICK_SLAB = registerBlock("red_sandstone_brick_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)));
-    public static final Block RED_SANDSTONE_PILLAR = registerBlock("red_sandstone_pillar",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final Block RED_SANDSTONE_BRICKS = registerVanillaVariationBlock("red_sandstone_bricks",
+            AbstractBlock.Settings.copy(Blocks.POLISHED_ANDESITE));
+    public static final Block RED_SANDSTONE_BRICK_WALL = registerVanillaVariationWall("red_sandstone_brick_wall",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block RED_SANDSTONE_BRICK_STAIRS = registerVanillaVariationStairs("red_sandstone_brick_stairs",
+            RED_SANDSTONE_BRICKS, Blocks.STONE_BRICKS);
+    public static final Block RED_SANDSTONE_BRICK_SLAB = registerVanillaVariationSlab("red_sandstone_brick_slab",
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block RED_SANDSTONE_PILLAR = registerVanillaVariationPillar("red_sandstone_pillar",
+            AbstractBlock.Settings.copy(Blocks.CHISELED_STONE_BRICKS));
 
     // =================================================
     // ||                 WROUGHT IRON                ||
     // =================================================
-    public static final Block WROUGHT_IRON_BLOCK = registerBlock("wrought_iron_block",
-            new Block(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK)));
-    public static final Block CUT_WROUGHT_IRON_BLOCK = registerBlock("cut_wrought_iron_block",
-            new Block(AbstractBlock.Settings.copy(Blocks.CUT_COPPER)));
-    public static final Block CUT_WROUGHT_IRON_STAIRS = registerBlock("cut_wrought_iron_stairs",
-            new StairsBlock(ModBlocks.CUT_WROUGHT_IRON_BLOCK.getDefaultState(),AbstractBlock.Settings.copy(Blocks.CUT_COPPER_STAIRS)));
-    public static final Block CUT_WROUGHT_IRON_SLAB = registerBlock("cut_wrought_iron_slab",
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.CUT_COPPER_SLAB)));
-    public static final Block WROUGHT_IRON_BULB = registerBlock("wrought_iron_bulb",
-            new BulbBlock(AbstractBlock.Settings.copy(Blocks.COPPER_BULB)));
-
-    public static final Block WROUGHT_IRON_BARS = registerBlock("wrought_iron_bars",
-            new PaneBlock(AbstractBlock.Settings.copy(Blocks.IRON_BARS)));
+    public static final Block WROUGHT_IRON_BLOCK = registerBlock("wrought_iron_block", new Block(AbstractBlock.Settings.copy(Blocks.COPPER_BLOCK)));
+    public static final Block CUT_WROUGHT_IRON_BLOCK = registerBlock("cut_wrought_iron_block", new Block(AbstractBlock.Settings.copy(Blocks.CUT_COPPER)));
+    public static final Block CUT_WROUGHT_IRON_STAIRS = registerBlock("cut_wrought_iron_stairs", new StairsBlock(ModBlocks.CUT_WROUGHT_IRON_BLOCK.getDefaultState(),AbstractBlock.Settings.copy(Blocks.CUT_COPPER_STAIRS)));
+    public static final Block CUT_WROUGHT_IRON_SLAB = registerBlock("cut_wrought_iron_slab", new SlabBlock(AbstractBlock.Settings.copy(Blocks.CUT_COPPER_SLAB)));
+    public static final Block WROUGHT_IRON_BULB = registerBlock("wrought_iron_bulb", new BulbBlock(AbstractBlock.Settings.copy(Blocks.COPPER_BULB)));
+    public static final Block WROUGHT_IRON_BARS = registerBlock("wrought_iron_bars", new PaneBlock(AbstractBlock.Settings.copy(Blocks.IRON_BARS)));
 
     // =================================================
     // ||                  CLAY WALL                  ||
     // =================================================
-    public static final Block CLAY_WALL = registerBlock("clay_wall",
-            new Block(AbstractBlock.Settings.copy(Blocks.CLAY)));
-    public static final Block CLAY_WALL_CROSS = registerBlock("clay_wall_cross",
-            new Block(AbstractBlock.Settings.copy(Blocks.CLAY)));
-    public static final Block CLAY_WALL_DIAGONAL = registerBlock("clay_wall_diagonal",
-            new ClayWallDiagBlock(AbstractBlock.Settings.copy(Blocks.CLAY)));
+    public static final Block CLAY_WALL = registerClayWall("clay_wall", false);
+    public static final Block CLAY_WALL_CROSS = registerClayWall("clay_wall_cross", false);
+    public static final Block CLAY_WALL_DIAGONAL = registerClayWall("clay_wall_diagonal", true);
 
     // =================================================
     // ||                  IRONWOOD                   ||
     // =================================================
-    public static final Block IRONWOOD_LEAVES = registerBlock("ironwood_leaves",
-            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
-    public static final Block IRONWOOD_LOG = registerBlock("ironwood_log",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
-    public static final Block IRONWOOD_WOOD = registerBlock("ironwood_wood",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
-    public static final Block STRIPPED_IRONWOOD_LOG = registerBlock("stripped_ironwood_log",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
-    public static final Block STRIPPED_IRONWOOD_WOOD = registerBlock("stripped_ironwood_wood",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)));
-    public static final Block IRONWOOD_PLANKS = registerBlock("ironwood_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
-    public static final Block IRONWOOD_SAPLING = registerBlock("ironwood_sapling",
-            new SaplingBlock(ModSaplingGenerators.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
-    public static final Block IRONWOOD_STAIRS = registerBlock("ironwood_stairs",
-            new StairsBlock(ModBlocks.IRONWOOD_PLANKS.getDefaultState(), AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block IRONWOOD_SLAB = registerBlock("ironwood_slab",
-            new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block IRONWOOD_BUTTON = registerBlock("ironwood_button",
-            new ButtonBlock(ResproutedBlockSetTypes.IRONWOOD, 30, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
-    public static final Block IRONWOOD_PRESSURE_PLATE = registerBlock("ironwood_pressure_plate",
-            new PressurePlateBlock(ResproutedBlockSetTypes.IRONWOOD, AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block IRONWOOD_FENCE = registerBlock("ironwood_fence",
-            new FenceBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block IRONWOOD_FENCE_GATE = registerBlock("ironwood_fence_gate",
-            new FenceGateBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block IRONWOOD_DOOR = registerBlock("ironwood_door",
-            new DoorBlock(ResproutedBlockSetTypes.IRONWOOD, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
-    public static final Block IRONWOOD_TRAPDOOR = registerBlock("ironwood_trapdoor",
-            new TrapdoorBlock(ResproutedBlockSetTypes.IRONWOOD, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
-    public static final Block IRONWOOD_SIGN = registerBlockWithoutBlockItem("ironwood_sign",
-            new SignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
-    public static final Block IRONWOOD_WALL_SIGN = registerBlockWithoutBlockItem("ironwood_wall_sign",
-            new WallSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_SIGN)));
-    public static final Block IRONWOOD_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_hanging_sign",
-            new HangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
-    public static final Block IRONWOOD_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_wall_hanging_sign",
-            new WallHangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_HANGING_SIGN)));
+    public static final Block IRONWOOD_LEAVES = registerBlock("ironwood_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block IRONWOOD_LOG = registerBlock("ironwood_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block IRONWOOD_WOOD = registerBlock("ironwood_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
+    public static final Block STRIPPED_IRONWOOD_LOG = registerBlock("stripped_ironwood_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block STRIPPED_IRONWOOD_WOOD = registerBlock("stripped_ironwood_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final Block IRONWOOD_PLANKS = registerBlock("ironwood_planks", new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block IRONWOOD_SAPLING = registerBlock("ironwood_sapling", new SaplingBlock(ModSaplingGenerators.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
+    public static final Block IRONWOOD_STAIRS = registerBlock("ironwood_stairs", new StairsBlock(ModBlocks.IRONWOOD_PLANKS.getDefaultState(), AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_SLAB = registerBlock("ironwood_slab", new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_BUTTON = registerBlock("ironwood_button", new ButtonBlock(ResproutedBlockSetTypes.IRONWOOD, 30, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
+    public static final Block IRONWOOD_PRESSURE_PLATE = registerBlock("ironwood_pressure_plate", new PressurePlateBlock(ResproutedBlockSetTypes.IRONWOOD, AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_FENCE = registerBlock("ironwood_fence", new FenceBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_FENCE_GATE = registerBlock("ironwood_fence_gate", new FenceGateBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block IRONWOOD_DOOR = registerBlock("ironwood_door", new DoorBlock(ResproutedBlockSetTypes.IRONWOOD, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+    public static final Block IRONWOOD_TRAPDOOR = registerBlock("ironwood_trapdoor", new TrapdoorBlock(ResproutedBlockSetTypes.IRONWOOD, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+    public static final Block IRONWOOD_SIGN = registerBlockWithoutBlockItem("ironwood_sign", new SignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
+    public static final Block IRONWOOD_WALL_SIGN = registerBlockWithoutBlockItem("ironwood_wall_sign", new WallSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_SIGN)));
+    public static final Block IRONWOOD_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_hanging_sign", new HangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE)));
+    public static final Block IRONWOOD_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("ironwood_wall_hanging_sign", new WallHangingSignBlock(ResproutedWoodTypes.IRONWOOD, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_WHITE).dropsLike(ModBlocks.IRONWOOD_HANGING_SIGN)));
 
     // =================================================
     // ||                    OLIVE                    ||
     // =================================================
-    public static final Block OLIVE_LEAVES = registerBlock("olive_leaves",
-            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
-    public static final Block OLIVE_LOG = registerBlock("olive_log",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
-    public static final Block STRIPPED_OLIVE_WOOD = registerBlock("stripped_olive_wood",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)));
-    public static final Block OLIVE_WOOD = registerBlock("olive_wood",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
-    public static final Block STRIPPED_OLIVE_LOG = registerBlock("stripped_olive_log",
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
-    public static final Block OLIVE_PLANKS = registerBlock("olive_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
-    public static final Block OLIVE_SAPLING = registerBlock("olive_sapling",
-            new SaplingBlock(ModSaplingGenerators.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
-    public static final Block OLIVE_STAIRS = registerBlock("olive_stairs",
-            new StairsBlock(ModBlocks.OLIVE_PLANKS.getDefaultState(), AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block OLIVE_SLAB = registerBlock("olive_slab",
-            new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block OLIVE_BUTTON = registerBlock("olive_button",
-            new ButtonBlock(ResproutedBlockSetTypes.OLIVE, 30, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
-    public static final Block OLIVE_PRESSURE_PLATE = registerBlock("olive_pressure_plate",
-            new PressurePlateBlock(ResproutedBlockSetTypes.OLIVE, AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block OLIVE_FENCE = registerBlock("olive_fence",
-            new FenceBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block OLIVE_FENCE_GATE = registerBlock("olive_fence_gate",
-            new FenceGateBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.create().strength(2f).requiresTool()));
-    public static final Block OLIVE_DOOR = registerBlock("olive_door",
-            new DoorBlock(ResproutedBlockSetTypes.OLIVE, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
-    public static final Block OLIVE_TRAPDOOR = registerBlock("olive_trapdoor",
-            new TrapdoorBlock(ResproutedBlockSetTypes.OLIVE, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
-    public static final Block OLIVE_SIGN = registerBlockWithoutBlockItem("olive_sign",
-            new SignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
-    public static final Block OLIVE_WALL_SIGN = registerBlockWithoutBlockItem("olive_wall_sign",
-            new WallSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_SIGN)));
-    public static final Block OLIVE_HANGING_SIGN = registerBlockWithoutBlockItem("olive_hanging_sign",
-            new HangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
-    public static final Block OLIVE_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("olive_wall_hanging_sign",
-            new WallHangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_HANGING_SIGN)));
+    public static final Block OLIVE_LEAVES = registerBlock("olive_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+    public static final Block OLIVE_LOG = registerBlock("olive_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block STRIPPED_OLIVE_WOOD = registerBlock("stripped_olive_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final Block OLIVE_WOOD = registerBlock("olive_wood", new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD)));
+    public static final Block STRIPPED_OLIVE_LOG = registerBlock("stripped_olive_log", new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG)));
+    public static final Block OLIVE_PLANKS = registerBlock("olive_planks", new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+    public static final Block OLIVE_SAPLING = registerBlock("olive_sapling", new SaplingBlock(ModSaplingGenerators.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)));
+    public static final Block OLIVE_STAIRS = registerBlock("olive_stairs", new StairsBlock(ModBlocks.OLIVE_PLANKS.getDefaultState(), AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_SLAB = registerBlock("olive_slab", new SlabBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_BUTTON = registerBlock("olive_button", new ButtonBlock(ResproutedBlockSetTypes.OLIVE, 30, AbstractBlock.Settings.create().strength(2f).requiresTool().noCollision()));
+    public static final Block OLIVE_PRESSURE_PLATE = registerBlock("olive_pressure_plate", new PressurePlateBlock(ResproutedBlockSetTypes.OLIVE, AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_FENCE = registerBlock("olive_fence", new FenceBlock(AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_FENCE_GATE = registerBlock("olive_fence_gate", new FenceGateBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.create().strength(2f).requiresTool()));
+    public static final Block OLIVE_DOOR = registerBlock("olive_door", new DoorBlock(ResproutedBlockSetTypes.OLIVE, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+    public static final Block OLIVE_TRAPDOOR = registerBlock("olive_trapdoor", new TrapdoorBlock(ResproutedBlockSetTypes.OLIVE, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
+    public static final Block OLIVE_SIGN = registerBlockWithoutBlockItem("olive_sign", new SignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
+    public static final Block OLIVE_WALL_SIGN = registerBlockWithoutBlockItem("olive_wall_sign", new WallSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_SIGN)));
+    public static final Block OLIVE_HANGING_SIGN = registerBlockWithoutBlockItem("olive_hanging_sign", new HangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE)));
+    public static final Block OLIVE_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("olive_wall_hanging_sign", new WallHangingSignBlock(ResproutedWoodTypes.OLIVE, AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN).strength(1.0f, 5.0f).mapColor(MapColor.TERRACOTTA_ORANGE).dropsLike(ModBlocks.OLIVE_HANGING_SIGN)));
 
     // =================================================
     // ||               PAINTED PLANKS                ||
     // =================================================
-    public static final Block BLACK_PAINTED_PLANKS = registerBlock("black_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.BLACK)));
-    public static final Block BLUE_PAINTED_PLANKS = registerBlock("blue_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.BLUE)));
-    public static final Block BROWN_PAINTED_PLANKS = registerBlock("brown_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.BROWN)));
-    public static final Block CYAN_PAINTED_PLANKS = registerBlock("cyan_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.CYAN)));
-    public static final Block GRAY_PAINTED_PLANKS = registerBlock("gray_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.GRAY)));
-    public static final Block GREEN_PAINTED_PLANKS = registerBlock("green_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.GREEN)));
-    public static final Block LIGHT_BLUE_PAINTED_PLANKS = registerBlock("light_blue_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.LIGHT_BLUE)));
-    public static final Block LIME_PAINTED_PLANKS = registerBlock("lime_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.LIME)));
-    public static final Block MAGENTA_PAINTED_PLANKS = registerBlock("magenta_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.MAGENTA)));
-    public static final Block ORANGE_PAINTED_PLANKS = registerBlock("orange_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.ORANGE)));
-    public static final Block PINK_PAINTED_PLANKS = registerBlock("pink_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.PINK)));
-    public static final Block PURPLE_PAINTED_PLANKS = registerBlock("purple_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.PURPLE)));
-    public static final Block RED_PAINTED_PLANKS = registerBlock("red_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.RED)));
-    public static final Block LIGHT_GRAY_PAINTED_PLANKS = registerBlock("light_gray_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.LIGHT_GRAY)));
-    public static final Block WHITE_PAINTED_PLANKS = registerBlock("white_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.WHITE)));
-    public static final Block YELLOW_PAINTED_PLANKS = registerBlock("yellow_painted_planks",
-            new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(MapColor.YELLOW)));
+    public static final Block BLACK_PAINTED_PLANKS = registerPaintedPlank("black_painted_planks", MapColor.BLACK);
+    public static final Block BLUE_PAINTED_PLANKS = registerPaintedPlank("blue_painted_planks", MapColor.BLUE);
+    public static final Block BROWN_PAINTED_PLANKS = registerPaintedPlank("brown_painted_planks", MapColor.BROWN);
+    public static final Block CYAN_PAINTED_PLANKS = registerPaintedPlank("cyan_painted_planks", MapColor.CYAN);
+    public static final Block GRAY_PAINTED_PLANKS = registerPaintedPlank("gray_painted_planks", MapColor.GRAY);
+    public static final Block GREEN_PAINTED_PLANKS = registerPaintedPlank("green_painted_planks", MapColor.GREEN);
+    public static final Block LIGHT_BLUE_PAINTED_PLANKS = registerPaintedPlank("light_blue_painted_planks", MapColor.LIGHT_BLUE);
+    public static final Block LIME_PAINTED_PLANKS = registerPaintedPlank("lime_painted_planks", MapColor.LIME);
+    public static final Block MAGENTA_PAINTED_PLANKS = registerPaintedPlank("magenta_painted_planks", MapColor.MAGENTA);
+    public static final Block ORANGE_PAINTED_PLANKS = registerPaintedPlank("orange_painted_planks", MapColor.ORANGE);
+    public static final Block PINK_PAINTED_PLANKS = registerPaintedPlank("pink_painted_planks", MapColor.PINK);
+    public static final Block PURPLE_PAINTED_PLANKS = registerPaintedPlank("purple_painted_planks", MapColor.PURPLE);
+    public static final Block RED_PAINTED_PLANKS = registerPaintedPlank("red_painted_planks", MapColor.RED);
+    public static final Block LIGHT_GRAY_PAINTED_PLANKS = registerPaintedPlank("light_gray_painted_planks", MapColor.LIGHT_GRAY);
+    public static final Block WHITE_PAINTED_PLANKS = registerPaintedPlank("white_painted_planks", MapColor.WHITE);
+    public static final Block YELLOW_PAINTED_PLANKS = registerPaintedPlank("yellow_painted_planks", MapColor.YELLOW);
 
     // =================================================
     // ||                  CHAIRS                     ||
     // =================================================
-    public static final Block ACACIA_CHAIR = registerBlock("acacia_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block CHERRY_CHAIR = registerBlock("cherry_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block BAMBOO_CHAIR = registerBlock("bamboo_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block CRIMSON_CHAIR = registerBlock("crimson_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block OAK_CHAIR = registerBlock("oak_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block BIRCH_CHAIR = registerBlock("birch_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block SPRUCE_CHAIR = registerBlock("spruce_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block JUNGLE_CHAIR = registerBlock("jungle_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block WARPED_CHAIR = registerBlock("warped_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block DARK_OAK_CHAIR = registerBlock("dark_oak_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block MANGROVE_CHAIR = registerBlock("mangrove_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block IRONWOOD_CHAIR = registerBlock("ironwood_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block OLIVE_CHAIR = registerBlock("olive_chair",
-            new ChairBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block ACACIA_CHAIR = registerChair("acacia_chair", Blocks.ACACIA_PLANKS);
+    public static final Block CHERRY_CHAIR = registerChair("cherry_chair", Blocks.CHERRY_PLANKS);
+    public static final Block BAMBOO_CHAIR = registerChair("bamboo_chair", Blocks.BAMBOO_PLANKS);
+    public static final Block CRIMSON_CHAIR = registerChair("crimson_chair", Blocks.CRIMSON_PLANKS);
+    public static final Block OAK_CHAIR = registerChair("oak_chair", Blocks.OAK_PLANKS);
+    public static final Block BIRCH_CHAIR = registerChair("birch_chair", Blocks.BIRCH_PLANKS);
+    public static final Block SPRUCE_CHAIR = registerChair("spruce_chair", Blocks.SPRUCE_PLANKS);
+    public static final Block JUNGLE_CHAIR = registerChair("jungle_chair", Blocks.JUNGLE_PLANKS);
+    public static final Block WARPED_CHAIR = registerChair("warped_chair", Blocks.WARPED_PLANKS);
+    public static final Block DARK_OAK_CHAIR = registerChair("dark_oak_chair", Blocks.DARK_OAK_PLANKS);
+    public static final Block MANGROVE_CHAIR = registerChair("mangrove_chair", Blocks.MANGROVE_PLANKS);
+    public static final Block IRONWOOD_CHAIR = registerChair("ironwood_chair", Blocks.OAK_PLANKS);
+    public static final Block OLIVE_CHAIR = registerChair("olive_chair", Blocks.OAK_PLANKS);
 
     // =================================================
     // ||                  STOOLS                     ||
     // =================================================
-    public static final Block OAK_STOOL = registerBlock("oak_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block ACACIA_STOOL = registerBlock("acacia_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block CHERRY_STOOL = registerBlock("cherry_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block BAMBOO_STOOL = registerBlock("bamboo_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block CRIMSON_STOOL = registerBlock("crimson_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block BIRCH_STOOL = registerBlock("birch_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block SPRUCE_STOOL = registerBlock("spruce_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block JUNGLE_STOOL = registerBlock("jungle_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block WARPED_STOOL = registerBlock("warped_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block DARK_OAK_STOOL = registerBlock("dark_oak_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block MANGROVE_STOOL = registerBlock("mangrove_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block IRONWOOD_STOOL = registerBlock("ironwood_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
-    public static final Block OLIVE_STOOL = registerBlock("olive_stool",
-            new StoolBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
+    public static final Block OAK_STOOL = registerStool("oak_stool", Blocks.OAK_PLANKS);
+    public static final Block ACACIA_STOOL = registerStool("acacia_stool", Blocks.ACACIA_PLANKS);
+    public static final Block CHERRY_STOOL = registerStool("cherry_stool", Blocks.CHERRY_PLANKS);
+    public static final Block BAMBOO_STOOL = registerStool("bamboo_stool", Blocks.BAMBOO_PLANKS);
+    public static final Block CRIMSON_STOOL = registerStool("crimson_stool", Blocks.CRIMSON_PLANKS);
+    public static final Block BIRCH_STOOL = registerStool("birch_stool", Blocks.BIRCH_PLANKS);
+    public static final Block SPRUCE_STOOL = registerStool("spruce_stool", Blocks.SPRUCE_PLANKS);
+    public static final Block JUNGLE_STOOL = registerStool("jungle_stool", Blocks.JUNGLE_PLANKS);
+    public static final Block WARPED_STOOL = registerStool("warped_stool", Blocks.WARPED_PLANKS);
+    public static final Block DARK_OAK_STOOL = registerStool("dark_oak_stool", Blocks.DARK_OAK_PLANKS);
+    public static final Block MANGROVE_STOOL = registerStool("mangrove_stool", Blocks.MANGROVE_PLANKS);
+    public static final Block IRONWOOD_STOOL = registerStool("ironwood_stool", Blocks.OAK_PLANKS);
+    public static final Block OLIVE_STOOL = registerStool("olive_stool", Blocks.OAK_PLANKS);
 
     // =================================================
     // ||                  TABLES                     ||
     // =================================================
-    public static final Block OAK_TABLE = registerBlock("oak_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block DARK_OAK_TABLE = registerBlock("dark_oak_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block MANGROVE_TABLE = registerBlock("mangrove_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block CHERRY_TABLE = registerBlock("cherry_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block BIRCH_TABLE = registerBlock("birch_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block SPRUCE_TABLE = registerBlock("spruce_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block ACACIA_TABLE = registerBlock("acacia_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block JUNGLE_TABLE = registerBlock("jungle_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block BAMBOO_TABLE = registerBlock("bamboo_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block CRIMSON_TABLE = registerBlock("crimson_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block WARPED_TABLE = registerBlock("warped_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block IRONWOOD_TABLE = registerBlock("ironwood_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
-    public static final Block OLIVE_TABLE = registerBlock("olive_table",
-            new TableBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().solid()));
+    public static final Block OAK_TABLE = registerTable("oak_table", Blocks.OAK_PLANKS);
+    public static final Block DARK_OAK_TABLE = registerTable("dark_oak_table", Blocks.DARK_OAK_PLANKS);
+    public static final Block MANGROVE_TABLE = registerTable("mangrove_table", Blocks.MANGROVE_PLANKS);
+    public static final Block CHERRY_TABLE = registerTable("cherry_table", Blocks.CHERRY_PLANKS);
+    public static final Block BIRCH_TABLE = registerTable("birch_table", Blocks.BIRCH_PLANKS);
+    public static final Block SPRUCE_TABLE = registerTable("spruce_table", Blocks.SPRUCE_PLANKS);
+    public static final Block ACACIA_TABLE = registerTable("acacia_table", Blocks.ACACIA_PLANKS);
+    public static final Block JUNGLE_TABLE = registerTable("jungle_table", Blocks.JUNGLE_PLANKS);
+    public static final Block BAMBOO_TABLE = registerTable("bamboo_table", Blocks.BAMBOO_PLANKS);
+    public static final Block CRIMSON_TABLE = registerTable("crimson_table", Blocks.CRIMSON_PLANKS);
+    public static final Block WARPED_TABLE = registerTable("warped_table", Blocks.WARPED_PLANKS);
+    public static final Block IRONWOOD_TABLE = registerTable("ironwood_table", Blocks.OAK_PLANKS);
+    public static final Block OLIVE_TABLE = registerTable("olive_table", Blocks.OAK_PLANKS);
 
     // =================================================
     // ||                 CABINETS                    ||
@@ -1035,7 +935,7 @@ public class ModBlocks {
     public static final Block APPLE_LEAVES = registerBlock("apple_leaves", new FruitLeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).nonOpaque()));
     public static final Block APPLE_SAPLING = registerBlock("apple_sapling", new SaplingBlock(ModSaplingGenerators.APPLE, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING).nonOpaque().solidBlock(Blocks::never).suffocates(Blocks::never)));
     public static final Block CRUSHING_TUB = registerBlock("crushing_tub", new CrushingTubBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().luminance(state -> state.get(LuminousFluidStorage.LIGHT_LEVEL))));
-    public static final Block DRYING_BASIN = registerBlock("drying_basin", new DryingBasinBlock(AbstractBlock.Settings.copy(Blocks.TERRACOTTA).nonOpaque().luminance(state -> state.get(LuminousFluidStorage.LIGHT_LEVEL))));
+    public static final Block DRYING_BASIN = registerBlock("drying_basin", new DryingBasinBlock(AbstractBlock.Settings.copy(Blocks.TERRACOTTA).nonOpaque().sounds(BlockSoundGroup.DECORATED_POT).luminance(state -> state.get(LuminousFluidStorage.LIGHT_LEVEL))));
     public static final Block LIQUID_BARREL = registerBlock("liquid_barrel" , new LiquidBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque().luminance(state -> state.get(LuminousFluidStorage.LIGHT_LEVEL))));
     public static final Block BREWING_BARREL = registerBlock("brewing_barrel" , new BrewingBarrelBlock(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).nonOpaque()));
     public static final Block IRON_BERRY_CAKE = registerBlock("iron_berry_cake", new CustomCakeBlock(AbstractBlock.Settings.copy(Blocks.CAKE), ModEffects.FULL_METAL, 200, 0));
@@ -1173,22 +1073,191 @@ public class ModBlocks {
     // ||                 DECORATIVE                  ||
     // =================================================
     public static final Block GARGOYLE = registerBlock("gargoyle", new GargoyleBlock(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque()));
+    public static final Block JAR = registerBlock("jar", createJarBlock(null, MapColor.TERRACOTTA_RED));
+    //Jar
+    public static final Block WHITE_JAR = registerBlock("white_jar", createJarBlock(DyeColor.WHITE, MapColor.WHITE));
+    public static final Block ORANGE_JAR = registerBlock("orange_jar", createJarBlock(DyeColor.ORANGE, MapColor.ORANGE));
+    public static final Block MAGENTA_JAR = registerBlock("magenta_jar", createJarBlock(DyeColor.MAGENTA, MapColor.MAGENTA));
+    public static final Block LIGHT_BLUE_JAR = registerBlock("light_blue_jar", createJarBlock(DyeColor.LIGHT_BLUE, MapColor.LIGHT_BLUE));
+    public static final Block YELLOW_JAR = registerBlock("yellow_jar", createJarBlock(DyeColor.YELLOW, MapColor.YELLOW));
+    public static final Block LIME_JAR = registerBlock("lime_jar", createJarBlock(DyeColor.LIME, MapColor.LIME));
+    public static final Block PINK_JAR = registerBlock("pink_jar", createJarBlock(DyeColor.PINK, MapColor.PINK));
+    public static final Block GRAY_JAR = registerBlock("gray_jar", createJarBlock(DyeColor.GRAY, MapColor.GRAY));
+    public static final Block LIGHT_GRAY_JAR = registerBlock("light_gray_jar", createJarBlock(DyeColor.LIGHT_GRAY, MapColor.LIGHT_GRAY));
+    public static final Block CYAN_JAR = registerBlock("cyan_jar", createJarBlock(DyeColor.CYAN, MapColor.CYAN));
+    public static final Block PURPLE_JAR = registerBlock("purple_jar", createJarBlock(DyeColor.PURPLE, MapColor.TERRACOTTA_PURPLE));
+    public static final Block BLUE_JAR = registerBlock("blue_jar", createJarBlock(DyeColor.BLUE, MapColor.BLUE));
+    public static final Block BROWN_JAR = registerBlock("brown_jar", createJarBlock(DyeColor.BROWN, MapColor.BROWN));
+    public static final Block GREEN_JAR = registerBlock("green_jar", createJarBlock(DyeColor.GREEN, MapColor.GREEN));
+    public static final Block RED_JAR = registerBlock("red_jar", createJarBlock(DyeColor.RED, MapColor.RED));
+    public static final Block BLACK_JAR = registerBlock("black_jar", createJarBlock(DyeColor.BLACK, MapColor.BLACK));
+    //Urn
+    public static final Block URN = registerBlock("urn", createPotBlock(null, MapColor.TERRACOTTA_RED));
+    public static final Block WHITE_URN = registerBlock("white_urn", createPotBlock(DyeColor.WHITE, MapColor.WHITE));
+    public static final Block ORANGE_URN = registerBlock("orange_urn", createPotBlock(DyeColor.ORANGE, MapColor.ORANGE));
+    public static final Block MAGENTA_URN = registerBlock("magenta_urn", createPotBlock(DyeColor.MAGENTA, MapColor.MAGENTA));
+    public static final Block LIGHT_BLUE_URN = registerBlock("light_blue_urn", createPotBlock(DyeColor.LIGHT_BLUE, MapColor.LIGHT_BLUE));
+    public static final Block YELLOW_URN = registerBlock("yellow_urn", createPotBlock(DyeColor.YELLOW, MapColor.YELLOW));
+    public static final Block LIME_URN = registerBlock("lime_urn", createPotBlock(DyeColor.LIME, MapColor.LIME));
+    public static final Block PINK_URN = registerBlock("pink_urn", createPotBlock(DyeColor.PINK, MapColor.PINK));
+    public static final Block GRAY_URN = registerBlock("gray_urn", createPotBlock(DyeColor.GRAY, MapColor.GRAY));
+    public static final Block LIGHT_GRAY_URN = registerBlock("light_gray_urn", createPotBlock(DyeColor.LIGHT_GRAY, MapColor.LIGHT_GRAY));
+    public static final Block CYAN_URN = registerBlock("cyan_urn", createPotBlock(DyeColor.CYAN, MapColor.CYAN));
+    public static final Block PURPLE_URN = registerBlock("purple_urn", createPotBlock(DyeColor.PURPLE, MapColor.TERRACOTTA_PURPLE));
+    public static final Block BLUE_URN = registerBlock("blue_urn", createPotBlock(DyeColor.BLUE, MapColor.BLUE));
+    public static final Block BROWN_URN = registerBlock("brown_urn", createPotBlock(DyeColor.BROWN, MapColor.BROWN));
+    public static final Block GREEN_URN = registerBlock("green_urn", createPotBlock(DyeColor.GREEN, MapColor.GREEN));
+    public static final Block RED_URN = registerBlock("red_urn", createPotBlock(DyeColor.RED, MapColor.RED));
+    public static final Block BLACK_URN = registerBlock("black_urn", createPotBlock(DyeColor.BLACK, MapColor.BLACK));
 
-    private static Block registerBlockWithoutBlockItem(String name, Block block) {
-        return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);
+    // =================================================
+    // ||                UNFIRED BLOCKS               ||
+    // =================================================
+
+    public static final Block UNFIRED_DRYING_BASIN = registerBlock("unfired_drying_basin",
+            new UnfiredBlock(AbstractBlock.Settings.copy(Blocks.CLAY), ModBlocks.DRYING_BASIN) {
+                @Override
+                protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+                    return DryingBasinBlock.SHAPE;
+                }
+            });
+
+    public static final Block UNFIRED_JAR = registerBlock("unfired_jar",
+            new UnfiredBlock(AbstractBlock.Settings.copy(Blocks.CLAY), ModBlocks.JAR) {
+                @Override
+                protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+                    return JarBlock.CLOSED_SHAPE;
+                }
+            });
+
+    public static final Block UNFIRED_URN = registerBlock("unfired_urn",
+            new UnfiredBlock(AbstractBlock.Settings.copy(Blocks.CLAY), ModBlocks.URN) {
+                @Override
+                protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+                    return UrnBlock.SHAPE;
+                }
+            });
+
+    private static Block createJarBlock(@Nullable DyeColor color, MapColor mapColor) {
+        return new JarBlock(AbstractBlock.Settings.create()
+                .mapColor(mapColor)
+                .solid()
+                .strength(2.0F)
+                .dynamicBounds()
+                .nonOpaque()
+                .luminance(state -> state.get(LuminousFluidStorage.LIGHT_LEVEL))
+                .sounds(BlockSoundGroup.DECORATED_POT)
+                .pistonBehavior(PistonBehavior.DESTROY),
+                color
+        );
     }
-    private static Block registerBlock(String name, Block block) {
-        registerBlockItem(name, block);
-        return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);
+
+    private static Block createPotBlock(@Nullable DyeColor color, MapColor mapColor) {
+        return new UrnBlock(AbstractBlock.Settings.create()
+                .mapColor(mapColor)
+                .solid()
+                .strength(2.0F)
+                .dynamicBounds()
+                .nonOpaque()
+                .sounds(BlockSoundGroup.DECORATED_POT)
+                .pistonBehavior(PistonBehavior.DESTROY),
+                color
+        );
     }
-    private static void registerBlockItem(String name, Block block){
-        Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name),
-                new BlockItem(block, new Item.Settings()));
+
+    private static Block registerPaintedPlank(String name, MapColor color) {
+        if (Resprouted.COMMON_CONFIG.getGeneral().isEnablePaintedPlanks()) {
+            return registerBlock(name, new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(color)));
+        }
+        return null;
     }
+
+    private static Block registerChair(String name, Block baseBlock) {
+        if (Resprouted.COMMON_CONFIG.getGeneral().isEnableChairs()) {
+            return registerBlock(name, new ChairBlock(AbstractBlock.Settings.copy(baseBlock).nonOpaque()));
+        }
+        return null;
+    }
+
+    private static Block registerStool(String name, Block baseBlock) {
+        if (Resprouted.COMMON_CONFIG.getGeneral().isEnableStools()) {
+            return registerBlock(name, new StoolBlock(AbstractBlock.Settings.copy(baseBlock).nonOpaque()));
+        }
+        return null;
+    }
+
+    private static Block registerTable(String name, Block baseBlock) {
+        if (Resprouted.COMMON_CONFIG.getGeneral().isEnableTables()) {
+            return registerBlock(name, new TableBlock(AbstractBlock.Settings.copy(baseBlock).nonOpaque().solid()));
+        }
+        return null;
+    }
+
+    private static Block registerClayWall(String name, boolean isDiagonal) {
+        if (Resprouted.COMMON_CONFIG.getGeneral().isEnableClayWalls()) {
+            if (isDiagonal) {
+                return registerBlock(name, new ClayWallDiagBlock(AbstractBlock.Settings.copy(Blocks.CLAY)));
+            } else {
+                return registerBlock(name, new Block(AbstractBlock.Settings.copy(Blocks.CLAY)));
+            }
+        }
+        return null;
+    }
+
+    private static Block registerVanillaVariationBlock(String name, AbstractBlock.Settings settings) {
+        if (!Resprouted.COMMON_CONFIG.getGeneral().isEnableVanillaBlockVariations()) {
+            return null;
+        }
+        return registerBlock(name, new Block(settings));
+    }
+
+    private static Block registerVanillaVariationWall(String name, AbstractBlock.Settings settings) {
+        if (!Resprouted.COMMON_CONFIG.getGeneral().isEnableVanillaBlockVariations()) {
+            return null;
+        }
+        return registerBlock(name, new WallBlock(settings));
+    }
+
+    private static Block registerVanillaVariationSlab(String name, AbstractBlock.Settings settings) {
+        if (!Resprouted.COMMON_CONFIG.getGeneral().isEnableVanillaBlockVariations()) {
+            return null;
+        }
+        return registerBlock(name, new SlabBlock(settings));
+    }
+
+    private static Block registerVanillaVariationPillar(String name, AbstractBlock.Settings settings) {
+        if (!Resprouted.COMMON_CONFIG.getGeneral().isEnableVanillaBlockVariations()) {
+            return null;
+        }
+        return registerBlock(name, new PillarBlock(settings));
+    }
+
+    private static Block registerVanillaVariationStairs(String name, Block baseBlock, Block copySettingsFrom) {
+        if (!Resprouted.COMMON_CONFIG.getGeneral().isEnableVanillaBlockVariations() || baseBlock == null) {
+            return null;
+        }
+        return registerBlock(name, new StairsBlock(baseBlock.getDefaultState(), AbstractBlock.Settings.copy(copySettingsFrom)));
+    }
+
     private static Block registerCabinetBlock(String name, Block block) {
         CabinetRegistry.registerCabinet(block);
         return registerBlock(name, block);
     }
+
+    private static Block registerBlockWithoutBlockItem(String name, Block block) {
+        return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);
+    }
+
+    private static Block registerBlock(String name, Block block) {
+        registerBlockItem(name, block);
+        return Registry.register(Registries.BLOCK, Identifier.of(Resprouted.MOD_ID, name), block);
+    }
+
+    private static void registerBlockItem(String name, Block block){
+        Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name),
+                new BlockItem(block, new Item.Settings()));
+    }
+
     public static void registerModBlocks(){
         Resprouted.LOGGER.info("Registering Blocks for " + Resprouted.MOD_ID);
     }

@@ -54,9 +54,7 @@ public record FluidItemMapping(FluidVariant fluid, ItemStack fullItem, ItemStack
             ItemStack.CODEC.fieldOf("item").forGetter(FluidItemMapping::fullItem),
             ItemStack.CODEC.fieldOf("empty_item").forGetter(FluidItemMapping::emptyItem),
             Codec.LONG.fieldOf("amount").xmap(mb -> mb * 81, droplets -> droplets / 81).forGetter(FluidItemMapping::amount),
-            Identifier.CODEC.listOf().optionalFieldOf("preserved_components", List.of())
-                    .xmap(Set::copyOf, List::copyOf)
-                    .forGetter(FluidItemMapping::preservedComponents),
+            Identifier.CODEC.listOf().optionalFieldOf("preserved_components", List.of()).xmap(Set::copyOf, List::copyOf).forGetter(FluidItemMapping::preservedComponents),
             DirectionMode.CODEC.fieldOf("direction").forGetter(FluidItemMapping::direction),
             Identifier.CODEC.optionalFieldOf("sound").forGetter(FluidItemMapping::customSound)
     ).apply(inst, FluidItemMapping::new));

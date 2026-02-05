@@ -4,17 +4,19 @@ import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.abstracts.AbstractCondenserBlock;
-import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.alchemy.AdvancedCondenserBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.inventory.SidedInventory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
-public class AdvancedCondenserBlock extends AbstractCondenserBlock {
+public class AdvancedCondenserBlock extends AbstractCondenserBlock implements InventoryProvider{
     private static final VoxelShape TOP_SHAPE = VoxelShapes.union(
             Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 12.0, 16.0),
             Block.createCuboidShape(4.0, 12.0, 4.0, 12.0, 16.0, 12.0)
@@ -26,12 +28,24 @@ public class AdvancedCondenserBlock extends AbstractCondenserBlock {
     }
 
     @Override
-    protected BlockEntity createSpecificBlockEntity(BlockPos pos, BlockState state) {
+    public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
+        BlockPos bottomPos = state.get(BOTTOM) ? pos : pos.down();
+        BlockEntity blockEntity = world.getBlockEntity(bottomPos);
+
+        if (blockEntity instanceof SidedInventory sidedInventory) {
+            return sidedInventory;
+        }
+
+        return null;
+    }
+
+    @Override
+    protected BlockEntity getCondenserType(BlockPos pos, BlockState state) {
         return new AdvancedCondenserBlockEntity(pos, state);
     }
 
     @Override
-    public boolean hasRequiredRetorts(World world, BlockPos pos, BlockState state) {
+    public boolean hasRetorts(World world, BlockPos pos, BlockState state) {
         if (state.getBlock() != this) {
             return false;
         }

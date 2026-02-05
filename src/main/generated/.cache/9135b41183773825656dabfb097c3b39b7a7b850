@@ -1,23 +1,25 @@
-// 1.21.1	2026-01-05T16:30:19.3732275	Resprouted/Tags for minecraft:item
-8b53b3f34d59a961a8bc5df09257c900bfc205a7 data\minecraft\tags\item\hanging_signs.json
-24ffd26d165619aaaf95e42c2e3dec1500c0f941 data\minecraft\tags\item\signs.json
-e16a3c9b67bdbfae8c45a9407fa27644616c427e data\resprouted\tags\item\copper_nugget.json
+// 1.21.1	2026-02-04T20:06:30.9487119	Resprouted/Tags for minecraft:item
+145140f9eb184a74ba63756f9980d3e720f71c25 data\resprouted\tags\item\urns.json
 8aeece7ee68b33e6fab70d3a662f94f03da9380a data\resprouted\tags\item\golden_dust.json
 381b9ea68fcafa891b045ed5dd8b56fe3e866bac data\resprouted\tags\item\glass_bottles.json
-517e58996c4f3f353a51b56a55008fce871fe86b data\resprouted\tags\item\booze_bottles.json
 dcb5cf9c7ab26ab2b93bbfcc48539452aa57ecc3 data\resprouted\tags\item\peppers.json
-3089a5f05c8aec5cac6c2ebce5576dfa64aa2590 data\resprouted\tags\item\crops.json
 1bb201cc87089fd742be594e3628681872c196eb data\resprouted\tags\item\tomato.json
 d8520e58c4b2e7f26c6d8b2033c1d66a7ff11494 data\resprouted\tags\item\alchemy_modifiers.json
 5789b98f51be21018aec55b228c6493a73ffe034 data\resprouted\tags\item\tallow.json
 a8fe0206fd5775036924a84f4f2b50131b23dcad data\resprouted\tags\item\can_be_oiled.json
 5556c889a860ff10c91900a85842977c03e7b392 data\resprouted\tags\item\chili_pepper.json
 4dcc822cba19e4afd7424f792b2b47c8f0f31750 data\resprouted\tags\item\grapes.json
+b3bde38f0076db7328e1d575546c7494e712d3ab data\resprouted\tags\item\dusts.json
+91250a5dd066af3e052d2e110f4e7ba324c5ed79 data\minecraft\tags\item\wooden_doors.json
+8b53b3f34d59a961a8bc5df09257c900bfc205a7 data\minecraft\tags\item\hanging_signs.json
+24ffd26d165619aaaf95e42c2e3dec1500c0f941 data\minecraft\tags\item\signs.json
+e16a3c9b67bdbfae8c45a9407fa27644616c427e data\resprouted\tags\item\copper_nugget.json
+517e58996c4f3f353a51b56a55008fce871fe86b data\resprouted\tags\item\booze_bottles.json
+3089a5f05c8aec5cac6c2ebce5576dfa64aa2590 data\resprouted\tags\item\crops.json
 eeea9c75dbba6beccb4c9cd7f5594ce768727495 data\minecraft\tags\item\logs_that_burn.json
 84447924df854006f3ebfc166de6785531cf85df data\minecraft\tags\item\planks.json
 38c8795066e0b0693d5827e5c1f5c1fe56d4f032 data\resprouted\tags\item\olives.json
 74b0188cad8e6d47a1af8a4fa4c1e6d9221ff4d3 data\minecraft\tags\item\chicken_food.json
-b3bde38f0076db7328e1d575546c7494e712d3ab data\resprouted\tags\item\dusts.json
-91250a5dd066af3e052d2e110f4e7ba324c5ed79 data\minecraft\tags\item\wooden_doors.json
 c23efc2d2b8508cbfe6722c84e52f1a5caa016de data\minecraft\tags\item\stone_tool_materials.json
 635746eb9252de6dab1d5da0686da5d22efd3006 data\resprouted\tags\item\iron_dust.json
+ee1a17f98efa3e575b67fdb22823e4e9b93827a2 data\resprouted\tags\item\jars.json

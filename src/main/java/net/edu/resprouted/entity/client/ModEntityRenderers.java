@@ -38,8 +38,7 @@ public class ModEntityRenderers {
                     entity -> entity instanceof ResproutedEntityExtension ext && ext.resprouted$hasFullMetal()
             ));
         } catch (Exception e) {
-            Resprouted.LOGGER.warn("Failed to register effect layers for {}",
-                    entityRenderer.getClass().getSimpleName(), e);
+            Resprouted.LOGGER.warn("Failed to register effect layers for {}", entityRenderer.getClass().getSimpleName(), e);
         }
     }
 }

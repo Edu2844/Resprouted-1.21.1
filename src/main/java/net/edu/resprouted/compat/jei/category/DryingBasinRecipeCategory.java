@@ -69,8 +69,7 @@ public class DryingBasinRecipeCategory implements IRecipeCategory<DryingBasinRec
                 .setFluidRenderer(6000, true, 16, 16)
                 .addFluidStack(recipe.fluidInput().getFluid(), recipe.fluidCost());
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 28)
-                .addItemStack(recipe.output());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 28).addItemStack(recipe.output());
     }
 
     @Override
@@ -106,6 +105,7 @@ public class DryingBasinRecipeCategory implements IRecipeCategory<DryingBasinRec
             int remainingSeconds = (int) (seconds % 60);
             if (remainingSeconds == 0) {
                 return String.format("%dm", minutes);
+
             } else {
                 return String.format("%dm %ds", minutes, remainingSeconds);
             }

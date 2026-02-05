@@ -67,6 +67,8 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
         registration.getCraftingCategory().addExtension(OliveOilingRecipe.class, JEIVanillaExtensions.createOilingExtension());
+        registration.getCraftingCategory().addExtension(UrnColoringRecipe.class, JEIVanillaExtensions.createUrnColoringExtension());
+        registration.getCraftingCategory().addExtension(JarColoringRecipe.class, JEIVanillaExtensions.createJarColoringExtension());
     }
 
     @Override

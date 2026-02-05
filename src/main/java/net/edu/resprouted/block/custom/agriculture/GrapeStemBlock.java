@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.item.ModItems;
-import net.edu.resprouted.util.ModTags;
+import net.edu.resprouted.util.misc.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemPlacementContext;

@@ -105,8 +105,7 @@ public class RopeBlock extends CustomChainBlock {
         state = super.getStateForNeighborUpdate(state, dir, neighbor, world, pos, neighborPos);
 
         if (state.get(AXIS) != Direction.Axis.Y && dir == Direction.DOWN) {
-            boolean knot = neighbor.getBlock().getClass() == this.getClass()
-                    && neighbor.get(AXIS) == Direction.Axis.Y;
+            boolean knot = neighbor.getBlock().getClass() == this.getClass() && neighbor.get(AXIS) == Direction.Axis.Y;
 
             if (knot && !isBlockSupported(world, pos, state)) {
                 if (world instanceof ServerWorld serverWorld) {

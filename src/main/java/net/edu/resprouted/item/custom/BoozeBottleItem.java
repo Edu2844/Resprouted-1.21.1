@@ -2,8 +2,8 @@ package net.edu.resprouted.item.custom;
 
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
-import net.edu.resprouted.util.FluidUtils;
-import net.edu.resprouted.util.TextUtils;
+import net.edu.resprouted.util.fluid.FluidUtils;
+import net.edu.resprouted.util.misc.TextUtils;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;

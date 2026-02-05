@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:candle"
+    },
+    "I": {
+      "item": "minecraft:copper_ingot"
+    },
+    "N": {
+      "item": "resprouted:copper_nugget"
+    }
+  },
+  "pattern": [
+    "C C",
+    "N N",
+    " I "
+  ],
+  "result": {
+    "count": 4,
+    "id": "resprouted:double_copper_candle_holder"
+  }
+}

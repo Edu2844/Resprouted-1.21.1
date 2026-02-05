@@ -3,7 +3,7 @@ package net.edu.resprouted.item;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.item.custom.BoozeBottleItem;
-import net.edu.resprouted.util.ElixirUtils;
+import net.edu.resprouted.util.misc.ElixirUtils;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -35,8 +35,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.OLIVE_SAPLING);
                         entries.add(ModBlocks.IRONWOOD_SAPLING);
                         entries.add(ModBlocks.CRUSHING_TUB);
-                        entries.add(ModBlocks.LIQUID_BARREL);
                         entries.add(ModBlocks.DRYING_BASIN);
+                        entries.add(ModBlocks.UNFIRED_DRYING_BASIN);
                         entries.add(ModBlocks.STAKE);
                         entries.add(ModBlocks.ROPE);
                         //Seeds
@@ -151,47 +151,49 @@ public class ModItemGroups {
                         entries.add(ModBlocks.SLATE_ROOF_STAIRS);
                         entries.add(ModBlocks.SLATE_PILLAR);
 
-                        entries.add(ModBlocks.POLISHED_STONE);
-                        entries.add(ModBlocks.POLISHED_STONE_SLAB);
-                        entries.add(ModBlocks.POLISHED_STONE_STAIRS);
-                        entries.add(ModBlocks.POLISHED_STONE_WALL);
-                        entries.add(ModBlocks.STONE_PILLAR);
+                        if (Resprouted.COMMON_CONFIG.getGeneral().isEnableVanillaBlockVariations()) {
+                            entries.add(ModBlocks.POLISHED_STONE);
+                            entries.add(ModBlocks.POLISHED_STONE_SLAB);
+                            entries.add(ModBlocks.POLISHED_STONE_STAIRS);
+                            entries.add(ModBlocks.POLISHED_STONE_WALL);
+                            entries.add(ModBlocks.STONE_PILLAR);
 
-                        entries.add(ModBlocks.ANDESITE_BRICKS);
-                        entries.add(ModBlocks.ANDESITE_BRICK_SLAB);
-                        entries.add(ModBlocks.ANDESITE_BRICK_STAIRS);
-                        entries.add(ModBlocks.ANDESITE_BRICK_WALL);
-                        entries.add(ModBlocks.CRACKED_ANDESITE_BRICKS);
-                        entries.add(ModBlocks.CHISELED_ANDESITE);
-                        entries.add(ModBlocks.ANDESITE_PILLAR);
+                            entries.add(ModBlocks.ANDESITE_BRICKS);
+                            entries.add(ModBlocks.ANDESITE_BRICK_SLAB);
+                            entries.add(ModBlocks.ANDESITE_BRICK_STAIRS);
+                            entries.add(ModBlocks.ANDESITE_BRICK_WALL);
+                            entries.add(ModBlocks.CRACKED_ANDESITE_BRICKS);
+                            entries.add(ModBlocks.CHISELED_ANDESITE);
+                            entries.add(ModBlocks.ANDESITE_PILLAR);
 
-                        entries.add(ModBlocks.DIORITE_BRICKS);
-                        entries.add(ModBlocks.DIORITE_BRICK_SLAB);
-                        entries.add(ModBlocks.DIORITE_BRICK_STAIRS);
-                        entries.add(ModBlocks.DIORITE_BRICK_WALL);
-                        entries.add(ModBlocks.CRACKED_DIORITE_BRICKS);
-                        entries.add(ModBlocks.CHISELED_DIORITE);
-                        entries.add(ModBlocks.DIORITE_PILLAR);
+                            entries.add(ModBlocks.DIORITE_BRICKS);
+                            entries.add(ModBlocks.DIORITE_BRICK_SLAB);
+                            entries.add(ModBlocks.DIORITE_BRICK_STAIRS);
+                            entries.add(ModBlocks.DIORITE_BRICK_WALL);
+                            entries.add(ModBlocks.CRACKED_DIORITE_BRICKS);
+                            entries.add(ModBlocks.CHISELED_DIORITE);
+                            entries.add(ModBlocks.DIORITE_PILLAR);
 
-                        entries.add(ModBlocks.GRANITE_BRICKS);
-                        entries.add(ModBlocks.GRANITE_BRICK_SLAB);
-                        entries.add(ModBlocks.GRANITE_BRICK_STAIRS);
-                        entries.add(ModBlocks.GRANITE_BRICK_WALL);
-                        entries.add(ModBlocks.CRACKED_GRANITE_BRICKS);
-                        entries.add(ModBlocks.CHISELED_GRANITE);
-                        entries.add(ModBlocks.GRANITE_PILLAR);
+                            entries.add(ModBlocks.GRANITE_BRICKS);
+                            entries.add(ModBlocks.GRANITE_BRICK_SLAB);
+                            entries.add(ModBlocks.GRANITE_BRICK_STAIRS);
+                            entries.add(ModBlocks.GRANITE_BRICK_WALL);
+                            entries.add(ModBlocks.CRACKED_GRANITE_BRICKS);
+                            entries.add(ModBlocks.CHISELED_GRANITE);
+                            entries.add(ModBlocks.GRANITE_PILLAR);
 
-                        entries.add(ModBlocks.SANDSTONE_BRICKS);
-                        entries.add(ModBlocks.SANDSTONE_BRICK_SLAB);
-                        entries.add(ModBlocks.SANDSTONE_BRICK_STAIRS);
-                        entries.add(ModBlocks.SANDSTONE_BRICK_WALL);
-                        entries.add(ModBlocks.SANDSTONE_PILLAR);
+                            entries.add(ModBlocks.SANDSTONE_BRICKS);
+                            entries.add(ModBlocks.SANDSTONE_BRICK_SLAB);
+                            entries.add(ModBlocks.SANDSTONE_BRICK_STAIRS);
+                            entries.add(ModBlocks.SANDSTONE_BRICK_WALL);
+                            entries.add(ModBlocks.SANDSTONE_PILLAR);
 
-                        entries.add(ModBlocks.RED_SANDSTONE_BRICKS);
-                        entries.add(ModBlocks.RED_SANDSTONE_BRICK_SLAB);
-                        entries.add(ModBlocks.RED_SANDSTONE_BRICK_STAIRS);
-                        entries.add(ModBlocks.RED_SANDSTONE_BRICK_WALL);
-                        entries.add(ModBlocks.RED_SANDSTONE_PILLAR);
+                            entries.add(ModBlocks.RED_SANDSTONE_BRICKS);
+                            entries.add(ModBlocks.RED_SANDSTONE_BRICK_SLAB);
+                            entries.add(ModBlocks.RED_SANDSTONE_BRICK_STAIRS);
+                            entries.add(ModBlocks.RED_SANDSTONE_BRICK_WALL);
+                            entries.add(ModBlocks.RED_SANDSTONE_PILLAR);
+                        }
 
                         entries.add(ModBlocks.WROUGHT_IRON_BLOCK);
                         entries.add(ModBlocks.CUT_WROUGHT_IRON_BLOCK);
@@ -200,9 +202,11 @@ public class ModItemGroups {
                         entries.add(ModBlocks.WROUGHT_IRON_BULB);
                         entries.add(ModBlocks.WROUGHT_IRON_BARS);
 
-                        entries.add(ModBlocks.CLAY_WALL);
-                        entries.add(ModBlocks.CLAY_WALL_CROSS);
-                        entries.add(ModBlocks.CLAY_WALL_DIAGONAL);
+                        if (Resprouted.COMMON_CONFIG.getGeneral().isEnableClayWalls()) {
+                            entries.add(ModBlocks.CLAY_WALL);
+                            entries.add(ModBlocks.CLAY_WALL_CROSS);
+                            entries.add(ModBlocks.CLAY_WALL_DIAGONAL);
+                        }
 
                         entries.add(ModBlocks.OAK_CABINET);
                         entries.add(ModBlocks.SPRUCE_CABINET);
@@ -217,47 +221,53 @@ public class ModItemGroups {
                         entries.add(ModBlocks.IRONWOOD_CABINET);
                         entries.add(ModBlocks.OLIVE_CABINET);
 
-                        entries.add(ModBlocks.OAK_CHAIR);
-                        entries.add(ModBlocks.DARK_OAK_CHAIR);
-                        entries.add(ModBlocks.BIRCH_CHAIR);
-                        entries.add(ModBlocks.SPRUCE_CHAIR);
-                        entries.add(ModBlocks.MANGROVE_CHAIR);
-                        entries.add(ModBlocks.CHERRY_CHAIR);
-                        entries.add(ModBlocks.ACACIA_CHAIR);
-                        entries.add(ModBlocks.JUNGLE_CHAIR);
-                        entries.add(ModBlocks.BAMBOO_CHAIR);
-                        entries.add(ModBlocks.CRIMSON_CHAIR);
-                        entries.add(ModBlocks.WARPED_CHAIR);
-                        entries.add(ModBlocks.IRONWOOD_CHAIR);
-                        entries.add(ModBlocks.OLIVE_CHAIR);
+                        if (Resprouted.COMMON_CONFIG.getGeneral().isEnableChairs()) {
+                            entries.add(ModBlocks.OAK_CHAIR);
+                            entries.add(ModBlocks.DARK_OAK_CHAIR);
+                            entries.add(ModBlocks.BIRCH_CHAIR);
+                            entries.add(ModBlocks.SPRUCE_CHAIR);
+                            entries.add(ModBlocks.MANGROVE_CHAIR);
+                            entries.add(ModBlocks.CHERRY_CHAIR);
+                            entries.add(ModBlocks.ACACIA_CHAIR);
+                            entries.add(ModBlocks.JUNGLE_CHAIR);
+                            entries.add(ModBlocks.BAMBOO_CHAIR);
+                            entries.add(ModBlocks.CRIMSON_CHAIR);
+                            entries.add(ModBlocks.WARPED_CHAIR);
+                            entries.add(ModBlocks.IRONWOOD_CHAIR);
+                            entries.add(ModBlocks.OLIVE_CHAIR);
+                        }
 
-                        entries.add(ModBlocks.OAK_STOOL);
-                        entries.add(ModBlocks.DARK_OAK_STOOL);
-                        entries.add(ModBlocks.BIRCH_STOOL);
-                        entries.add(ModBlocks.SPRUCE_STOOL);
-                        entries.add(ModBlocks.MANGROVE_STOOL);
-                        entries.add(ModBlocks.CHERRY_STOOL);
-                        entries.add(ModBlocks.ACACIA_STOOL);
-                        entries.add(ModBlocks.JUNGLE_STOOL);
-                        entries.add(ModBlocks.BAMBOO_STOOL);
-                        entries.add(ModBlocks.CRIMSON_STOOL);
-                        entries.add(ModBlocks.WARPED_STOOL);
-                        entries.add(ModBlocks.IRONWOOD_STOOL);
-                        entries.add(ModBlocks.OLIVE_STOOL);
+                        if (Resprouted.COMMON_CONFIG.getGeneral().isEnableStools()) {
+                            entries.add(ModBlocks.OAK_STOOL);
+                            entries.add(ModBlocks.DARK_OAK_STOOL);
+                            entries.add(ModBlocks.BIRCH_STOOL);
+                            entries.add(ModBlocks.SPRUCE_STOOL);
+                            entries.add(ModBlocks.MANGROVE_STOOL);
+                            entries.add(ModBlocks.CHERRY_STOOL);
+                            entries.add(ModBlocks.ACACIA_STOOL);
+                            entries.add(ModBlocks.JUNGLE_STOOL);
+                            entries.add(ModBlocks.BAMBOO_STOOL);
+                            entries.add(ModBlocks.CRIMSON_STOOL);
+                            entries.add(ModBlocks.WARPED_STOOL);
+                            entries.add(ModBlocks.IRONWOOD_STOOL);
+                            entries.add(ModBlocks.OLIVE_STOOL);
+                        }
 
-                        entries.add(ModBlocks.OAK_TABLE);
-                        entries.add(ModBlocks.DARK_OAK_TABLE);
-                        entries.add(ModBlocks.BIRCH_TABLE);
-                        entries.add(ModBlocks.SPRUCE_TABLE);
-                        entries.add(ModBlocks.MANGROVE_TABLE);
-                        entries.add(ModBlocks.CHERRY_TABLE);
-                        entries.add(ModBlocks.ACACIA_TABLE);
-                        entries.add(ModBlocks.JUNGLE_TABLE);
-                        entries.add(ModBlocks.BAMBOO_TABLE);
-                        entries.add(ModBlocks.CRIMSON_TABLE);
-                        entries.add(ModBlocks.WARPED_TABLE);
-                        entries.add(ModBlocks.IRONWOOD_TABLE);
-                        entries.add(ModBlocks.OLIVE_TABLE);
+                        if (Resprouted.COMMON_CONFIG.getGeneral().isEnableTables()) {
+                            entries.add(ModBlocks.OAK_TABLE);
+                            entries.add(ModBlocks.DARK_OAK_TABLE);
+                            entries.add(ModBlocks.BIRCH_TABLE);
+                            entries.add(ModBlocks.SPRUCE_TABLE);
+                            entries.add(ModBlocks.MANGROVE_TABLE);
+                            entries.add(ModBlocks.CHERRY_TABLE);
+                            entries.add(ModBlocks.ACACIA_TABLE);
+                            entries.add(ModBlocks.JUNGLE_TABLE);
+                            entries.add(ModBlocks.BAMBOO_TABLE);
+                            entries.add(ModBlocks.CRIMSON_TABLE);
+                            entries.add(ModBlocks.WARPED_TABLE);
+                            entries.add(ModBlocks.IRONWOOD_TABLE);
+                            entries.add(ModBlocks.OLIVE_TABLE);
+                        }
 
                         entries.add(ModBlocks.IRONWOOD_PLANKS);
                         entries.add(ModBlocks.IRONWOOD_STAIRS);
@@ -287,23 +297,66 @@ public class ModItemGroups {
                         entries.add(ModItems.OLIVE_BOAT);
                         entries.add(ModItems.OLIVE_CHEST_BOAT);
 
-                        entries.add(ModBlocks.BLACK_PAINTED_PLANKS);
-                        entries.add(ModBlocks.BLUE_PAINTED_PLANKS);
-                        entries.add(ModBlocks.BROWN_PAINTED_PLANKS);
-                        entries.add(ModBlocks.CYAN_PAINTED_PLANKS);
-                        entries.add(ModBlocks.GRAY_PAINTED_PLANKS);
-                        entries.add(ModBlocks.GREEN_PAINTED_PLANKS);
-                        entries.add(ModBlocks.LIGHT_BLUE_PAINTED_PLANKS);
-                        entries.add(ModBlocks.LIME_PAINTED_PLANKS);
-                        entries.add(ModBlocks.MAGENTA_PAINTED_PLANKS);
-                        entries.add(ModBlocks.ORANGE_PAINTED_PLANKS);
-                        entries.add(ModBlocks.PINK_PAINTED_PLANKS);
-                        entries.add(ModBlocks.PURPLE_PAINTED_PLANKS);
-                        entries.add(ModBlocks.RED_PAINTED_PLANKS);
-                        entries.add(ModBlocks.LIGHT_GRAY_PAINTED_PLANKS);
-                        entries.add(ModBlocks.WHITE_PAINTED_PLANKS);
-                        entries.add(ModBlocks.YELLOW_PAINTED_PLANKS);
-                        entries.add(ModBlocks.GARGOYLE);
+                        if (Resprouted.COMMON_CONFIG.getGeneral().isEnablePaintedPlanks()) {
+                            entries.add(ModBlocks.BLACK_PAINTED_PLANKS);
+                            entries.add(ModBlocks.BLUE_PAINTED_PLANKS);
+                            entries.add(ModBlocks.BROWN_PAINTED_PLANKS);
+                            entries.add(ModBlocks.CYAN_PAINTED_PLANKS);
+                            entries.add(ModBlocks.GRAY_PAINTED_PLANKS);
+                            entries.add(ModBlocks.GREEN_PAINTED_PLANKS);
+                            entries.add(ModBlocks.LIGHT_BLUE_PAINTED_PLANKS);
+                            entries.add(ModBlocks.LIME_PAINTED_PLANKS);
+                            entries.add(ModBlocks.MAGENTA_PAINTED_PLANKS);
+                            entries.add(ModBlocks.ORANGE_PAINTED_PLANKS);
+                            entries.add(ModBlocks.PINK_PAINTED_PLANKS);
+                            entries.add(ModBlocks.PURPLE_PAINTED_PLANKS);
+                            entries.add(ModBlocks.RED_PAINTED_PLANKS);
+                            entries.add(ModBlocks.LIGHT_GRAY_PAINTED_PLANKS);
+                            entries.add(ModBlocks.WHITE_PAINTED_PLANKS);
+                            entries.add(ModBlocks.YELLOW_PAINTED_PLANKS);
+                        }
+
+                        entries.add(ModBlocks.LIQUID_BARREL);
+                        //Jar
+                        entries.add(ModBlocks.UNFIRED_JAR);
+                        entries.add(ModBlocks.JAR);
+                        entries.add(ModBlocks.BLACK_JAR);
+                        entries.add(ModBlocks.BLUE_JAR);
+                        entries.add(ModBlocks.BROWN_JAR);
+                        entries.add(ModBlocks.CYAN_JAR);
+                        entries.add(ModBlocks.GRAY_JAR);
+                        entries.add(ModBlocks.GREEN_JAR);
+                        entries.add(ModBlocks.LIGHT_BLUE_JAR);
+                        entries.add(ModBlocks.LIGHT_GRAY_JAR);
+                        entries.add(ModBlocks.LIME_JAR);
+                        entries.add(ModBlocks.MAGENTA_JAR);
+                        entries.add(ModBlocks.ORANGE_JAR);
+                        entries.add(ModBlocks.PINK_JAR);
+                        entries.add(ModBlocks.PURPLE_JAR);
+                        entries.add(ModBlocks.RED_JAR);
+                        entries.add(ModBlocks.WHITE_JAR);
+                        entries.add(ModBlocks.YELLOW_JAR);
+
+                        //Urn
+                        entries.add(ModBlocks.UNFIRED_URN);
+                        entries.add(ModBlocks.URN);
+                        entries.add(ModBlocks.BLACK_URN);
+                        entries.add(ModBlocks.BLUE_URN);
+                        entries.add(ModBlocks.BROWN_URN);
+                        entries.add(ModBlocks.CYAN_URN);
+                        entries.add(ModBlocks.GRAY_URN);
+                        entries.add(ModBlocks.GREEN_URN);
+                        entries.add(ModBlocks.LIGHT_BLUE_URN);
+                        entries.add(ModBlocks.LIGHT_GRAY_URN);
+                        entries.add(ModBlocks.LIME_URN);
+                        entries.add(ModBlocks.MAGENTA_URN);
+                        entries.add(ModBlocks.ORANGE_URN);
+                        entries.add(ModBlocks.PINK_URN);
+                        entries.add(ModBlocks.PURPLE_URN);
+                        entries.add(ModBlocks.RED_URN);
+                        entries.add(ModBlocks.WHITE_URN);
+                        entries.add(ModBlocks.YELLOW_URN);
+
                         entries.add(ModBlocks.GOLDEN_CHAIN);
                         entries.add(ModBlocks.COPPER_CHAIN);
                         entries.add(ModBlocks.EXPOSED_COPPER_CHAIN);

@@ -4,6 +4,7 @@ import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.recipe.custom.*;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -68,12 +69,26 @@ public class ModRecipes {
     // Oiling
     public static final RecipeSerializer<OliveOilingRecipe> OLIVE_OIL_SERIALIZER =
             Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "olive_oiling"),
-                    new OliveOilingRecipe.OilingRecipeSerializer());
+                    new SpecialRecipeSerializer<>(OliveOilingRecipe::new)
+            );
 
     // Vanta Oiling
     public static final RecipeSerializer<VantaOilingRecipe> VANTA_OIL_SERIALIZER =
             Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "vanta_oiling"),
-                    new VantaOilingRecipe.VantaOilRecipeSerializer());
+                    new SpecialRecipeSerializer<>(VantaOilingRecipe::new)
+            );
+
+    // Jar Coloring
+    public static final RecipeSerializer<JarColoringRecipe> JAR_COLORING =
+            Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "crafting_special_jarcoloring"),
+                    new SpecialRecipeSerializer<>(JarColoringRecipe::new)
+            );
+
+    // Pot Coloring
+    public static final RecipeSerializer<UrnColoringRecipe> URN_COLORING =
+            Registry.register(Registries.RECIPE_SERIALIZER, Identifier.of(Resprouted.MOD_ID, "crafting_special_urncoloring"),
+                    new SpecialRecipeSerializer<>(UrnColoringRecipe::new)
+            );
 
     public static void registerRecipes() {
         Resprouted.LOGGER.info("Registering Custom Recipes for " + Resprouted.MOD_ID);

@@ -22,11 +22,7 @@ public class AdvancedCondenserDisplay extends BasicDisplay {
     private final Ingredient modifier;
 
     public AdvancedCondenserDisplay(RecipeEntry<AdvancedCondenserRecipe> entry) {
-        super(createInputEntries(entry.value()),
-                List.of(EntryIngredients.ofItemStacks(
-                        List.of(entry.value().getResult(null))
-                ))
-        );
+        super(createInputEntries(entry.value()), List.of(EntryIngredients.ofItemStacks(List.of(entry.value().getResult(null)))));
         this.effect = entry.value().effect();
         this.duration = entry.value().duration();
         this.amplifier = entry.value().amplifier();

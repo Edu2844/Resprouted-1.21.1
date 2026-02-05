@@ -9,5 +9,6 @@
     "id": "minecraft:bucket"
   },
   "amount": 1000,
-  "direction": "extract"
+  "direction": "extract",
+  "sound": "minecraft:block.honey_block.break"
 }

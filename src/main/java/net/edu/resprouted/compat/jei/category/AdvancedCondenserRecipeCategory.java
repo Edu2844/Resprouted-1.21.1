@@ -15,7 +15,7 @@ import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.compat.jei.JEIPlugin;
 import net.edu.resprouted.recipe.custom.AdvancedCondenserRecipe;
-import net.edu.resprouted.util.ElixirUtils;
+import net.edu.resprouted.util.misc.ElixirUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -68,25 +68,20 @@ public class AdvancedCondenserRecipeCategory implements IRecipeCategory<Advanced
 
 
         if (ingredientCount >= 1) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 4, 8)
-                    .addIngredients(recipe.ingredients().getFirst());
+            builder.addSlot(RecipeIngredientRole.INPUT, 4, 8).addIngredients(recipe.ingredients().getFirst());
         }
         if (ingredientCount >= 2) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 4, 32)
-                    .addIngredients(recipe.ingredients().get(1));
+            builder.addSlot(RecipeIngredientRole.INPUT, 4, 32).addIngredients(recipe.ingredients().get(1));
         }
         if (ingredientCount >= 3) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 4, 56)
-                    .addIngredients(recipe.ingredients().get(2));
+            builder.addSlot(RecipeIngredientRole.INPUT, 4, 56).addIngredients(recipe.ingredients().get(2));
         }
 
         if (recipe.modifier().isPresent()) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 43, 4)
-                    .addIngredients(recipe.modifier().get());
+            builder.addSlot(RecipeIngredientRole.INPUT, 43, 4).addIngredients(recipe.modifier().get());
         }
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 82, 4)
-                .addItemStack(new ItemStack(Items.GLASS_BOTTLE));
+        builder.addSlot(RecipeIngredientRole.INPUT, 82, 4).addItemStack(new ItemStack(Items.GLASS_BOTTLE));
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 82, 32)
                 .addItemStack(ElixirUtils.createElixir(recipe.effect(), recipe.duration(), recipe.amplifier()));

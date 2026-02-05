@@ -12,10 +12,45 @@ import java.util.Arrays;
 public enum Category {
     GENERAL("config.resprouted.category.general", true,
 
+            Entry.booleanEntry("config.resprouted.enable_painted_planks",
+                    () -> Resprouted.COMMON_CONFIG.getGeneral().isEnablePaintedPlanks(),
+                    newValue -> Resprouted.COMMON_CONFIG.getGeneral().setEnablePaintedPlanks(newValue),
+                    true, "config.resprouted.enable_painted_planks.tooltip"),
+
+            Entry.booleanEntry("config.resprouted.enable_tables",
+                    () -> Resprouted.COMMON_CONFIG.getGeneral().isEnableTables(),
+                    newValue -> Resprouted.COMMON_CONFIG.getGeneral().setEnableTables(newValue),
+                    true, "config.resprouted.enable_tables.tooltip"),
+
+            Entry.booleanEntry("config.resprouted.enable_chairs",
+                    () -> Resprouted.COMMON_CONFIG.getGeneral().isEnableChairs(),
+                    newValue -> Resprouted.COMMON_CONFIG.getGeneral().setEnableChairs(newValue),
+                    true, "config.resprouted.enable_chairs.tooltip"),
+
+            Entry.booleanEntry("config.resprouted.enable_stools",
+                    () -> Resprouted.COMMON_CONFIG.getGeneral().isEnableStools(),
+                    newValue -> Resprouted.COMMON_CONFIG.getGeneral().setEnableStools(newValue),
+                    true, "config.resprouted.enable_stools.tooltip"),
+
+            Entry.booleanEntry("config.resprouted.enable_clay_wall_blocks",
+                    () -> Resprouted.COMMON_CONFIG.getGeneral().isEnableClayWalls(),
+                    newValue -> Resprouted.COMMON_CONFIG.getGeneral().setEnableClayWalls(newValue),
+                    true, "config.resprouted.enable_clay_wall_blocks.tooltip"),
+
+            Entry.booleanEntry("config.resprouted.enable_vanilla_block_variations",
+                    () -> Resprouted.COMMON_CONFIG.getGeneral().isEnableVanillaBlockVariations(),
+                    newValue -> Resprouted.COMMON_CONFIG.getGeneral().setEnableVanillaBlockVariations(newValue),
+                    true, "config.resprouted.enable_vanilla_block_variations.tooltip"),
+
             Entry.booleanEntry("config.resprouted.enable_honey_bottle_effect",
                     () -> Resprouted.COMMON_CONFIG.getGeneral().isEnableHoneyBottleRegenerationEffect(),
                     newValue -> Resprouted.COMMON_CONFIG.getGeneral().setEnableHoneyBottleRegenerationEffect(newValue),
                     true, "config.resprouted.enable_honey_bottle_effect.tooltip"),
+
+            Entry.booleanEntry("config.resprouted.enable_dye_by_right_click",
+                    () -> Resprouted.COMMON_CONFIG.getGeneral().isEnableDyeByRightClick(),
+                    newValue -> Resprouted.COMMON_CONFIG.getGeneral().setEnableDyeByRightClick(newValue),
+                    true, "config.resprouted.enable_dye_by_right_click.tooltip"),
 
             Entry.booleanEntry("config.resprouted.enable_vanta_oiling",
                     () -> Resprouted.COMMON_CONFIG.getGeneral().isEnableVantaOiling(),

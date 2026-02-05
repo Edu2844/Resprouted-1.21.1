@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "open=false": {
+      "model": "resprouted:block/orange_jar_closed"
+    },
+    "open=true": {
+      "model": "resprouted:block/orange_jar_open"
+    }
+  }
+}

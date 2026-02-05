@@ -1,16 +1,12 @@
 package net.edu.resprouted.recipe.custom;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.util.RecipeUtils;
+import net.edu.resprouted.util.recipe.RecipeUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
@@ -112,25 +108,5 @@ public class OliveOilingRecipe extends SpecialCraftingRecipe {
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.OLIVE_OIL_SERIALIZER;
-    }
-
-    public static class OilingRecipeSerializer implements RecipeSerializer<OliveOilingRecipe> {
-
-        public static final MapCodec<OliveOilingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                CraftingRecipeCategory.CODEC.fieldOf("category").forGetter(OliveOilingRecipe::getCategory)).apply(instance, OliveOilingRecipe::new));
-
-        public static final PacketCodec<RegistryByteBuf, OliveOilingRecipe> PACKET_CODEC = PacketCodec.ofStatic(
-                (buf, recipe) -> buf.writeEnumConstant(recipe.getCategory()),
-                buf -> new OliveOilingRecipe(buf.readEnumConstant(CraftingRecipeCategory.class)));
-
-        @Override
-        public MapCodec<OliveOilingRecipe> codec() {
-            return CODEC;
-        }
-
-        @Override
-        public PacketCodec<RegistryByteBuf, OliveOilingRecipe> packetCodec() {
-            return PACKET_CODEC;
-        }
     }
 }

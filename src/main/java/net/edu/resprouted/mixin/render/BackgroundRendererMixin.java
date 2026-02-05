@@ -1,7 +1,7 @@
 package net.edu.resprouted.mixin.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.edu.resprouted.util.ModTags;
+import net.edu.resprouted.util.misc.ModTags;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
 import org.spongepowered.asm.mixin.Mixin;

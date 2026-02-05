@@ -1,6 +1,6 @@
 package net.edu.resprouted.block.abstracts.entity;
 
-import net.edu.resprouted.util.SmoothFloat;
+import net.edu.resprouted.util.block.SmoothFloat;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.NbtCompound;

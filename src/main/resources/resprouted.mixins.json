@@ -3,10 +3,10 @@
   "package": "net.edu.resprouted.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "gameplay.ComponentHolderMixin",
     "gameplay.CropBlockMixin",
     "gameplay.EntityMixin",
     "gameplay.FarmlandBlockMixin",
-    "gameplay.ComponentHolderMixin",
     "gameplay.HoneyBottleMixin",
     "gameplay.LivingEntityDataTrackerMixin",
     "gameplay.LivingEntityMixin",
@@ -32,6 +32,7 @@
   "client": [
     "gameplay.KeyboardInputMixin",
     "render.BackgroundRendererMixin",
+    "render.InGameHudMixin",
     "render.RenderLayersMixin",
     "render.WorldRendererMixin"
   ]

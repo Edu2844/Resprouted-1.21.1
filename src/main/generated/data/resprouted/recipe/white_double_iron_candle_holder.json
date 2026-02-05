@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:white_candle"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "pattern": [
+    "C C",
+    "N N",
+    " I "
+  ],
+  "result": {
+    "count": 4,
+    "id": "resprouted:white_double_iron_candle_holder"
+  }
+}

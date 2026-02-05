@@ -13,7 +13,7 @@ import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.compat.rei.display.CrushingTubDisplay;
 import net.edu.resprouted.recipe.helper.RecipeOutput;
-import net.edu.resprouted.util.FluidUtils;
+import net.edu.resprouted.util.fluid.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.texture.Sprite;

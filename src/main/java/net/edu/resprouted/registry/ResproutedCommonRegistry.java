@@ -4,7 +4,6 @@ import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.abstracts.AbstractCondenserBlock;
 import net.edu.resprouted.block.abstracts.entity.AbstractCondenserBlockEntity;
-import net.edu.resprouted.block.custom.decorative.CabinetBlock;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.custom.BrewingBarrelRecipe;
@@ -14,7 +13,6 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.util.math.BlockPos;
 
 import static net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry.registerOxidizableBlockPair;
@@ -28,7 +26,7 @@ public class ResproutedCommonRegistry {
         registerOxidizablesAndWaxables();
         registerCompostables();
         registerFluidStorages();
-        registeritemStorages();
+        registerItemStorages();
         registerBrewingBarrelRecipes();
     }
 
@@ -561,6 +559,7 @@ public class ResproutedCommonRegistry {
     }
 
     public static void registerFluidStorages() {
+        FluidStorage.SIDED.registerForBlockEntity((liquidJarBE, direction) -> liquidJarBE.getFluidTankProvider(), ModBlockEntities.JAR_BE);
         FluidStorage.SIDED.registerForBlockEntity((crushingTubBE, direction) -> crushingTubBE.getFluidTankProvider(), ModBlockEntities.CRUSHING_TUB_BE);
         FluidStorage.SIDED.registerForBlockEntity((liquidBarrelBE, direction) -> liquidBarrelBE.getFluidTankProvider(), ModBlockEntities.LIQUID_BARREL_BE);
         FluidStorage.SIDED.registerForBlockEntity((dryingBasinBE, direction) -> dryingBasinBE.getFluidTankProvider(), ModBlockEntities.DRYING_BASIN_BE);
@@ -576,22 +575,8 @@ public class ResproutedCommonRegistry {
         }, ModBlocks.BASIC_CONDENSER, ModBlocks.ADVANCED_CONDENSER);
     }
 
-    public static void registeritemStorages() {
-        ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> {
-                    if (blockEntity.getCachedState().getBlock() instanceof CabinetBlock cabinetBlock) {
-                        Inventory inv = CabinetBlock.getInventory(
-                                cabinetBlock,
-                                blockEntity.getCachedState(),
-                                blockEntity.getWorld(),
-                                blockEntity.getPos(),
-                                false
-                        );
-                        return inv != null ? InventoryStorage.of(inv, direction) : null;
-                    }
-                    return null;
-                },
-                ModBlockEntities.CABINET_BE
-        );
+    public static void registerItemStorages() {
+        ItemStorage.SIDED.registerForBlockEntity((cabinet, direction) -> InventoryStorage.of(cabinet.getCombinedInventory(), direction), ModBlockEntities.CABINET_BE);
     }
 
     public static void registerBrewingBarrelRecipes(){

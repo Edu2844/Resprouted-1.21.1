@@ -31,7 +31,7 @@
 			"net.edu.resprouted.compat.jei.JEIPlugin"
 		],
 		"appleskin": [
-			"net.edu.resprouted.compat.AppleSkinEventHandler"
+			"net.edu.resprouted.compat.appleskin.AppleSkinEventHandler"
 		],
 		"modmenu": [
 			"net.edu.resprouted.config.ResproutedModMenu"

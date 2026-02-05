@@ -1,12 +1,11 @@
 package net.edu.resprouted.book.pages;
 
-
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.book.CatalogData;
 import net.edu.resprouted.book.CatalogScreen;
 import net.edu.resprouted.book.abstracts.BaseCatalogPage;
 import net.edu.resprouted.book.widget.AnimatedIconWidget;
-import net.edu.resprouted.util.PageUtils;
+import net.edu.resprouted.util.misc.PageUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.text.Text;

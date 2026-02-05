@@ -2,9 +2,6 @@ package net.edu.resprouted.block.abstracts;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.abstracts.entity.AbstractCondenserBlockEntity;
-import net.edu.resprouted.block.custom.alchemy.BasicCondenserBlock;
-import net.edu.resprouted.util.ModTags;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
@@ -15,7 +12,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -34,11 +30,10 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractCondenserBlock extends BlockWithEntity implements InventoryProvider{
+public abstract class AbstractCondenserBlock extends BlockWithEntity{
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty BOTTOM = BooleanProperty.of("bottom");
     public static final BooleanProperty LIT = BooleanProperty.of("lit");
@@ -56,26 +51,10 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity implements 
     }
 
     // ========= ABSTRACT METHODS =========
-    protected abstract BlockEntity createSpecificBlockEntity(BlockPos pos, BlockState state);
-    protected abstract boolean hasRequiredRetorts(World world, BlockPos pos, BlockState state);
+    protected abstract BlockEntity getCondenserType(BlockPos pos, BlockState state);
+    protected abstract boolean hasRetorts(World world, BlockPos pos, BlockState state);
     protected abstract BlockEntityType<?> getBlockEntityType();
 
-    // ========= INVENTORY PROVIDER =========
-    @Override
-    public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
-        if (!state.get(BOTTOM) && this instanceof BasicCondenserBlock) {
-            return null;
-        }
-
-        BlockPos bottomPos = state.get(BOTTOM) ? pos : pos.down();
-        BlockEntity blockEntity = world.getBlockEntity(bottomPos);
-
-        if (blockEntity instanceof AbstractCondenserBlockEntity condenser) {
-            BlockState bottomState = world.getBlockState(bottomPos);
-            return new CondenserSidedInventory(condenser, state, bottomState);
-        }
-        return null;
-    }
 
     // ========= PROPERTIES & STATE =========
     @Override
@@ -90,7 +69,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity implements 
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return state.get(BOTTOM) ? createSpecificBlockEntity(pos, state) : null;
+        return state.get(BOTTOM) ? getCondenserType(pos, state) : null;
     }
 
     @Override
@@ -163,7 +142,7 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity implements 
         if (!targetState.isOf(this))
             return ItemActionResult.FAIL;
 
-        if (!hasRequiredRetorts(world, targetPos, targetState))
+        if (!hasRetorts(world, targetPos, targetState))
             return ItemActionResult.FAIL;
 
         if (!(world.getBlockEntity(targetPos) instanceof AbstractCondenserBlockEntity condenserBE))
@@ -234,213 +213,5 @@ public abstract class AbstractCondenserBlock extends BlockWithEntity implements 
         }
         return validateTicker(type, getBlockEntityType(),
                 (world1, pos, state1, be) -> ((AbstractCondenserBlockEntity) be).serverTick(world1, pos, state1));
-    }
-
-    // ========= SIDED INVENTORY WRAPPER =========
-    private record CondenserSidedInventory(AbstractCondenserBlockEntity condenser, BlockState accessState, BlockState bottomState) implements SidedInventory {
-        // Converts world direction to relative direction based on block facing
-        private Direction getRelativeSide(Direction dir) {
-            Direction facing = bottomState.get(FACING);
-
-            if (dir == Direction.UP || dir == Direction.DOWN) {
-                return dir;
-            }
-
-            if (dir == facing.getOpposite()) {
-                return Direction.NORTH;
-            }
-
-            if (dir == facing) {
-                return Direction.SOUTH;
-            }
-
-            if (dir == facing.rotateYClockwise()) {
-                return Direction.EAST;
-            }
-
-            if (dir == facing.rotateYCounterclockwise()) {
-                return Direction.WEST;
-            }
-            return dir;
-        }
-
-        @Override
-        public int[] getAvailableSlots(Direction side) {
-            boolean isAdvanced = condenser.size() == 7;
-            boolean isBasic = condenser.size() == 5;
-
-            // Advanced Condenser: Top Block
-            if (!accessState.get(AbstractCondenserBlock.BOTTOM)) {
-                if (isAdvanced) {
-                    if (side == Direction.UP) {
-                        return new int[]{3}; // Modifier
-                    }
-                    Direction relativeSide = getRelativeSide(side);
-
-                    if (relativeSide == Direction.NORTH) {
-                        return new int[]{4, 5}; // Fuel + Bottle
-                    }
-                    if (relativeSide == Direction.SOUTH || relativeSide == Direction.EAST || relativeSide == Direction.WEST) {
-                        return new int[]{0, 1, 2}; // Ingredients
-                    }
-                }
-                return new int[0];
-            }
-            Direction relativeSide = getRelativeSide(side);
-
-            // Basic Condenser: Bottom Block
-            if (isBasic) {
-                return switch (relativeSide) {
-                    case DOWN -> new int[]{4}; // Output
-                    case NORTH -> new int[]{2, 3}; // Fuel + Bottle
-                    case SOUTH, EAST, WEST -> new int[]{0, 1}; // Ingredients
-                    default -> new int[0];
-                };
-            }
-            // Advanced Condenser: Bottom Block
-            else if (isAdvanced) {
-                return switch (relativeSide) {
-                    case UP -> new int[]{3}; // Modifier
-                    case DOWN -> new int[]{6}; // Output
-                    case NORTH -> new int[]{4, 5}; // Fuel + Bottle
-                    case SOUTH, EAST, WEST -> new int[]{0, 1, 2}; // Ingredients
-                };
-            }
-
-            return new int[0];
-        }
-
-        @Override
-        public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
-            boolean isAdvanced = condenser.size() == 7;
-            int outputSlot = isAdvanced ? 6 : 4;
-
-            // Output slot is extraction only
-            if (slot == outputSlot) {
-                return false;
-            }
-            // Advanced Condenser: Top Block
-            if (!accessState.get(AbstractCondenserBlock.BOTTOM) && isAdvanced) {
-                Direction relativeSide = getRelativeSide(dir);
-
-                // Modifier slot: only from top and must have ALCHEMY_MODIFIERS tag
-                if (slot == 3 && dir == Direction.UP) {
-                    return stack.isIn(ModTags.Items.ALCHEMY_MODIFIERS);
-                }
-                // Ingredient slots: from front and sides
-                if (slot >= 0 && slot <= 2) {
-                    return relativeSide == Direction.SOUTH || relativeSide == Direction.EAST || relativeSide == Direction.WEST;
-                }
-                // Fuel slot: only fuel items from back
-                if (slot == 4) {
-                    Integer fuelTime = FuelRegistry.INSTANCE.get(stack.getItem());
-                    return relativeSide == Direction.NORTH && fuelTime != null && fuelTime > 0;
-                }
-                // Bottle slot: only non-fuel items from back
-                if (slot == 5) {
-                    Integer fuelTime = FuelRegistry.INSTANCE.get(stack.getItem());
-                    return relativeSide == Direction.NORTH && (fuelTime == null || fuelTime == 0);
-                }
-                return false;
-            }
-            Direction relativeSide = getRelativeSide(dir);
-
-            if (isAdvanced) {
-                // Modifier slot: only from top
-                if (slot == 3) {
-                    return relativeSide == Direction.UP && stack.isIn(ModTags.Items.ALCHEMY_MODIFIERS);
-                }
-                // Fuel slot: only fuel items from back
-                if (slot == 4) {
-                    Integer fuelTime = FuelRegistry.INSTANCE.get(stack.getItem());
-                    return relativeSide == Direction.NORTH && fuelTime != null && fuelTime > 0;
-                }
-                // Bottle slot: only non-fuel items from back
-                if (slot == 5) {
-                    Integer fuelTime = FuelRegistry.INSTANCE.get(stack.getItem());
-                    return relativeSide == Direction.NORTH && (fuelTime == null || fuelTime == 0);
-                }
-                // Ingredient slots: from front and sides
-                if (slot >= 0 && slot <= 2) {
-                    return relativeSide == Direction.SOUTH || relativeSide == Direction.EAST || relativeSide == Direction.WEST;
-                }
-            } else {
-                // Basic Condenser
-
-                // Fuel slot: only fuel items from back
-                if (slot == 2) {
-                    Integer fuelTime = FuelRegistry.INSTANCE.get(stack.getItem());
-                    return relativeSide == Direction.NORTH && fuelTime != null && fuelTime > 0;
-                }
-                // Bottle slot: only non-fuel items from back
-                if (slot == 3) {
-                    Integer fuelTime = FuelRegistry.INSTANCE.get(stack.getItem());
-                    return relativeSide == Direction.NORTH && (fuelTime == null || fuelTime == 0);
-                }
-                // Ingredient slots: from front and sides
-                if (slot == 0 || slot == 1) {
-                    return relativeSide == Direction.SOUTH || relativeSide == Direction.EAST || relativeSide == Direction.WEST;
-                }
-            }
-            return condenser.isValid(slot, stack);
-        }
-
-        @Override
-        public boolean canExtract(int slot, ItemStack stack, Direction dir) {
-            boolean isAdvanced = condenser.size() == 7;
-            int outputSlot = isAdvanced ? 6 : 4;
-            Direction relativeSide = getRelativeSide(dir);
-
-            // Output slot: nly from bottom
-            if (slot == outputSlot) {
-                return relativeSide == Direction.DOWN;
-            }
-            return false;
-        }
-
-        @Override
-        public int size() {
-            return condenser.size();
-        }
-
-        @Override
-        public boolean isEmpty() {
-            return condenser.isEmpty();
-        }
-
-        @Override
-        public ItemStack getStack(int slot) {
-            return condenser.getStack(slot);
-        }
-
-        @Override
-        public ItemStack removeStack(int slot, int amount) {
-            return condenser.removeStack(slot, amount);
-        }
-
-        @Override
-        public ItemStack removeStack(int slot) {
-            return condenser.removeStack(slot);
-        }
-
-        @Override
-        public void setStack(int slot, ItemStack stack) {
-            condenser.setStack(slot, stack);
-        }
-
-        @Override
-        public void markDirty() {
-            condenser.markDirty();
-        }
-
-        @Override
-        public boolean canPlayerUse(PlayerEntity player) {
-            return condenser.canPlayerUse(player);
-        }
-
-        @Override
-        public void clear() {
-            condenser.clear();
-        }
     }
 }

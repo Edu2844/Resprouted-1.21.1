@@ -10,7 +10,7 @@ import net.edu.resprouted.compat.rei.category.VantaOilingCategory;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.custom.VantaOilingRecipe;
-import net.edu.resprouted.util.RecipeUtils;
+import net.edu.resprouted.util.recipe.RecipeUtils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -28,8 +28,7 @@ public class VantaOilingDisplay extends BasicDisplay {
     private final int numPotions;
 
     public VantaOilingDisplay(int numPotions, RegistryEntry<Potion> potionEntry) {
-        super(getInputsForPotion(numPotions, potionEntry), getOutputsForPotion(numPotions, potionEntry)
-        );
+        super(getInputsForPotion(numPotions, potionEntry), getOutputsForPotion(numPotions, potionEntry));
         this.numPotions = numPotions;
     }
 
@@ -40,16 +39,16 @@ public class VantaOilingDisplay extends BasicDisplay {
 
     private static List<EntryIngredient> getInputsForPotion(int numPotions, RegistryEntry<Potion> potionEntry) {
         List<EntryIngredient> inputs = new ArrayList<>();
-
         List<ItemStack> weapons = new ArrayList<>();
+
         for (Item item : Registries.ITEM) {
             ItemStack stack = new ItemStack(item);
             if (RecipeUtils.isVantaOilableWeapon(stack)) {
                 weapons.add(stack);
             }
         }
-        inputs.add(EntryIngredients.ofItemStacks(weapons));
 
+        inputs.add(EntryIngredients.ofItemStacks(weapons));
         inputs.add(EntryIngredients.of(ModItems.VANTA_OIL_BOTTLE));
 
         List<EntryStack<?>> potionStacks = new ArrayList<>();
@@ -74,8 +73,8 @@ public class VantaOilingDisplay extends BasicDisplay {
                 weapons.add(stack);
             }
         }
-        inputs.add(EntryIngredients.ofItemStacks(weapons));
 
+        inputs.add(EntryIngredients.ofItemStacks(weapons));
         inputs.add(EntryIngredients.of(ModItems.VANTA_OIL_BOTTLE));
 
         for (int i = 0; i < numPotions; i++) {

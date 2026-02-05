@@ -17,8 +17,8 @@ import net.edu.resprouted.recipe.custom.*;
 import net.edu.resprouted.screen.custom.AdvancedCondenserScreen;
 import net.edu.resprouted.screen.custom.BasicCondenserScreen;
 import net.edu.resprouted.screen.custom.BrewingBarrelScreen;
-import net.edu.resprouted.util.ElixirUtils;
-import net.edu.resprouted.util.RecipeUtils;
+import net.edu.resprouted.util.misc.ElixirUtils;
+import net.edu.resprouted.util.recipe.RecipeUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -30,6 +30,7 @@ import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.DyeColor;
 
 import java.util.List;
 
@@ -44,12 +45,16 @@ public class REIClient implements REIClientPlugin {
         registry.add(new BrewingBarrelCategory());
         registry.add(new OliveOilingCategory());
         registry.add(new VantaOilingCategory());
+        registry.add(new UrnColoringCategory());
+        registry.add(new JarColoringCategory());
 
         registry.addWorkstations(BasicCondenserCategory.ID, EntryStacks.of(ModBlocks.BASIC_CONDENSER));
         registry.addWorkstations(AdvancedCondenserCategory.ID, EntryStacks.of(ModBlocks.ADVANCED_CONDENSER));
         registry.addWorkstations(BrewingBarrelCategory.ID, EntryStacks.of(ModBlocks.BREWING_BARREL));
         registry.addWorkstations(OliveOilingCategory.ID, EntryStacks.of(Items.CRAFTING_TABLE));
         registry.addWorkstations(VantaOilingCategory.ID, EntryStacks.of(Items.CRAFTING_TABLE));
+        registry.addWorkstations(UrnColoringCategory.ID, EntryStacks.of(Items.CRAFTING_TABLE));
+        registry.addWorkstations(JarColoringCategory.ID, EntryStacks.of(Items.CRAFTING_TABLE));
     }
 
     @Override
@@ -61,6 +66,10 @@ public class REIClient implements REIClientPlugin {
         registerOliveOilingRecipes(registry);
         registerVantaOilingRecipes(registry);
         BrewingBarrelRecipe.RECIPES.forEach(recipe -> registry.add(new BrewingBarrelDisplay(recipe)));
+        for (DyeColor color : DyeColor.values()) {
+            registry.add(new UrnColoringDisplay(color));
+            registry.add(new JarColoringDisplay(color));
+        }
     }
 
     @Override

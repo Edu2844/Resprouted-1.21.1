@@ -2,7 +2,7 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.entity.custom.BrewingBarrelBlockEntity;
+import net.edu.resprouted.block.entity.custom.agriculture.BrewingBarrelBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;

@@ -1,7 +1,7 @@
 package net.edu.resprouted.mixin.gameplay;
 
 import net.edu.resprouted.Resprouted;
-import net.edu.resprouted.util.TextUtils;
+import net.edu.resprouted.util.misc.TextUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

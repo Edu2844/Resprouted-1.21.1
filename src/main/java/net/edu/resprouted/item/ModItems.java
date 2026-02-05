@@ -10,7 +10,7 @@ import net.edu.resprouted.entity.custom.ThrownTomatoEntity;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.custom.*;
 import net.edu.resprouted.registry.ResproutedBoatTypes;
-import net.edu.resprouted.util.TextUtils;
+import net.edu.resprouted.util.misc.TextUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -285,10 +285,6 @@ public class ModItems {
     public static final Item ELIXIR_BOTTLE = registerItem("elixir_bottle", new ElixirBottle(new Item.Settings().maxCount(16).component(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Potions.WATER))));
     public static final Item ELIXIR_ICON = registerItem("elixir_icon", new Item(new Item.Settings()));
 
-    // =================================================
-    // ||                COMPAT ITEMS                 ||
-    // =================================================
-    public static Item IRON_BERRY_CAKE_SLICE;
 
     // =================================================
     // ||                 BOAT ITEMS                  ||
@@ -314,14 +310,8 @@ public class ModItems {
         return Registry.register(Registries.ITEM, Identifier.of(Resprouted.MOD_ID, name), item);
     }
 
-    public static void registerCompatItem() {
-        if (Resprouted.isModLoaded(Resprouted.FARMERS_DELIGHT_MOD_ID)) {
-            IRON_BERRY_CAKE_SLICE = registerItem("iron_berry_cake_slice", new Item(new Item.Settings().food(ModFoodComponents.IRON_BERRIES)));
-        }
-    }
 
     public static void registerModItems() {
-        registerCompatItem();
         Resprouted.LOGGER.info("Registering Items for " +  Resprouted.MOD_ID);
     }
 }

@@ -3,7 +3,7 @@ package net.edu.resprouted.event;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.ResproutedClient;
 import net.edu.resprouted.component.ModDataComponentTypes;
-import net.edu.resprouted.util.TextUtils;
+import net.edu.resprouted.util.misc.TextUtils;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ModClientEvents {
     public static void registerClientEvents() {
-        Resprouted.LOGGER.info("Registering Events for " + Resprouted.MOD_ID);
+        Resprouted.LOGGER.info("Registering Client Events for " + Resprouted.MOD_ID);
         ItemTooltipCallback.EVENT.register(ModClientEvents::onOliveOilTooltip);
         ItemTooltipCallback.EVENT.register(ModClientEvents::onVantaOilTooltip);
         ItemTooltipCallback.EVENT.register(ModClientEvents::onHoneyBottleTooltip);

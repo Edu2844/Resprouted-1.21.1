@@ -5,11 +5,11 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.block.custom.alchemy.AdvancedCondenserBlock;
 import net.edu.resprouted.block.custom.alchemy.BasicCondenserBlock;
-import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
-import net.edu.resprouted.block.entity.custom.BasicCondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.alchemy.AdvancedCondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.alchemy.BasicCondenserBlockEntity;
 import net.edu.resprouted.recipe.Input.BasicCondenserRecipeInput;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.util.ElixirUtils;
+import net.edu.resprouted.util.misc.ElixirUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemStack;
@@ -59,7 +59,7 @@ public record BasicCondenserRecipe(List<Ingredient> ingredients, RegistryEntry<S
 
             BlockState blockState = world.getBlockState(input.pos());
             if (blockState.getBlock() instanceof BasicCondenserBlock condenserBlock) {
-                hasRetorts = condenserBlock.hasRequiredRetorts(world, input.pos(), blockState);
+                hasRetorts = condenserBlock.hasRetorts(world, input.pos(), blockState);
             }
         }
 
@@ -69,7 +69,7 @@ public record BasicCondenserRecipe(List<Ingredient> ingredients, RegistryEntry<S
 
             BlockState blockState = world.getBlockState(input.pos());
             if (blockState.getBlock() instanceof AdvancedCondenserBlock condenserBlock) {
-                hasRetorts = condenserBlock.hasRequiredRetorts(world, input.pos(), blockState);
+                hasRetorts = condenserBlock.hasRetorts(world, input.pos(), blockState);
             }
         }
 

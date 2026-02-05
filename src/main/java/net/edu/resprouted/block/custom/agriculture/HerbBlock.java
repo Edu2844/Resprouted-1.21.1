@@ -1,7 +1,7 @@
 package net.edu.resprouted.block.custom.agriculture;
 
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.util.ModTags;
+import net.edu.resprouted.util.misc.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -64,7 +64,7 @@ public class HerbBlock extends CropBlock {
 
     @Override
     protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if(this == ModBlocks.WIND_THISTLE) {
+        if(this == ModBlocks.WIND_THISTLE || this == ModBlocks.ALOE_VERA) {
             if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
                 entity.slowMovement(state, new Vec3d(0.8F, 0.75F, 0.8F));
                 if (!world.isClient && state.get(AGE) > 0 && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {

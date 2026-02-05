@@ -1,6 +1,6 @@
 {
   "parent": "resprouted:block/template_hanging_ornate_lantern",
   "textures": {
-    "lantern": "resprouted:block/waxed_weathered_ornate_copper_lantern"
+    "lantern": "resprouted:block/weathered_ornate_copper_lantern"
   }
 }

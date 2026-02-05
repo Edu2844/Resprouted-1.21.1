@@ -1,0 +1,7 @@
+{
+    "parent": "resprouted:block/template_jar_open",
+    "textures": {
+		  "jar": "resprouted:block/jar",
+      "particle": "resprouted:block/jar_particle" 
+    }
+}

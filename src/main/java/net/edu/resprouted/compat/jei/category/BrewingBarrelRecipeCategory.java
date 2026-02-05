@@ -62,19 +62,13 @@ public class BrewingBarrelRecipeCategory implements IRecipeCategory<BrewingBarre
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, BrewingBarrelRecipe recipe, IFocusGroup focuses) {
         // Input tank
-        builder.addSlot(RecipeIngredientRole.INPUT, 40, 4)
-                .setFluidRenderer(8000, true, 16, 32)
-                .addFluidStack(recipe.inputFluid(), 648000);
+        builder.addSlot(RecipeIngredientRole.INPUT, 40, 4).setFluidRenderer(8000, true, 16, 32).addFluidStack(recipe.inputFluid(), 648000);
 
         // Aux tank
-        builder.addSlot(RecipeIngredientRole.INPUT, 4, 12)
-                .setFluidRenderer(1000, true, 16, 16)
-                .addFluidStack(recipe.outputFluid(), 81000);
+        builder.addSlot(RecipeIngredientRole.INPUT, 4, 12).setFluidRenderer(1000, true, 16, 16).addFluidStack(recipe.outputFluid(), 81000);
 
         // Output tank
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 94, 4)
-                .setFluidRenderer(8000, true, 16, 32)
-                .addFluidStack(recipe.outputFluid(), 648000);
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 94, 4).setFluidRenderer(8000, true, 16, 32).addFluidStack(recipe.outputFluid(), 648000);
     }
 
     @Override

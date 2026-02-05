@@ -2,9 +2,9 @@ package net.edu.resprouted.screen.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.edu.resprouted.component.ModDataComponentTypes;
-import net.edu.resprouted.util.FluidUtils;
-import net.edu.resprouted.util.RenderUtils;
-import net.edu.resprouted.util.TextUtils;
+import net.edu.resprouted.util.fluid.FluidUtils;
+import net.edu.resprouted.util.render.RenderUtils;
+import net.edu.resprouted.util.misc.TextUtils;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;

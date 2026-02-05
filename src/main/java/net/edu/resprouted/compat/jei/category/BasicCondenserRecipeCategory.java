@@ -15,7 +15,7 @@ import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.compat.jei.JEIPlugin;
 import net.edu.resprouted.recipe.custom.BasicCondenserRecipe;
-import net.edu.resprouted.util.ElixirUtils;
+import net.edu.resprouted.util.misc.ElixirUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

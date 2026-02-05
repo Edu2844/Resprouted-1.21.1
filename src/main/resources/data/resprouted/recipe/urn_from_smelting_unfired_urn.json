@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "resprouted:unfired_urn"
+  },
+  "result": {
+    "id": "resprouted:urn"
+  },
+  "experience": 0,
+  "cookingtime": 400
+}

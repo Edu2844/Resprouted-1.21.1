@@ -1,5 +1,6 @@
 package net.edu.resprouted.mixin.gameplay;
 
+import net.edu.resprouted.block.custom.decorative.JarBlock;
 import net.edu.resprouted.block.custom.decorative.LiquidBarrelBlock;
 import net.edu.resprouted.mixin.util.AbstractCauldronBlockAccessor;
 import net.minecraft.block.AbstractCauldronBlock;
@@ -8,6 +9,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.PointedDripstoneBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -26,15 +28,26 @@ import java.util.function.Predicate;
 @Mixin(PointedDripstoneBlock.class)
 public class PointedDripstoneBlockMixin {
     @Inject(method = "getCauldronPos", at = @At("HEAD"), cancellable = true)
-    private static void getCauldronPosIncludingBarrel(World world, BlockPos pos, Fluid fluid, CallbackInfoReturnable<BlockPos> cir) {
+    private static void getCauldronPosIncludingResproutedBlocks(World world, BlockPos pos, Fluid fluid, CallbackInfoReturnable<BlockPos> cir) {
         Predicate<BlockState> predicate = state -> {
             Block block = state.getBlock();
             // Check for vanilla cauldrons
             if (block instanceof AbstractCauldronBlock cauldron) {
                 return ((AbstractCauldronBlockAccessor) cauldron).invokeCanBeFilledByDripstone(fluid);
             }
+
             // Check for liquid barrel
-            return block instanceof LiquidBarrelBlock && fluid == Fluids.WATER;
+            if (block instanceof LiquidBarrelBlock && fluid == Fluids.WATER) {
+                return state.get(Properties.OPEN);
+            }
+
+            // Check for jar block
+            if (block instanceof JarBlock && fluid == Fluids.WATER) {
+                return state.get(Properties.OPEN);
+            }
+
+            return false;
+
         };
 
         BiPredicate<BlockPos, BlockState> biPredicate = (posx, state) -> canDripThrough(world, posx, state);

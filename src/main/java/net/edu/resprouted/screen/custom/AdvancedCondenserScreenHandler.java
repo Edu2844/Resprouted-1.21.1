@@ -1,6 +1,6 @@
 package net.edu.resprouted.screen.custom;
 
-import net.edu.resprouted.block.entity.custom.AdvancedCondenserBlockEntity;
+import net.edu.resprouted.block.entity.custom.alchemy.AdvancedCondenserBlockEntity;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.screen.slot.BottleSlot;
 import net.edu.resprouted.screen.slot.CondenserFuelSlot;

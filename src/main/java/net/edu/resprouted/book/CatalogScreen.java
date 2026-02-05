@@ -7,7 +7,7 @@ import net.edu.resprouted.book.pages.EntryPagesPage;
 import net.edu.resprouted.book.pages.MainMenuPage;
 import net.edu.resprouted.book.CatalogData.*;
 import net.edu.resprouted.networking.payload.RemoveCatalogModelPayload;
-import net.edu.resprouted.util.PageUtils;
+import net.edu.resprouted.util.misc.PageUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -86,8 +86,7 @@ public class CatalogScreen extends Screen {
             }
         }
 
-        return getCurrentPage().handleClick(mouseX, mouseY) ||
-                super.mouseClicked(mouseX, mouseY, button);
+        return getCurrentPage().handleClick(mouseX, mouseY) || super.mouseClicked(mouseX, mouseY, button);
     }
 
     @Override
@@ -159,9 +158,7 @@ public class CatalogScreen extends Screen {
         }
 
         int currentIndex = categories.indexOf(selectedCategory);
-        int newIndex = reverse
-                ? (currentIndex <= 0 ? categories.size() - 1 : currentIndex - 1)
-                : (currentIndex >= categories.size() - 1 ? 0 : currentIndex + 1);
+        int newIndex = reverse ? (currentIndex <= 0 ? categories.size() - 1 : currentIndex - 1) : (currentIndex >= categories.size() - 1 ? 0 : currentIndex + 1);
 
         selectedCategory = categories.get(newIndex);
         selectedEntry = null;
@@ -197,8 +194,7 @@ public class CatalogScreen extends Screen {
 
     public void playPageTurnSound() {
         if (this.client != null && this.client.getSoundManager() != null) {
-            this.client.getSoundManager().play(
-                    PositionedSoundInstance.master(SoundEvents.ITEM_BOOK_PAGE_TURN, 1.0F));
+            this.client.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.ITEM_BOOK_PAGE_TURN, 1.0F));
         }
     }
 
@@ -227,6 +223,9 @@ public class CatalogScreen extends Screen {
 
     public void setSelectedCategory(Category category) {
         this.selectedCategory = category;
+        if (categoryListPage != null) {
+            categoryListPage.resetPage();
+        }
     }
 
     public Entry getSelectedEntry() {

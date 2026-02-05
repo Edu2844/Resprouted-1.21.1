@@ -27,6 +27,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 public abstract class AbstractCondenserBlockEntity extends AbstractSingleFluidStorageBlockEntity implements ExtendedScreenHandlerFactory<BlockPos>, ImplementedInventory {
@@ -207,24 +208,41 @@ public abstract class AbstractCondenserBlockEntity extends AbstractSingleFluidSt
         }
     }
 
-    protected boolean canInsertItemIntoOutputSlot(ItemStack result) {
+    protected boolean canInsertIntoOutputSlot(ItemStack result) {
         ItemStack outputStack = this.getStack(getOutputSlot());
         if (outputStack.isEmpty()) return true;
 
-        return ItemStack.areItemsAndComponentsEqual(outputStack, result)
-                && outputStack.getCount() + result.getCount() <= outputStack.getMaxCount();
+        return ItemStack.areItemsAndComponentsEqual(outputStack, result) && outputStack.getCount() + result.getCount() <= outputStack.getMaxCount();
     }
 
     protected void consumeFluidAndFinishCrafting() {
         SingleFluidStorage fluidStorage = getFluidStorage();
+
         fluidStorage.amount -= RECIPE_FLUID_COST;
         if (fluidStorage.amount < 0) {
             fluidStorage.amount = 0;
         }
+
         markDirty();
         if (world != null) {
             world.updateListeners(pos, getCachedState(), getCachedState(), Block.NOTIFY_ALL);
             world.playSound(null, pos, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
+    }
+
+    // Inventory
+    protected Direction getRelativeSide(Direction worldSide, Direction facing) {
+        if (worldSide == Direction.UP || worldSide == Direction.DOWN) {
+            return worldSide;
+        }
+        // Back
+        if (worldSide == facing.getOpposite()) return Direction.NORTH;
+        // Front
+        if (worldSide == facing) return Direction.SOUTH;
+        // Right
+        if (worldSide == facing.rotateYClockwise()) return Direction.EAST;
+        // Left
+        if (worldSide == facing.rotateYCounterclockwise()) return Direction.WEST;
+        return worldSide;
     }
 }

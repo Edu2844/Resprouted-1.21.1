@@ -12,7 +12,7 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.compat.rei.display.DryingBasinDisplay;
-import net.edu.resprouted.util.FluidUtils;
+import net.edu.resprouted.util.fluid.FluidUtils;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.render.GameRenderer;

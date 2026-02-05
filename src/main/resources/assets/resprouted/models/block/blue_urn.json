@@ -1,0 +1,7 @@
+{
+    "parent": "resprouted:block/template_urn",
+    "textures": {
+        "urn": "resprouted:block/blue_urn",
+        "particle": "resprouted:block/blue_urn_particle"
+    }
+}

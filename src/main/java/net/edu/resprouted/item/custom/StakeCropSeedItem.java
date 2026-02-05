@@ -1,6 +1,6 @@
 package net.edu.resprouted.item.custom;
 
-import net.edu.resprouted.registry.GrassSeedRegistry;
+import net.edu.resprouted.util.misc.GrassSeedsRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
@@ -11,7 +11,7 @@ public class StakeCropSeedItem extends Item {
         super(settings);
         this.cropBlock = cropBlock;
 
-        GrassSeedRegistry.registerSeed(this);
+        GrassSeedsRegistry.registerSeed(this);
     }
 
     public Block getCropBlock() {

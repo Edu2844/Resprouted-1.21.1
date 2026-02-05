@@ -1,6 +1,6 @@
 package net.edu.resprouted.mixin.gameplay;
 
-import net.edu.resprouted.util.ModTags;
+import net.edu.resprouted.util.misc.ModTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.util.math.BlockPos;

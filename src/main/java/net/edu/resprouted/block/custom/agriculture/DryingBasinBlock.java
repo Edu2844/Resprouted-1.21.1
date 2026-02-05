@@ -2,9 +2,9 @@ package net.edu.resprouted.block.custom.agriculture;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.entity.custom.DryingBasinBlockEntity;
+import net.edu.resprouted.block.entity.custom.agriculture.DryingBasinBlockEntity;
 import net.edu.resprouted.block.interfaces.LuminousFluidStorage;
-import net.edu.resprouted.fluid.data.FluidItemInteractionHelper;
+import net.edu.resprouted.util.fluid.FluidItemInteractionHelper;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
@@ -13,23 +13,31 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-public class DryingBasinBlock extends BlockWithEntity implements LuminousFluidStorage {
-    private static final VoxelShape SHAPE = VoxelShapes.union(
+public class DryingBasinBlock extends BlockWithEntity implements LuminousFluidStorage, Waterloggable {
+    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+    public static final VoxelShape SHAPE = VoxelShapes.union(
             Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 1.0F, 12.0),
             Block.createCuboidShape(2.0, 0.0, 4.0, 4.0, 6.0F, 12.0),
             Block.createCuboidShape(12.0, 0.0, 4.0, 14.0, 6.0F, 12.0),
@@ -40,12 +48,12 @@ public class DryingBasinBlock extends BlockWithEntity implements LuminousFluidSt
 
     public DryingBasinBlock(Settings settings) {
         super(settings);
-        setDefaultState(getDefaultState().with(LIGHT_LEVEL, 0));
+        setDefaultState(getDefaultState().with(LIGHT_LEVEL, 0).with(WATERLOGGED, false));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(LIGHT_LEVEL);
+        builder.add(LIGHT_LEVEL, WATERLOGGED);
     }
 
     @Override
@@ -73,6 +81,27 @@ public class DryingBasinBlock extends BlockWithEntity implements LuminousFluidSt
     @Nullable
     public BlockEntity getBlockEntity(World world, BlockPos pos) {
         return world.getBlockEntity(pos);
+    }
+
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        if (state.get(WATERLOGGED)) {
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        }
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        if (state.get(WATERLOGGED)) {
+            return Fluids.WATER.getStill(false);
+        }
+        return super.getFluidState(state);
+    }
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState().with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.edu.resprouted.datagen;
 
+import dev.architectury.platform.Mod;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.block.custom.agriculture.CustomBushBlock;
 import net.edu.resprouted.block.custom.agriculture.CustomMushroomBlock;
@@ -222,6 +223,30 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.BREWING_BARREL);
         addDrop(ModBlocks.FERTILE_SOIL);
 
+        //Unfired
+        addDrop(ModBlocks.UNFIRED_DRYING_BASIN);
+        addDrop(ModBlocks.UNFIRED_JAR);
+        addDrop(ModBlocks.UNFIRED_URN);
+
+        // Urn
+        addDrop(ModBlocks.URN);
+        addDrop(ModBlocks.WHITE_URN);
+        addDrop(ModBlocks.ORANGE_URN);
+        addDrop(ModBlocks.MAGENTA_URN);
+        addDrop(ModBlocks.LIGHT_BLUE_URN);
+        addDrop(ModBlocks.YELLOW_URN);
+        addDrop(ModBlocks.LIME_URN);
+        addDrop(ModBlocks.PINK_URN);
+        addDrop(ModBlocks.GRAY_URN);
+        addDrop(ModBlocks.LIGHT_GRAY_URN);
+        addDrop(ModBlocks.CYAN_URN);
+        addDrop(ModBlocks.PURPLE_URN);
+        addDrop(ModBlocks.BLUE_URN);
+        addDrop(ModBlocks.BROWN_URN);
+        addDrop(ModBlocks.GREEN_URN);
+        addDrop(ModBlocks.RED_URN);
+        addDrop(ModBlocks.BLACK_URN);
+
         // Alchemy
         addDrop(ModBlocks.BASIC_CONDENSER);
         addDrop(ModBlocks.ADVANCED_CONDENSER);
@@ -273,6 +298,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.ORANGE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.YELLOW_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.LIME_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.GREEN_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.CYAN_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_BLUE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.BLUE_IRON_CANDLE_HOLDER);
@@ -291,6 +317,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.ORANGE_DOUBLE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.YELLOW_DOUBLE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.LIME_DOUBLE_IRON_CANDLE_HOLDER);
+        addDrop(ModBlocks.GREEN_DOUBLE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.CYAN_DOUBLE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_BLUE_DOUBLE_IRON_CANDLE_HOLDER);
         addDrop(ModBlocks.BLUE_DOUBLE_IRON_CANDLE_HOLDER);
@@ -309,6 +336,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.ORANGE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.YELLOW_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.LIME_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.GREEN_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.CYAN_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_BLUE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.BLUE_GOLDEN_CANDLE_HOLDER);
@@ -327,6 +355,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.ORANGE_DOUBLE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.YELLOW_DOUBLE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.LIME_DOUBLE_GOLDEN_CANDLE_HOLDER);
+        addDrop(ModBlocks.GREEN_DOUBLE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.CYAN_DOUBLE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.LIGHT_BLUE_DOUBLE_GOLDEN_CANDLE_HOLDER);
         addDrop(ModBlocks.BLUE_DOUBLE_GOLDEN_CANDLE_HOLDER);

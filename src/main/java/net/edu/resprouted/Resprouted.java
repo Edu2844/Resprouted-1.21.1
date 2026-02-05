@@ -4,6 +4,7 @@ import net.edu.resprouted.advancement.criterion.ModCriteria;
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.book.CatalogData;
+import net.edu.resprouted.compat.ModCompat;
 import net.edu.resprouted.component.ModDataComponentTypes;
 import net.edu.resprouted.effect.ModEffects;
 import net.edu.resprouted.entity.ModEntities;
@@ -11,16 +12,16 @@ import net.edu.resprouted.fluid.ModFluidAttributes;
 import net.edu.resprouted.mixin.util.BlockEntityTypeAccessor;
 import net.edu.resprouted.networking.ModMessages;
 import net.edu.resprouted.registry.ResproutedResourcePacks;
-import net.edu.resprouted.registry.CabinetRegistry;
+import net.edu.resprouted.util.misc.CabinetRegistry;
 import net.edu.resprouted.screen.ModScreenHandlers;
-import net.edu.resprouted.resource.reload.FluidItemLoader;
+import net.edu.resprouted.resource.FluidItemLoader;
 import net.edu.resprouted.event.ModCommonEvents;
 import net.edu.resprouted.fluid.ModFluids;
 import net.edu.resprouted.item.ModItemGroups;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
 import net.edu.resprouted.registry.ResproutedCommonRegistry;
-import net.edu.resprouted.util.RopeDispenser;
+import net.edu.resprouted.event.RopeDispenser;
 import net.edu.resprouted.world.ModFoliagePlacerTypes;
 import net.edu.resprouted.world.ModTrunkPlacerTypes;
 import net.edu.resprouted.world.gen.ModWorldGeneration;
@@ -57,6 +58,15 @@ public class Resprouted implements ModInitializer {
 		return FabricLoader.getInstance().isModLoaded(modId);
 	}
 
+	public static boolean isDatagen() {
+		try {
+			Class.forName("net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint");
+			return System.getProperty("fabric-api.datagen") != null;
+		} catch (ClassNotFoundException e) {
+			return false;
+		}
+	}
+
 	@Override
 	public void onInitialize() {
 		Resprouted.COMMON_CONFIG = ResproutedCommonConfiguration.load();
@@ -69,6 +79,7 @@ public class Resprouted implements ModInitializer {
 		ModFluidAttributes.registerFluidAttributes();
 		ModItems.registerModItems();
 		ModItemGroups.registerItemGroup();
+		ModCompat.initialize();
 		ModEntities.registerModEntities();
 		ModWorldGeneration.generateModWorldGen();
 		ModFoliagePlacerTypes.registerModFoliagePlacers();
@@ -76,7 +87,7 @@ public class Resprouted implements ModInitializer {
 		ModRecipes.registerRecipes();
 		ModCommonEvents.registerEvents();
 		ResproutedCommonRegistry.registerModStuffs();
-		CabinetRegistry.getAllCabinetBlocks();
+		CabinetRegistry.getRegisteredCabinets();
 		ModMessages.registerPayloads();
 		ModMessages.registerC2SPackets();
 		ModScreenHandlers.registerScreenHandlers();

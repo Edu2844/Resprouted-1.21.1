@@ -23,14 +23,10 @@ public class ModKeyInputHandler {
 
                 Text keyName = firepowerattack.getBoundKeyLocalizedText();
 
-                client.player.sendMessage(
-                        Text.translatable("message.resprouted.press_to_launch",
-                                keyName.copy().formatted(Formatting.WHITE)
-                        ).formatted(Formatting.WHITE),
-                        true
-                );
-
+                client.player.sendMessage(Text.translatable("message.resprouted.press_to_launch",
+                        keyName.copy().formatted(Formatting.RESET)).formatted(Formatting.RESET), true);
             }
+
             if(firepowerattack.wasPressed()) {
                 assert client.player != null;
                 if (client.player.hasStatusEffect(ModEffects.FIRE_POWER)) {

@@ -21,9 +21,7 @@ public class BasicCondenserDisplay extends BasicDisplay {
     private final int amplifier;
 
     public BasicCondenserDisplay(RecipeEntry<BasicCondenserRecipe> entry) {
-        super(createInputEntries(entry.value()),
-                List.of(EntryIngredient.of(EntryStacks.of(entry.value().getResult(null))))
-        );
+        super(createInputEntries(entry.value()), List.of(EntryIngredient.of(EntryStacks.of(entry.value().getResult(null)))));
         this.effect = entry.value().effect();
         this.duration = entry.value().duration();
         this.amplifier = entry.value().amplifier();

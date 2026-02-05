@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "open=false": {
+      "model": "resprouted:block/light_blue_jar_closed"
+    },
+    "open=true": {
+      "model": "resprouted:block/light_blue_jar_open"
+    }
+  }
+}

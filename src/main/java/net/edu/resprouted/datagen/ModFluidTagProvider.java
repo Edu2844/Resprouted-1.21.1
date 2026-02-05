@@ -1,7 +1,7 @@
 package net.edu.resprouted.datagen;
 
 import net.edu.resprouted.fluid.ModFluids;
-import net.edu.resprouted.util.ModTags;
+import net.edu.resprouted.util.misc.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;

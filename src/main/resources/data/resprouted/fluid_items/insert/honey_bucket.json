@@ -9,5 +9,6 @@
     "id": "minecraft:bucket"
   },
   "amount": 1000,
-  "direction": "insert"
+  "direction": "insert",
+  "sound": "minecraft:block.honey_block.place"
 }

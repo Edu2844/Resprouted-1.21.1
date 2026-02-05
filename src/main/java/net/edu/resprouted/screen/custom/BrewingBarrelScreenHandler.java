@@ -1,6 +1,6 @@
 package net.edu.resprouted.screen.custom;
 
-import net.edu.resprouted.block.entity.custom.BrewingBarrelBlockEntity;
+import net.edu.resprouted.block.entity.custom.agriculture.BrewingBarrelBlockEntity;
 import net.edu.resprouted.screen.ModScreenHandlers;
 import net.edu.resprouted.screen.slot.*;
 import net.minecraft.entity.player.PlayerEntity;

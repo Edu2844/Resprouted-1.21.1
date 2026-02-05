@@ -2,7 +2,7 @@ package net.edu.resprouted.datagen;
 
 import net.edu.resprouted.block.ModBlocks;
 import net.edu.resprouted.item.ModItems;
-import net.edu.resprouted.util.ModTags;
+import net.edu.resprouted.util.misc.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
@@ -27,6 +27,22 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                         ModBlocks.STRIPPED_OLIVE_LOG.asItem()
                 );
 
+        assert ModBlocks.BLACK_PAINTED_PLANKS != null;
+        assert ModBlocks.BROWN_PAINTED_PLANKS != null;
+        assert ModBlocks.BLUE_PAINTED_PLANKS != null;
+        assert ModBlocks.CYAN_PAINTED_PLANKS != null;
+        assert ModBlocks.GRAY_PAINTED_PLANKS != null;
+        assert ModBlocks.GREEN_PAINTED_PLANKS != null;
+        assert ModBlocks.LIGHT_BLUE_PAINTED_PLANKS != null;
+        assert ModBlocks.LIME_PAINTED_PLANKS != null;
+        assert ModBlocks.MAGENTA_PAINTED_PLANKS != null;
+        assert ModBlocks.ORANGE_PAINTED_PLANKS != null;
+        assert ModBlocks.PURPLE_PAINTED_PLANKS != null;
+        assert ModBlocks.PINK_PAINTED_PLANKS != null;
+        assert ModBlocks.RED_PAINTED_PLANKS != null;
+        assert ModBlocks.LIGHT_GRAY_PAINTED_PLANKS != null;
+        assert ModBlocks.WHITE_PAINTED_PLANKS != null;
+        assert ModBlocks.YELLOW_PAINTED_PLANKS != null;
         getOrCreateTagBuilder(ItemTags.PLANKS)
                 .add(ModBlocks.IRONWOOD_PLANKS.asItem(),
                         ModBlocks.OLIVE_PLANKS.asItem(),
@@ -183,6 +199,46 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                         ModItems.AMBROSIA_BOTTLE,
                         ModItems.RUM_BOTTLE,
                         ModItems.MEAD_BOTTLE
+                );
+
+        getOrCreateTagBuilder(ModTags.Items.JARS)
+                .add(ModBlocks.BLACK_JAR.asItem(),
+                        ModBlocks.BLUE_JAR.asItem(),
+                        ModBlocks.BROWN_JAR.asItem(),
+                        ModBlocks.CYAN_JAR.asItem(),
+                        ModBlocks.GRAY_JAR.asItem(),
+                        ModBlocks.GREEN_JAR.asItem(),
+                        ModBlocks.LIGHT_BLUE_JAR.asItem(),
+                        ModBlocks.LIGHT_GRAY_JAR.asItem(),
+                        ModBlocks.LIME_JAR.asItem(),
+                        ModBlocks.JAR.asItem(),
+                        ModBlocks.MAGENTA_JAR.asItem(),
+                        ModBlocks.ORANGE_JAR.asItem(),
+                        ModBlocks.PINK_JAR.asItem(),
+                        ModBlocks.PURPLE_JAR.asItem(),
+                        ModBlocks.RED_JAR.asItem(),
+                        ModBlocks.WHITE_JAR.asItem(),
+                        ModBlocks.YELLOW_JAR.asItem()
+                );
+
+        getOrCreateTagBuilder(ModTags.Items.URNS)
+                .add(ModBlocks.URN.asItem(),
+                        ModBlocks.WHITE_URN.asItem(),
+                        ModBlocks.ORANGE_URN.asItem(),
+                        ModBlocks.MAGENTA_URN.asItem(),
+                        ModBlocks.LIGHT_BLUE_URN.asItem(),
+                        ModBlocks.YELLOW_URN.asItem(),
+                        ModBlocks.LIME_URN.asItem(),
+                        ModBlocks.PINK_URN.asItem(),
+                        ModBlocks.GRAY_URN.asItem(),
+                        ModBlocks.LIGHT_GRAY_URN.asItem(),
+                        ModBlocks.CYAN_URN.asItem(),
+                        ModBlocks.PURPLE_URN.asItem(),
+                        ModBlocks.BLUE_URN.asItem(),
+                        ModBlocks.BROWN_URN.asItem(),
+                        ModBlocks.GREEN_URN.asItem(),
+                        ModBlocks.RED_URN.asItem(),
+                        ModBlocks.BLACK_URN.asItem()
                 );
 
     }

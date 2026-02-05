@@ -2,10 +2,7 @@ package net.edu.resprouted.registry;
 
 import net.edu.resprouted.block.ModBlockEntities;
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.block.entity.renderer.CrushingTubRenderer;
-import net.edu.resprouted.block.entity.renderer.DryingBasinRenderer;
-import net.edu.resprouted.block.entity.renderer.LiquidBarrelRenderer;
-import net.edu.resprouted.effect.render.FullMetalHudOverlay;
+import net.edu.resprouted.block.entity.renderer.*;
 import net.edu.resprouted.entity.ModEntities;
 import net.edu.resprouted.entity.client.ChairEntityRenderer;
 import net.edu.resprouted.entity.client.StoolEntityRenderer;
@@ -18,7 +15,6 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRenderHandler;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -55,14 +51,14 @@ public class ResproutedClientRegistry {
         registerFluidTexture();
         registerBlockColors();
         registerItemColors();
-        registerHudRenderers();
         registerModelPredicatesForEatingAnimationsCompat();
     }
 
     public static void registerBlockEntityRenderers() {
-        BlockEntityRendererFactories.register(ModBlockEntities.CRUSHING_TUB_BE, CrushingTubRenderer::new);
-        BlockEntityRendererFactories.register(ModBlockEntities.LIQUID_BARREL_BE, LiquidBarrelRenderer::new);
-        BlockEntityRendererFactories.register(ModBlockEntities.DRYING_BASIN_BE, DryingBasinRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.CRUSHING_TUB_BE, CrushingTubBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.LIQUID_BARREL_BE, LiquidBarrelBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.DRYING_BASIN_BE, DryingBasinBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.JAR_BE, JarBlockEntityRenderer::new);
     }
 
     public static void registerEntityRenderers() {
@@ -105,6 +101,7 @@ public class ResproutedClientRegistry {
         registry.putBlock(ModBlocks.LIQUID_BARREL, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.CRUSHING_TUB, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.DRYING_BASIN, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.UNFIRED_DRYING_BASIN, RenderLayer.getCutout());
 
         // Bushes
         registry.putBlock(ModBlocks.TEST_BERRY_BUSH, RenderLayer.getCutout());
@@ -585,6 +582,25 @@ public class ResproutedClientRegistry {
         registry.putBlock(ModBlocks.POTTED_MOONCAP_MUSHROOM, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.POTTED_VANTA_LILY, RenderLayer.getCutout());
         registry.putBlock(ModBlocks.POTTED_WIND_THISTLE, RenderLayer.getCutout());
+
+        //Liquid Jar
+        registry.putBlock(ModBlocks.JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.WHITE_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.ORANGE_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.MAGENTA_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIGHT_BLUE_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.YELLOW_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIME_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.PINK_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.GRAY_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.LIGHT_GRAY_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.CYAN_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.PURPLE_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BLUE_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BROWN_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.GREEN_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.RED_JAR, RenderLayer.getCutout());
+        registry.putBlock(ModBlocks.BLACK_JAR, RenderLayer.getCutout());
     }
 
     public static void registerFluidTexture() {
@@ -793,10 +809,6 @@ public class ResproutedClientRegistry {
                         : ColorHelper.Argb.fullAlpha(stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT).getColor()),
                 ModItems.ELIXIR_BOTTLE
         );
-    }
-
-    public static void registerHudRenderers() {
-        HudRenderCallback.EVENT.register(new FullMetalHudOverlay());
     }
 
     public static void registerModelPredicatesForEatingAnimationsCompat() {

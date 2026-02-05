@@ -3,7 +3,7 @@ package net.edu.resprouted.book.abstracts;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.book.CatalogScreen;
 import net.edu.resprouted.book.widget.CatalogButtonWidget;
-import net.edu.resprouted.util.PageUtils;
+import net.edu.resprouted.util.misc.PageUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ClickableWidget;

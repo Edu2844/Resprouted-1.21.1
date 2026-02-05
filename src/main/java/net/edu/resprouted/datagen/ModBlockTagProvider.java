@@ -1,7 +1,7 @@
 package net.edu.resprouted.datagen;
 
 import net.edu.resprouted.block.ModBlocks;
-import net.edu.resprouted.util.ModTags;
+import net.edu.resprouted.util.misc.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
@@ -121,6 +121,44 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
                         ModBlocks.DRYING_BASIN,
 
+                        //Jar
+                        ModBlocks.JAR,
+                        ModBlocks.WHITE_JAR,
+                        ModBlocks.ORANGE_JAR,
+                        ModBlocks.MAGENTA_JAR,
+                        ModBlocks.LIGHT_BLUE_JAR,
+                        ModBlocks.YELLOW_JAR,
+                        ModBlocks.LIME_JAR,
+                        ModBlocks.PINK_JAR,
+                        ModBlocks.GRAY_JAR,
+                        ModBlocks.LIGHT_GRAY_JAR,
+                        ModBlocks.CYAN_JAR,
+                        ModBlocks.PURPLE_JAR,
+                        ModBlocks.BLUE_JAR,
+                        ModBlocks.BROWN_JAR,
+                        ModBlocks.GREEN_JAR,
+                        ModBlocks.RED_JAR,
+                        ModBlocks.BLACK_JAR,
+
+                        //Urn
+                        ModBlocks.URN,
+                        ModBlocks.WHITE_URN,
+                        ModBlocks.ORANGE_URN,
+                        ModBlocks.MAGENTA_URN,
+                        ModBlocks.LIGHT_BLUE_URN,
+                        ModBlocks.YELLOW_URN,
+                        ModBlocks.LIME_URN,
+                        ModBlocks.PINK_URN,
+                        ModBlocks.GRAY_URN,
+                        ModBlocks.LIGHT_GRAY_URN,
+                        ModBlocks.CYAN_URN,
+                        ModBlocks.PURPLE_URN,
+                        ModBlocks.BLUE_URN,
+                        ModBlocks.BROWN_URN,
+                        ModBlocks.GREEN_URN,
+                        ModBlocks.RED_URN,
+                        ModBlocks.BLACK_URN,
+
                         // Alchemy
                         ModBlocks.BASIC_CONDENSER,
                         ModBlocks.ADVANCED_CONDENSER,
@@ -138,6 +176,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                         ModBlocks.ORANGE_IRON_CANDLE_HOLDER,
                         ModBlocks.YELLOW_IRON_CANDLE_HOLDER,
                         ModBlocks.LIME_IRON_CANDLE_HOLDER,
+                        ModBlocks.GREEN_IRON_CANDLE_HOLDER,
                         ModBlocks.CYAN_IRON_CANDLE_HOLDER,
                         ModBlocks.LIGHT_BLUE_IRON_CANDLE_HOLDER,
                         ModBlocks.BLUE_IRON_CANDLE_HOLDER,
@@ -156,6 +195,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                         ModBlocks.ORANGE_DOUBLE_IRON_CANDLE_HOLDER,
                         ModBlocks.YELLOW_DOUBLE_IRON_CANDLE_HOLDER,
                         ModBlocks.LIME_DOUBLE_IRON_CANDLE_HOLDER,
+                        ModBlocks.GREEN_DOUBLE_IRON_CANDLE_HOLDER,
                         ModBlocks.CYAN_DOUBLE_IRON_CANDLE_HOLDER,
                         ModBlocks.LIGHT_BLUE_DOUBLE_IRON_CANDLE_HOLDER,
                         ModBlocks.BLUE_DOUBLE_IRON_CANDLE_HOLDER,
@@ -174,6 +214,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                         ModBlocks.ORANGE_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.YELLOW_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.LIME_GOLDEN_CANDLE_HOLDER,
+                        ModBlocks.GREEN_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.CYAN_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.LIGHT_BLUE_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.BLUE_GOLDEN_CANDLE_HOLDER,
@@ -192,6 +233,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                         ModBlocks.ORANGE_DOUBLE_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.YELLOW_DOUBLE_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.LIME_DOUBLE_GOLDEN_CANDLE_HOLDER,
+                        ModBlocks.GREEN_DOUBLE_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.CYAN_DOUBLE_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.LIGHT_BLUE_DOUBLE_GOLDEN_CANDLE_HOLDER,
                         ModBlocks.BLUE_DOUBLE_GOLDEN_CANDLE_HOLDER,
@@ -621,7 +663,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.FERTILE_SOIL,
                         ModBlocks.CLAY_WALL,
                         ModBlocks.CLAY_WALL_CROSS,
-                        ModBlocks.CLAY_WALL_DIAGONAL
+                        ModBlocks.CLAY_WALL_DIAGONAL,
+                        ModBlocks.UNFIRED_DRYING_BASIN,
+                        ModBlocks.UNFIRED_JAR,
+                        ModBlocks.UNFIRED_URN
                 );
 
         getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS)
@@ -746,6 +791,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                         ModBlocks.GRAPE_LEAVES
                 );
 
+        getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
+                .add(ModBlocks.IRONWOOD_DOOR,
+                        ModBlocks.OLIVE_DOOR
+                );
+
+
         getOrCreateTagBuilder(ModTags.Blocks.FERTILE_SOILS)
                 .add(ModBlocks.FERTILE_SOIL);
 
@@ -771,6 +822,46 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                         Blocks.FARMLAND,
                         Blocks.BARREL,
                         ModBlocks.FERTILE_SOIL
+                );
+
+        getOrCreateTagBuilder(ModTags.Blocks.JARS)
+                .add(ModBlocks.BLACK_JAR,
+                        ModBlocks.BLUE_JAR,
+                        ModBlocks.BROWN_JAR,
+                        ModBlocks.CYAN_JAR,
+                        ModBlocks.GRAY_JAR,
+                        ModBlocks.GREEN_JAR,
+                        ModBlocks.LIGHT_BLUE_JAR,
+                        ModBlocks.LIGHT_GRAY_JAR,
+                        ModBlocks.LIME_JAR,
+                        ModBlocks.JAR,
+                        ModBlocks.MAGENTA_JAR,
+                        ModBlocks.ORANGE_JAR,
+                        ModBlocks.PINK_JAR,
+                        ModBlocks.PURPLE_JAR,
+                        ModBlocks.RED_JAR,
+                        ModBlocks.WHITE_JAR,
+                        ModBlocks.YELLOW_JAR
+                );
+
+        getOrCreateTagBuilder(ModTags.Blocks.URNS)
+                .add(ModBlocks.URN,
+                        ModBlocks.WHITE_URN,
+                        ModBlocks.ORANGE_URN,
+                        ModBlocks.MAGENTA_URN,
+                        ModBlocks.LIGHT_BLUE_URN,
+                        ModBlocks.YELLOW_URN,
+                        ModBlocks.LIME_URN,
+                        ModBlocks.PINK_URN,
+                        ModBlocks.GRAY_URN,
+                        ModBlocks.LIGHT_GRAY_URN,
+                        ModBlocks.CYAN_URN,
+                        ModBlocks.PURPLE_URN,
+                        ModBlocks.BLUE_URN,
+                        ModBlocks.BROWN_URN,
+                        ModBlocks.GREEN_URN,
+                        ModBlocks.RED_URN,
+                        ModBlocks.BLACK_URN
                 );
     }
 }

@@ -81,24 +81,15 @@ public class AdvancedCondenserCategory implements DisplayCategory<AdvancedConden
         }
 
         if (ingredientCount >= 1) {
-            widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 8))
-                    .entries(inputs.getFirst())
-                    .disableBackground()
-                    .markInput());
+            widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 8)).entries(inputs.getFirst()).disableBackground().markInput());
         }
 
         if (ingredientCount >= 2) {
-            widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 32))
-                    .entries(inputs.get(1))
-                    .disableBackground()
-                    .markInput());
+            widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 32)).entries(inputs.get(1)).disableBackground().markInput());
         }
 
         if (ingredientCount >= 3) {
-            widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 56))
-                    .entries(inputs.get(2))
-                    .disableBackground()
-                    .markInput());
+            widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 56)).entries(inputs.get(2)).disableBackground().markInput());
         }
 
         if (display.getModifier().isPresent()) {
@@ -121,6 +112,7 @@ public class AdvancedCondenserCategory implements DisplayCategory<AdvancedConden
                     .disableBackground()
                     .markOutput());
         }
+
         return widgets;
     }
 }

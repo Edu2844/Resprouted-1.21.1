@@ -4,7 +4,7 @@ import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.book.CatalogData;
 import net.edu.resprouted.book.CatalogScreen;
 import net.edu.resprouted.book.abstracts.BaseCatalogPage;
-import net.edu.resprouted.util.PageUtils;
+import net.edu.resprouted.util.misc.PageUtils;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 

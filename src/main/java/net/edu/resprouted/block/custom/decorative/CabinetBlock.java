@@ -2,8 +2,7 @@ package net.edu.resprouted.block.custom.decorative;
 
 import com.mojang.serialization.MapCodec;
 import net.edu.resprouted.block.ModBlockEntities;
-import net.edu.resprouted.block.abstracts.AbstractCabinetBlock;
-import net.edu.resprouted.block.entity.custom.CabinetBlockEntity;
+import net.edu.resprouted.block.entity.custom.decorative.CabinetBlockEntity;
 import net.edu.resprouted.block.enums.CabinetType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -44,7 +43,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
-public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> implements Waterloggable, InventoryProvider {
+public class CabinetBlock extends BlockWithEntity implements Waterloggable, InventoryProvider {
     public static final BooleanProperty OPEN = BooleanProperty.of("open");
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final MapCodec<CabinetBlock> CODEC = createCodec(CabinetBlock::new);
@@ -65,6 +64,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
             return Optional.empty();
         }
     };
+
     private static final DoubleBlockProperties.PropertyRetriever<CabinetBlockEntity, Optional<NamedScreenHandlerFactory>> NAME_RETRIEVER = new DoubleBlockProperties.PropertyRetriever<>() {
         public Optional<NamedScreenHandlerFactory> getFromBoth(CabinetBlockEntity first, CabinetBlockEntity second) {
             final Inventory inventory = new DoubleInventory(second, first);
@@ -72,11 +72,11 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
                 @Nullable
                 @Override
                 public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-                    if (first.checkUnlocked(player) && second.checkUnlocked(player)){
+                    if (first.checkUnlocked(player) && second.checkUnlocked(player)) {
                         first.generateLoot(player);
                         second.generateLoot(player);
                         return GenericContainerScreenHandler.createGeneric9x6(syncId, inv, inventory);
-                    }else {
+                    } else {
                         return null;
                     }
                 }
@@ -102,12 +102,12 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
     };
 
     @Override
-    protected MapCodec<? extends AbstractCabinetBlock<CabinetBlockEntity>> getCodec() {
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
         return CODEC;
     }
 
     public CabinetBlock(Settings settings) {
-        super(settings, () -> ModBlockEntities.CABINET_BE);
+        super(settings);
         setDefaultState(getStateManager().getDefaultState()
                 .with(OPEN, false)
                 .with(FACING, Direction.NORTH)
@@ -142,10 +142,10 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
             Direction expectedDir = type == CabinetType.TOP ? Direction.DOWN : Direction.UP;
 
             if (direction == expectedDir) {
-                if (!(neighborState.getBlock() instanceof CabinetBlock) ||
-                        neighborState.get(CABINET_TYPE) != type.getOpposite() ||
-                        neighborState.get(FACING) != state.get(FACING) ||
-                        neighborState.get(HINGE) != state.get(HINGE)) {
+                if (!(neighborState.getBlock() instanceof CabinetBlock)
+                        || neighborState.get(CABINET_TYPE) != type.getOpposite()
+                        || neighborState.get(FACING) != state.get(FACING)
+                        || neighborState.get(HINGE) != state.get(HINGE)) {
                     return state.with(CABINET_TYPE, CabinetType.SINGLE);
                 }
             }
@@ -180,10 +180,10 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
 
         BlockState belowState = world.getBlockState(below);
 
-        if (belowState.getBlock() instanceof CabinetBlock &&
-                belowState.get(FACING) == facing &&
-                belowState.get(CABINET_TYPE) == CabinetType.SINGLE &&
-                belowState.get(HINGE) == hinge) {
+        if (belowState.getBlock() instanceof CabinetBlock
+                && belowState.get(FACING) == facing
+                && belowState.get(CABINET_TYPE) == CabinetType.SINGLE
+                && belowState.get(HINGE) == hinge) {
 
             return getDefaultState()
                     .with(FACING, facing)
@@ -225,8 +225,7 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
                 BlockPos otherPos = pos.offset(dirToOther);
                 BlockState otherState = world.getBlockState(otherPos);
 
-                if (otherState.getBlock() instanceof CabinetBlock &&
-                        otherState.get(CABINET_TYPE) == CabinetType.SINGLE) {
+                if (otherState.getBlock() instanceof CabinetBlock && otherState.get(CABINET_TYPE) == CabinetType.SINGLE) {
                     world.setBlockState(otherPos, otherState.with(CABINET_TYPE, type.getOpposite()), 3);
                 }
             }
@@ -271,17 +270,11 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 
-    @Override
     public DoubleBlockProperties.PropertySource<? extends CabinetBlockEntity> getBlockEntitySource(BlockState state, World world, BlockPos pos, boolean ignoreBlocked) {
-        BiPredicate<WorldAccess, BlockPos> blockPredicate;
-        if (ignoreBlocked) {
-            blockPredicate = (w, p) -> false;
-        } else {
-            blockPredicate = this::isBlocked;
-        }
+        BiPredicate<WorldAccess, BlockPos> blockPredicate = ignoreBlocked ? (w, p) -> false : this::isBlocked;
 
         return DoubleBlockProperties.toPropertySource(
-                this.entityTypeRetriever.get(),
+                ModBlockEntities.CABINET_BE,
                 CabinetBlock::getDoubleBlockType,
                 CabinetBlock::getDirectionTowardsOtherHalf,
                 FACING,
@@ -311,14 +304,14 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
     @Override
     protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof CabinetBlockEntity) {
-            ((CabinetBlockEntity)blockEntity).onScheduledTick();
+        if (blockEntity instanceof CabinetBlockEntity cabinetBE) {
+            cabinetBE.onScheduledTick();
         }
     }
 
     private boolean isBlocked(WorldAccess world, BlockPos pos) {
         BlockState state = world.getBlockState(pos);
-        return hasBlockInFront(world, pos, world.getBlockState(pos)) || hasCatInFront(world, pos, state);
+        return hasBlockInFront(world, pos, state) || hasCatInFront(world, pos, state);
     }
 
     private boolean hasBlockInFront(WorldAccess world, BlockPos pos, BlockState state) {
@@ -332,22 +325,12 @@ public class CabinetBlock extends AbstractCabinetBlock<CabinetBlockEntity> imple
         BlockPos frontPos = pos.offset(facing);
 
         List<CatEntity> list = world.getNonSpectatingEntities(
-                CatEntity.class,
-                new Box(
-                        frontPos.getX(),
-                        frontPos.getY(),
-                        frontPos.getZ(),
-                        frontPos.getX() + 1,
-                        frontPos.getY() + 1,
-                        frontPos.getZ() + 1
-                )
-        );
+                CatEntity.class, new Box(frontPos.getX(), frontPos.getY(), frontPos.getZ(),
+                        frontPos.getX() + 1, frontPos.getY() + 1, frontPos.getZ() + 1));
 
-        if (!list.isEmpty()) {
-            for (CatEntity catEntity : list) {
-                if (catEntity.isInSittingPose()) {
-                    return true;
-                }
+        for (CatEntity catEntity : list) {
+            if (catEntity.isInSittingPose()) {
+                return true;
             }
         }
 

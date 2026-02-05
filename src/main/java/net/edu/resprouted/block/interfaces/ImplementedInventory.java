@@ -200,10 +200,12 @@ public interface ImplementedInventory extends SidedInventory {
     default void clear() {
         getItems().clear();
     }
+
     @Override
     default void markDirty() {
         // Override if you want behavior.
     }
+
     @Override
     default boolean canPlayerUse(PlayerEntity player) {
         return true;

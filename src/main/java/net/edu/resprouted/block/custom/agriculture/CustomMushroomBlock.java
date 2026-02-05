@@ -1,6 +1,6 @@
 package net.edu.resprouted.block.custom.agriculture;
 
-import net.edu.resprouted.util.ModTags;
+import net.edu.resprouted.util.misc.ModTags;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.state.StateManager;

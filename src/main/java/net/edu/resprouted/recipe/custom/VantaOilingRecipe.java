@@ -1,11 +1,9 @@
 package net.edu.resprouted.recipe.custom;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.edu.resprouted.Resprouted;
 import net.edu.resprouted.item.ModItems;
 import net.edu.resprouted.recipe.ModRecipes;
-import net.edu.resprouted.util.RecipeUtils;
+import net.edu.resprouted.util.recipe.RecipeUtils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.effect.StatusEffect;
@@ -13,8 +11,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.potion.Potion;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
@@ -218,28 +214,5 @@ public class VantaOilingRecipe extends SpecialCraftingRecipe {
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipes.VANTA_OIL_SERIALIZER;
-    }
-
-    public static class VantaOilRecipeSerializer implements RecipeSerializer<VantaOilingRecipe> {
-
-        public static final MapCodec<VantaOilingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
-                instance.group(CraftingRecipeCategory.CODEC
-                        .fieldOf("category")
-                        .forGetter(VantaOilingRecipe::getCategory))
-                        .apply(instance, VantaOilingRecipe::new));
-
-        public static final PacketCodec<RegistryByteBuf, VantaOilingRecipe> PACKET_CODEC = PacketCodec
-                .ofStatic((buf, recipe) -> buf.writeEnumConstant(recipe.getCategory()),
-                buf -> new VantaOilingRecipe(buf.readEnumConstant(CraftingRecipeCategory.class)));
-
-        @Override
-        public MapCodec<VantaOilingRecipe> codec() {
-            return CODEC;
-        }
-
-        @Override
-        public PacketCodec<RegistryByteBuf, VantaOilingRecipe> packetCodec() {
-            return PACKET_CODEC;
-        }
     }
 }

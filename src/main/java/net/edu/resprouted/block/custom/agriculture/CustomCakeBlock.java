@@ -23,6 +23,7 @@ public class CustomCakeBlock extends CakeBlock {
     private final int effectDuration;
     private final int effectAmplifier;
 
+    @SuppressWarnings("unused")
     public CustomCakeBlock(Settings settings) {
         this(settings, null, 0, 0);
     }
