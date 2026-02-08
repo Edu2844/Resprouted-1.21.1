@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-04T20:06:30.9287649	Resprouted/Tags for minecraft:block
+// 1.21.1	2026-02-08T13:42:17.036428	Resprouted/Tags for minecraft:block
 061487558e06da47c2e48b1f0cb2bb24c34d267f data\minecraft\tags\block\wooden_stairs.json
 d6fe1362839cc923f7209db28021d51f7dfaa303 data\minecraft\tags\block\saplings.json
 076c0388cdd42c66aa2cae0e35aa5dd19bb392af data\minecraft\tags\block\wooden_trapdoors.json
@@ -14,7 +14,7 @@ dd978c459bc6aa2625476dd0de7c1764b816e94c data\minecraft\tags\block\mineable\axe.
 f32c8526b8bcc041bb0ac387d1ef1e84b6bd46c2 data\minecraft\tags\block\wooden_buttons.json
 bae413f2bcbeb5269437af17c363b31c4070989c data\minecraft\tags\block\fences.json
 4006d377e843e61a73f007077bb382f2fad3e37e data\minecraft\tags\block\sword_efficient.json
-55516a73fa45e88bc36a06460ca309720b789f64 data\minecraft\tags\block\mineable\pickaxe.json
+64473d3b4bdd2c43e6e28b5e22f0d497839991d0 data\minecraft\tags\block\mineable\pickaxe.json
 ee1a17f98efa3e575b67fdb22823e4e9b93827a2 data\resprouted\tags\block\jars.json
 91250a5dd066af3e052d2e110f4e7ba324c5ed79 data\minecraft\tags\block\wooden_doors.json
 8b53b3f34d59a961a8bc5df09257c900bfc205a7 data\minecraft\tags\block\ceiling_hanging_signs.json

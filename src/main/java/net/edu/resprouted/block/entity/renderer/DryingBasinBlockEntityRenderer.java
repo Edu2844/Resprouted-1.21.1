@@ -46,7 +46,7 @@ public class DryingBasinBlockEntityRenderer implements BlockEntityRenderer<Dryin
             // Get fluid visual properties
             int color = FluidVariantRendering.getColor(fluid, entity.getWorld(), entity.getPos());
             Sprite sprite = RenderUtils.getFluidSprite(fluid);
-            RenderLayer renderLayer = RenderLayers.getFluidLayer(fluid.getFluid().getDefaultState());
+            RenderLayer renderLayer = TexturedRenderLayers.getEntityTranslucentCull();
             VertexConsumer buffer = vertexConsumers.getBuffer(renderLayer);
 
             final float BASE_HEIGHT = 0.0625f; // Minimum fluid height (1 px: 1/16 = 0.0625)

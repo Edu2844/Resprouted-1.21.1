@@ -2,7 +2,6 @@ package net.edu.resprouted.block.custom.decorative;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
@@ -55,7 +54,7 @@ public class UnfiredBlock extends Block {
             return true;
         }
 
-        boolean isOnFire = belowState.isOf(Blocks.FIRE) || belowState.isOf(Blocks.SOUL_FIRE);
+        boolean isOnFire = belowState.isIn(BlockTags.FIRE);
         boolean isOnLitCampfire = belowState.isIn(BlockTags.CAMPFIRES) && belowState.get(CampfireBlock.LIT);
 
         return isOnLitCampfire || isOnFire;

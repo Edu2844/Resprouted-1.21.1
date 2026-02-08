@@ -17,8 +17,27 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-                        // Slate
-                .add(ModBlocks.ANDESITE_BRICKS,
+                .add(ModBlocks.SLATE,
+                        ModBlocks.COBBLED_SLATE,
+                        ModBlocks.COBBLED_SLATE_WALL,
+                        ModBlocks.COBBLED_SLATE_STAIRS,
+                        ModBlocks.COBBLED_SLATE_SLAB,
+                        ModBlocks.POLISHED_SLATE,
+                        ModBlocks.POLISHED_SLATE_WALL,
+                        ModBlocks.POLISHED_SLATE_STAIRS,
+                        ModBlocks.POLISHED_SLATE_SLAB,
+                        ModBlocks.SLATE_BRICKS,
+                        ModBlocks.SLATE_BRICK_WALL,
+                        ModBlocks.SLATE_BRICK_STAIRS,
+                        ModBlocks.SLATE_BRICK_SLAB,
+                        ModBlocks.SLATE_ROOFS,
+                        ModBlocks.SLATE_ROOF_STAIRS,
+                        ModBlocks.SLATE_ROOF_SLAB,
+                        ModBlocks.CHISELED_SLATE,
+                        ModBlocks.SLATE_PILLAR,
+
+                        // Andesite
+                        ModBlocks.ANDESITE_BRICKS,
                         ModBlocks.ANDESITE_BRICK_STAIRS,
                         ModBlocks.ANDESITE_BRICK_WALL,
                         ModBlocks.ANDESITE_BRICK_SLAB,

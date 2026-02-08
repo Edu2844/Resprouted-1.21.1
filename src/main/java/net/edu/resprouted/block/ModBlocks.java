@@ -342,8 +342,7 @@ public class ModBlocks {
     // =================================================
     // ||                  CHAINS                     ||
     // =================================================
-    public static final Block GOLDEN_CHAIN = registerBlock("golden_chain",
-            new CustomChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
+    public static final Block GOLDEN_CHAIN = registerBlock("golden_chain", new CustomChainBlock(AbstractBlock.Settings.copy(Blocks.CHAIN)));
     public static final Block COPPER_CHAIN = registerBlock("copper_chain",
             new CopperChainBlock(Oxidizable.OxidationLevel.UNAFFECTED, AbstractBlock.Settings.copy(Blocks.CHAIN)));
     public static final Block EXPOSED_COPPER_CHAIN = registerBlock("exposed_copper_chain",

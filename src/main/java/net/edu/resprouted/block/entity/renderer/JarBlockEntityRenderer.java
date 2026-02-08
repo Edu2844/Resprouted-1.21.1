@@ -6,10 +6,7 @@ import net.edu.resprouted.util.render.RenderUtils;
 import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.RenderLayers;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.texture.Sprite;
@@ -34,7 +31,7 @@ public class JarBlockEntityRenderer implements BlockEntityRenderer<JarBlockEntit
             // Get fluid visual properties
             int color = FluidVariantRendering.getColor(fluid, entity.getWorld(), entity.getPos());
             Sprite sprite = RenderUtils.getFluidSprite(fluid);
-            RenderLayer renderLayer = RenderLayers.getFluidLayer(fluid.getFluid().getDefaultState());
+            RenderLayer renderLayer = TexturedRenderLayers.getEntityTranslucentCull();
             VertexConsumer buffer = vertexConsumers.getBuffer(renderLayer);
 
             final float BASE_HEIGHT = 0.125f; // Minimum fluid height (2 px: 2/16 = 0.125)

@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.texture.MissingSprite;
 import net.minecraft.client.texture.Sprite;
@@ -44,10 +45,10 @@ public class RenderUtils {
         int green = (color >> 8) & 0xFF;
         int blue = color & 0xFF;
 
-        buffer.vertex(matrix, minX, 0, minZ).color(red, green, blue, alpha).texture(minU, minV).light(light).normal(0, 1, 0);
-        buffer.vertex(matrix, minX, 0, maxZ).color(red, green, blue, alpha).texture(minU, maxV).light(light).normal(0, 1, 0);
-        buffer.vertex(matrix, maxX, 0, maxZ).color(red, green, blue, alpha).texture(maxU, maxV).light(light).normal(0, 1, 0);
-        buffer.vertex(matrix, maxX, 0, minZ).color(red, green, blue, alpha).texture(maxU, minV).light(light).normal(0, 1, 0);
+        buffer.vertex(matrix, minX, 0, minZ).color(red, green, blue, alpha).texture(minU, minV).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 1, 0);
+        buffer.vertex(matrix, minX, 0, maxZ).color(red, green, blue, alpha).texture(minU, maxV).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 1, 0);
+        buffer.vertex(matrix, maxX, 0, maxZ).color(red, green, blue, alpha).texture(maxU, maxV).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 1, 0);
+        buffer.vertex(matrix, maxX, 0, minZ).color(red, green, blue, alpha).texture(maxU, minV).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(0, 1, 0);
 
         matrices.pop();
     }
