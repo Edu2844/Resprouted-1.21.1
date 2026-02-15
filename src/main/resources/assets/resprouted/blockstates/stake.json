@@ -1,7 +1,7 @@
 {
   "multipart": [
     {"apply": {"model": "resprouted:block/stake"}},
-    {"when": {"has_rope": "true"}, 
+    {"when": {"has_rope": "true"},
       "apply": {"model": "resprouted:block/stake_with_rope"}},
     
     {"when": {"has_rope": "true", "connect_north": "true"},

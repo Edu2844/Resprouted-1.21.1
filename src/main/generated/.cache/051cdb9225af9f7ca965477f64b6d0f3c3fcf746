@@ -1,4 +1,4 @@
-// 1.21.1	2026-02-08T13:42:17.036428	Resprouted/Tags for minecraft:block
+// 1.21.1	2026-02-09T16:30:49.6979817	Resprouted/Tags for minecraft:block
 061487558e06da47c2e48b1f0cb2bb24c34d267f data\minecraft\tags\block\wooden_stairs.json
 d6fe1362839cc923f7209db28021d51f7dfaa303 data\minecraft\tags\block\saplings.json
 076c0388cdd42c66aa2cae0e35aa5dd19bb392af data\minecraft\tags\block\wooden_trapdoors.json
@@ -6,12 +6,14 @@ d6fe1362839cc923f7209db28021d51f7dfaa303 data\minecraft\tags\block\saplings.json
 6e684c77bc468283a0028bc29cc2660d8ac47d46 data\minecraft\tags\block\fence_gates.json
 24ffd26d165619aaaf95e42c2e3dec1500c0f941 data\minecraft\tags\block\standing_signs.json
 5fb061ae925f129778b414f3281038887d476671 data\minecraft\tags\block\mineable\shovel.json
+f825bc5335bff98b0d1ee3317072f3788ca712b1 data\minecraft\tags\block\stairs.json
 f1334275f873c9074739aeb3e8c48b14ce3746b5 data\resprouted\tags\block\drying_boosters.json
 7938ca188d7b154a50503153771e9bafa9c92fac data\minecraft\tags\block\wall_signs.json
 84fa41a4e1d4786675c915f5fa84d405b786f481 data\resprouted\tags\block\preserves_farmland.json
 145140f9eb184a74ba63756f9980d3e720f71c25 data\resprouted\tags\block\urns.json
 dd978c459bc6aa2625476dd0de7c1764b816e94c data\minecraft\tags\block\mineable\axe.json
 f32c8526b8bcc041bb0ac387d1ef1e84b6bd46c2 data\minecraft\tags\block\wooden_buttons.json
+2ca4853eec69141b5a7ef7dfe6d70a869b6feadc data\minecraft\tags\block\slabs.json
 bae413f2bcbeb5269437af17c363b31c4070989c data\minecraft\tags\block\fences.json
 4006d377e843e61a73f007077bb382f2fad3e37e data\minecraft\tags\block\sword_efficient.json
 64473d3b4bdd2c43e6e28b5e22f0d497839991d0 data\minecraft\tags\block\mineable\pickaxe.json

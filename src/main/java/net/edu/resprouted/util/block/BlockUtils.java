@@ -22,18 +22,12 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.registry.BuiltinRegistries;
-import net.minecraft.registry.RegistryOps;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Property;
 import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -45,29 +39,30 @@ import java.util.List;
 import java.util.function.Function;
 
 public class BlockUtils {
-    private static final RegistryOps<NbtElement> TOOLTIP_OPS = RegistryOps.of(NbtOps.INSTANCE, BuiltinRegistries.createWrapperLookup());
     private static final float FILL_WITH_RAIN_CHANCE = 0.05F;
     private static final float FILL_WITH_SNOW_CHANCE = 0.1F;
 
     /**
      * Add fluid tooltip to the ItemStack
      */
-
     public static void appendFluidTooltip(ItemStack stack, List<Text> tooltip) {
         var data = stack.get(DataComponentTypes.BLOCK_ENTITY_DATA);
         if (data == null) return;
 
         NbtCompound fluidNbt = data.copyNbt().getCompound("Fluid");
-        if (fluidNbt.isEmpty() || !fluidNbt.contains("variant") || !fluidNbt.contains("amount")) {
-            return;
-        }
+        if (fluidNbt.isEmpty()) return;
 
         try {
-            FluidVariant fluidVariant = FluidVariant.CODEC.parse(TOOLTIP_OPS, fluidNbt.get("variant")).result().orElse(FluidVariant.blank());
+            NbtCompound variantNbt = fluidNbt.getCompound("variant");
+            String fluidId = variantNbt.getString("fluid");
+            Identifier id = Identifier.tryParse(fluidId);
 
-            if (fluidVariant.isBlank()) return;
+            if (id == null) throw new IllegalArgumentException("Invalid fluid ID");
 
-            Text fluidName = FluidVariantAttributes.getName(fluidVariant);
+            Fluid fluid = Registries.FLUID.get(id);
+            if (fluid == Fluids.EMPTY) throw new IllegalArgumentException("Fluid not found");
+
+            Text fluidName = FluidVariantAttributes.getName(FluidVariant.of(fluid));
             long amount = FluidUtils.convertDropletsToMb(fluidNbt.getLong("amount"));
 
             tooltip.add(Text.translatable("tooltip.resprouted.fluid", fluidName).formatted(Formatting.GOLD));
@@ -81,7 +76,6 @@ public class BlockUtils {
     /**
      * Dripstone event copied and modified from CauldronBlock
      */
-
     public static void fillFromDripstone(BlockState state, World world, BlockPos pos, Fluid fluid, SingleFluidStorage storage, LuminousFluidStorage luminousBlock) {
         if (fluid != Fluids.WATER) return;
 

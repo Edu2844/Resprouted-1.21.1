@@ -1,9 +1,9 @@
 package net.edu.resprouted.block.entity.custom.decorative;
 
 import net.edu.resprouted.block.ModBlockEntities;
+import net.edu.resprouted.block.custom.decorative.UrnBlock;
 import net.edu.resprouted.block.interfaces.ImplementedInventory;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.block.entity.ViewerCountManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -66,7 +66,7 @@ public class UrnBlockEntity extends LootableContainerBlockEntity implements Impl
 
     public UrnBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.URN_BE, pos, state);
-        this.cachedColor = ShulkerBoxBlock.getColor(state.getBlock());
+        this.cachedColor = UrnBlock.getColor(state.getBlock());
     }
 
     @Override

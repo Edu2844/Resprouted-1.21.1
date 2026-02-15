@@ -745,6 +745,30 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.IRONWOOD_SLAB,
                         ModBlocks.OLIVE_SLAB);
 
+        getOrCreateTagBuilder(BlockTags.SLABS)
+                .add(ModBlocks.COBBLED_SLATE,
+                        ModBlocks.SLATE_BRICK_SLAB,
+                        ModBlocks.SLATE_ROOF_SLAB,
+                        ModBlocks.POLISHED_SLATE_SLAB,
+                        ModBlocks.ANDESITE_BRICK_SLAB,
+                        ModBlocks.DIORITE_BRICK_SLAB,
+                        ModBlocks.GRANITE_BRICK_SLAB,
+                        ModBlocks.SANDSTONE_BRICK_SLAB,
+                        ModBlocks.RED_SANDSTONE_BRICK_SLAB
+                );
+
+        getOrCreateTagBuilder(BlockTags.STAIRS)
+                .add(ModBlocks.COBBLED_SLATE_STAIRS,
+                        ModBlocks.SLATE_BRICK_STAIRS,
+                        ModBlocks.SLATE_ROOF_STAIRS,
+                        ModBlocks.POLISHED_SLATE_STAIRS,
+                        ModBlocks.ANDESITE_BRICK_STAIRS,
+                        ModBlocks.DIORITE_BRICK_SLAB,
+                        ModBlocks.GRANITE_BRICK_SLAB,
+                        ModBlocks.SANDSTONE_BRICK_STAIRS,
+                        ModBlocks.RED_SANDSTONE_BRICK_STAIRS
+                );
+
         getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
                 .add(ModBlocks.IRONWOOD_PRESSURE_PLATE,
                         ModBlocks.OLIVE_PRESSURE_PLATE);
